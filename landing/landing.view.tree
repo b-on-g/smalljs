@@ -1,0 +1,65 @@
+$bog_smalljs_landing $mol_view
+	sub /
+		<= Hero $mol_view
+			sub /
+				<= Hero_title @ \The reactive virtualization framework
+				<= Hero_subtitle @ \Build performant web UIs that scale to millions of nodes, with reactivity and components out of the box.
+				<= Hero_actions $mol_view
+					sub /
+						<= Hero_cta_why $mol_link
+							title @ \Why smalljs
+							arg *
+								section \docs
+								page \why
+						<= Hero_cta_start $mol_link
+							title @ \Get Started
+							arg *
+								section \docs
+								page \quick-start
+						<= Hero_cta_install $mol_link
+							title @ \Install
+							arg *
+								section \docs
+								page \install
+						<= Hero_cta_play $mol_link
+							title @ \Try Playground
+							arg *
+								section \playground
+								page \
+				<= Hero_sponsor @ \Special Sponsor slot is open
+		<= Features $mol_view
+			sub /
+				<= Feature1 $mol_view
+					sub /
+						<= Feature1_title @ \Versatile
+						<= Feature1_text $mol_text
+							text @ \An incrementally adoptable ecosystem that scales between a single component and a full-stack local-first app.
+				<= Feature2 $mol_view
+					sub /
+						<= Feature2_title @ \User-friendly
+						<= Feature2_text $mol_text
+							text @ \Build UIs as trees of components. Reactivity is automatic, side-effects are explicit.
+				<= Feature3 $mol_view
+					sub /
+						<= Feature3_title @ \Efficient
+						<= Feature3_text $mol_text
+							text @ \Full rendering virtualization — components outside the viewport simply do not exist.
+		<= Sponsors $mol_view
+			sub /
+				<= Sponsors_title @ \Sponsors
+				<= Sponsors_cta @ \Become a Sponsor
+		<= Footer $mol_view
+			sub /
+				<= Footer_col_docs $mol_view
+					sub /
+						<= Footer_col_docs_title @ \Docs
+				<= Footer_col_about $mol_view
+					sub /
+						<= Footer_col_about_title @ \About
+				<= Footer_col_help $mol_view
+					sub /
+						<= Footer_col_help_title @ \Help
+				<= Footer_col_news $mol_view
+					sub /
+						<= Footer_col_news_title @ \News
+				<= Footer_copy @ \Released under the MIT License.

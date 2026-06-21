@@ -1,0 +1,5 @@
+$bog_smalljs_playground $mol_view
+	sub /
+		<= Title @ \Playground
+		<= Body $mol_text
+			text @ \Coming in Sprint 2.

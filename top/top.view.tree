@@ -1,0 +1,60 @@
+$bog_smalljs_top $mol_view
+	Theme null
+	github_uri \https://github.com/b-on-g/smalljs
+	search_open? null
+	nav_docs_open? null
+	nav_ecosystem_open? null
+	nav_libs_open? null
+	nav_courses_open? null
+	nav_help_open? null
+	nav_news_open? null
+	nav_about_open? null
+	lang_open? null
+	sub /
+		<= Logo $mol_link
+			arg *
+				section \
+				page \
+			sub /
+				<= Logo_image $mol_image
+					uri \assets/logo.svg
+					title @ \smalljs
+				<= Logo_text @ \smalljs
+		<= Search $mol_button_minor
+			title @ \Search
+			click? <=> search_open?
+		<= Nav $mol_view
+			sub /
+				<= Nav_docs $mol_button_minor
+					title @ \Docs
+					click? <=> nav_docs_open?
+				<= Nav_playground $mol_link
+					title @ \Playground
+					arg *
+						section \playground
+						page \
+				<= Nav_ecosystem $mol_button_minor
+					title @ \Ecosystem
+					click? <=> nav_ecosystem_open?
+				<= Nav_libs $mol_button_minor
+					title @ \Official Libraries
+					click? <=> nav_libs_open?
+				<= Nav_courses $mol_button_minor
+					title @ \Video Courses
+					click? <=> nav_courses_open?
+				<= Nav_help $mol_button_minor
+					title @ \Help
+					click? <=> nav_help_open?
+				<= Nav_news $mol_button_minor
+					title @ \News
+					click? <=> nav_news_open?
+				<= Nav_about $mol_button_minor
+					title @ \About
+					click? <=> nav_about_open?
+		<= Lang $mol_button_minor
+			title \EN
+			click? <=> lang_open?
+		<= Theme_toggle $bog_theme_switch
+			theme_auto <= Theme
+		<= Github $mol_link_source
+			uri <= github_uri

@@ -1,0 +1,17 @@
+$bog_smalljs_app $mol_view
+	section? \home
+	sub /
+		<= Top $bog_smalljs_top
+			Theme <= Theme $bog_theme_auto
+				theme_light \$mol_theme_calm_light
+				theme_dark \$mol_theme_calm_dark
+				themes /
+					\$mol_theme_calm_light
+					\$mol_theme_calm_dark
+		<= Body $mol_view
+			sub <= body_content /
+	plugins /
+		<= Theme
+	Landing $bog_smalljs_landing
+	Docs $bog_smalljs_docs
+	Playground $bog_smalljs_playground

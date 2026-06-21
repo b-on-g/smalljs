@@ -1,0 +1,36 @@
+$bog_smalljs_docs $mol_view
+	edit_uri \https://github.com/b-on-g/smalljs/edit/master/docs/page.view.tree
+	sub /
+		<= Sidebar $mol_scroll
+			sub /
+				<= Group1 $mol_view
+					sub /
+						<= Group1_title @ \Getting Started
+				<= Group2 $mol_view
+					sub /
+						<= Group2_title @ \Essentials
+		<= Main $mol_scroll
+			sub /
+				<= Content $mol_view
+					sub /
+						<= Title @ \Page Title
+						<= Body $mol_text
+							text @ \Page content goes here.
+				<= Edit $mol_link
+					title @ \Edit this page on GitHub
+					uri <= edit_uri
+				<= Nav $mol_view
+					sub /
+						<= Prev $mol_link
+							title @ \Previous page
+							arg *
+								section \docs
+								page \
+						<= Next $mol_link
+							title @ \Next page
+							arg *
+								section \docs
+								page \
+		<= Toc $mol_scroll
+			sub /
+				<= Toc_title @ \On this page
