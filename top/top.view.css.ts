@@ -9,7 +9,7 @@ namespace $ {
 		gap: $mol_gap.text,
 		padding: { left: $mol_gap.block, right: $mol_gap.block, top: $mol_gap.text, bottom: $mol_gap.text },
 		height: rem(4),
-		border: { bottom: { width: 1, style: 'solid', color: $mol_theme.line } },
+		border: { bottom: { width: '1px', style: 'solid', color: $mol_theme.line } },
 		position: 'sticky',
 		top: 0,
 		background: { color: $mol_theme.back },
@@ -52,7 +52,7 @@ namespace $ {
 
 		Search_hint: {
 			padding: { left: rem(0.375), right: rem(0.375), top: rem(0.05), bottom: rem(0.05) },
-			border: { radius: rem(0.25), width: 1, style: 'solid', color: $mol_theme.line },
+			border: { radius: rem(0.25), width: '1px', style: 'solid', color: $mol_theme.line },
 			font: { size: rem(0.75) },
 			color: $mol_theme.shade,
 		},

@@ -10,7 +10,7 @@ namespace $ {
 			flex: { direction: 'column' },
 			align: { items: 'center' },
 			gap: $mol_gap.block,
-			padding: { top: rem(5), bottom: 0, left: $mol_gap.block, right: $mol_gap.block },
+			padding: { top: rem(4), bottom: 0, left: $mol_gap.block, right: $mol_gap.block },
 		},
 
 		Hero_title: {
@@ -79,7 +79,7 @@ namespace $ {
 			gap: rem(0.4),
 			background: { color: $mol_theme.back },
 			padding: { left: rem(1.25), right: rem(1.25), top: rem(0.5), bottom: rem(0.5) },
-			border: { radius: rem(1.25), width: 1, style: 'solid', color: $mol_theme.current },
+			border: { radius: rem(1.25), width: '1px', style: 'solid', color: $mol_theme.current },
 			color: $mol_theme.current,
 			font: { weight: 600 },
 		},
@@ -93,7 +93,7 @@ namespace $ {
 			margin: { top: rem(3), left: 'auto', right: 'auto' },
 			font: { size: rem(0.875) },
 			color: $mol_theme.text,
-			border: { top: { width: 1, style: 'solid', color: $mol_theme.line }, bottom: { width: 1, style: 'solid', color: $mol_theme.line } },
+			border: { top: { width: '1px', style: 'solid', color: $mol_theme.line }, bottom: { width: '1px', style: 'solid', color: $mol_theme.line } },
 			width: '100%',
 		},
 
@@ -110,9 +110,21 @@ namespace $ {
 		Feature2: { flex: { direction: 'column' }, gap: $mol_gap.text },
 		Feature3: { flex: { direction: 'column' }, gap: $mol_gap.text },
 
-		Feature1_title: { font: { size: rem(1.25), weight: 600 } },
-		Feature2_title: { font: { size: rem(1.25), weight: 600 } },
-		Feature3_title: { font: { size: rem(1.25), weight: 600 } },
+		Feature1_title: {
+			display: 'block',
+			font: { size: rem(1.25), weight: 600 },
+			'::first-letter': { color: $mol_theme.special },
+		},
+		Feature2_title: {
+			display: 'block',
+			font: { size: rem(1.25), weight: 600 },
+			'::first-letter': { color: $mol_theme.special },
+		},
+		Feature3_title: {
+			display: 'block',
+			font: { size: rem(1.25), weight: 600 },
+			'::first-letter': { color: $mol_theme.special },
+		},
 
 		Sponsors: {
 			flex: { direction: 'column' },
@@ -159,7 +171,7 @@ namespace $ {
 			flex: { direction: 'column' },
 			gap: $mol_gap.block,
 			padding: { top: rem(3), bottom: rem(3), left: $mol_gap.block, right: $mol_gap.block },
-			border: { top: { width: 1, style: 'solid', color: $mol_theme.line } },
+			border: { top: { width: '1px', style: 'solid', color: $mol_theme.line } },
 			margin: { top: 'auto' },
 		},
 
