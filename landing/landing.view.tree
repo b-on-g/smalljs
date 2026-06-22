@@ -85,38 +85,207 @@ $bog_smalljs_landing $mol_view
 			sub /
 				<= Footer_cols $mol_view
 					sub /
-						<= Footer_col_docs $mol_view
+						<= Footer_col1 $mol_view
 							sub /
-								<= Footer_col_docs_title $mol_view sub /
-									<= Footer_col_docs_title_text @ \Docs
-						<= Footer_col_about $mol_view
+								<= Footer_sect_docs $mol_view
+									sub /
+										<= Footer_sect_docs_title $mol_view
+											sub /
+												<= Footer_sect_docs_title_text @ \Docs
+										<= Footer_link_quickstart $mol_link
+											title @ \Quick Start
+											arg *
+												section \docs
+												page \quick-start
+										<= Footer_link_guide $mol_link
+											title @ \Guide
+											arg *
+												section \docs
+												page \guide
+										<= Footer_link_tutorial $mol_link
+											title @ \Tutorial
+											arg *
+												section \docs
+												page \tutorial
+										<= Footer_link_examples $mol_link
+											title @ \Examples
+											arg *
+												section \docs
+												page \examples
+										<= Footer_link_api $mol_link
+											title @ \API
+											arg *
+												section \docs
+												page \api
+										<= Footer_link_glossary $mol_link
+											title @ \Glossary
+											arg *
+												section \docs
+												page \glossary
+										<= Footer_link_errref $mol_link
+											title @ \Error Reference
+											arg *
+												section \docs
+												page \error-reference
+										<= Footer_link_migration $mol_link
+											title @ \Migration
+											arg *
+												section \docs
+												page \migration
+								<= Footer_sect_about $mol_view
+									sub /
+										<= Footer_sect_about_title $mol_view
+											sub /
+												<= Footer_sect_about_title_text @ \About
+										<= Footer_link_faq $mol_link
+											title @ \FAQ
+											arg *
+												section \about
+												page \faq
+										<= Footer_link_team $mol_link
+											title @ \Team
+											arg *
+												section \about
+												page \team
+										<= Footer_link_releases $mol_link
+											title @ \Releases
+											arg *
+												section \about
+												page \releases
+										<= Footer_link_community $mol_link
+											title @ \Community Guide
+											arg *
+												section \about
+												page \community
+										<= Footer_link_coc $mol_link
+											title @ \Code of Conduct
+											arg *
+												section \about
+												page \code-of-conduct
+										<= Footer_link_privacy $mol_link
+											title @ \Privacy Policy
+											arg *
+												section \about
+												page \privacy
+						<= Footer_col2 $mol_view
 							sub /
-								<= Footer_col_about_title $mol_view sub /
-									<= Footer_col_about_title_text @ \About
-						<= Footer_col_support $mol_view
+								<= Footer_sect_support $mol_view
+									sub /
+										<= Footer_sect_support_title $mol_view
+											sub /
+												<= Footer_sect_support_title_text @ \Support
+										<= Footer_link_sponsor $mol_link
+											title @ \Sponsor
+											arg *
+												section \support
+												page \sponsor
+										<= Footer_link_partners $mol_link
+											title @ \Partners
+											arg *
+												section \support
+												page \partners
+								<= Footer_sect_resources $mol_view
+									sub /
+										<= Footer_sect_resources_title $mol_view
+											sub /
+												<= Footer_sect_resources_title_text @ \Resources
+										<= Footer_link_themes $mol_link
+											title @ \Themes
+											arg *
+												section \ecosystem
+												page \themes
+										<= Footer_link_ui $mol_link
+											title @ \UI Components
+											arg *
+												section \ecosystem
+												page \components
+										<= Footer_link_plugins $mol_link
+											title @ \Plugins
+											arg *
+												section \ecosystem
+												page \plugins
+										<= Footer_link_jobs $mol_link
+											title @ \Jobs
+											arg *
+												section \ecosystem
+												page \jobs
+						<= Footer_col3 $mol_view
 							sub /
-								<= Footer_col_support_title $mol_view sub /
-									<= Footer_col_support_title_text @ \Support
-						<= Footer_col_resources $mol_view
+								<= Footer_sect_courses $mol_view
+									sub /
+										<= Footer_sect_courses_title $mol_view
+											sub /
+												<= Footer_sect_courses_title_text @ \Video Courses
+										<= Footer_link_course $mol_link
+											title @ \Course
+											arg *
+												section \course
+												page \
+								<= Footer_sect_help $mol_view
+									sub /
+										<= Footer_sect_help_title $mol_view
+											sub /
+												<= Footer_sect_help_title_text @ \Help
+										<= Footer_link_ghdisc $mol_link
+											title @ \GitHub Discussions
+											uri \https://github.com/b-on-g/smalljs/discussions
+											target \_blank
+										<= Footer_link_dev $mol_link
+											title @ \DEV Community
+											uri \https://dev.to/t/mol
+											target \_blank
+								<= Footer_sect_news $mol_view
+									sub /
+										<= Footer_sect_news_title $mol_view
+											sub /
+												<= Footer_sect_news_title_text @ \News
+										<= Footer_link_blog $mol_link
+											title @ \Blog
+											arg *
+												section \news
+												page \blog
+										<= Footer_link_events $mol_link
+											title @ \Events
+											arg *
+												section \news
+												page \events
+										<= Footer_link_newsletters $mol_link
+											title @ \Newsletters
+											arg *
+												section \news
+												page \newsletters
+						<= Footer_col4 $mol_view
 							sub /
-								<= Footer_col_resources_title $mol_view sub /
-									<= Footer_col_resources_title_text @ \Resources
-						<= Footer_col_libs $mol_view
-							sub /
-								<= Footer_col_libs_title $mol_view sub /
-									<= Footer_col_libs_title_text @ \Official Libraries
-						<= Footer_col_courses $mol_view
-							sub /
-								<= Footer_col_courses_title $mol_view sub /
-									<= Footer_col_courses_title_text @ \Video Courses
-						<= Footer_col_help $mol_view
-							sub /
-								<= Footer_col_help_title $mol_view sub /
-									<= Footer_col_help_title_text @ \Help
-						<= Footer_col_news $mol_view
-							sub /
-								<= Footer_col_news_title $mol_view sub /
-									<= Footer_col_news_title_text @ \News
+								<= Footer_sect_libs $mol_view
+									sub /
+										<= Footer_sect_libs_title $mol_view
+											sub /
+												<= Footer_sect_libs_title_text @ \Official Libraries
+										<= Footer_link_wire $mol_link
+											title @ \$mol_wire
+											arg *
+												section \libs
+												page \wire
+										<= Footer_link_baza $mol_link
+											title @ \Giper Baza
+											arg *
+												section \libs
+												page \baza
+										<= Footer_link_crowd $mol_link
+											title @ \$hyoo_crowd
+											arg *
+												section \libs
+												page \crowd
+										<= Footer_link_router $mol_link
+											title @ \$mol_router
+											arg *
+												section \libs
+												page \router
 				<= Footer_copy $mol_view
 					sub /
-						<= Footer_copy_text @ \Released under the MIT License.
+						<= Footer_copy_line1 $mol_view
+							sub /
+								<= Footer_copy_line1_text @ \Released under the MIT License.
+						<= Footer_copy_line2 $mol_view
+							sub /
+								<= Footer_copy_line2_text @ \Copyright © 2026 smalljs
