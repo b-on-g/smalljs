@@ -14,10 +14,17 @@ namespace $ {
 		},
 
 		Hero_title: {
-			font: { size: rem(3.5), weight: 700 },
-			lineHeight: '1.1',
+			display: 'block',
+			font: { size: rem(4.75), weight: 900 },
+			lineHeight: '1.25',
 			textAlign: 'center',
 			maxWidth: rem(60),
+		},
+
+		Hero_title_accent: {
+			display: 'inline',
+			color: $mol_theme.special,
+			margin: { left: '0.25em', right: '0.15em' },
 		},
 
 		Hero_subtitle: {

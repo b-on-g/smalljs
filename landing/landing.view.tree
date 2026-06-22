@@ -3,8 +3,14 @@ $bog_smalljs_landing $mol_view
 		<= Hero $mol_view
 			sub /
 				<= Hero_title $mol_view
+					dom_name \h1
 					sub /
-						<= Hero_title_text @ \$mol — the reactive micromodule framework
+						<= Hero_title_pre @ \$mol — the reactive
+						<= Hero_title_accent $mol_view
+							dom_name \span
+							sub /
+								<= Hero_title_accent_text @ \micromodule
+						<= Hero_title_post @ \ framework
 				<= Hero_subtitle $mol_view
 					sub /
 						<= Hero_subtitle_text @ \A progressive web app framework. Extremely simple, deeply capable. Innovations and batteries included.

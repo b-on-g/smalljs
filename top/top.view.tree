@@ -22,8 +22,12 @@ $bog_smalljs_top $mol_view
 			click? <=> search_open?
 			sub /
 				<= Search_icon $mol_icon_magnify
-				<= Search_label @ \Search
-				<= Search_hint @ \⌘ K
+				<= Search_label $mol_view
+					sub /
+						<= Search_label_text @ \Search
+				<= Search_hint $mol_view
+					sub /
+						<= Search_hint_text @ \⌘ K
 		<= Nav $mol_view
 			sub /
 				<= Nav_docs $mol_button_minor

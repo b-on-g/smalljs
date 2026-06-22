@@ -52,8 +52,7 @@ namespace $ {
 
 		Search_hint: {
 			padding: { left: rem(0.375), right: rem(0.375), top: rem(0.05), bottom: rem(0.05) },
-			background: { color: $mol_theme.card },
-			border: { radius: rem(0.25) },
+			border: { radius: rem(0.25), width: 1, style: 'solid', color: $mol_theme.line },
 			font: { size: rem(0.75) },
 			color: $mol_theme.shade,
 		},
@@ -64,6 +63,7 @@ namespace $ {
 			justify: { content: 'center' },
 			gap: 0,
 			minWidth: 0,
+			font: { size: rem(0.8125), weight: 500 },
 		},
 
 		Nav_docs: { flex: { direction: 'row' }, align: { items: 'center' }, gap: rem(0.125) },
