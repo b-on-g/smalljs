@@ -1,6 +1,7 @@
 $bog_smalljs_top $mol_view
 	Theme null
 	github_uri \https://github.com/b-on-g/smalljs
+	logo_uri \bog/smalljs/assets/logo.svg
 	search_open? null
 	nav_docs_open? null
 	nav_ecosystem_open? null
@@ -17,9 +18,8 @@ $bog_smalljs_top $mol_view
 				page \
 			sub /
 				<= Logo_image $mol_image
-					uri \assets/logo.svg
+					uri <= logo_uri
 					title @ \smalljs
-				<= Logo_text @ \smalljs
 		<= Search $mol_button_minor
 			title @ \Search
 			click? <=> search_open?

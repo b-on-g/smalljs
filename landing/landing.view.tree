@@ -2,8 +2,12 @@ $bog_smalljs_landing $mol_view
 	sub /
 		<= Hero $mol_view
 			sub /
-				<= Hero_title @ \The reactive virtualization framework
-				<= Hero_subtitle @ \Build performant web UIs that scale to millions of nodes, with reactivity and components out of the box.
+				<= Hero_title $mol_view
+					sub /
+						<= Hero_title_text @ \The reactive virtualization framework
+				<= Hero_subtitle $mol_view
+					sub /
+						<= Hero_subtitle_text @ \Build performant web UIs that scale to millions of nodes, with reactivity and components out of the box.
 				<= Hero_actions $mol_view
 					sub /
 						<= Hero_cta_why $mol_link
@@ -26,40 +30,76 @@ $bog_smalljs_landing $mol_view
 							arg *
 								section \playground
 								page \
-				<= Hero_sponsor @ \Special Sponsor slot is open
+		<= Sponsor_banner $mol_view
+			sub /
+				<= Sponsor_banner_text @ \Special Sponsor slot is open
 		<= Features $mol_view
 			sub /
 				<= Feature1 $mol_view
 					sub /
-						<= Feature1_title @ \Versatile
+						<= Feature1_title $mol_view
+							sub /
+								<= Feature1_title_text @ \Versatile
 						<= Feature1_text $mol_text
 							text @ \An incrementally adoptable ecosystem that scales between a single component and a full-stack local-first app.
 				<= Feature2 $mol_view
 					sub /
-						<= Feature2_title @ \User-friendly
+						<= Feature2_title $mol_view
+							sub /
+								<= Feature2_title_text @ \User-friendly
 						<= Feature2_text $mol_text
 							text @ \Build UIs as trees of components. Reactivity is automatic, side-effects are explicit.
 				<= Feature3 $mol_view
 					sub /
-						<= Feature3_title @ \Efficient
+						<= Feature3_title $mol_view
+							sub /
+								<= Feature3_title_text @ \Efficient
 						<= Feature3_text $mol_text
 							text @ \Full rendering virtualization — components outside the viewport simply do not exist.
 		<= Sponsors $mol_view
 			sub /
-				<= Sponsors_title @ \Sponsors
-				<= Sponsors_cta @ \Become a Sponsor
+				<= Sponsors_title $mol_view
+					sub /
+						<= Sponsors_title_text @ \Sponsors
+				<= Sponsors_cta $mol_view
+					sub /
+						<= Sponsors_cta_text @ \Become a Sponsor
 		<= Footer $mol_view
 			sub /
-				<= Footer_col_docs $mol_view
+				<= Footer_cols $mol_view
 					sub /
-						<= Footer_col_docs_title @ \Docs
-				<= Footer_col_about $mol_view
+						<= Footer_col_docs $mol_view
+							sub /
+								<= Footer_col_docs_title $mol_view sub /
+									<= Footer_col_docs_title_text @ \Docs
+						<= Footer_col_about $mol_view
+							sub /
+								<= Footer_col_about_title $mol_view sub /
+									<= Footer_col_about_title_text @ \About
+						<= Footer_col_support $mol_view
+							sub /
+								<= Footer_col_support_title $mol_view sub /
+									<= Footer_col_support_title_text @ \Support
+						<= Footer_col_resources $mol_view
+							sub /
+								<= Footer_col_resources_title $mol_view sub /
+									<= Footer_col_resources_title_text @ \Resources
+						<= Footer_col_libs $mol_view
+							sub /
+								<= Footer_col_libs_title $mol_view sub /
+									<= Footer_col_libs_title_text @ \Official Libraries
+						<= Footer_col_courses $mol_view
+							sub /
+								<= Footer_col_courses_title $mol_view sub /
+									<= Footer_col_courses_title_text @ \Video Courses
+						<= Footer_col_help $mol_view
+							sub /
+								<= Footer_col_help_title $mol_view sub /
+									<= Footer_col_help_title_text @ \Help
+						<= Footer_col_news $mol_view
+							sub /
+								<= Footer_col_news_title $mol_view sub /
+									<= Footer_col_news_title_text @ \News
+				<= Footer_copy $mol_view
 					sub /
-						<= Footer_col_about_title @ \About
-				<= Footer_col_help $mol_view
-					sub /
-						<= Footer_col_help_title @ \Help
-				<= Footer_col_news $mol_view
-					sub /
-						<= Footer_col_news_title @ \News
-				<= Footer_copy @ \Released under the MIT License.
+						<= Footer_copy_text @ \Released under the MIT License.

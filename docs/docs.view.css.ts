@@ -1,9 +1,11 @@
 namespace $ {
 
+	const { rem } = $mol_style_unit
+
 	$mol_style_define( $bog_smalljs_docs, {
 
 		display: 'grid',
-		gridTemplateColumns: '256px 1fr 240px',
+		gridTemplateColumns: '16rem 1fr 15rem',
 		flex: { grow: 1 },
 		minHeight: 0,
 
@@ -13,7 +15,7 @@ namespace $ {
 		},
 
 		Main: {
-			padding: { top: $mol_gap.block, bottom: $mol_gap.block, left: 48, right: 48 },
+			padding: { top: $mol_gap.block, bottom: $mol_gap.block, left: rem(3), right: rem(3) },
 		},
 
 		Toc: {
@@ -22,7 +24,7 @@ namespace $ {
 		},
 
 		Title: {
-			font: { size: 40, weight: 700 },
+			font: { size: rem(2.5), weight: 700 },
 			padding: { bottom: $mol_gap.block },
 		},
 
