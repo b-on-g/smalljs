@@ -15,6 +15,7 @@ namespace $ {
 
 		Hero_title: {
 			font: { size: rem(3.5), weight: 700 },
+			lineHeight: '1.1',
 			textAlign: 'center',
 			maxWidth: rem(60),
 		},
@@ -30,15 +31,35 @@ namespace $ {
 			flex: { direction: 'row', wrap: 'wrap' },
 			gap: $mol_gap.block,
 			justify: { content: 'center' },
+			align: { items: 'center' },
+		},
+
+		Hero_cta_start: {
+			background: { color: $mol_theme.current },
+			color: $mol_theme.back,
+			padding: { left: rem(1.5), right: rem(1.5), top: rem(0.6), bottom: rem(0.6) },
+			border: { radius: rem(0.5) },
+			font: { weight: 600 },
+		},
+
+		Hero_cta_why: {
+			padding: { left: rem(1), right: rem(1), top: rem(0.6), bottom: rem(0.6) },
+		},
+
+		Hero_cta_install: {
+			padding: { left: rem(1), right: rem(1), top: rem(0.6), bottom: rem(0.6) },
+		},
+
+		Hero_cta_play: {
+			padding: { left: rem(1), right: rem(1), top: rem(0.6), bottom: rem(0.6) },
 		},
 
 		Sponsor_banner: {
 			align: { items: 'center' },
 			justify: { content: 'center' },
-			padding: { top: $mol_gap.block, bottom: $mol_gap.block },
+			padding: { top: $mol_gap.text, bottom: $mol_gap.text },
 			font: { size: rem(0.875) },
 			color: $mol_theme.text,
-			border: { top: { width: 1, style: 'solid', color: $mol_theme.line }, bottom: { width: 1, style: 'solid', color: $mol_theme.line } },
 		},
 
 		Features: {
@@ -63,6 +84,7 @@ namespace $ {
 			align: { items: 'center' },
 			gap: $mol_gap.block,
 			padding: { top: rem(3), bottom: rem(3) },
+			border: { top: { width: 1, style: 'solid', color: $mol_theme.line } },
 		},
 
 		Sponsors_title: { font: { size: rem(1.5), weight: 600 } },

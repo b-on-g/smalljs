@@ -29,7 +29,13 @@ namespace $ {
 		},
 
 		Search: {
-			flex: { grow: 0, basis: 'auto', shrink: 0 },
+			flex: { grow: 0, basis: rem(8), shrink: 0 },
+			justify: { content: 'flex-start' },
+			align: { items: 'center' },
+			padding: { left: rem(0.75), right: rem(0.75), top: rem(0.4), bottom: rem(0.4) },
+			background: { color: $mol_theme.field },
+			border: { radius: rem(0.5) },
+			color: $mol_theme.shade,
 			font: { size: rem(0.875) },
 		},
 

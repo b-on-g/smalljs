@@ -4,14 +4,14 @@ $bog_smalljs_landing $mol_view
 			sub /
 				<= Hero_title $mol_view
 					sub /
-						<= Hero_title_text @ \The reactive virtualization framework
+						<= Hero_title_text @ \$mol — the reactive micromodule framework
 				<= Hero_subtitle $mol_view
 					sub /
-						<= Hero_subtitle_text @ \Build performant web UIs that scale to millions of nodes, with reactivity and components out of the box.
+						<= Hero_subtitle_text @ \A progressive web app framework. Extremely simple, deeply capable. Innovations and batteries included.
 				<= Hero_actions $mol_view
 					sub /
 						<= Hero_cta_why $mol_link
-							title @ \Why smalljs
+							title @ \Why $mol
 							arg *
 								section \docs
 								page \why
@@ -30,9 +30,9 @@ $bog_smalljs_landing $mol_view
 							arg *
 								section \playground
 								page \
-		<= Sponsor_banner $mol_view
-			sub /
-				<= Sponsor_banner_text @ \Special Sponsor slot is open
+				<= Sponsor_banner $mol_view
+					sub /
+						<= Sponsor_banner_text @ \Special Sponsor slot is open
 		<= Features $mol_view
 			sub /
 				<= Feature1 $mol_view
