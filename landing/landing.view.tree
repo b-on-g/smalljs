@@ -11,28 +11,34 @@ $bog_smalljs_landing $mol_view
 				<= Hero_actions $mol_view
 					sub /
 						<= Hero_cta_why $mol_link
-							title @ \Why $mol
 							arg *
 								section \docs
 								page \why
+							sub /
+								<= Hero_cta_why_icon $mol_icon_play
+								<= Hero_cta_why_label @ \Why $mol
 						<= Hero_cta_start $mol_link
-							title @ \Get Started
 							arg *
 								section \docs
 								page \quick-start
+							sub /
+								<= Hero_cta_start_label @ \Get Started
+								<= Hero_cta_start_icon $mol_icon_arrow_right
 						<= Hero_cta_install $mol_link
 							title @ \Install
 							arg *
 								section \docs
 								page \install
 						<= Hero_cta_play $mol_link
-							title @ \Try Playground
 							arg *
 								section \playground
 								page \
+							sub /
+								<= Hero_cta_play_label @ \Try Playground
+								<= Hero_cta_play_icon $mol_icon_open_in_new
 				<= Sponsor_banner $mol_view
 					sub /
-						<= Sponsor_banner_text @ \Special Sponsor slot is open
+						<= Sponsor_banner_text @ \Special Sponsor slot is open — Inquire now
 		<= Features $mol_view
 			sub /
 				<= Feature1 $mol_view
@@ -60,7 +66,12 @@ $bog_smalljs_landing $mol_view
 			sub /
 				<= Sponsors_title $mol_view
 					sub /
-						<= Sponsors_title_text @ \Sponsors
+						<= Sponsors_title_text @ \Platinum Sponsors
+				<= Sponsors_grid $mol_view
+					sub /
+						<= Sponsor_card1 $mol_view sub /
+						<= Sponsor_card2 $mol_view sub /
+						<= Sponsor_card3 $mol_view sub /
 				<= Sponsors_cta $mol_view
 					sub /
 						<= Sponsors_cta_text @ \Become a Sponsor
