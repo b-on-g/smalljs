@@ -45,8 +45,8 @@ namespace $ {
 			flex: { direction: 'row' },
 			align: { items: 'center' },
 			gap: rem(0.4),
-			background: { color: $mol_theme.current },
-			color: $mol_theme.back,
+			background: { color: '#42b883' },
+			color: '#ffffff',
 			padding: { left: rem(1.25), right: rem(1.25), top: rem(0.625), bottom: rem(0.625) },
 			border: { radius: rem(1.25) },
 			font: { weight: 600 },
@@ -146,18 +146,18 @@ namespace $ {
 		},
 
 		Sponsor_card1: {
-			background: { color: $mol_theme.card },
-			border: { radius: rem(0.5) },
+			background: { color: '#f6f6f7' },
+			border: { radius: rem(0.5), width: '1px', style: 'solid', color: '#e2e2e3' },
 			height: rem(8),
 		},
 		Sponsor_card2: {
-			background: { color: $mol_theme.card },
-			border: { radius: rem(0.5) },
+			background: { color: '#f6f6f7' },
+			border: { radius: rem(0.5), width: '1px', style: 'solid', color: '#e2e2e3' },
 			height: rem(8),
 		},
 		Sponsor_card3: {
-			background: { color: $mol_theme.card },
-			border: { radius: rem(0.5) },
+			background: { color: '#f6f6f7' },
+			border: { radius: rem(0.5), width: '1px', style: 'solid', color: '#e2e2e3' },
 			height: rem(8),
 		},
 

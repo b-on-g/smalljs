@@ -3,7 +3,8 @@ namespace $ {
 	$mol_style_define( $bog_smalljs_app, {
 
 		flex: { direction: 'column' },
-		minHeight: '100vh',
+		height: '100vh',
+		overflow: { y: 'auto', x: 'hidden' },
 		font: { family: 'Inter, system-ui, sans-serif' },
 		background: { color: $mol_theme.back },
 		color: $mol_theme.text,

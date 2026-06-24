@@ -13,7 +13,9 @@ $bog_smalljs_docs $mol_view
 			sub /
 				<= Content $mol_view
 					sub /
-						<= Title @ \Page Title
+						<= Title $mol_view
+							sub /
+								<= Title_text @ \Page Title
 						<= Body $mol_text
 							text @ \Page content goes here.
 				<= Edit $mol_link
