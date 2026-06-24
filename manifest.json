@@ -1,0 +1,10 @@
+{
+	"name": "bog_smalljs_app",
+	"short_name": "bog_smalljs_app",
+	"description": "",
+	"id": "bog_smalljs_app",
+	"start_url": ".",
+	"display": "standalone",
+	"background_color": "#000000",
+	"theme_color": "#000000"
+}

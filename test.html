@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ru" mol_view_root>
+	<head>
+		<meta charset="utf-8" />
+		<meta lang="ru" />
+		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1" />
+		<meta name="mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<link href="bog/smalljs/assets/logo.svg" rel="icon" />
+		<meta name="description" content="smalljs" />
+		<meta property="og:title" content="smalljs" />
+		<meta property="og:type" content="website" />
+		<meta property="og:description" content="smalljs" />
+		<meta property="og:site_name" content="smalljs" />
+		<meta property="og:url" content="https://bog.github.io/smalljs/" />
+		<link rel="manifest" href="manifest.json" />
+		<link rel="preconnect" href="https://rsms.me/" />
+		<link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+	</head>
+	<body mol_view_root>
+		<div mol_view_root="$bog_smalljs_app"></div>
+		<script src="web.js"></script>
+	
+				<script src="/mol/build/client/client.js" charset="utf-8"></script>
+				<script src="web.test.js" charset="utf-8"></script>
+				<script>
+					addEventListener( 'load', ()=> setTimeout( ()=> {
+						const audit =  document.createElement( 'script' )
+						audit.src = 'web.audit.js'
+						document.head.appendChild( audit )
+					}, 500 ) )
+				</script>
+				</body>
+</html>

@@ -1,0 +1,993 @@
+$bog_theme_auto $mol_plugin
+	themes <= themes_default /
+	theme_light \$mol_theme_light
+	theme_dark \$mol_theme_dark
+	mode? \system
+	mode_next? null
+	theme_next? null
+	theme_prev? null
+	theme_set? null
+	is_light_now false
+	attr * mol_theme <= theme \
+
+$mol_image $mol_view
+	dom_name \img
+	attr *any
+		^
+		src <= uri \
+		title <= hint
+		alt <= title \
+		loading <= loading \lazy
+		decoding <= decoding \async
+		crossOrigin <= cors null
+		width <= natural_width 0
+		height <= natural_height 0
+	event *any
+		load? <=> load? null
+	minimal_width 16
+	minimal_height 16
+
+$mol_link $mol_view
+	uri \
+	dom_name \a
+	uri_off \
+	uri_native null
+	external false
+	attr *
+		^
+		href <= uri_toggle \
+		title <= hint_safe <= hint \
+		target <= target \_self
+		download <= file_name \
+		mol_link_current <= current false
+		rel <= relation \
+	sub /$mol_view_content
+		<= title
+	arg *
+	event *
+		^
+		click? <=> click? <=> event_click? null
+
+$mol_svg $mol_view
+	dom_name \svg
+	dom_name_space \http://www.w3.org/2000/svg
+	font_size 16
+	font_family \
+	style_size *
+
+$mol_svg_root $mol_svg
+	dom_name \svg
+	attr *
+		^
+		viewBox <= view_box \0 0 100 100
+		preserveAspectRatio <= aspect \xMidYMid
+
+$mol_svg_path $mol_svg
+	dom_name \path
+	attr *
+		^
+		d <= geometry \
+
+
+$mol_icon $mol_svg_root
+	view_box \0 0 24 24
+	minimal_width 16
+	minimal_height 16
+	sub /
+		<= Path $mol_svg_path
+			geometry <= path \
+
+$mol_icon_magnify $mol_icon path \M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z
+
+$mol_speck $mol_view
+	theme \$mol_theme_accent
+	sub /
+		<= value null
+
+$mol_button $mol_view
+	enabled true
+	click? null
+	event_click? null
+	status? /
+	event *
+		^
+		click? <=> activate? <=> event_activate? null
+		dblclick? <=> clicks? null
+		keydown? <=> key_press? <=> event_key_press? null
+	attr *
+		^
+		disabled <= disabled false
+		role \button
+		tabindex <= tab_index 0
+		title <= hint_safe <= hint \
+	sub /$mol_view_content
+		<= title
+	Speck $mol_speck
+		value <= error \
+
+$mol_button_typed $mol_button
+	minimal_height 40
+	minimal_width 40
+
+$mol_button_minor $mol_button_typed
+
+$mol_icon_chevron $mol_icon path \M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z
+
+$mol_icon_chevron_down $mol_icon path \M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z
+
+$mol_icon_translate $mol_icon path \M12.87,15.07L10.33,12.56L10.36,12.53C12.1,10.59 13.34,8.36 14.07,6H17V4H10V2H8V4H1V6H12.17C11.5,7.92 10.44,9.75 9,11.35C8.07,10.32 7.3,9.19 6.69,8H4.69C5.42,9.63 6.42,11.17 7.67,12.56L2.58,17.58L4,19L9,14L12.11,17.11L12.87,15.07M18.5,10H16.5L12,22H14L15.12,19H19.87L21,22H23L18.5,10M15.88,17L17.5,12.67L19.12,17H15.88Z
+
+$mol_icon_white_balance_sunny $mol_icon path \M3.55 19.09L4.96 20.5L6.76 18.71L5.34 17.29M12 6C8.69 6 6 8.69 6 12S8.69 18 12 18 18 15.31 18 12C18 8.68 15.31 6 12 6M20 13H23V11H20M17.24 18.71L19.04 20.5L20.45 19.09L18.66 17.29M20.45 5L19.04 3.6L17.24 5.39L18.66 6.81M13 1H11V4H13M6.76 5.39L4.96 3.6L3.55 5L5.34 6.81L6.76 5.39M1 13H4V11H1M13 20H11V23H13
+
+$mol_icon_monitor $mol_icon path \M21,16H3V4H21M21,2H3C1.89,2 1,2.89 1,4V16A2,2 0 0,0 3,18H10V20H8V22H16V20H14V18H21A2,2 0 0,0 23,16V4C23,2.89 22.1,2 21,2Z
+
+$mol_icon_weather_night $mol_icon path \M17.75,4.09L15.22,6.03L16.13,9.09L13.5,7.28L10.87,9.09L11.78,6.03L9.25,4.09L12.44,4L13.5,1L14.56,4L17.75,4.09M21.25,11L19.61,12.25L20.2,14.23L18.5,13.06L16.8,14.23L17.39,12.25L15.75,11L17.81,10.95L18.5,9L19.19,10.95L21.25,11M18.97,15.95C19.8,15.87 20.69,17.05 20.16,17.8C19.84,18.25 19.5,18.67 19.08,19.07C15.17,23 8.84,23 4.94,19.07C1.03,15.17 1.03,8.83 4.94,4.93C5.34,4.53 5.76,4.17 6.21,3.85C6.96,3.32 8.14,4.21 8.06,5.04C7.79,7.9 8.75,10.87 10.95,13.06C13.14,15.26 16.1,16.22 18.97,15.95M17.33,17.97C14.5,17.81 11.7,16.64 9.53,14.5C7.36,12.31 6.2,9.5 6.04,6.68C3.23,9.82 3.34,14.64 6.35,17.66C9.37,20.67 14.19,20.78 17.33,17.97Z
+
+$bog_theme_switch $mol_view
+	theme_auto $bog_theme_auto
+	sub /
+		<= Light $mol_button_minor
+			attr *
+				^
+				bog_theme_switch_active <= light_active false
+			hint <= light_hint @ \Светлая
+			click?event <=> set_light?event null
+			sub /
+				<= Light_icon $mol_icon_white_balance_sunny
+		<= System $mol_button_minor
+			attr *
+				^
+				bog_theme_switch_active <= system_active false
+			hint <= system_hint @ \Как в системе
+			click?event <=> set_system?event null
+			sub /
+				<= System_icon $mol_icon_monitor
+		<= Dark $mol_button_minor
+			attr *
+				^
+				bog_theme_switch_active <= dark_active false
+			hint <= dark_hint @ \Тёмная
+			click?event <=> set_dark?event null
+			sub /
+				<= Dark_icon $mol_icon_weather_night
+
+$mol_icon_script $mol_icon path \M17.8,20C17.4,21.2 16.3,22 15,22H5C3.3,22 2,20.7 2,19V18H5L14.2,18C14.6,19.2 15.7,20 17,20H17.8M19,2H8C6.3,2 5,3.3 5,5V16H16V17C16,17.6 16.4,18 17,18H18V5C18,4.4 18.4,4 19,4C19.6,4 20,4.4 20,5V6H22V5C22,3.3 20.7,2 19,2Z
+
+$mol_icon_script_text $mol_icon path \M17.8,20C17.4,21.2 16.3,22 15,22H5C3.3,22 2,20.7 2,19V18H5L14.2,18C14.6,19.2 15.7,20 17,20H17.8M19,2C20.7,2 22,3.3 22,5V6H20V5C20,4.4 19.6,4 19,4C18.4,4 18,4.4 18,5V18H17C16.4,18 16,17.6 16,17V16H5V5C5,3.3 6.3,2 8,2H19M8,6V8H15V6H8M8,10V12H14V10H8Z
+
+$mol_link_source $mol_link
+	hint @ \Source code
+	sub /
+		<= Icon $mol_icon_script_text
+
+$bog_smalljs_top $mol_view
+	Theme null
+	github_uri \https://github.com/b-on-g/smalljs
+	logo_uri \bog/smalljs/assets/logo.svg
+	search_open? null
+	nav_docs_open? null
+	nav_ecosystem_open? null
+	nav_about_open? null
+	nav_support_open? null
+	lang_open? null
+	sub /
+		<= Logo $mol_link
+			arg *
+				section \
+				page \
+			sub /
+				<= Logo_image $mol_image
+					uri <= logo_uri
+					title @ \smalljs
+				<= Logo_text @ \smalljs
+		<= Search $mol_button_minor
+			click? <=> search_open?
+			sub /
+				<= Search_icon $mol_icon_magnify
+				<= Search_label $mol_view
+					sub /
+						<= Search_label_text @ \Search
+				<= Search_hint $mol_view
+					sub /
+						<= Search_hint_text @ \⌘ K
+		<= Nav $mol_view
+			sub /
+				<= Nav_docs $mol_button_minor
+					click? <=> nav_docs_open?
+					sub /
+						<= Nav_docs_label @ \Docs
+						<= Nav_docs_chevron $mol_icon_chevron_down
+				<= Nav_playground $mol_link
+					title @ \Playground
+					arg *
+						section \playground
+						page \
+				<= Nav_ecosystem $mol_button_minor
+					click? <=> nav_ecosystem_open?
+					sub /
+						<= Nav_ecosystem_label @ \Ecosystem
+						<= Nav_ecosystem_chevron $mol_icon_chevron_down
+				<= Nav_about $mol_button_minor
+					click? <=> nav_about_open?
+					sub /
+						<= Nav_about_label @ \About
+						<= Nav_about_chevron $mol_icon_chevron_down
+				<= Nav_support $mol_button_minor
+					click? <=> nav_support_open?
+					sub /
+						<= Nav_support_label @ \Support
+						<= Nav_support_chevron $mol_icon_chevron_down
+		<= Lang $mol_button_minor
+			click? <=> lang_open?
+			sub /
+				<= Lang_icon $mol_icon_translate
+		<= Theme_toggle $bog_theme_switch
+			theme_auto <= Theme
+		<= Github $mol_link_source
+			uri <= github_uri
+
+$mol_icon_play $mol_icon path \M8,5.14V19.14L19,12.14L8,5.14Z
+
+$mol_icon_arrow_right $mol_icon path \M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z
+
+$mol_icon_open_in_new $mol_icon path \M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z
+
+$mol_list $mol_view
+	render_visible_only true
+	render_over 0.1
+	sub <= rows /$mol_view
+		<= Gap_before $mol_view style * paddingTop <= gap_before 0
+		<= Empty $mol_view
+		<= Gap_after $mol_view style * paddingTop <= gap_after 0
+	item_height_min* 1
+	item_width_min* 1
+	view_window_shift? 0
+	view_window /
+		0
+		0
+
+$mol_paragraph $mol_view
+	line_height 24
+	letter_width 7
+	width_limit +Infinity
+	row_width 0
+	sub / <= title
+
+$mol_stack $mol_view
+
+$mol_dimmer $mol_paragraph
+	haystack \
+	needle \
+	sub <= parts /$mol_view_content
+	Low* $mol_paragraph
+		sub /
+			<= string* \
+	High* $mol_paragraph
+		sub /
+			<= string* \
+
+$mol_text_code_token $mol_dimmer
+	attr *
+		^
+		mol_text_code_token_type <= type \
+
+$mol_text_code_token_link $mol_text_code_token
+	dom_name \a
+	type \code-link
+	attr *
+		^
+		href <= uri \
+		target \_blank
+
+$mol_text_code_line $mol_paragraph
+	text \
+	minimal_height 24
+	numb_showed true
+	syntax null
+	uri_resolve* \
+	Numb $mol_view
+		sub /
+			<= numb 0
+	Token* $mol_text_code_token
+		type <= token_type* \
+		haystack <= token_text* \
+		needle <= highlight \
+	Token_link* $mol_text_code_token_link
+		haystack <= token_text* \
+		needle <= highlight \
+		uri <= token_uri* \
+	find_pos* null
+
+$mol_icon_clipboard $mol_icon path \M19,3H14.82C14.4,1.84 13.3,1 12,1C10.7,1 9.6,1.84 9.18,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M12,3A1,1 0 0,1 13,4A1,1 0 0,1 12,5A1,1 0 0,1 11,4A1,1 0 0,1 12,3
+
+$mol_icon_clipboard_outline $mol_icon path \M19,3H14.82C14.4,1.84 13.3,1 12,1C10.7,1 9.6,1.84 9.18,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M12,3A1,1 0 0,1 13,4A1,1 0 0,1 12,5A1,1 0 0,1 11,4A1,1 0 0,1 12,3M7,7H17V5H19V19H5V5H7V7Z
+
+$mol_button_copy $mol_button_minor
+	blobs /$mol_blob
+		<= text_blob? $mol_blob /
+			/BlobPart <= text <= title
+			* type \text/plain
+		<= html_blob? $mol_blob /
+			/BlobPart <= html \
+			* type \text/html
+	data *
+	sub /
+		<= Icon $mol_icon_clipboard_outline
+		<= title \
+
+$mol_text_code $mol_stack
+	attr *
+		^
+		mol_text_code_sidebar_showed <= sidebar_showed false
+	text \
+	text_lines /string
+	find_pos* null
+	uri_base \
+	row_themes /string
+	sub /
+		<= Rows $mol_list
+			render_visible_only <= render_visible_only false
+			rows <= rows /
+				<= Row*0 $mol_text_code_line
+					numb_showed <= sidebar_showed
+					numb <= row_numb* 0
+					theme <= row_theme* \
+					text <= row_text* \
+					syntax <= syntax null
+					uri_resolve* <= uri_resolve* \
+					highlight <= highlight \
+		<= Copy $mol_button_copy
+			hint @ \Copy whole code
+			text <= text_export \
+
+$mol_float $mol_view
+	style *
+		^
+		minHeight \auto
+
+$mol_check $mol_button_minor
+	attr *
+		^
+		mol_check_checked <= checked? false
+		aria-checked <= aria_checked \false
+		role <= aria_role \checkbox
+	sub /$mol_view_content
+		<= Icon null
+		<= label /
+			<= Title $mol_view
+				sub /
+					<= title \
+
+$mol_check_expand $mol_check
+	Icon $mol_icon_chevron
+	level 0
+	style *
+		^
+		paddingLeft <= level_style \0px
+	checked? <=> expanded? false
+	enabled <= expandable false
+
+$mol_grid $mol_view
+	row_height 32
+	row_ids /string[]
+	row_id* null
+	col_ids /
+	records *
+	record* null
+	hierarchy null
+	hierarchy_col \
+	minimal_width 0
+	-
+	sub /
+		<= Head
+		<= Table $mol_grid_table
+			sub <= rows /$mol_view
+	Head $mol_grid_row
+		cells <= head_cells /$mol_view
+	Row* $mol_grid_row
+		minimal_height <= row_height
+		minimal_width <= minimal_width
+		cells <= cells* /$mol_view
+	-
+	Cell* $mol_view
+	cell* null
+	Cell_text* $mol_grid_cell
+		sub <= cell_content_text* <= cell_content* /$mol_view_content
+	Cell_number* $mol_grid_number
+		sub <= cell_content_number* <= cell_content* /$mol_view_content
+	Col_head* $mol_float
+		dom_name \th
+		sub <= col_head_content* /$mol_view_content
+	Cell_branch* $mol_check_expand
+		level <= cell_level* 0
+		label <= cell_content* /$mol_view_content
+		expanded? <=> cell_expanded*? false
+	Cell_content* /
+		<= Cell_dimmer* $mol_dimmer
+			needle <= needle \
+			haystack <= cell_value* \
+
+$mol_grid_table $mol_list
+	- dom_name \table
+
+$mol_grid_row $mol_view
+	- dom_name \tr
+	sub <= cells /$mol_view
+
+$mol_grid_cell $mol_view
+	- dom_name \td
+	minimal_height 40
+
+$mol_grid_number $mol_grid_cell
+
+$mol_link_iconed $mol_link
+	sub /
+		<= Icon $mol_image
+			uri <= icon \
+			title \
+	content /
+		<= title <= uri
+	host \
+
+$mol_scroll $mol_view
+	scroll_top? 0
+	scroll_left? 0
+	attr *
+		^
+		tabindex <= tabindex -1
+	event *
+		^
+		scroll? <=> event_scroll? null
+
+$mol_embed_native $mol_scroll
+	dom_name \iframe
+	window null
+	attr *
+		^
+		src <= uri? \about:config
+	sub /
+		<= Fallback $mol_link
+			uri <= uri
+			sub /
+				<= title \
+	message *
+		hashchange? <=> uri_change? null
+
+$mol_icon_youtube $mol_icon path \M10,15L15.19,12L10,9V15M21.56,7.17C21.69,7.64 21.78,8.27 21.84,9.07C21.91,9.87 21.94,10.56 21.94,11.16L22,12C22,14.19 21.84,15.8 21.56,16.83C21.31,17.73 20.73,18.31 19.83,18.56C19.36,18.69 18.5,18.78 17.18,18.84C15.88,18.91 14.69,18.94 13.59,18.94L12,19C7.81,19 5.2,18.84 4.17,18.56C3.27,18.31 2.69,17.73 2.44,16.83C2.31,16.36 2.22,15.73 2.16,14.93C2.09,14.13 2.06,13.44 2.06,12.84L2,12C2,9.81 2.16,8.2 2.44,7.17C2.69,6.27 3.27,5.69 4.17,5.44C4.64,5.31 5.5,5.22 6.82,5.16C8.12,5.09 9.31,5.06 10.41,5.06L12,5C16.19,5 18.8,5.16 19.83,5.44C20.73,5.69 21.31,6.27 21.56,7.17Z
+
+$mol_frame $mol_embed_native
+	attr *
+		tabindex <= tabindex
+		allow <= allow \
+		src <= uri
+		srcdoc <= html null
+	fullscreen true
+	accelerometer true
+	autoplay true
+	encription true
+	gyroscope true
+	pip true
+	clipboard_read true
+	clipboard_write true
+
+$mol_embed_service $mol_check
+	uri \
+	video_preview \
+	video_id \
+	checked? <=> active? false
+	sub /
+		<= Image $mol_image
+			title <= title \
+			uri <= video_preview \
+		<= Hint $mol_icon_youtube
+		<= Frame $mol_frame
+			title <= title \
+			uri <= video_embed \
+
+
+$mol_embed_youtube $mol_embed_service
+
+$mol_embed_rutube $mol_embed_service
+
+$mol_embed_vklive $mol_embed_service
+
+$mol_embed_any $mol_view
+	Image $mol_image
+		title <= title \
+		uri <= uri \
+	Object $mol_embed_native
+		title <= title \
+		uri <= uri \
+	Youtube $mol_embed_youtube
+		title <= title \
+		uri <= uri \
+	Rutube $mol_embed_rutube
+		title <= title \
+		uri <= uri \
+	Vklive $mol_embed_vklive
+		title <= title \
+		uri <= uri \
+
+$mol_expander $mol_list
+	rows /
+		<= Label $mol_view
+			sub /
+				<= Trigger $mol_check_expand
+					checked? <=> expanded? false
+					expandable <= expandable true
+					label <= label /
+						<= title
+				<= Tools null
+		<= Content $mol_list
+			rows <= content /
+
+$mol_text $mol_list
+	uri_base \
+	text \
+	param \
+	flow_tokens /
+	block_text* \
+	auto /
+		<= auto_scroll null
+	- \Blocks
+	Paragraph* $mol_paragraph
+		sub <= block_content* /
+	Quote* $mol_text
+		uri_resolve* <= uri_resolve* \
+		text <= quote_text* \
+		highlight <= highlight \
+		auto_scroll null
+	List* $mol_text_list
+		uri_resolve* <= uri_resolve* \
+		type <= list_type* \-
+		text <= list_text* \
+		highlight <= highlight \
+	item_index* 0
+	Header* $mol_text_header
+		minimal_height 40
+		level <= header_level* 1
+		content <= block_content* /
+		arg <= header_arg* *
+	Pre* $mol_text_code
+		text <= pre_text* \
+		row_themes <= pre_themes* /string
+		highlight <= highlight \
+		uri_resolve* <= uri_resolve* \
+		sidebar_showed <= pre_sidebar_showed <= code_sidebar_showed true
+	Cut* $mol_view dom_name \hr
+	- \Table
+	Table* $mol_grid
+		head_cells <= table_head_cells* /
+		rows <= table_rows* /
+	Table_row* $mol_grid_row
+		cells <= table_cells* /
+	Table_cell* $mol_text
+		auto_scroll null
+		highlight <= highlight \
+		uri_resolve* <= uri_resolve* \
+		text <= table_cell_text* \
+	- \Grid
+	Grid* $mol_grid
+		rows <= grid_rows* /
+	Grid_row* $mol_grid_row
+		cells <= grid_cells* /
+	Grid_cell* $mol_text
+		auto_scroll null
+		highlight <= highlight \
+		uri_resolve* <= uri_resolve* \
+		text <= grid_cell_text* \
+	- \Lines
+	String* $mol_dimmer
+		dom_name \span
+		needle <= highlight \
+		haystack <= line_text* \
+	Span* $mol_text_span
+		dom_name \span
+		type <= line_type* \
+		sub <= line_content* /
+	Code_line* $mol_text_code_line
+		numb_showed false
+		highlight <= highlight \
+		text <= line_text* \
+		uri_resolve* <= uri_resolve* \
+		syntax <= code_syntax null
+	Link* $mol_link_iconed
+		uri <= link_uri* \
+		content <= line_content* /
+	Link_http* $mol_link_iconed
+		uri <= link_uri* \
+		content / <= link_host* \
+	Embed* $mol_embed_any
+		uri <= link_uri* \
+		title <= line_text* \
+	- \Spoilers
+	Spoiler* $mol_expander
+		label /
+			<= Spoiler_label* $mol_text
+				text <= spoiler_label* \
+		content /
+			<= Spoiler_content* $mol_text
+				text <= spoiler_content* \
+
+$mol_text_header $mol_paragraph
+	level 1
+	sub /
+		<= Link $mol_link
+			arg <= arg *
+			hint @ \Permalink to this section
+			sub <= content /
+
+$mol_text_span $mol_paragraph
+	dom_name \span
+	attr *
+		^
+		mol_text_type <= type \
+
+$mol_text_list $mol_text
+	auto_scroll null
+	attr *
+		^
+		mol_text_list_type <= type \
+	Paragraph* $mol_text_list_item
+		index <= item_index*
+		sub <= block_content*
+
+$mol_text_list_item $mol_paragraph
+	attr *
+		^
+		mol_text_list_item_index <= index 0
+
+$bog_smalljs_landing $mol_view
+	sub /
+		<= Hero $mol_view
+			sub /
+				<= Hero_title $mol_view
+					dom_name \h1
+					sub /
+						<= Hero_title_pre @ \$mol — the reactive
+						<= Hero_title_accent $mol_view
+							dom_name \span
+							sub /
+								<= Hero_title_accent_text @ \micromodule
+						<= Hero_title_post @ \ framework
+				<= Hero_subtitle $mol_view
+					sub /
+						<= Hero_subtitle_text @ \A progressive web app framework. Extremely simple, deeply capable. Innovations and batteries included.
+				<= Hero_actions $mol_view
+					sub /
+						<= Hero_cta_why $mol_link
+							arg *
+								section \docs
+								page \why
+							sub /
+								<= Hero_cta_why_icon $mol_icon_play
+								<= Hero_cta_why_label @ \Why $mol
+						<= Hero_cta_start $mol_link
+							arg *
+								section \docs
+								page \quick-start
+							sub /
+								<= Hero_cta_start_label @ \Get Started
+								<= Hero_cta_start_icon $mol_icon_arrow_right
+						<= Hero_cta_install $mol_link
+							title @ \Install
+							arg *
+								section \docs
+								page \install
+						<= Hero_cta_play $mol_link
+							arg *
+								section \playground
+								page \
+							sub /
+								<= Hero_cta_play_label @ \Try Playground
+								<= Hero_cta_play_icon $mol_icon_open_in_new
+				<= Sponsor_banner $mol_view
+					sub /
+						<= Sponsor_banner_text @ \Special Sponsor slot is open — Inquire now
+		<= Features $mol_view
+			sub /
+				<= Feature1 $mol_view
+					sub /
+						<= Feature1_title $mol_view
+							sub /
+								<= Feature1_title_text @ \Versatile
+						<= Feature1_text $mol_text
+							text @ \An incrementally adoptable ecosystem that scales between a single component and a full-stack local-first app.
+				<= Feature2 $mol_view
+					sub /
+						<= Feature2_title $mol_view
+							sub /
+								<= Feature2_title_text @ \User-friendly
+						<= Feature2_text $mol_text
+							text @ \Build UIs as trees of components. Reactivity is automatic, side-effects are explicit.
+				<= Feature3 $mol_view
+					sub /
+						<= Feature3_title $mol_view
+							sub /
+								<= Feature3_title_text @ \Efficient
+						<= Feature3_text $mol_text
+							text @ \Full rendering virtualization — components outside the viewport simply do not exist.
+		<= Sponsors $mol_view
+			sub /
+				<= Sponsors_title $mol_view
+					sub /
+						<= Sponsors_title_text @ \Platinum Sponsors
+				<= Sponsors_grid $mol_view
+					sub /
+						<= Sponsor_card1 $mol_view sub /
+						<= Sponsor_card2 $mol_view sub /
+						<= Sponsor_card3 $mol_view sub /
+				<= Sponsors_cta $mol_view
+					sub /
+						<= Sponsors_cta_text @ \Become a Sponsor
+		<= Footer $mol_view
+			sub /
+				<= Footer_cols $mol_view
+					sub /
+						<= Footer_col1 $mol_view
+							sub /
+								<= Footer_sect_docs $mol_view
+									sub /
+										<= Footer_sect_docs_title $mol_view
+											sub /
+												<= Footer_sect_docs_title_text @ \Docs
+										<= Footer_link_quickstart $mol_link
+											title @ \Quick Start
+											arg *
+												section \docs
+												page \quick-start
+										<= Footer_link_guide $mol_link
+											title @ \Guide
+											arg *
+												section \docs
+												page \guide
+										<= Footer_link_tutorial $mol_link
+											title @ \Tutorial
+											arg *
+												section \docs
+												page \tutorial
+										<= Footer_link_examples $mol_link
+											title @ \Examples
+											arg *
+												section \docs
+												page \examples
+										<= Footer_link_api $mol_link
+											title @ \API
+											arg *
+												section \docs
+												page \api
+										<= Footer_link_glossary $mol_link
+											title @ \Glossary
+											arg *
+												section \docs
+												page \glossary
+										<= Footer_link_errref $mol_link
+											title @ \Error Reference
+											arg *
+												section \docs
+												page \error-reference
+										<= Footer_link_migration $mol_link
+											title @ \Migration
+											arg *
+												section \docs
+												page \migration
+								<= Footer_sect_about $mol_view
+									sub /
+										<= Footer_sect_about_title $mol_view
+											sub /
+												<= Footer_sect_about_title_text @ \About
+										<= Footer_link_faq $mol_link
+											title @ \FAQ
+											arg *
+												section \about
+												page \faq
+										<= Footer_link_team $mol_link
+											title @ \Team
+											arg *
+												section \about
+												page \team
+										<= Footer_link_releases $mol_link
+											title @ \Releases
+											arg *
+												section \about
+												page \releases
+										<= Footer_link_community $mol_link
+											title @ \Community Guide
+											arg *
+												section \about
+												page \community
+										<= Footer_link_coc $mol_link
+											title @ \Code of Conduct
+											arg *
+												section \about
+												page \code-of-conduct
+										<= Footer_link_privacy $mol_link
+											title @ \Privacy Policy
+											arg *
+												section \about
+												page \privacy
+						<= Footer_col2 $mol_view
+							sub /
+								<= Footer_sect_support $mol_view
+									sub /
+										<= Footer_sect_support_title $mol_view
+											sub /
+												<= Footer_sect_support_title_text @ \Support
+										<= Footer_link_sponsor $mol_link
+											title @ \Sponsor
+											arg *
+												section \support
+												page \sponsor
+										<= Footer_link_partners $mol_link
+											title @ \Partners
+											arg *
+												section \support
+												page \partners
+								<= Footer_sect_resources $mol_view
+									sub /
+										<= Footer_sect_resources_title $mol_view
+											sub /
+												<= Footer_sect_resources_title_text @ \Resources
+										<= Footer_link_themes $mol_link
+											title @ \Themes
+											arg *
+												section \ecosystem
+												page \themes
+										<= Footer_link_ui $mol_link
+											title @ \UI Components
+											arg *
+												section \ecosystem
+												page \components
+										<= Footer_link_plugins $mol_link
+											title @ \Plugins
+											arg *
+												section \ecosystem
+												page \plugins
+										<= Footer_link_jobs $mol_link
+											title @ \Jobs
+											arg *
+												section \ecosystem
+												page \jobs
+						<= Footer_col3 $mol_view
+							sub /
+								<= Footer_sect_courses $mol_view
+									sub /
+										<= Footer_sect_courses_title $mol_view
+											sub /
+												<= Footer_sect_courses_title_text @ \Video Courses
+										<= Footer_link_course $mol_link
+											title @ \Course
+											arg *
+												section \course
+												page \
+								<= Footer_sect_help $mol_view
+									sub /
+										<= Footer_sect_help_title $mol_view
+											sub /
+												<= Footer_sect_help_title_text @ \Help
+										<= Footer_link_ghdisc $mol_link
+											title @ \GitHub Discussions
+											uri \https://github.com/b-on-g/smalljs/discussions
+											target \_blank
+										<= Footer_link_dev $mol_link
+											title @ \DEV Community
+											uri \https://dev.to/t/mol
+											target \_blank
+								<= Footer_sect_news $mol_view
+									sub /
+										<= Footer_sect_news_title $mol_view
+											sub /
+												<= Footer_sect_news_title_text @ \News
+										<= Footer_link_blog $mol_link
+											title @ \Blog
+											arg *
+												section \news
+												page \blog
+										<= Footer_link_events $mol_link
+											title @ \Events
+											arg *
+												section \news
+												page \events
+										<= Footer_link_newsletters $mol_link
+											title @ \Newsletters
+											arg *
+												section \news
+												page \newsletters
+						<= Footer_col4 $mol_view
+							sub /
+								<= Footer_sect_libs $mol_view
+									sub /
+										<= Footer_sect_libs_title $mol_view
+											sub /
+												<= Footer_sect_libs_title_text @ \Official Libraries
+										<= Footer_link_wire $mol_link
+											title @ \$mol_wire
+											arg *
+												section \libs
+												page \wire
+										<= Footer_link_baza $mol_link
+											title @ \Giper Baza
+											arg *
+												section \libs
+												page \baza
+										<= Footer_link_crowd $mol_link
+											title @ \$hyoo_crowd
+											arg *
+												section \libs
+												page \crowd
+										<= Footer_link_router $mol_link
+											title @ \$mol_router
+											arg *
+												section \libs
+												page \router
+				<= Footer_copy $mol_view
+					sub /
+						<= Footer_copy_line1 $mol_view
+							sub /
+								<= Footer_copy_line1_text @ \Released under the MIT License.
+						<= Footer_copy_line2 $mol_view
+							sub /
+								<= Footer_copy_line2_text @ \Copyright © 2026 smalljs
+
+$bog_smalljs_docs $mol_view
+	edit_uri \https://github.com/b-on-g/smalljs/edit/master/docs/page.view.tree
+	sub /
+		<= Sidebar $mol_scroll
+			sub /
+				<= Group1 $mol_view
+					sub /
+						<= Group1_title @ \Getting Started
+				<= Group2 $mol_view
+					sub /
+						<= Group2_title @ \Essentials
+		<= Main $mol_scroll
+			sub /
+				<= Content $mol_view
+					sub /
+						<= Title $mol_view
+							sub /
+								<= Title_text @ \Page Title
+						<= Body $mol_text
+							text @ \Page content goes here.
+				<= Edit $mol_link
+					title @ \Edit this page on GitHub
+					uri <= edit_uri
+				<= Nav $mol_view
+					sub /
+						<= Prev $mol_link
+							title @ \Previous page
+							arg *
+								section \docs
+								page \
+						<= Next $mol_link
+							title @ \Next page
+							arg *
+								section \docs
+								page \
+		<= Toc $mol_scroll
+			sub /
+				<= Toc_title @ \On this page
+
+$bog_smalljs_playground $mol_view
+	sub /
+		<= Title @ \Playground
+		<= Body $mol_text
+			text @ \Coming in Sprint 2.
+
+$bog_smalljs_app $mol_view
+	section? \home
+	sub /
+		<= Top $bog_smalljs_top
+			Theme <= Theme $bog_theme_auto
+				theme_light \$mol_theme_calm_light
+				theme_dark \$mol_theme_calm_dark
+				themes /
+					\$mol_theme_calm_light
+					\$mol_theme_calm_dark
+		<= Body $mol_view
+			sub <= body_content /
+	plugins /
+		<= Theme
+	Landing $bog_smalljs_landing
+	Docs $bog_smalljs_docs
+	Playground $bog_smalljs_playground
