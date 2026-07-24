@@ -1,3 +1,5 @@
+$bog_builderui_div $mol_view
+
 $bog_theme_auto $mol_plugin
 	themes <= themes_default /
 	theme_light \$mol_theme_light
@@ -115,6 +117,130 @@ $mol_icon_chevron $mol_icon path \M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z
 
 $mol_icon_chevron_down $mol_icon path \M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z
 
+$mol_ghost $mol_view
+	Sub $mol_view
+
+$mol_follower $mol_ghost
+	Anchor $mol_view
+	align /number
+		-.5
+		-.5
+	offset /number
+		0
+		0
+	style *
+		^
+		transform <= transform \
+
+$mol_pop $mol_view
+	showed? false
+	align_vert \
+	align_hor \
+	align \bottom_center
+	prefer \vert
+	auto /
+		<= bubble null
+	sub /
+		<= Anchor null
+	sub_visible /
+		<= Anchor
+		<= Follower $mol_follower
+			offset <= bubble_offset /number
+				0
+				1
+			align <= bubble_align /number
+				0
+				0
+			Anchor <= Anchor
+			Sub <= Bubble $mol_pop_bubble
+				content <= bubble_content /$mol_view_content
+				height_max <= height_max 9999
+
+$mol_pop_bubble $mol_view
+	sub <= content /$mol_view_content
+	style *
+		^
+		maxHeight <= height_max 9999
+	attr *
+		^
+		tabindex 0
+		popover \manual
+
+$mol_scroll $mol_view
+	scroll_top? 0
+	scroll_left? 0
+	attr *
+		^
+		tabindex <= tabindex -1
+	event *
+		^
+		scroll? <=> event_scroll? null
+
+$mol_check $mol_button_minor
+	attr *
+		^
+		mol_check_checked <= checked? false
+		aria-checked <= aria_checked \false
+		role <= aria_role \checkbox
+	sub /$mol_view_content
+		<= Icon null
+		<= label /
+			<= Title $mol_view
+				sub /
+					<= title \
+
+$mol_pick $mol_pop
+	event *
+		^
+		keydown? <=> keydown? null
+	Anchor <= Trigger $mol_check
+		minimal_width 40
+		minimal_height 40
+		enabled <= trigger_enabled true
+		checked? <=> showed?
+		clicks? <=> clicks? null
+		sub <= trigger_content /$mol_view_content
+			<= title
+		hint <= hint \
+
+$mol_icon_hamburger $mol_icon path \M22 13C22 14.11 21.11 15 20 15H4C2.9 15 2 14.11 2 13S2.9 11 4 11H13L15.5 13L18 11H20C21.11 11 22 11.9 22 13M12 3C3 3 3 9 3 9H21C21 9 21 3 12 3M3 18C3 19.66 4.34 21 6 21H18C19.66 21 21 19.66 21 18V17H3V18Z
+
+$mol_list $mol_view
+	render_visible_only true
+	render_over 0.1
+	sub <= rows /$mol_view
+		<= Gap_before $mol_view style * paddingTop <= gap_before 0
+		<= Empty $mol_view
+		<= Gap_after $mol_view style * paddingTop <= gap_after 0
+	item_height_min* 1
+	item_width_min* 1
+	view_window_shift? 0
+	view_window /
+		0
+		0
+
+$mol_check_expand $mol_check
+	Icon $mol_icon_chevron
+	level 0
+	style *
+		^
+		paddingLeft <= level_style \0px
+	checked? <=> expanded? false
+	enabled <= expandable false
+
+$mol_expander $mol_list
+	rows /
+		<= Label $mol_view
+			sub /
+				<= Trigger $mol_check_expand
+					checked? <=> expanded? false
+					expandable <= expandable true
+					label <= label /
+						<= title
+				<= Tools null
+		<= Content $mol_list
+			rows <= content /
+
 $mol_icon_translate $mol_icon path \M12.87,15.07L10.33,12.56L10.36,12.53C12.1,10.59 13.34,8.36 14.07,6H17V4H10V2H8V4H1V6H12.17C11.5,7.92 10.44,9.75 9,11.35C8.07,10.32 7.3,9.19 6.69,8H4.69C5.42,9.63 6.42,11.17 7.67,12.56L2.58,17.58L4,19L9,14L12.11,17.11L12.87,15.07M18.5,10H16.5L12,22H14L15.12,19H19.87L21,22H23L18.5,10M15.88,17L17.5,12.67L19.12,17H15.88Z
 
 $mol_icon_white_balance_sunny $mol_icon path \M3.55 19.09L4.96 20.5L6.76 18.71L5.34 17.29M12 6C8.69 6 6 8.69 6 12S8.69 18 12 18 18 15.31 18 12C18 8.68 15.31 6 12 6M20 13H23V11H20M17.24 18.71L19.04 20.5L20.45 19.09L18.66 17.29M20.45 5L19.04 3.6L17.24 5.39L18.66 6.81M13 1H11V4H13M6.76 5.39L4.96 3.6L3.55 5L5.34 6.81L6.76 5.39M1 13H4V11H1M13 20H11V23H13
@@ -165,10 +291,7 @@ $bog_smalljs_top $mol_view
 	github_uri \https://github.com/b-on-g/smalljs
 	logo_uri \bog/smalljs/assets/logo.svg
 	search_open? null
-	nav_docs_open? null
-	nav_ecosystem_open? null
-	nav_about_open? null
-	nav_support_open? null
+	nav_pick? null
 	lang_open? null
 	sub /
 		<= Logo $mol_link
@@ -192,31 +315,315 @@ $bog_smalljs_top $mol_view
 						<= Search_hint_text @ \⌘ K
 		<= Nav $mol_view
 			sub /
-				<= Nav_docs $mol_button_minor
-					click? <=> nav_docs_open?
-					sub /
-						<= Nav_docs_label @ \Docs
-						<= Nav_docs_chevron $mol_icon_chevron_down
+				<= Docs_pick $mol_pick
+					hint @ \Docs
+					align \bottom_left
+					trigger_content /
+						<= Docs_label @ \Docs
+						<= Docs_chevron $mol_icon_chevron_down
+					bubble_content /
+						<= Docs_menu $mol_view
+							sub /
+								<= Docs_quickstart $mol_link
+									title @ \Quick Start
+									arg *
+										section \docs
+										page \quick-start
+									event_click? <=> nav_pick?
+								<= Docs_guide $mol_link
+									title @ \Guide
+									arg *
+										section \docs
+										page \guide
+									event_click? <=> nav_pick?
+								<= Docs_tutorial $mol_link
+									title @ \Tutorial
+									arg *
+										section \docs
+										page \tutorial
+									event_click? <=> nav_pick?
+								<= Docs_examples $mol_link
+									title @ \Examples
+									arg *
+										section \docs
+										page \examples
+									event_click? <=> nav_pick?
+								<= Docs_api $mol_link
+									title @ \API
+									arg *
+										section \docs
+										page \api
+									event_click? <=> nav_pick?
+								<= Docs_glossary $mol_link
+									title @ \Glossary
+									arg *
+										section \docs
+										page \glossary
+									event_click? <=> nav_pick?
+								<= Docs_errors $mol_link
+									title @ \Error Reference
+									arg *
+										section \docs
+										page \errors
+									event_click? <=> nav_pick?
+								<= Docs_migration $mol_link
+									title @ \Migration
+									arg *
+										section \docs
+										page \migration
+									event_click? <=> nav_pick?
 				<= Nav_playground $mol_link
 					title @ \Playground
 					arg *
 						section \playground
 						page \
-				<= Nav_ecosystem $mol_button_minor
-					click? <=> nav_ecosystem_open?
+				<= Ecosystem_pick $mol_pick
+					hint @ \Ecosystem
+					align \bottom_left
+					trigger_content /
+						<= Ecosystem_label @ \Ecosystem
+						<= Ecosystem_chevron $mol_icon_chevron_down
+					bubble_content /
+						<= Ecosystem_menu $mol_view
+							sub /
+								<= Eco_themes $mol_link
+									title @ \Themes
+									arg *
+										section \docs
+										page \themes
+									event_click? <=> nav_pick?
+								<= Eco_components $mol_link
+									title @ \UI Components
+									uri \https://mol.hyoo.ru/
+									event_click? <=> nav_pick?
+								<= Eco_plugins $mol_link
+									title @ \Plugins
+									arg *
+										section \docs
+										page \plugins
+									event_click? <=> nav_pick?
+								<= Eco_libs_title $mol_view
+									sub /
+										<= Eco_libs_title_text @ \Official Libraries
+								<= Eco_wire $mol_link
+									title @ \$mol_wire
+									uri \https://github.com/hyoo-ru/mam_mol/tree/master/wire
+									event_click? <=> nav_pick?
+								<= Eco_baza $mol_link
+									title @ \Giper Baza
+									uri \https://github.com/hyoo-ru/mam_mol/tree/master/crus
+									event_click? <=> nav_pick?
+								<= Eco_crowd $mol_link
+									title @ \$hyoo_crowd
+									uri \https://github.com/hyoo-ru/mam_mol/tree/master/crowd
+									event_click? <=> nav_pick?
+								<= Eco_router $mol_link
+									title @ \$mol_router
+									uri \https://github.com/hyoo-ru/mam_mol/tree/master/state/arg
+									event_click? <=> nav_pick?
+				<= About_pick $mol_pick
+					hint @ \About
+					align \bottom_left
+					trigger_content /
+						<= About_label @ \About
+						<= About_chevron $mol_icon_chevron_down
+					bubble_content /
+						<= About_menu $mol_view
+							sub /
+								<= About_faq $mol_link
+									title @ \FAQ
+									arg *
+										section \docs
+										page \faq
+									event_click? <=> nav_pick?
+								<= About_team $mol_link
+									title @ \Team
+									arg *
+										section \docs
+										page \team
+									event_click? <=> nav_pick?
+								<= About_releases $mol_link
+									title @ \Releases
+									arg *
+										section \docs
+										page \releases
+									event_click? <=> nav_pick?
+								<= About_conduct $mol_link
+									title @ \Code of Conduct
+									arg *
+										section \docs
+										page \code-of-conduct
+									event_click? <=> nav_pick?
+								<= About_privacy $mol_link
+									title @ \Privacy Policy
+									arg *
+										section \docs
+										page \privacy
+									event_click? <=> nav_pick?
+				<= Support_pick $mol_pick
+					hint @ \Support
+					align \bottom_left
+					trigger_content /
+						<= Support_label @ \Support
+						<= Support_chevron $mol_icon_chevron_down
+					bubble_content /
+						<= Support_menu $mol_view
+							sub /
+								<= Support_discussions $mol_link
+									title @ \GitHub Discussions
+									uri \https://github.com/hyoo-ru/mam/discussions
+									event_click? <=> nav_pick?
+								<= Support_dev $mol_link
+									title @ \DEV Community
+									uri \https://dev.to/t/mol
+									event_click? <=> nav_pick?
+		<= Burger $mol_pick
+			hint @ \Menu
+			align \bottom_right
+			trigger_content /
+				<= Burger_icon $mol_icon_hamburger
+			bubble_content /
+				<= Mobile_menu $mol_view
 					sub /
-						<= Nav_ecosystem_label @ \Ecosystem
-						<= Nav_ecosystem_chevron $mol_icon_chevron_down
-				<= Nav_about $mol_button_minor
-					click? <=> nav_about_open?
-					sub /
-						<= Nav_about_label @ \About
-						<= Nav_about_chevron $mol_icon_chevron_down
-				<= Nav_support $mol_button_minor
-					click? <=> nav_support_open?
-					sub /
-						<= Nav_support_label @ \Support
-						<= Nav_support_chevron $mol_icon_chevron_down
+						<= Mobile_playground $mol_link
+							title @ \Playground
+							arg *
+								section \playground
+								page \
+							event_click? <=> nav_pick?
+						<= Docs_group $mol_expander
+							title @ \Docs
+							content /
+								<= M_docs_quickstart $mol_link
+									title @ \Quick Start
+									arg *
+										section \docs
+										page \quick-start
+									event_click? <=> nav_pick?
+								<= M_docs_guide $mol_link
+									title @ \Guide
+									arg *
+										section \docs
+										page \guide
+									event_click? <=> nav_pick?
+								<= M_docs_tutorial $mol_link
+									title @ \Tutorial
+									arg *
+										section \docs
+										page \tutorial
+									event_click? <=> nav_pick?
+								<= M_docs_examples $mol_link
+									title @ \Examples
+									arg *
+										section \docs
+										page \examples
+									event_click? <=> nav_pick?
+								<= M_docs_api $mol_link
+									title @ \API
+									arg *
+										section \docs
+										page \api
+									event_click? <=> nav_pick?
+								<= M_docs_glossary $mol_link
+									title @ \Glossary
+									arg *
+										section \docs
+										page \glossary
+									event_click? <=> nav_pick?
+								<= M_docs_errors $mol_link
+									title @ \Error Reference
+									arg *
+										section \docs
+										page \errors
+									event_click? <=> nav_pick?
+								<= M_docs_migration $mol_link
+									title @ \Migration
+									arg *
+										section \docs
+										page \migration
+									event_click? <=> nav_pick?
+						<= Ecosystem_group $mol_expander
+							title @ \Ecosystem
+							content /
+								<= M_eco_themes $mol_link
+									title @ \Themes
+									arg *
+										section \docs
+										page \themes
+									event_click? <=> nav_pick?
+								<= M_eco_components $mol_link
+									title @ \UI Components
+									uri \https://mol.hyoo.ru/
+									event_click? <=> nav_pick?
+								<= M_eco_plugins $mol_link
+									title @ \Plugins
+									arg *
+										section \docs
+										page \plugins
+									event_click? <=> nav_pick?
+								<= M_eco_libs_title $mol_view
+									sub /
+										<= M_eco_libs_title_text @ \Official Libraries
+								<= M_eco_wire $mol_link
+									title @ \$mol_wire
+									uri \https://github.com/hyoo-ru/mam_mol/tree/master/wire
+									event_click? <=> nav_pick?
+								<= M_eco_baza $mol_link
+									title @ \Giper Baza
+									uri \https://github.com/hyoo-ru/mam_mol/tree/master/crus
+									event_click? <=> nav_pick?
+								<= M_eco_crowd $mol_link
+									title @ \$hyoo_crowd
+									uri \https://github.com/hyoo-ru/mam_mol/tree/master/crowd
+									event_click? <=> nav_pick?
+								<= M_eco_router $mol_link
+									title @ \$mol_router
+									uri \https://github.com/hyoo-ru/mam_mol/tree/master/state/arg
+									event_click? <=> nav_pick?
+						<= About_group $mol_expander
+							title @ \About
+							content /
+								<= M_about_faq $mol_link
+									title @ \FAQ
+									arg *
+										section \docs
+										page \faq
+									event_click? <=> nav_pick?
+								<= M_about_team $mol_link
+									title @ \Team
+									arg *
+										section \docs
+										page \team
+									event_click? <=> nav_pick?
+								<= M_about_releases $mol_link
+									title @ \Releases
+									arg *
+										section \docs
+										page \releases
+									event_click? <=> nav_pick?
+								<= M_about_conduct $mol_link
+									title @ \Code of Conduct
+									arg *
+										section \docs
+										page \code-of-conduct
+									event_click? <=> nav_pick?
+								<= M_about_privacy $mol_link
+									title @ \Privacy Policy
+									arg *
+										section \docs
+										page \privacy
+									event_click? <=> nav_pick?
+						<= Support_group $mol_expander
+							title @ \Support
+							content /
+								<= M_support_discussions $mol_link
+									title @ \GitHub Discussions
+									uri \https://github.com/hyoo-ru/mam/discussions
+									event_click? <=> nav_pick?
+								<= M_support_dev $mol_link
+									title @ \DEV Community
+									uri \https://dev.to/t/mol
+									event_click? <=> nav_pick?
 		<= Lang $mol_button_minor
 			click? <=> lang_open?
 			sub /
@@ -231,20 +638,6 @@ $mol_icon_play $mol_icon path \M8,5.14V19.14L19,12.14L8,5.14Z
 $mol_icon_arrow_right $mol_icon path \M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z
 
 $mol_icon_open_in_new $mol_icon path \M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z
-
-$mol_list $mol_view
-	render_visible_only true
-	render_over 0.1
-	sub <= rows /$mol_view
-		<= Gap_before $mol_view style * paddingTop <= gap_before 0
-		<= Empty $mol_view
-		<= Gap_after $mol_view style * paddingTop <= gap_after 0
-	item_height_min* 1
-	item_width_min* 1
-	view_window_shift? 0
-	view_window /
-		0
-		0
 
 $mol_paragraph $mol_view
 	line_height 24
@@ -345,28 +738,6 @@ $mol_float $mol_view
 		^
 		minHeight \auto
 
-$mol_check $mol_button_minor
-	attr *
-		^
-		mol_check_checked <= checked? false
-		aria-checked <= aria_checked \false
-		role <= aria_role \checkbox
-	sub /$mol_view_content
-		<= Icon null
-		<= label /
-			<= Title $mol_view
-				sub /
-					<= title \
-
-$mol_check_expand $mol_check
-	Icon $mol_icon_chevron
-	level 0
-	style *
-		^
-		paddingLeft <= level_style \0px
-	checked? <=> expanded? false
-	enabled <= expandable false
-
 $mol_grid $mol_view
 	row_height 32
 	row_ids /string[]
@@ -428,16 +799,6 @@ $mol_link_iconed $mol_link
 	content /
 		<= title <= uri
 	host \
-
-$mol_scroll $mol_view
-	scroll_top? 0
-	scroll_left? 0
-	attr *
-		^
-		tabindex <= tabindex -1
-	event *
-		^
-		scroll? <=> event_scroll? null
 
 $mol_embed_native $mol_scroll
 	dom_name \iframe
@@ -507,19 +868,6 @@ $mol_embed_any $mol_view
 	Vklive $mol_embed_vklive
 		title <= title \
 		uri <= uri \
-
-$mol_expander $mol_list
-	rows /
-		<= Label $mol_view
-			sub /
-				<= Trigger $mol_check_expand
-					checked? <=> expanded? false
-					expandable <= expandable true
-					label <= label /
-						<= title
-				<= Tools null
-		<= Content $mol_list
-			rows <= content /
 
 $mol_text $mol_list
 	uri_base \
@@ -974,8 +1322,454 @@ $bog_smalljs_playground $mol_view
 		<= Body $mol_text
 			text @ \Coming in Sprint 2.
 
-$bog_smalljs_app $mol_view
+$bog_builderui_card $bog_builderui_div
+
+$mol_hotkey $mol_plugin
+	event *
+		^
+		keydown? <=> keydown? null
+	key *
+	mod_ctrl false
+	mod_alt false
+	mod_shift false
+
+$mol_string $mol_view
+	dom_name \input
+	enabled true
+	minimal_height 40
+	autocomplete false
+	selection? /number
+		0
+		0
+	auto /
+		<= selection_watcher null
+		<= error_report null
+	field *
+		^
+		disabled <= disabled false
+		value <= value_changed? <=> value? \
+		placeholder <= hint_visible <= hint \
+		spellcheck <= spellcheck true
+		autocomplete <= autocomplete_native \
+		selectionEnd <= selection_end 0
+		selectionStart <= selection_start 0
+		inputMode <= keyboard \text
+		enterkeyhint <= enter \go
+	attr *
+		^
+		maxlength <= length_max +Infinity
+		type <= type? \text
+	event *
+		^
+		input? <=> event_change? null
+	plugins /
+		<= Submit $mol_hotkey
+			mod_ctrl <= submit_with_ctrl false
+			key * enter? <=> submit? null
+
+$bog_builderui_field $mol_string
+	minimal_height 36
+
+$mol_gallery $mol_view
+	sub <= items /$mol_view
+	Side* $mol_gallery
+		style *
+			flexGrow <= side_size* \1
+		items <= side_items* /$mol_view
+
+$mol_chart_legend $mol_scroll
+	graphs /$mol_plot_graph
+	graphs_front /$mol_plot_graph
+	sub /
+		<= Gallery $mol_gallery items <= graph_legends /$mol_view
+	-
+	Graph_legend* $mol_view
+		sub /
+			<= Graph_sample_box* $mol_view
+				sub /
+					<= Graph_sample* null
+			<= Graph_title* $mol_view
+				sub /
+					<= graph_title* \
+
+$mol_svg_group $mol_svg
+	dom_name \g
+
+$mol_svg_title $mol_svg
+	dom_name \title
+	sub /
+		<= title
+
+$mol_plot_graph $mol_svg_group
+	series_x /number
+	series_y /number
+	-
+	attr *
+		^
+		mol_plot_graph_type <= type \solid
+	-
+	style *
+		^
+		color <= color \
+	-
+	viewport $mol_vector_2d<$mol_vector_range<number>> /
+		<= viewport_x $mol_vector_range<number> /
+			Infinity
+			-Infinity
+		<= viewport_y $mol_vector_range<number> /
+			Infinity
+			-Infinity
+	shift /number
+		0
+		0
+	scale /number
+		1
+		1
+	cursor_position $mol_vector_2d<number> /
+		NaN
+		NaN
+	dimensions_pane $mol_vector_2d<$mol_vector_range<number>> /
+		<= dimensions_pane_x $mol_vector_range<number> /
+			Infinity
+			-Infinity
+		<= dimensions_pane_y $mol_vector_range<number> /
+			Infinity
+			-Infinity
+	dimensions $mol_vector_2d<$mol_vector_range<number>> /
+		<= dimensions_x $mol_vector_range<number> /
+			Infinity
+			-Infinity
+		<= dimensions_y $mol_vector_range<number> /
+			Infinity
+			-Infinity
+	size_real $mol_vector_2d<number> /
+		0
+		0
+	gap $mol_vector_2d<$mol_vector_range<number>> /
+		<= gap_x $mol_vector_range<number> /
+			0
+			0
+		<= gap_y $mol_vector_range<number> /
+			0
+			0
+	repos_x* 0
+	repos_y* 0
+	indexes /number
+	points /readonly(number)[]
+	front /$mol_svg
+	back /$mol_svg
+	Hint $mol_svg_title
+		title <= hint <= title \
+	hue? +NaN
+	Sample null
+
+$mol_plot_graph_sample $mol_view
+	attr *
+		^
+		mol_plot_graph_type <= type \solid
+	style *
+		^
+		color <= color \black
+
+$mol_touch $mol_plugin
+	start_zoom? 0
+	start_distance? 0
+	zoom? 1
+	allow_draw true
+	allow_pan true
+	allow_zoom true
+	action_type? \
+	action_point? $mol_vector_2d<number> /
+		NaN
+		NaN
+	-
+	start_pan? /
+		0
+		0
+	pan? $mol_vector_2d<number> /
+		0
+		0
+	pointer_center $mol_vector_2d<number> /
+		NaN
+		NaN
+	-
+	start_pos? null
+	swipe_precision 16
+	-
+	swipe_right? null
+	swipe_bottom? null
+	swipe_left? null
+	swipe_top? null
+	-
+	swipe_from_right? null
+	swipe_from_bottom? null
+	swipe_from_left? null
+	swipe_from_top? null
+	-
+	swipe_to_right? null
+	swipe_to_bottom? null
+	swipe_to_left? null
+	swipe_to_top? null
+	-
+	draw_start?event null
+	draw?event null
+	draw_end?event null
+	-
+	style *
+		^
+		touch-action \none
+		overscroll-behavior \none
+	-
+	event *
+		^
+		pointerdown?event <=> event_start?event null
+		pointermove?event <=> event_move?event null
+		pointerup?event <=> event_end?event null
+		pointerleave?event <=> event_leave?event null
+		wheel?event <=> event_wheel?event null
+
+$mol_plot_pane $mol_svg_root
+	aspect \none
+	-
+	hue_base? +NaN
+	hue_shift? 111
+	-
+	gap_hor 48
+	gap_vert 24
+	gap_left <= gap_hor
+	gap_right <= gap_hor
+	gap_top <= gap_vert
+	gap_bottom <= gap_vert
+	gap $mol_vector_2d<$mol_vector_range<number>> /
+		<= gap_x $mol_vector_range<number> /
+			<= gap_left
+			<= gap_right
+		<= gap_y $mol_vector_range<number> /
+			<= gap_bottom
+			<= gap_top
+	-
+	shift_limit $mol_vector_2d<$mol_vector_range<number>> /
+		<= shift_limit_x $mol_vector_range<number> /
+			0
+			0
+		<= shift_limit_y $mol_vector_range<number> /
+			0
+			0
+	shift_default $mol_vector_2d<number> /
+		0
+		0
+	shift? $mol_vector_2d<number> /
+		0
+		0
+	scale_limit $mol_vector_2d<$mol_vector_range<number>> /
+		<= scale_limit_x $mol_vector_range<number> /
+			0
+			Infinity
+		<= scale_limit_y $mol_vector_range<number> /
+			0
+			-Infinity
+	scale_default $mol_vector_2d<number> /
+		0
+		0
+	scale? $mol_vector_2d<number> /
+		1
+		-1
+	scale_x? 1
+	scale_y? -1
+	size $mol_vector_2d<number> /
+		0
+		0
+	size_real $mol_vector_2d<number> /
+		1
+		1
+	dimensions $mol_vector_2d<$mol_vector_range<number>> /
+		<= dimensions_x $mol_vector_range<number> /
+			Infinity
+			-Infinity
+		<= dimensions_y $mol_vector_range<number> /
+			Infinity
+			-Infinity
+	dimensions_viewport $mol_vector_2d<$mol_vector_range<number>> /
+		<= dimensions_viewport_x $mol_vector_range<number> /
+			Infinity
+			-Infinity
+		<= dimensions_viewport_y $mol_vector_range<number> /
+			Infinity
+			-Infinity
+	-
+	sub <= graphs_sorted /$mol_svg
+	graphs_colored <= graphs_visible <= graphs_positioned <= graphs /$mol_plot_graph
+	-
+	plugins /
+		^
+		<= Touch $mol_touch
+			zoom? <=> zoom? 1
+			pan? <=> shift?
+			pointer_center => cursor_position
+			allow_draw <= allow_draw true
+			allow_pan <= allow_pan true
+			allow_zoom <= allow_zoom true
+			action_type => action_type
+			action_point => action_point
+			draw_start?event <=> draw_start?event null
+			draw?event <=> draw?event null
+			draw_end?event <=> draw_end?event null
+	- event *
+		^
+		dblclick?event <=> reset?event null
+
+$mol_chart $mol_view
+	gap_hor 48
+	gap_vert 24
+	gap_left <= gap_hor
+	gap_right <= gap_hor
+	gap_bottom <= gap_vert
+	gap_top <= gap_vert
+	graphs /$mol_plot_graph
+	sub /
+		<= Legend $mol_chart_legend
+			graphs <= graphs_colored
+		<= Plot $mol_plot_pane
+			scale_x? => zoom?
+			zoom? <=> zoom?
+			gap_left <= gap_left
+			gap_right <= gap_right
+			gap_bottom <= gap_bottom
+			gap_top <= gap_top
+			graphs <= graphs
+			graphs_colored => graphs_colored
+			hue_base <= hue_base 210
+			hue_shift <= hue_shift 163
+
+$bog_builderui_chart $mol_chart
+
+$mol_nav $mol_plugin
+	cycle? false
+	-
+	mod_ctrl false
+	mod_shift false
+	mod_alt false
+	-
+	keys_x? /
+	keys_y? /
+	-
+	current_x? null
+	current_y? null
+	-
+	event_up? null
+	event_down? null
+	event_left? null
+	event_right? null
+	event *
+		^
+		keydown? <=> event_key? null
+
+$mol_icon_close $mol_icon path \M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z
+
+$mol_search $mol_pop
+	query? \
+	suggests /string
+	plugins /$mol_plugin
+		^
+		<= Hotkey $mol_hotkey
+			key * escape? <=> clear? null
+		<= Nav $mol_nav
+			keys_y <= nav_components /$mol_view
+			current_y? <=> nav_focused? null
+	showed? <=> suggests_showed? false
+	align_hor \right
+	Anchor $mol_view
+		sub <= anchor_content /
+			<= Query $mol_string
+				value? <=> query? \
+				hint <= hint @ \Search...
+				submit? <=> submit? null
+				enabled <= enabled true
+				keyboard <= keyboard \search
+				enter <= enter \search
+				bring => bring
+			<= Clear $mol_button_minor
+				hint @ \Clear
+				enabled <= enabled true
+				click? <=> clear? null
+				sub /
+					<= Clear_icon $mol_icon_close
+	bubble_content /$mol_view_content
+		<= Bubble_pane $mol_scroll
+			sub /
+				<= Menu $mol_list
+					rows <= menu_items /$mol_view
+	Suggest* $mol_button_minor
+		click? <=> suggest_select*? null
+		sub <= suggest_content* /$mol_view_content
+			<= Suggest_label* $mol_dimmer
+				haystack <= suggest_label* \
+				needle <= query? \
+
+$mol_icon_dots_vertical $mol_icon path \M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z
+
+$mol_select $mol_pick
+	dictionary? *
+	options /string
+	value? \
+	option_label_default \
+	Option_row* $mol_button_minor
+		enabled <= enabled true
+		event_click? <=> event_select*? null
+		sub <= option_content* /
+			<= Option_label* $mol_dimmer
+				haystack <= option_label* \
+				needle <= filter_pattern? \
+	No_options $mol_view
+		sub /
+			<= no_options_message @ \No options
+	plugins /
+		^
+		<= Nav $mol_nav
+			keys_y <= nav_components /$mol_view
+			current_y? <=> option_focused? null
+			cycle? <=> nav_cycle? true
+	hint @ \Pick..
+	bubble_content /
+		<= Filter
+		<= Bubble_pane $mol_scroll
+			sub /
+				<= Menu $mol_list
+					rows <= menu_content /$mol_view
+	Filter $mol_search
+		query? <=> filter_pattern? \
+		hint <= filter_hint @ \Filter..
+		submit? <=> submit? null
+		enabled <= enabled true
+	Trigger_icon $mol_icon_dots_vertical
+	trigger_enabled <= enabled
+
+$bog_builderui_select $mol_select
+
+$mol_pop_over $mol_pop
+	showed <= hovered? false
+	attr *
+		^
+		tabindex 0
+	event *
+		^
+		mouseenter? <=> event_show? null
+		mouseleave? <=> event_hide? null
+
+$bog_builderui_tooltip $mol_pop_over
+
+$bog_smalljs_app $bog_builderui_div
 	section? \home
+	lights \light
+	attr *
+		^
+		bog_builderui_lights <= lights
+		bog_builderui_base \zinc
+		bog_builderui_theme \sky
+		bog_builderui_chart \yellow
+		bog_builderui_radius \medium
+		bog_builderui_font_body \inter
+		bog_builderui_font_head \eb-garamond
 	sub /
 		<= Top $bog_smalljs_top
 			Theme <= Theme $bog_theme_auto
