@@ -15,7 +15,7 @@ namespace $ {
 
 		Hero_title: {
 			display: 'block',
-			font: { size: rem(4.75), weight: 900 },
+			font: { family: $bog_builderui_tokens.font_head, size: rem(4.75), weight: 900 },
 			lineHeight: '1.25',
 			textAlign: 'center',
 			maxWidth: rem(60),
@@ -23,7 +23,7 @@ namespace $ {
 
 		Hero_title_accent: {
 			display: 'inline',
-			color: $mol_theme.special,
+			color: $bog_builderui_tokens.special,
 			margin: { left: '0.25em', right: '0.15em' },
 		},
 
@@ -31,7 +31,7 @@ namespace $ {
 			font: { size: rem(1.25) },
 			textAlign: 'center',
 			maxWidth: rem(45),
-			color: $mol_theme.text,
+			color: $bog_builderui_tokens.text,
 		},
 
 		Hero_actions: {
@@ -45,8 +45,8 @@ namespace $ {
 			flex: { direction: 'row' },
 			align: { items: 'center' },
 			gap: rem(0.4),
-			background: { color: '#42b883' },
-			color: '#ffffff',
+			background: { color: $bog_builderui_tokens.current },
+			color: $bog_builderui_tokens.back,
 			padding: { left: rem(1.25), right: rem(1.25), top: rem(0.625), bottom: rem(0.625) },
 			border: { radius: rem(1.25) },
 			font: { weight: 600 },
@@ -58,7 +58,7 @@ namespace $ {
 			flex: { direction: 'row' },
 			align: { items: 'center' },
 			gap: rem(0.4),
-			background: { color: $mol_theme.card },
+			background: { color: $bog_builderui_tokens.card },
 			padding: { left: rem(1.25), right: rem(1.25), top: rem(0.625), bottom: rem(0.625) },
 			border: { radius: rem(1.25) },
 			font: { weight: 600 },
@@ -67,7 +67,7 @@ namespace $ {
 		Hero_cta_start_icon: { width: rem(0.875), height: rem(0.875) },
 
 		Hero_cta_install: {
-			background: { color: $mol_theme.card },
+			background: { color: $bog_builderui_tokens.card },
 			padding: { left: rem(1.25), right: rem(1.25), top: rem(0.625), bottom: rem(0.625) },
 			border: { radius: rem(1.25) },
 			font: { weight: 600 },
@@ -77,10 +77,10 @@ namespace $ {
 			flex: { direction: 'row' },
 			align: { items: 'center' },
 			gap: rem(0.4),
-			background: { color: $mol_theme.back },
+			background: { color: $bog_builderui_tokens.back },
 			padding: { left: rem(1.25), right: rem(1.25), top: rem(0.5), bottom: rem(0.5) },
-			border: { radius: rem(1.25), width: '1px', style: 'solid', color: $mol_theme.current },
-			color: $mol_theme.current,
+			border: { radius: rem(1.25), width: '1px', style: 'solid', color: $bog_builderui_tokens.current },
+			color: $bog_builderui_tokens.current,
 			font: { weight: 600 },
 		},
 
@@ -92,8 +92,8 @@ namespace $ {
 			padding: { top: $mol_gap.block, bottom: $mol_gap.block, left: $mol_gap.block, right: $mol_gap.block },
 			margin: { top: rem(3), left: 'auto', right: 'auto' },
 			font: { size: rem(0.875) },
-			color: $mol_theme.text,
-			border: { top: { width: '1px', style: 'solid', color: $mol_theme.line }, bottom: { width: '1px', style: 'solid', color: $mol_theme.line } },
+			color: $bog_builderui_tokens.text,
+			border: { top: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line }, bottom: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
 			width: '100%',
 		},
 
@@ -113,17 +113,17 @@ namespace $ {
 		Feature1_title: {
 			display: 'block',
 			font: { size: rem(1.25), weight: 600 },
-			'::first-letter': { color: $mol_theme.special },
+			'::first-letter': { color: $bog_builderui_tokens.special },
 		},
 		Feature2_title: {
 			display: 'block',
 			font: { size: rem(1.25), weight: 600 },
-			'::first-letter': { color: $mol_theme.special },
+			'::first-letter': { color: $bog_builderui_tokens.special },
 		},
 		Feature3_title: {
 			display: 'block',
 			font: { size: rem(1.25), weight: 600 },
-			'::first-letter': { color: $mol_theme.special },
+			'::first-letter': { color: $bog_builderui_tokens.special },
 		},
 
 		Sponsors: {
@@ -146,24 +146,24 @@ namespace $ {
 		},
 
 		Sponsor_card1: {
-			background: { color: '#f6f6f7' },
-			border: { radius: rem(0.5), width: '1px', style: 'solid', color: '#e2e2e3' },
+			background: { color: $bog_builderui_tokens.card },
+			border: { radius: rem(0.5), width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
 			height: rem(8),
 		},
 		Sponsor_card2: {
-			background: { color: '#f6f6f7' },
-			border: { radius: rem(0.5), width: '1px', style: 'solid', color: '#e2e2e3' },
+			background: { color: $bog_builderui_tokens.card },
+			border: { radius: rem(0.5), width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
 			height: rem(8),
 		},
 		Sponsor_card3: {
-			background: { color: '#f6f6f7' },
-			border: { radius: rem(0.5), width: '1px', style: 'solid', color: '#e2e2e3' },
+			background: { color: $bog_builderui_tokens.card },
+			border: { radius: rem(0.5), width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
 			height: rem(8),
 		},
 
 		Sponsors_cta: {
 			align: { self: 'center' },
-			color: $mol_theme.shade,
+			color: $bog_builderui_tokens.shade,
 			font: { size: rem(0.875) },
 		},
 
@@ -171,7 +171,7 @@ namespace $ {
 			flex: { direction: 'column' },
 			gap: rem(2),
 			padding: { top: rem(4), bottom: rem(3), left: rem(4), right: rem(4) },
-			border: { top: { width: '1px', style: 'solid', color: $mol_theme.line } },
+			border: { top: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
 			margin: { top: 'auto' },
 			maxWidth: rem(75),
 			width: '100%',
@@ -213,7 +213,7 @@ namespace $ {
 			align: { items: 'center' },
 			gap: rem(0.25),
 			font: { size: rem(0.875) },
-			color: $mol_theme.shade,
+			color: $bog_builderui_tokens.shade,
 			textAlign: 'center',
 			padding: { top: rem(2) },
 		},

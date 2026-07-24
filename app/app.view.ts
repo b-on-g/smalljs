@@ -6,6 +6,10 @@ namespace $.$$ {
 			return $mol_state_arg.value( 'section', next ) ?? 'home'
 		}
 
+		lights() {
+			return this.Theme().is_light_now() ? 'light' : 'dark'
+		}
+
 		body_content() {
 			switch( this.section() ) {
 				case 'docs': return [ this.Docs() ]

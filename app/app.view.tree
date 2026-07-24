@@ -1,5 +1,15 @@
-$bog_smalljs_app $mol_view
+$bog_smalljs_app $bog_builderui_div
 	section? \home
+	lights \light
+	attr *
+		^
+		bog_builderui_lights <= lights
+		bog_builderui_base \zinc
+		bog_builderui_theme \sky
+		bog_builderui_chart \yellow
+		bog_builderui_radius \medium
+		bog_builderui_font_body \inter
+		bog_builderui_font_head \eb-garamond
 	sub /
 		<= Top $bog_smalljs_top
 			Theme <= Theme $bog_theme_auto

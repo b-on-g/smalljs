@@ -5,9 +5,8 @@ namespace $ {
 		flex: { direction: 'column' },
 		height: '100vh',
 		overflow: { y: 'auto', x: 'hidden' },
-		font: { family: 'Inter, system-ui, sans-serif' },
-		background: { color: $mol_theme.back },
-		color: $mol_theme.text,
+		background: { color: $bog_builderui_tokens.back },
+		color: $bog_builderui_tokens.text,
 
 		Body: {
 			flex: { direction: 'column', grow: 1 },

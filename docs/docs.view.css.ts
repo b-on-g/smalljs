@@ -11,7 +11,7 @@ namespace $ {
 
 		Sidebar: {
 			padding: $mol_gap.block,
-			border: { right: { width: '1px', style: 'solid', color: $mol_theme.line } },
+			border: { right: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
 		},
 
 		Main: {
@@ -20,7 +20,7 @@ namespace $ {
 
 		Toc: {
 			padding: $mol_gap.block,
-			border: { left: { width: '1px', style: 'solid', color: $mol_theme.line } },
+			border: { left: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
 		},
 
 		Title: {
@@ -32,7 +32,7 @@ namespace $ {
 			flex: { direction: 'row' },
 			justify: { content: 'space-between' },
 			padding: { top: $mol_gap.block, bottom: $mol_gap.block },
-			border: { top: { width: '1px', style: 'solid', color: $mol_theme.line } },
+			border: { top: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
 			margin: { top: $mol_gap.block },
 		},
 

@@ -3,10 +3,7 @@ $bog_smalljs_top $mol_view
 	github_uri \https://github.com/b-on-g/smalljs
 	logo_uri \bog/smalljs/assets/logo.svg
 	search_open? null
-	nav_docs_open? null
-	nav_ecosystem_open? null
-	nav_about_open? null
-	nav_support_open? null
+	nav_pick? null
 	lang_open? null
 	sub /
 		<= Logo $mol_link
@@ -30,31 +27,315 @@ $bog_smalljs_top $mol_view
 						<= Search_hint_text @ \⌘ K
 		<= Nav $mol_view
 			sub /
-				<= Nav_docs $mol_button_minor
-					click? <=> nav_docs_open?
-					sub /
-						<= Nav_docs_label @ \Docs
-						<= Nav_docs_chevron $mol_icon_chevron_down
+				<= Docs_pick $mol_pick
+					hint @ \Docs
+					align \bottom_left
+					trigger_content /
+						<= Docs_label @ \Docs
+						<= Docs_chevron $mol_icon_chevron_down
+					bubble_content /
+						<= Docs_menu $mol_view
+							sub /
+								<= Docs_quickstart $mol_link
+									title @ \Quick Start
+									arg *
+										section \docs
+										page \quick-start
+									event_click? <=> nav_pick?
+								<= Docs_guide $mol_link
+									title @ \Guide
+									arg *
+										section \docs
+										page \guide
+									event_click? <=> nav_pick?
+								<= Docs_tutorial $mol_link
+									title @ \Tutorial
+									arg *
+										section \docs
+										page \tutorial
+									event_click? <=> nav_pick?
+								<= Docs_examples $mol_link
+									title @ \Examples
+									arg *
+										section \docs
+										page \examples
+									event_click? <=> nav_pick?
+								<= Docs_api $mol_link
+									title @ \API
+									arg *
+										section \docs
+										page \api
+									event_click? <=> nav_pick?
+								<= Docs_glossary $mol_link
+									title @ \Glossary
+									arg *
+										section \docs
+										page \glossary
+									event_click? <=> nav_pick?
+								<= Docs_errors $mol_link
+									title @ \Error Reference
+									arg *
+										section \docs
+										page \errors
+									event_click? <=> nav_pick?
+								<= Docs_migration $mol_link
+									title @ \Migration
+									arg *
+										section \docs
+										page \migration
+									event_click? <=> nav_pick?
 				<= Nav_playground $mol_link
 					title @ \Playground
 					arg *
 						section \playground
 						page \
-				<= Nav_ecosystem $mol_button_minor
-					click? <=> nav_ecosystem_open?
+				<= Ecosystem_pick $mol_pick
+					hint @ \Ecosystem
+					align \bottom_left
+					trigger_content /
+						<= Ecosystem_label @ \Ecosystem
+						<= Ecosystem_chevron $mol_icon_chevron_down
+					bubble_content /
+						<= Ecosystem_menu $mol_view
+							sub /
+								<= Eco_themes $mol_link
+									title @ \Themes
+									arg *
+										section \docs
+										page \themes
+									event_click? <=> nav_pick?
+								<= Eco_components $mol_link
+									title @ \UI Components
+									uri \https://mol.hyoo.ru/
+									event_click? <=> nav_pick?
+								<= Eco_plugins $mol_link
+									title @ \Plugins
+									arg *
+										section \docs
+										page \plugins
+									event_click? <=> nav_pick?
+								<= Eco_libs_title $mol_view
+									sub /
+										<= Eco_libs_title_text @ \Official Libraries
+								<= Eco_wire $mol_link
+									title @ \$mol_wire
+									uri \https://github.com/hyoo-ru/mam_mol/tree/master/wire
+									event_click? <=> nav_pick?
+								<= Eco_baza $mol_link
+									title @ \Giper Baza
+									uri \https://github.com/hyoo-ru/mam_mol/tree/master/crus
+									event_click? <=> nav_pick?
+								<= Eco_crowd $mol_link
+									title @ \$hyoo_crowd
+									uri \https://github.com/hyoo-ru/mam_mol/tree/master/crowd
+									event_click? <=> nav_pick?
+								<= Eco_router $mol_link
+									title @ \$mol_router
+									uri \https://github.com/hyoo-ru/mam_mol/tree/master/state/arg
+									event_click? <=> nav_pick?
+				<= About_pick $mol_pick
+					hint @ \About
+					align \bottom_left
+					trigger_content /
+						<= About_label @ \About
+						<= About_chevron $mol_icon_chevron_down
+					bubble_content /
+						<= About_menu $mol_view
+							sub /
+								<= About_faq $mol_link
+									title @ \FAQ
+									arg *
+										section \docs
+										page \faq
+									event_click? <=> nav_pick?
+								<= About_team $mol_link
+									title @ \Team
+									arg *
+										section \docs
+										page \team
+									event_click? <=> nav_pick?
+								<= About_releases $mol_link
+									title @ \Releases
+									arg *
+										section \docs
+										page \releases
+									event_click? <=> nav_pick?
+								<= About_conduct $mol_link
+									title @ \Code of Conduct
+									arg *
+										section \docs
+										page \code-of-conduct
+									event_click? <=> nav_pick?
+								<= About_privacy $mol_link
+									title @ \Privacy Policy
+									arg *
+										section \docs
+										page \privacy
+									event_click? <=> nav_pick?
+				<= Support_pick $mol_pick
+					hint @ \Support
+					align \bottom_left
+					trigger_content /
+						<= Support_label @ \Support
+						<= Support_chevron $mol_icon_chevron_down
+					bubble_content /
+						<= Support_menu $mol_view
+							sub /
+								<= Support_discussions $mol_link
+									title @ \GitHub Discussions
+									uri \https://github.com/hyoo-ru/mam/discussions
+									event_click? <=> nav_pick?
+								<= Support_dev $mol_link
+									title @ \DEV Community
+									uri \https://dev.to/t/mol
+									event_click? <=> nav_pick?
+		<= Burger $mol_pick
+			hint @ \Menu
+			align \bottom_right
+			trigger_content /
+				<= Burger_icon $mol_icon_hamburger
+			bubble_content /
+				<= Mobile_menu $mol_view
 					sub /
-						<= Nav_ecosystem_label @ \Ecosystem
-						<= Nav_ecosystem_chevron $mol_icon_chevron_down
-				<= Nav_about $mol_button_minor
-					click? <=> nav_about_open?
-					sub /
-						<= Nav_about_label @ \About
-						<= Nav_about_chevron $mol_icon_chevron_down
-				<= Nav_support $mol_button_minor
-					click? <=> nav_support_open?
-					sub /
-						<= Nav_support_label @ \Support
-						<= Nav_support_chevron $mol_icon_chevron_down
+						<= Mobile_playground $mol_link
+							title @ \Playground
+							arg *
+								section \playground
+								page \
+							event_click? <=> nav_pick?
+						<= Docs_group $mol_expander
+							title @ \Docs
+							content /
+								<= M_docs_quickstart $mol_link
+									title @ \Quick Start
+									arg *
+										section \docs
+										page \quick-start
+									event_click? <=> nav_pick?
+								<= M_docs_guide $mol_link
+									title @ \Guide
+									arg *
+										section \docs
+										page \guide
+									event_click? <=> nav_pick?
+								<= M_docs_tutorial $mol_link
+									title @ \Tutorial
+									arg *
+										section \docs
+										page \tutorial
+									event_click? <=> nav_pick?
+								<= M_docs_examples $mol_link
+									title @ \Examples
+									arg *
+										section \docs
+										page \examples
+									event_click? <=> nav_pick?
+								<= M_docs_api $mol_link
+									title @ \API
+									arg *
+										section \docs
+										page \api
+									event_click? <=> nav_pick?
+								<= M_docs_glossary $mol_link
+									title @ \Glossary
+									arg *
+										section \docs
+										page \glossary
+									event_click? <=> nav_pick?
+								<= M_docs_errors $mol_link
+									title @ \Error Reference
+									arg *
+										section \docs
+										page \errors
+									event_click? <=> nav_pick?
+								<= M_docs_migration $mol_link
+									title @ \Migration
+									arg *
+										section \docs
+										page \migration
+									event_click? <=> nav_pick?
+						<= Ecosystem_group $mol_expander
+							title @ \Ecosystem
+							content /
+								<= M_eco_themes $mol_link
+									title @ \Themes
+									arg *
+										section \docs
+										page \themes
+									event_click? <=> nav_pick?
+								<= M_eco_components $mol_link
+									title @ \UI Components
+									uri \https://mol.hyoo.ru/
+									event_click? <=> nav_pick?
+								<= M_eco_plugins $mol_link
+									title @ \Plugins
+									arg *
+										section \docs
+										page \plugins
+									event_click? <=> nav_pick?
+								<= M_eco_libs_title $mol_view
+									sub /
+										<= M_eco_libs_title_text @ \Official Libraries
+								<= M_eco_wire $mol_link
+									title @ \$mol_wire
+									uri \https://github.com/hyoo-ru/mam_mol/tree/master/wire
+									event_click? <=> nav_pick?
+								<= M_eco_baza $mol_link
+									title @ \Giper Baza
+									uri \https://github.com/hyoo-ru/mam_mol/tree/master/crus
+									event_click? <=> nav_pick?
+								<= M_eco_crowd $mol_link
+									title @ \$hyoo_crowd
+									uri \https://github.com/hyoo-ru/mam_mol/tree/master/crowd
+									event_click? <=> nav_pick?
+								<= M_eco_router $mol_link
+									title @ \$mol_router
+									uri \https://github.com/hyoo-ru/mam_mol/tree/master/state/arg
+									event_click? <=> nav_pick?
+						<= About_group $mol_expander
+							title @ \About
+							content /
+								<= M_about_faq $mol_link
+									title @ \FAQ
+									arg *
+										section \docs
+										page \faq
+									event_click? <=> nav_pick?
+								<= M_about_team $mol_link
+									title @ \Team
+									arg *
+										section \docs
+										page \team
+									event_click? <=> nav_pick?
+								<= M_about_releases $mol_link
+									title @ \Releases
+									arg *
+										section \docs
+										page \releases
+									event_click? <=> nav_pick?
+								<= M_about_conduct $mol_link
+									title @ \Code of Conduct
+									arg *
+										section \docs
+										page \code-of-conduct
+									event_click? <=> nav_pick?
+								<= M_about_privacy $mol_link
+									title @ \Privacy Policy
+									arg *
+										section \docs
+										page \privacy
+									event_click? <=> nav_pick?
+						<= Support_group $mol_expander
+							title @ \Support
+							content /
+								<= M_support_discussions $mol_link
+									title @ \GitHub Discussions
+									uri \https://github.com/hyoo-ru/mam/discussions
+									event_click? <=> nav_pick?
+								<= M_support_dev $mol_link
+									title @ \DEV Community
+									uri \https://dev.to/t/mol
+									event_click? <=> nav_pick?
 		<= Lang $mol_button_minor
 			click? <=> lang_open?
 			sub /

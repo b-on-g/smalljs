@@ -1,2 +1,3 @@
 include \/mol/offline/install
+include \/bog/builderui/theme.css
 deploy \/bog/smalljs/assets
