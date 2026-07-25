@@ -1,89 +1,159 @@
 namespace $.$$ {
 
+	// TypeScript compiler, lazy-loaded from a CDN only when the user writes logic.
+	const TS_CDN = 'https://cdn.jsdelivr.net/npm/typescript@5.4.5/lib/typescript.js'
+
 	/**
-	 * A live view.tree playground. The editor's text is compiled at runtime with
-	 * $mol's own toolchain — $mol_tree2_from_string parses it, $mol_view_tree2_to_js
-	 * turns it into JS, and the result is evaluated into a live component. We do NOT
-	 * write a parser.
+	 * A live view.tree + view.ts playground. view.tree is compiled with $mol's own
+	 * toolchain ($mol_tree2_from_string -> $mol_view_tree2_to_js -> ...); optional
+	 * view.ts logic is transpiled in the browser by the TypeScript compiler and
+	 * layered on top as a subclass. We do NOT write a parser.
 	 *
-	 * Snippets can only reference components bundled into this app, so the ones
-	 * below are force-referenced (in a doc comment, which MAM keeps) to pull them
-	 * into the bundle for the runtime to resolve:
+	 * Snippet components must be bundled into this app, so they are force-referenced
+	 * here (in a doc comment, which MAM keeps) to pull them into the bundle:
 	 * $mol_view $mol_button_major $mol_button_minor $mol_string $mol_number
 	 * $mol_text $mol_paragraph $mol_list $mol_row $mol_link $mol_check $mol_switch
 	 */
 	export class $bog_smalljs_playground extends $.$bog_smalljs_playground {
 
-		default_source() {
+		// --- default snippets --------------------------------------------
+
+		default_tree() {
 			const S = String.fromCharCode( 36 ) // "$" — kept out of MAM's dep scan
 			return [
 				`${ S }my_demo ${ S }mol_view`,
+				`\tcount_text \\0`,
+				`\tinc? null`,
 				`\tsub /`,
-				`\t\t<= Hello ${ S }mol_view`,
-				`\t\t\tsub / <= hello \\Hello from the ${ S }mol playground!`,
-				`\t\t<= Tip ${ S }mol_view`,
-				`\t\t\tsub / <= tip \\Edit the view.tree on the left — the preview updates as you type.`,
+				`\t\t<= Value ${ S }mol_view`,
+				`\t\t\tsub / <= count_text`,
+				`\t\t<= Button ${ S }mol_button_major`,
+				`\t\t\tclick? <=> inc?`,
+				`\t\t\tsub / <= button_label \\Count up`,
 			].join( '\n' ) + '\n'
 		}
 
-		// Editor value: immediate for smooth typing, seeded from the URL once.
+		default_ts() {
+			return '' // empty by default so the TS compiler isn't fetched until needed
+		}
+
+		// --- tabs ---------------------------------------------------------
+
 		@ $mol_mem
+		tab( next?: string ) {
+			return this.$.$mol_state_arg.value( 'tab', next ) ?? 'tree'
+		}
+
+		@ $mol_action
+		show_tree() { this.tab( 'tree' ); return null }
+
+		@ $mol_action
+		show_ts() { this.tab( 'ts' ); return null }
+
+		editor_hint() {
+			return this.tab() === 'ts'
+				? 'Optional — add a class with logic (state, actions), e.g. count() and inc().'
+				: 'Type a view.tree here…'
+		}
+
+		// --- editor sources (immediate) + debounced committed copies ------
+
+		@ $mol_mem
+		tree_draft( next?: string ) {
+			if ( next !== undefined ) { this.schedule( 'code', next ); return next }
+			return this.$.$mol_state_arg.value( 'code' ) || this.default_tree()
+		}
+
+		@ $mol_mem
+		ts_draft( next?: string ) {
+			if ( next !== undefined ) { this.schedule( 'ts', next ); return next }
+			return this.$.$mol_state_arg.value( 'ts' ) || this.default_ts()
+		}
+
+		@ $mol_mem
+		tree_committed( next?: string ) {
+			return next ?? ( this.$.$mol_state_arg.value( 'code' ) || this.default_tree() )
+		}
+
+		@ $mol_mem
+		ts_committed( next?: string ) {
+			return next ?? ( this.$.$mol_state_arg.value( 'ts' ) || this.default_ts() )
+		}
+
+		// One editor, bound to the active tab's source.
 		draft( next?: string ) {
-			if ( next !== undefined ) {
-				this.schedule_commit( next )
-				return next
-			}
-			return this.$.$mol_state_arg.value( 'code' ) || this.default_source()
+			const ts_mode = this.tab() === 'ts'
+			if ( next !== undefined ) return ts_mode ? this.ts_draft( next ) : this.tree_draft( next )
+			return ts_mode ? this.ts_draft() : this.tree_draft()
 		}
 
-		// Debounced commit — avoids recompiling on every keystroke.
-		commit_timer: $mol_after_timeout | null = null
+		// --- debounce -----------------------------------------------------
+
+		timers = {} as Record< string, $mol_after_timeout | null >
 
 		@ $mol_action
-		schedule_commit( value: string ) {
-			this.commit_timer?.destructor()
-			this.commit_timer = new this.$.$mol_after_timeout( 400, () => this.commit( value ) )
+		schedule( key: string, value: string ) {
+			this.timers[ key ]?.destructor()
+			this.timers[ key ] = new this.$.$mol_after_timeout( 400, () => this.commit( key, value ) )
 		}
 
 		@ $mol_action
-		commit( value: string ) {
-			this.$.$mol_state_arg.value( 'code', value ) // shareable URL
-			this.committed( value )
+		commit( key: string, value: string ) {
+			this.$.$mol_state_arg.value( key, value ) // shareable URL
+			if ( key === 'ts' ) this.ts_committed( value )
+			else this.tree_committed( value )
 		}
 
-		// The source the preview actually compiles.
-		@ $mol_mem
-		committed( next?: string ) {
-			return next ?? ( this.$.$mol_state_arg.value( 'code' ) || this.default_source() )
+		// --- compilation --------------------------------------------------
+
+		// TypeScript compiler, fetched on demand (suspends the preview until ready).
+		ts_lib(): any {
+			this.$.$mol_import.script( TS_CDN )
+			const ts = ( globalThis as any ).ts
+			if ( !ts ) throw new Error( 'TypeScript compiler is unavailable.' )
+			return ts
 		}
 
-		// Compile a view.tree string into a live component using $mol's toolchain.
-		compile( src: string ): $mol_view {
+		compile(): $mol_view {
 
-			const $ = this.$
-			const tree = $.$mol_tree2_from_string( src, 'playground.view.tree' )
-			const js_tree = $.$mol_view_tree2_to_js( tree )
-			const js_text = $.$mol_tree2_js_to_text( js_tree )
-			const js_str = $.$mol_tree2_text_to_string_mapped_js( js_text )
+			const $ = this.$ as any
+			const tree_src = this.tree_committed()
+			const ts_src = this.ts_committed()
 
-			// Evaluate into a throwaway namespace so real $ isn't polluted:
-			// reads fall through to the real $, writes land in `store`.
-			const store = {} as Record< string, any >
-			const scope = new Proxy( $ as any, {
-				get: ( target, key ) => ( key in store ? store[ key as string ] : target[ key as any ] ),
-				set: ( _target, key, value ) => { store[ key as string ] = value; return true },
-			} )
-
-			const run = new Function( '$', '$mol_mem', '$mol_mem_key', js_str )
-			run( scope, ( $ as any ).$mol_mem, ( $ as any ).$mol_mem_key )
-
-			const root = /(\$[\w$]+)/.exec( src )?.[ 1 ]
+			const root = /(\$[\w$]+)/.exec( tree_src )?.[ 1 ]
 			if ( !root ) throw new Error( 'No component found — the first line must declare one (a name and a base view).' )
-			const Component = store[ root ]
-			if ( typeof Component !== 'function' ) {
-				throw new Error( `Component ${ root } could not be built.` )
+			if ( /^\$(mol|hyoo|bog|node)_/.test( root ) ) {
+				throw new Error( `Choose another name — ${ root } is reserved by the framework.` )
 			}
-			return new Component() as $mol_view
+
+			// view.tree -> base class, evaluated into the real namespace so child
+			// components and cross-references resolve at render time.
+			const tree = $.$mol_tree2_from_string( tree_src, 'playground.view.tree' )
+			const tree_js = $.$mol_tree2_text_to_string_mapped_js(
+				$.$mol_tree2_js_to_text( $.$mol_view_tree2_to_js( tree ) ),
+			)
+			new Function( '$', '$mol_mem', '$mol_mem_key', tree_js )( $, $.$mol_mem, $.$mol_mem_key )
+
+			// optional view.ts -> subclass with logic, transpiled in the browser.
+			if ( ts_src.trim() ) {
+				const ts = this.ts_lib()
+				const out = ts.transpileModule( ts_src, {
+					compilerOptions: {
+						experimentalDecorators: true,
+						target: ts.ScriptTarget.ES2018,
+						module: ts.ModuleKind.None,
+					},
+				} ).outputText
+				const body = out + `\n;return typeof ${ root } !== 'undefined' ? ${ root } : null;`
+				const Sub = new Function( '$', '$mol_mem', '$mol_mem_key', '$mol_action', body )(
+					$, $.$mol_mem, $.$mol_mem_key, $.$mol_action,
+				)
+				if ( typeof Sub === 'function' ) return new Sub() as $mol_view
+			}
+
+			const Base = $[ root ]
+			if ( typeof Base !== 'function' ) throw new Error( `Component ${ root } could not be built.` )
+			return new Base() as $mol_view
 		}
 
 		error_box( message: string ): $mol_view {
@@ -95,10 +165,10 @@ namespace $.$$ {
 
 		@ $mol_mem
 		preview_content(): readonly ( $mol_view | string )[] {
-			const src = this.committed()
 			try {
-				return [ this.compile( src ) ]
+				return [ this.compile() ]
 			} catch ( error ) {
+				if ( error instanceof Promise ) throw error // TS still loading — keep the loading state
 				return [ this.error_box( error instanceof Error ? error.message : String( error ) ) ]
 			}
 		}

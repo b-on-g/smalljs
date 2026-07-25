@@ -22,6 +22,20 @@ namespace $ {
 		overflow: { x: 'hidden', y: 'hidden' },
 	} as const
 
+	const tab = {
+		flex: { grow: 0 },
+		padding: { top: rem( 0.4 ), bottom: rem( 0.4 ), left: rem( 0.75 ), right: rem( 0.75 ) },
+		border: { radius: rem( 0 ) },
+		font: { size: rem( 0.75 ), weight: 600 },
+		color: $bog_builderui_tokens.shade,
+		background: { color: $bog_builderui_tokens.back },
+	} as const
+
+	const tab_active = {
+		color: $bog_builderui_tokens.special,
+		background: { color: $bog_builderui_tokens.card },
+	} as const
+
 	$mol_style_define( $bog_smalljs_playground, {
 
 		display: 'grid',
@@ -38,7 +52,16 @@ namespace $ {
 
 		Preview_pane: pane,
 
-		Editor_label: label,
+		Tabs: {
+			flex: { direction: 'row', shrink: 0 },
+			align: { items: 'stretch' },
+			border: { bottom: line },
+			background: { color: $bog_builderui_tokens.back },
+		},
+
+		Tree_tab: tab,
+		Ts_tab: tab,
+
 		Preview_label: label,
 
 		Editor: {
@@ -54,6 +77,13 @@ namespace $ {
 			overflow: { y: 'auto' },
 			padding: $mol_gap.block,
 			color: $bog_builderui_tokens.text,
+		},
+
+		'@': {
+			bog_smalljs_pg_tab: {
+				tree: { Tree_tab: tab_active },
+				ts: { Ts_tab: tab_active },
+			},
 		},
 
 		'@media': {

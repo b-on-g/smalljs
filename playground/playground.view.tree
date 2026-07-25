@@ -1,13 +1,23 @@
 $bog_smalljs_playground $mol_view
+	tab \tree
 	draft? \
+	editor_hint \
+	attr *
+		bog_smalljs_pg_tab <= tab
 	sub /
 		<= Editor_pane $mol_view
 			sub /
-				<= Editor_label $mol_view
-					sub / <= editor_label_text @ \view.tree
+				<= Tabs $mol_view
+					sub /
+						<= Tree_tab $mol_button_minor
+							click? <=> show_tree? null
+							sub / <= tree_tab_label @ \view.tree
+						<= Ts_tab $mol_button_minor
+							click? <=> show_ts? null
+							sub / <= ts_tab_label @ \view.ts
 				<= Editor $mol_textarea
 					value? <=> draft?
-					hint @ \Type a $mol view.tree…
+					hint <= editor_hint
 		<= Preview_pane $mol_view
 			sub /
 				<= Preview_label $mol_view
