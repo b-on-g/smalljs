@@ -1,5 +1,16 @@
 $bog_smalljs_playground $mol_view
+	draft? \
 	sub /
-		<= Title @ \Playground
-		<= Body $mol_text
-			text @ \Coming in Sprint 2.
+		<= Editor_pane $mol_view
+			sub /
+				<= Editor_label $mol_view
+					sub / <= editor_label_text @ \view.tree
+				<= Editor $mol_textarea
+					value? <=> draft?
+					hint @ \Type a $mol view.tree…
+		<= Preview_pane $mol_view
+			sub /
+				<= Preview_label $mol_view
+					sub / <= preview_label_text @ \Preview
+				<= Preview $mol_view
+					sub <= preview_content /
