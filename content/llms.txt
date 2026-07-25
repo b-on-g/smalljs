@@ -25,3 +25,21 @@
 - [Showcase](https://b-on-g.github.io/smalljs/docs/showcase.md): Real apps and tools built with $mol, from community platforms to devtools.
 - [From React, Vue & Svelte](https://b-on-g.github.io/smalljs/docs/rosetta.md): A concept translation table for developers coming from other frameworks.
 
+## API
+
+- [$mol_button_major](https://b-on-g.github.io/smalljs/docs/api-mol-button-major.md): API reference for $mol_button_major.
+- [$mol_button_minor](https://b-on-g.github.io/smalljs/docs/api-mol-button-minor.md): API reference for $mol_button_minor.
+- [$mol_string](https://b-on-g.github.io/smalljs/docs/api-mol-string.md): API reference for $mol_string.
+- [$mol_number](https://b-on-g.github.io/smalljs/docs/api-mol-number.md): API reference for $mol_number.
+- [$mol_text](https://b-on-g.github.io/smalljs/docs/api-mol-text.md): API reference for $mol_text.
+- [$mol_paragraph](https://b-on-g.github.io/smalljs/docs/api-mol-paragraph.md): API reference for $mol_paragraph.
+- [$mol_list](https://b-on-g.github.io/smalljs/docs/api-mol-list.md): API reference for $mol_list.
+- [$mol_row](https://b-on-g.github.io/smalljs/docs/api-mol-row.md): API reference for $mol_row.
+- [$mol_link](https://b-on-g.github.io/smalljs/docs/api-mol-link.md): API reference for $mol_link.
+- [$mol_check](https://b-on-g.github.io/smalljs/docs/api-mol-check.md): API reference for $mol_check.
+- [$mol_switch](https://b-on-g.github.io/smalljs/docs/api-mol-switch.md): API reference for $mol_switch.
+- [$mol_select](https://b-on-g.github.io/smalljs/docs/api-mol-select.md): API reference for $mol_select.
+- [$mol_scroll](https://b-on-g.github.io/smalljs/docs/api-mol-scroll.md): API reference for $mol_scroll.
+- [$mol_page](https://b-on-g.github.io/smalljs/docs/api-mol-page.md): API reference for $mol_page.
+- [$mol_pick](https://b-on-g.github.io/smalljs/docs/api-mol-pick.md): API reference for $mol_pick.
+

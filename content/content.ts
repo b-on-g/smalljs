@@ -64,6 +64,26 @@ namespace $ {
 								"showcase",
 								"rosetta"
 							]
+						},
+						{
+							"title": "API",
+							"pages": [
+								"api-mol-button-major",
+								"api-mol-button-minor",
+								"api-mol-string",
+								"api-mol-number",
+								"api-mol-text",
+								"api-mol-paragraph",
+								"api-mol-list",
+								"api-mol-row",
+								"api-mol-link",
+								"api-mol-check",
+								"api-mol-switch",
+								"api-mol-select",
+								"api-mol-scroll",
+								"api-mol-page",
+								"api-mol-pick"
+							]
 						}
 					]
 				}
@@ -137,6 +157,96 @@ namespace $ {
 					title: "From React, Vue & Svelte",
 					file: 'content/en/docs/rosetta.md',
 					md: "# From React, Vue & Svelte\n\nIf you have built UIs with React, Vue, or Svelte, you already understand most of what \u0024mol does — the names are just different. Those frameworks are excellent and popular for good reason; this page is a translation table, not a competition, to help you feel at home quickly.\n\n## Concept map\n\n| Idea | React | Vue | Svelte | \u0024mol |\n|------|-------|-----|--------|------|\n| Component | function / class | SFC (`.vue`) | `.svelte` file | `.view.tree` + `.view.ts` |\n| Local state | `useState` | `ref` / `reactive` | `let x` | `@ \u0024mol_mem` |\n| Derived value | `useMemo` | `computed` | `\u0024: y = …` | `@ \u0024mol_mem` (reads other cells) |\n| Side effect | `useEffect` | `watchEffect` | `\u0024: { … }` | `@ \u0024mol_action` (explicit, never automatic) |\n| Props | props | props | `export let` | bindings in `view.tree` |\n| Event | `onClick` | `@click` | `on:click` | `click? <=> handler?` |\n| Two-way input | controlled input | `v-model` | `bind:value` | `value? <=> field?` |\n| List | `items.map()` | `v-for` | `{#each}` | keyed `Row*` |\n| Conditional | `cond && …` | `v-if` | `{#if}` | assign `null` to remove |\n| Shared state | Redux / Context | Pinia / provide | stores | any object with `@ \u0024mol_mem` |\n| Routing | React Router | Vue Router | SvelteKit | `\u0024mol_state_arg` |\n| Styling | CSS-in-JS | scoped `<style>` | `<style>` | typed `.view.css.ts` |\n\n## What tends to feel new\n\n- **Reactivity is automatic and non-optional.** Like Vue's `ref` or Svelte's `\u0024:`, a `@ \u0024mol_mem` value updates its readers by itself — but there is no dependency array to maintain and no manual subscription anywhere.\n- **Effects are separated from computations.** React folds derivation and effects into hooks; \u0024mol keeps them apart: `@ \u0024mol_mem` only computes, `@ \u0024mol_action` performs effects. That split is what removes most \"why did this run twice?\" puzzles.\n- **State is just objects.** There is no dedicated store library to adopt — a shared value is a reactive property on any object, so global state and component state work the same way.\n\n## Try the translation\n\nThe fastest way to internalize the mapping is to write a little of both: open the [Playground](#!section=playground), port a small component you know, and see how it lands. Or start from [Getting Started](#!section=docs/page=getting-started).\n",
+				},
+				'api-mol-button-major': {
+					slug: 'api-mol-button-major',
+					title: "$mol_button_major",
+					file: 'content/en/docs/api-mol-button-major.md',
+					md: "# \u0024mol_button_major\n\nExtends `\u0024mol_button_minor`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/button/major)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `theme` | read | `string` |\n",
+				},
+				'api-mol-button-minor': {
+					slug: 'api-mol-button-minor',
+					title: "$mol_button_minor",
+					file: 'content/en/docs/api-mol-button-minor.md',
+					md: "# \u0024mol_button_minor\n\nExtends `\u0024mol_button_typed`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/button/minor)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n\u0024mol_button_minor adds no new bindable properties of its own — see `\u0024mol_button_typed`.\n",
+				},
+				'api-mol-string': {
+					slug: 'api-mol-string',
+					title: "$mol_string",
+					file: 'content/en/docs/api-mol-string.md',
+					md: "# \u0024mol_string\n\nExtends `\u0024mol_view`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/string)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `disabled` | read | `boolean` |\n| `value` | read / write | `string` |\n| `value_changed` | read / write | `as 'value'` |\n| `hint` | read | `string` |\n| `hint_visible` | read | `as 'hint'` |\n| `spellcheck` | read | `boolean` |\n| `autocomplete_native` | read | `string` |\n| `selection_end` | read | `number` |\n| `selection_start` | read | `number` |\n| `keyboard` | read | `string` |\n| `enter` | read | `string` |\n| `length_max` | read | `number` |\n| `type` | read / write | `string` |\n| `submit_with_ctrl` | read | `boolean` |\n| `Submit` | read | `\u0024mol_hotkey` |\n| `dom_name` | read | `string` |\n| `enabled` | read | `boolean` |\n| `minimal_height` | read | `number` |\n| `autocomplete` | read | `boolean` |\n| `auto` | read | `readonly(any)[]` |\n| `field` | read | `({` |\n| `attr` | read | `({` |\n| `event` | read | `({` |\n| `plugins` | read | `readonly(any)[]` |\n",
+				},
+				'api-mol-number': {
+					slug: 'api-mol-number',
+					title: "$mol_number",
+					file: 'content/en/docs/api-mol-number.md',
+					md: "# \u0024mol_number\n\nExtends `\u0024mol_view`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/number)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `precision` | read | `number` |\n| `Hotkey` | read | `\u0024mol_hotkey` |\n| `dec_enabled` | read | `as 'enabled'` |\n| `dec_icon` | read | `\u0024mol_icon_chevron_left` |\n| `Dec` | read | `\u0024mol_button_minor` |\n| `type` | read | `string` |\n| `value_string` | read / write | `string` |\n| `hint` | read | `string` |\n| `string_enabled` | read | `as 'enabled'` |\n| `String` | read | `\u0024mol_string` |\n| `inc_enabled` | read | `as 'enabled'` |\n| `inc_icon` | read | `\u0024mol_icon_chevron_right` |\n| `Inc` | read | `\u0024mol_button_minor` |\n| `precision_view` | read | `as 'precision'` |\n| `precision_change` | read | `as 'precision'` |\n| `boost` | read | `number` |\n| `value_min` | read | `number` |\n| `value_max` | read | `number` |\n| `value` | read / write | `number` |\n| `enabled` | read | `boolean` |\n| `plugins` | read | `readonly(any)[]` |\n| `sub` | read | `readonly(any)[]` |\n",
+				},
+				'api-mol-text': {
+					slug: 'api-mol-text',
+					title: "$mol_text",
+					file: 'content/en/docs/api-mol-text.md',
+					md: "# \u0024mol_text\n\nExtends `\u0024mol_list`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/text/text)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `highlight` | read | `string` |\n| `code_sidebar_showed` | read | `boolean` |\n| `pre_sidebar_showed` | read | `as 'code_sidebar_showed'` |\n| `uri_base` | read | `string` |\n| `text` | read | `string` |\n| `param` | read | `string` |\n| `flow_tokens` | read | `readonly(any)[]` |\n| `auto` | read | `readonly(any)[]` |\n",
+				},
+				'api-mol-paragraph': {
+					slug: 'api-mol-paragraph',
+					title: "$mol_paragraph",
+					file: 'content/en/docs/api-mol-paragraph.md',
+					md: "# \u0024mol_paragraph\n\nExtends `\u0024mol_view`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/paragraph)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `line_height` | read | `number` |\n| `letter_width` | read | `number` |\n| `width_limit` | read | `number` |\n| `row_width` | read | `number` |\n| `sub` | read | `readonly(any)[]` |\n",
+				},
+				'api-mol-list': {
+					slug: 'api-mol-list',
+					title: "$mol_list",
+					file: 'content/en/docs/api-mol-list.md',
+					md: "# \u0024mol_list\n\nExtends `\u0024mol_view`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/list)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `gap_before` | read | `number` |\n| `Gap_before` | read | `\u0024mol_view` |\n| `Empty` | read | `\u0024mol_view` |\n| `gap_after` | read | `number` |\n| `Gap_after` | read | `\u0024mol_view` |\n| `rows` | read | `readonly(\u0024mol_view)[]` |\n| `render_visible_only` | read | `boolean` |\n| `render_over` | read | `number` |\n| `sub` | read | `as 'rows'` |\n| `view_window_shift` | read / write | `number` |\n| `view_window` | read | `readonly(any)[]` |\n",
+				},
+				'api-mol-row': {
+					slug: 'api-mol-row',
+					title: "$mol_row",
+					file: 'content/en/docs/api-mol-row.md',
+					md: "# \u0024mol_row\n\nExtends `\u0024mol_view`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/row)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n\u0024mol_row adds no new bindable properties of its own — see `\u0024mol_view`.\n",
+				},
+				'api-mol-link': {
+					slug: 'api-mol-link',
+					title: "$mol_link",
+					file: 'content/en/docs/api-mol-link.md',
+					md: "# \u0024mol_link\n\nExtends `\u0024mol_view`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/link)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `uri_toggle` | read | `string` |\n| `hint` | read | `string` |\n| `hint_safe` | read | `as 'hint'` |\n| `target` | read | `string` |\n| `file_name` | read | `string` |\n| `current` | read | `boolean` |\n| `relation` | read | `string` |\n| `click` | read / write | `as 'event_click'` |\n| `uri` | read | `string` |\n| `dom_name` | read | `string` |\n| `uri_off` | read | `string` |\n| `external` | read | `boolean` |\n| `attr` | read | `({` |\n| `sub` | read | `readonly(\u0024mol_view_content)[]` |\n| `arg` | read | `Record<string, any>` |\n| `event` | read | `({` |\n",
+				},
+				'api-mol-check': {
+					slug: 'api-mol-check',
+					title: "$mol_check",
+					file: 'content/en/docs/api-mol-check.md',
+					md: "# \u0024mol_check\n\nExtends `\u0024mol_button_minor`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/check)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `checked` | read / write | `boolean` |\n| `aria_checked` | read | `string` |\n| `aria_role` | read | `string` |\n| `title` | read | `string` |\n| `Title` | read | `\u0024mol_view` |\n| `label` | read | `readonly(any)[]` |\n| `attr` | read | `({` |\n| `sub` | read | `readonly(\u0024mol_view_content)[]` |\n",
+				},
+				'api-mol-switch': {
+					slug: 'api-mol-switch',
+					title: "$mol_switch",
+					file: 'content/en/docs/api-mol-switch.md',
+					md: "# \u0024mol_switch\n\nExtends `\u0024mol_check_list`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/switch)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `value` | read / write | `string` |\n",
+				},
+				'api-mol-select': {
+					slug: 'api-mol-select',
+					title: "$mol_select",
+					file: 'content/en/docs/api-mol-select.md',
+					md: "# \u0024mol_select\n\nExtends `\u0024mol_pick`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/select)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `enabled` | read | `boolean` |\n| `filter_pattern` | read / write | `string` |\n| `no_options_message` | read | `string` |\n| `nav_components` | read | `readonly(\u0024mol_view)[]` |\n| `nav_cycle` | read / write | `boolean` |\n| `Nav` | read | `\u0024mol_nav` |\n| `menu_content` | read | `readonly(\u0024mol_view)[]` |\n| `Menu` | read | `\u0024mol_list` |\n| `Bubble_pane` | read | `\u0024mol_scroll` |\n| `filter_hint` | read | `string` |\n| `dictionary` | read / write | `Record<string, any>` |\n| `options` | read | `readonly(string)[]` |\n| `value` | read / write | `string` |\n| `option_label_default` | read | `string` |\n| `No_options` | read | `\u0024mol_view` |\n| `plugins` | read | `readonly(any)[]` |\n| `hint` | read | `string` |\n| `bubble_content` | read | `readonly(any)[]` |\n| `Filter` | read | `\u0024mol_search` |\n| `Trigger_icon` | read | `\u0024mol_icon_dots_vertical` |\n| `trigger_enabled` | read | `as 'enabled'` |\n",
+				},
+				'api-mol-scroll': {
+					slug: 'api-mol-scroll',
+					title: "$mol_scroll",
+					file: 'content/en/docs/api-mol-scroll.md',
+					md: "# \u0024mol_scroll\n\nExtends `\u0024mol_view`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/scroll)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `tabindex` | read | `number` |\n| `scroll_top` | read / write | `number` |\n| `scroll_left` | read / write | `number` |\n| `attr` | read | `({` |\n| `event` | read | `({` |\n",
+				},
+				'api-mol-page': {
+					slug: 'api-mol-page',
+					title: "$mol_page",
+					file: 'content/en/docs/api-mol-page.md',
+					md: "# \u0024mol_page\n\nExtends `\u0024mol_view`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/page)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `tabindex` | read | `number` |\n| `title_content` | read | `readonly(any)[]` |\n| `Title` | read | `\u0024mol_view` |\n| `tools` | read | `readonly(\u0024mol_view_content)[]` |\n| `Tools` | read | `\u0024mol_view` |\n| `head` | read | `readonly(any)[]` |\n| `Head` | read | `\u0024mol_view` |\n| `body_scroll_top` | read / write | `ReturnType< as 'Body'['scroll_top'] >` |\n| `body` | read | `readonly(\u0024mol_view)[]` |\n| `Body_content` | read | `\u0024mol_view` |\n| `body_content` | read | `readonly(any)[]` |\n| `Body` | read | `\u0024mol_scroll` |\n| `foot` | read | `readonly(\u0024mol_view)[]` |\n| `Foot` | read | `\u0024mol_view` |\n| `dom_name` | read | `string` |\n| `attr` | read | `({` |\n| `sub` | read | `readonly(any)[]` |\n",
+				},
+				'api-mol-pick': {
+					slug: 'api-mol-pick',
+					title: "$mol_pick",
+					file: 'content/en/docs/api-mol-pick.md',
+					md: "# \u0024mol_pick\n\nExtends `\u0024mol_pop`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/pick)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `trigger_enabled` | read | `boolean` |\n| `trigger_content` | read | `readonly(\u0024mol_view_content)[]` |\n| `hint` | read | `string` |\n| `Trigger` | read | `\u0024mol_check` |\n| `event` | read | `({` |\n| `Anchor` | read | `as 'Trigger'` |\n",
 				},
 			}
 		}

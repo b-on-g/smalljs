@@ -64,7 +64,7 @@ $bog_smalljs_top $mol_view
 									title @ \API
 									arg *
 										section \docs
-										page \api
+										page \api-mol-string
 									event_click? <=> nav_pick?
 								<= Docs_glossary $mol_link
 									title @ \Glossary
@@ -234,7 +234,7 @@ $bog_smalljs_top $mol_view
 									title @ \API
 									arg *
 										section \docs
-										page \api
+										page \api-mol-string
 									event_click? <=> nav_pick?
 								<= M_docs_glossary $mol_link
 									title @ \Glossary

@@ -44,6 +44,83 @@ const meta = {
 	'showcase': { title: 'Showcase', summary: 'Real apps and tools built with $mol, from community platforms to devtools.' },
 	'rosetta': { title: 'From React, Vue & Svelte', summary: 'A concept translation table for developers coming from other frameworks.' },
 }
+
+// --- API reference autogen -----------------------------------------------------
+// Parse each core component's generated .view.tree.d.ts (the typed API surface)
+// and emit a reference page per component into the same content pipeline.
+const repo = path.join( root, '..', '..', '..' )
+const api_components = [
+	{ klass: '$mol_view', src: 'view/view' },
+	{ klass: '$mol_button_major', src: 'button/major' },
+	{ klass: '$mol_button_minor', src: 'button/minor' },
+	{ klass: '$mol_string', src: 'string' },
+	{ klass: '$mol_number', src: 'number' },
+	{ klass: '$mol_text', src: 'text/text' },
+	{ klass: '$mol_paragraph', src: 'paragraph' },
+	{ klass: '$mol_list', src: 'list' },
+	{ klass: '$mol_row', src: 'row' },
+	{ klass: '$mol_link', src: 'link' },
+	{ klass: '$mol_check', src: 'check' },
+	{ klass: '$mol_switch', src: 'switch' },
+	{ klass: '$mol_select', src: 'select' },
+	{ klass: '$mol_scroll', src: 'scroll' },
+	{ klass: '$mol_page', src: 'page' },
+	{ klass: '$mol_pick', src: 'pick' },
+]
+
+function parse_api_dts( src, klass ) {
+	const base = src.split( '/' ).pop()
+	const dts = path.join( repo, 'mol', src, '-view.tree', `${ base }.view.tree.d.ts` )
+	let text
+	try { text = fs.readFileSync( dts, 'utf8' ) } catch ( e ) { return null }
+	const esc = klass.replace( /\$/g, '\\$' )
+	const head = text.match( new RegExp( 'export class ' + esc + '\\s+extends\\s+(\\$[\\w$]+)\\s*\\{' ) )
+	if ( !head ) return null
+	const body_start = text.indexOf( '{', head.index )
+	const body_end = text.indexOf( '\n\t}', body_start )
+	const body = text.slice( body_start + 1, body_end < 0 ? undefined : body_end )
+	const props = []
+	for ( const line of body.split( '\n' ) ) {
+		const m = line.match( /^\t\t(\w+)\(\s*(next\?[^)]*)?\)\s*:\s*(.+?)\s*$/ )
+		if ( !m ) continue
+		let type = m[ 3 ].replace( /;+\s*$/, '' ).trim()
+		if ( type === 'any' ) continue // internal channel
+		type = type.replace( /ReturnType<\s*\$[\w$]+\['(\w+)'\]\s*>/g, "as '$1'" )
+		props.push( { name: m[ 1 ], settable: !!m[ 2 ], type } )
+	}
+	return { ext: head[ 1 ], props }
+}
+
+function api_markdown( klass, src, parsed ) {
+	const gh = `https://github.com/hyoo-ru/mam_mol/tree/master/${ src }`
+	let md = `# ${ klass }\n\n`
+	md += `Extends \`${ parsed.ext }\`. [View source on GitHub](${ gh })\n\n`
+	md += `This reference is generated from the component's typed \`.view.tree\` interface.\n\n`
+	if ( !parsed.props.length ) {
+		md += `## Properties\n\n${ klass } adds no new bindable properties of its own — see \`${ parsed.ext }\`.\n`
+		return md
+	}
+	md += `## Properties\n\n| Property | Access | Type |\n|---|---|---|\n`
+	for ( const p of parsed.props ) {
+		const type = p.type.replace( /\|/g, '\\|' ).replace( /`/g, '' )
+		md += `| \`${ p.name }\` | ${ p.settable ? 'read / write' : 'read' } | \`${ type }\` |\n`
+	}
+	return md
+}
+
+const api_group = { title: 'API', pages: [] }
+let api_count = 0
+for ( const comp of api_components ) {
+	const parsed = parse_api_dts( comp.src, comp.klass )
+	if ( !parsed ) continue
+	const slug = 'api-' + comp.klass.replace( /^\$/, '' ).replace( /_/g, '-' )
+	fs.writeFileSync( path.join( docs_dir, `${ slug }.md` ), api_markdown( comp.klass, comp.src, parsed ) )
+	meta[ slug ] = { title: comp.klass, summary: `API reference for ${ comp.klass }.` }
+	api_group.pages.push( slug )
+	api_count++
+}
+if ( api_group.pages.length ) sections[ 0 ].groups.push( api_group )
+
 const titles = Object.fromEntries( Object.entries( meta ).map( ( [ k, v ] ) => [ k, v.title ] ) )
 
 const default_slug = 'introduction'
@@ -314,4 +391,4 @@ const lessons_dir = path.join( root, '..', 'lessons' )
 fs.mkdirSync( lessons_dir, { recursive: true } )
 fs.writeFileSync( path.join( lessons_dir, 'lessons.ts' ), lessons_ts )
 
-console.log( `generated: content.ts (${ slugs.length } pages) + llms.txt + lessons.ts (${ lessons.length } lessons)` )
+console.log( `generated: content.ts (${ slugs.length } pages, incl. ${ api_count } API) + llms.txt + lessons.ts (${ lessons.length } lessons)` )
