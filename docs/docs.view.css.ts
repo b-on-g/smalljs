@@ -61,9 +61,11 @@ namespace $ {
 		},
 
 		Sidebar: {
+			flex: { direction: 'column' },
 			position: 'sticky',
 			top: topbar,
 			maxHeight: $mol_style_func.calc( '100vh - 4rem' ),
+			overflow: { y: 'auto', x: 'hidden' },
 			padding: { top: $mol_gap.block, bottom: $mol_gap.block, left: rem( 0.75 ), right: rem( 0.75 ) },
 			border: { right: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
 			background: { color: $bog_builderui_tokens.back },
@@ -164,9 +166,11 @@ namespace $ {
 		},
 
 		Toc: {
+			flex: { direction: 'column' },
 			position: 'sticky',
 			top: topbar,
 			maxHeight: $mol_style_func.calc( '100vh - 4rem' ),
+			overflow: { y: 'auto', x: 'hidden' },
 			padding: { top: rem( 2 ), bottom: $mol_gap.block, left: rem( 1 ), right: rem( 1 ) },
 			border: { left: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
 		},

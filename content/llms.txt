@@ -1,0 +1,15 @@
+# smalljs
+
+> Documentation for $mol — a reactive UI framework with typed views, automatic reactivity, and no virtual DOM. Each page below is available as raw Markdown at the linked URL.
+
+## Getting Started
+
+- [Introduction](https://b-on-g.github.io/smalljs/docs/introduction.md): What $mol is, who it is for, and a taste of reactive views.
+- [Getting Started](https://b-on-g.github.io/smalljs/docs/getting-started.md): From an empty folder to a running, reactive $mol app in under 15 minutes.
+
+## Essentials
+
+- [Views](https://b-on-g.github.io/smalljs/docs/views.md): Declaring and composing components with the view.tree language.
+- [State & Reactivity](https://b-on-g.github.io/smalljs/docs/state.md): Reactive properties, actions vs. computations, keyed and async state.
+- [Routing](https://b-on-g.github.io/smalljs/docs/routing.md): The URL as reactive state: screens, links, and multiple parameters.
+

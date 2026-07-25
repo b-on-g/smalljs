@@ -13,9 +13,9 @@ $bog_smalljs_docs $mol_view
 				<= Menu_icon $mol_icon_menu
 				<= Menu_label $mol_view
 					sub / <= title_text
-		<= Sidebar $mol_scroll
+		<= Sidebar $mol_view
 			sub <= sidebar_groups /
-		<= Main $mol_scroll
+		<= Main $mol_view
 			sub /
 				<= Body $mol_text
 					text <= page_md
@@ -26,7 +26,7 @@ $bog_smalljs_docs $mol_view
 						<= Edit_label @ \Edit this page on GitHub
 				<= Nav $mol_view
 					sub <= nav_links /
-		<= Toc $mol_scroll
+		<= Toc $mol_view
 			sub /
 				<= Toc_title $mol_view
 					sub / <= toc_title_text @ \On this page

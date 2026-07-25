@@ -22,6 +22,32 @@ jobs:
                   package: "bog/smalljs"
                   modules: 'app'
 
+            # SEO: prerender the main sections to static HTML + sitemap.xml/robots.txt.
+            # The action varies a single route key; we prerender by `section`
+            # (docs prerenders its default page, Introduction). Non-blocking so a
+            # prerender hiccup never fails the deploy.
+            - name: Prerender
+              if: github.ref == 'refs/heads/main'
+              continue-on-error: true
+              uses: b-on-g/mol-prerender-action@v1
+              with:
+                  base-url: "https://b-on-g.github.io/smalljs/"
+                  route-format: "#!"
+                  route-key: "section"
+                  screens: |
+                      docs
+                      playground
+
+            # AI-friendly: raw .md endpoints (/docs/<slug>.md) + llms.txt in the
+            # deploy root. content.ts/llms.txt are generated from these .md sources
+            # by content/gen.cjs (committed); the .md files ship as-is here.
+            - name: Copy Markdown endpoints + llms.txt
+              if: github.ref == 'refs/heads/main'
+              run: |
+                  mkdir -p bog/smalljs/app/-/docs
+                  cp bog/smalljs/content/en/docs/*.md bog/smalljs/app/-/docs/
+                  cp bog/smalljs/content/llms.txt bog/smalljs/app/-/llms.txt
+
             - uses: hyoo-ru/gh-deploy@v4.4.1
               if: github.ref == 'refs/heads/main'
               with:
