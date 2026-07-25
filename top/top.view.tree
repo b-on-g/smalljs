@@ -2,7 +2,7 @@ $bog_smalljs_top $mol_view
 	Theme null
 	github_uri \https://github.com/b-on-g/smalljs
 	logo_uri \bog/smalljs/assets/logo.svg
-	search_open? null
+	search_click? null
 	nav_pick? null
 	lang_open? null
 	sub /
@@ -16,7 +16,7 @@ $bog_smalljs_top $mol_view
 					title @ \smalljs
 				<= Logo_text @ \smalljs
 		<= Search $mol_button_minor
-			click? <=> search_open?
+			click? <=> search_click?
 			sub /
 				<= Search_icon $mol_icon_magnify
 				<= Search_label $mol_view

@@ -1,0 +1,31 @@
+$bog_smalljs_search $mol_view
+	open? false
+	query? \
+	close? null
+	pick? null
+	attr *
+		bog_smalljs_search_open <= open
+	plugins /$mol_plugin
+		<= Escape $mol_hotkey
+			key * escape? <=> close?
+	sub /
+		<= Backdrop $mol_view
+			event *
+				click? <=> close?
+		<= Panel $mol_view
+			sub /
+				<= Field $mol_string
+					value? <=> query?
+					hint @ \Search the documentation…
+				<= Hint $mol_view
+					sub / <= hint_text
+				<= Results $mol_list
+					rows <= result_rows /
+	Result* $mol_link
+		arg <= result_arg* *
+		event_click? <=> pick?
+		sub /
+			<= Result_title* $mol_view
+				sub / <= result_title* \
+			<= Result_snippet* $mol_view
+				sub / <= result_snippet* \

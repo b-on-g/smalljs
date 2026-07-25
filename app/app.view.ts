@@ -6,6 +6,12 @@ namespace $.$$ {
 			return $mol_state_arg.value( 'section', next ) ?? 'home'
 		}
 
+		@ $mol_action
+		search_toggle() {
+			this.search_open( !this.search_open() )
+			return null
+		}
+
 		lights() {
 			return this.Theme().is_light_now() ? 'light' : 'dark'
 		}

@@ -1,5 +1,7 @@
 $bog_smalljs_app $bog_builderui_div
 	section? \home
+	search_open? false
+	search_toggle? null
 	lights \light
 	attr *
 		^
@@ -12,6 +14,7 @@ $bog_smalljs_app $bog_builderui_div
 		bog_builderui_font_head \eb-garamond
 	sub /
 		<= Top $bog_smalljs_top
+			search_click? <=> search_toggle?
 			Theme <= Theme $bog_theme_auto
 				theme_light \$mol_theme_calm_light
 				theme_dark \$mol_theme_calm_dark
@@ -20,6 +23,8 @@ $bog_smalljs_app $bog_builderui_div
 					\$mol_theme_calm_dark
 		<= Body $mol_view
 			sub <= body_content /
+		<= Search $bog_smalljs_search
+			open? <=> search_open?
 	plugins /
 		<= Theme
 	Landing $bog_smalljs_landing
