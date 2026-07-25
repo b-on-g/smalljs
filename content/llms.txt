@@ -20,3 +20,8 @@
 - [Data Fetching](https://b-on-g.github.io/smalljs/docs/data.md): Loading remote data with reactive async properties and loading states.
 - [Giper Baza](https://b-on-g.github.io/smalljs/docs/giper-baza.md): Local-first data with automatic sync: entities, atoms, and CRUD.
 
+## More
+
+- [Showcase](https://b-on-g.github.io/smalljs/docs/showcase.md): Real apps and tools built with $mol, from community platforms to devtools.
+- [From React, Vue & Svelte](https://b-on-g.github.io/smalljs/docs/rosetta.md): A concept translation table for developers coming from other frameworks.
+

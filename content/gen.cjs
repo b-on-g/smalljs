@@ -25,6 +25,7 @@ const sections = [
 			{ title: 'Getting Started', pages: [ 'introduction', 'getting-started' ] },
 			{ title: 'Essentials', pages: [ 'installation', 'views', 'state', 'routing', 'rendering' ] },
 			{ title: 'Data', pages: [ 'data', 'giper-baza' ] },
+			{ title: 'More', pages: [ 'showcase', 'rosetta' ] },
 		],
 	},
 ]
@@ -40,6 +41,8 @@ const meta = {
 	'rendering': { title: 'Rendering', summary: 'No virtual DOM, lazy components, and virtualized rendering — plus reproducible benchmarks.' },
 	'data': { title: 'Data Fetching', summary: 'Loading remote data with reactive async properties and loading states.' },
 	'giper-baza': { title: 'Giper Baza', summary: 'Local-first data with automatic sync: entities, atoms, and CRUD.' },
+	'showcase': { title: 'Showcase', summary: 'Real apps and tools built with $mol, from community platforms to devtools.' },
+	'rosetta': { title: 'From React, Vue & Svelte', summary: 'A concept translation table for developers coming from other frameworks.' },
 }
 const titles = Object.fromEntries( Object.entries( meta ).map( ( [ k, v ] ) => [ k, v.title ] ) )
 

@@ -58,7 +58,7 @@ $bog_smalljs_top $mol_view
 									title @ \Examples
 									arg *
 										section \docs
-										page \examples
+										page \showcase
 									event_click? <=> nav_pick?
 								<= Docs_api $mol_link
 									title @ \API
@@ -228,7 +228,7 @@ $bog_smalljs_top $mol_view
 									title @ \Examples
 									arg *
 										section \docs
-										page \examples
+										page \showcase
 									event_click? <=> nav_pick?
 								<= M_docs_api $mol_link
 									title @ \API
