@@ -13,6 +13,7 @@
 - [Views](https://b-on-g.github.io/smalljs/docs/views.md): Declaring and composing components with the view.tree language.
 - [State & Reactivity](https://b-on-g.github.io/smalljs/docs/state.md): Reactive properties, actions vs. computations, keyed and async state.
 - [Routing](https://b-on-g.github.io/smalljs/docs/routing.md): The URL as reactive state: screens, links, and multiple parameters.
+- [Rendering](https://b-on-g.github.io/smalljs/docs/rendering.md): No virtual DOM, lazy components, and virtualized rendering — plus reproducible benchmarks.
 
 ## Data
 

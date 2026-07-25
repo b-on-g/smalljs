@@ -23,7 +23,7 @@ const sections = [
 		title: 'Docs',
 		groups: [
 			{ title: 'Getting Started', pages: [ 'introduction', 'getting-started' ] },
-			{ title: 'Essentials', pages: [ 'installation', 'views', 'state', 'routing' ] },
+			{ title: 'Essentials', pages: [ 'installation', 'views', 'state', 'routing', 'rendering' ] },
 			{ title: 'Data', pages: [ 'data', 'giper-baza' ] },
 		],
 	},
@@ -37,6 +37,7 @@ const meta = {
 	'views': { title: 'Views', summary: 'Declaring and composing components with the view.tree language.' },
 	'state': { title: 'State & Reactivity', summary: 'Reactive properties, actions vs. computations, keyed and async state.' },
 	'routing': { title: 'Routing', summary: 'The URL as reactive state: screens, links, and multiple parameters.' },
+	'rendering': { title: 'Rendering', summary: 'No virtual DOM, lazy components, and virtualized rendering — plus reproducible benchmarks.' },
 	'data': { title: 'Data Fetching', summary: 'Loading remote data with reactive async properties and loading states.' },
 	'giper-baza': { title: 'Giper Baza', summary: 'Local-first data with automatic sync: entities, atoms, and CRUD.' },
 }
