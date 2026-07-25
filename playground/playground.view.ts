@@ -19,6 +19,7 @@ namespace $.$$ {
 		// --- default snippets --------------------------------------------
 
 		default_tree() {
+			if ( this.seed_tree() ) return this.seed_tree() // seeded by an embedder (e.g. course)
 			const S = String.fromCharCode( 36 ) // "$" — kept out of MAM's dep scan
 			return [
 				`${ S }my_demo ${ S }mol_view`,
@@ -34,7 +35,7 @@ namespace $.$$ {
 		}
 
 		default_ts() {
-			return '' // empty by default so the TS compiler isn't fetched until needed
+			return this.seed_ts() // empty by default so the TS compiler isn't fetched until needed
 		}
 
 		// --- tabs ---------------------------------------------------------
@@ -56,28 +57,36 @@ namespace $.$$ {
 				: 'Type a view.tree here…'
 		}
 
+		// Persistence funnel — standalone stores in the URL hash (shareable); when an
+		// embedder sets store_scope (e.g. the course, per lesson), store in localStorage.
+		stored( key: string, next?: string ): string | null {
+			const scope = this.store_scope()
+			if ( scope ) return this.$.$mol_state_local.value( `${ scope }/${ key }`, next ) ?? null
+			return this.$.$mol_state_arg.value( key, next ) ?? null
+		}
+
 		// --- editor sources (immediate) + debounced committed copies ------
 
 		@ $mol_mem
 		tree_draft( next?: string ) {
 			if ( next !== undefined ) { this.schedule( 'code', next ); return next }
-			return this.$.$mol_state_arg.value( 'code' ) || this.default_tree()
+			return this.stored( 'code' ) || this.default_tree()
 		}
 
 		@ $mol_mem
 		ts_draft( next?: string ) {
 			if ( next !== undefined ) { this.schedule( 'ts', next ); return next }
-			return this.$.$mol_state_arg.value( 'ts' ) || this.default_ts()
+			return this.stored( 'ts' ) || this.default_ts()
 		}
 
 		@ $mol_mem
 		tree_committed( next?: string ) {
-			return next ?? ( this.$.$mol_state_arg.value( 'code' ) || this.default_tree() )
+			return next ?? ( this.stored( 'code' ) || this.default_tree() )
 		}
 
 		@ $mol_mem
 		ts_committed( next?: string ) {
-			return next ?? ( this.$.$mol_state_arg.value( 'ts' ) || this.default_ts() )
+			return next ?? ( this.stored( 'ts' ) || this.default_ts() )
 		}
 
 		// One editor, bound to the active tab's source.
@@ -99,7 +108,7 @@ namespace $.$$ {
 
 		@ $mol_action
 		commit( key: string, value: string ) {
-			this.$.$mol_state_arg.value( key, value ) // shareable URL
+			this.stored( key, value )
 			if ( key === 'ts' ) this.ts_committed( value )
 			else this.tree_committed( value )
 		}

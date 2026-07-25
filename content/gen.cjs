@@ -147,4 +147,168 @@ for ( const sec of sections ) {
 }
 fs.writeFileSync( path.join( root, 'llms.txt' ), llms )
 
-console.log( `generated: content.ts (${ slugs.length } pages) + llms.txt` )
+// --- Interactive course lessons ----------------------------------------------
+// Authored inline (this file is .cjs, not scanned by MAM, so real $mol_* is fine);
+// emitted escaped into lessons.ts. `expect` is a substring the finished source
+// should contain — a simple, deterministic auto-check.
+const lessons = [
+	{
+		id: 'hello',
+		title: 'Hello World',
+		expect: 'Hello',
+		expect_in: 'tree',
+		md: [
+			'# Hello World',
+			'',
+			'Welcome! On the left is a live $mol editor — **view.tree** describes structure and the result renders on the right.',
+			'',
+			'Right now the component shows a placeholder. Change the text after the `\\` and watch the preview update instantly.',
+			'',
+			'**Goal:** make the greeting say hello to $mol.',
+		].join( '\n' ),
+		start_tree: '$my_demo $mol_view\n\tsub /\n\t\t<= Greeting $mol_view\n\t\t\tsub / <= greeting \\Edit me\n',
+		start_ts: '',
+		solution_tree: '$my_demo $mol_view\n\tsub /\n\t\t<= Greeting $mol_view\n\t\t\tsub / <= greeting \\Hello, $mol!\n',
+		solution_ts: '',
+	},
+	{
+		id: 'views',
+		title: 'Views',
+		expect: 'Subtitle',
+		expect_in: 'tree',
+		md: [
+			'# Views',
+			'',
+			'A view is built from other views. Here `$my_demo` has one child; add a second so the card shows a title *and* a subtitle.',
+			'',
+			'**Goal:** add a `Subtitle` sub-view under `sub /`, with its own text.',
+		].join( '\n' ),
+		start_tree: '$my_demo $mol_view\n\tsub /\n\t\t<= Title $mol_view\n\t\t\tsub / <= title \\My component\n',
+		start_ts: '',
+		solution_tree: '$my_demo $mol_view\n\tsub /\n\t\t<= Title $mol_view\n\t\t\tsub / <= title \\My component\n\t\t<= Subtitle $mol_view\n\t\t\tsub / <= subtitle \\Built from views\n',
+		solution_ts: '',
+	},
+	{
+		id: 'state',
+		title: 'State',
+		expect: '$mol_mem',
+		expect_in: 'ts',
+		md: [
+			'# State',
+			'',
+			'Logic lives in **view.ts** — switch to that tab. `@ $mol_mem` makes a value reactive: everything that reads it updates on its own.',
+			'',
+			'**Goal:** in view.ts, give the component a reactive `count()` and a `count_text()` that returns it as a string, so the preview shows a number.',
+			'',
+			'Stuck? Press **Solution**.',
+		].join( '\n' ),
+		start_tree: '$my_demo $mol_view\n\tcount_text \\?\n\tsub /\n\t\t<= Value $mol_view\n\t\t\tsub / <= count_text\n',
+		start_ts: '',
+		solution_tree: '$my_demo $mol_view\n\tcount_text \\?\n\tsub /\n\t\t<= Value $mol_view\n\t\t\tsub / <= count_text\n',
+		solution_ts: 'class $my_demo extends $.$my_demo {\n\t@ $mol_mem count( next?: number ) { return next ?? 5 }\n\tcount_text() { return String( this.count() ) }\n}\n',
+	},
+	{
+		id: 'events',
+		title: 'Events',
+		expect: '$mol_action',
+		expect_in: 'ts',
+		md: [
+			'# Events',
+			'',
+			'Interactivity comes from event handlers. The view.tree already wires the button\u2019s `click` to an `inc?` action — you implement `inc` in view.ts as a `@ $mol_action` that changes state.',
+			'',
+			'**Goal:** make the button increase the count on each click.',
+		].join( '\n' ),
+		start_tree: '$my_demo $mol_view\n\tcount_text \\0\n\tinc? null\n\tsub /\n\t\t<= Value $mol_view\n\t\t\tsub / <= count_text\n\t\t<= Button $mol_button_major\n\t\t\tclick? <=> inc?\n\t\t\tsub / <= button_label \\+1\n',
+		start_ts: '',
+		solution_tree: '$my_demo $mol_view\n\tcount_text \\0\n\tinc? null\n\tsub /\n\t\t<= Value $mol_view\n\t\t\tsub / <= count_text\n\t\t<= Button $mol_button_major\n\t\t\tclick? <=> inc?\n\t\t\tsub / <= button_label \\+1\n',
+		solution_ts: 'class $my_demo extends $.$my_demo {\n\t@ $mol_mem count( next?: number ) { return next ?? 0 }\n\t@ $mol_action inc() { this.count( this.count() + 1 ) }\n\tcount_text() { return String( this.count() ) }\n}\n',
+	},
+	{
+		id: 'routing',
+		title: 'Routing',
+		expect: '$mol_state_arg',
+		expect_in: 'ts',
+		md: [
+			'# Routing',
+			'',
+			'The URL is just reactive state. `$mol_state_arg` reads and writes a query parameter, so a value survives reloads and is shareable.',
+			'',
+			'**Goal:** back the input with a URL argument named `name` in view.ts, and echo it below.',
+		].join( '\n' ),
+		start_tree: '$my_demo $mol_view\n\tname? \\\n\techo \\\n\tsub /\n\t\t<= Field $mol_string\n\t\t\tvalue? <=> name?\n\t\t\thint \\Type your name\n\t\t<= Echo $mol_view\n\t\t\tsub / <= echo\n',
+		start_ts: '',
+		solution_tree: '$my_demo $mol_view\n\tname? \\\n\techo \\\n\tsub /\n\t\t<= Field $mol_string\n\t\t\tvalue? <=> name?\n\t\t\thint \\Type your name\n\t\t<= Echo $mol_view\n\t\t\tsub / <= echo\n',
+		solution_ts: 'class $my_demo extends $.$my_demo {\n\t@ $mol_mem name( next?: string ) { return $.$mol_state_arg.value( \'name\', next ) ?? \'\' }\n\techo() { return this.name() ? \'Hello, \' + this.name() + \'!\' : \'\' }\n}\n',
+	},
+]
+
+const lesson_entries = lessons.map( l => (
+	`\t\t\t\t'${ l.id }': {\n` +
+	`\t\t\t\t\tid: '${ l.id }',\n` +
+	`\t\t\t\t\ttitle: ${ JSON.stringify( l.title ) },\n` +
+	`\t\t\t\t\texpect: ${ embed( l.expect ) },\n` +
+	`\t\t\t\t\texpect_in: '${ l.expect_in }',\n` +
+	`\t\t\t\t\tmd: ${ embed( l.md ) },\n` +
+	`\t\t\t\t\tstart_tree: ${ embed( l.start_tree ) },\n` +
+	`\t\t\t\t\tstart_ts: ${ embed( l.start_ts ) },\n` +
+	`\t\t\t\t\tsolution_tree: ${ embed( l.solution_tree ) },\n` +
+	`\t\t\t\t\tsolution_ts: ${ embed( l.solution_ts ) },\n` +
+	`\t\t\t\t},`
+) ).join( '\n' )
+
+const lessons_ts = `namespace $ {
+
+	/**
+	 * Interactive course lessons. GENERATED by content/gen.cjs — edit the lessons
+	 * array there and re-run the generator. Code snippets are embedded escaped so
+	 * their $mol_* examples are not mistaken for module dependencies.
+	 */
+
+	export type $bog_smalljs_lesson = {
+		id: string
+		title: string
+		/** Substring the finished source should contain (simple auto-check). */
+		expect: string
+		expect_in: 'tree' | 'ts'
+		md: string
+		start_tree: string
+		start_ts: string
+		solution_tree: string
+		solution_ts: string
+	}
+
+	export class $bog_smalljs_lessons extends $mol_object2 {
+
+		static all(): readonly $bog_smalljs_lesson[] {
+			return [
+${ lessons.map( l => `\t\t\t\tthis.lesson( '${ l.id }' )!` ).join( ',\n' ) },
+			]
+		}
+
+		static ids(): readonly string[] {
+			return [ ${ lessons.map( l => `'${ l.id }'` ).join( ', ' ) } ]
+		}
+
+		static map(): Readonly< Record< string, $bog_smalljs_lesson > > {
+			return {
+${ lesson_entries }
+			}
+		}
+
+		static lesson( id: string ): $bog_smalljs_lesson | null {
+			return this.map()[ id ] ?? null
+		}
+
+		static first(): string { return this.ids()[ 0 ] }
+
+	}
+
+}
+`
+// $bog_smalljs_lessons must live in a folder matching its name.
+const lessons_dir = path.join( root, '..', 'lessons' )
+fs.mkdirSync( lessons_dir, { recursive: true } )
+fs.writeFileSync( path.join( lessons_dir, 'lessons.ts' ), lessons_ts )
+
+console.log( `generated: content.ts (${ slugs.length } pages) + llms.txt + lessons.ts (${ lessons.length } lessons)` )

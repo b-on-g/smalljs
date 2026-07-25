@@ -1,0 +1,45 @@
+$bog_smalljs_course $mol_view
+	lesson \hello
+	solution_shown? false
+	editor_seed_tree* \
+	editor_seed_ts* \
+	editor_store_key* \
+	lesson_md \
+	status_text \
+	solution_label \
+	solution_md \
+	editor_host /
+	lesson_links /
+	prev_arg *
+	next_arg *
+	sub /
+		<= Aside $mol_view
+			sub /
+				<= Lesson_list $mol_view
+					sub <= lesson_links /
+				<= Instruction $mol_text
+					text <= lesson_md
+				<= Status $mol_view
+					sub / <= status_text
+				<= Controls $mol_view
+					sub /
+						<= Prev $mol_link
+							arg <= prev_arg *
+							sub / <= prev_label @ \← Prev
+						<= Solution_btn $mol_button_minor
+							click? <=> toggle_solution? null
+							sub / <= solution_label
+						<= Next $mol_link
+							arg <= next_arg *
+							sub / <= next_label @ \Next →
+				<= Solution_block $mol_text
+					text <= solution_md
+		<= Editor_host $mol_view
+			sub <= editor_host /
+	Lesson_link* $mol_link
+		arg <= lesson_arg* *
+		sub / <= lesson_link_label* \
+	Editor* $bog_smalljs_playground
+		store_scope <= editor_store_key*
+		seed_tree <= editor_seed_tree*
+		seed_ts <= editor_seed_ts*

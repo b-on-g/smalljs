@@ -14,6 +14,7 @@ namespace $.$$ {
 			switch( this.section() ) {
 				case 'docs': return [ this.Docs() ]
 				case 'playground': return [ this.Playground() ]
+				case 'course': return [ this.Course() ]
 				default: return [ this.Landing() ]
 			}
 		}

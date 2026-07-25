@@ -2,6 +2,9 @@ $bog_smalljs_playground $mol_view
 	tab \tree
 	draft? \
 	editor_hint \
+	seed_tree \
+	seed_ts \
+	store_scope \
 	attr *
 		bog_smalljs_pg_tab <= tab
 	sub /

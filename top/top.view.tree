@@ -51,8 +51,8 @@ $bog_smalljs_top $mol_view
 								<= Docs_tutorial $mol_link
 									title @ \Tutorial
 									arg *
-										section \docs
-										page \tutorial
+										section \course
+										page null
 									event_click? <=> nav_pick?
 								<= Docs_examples $mol_link
 									title @ \Examples
@@ -221,8 +221,8 @@ $bog_smalljs_top $mol_view
 								<= M_docs_tutorial $mol_link
 									title @ \Tutorial
 									arg *
-										section \docs
-										page \tutorial
+										section \course
+										page null
 									event_click? <=> nav_pick?
 								<= M_docs_examples $mol_link
 									title @ \Examples
