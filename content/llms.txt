@@ -9,7 +9,13 @@
 
 ## Essentials
 
+- [Installation](https://b-on-g.github.io/smalljs/docs/installation.md): The MAM workspace, module layout, dev server, and production build.
 - [Views](https://b-on-g.github.io/smalljs/docs/views.md): Declaring and composing components with the view.tree language.
 - [State & Reactivity](https://b-on-g.github.io/smalljs/docs/state.md): Reactive properties, actions vs. computations, keyed and async state.
 - [Routing](https://b-on-g.github.io/smalljs/docs/routing.md): The URL as reactive state: screens, links, and multiple parameters.
+
+## Data
+
+- [Data Fetching](https://b-on-g.github.io/smalljs/docs/data.md): Loading remote data with reactive async properties and loading states.
+- [Giper Baza](https://b-on-g.github.io/smalljs/docs/giper-baza.md): Local-first data with automatic sync: entities, atoms, and CRUD.
 

@@ -133,4 +133,4 @@ A clean audit means no unused deps, no type problems, nothing to fix. Make a hab
 
 You have a reactive component, two-way binding, and derived state — with three small files and zero configuration.
 
-Keep going: the **[Guide](#!section=docs/page=views)** walks through views, state, and routing in depth, and turns this Hello World into something real.
+Keep going: the **[Guide](#!section=docs/page=installation)** covers installation, views, state, routing, and data in depth — and turns this Hello World into something real.

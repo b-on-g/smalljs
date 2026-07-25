@@ -40,13 +40,13 @@ $bog_smalljs_top $mol_view
 									title @ \Quick Start
 									arg *
 										section \docs
-										page \quick-start
+										page \getting-started
 									event_click? <=> nav_pick?
 								<= Docs_guide $mol_link
 									title @ \Guide
 									arg *
 										section \docs
-										page \guide
+										page \views
 									event_click? <=> nav_pick?
 								<= Docs_tutorial $mol_link
 									title @ \Tutorial
@@ -210,13 +210,13 @@ $bog_smalljs_top $mol_view
 									title @ \Quick Start
 									arg *
 										section \docs
-										page \quick-start
+										page \getting-started
 									event_click? <=> nav_pick?
 								<= M_docs_guide $mol_link
 									title @ \Guide
 									arg *
 										section \docs
-										page \guide
+										page \views
 									event_click? <=> nav_pick?
 								<= M_docs_tutorial $mol_link
 									title @ \Tutorial

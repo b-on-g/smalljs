@@ -49,4 +49,5 @@ _(заполняется по ходу)_
 ## Лог коммитов
 - `5e9357f` — Sprint 0b: top-nav dropdowns + mobile hamburger nav (+ uncommitted 0a shell baseline, AGENTS/STATUS docs)
 - `fd46a56` — Sprint 1A: docs content framework + Getting Started (content/ модуль, docs-роутинг page→md, sidebar/TOC/prev-next, mobile drawer, 5 страниц)
-- след. — llms.txt + пререндер/`.md`-эндпоинты в deploy.yml + STATUS-флаги
+- `ab057fd` — Sprint 1A: llms.txt + пререндер/`.md`-эндпоинты в deploy.yml + STATUS-флаги. **origin/main = ab057fd, задеплоено.**
+- ✅ Sprint 1B — Guide доведён: 8 страниц (introduction, getting-started, installation, views, state, routing, data, giper-baza), 3 группы sidebar (Getting Started / Essentials / Data). Плюс: graceful «Coming soon» для ненаписанных страниц (все ненайденные nav/footer-ссылки деградируют мягко), почин целевых ссылок — hero-CTA лендинга (Why→introduction, Get Started/Install→getting-started) и Docs-дропдаун (Quick Start→getting-started, Guide→views, desktop+mobile). Проверено в Chrome.

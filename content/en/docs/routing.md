@@ -60,6 +60,6 @@ Arguments are independent. A docs site might route on both `section` and `page`:
 
 Each key round-trips through the URL, so any screen is shareable and bookmarkable by design.
 
-## Where to next?
+## Next
 
-You now have views, reactive state, and routing — the core of every $mol app. Try them live in the [Playground](#!section=playground), or revisit [Getting Started](#!section=docs/page=getting-started) to extend your Hello World.
+You now have views, reactive state, and routing — the core of every $mol app. Next, load real data with [Data Fetching](#!section=docs/page=data).

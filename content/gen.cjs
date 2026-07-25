@@ -23,7 +23,8 @@ const sections = [
 		title: 'Docs',
 		groups: [
 			{ title: 'Getting Started', pages: [ 'introduction', 'getting-started' ] },
-			{ title: 'Essentials', pages: [ 'views', 'state', 'routing' ] },
+			{ title: 'Essentials', pages: [ 'installation', 'views', 'state', 'routing' ] },
+			{ title: 'Data', pages: [ 'data', 'giper-baza' ] },
 		],
 	},
 ]
@@ -32,9 +33,12 @@ const sections = [
 const meta = {
 	'introduction': { title: 'Introduction', summary: 'What $mol is, who it is for, and a taste of reactive views.' },
 	'getting-started': { title: 'Getting Started', summary: 'From an empty folder to a running, reactive $mol app in under 15 minutes.' },
+	'installation': { title: 'Installation', summary: 'The MAM workspace, module layout, dev server, and production build.' },
 	'views': { title: 'Views', summary: 'Declaring and composing components with the view.tree language.' },
 	'state': { title: 'State & Reactivity', summary: 'Reactive properties, actions vs. computations, keyed and async state.' },
 	'routing': { title: 'Routing', summary: 'The URL as reactive state: screens, links, and multiple parameters.' },
+	'data': { title: 'Data Fetching', summary: 'Loading remote data with reactive async properties and loading states.' },
+	'giper-baza': { title: 'Giper Baza', summary: 'Local-first data with automatic sync: entities, atoms, and CRUD.' },
 }
 const titles = Object.fromEntries( Object.entries( meta ).map( ( [ k, v ] ) => [ k, v.title ] ) )
 

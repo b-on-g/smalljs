@@ -15,12 +15,20 @@ namespace $.$$ {
 
 		page_md() {
 			const page = this.current()
-			if( !page ) return `# Not found\n\nThere is no page \`${ this.page() }\`.`
-			return page.md
+			if( page ) return page.md
+			// Unbuilt page — degrade gracefully instead of a bare error.
+			return [
+				`# Coming soon`,
+				``,
+				`This page hasn't been written yet — the docs are a work in progress.`,
+				``,
+				`In the meantime, start with **[Getting Started](#!section=docs/page=getting-started)**`,
+				`or read the [Introduction](#!section=docs/page=introduction).`,
+			].join( '\n' )
 		}
 
 		title_text() {
-			return this.current()?.title ?? 'Docs'
+			return this.current()?.title ?? 'Coming soon'
 		}
 
 		edit_uri() {

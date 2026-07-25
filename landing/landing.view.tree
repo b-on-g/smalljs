@@ -19,14 +19,14 @@ $bog_smalljs_landing $mol_view
 						<= Hero_cta_why $mol_link
 							arg *
 								section \docs
-								page \why
+								page \introduction
 							sub /
 								<= Hero_cta_why_icon $mol_icon_play
 								<= Hero_cta_why_label @ \Why $mol
 						<= Hero_cta_start $mol_link
 							arg *
 								section \docs
-								page \quick-start
+								page \getting-started
 							sub /
 								<= Hero_cta_start_label @ \Get Started
 								<= Hero_cta_start_icon $mol_icon_arrow_right
@@ -34,7 +34,7 @@ $bog_smalljs_landing $mol_view
 							title @ \Install
 							arg *
 								section \docs
-								page \install
+								page \getting-started
 						<= Hero_cta_play $mol_link
 							arg *
 								section \playground
