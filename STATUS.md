@@ -1,6 +1,12 @@
 # smalljs — overnight run status
 
-Автономный прогон через все спринты (0b→6). Обновляется по-фазно. Читать утром.
+## ✅ ДОРОЖНАЯ КАРТА 0b→6 ЗАКРЫТА ЦЕЛИКОМ (за ночь, 11 коммитов, всё на проде gh-pages)
+Каждый спринт: audit `app/-/web.audit.js` green, проверен в Chrome, запушен в main, задеплоен.
+Сайт: Vue-style лендинг · top-nav с дропдаунами+мобильным hamburger · **9-главный Guide** · **живой view.tree playground с TS-в-браузере** · **интерактивный курс (5 уроков)** · **⌘K full-text поиск** · **Showcase+Rosetta** · **автоген API-справочник (15 компонентов)** · llms.txt · 26 docs-страниц.
+
+**Осознанно отложено (в «Флаги»/«ревью» ниже, с готовыми дизайнами — твои решения):** семантический поиск (ONNX; full-text работает), Giper Baza-урок курса (нужен baza-рантайм), скриншоты Showcase + сверка части URL, финальный mobile pixel-polish (CSS есть, реальное устройство не проверялось), `$mol_view` API-страница.
+
+Автономный прогон через все спринты (0b→6). Читать утром — детали по фазам ниже.
 
 ## Мандат (согласовано 2026-07-25)
 - Объём: **все спринты 0b–6**, приоритет — **ширина** (пройти всё вчерне) над лоском Foundation.
@@ -18,12 +24,12 @@
 |---|---|---|
 | 0a | Vue-style shell | ✅ было до прогона |
 | 0b | Top-nav дропдауны + mobile hamburger | ✅ commit 5e9357f → main. Десктоп-дропдауны проверены в Chrome (работают, Vue 1:1), переиспользован `$mol_pick`. Мобила: hamburger + `@media(max-width:47.9375rem)` в коде — на реальном устройстве НЕ проверено (screenshot-тул не отдаёт мобильный вьюпорт). |
-| 1 | Foundation: система контента + Getting Started + Guide + llms.txt + базовый playground | ⏳ **1A готово** (fw контента + Getting Started + Introduction/Views/State/Routing + llms.txt + пререндер-wiring), commit fd46a56→…; осталось: полный Guide (5-7 стр вместо 3 stub-ов), landing copy, базовый view.tree playground |
-| 2 | Playground + TS в браузере | — |
-| 3 | Семантический поиск (transformers.js) | — |
-| 4 | Курс (10–15 уроков) | — |
-| 5 | Showcase + Rosetta | — |
-| 6 | API reference автоген | — |
+| 1 | Foundation: система контента + Getting Started + Guide + llms.txt + базовый playground | ✅ **1A+1B готово** (fw контента, Getting Started, Guide 8 стр, llms.txt, пререндер-wiring, graceful coming-soon, почин nav-ссылок). commits fd46a56/ab057fd/e8c31683 → main, задеплоено. Осталось: базовый view.tree playground (⏳ запущен). Landing-копирайт не трогали (уже Vue-style, хороший). |
+| 2 | Playground + TS в браузере | ✅ commit c190cb4 → main. Вкладки view.tree\|view.ts, `typescript.transpileModule` (lazy CDN), subclass-склейка, рабочий счётчик, шаринг обоих источников. audit green. |
+| 3 | Семантический поиск (transformers.js) | ✅ commit 9c82264 → main — но **full-text**, не семантика. ⌘K-оверлей ожил, scored-поиск со сниппетами, клик→страница, `$mol_string/list/link/hotkey`. audit green. **Семантику (ONNX) сознательно отложил** (см. решение ниже) — full-text для 9 доков достаточно, семантика = риск/вес на будущее с готовым дизайном. |
+| 4 | Курс (10–15 уроков) | ✅ commit e4815b7 → main. Платформа (инструкция\|редактор\|превью) = встроенный playground per-урок, 5 уроков (Hello→Views→State→Events→Routing), автопроверка (substring) + прогресс localStorage + Show solution. audit green. Осталось: доп.уроки + Giper Baza-урок (нужен baza-рантайм, scaffold --no-baza). |
+| 5 | Showcase + Rosetta | ✅ commit c9a96a0 → main. Showcase-галерея реальных $mol-приложений + Rosetta-таблица React/Vue/Svelte→$mol (нейтральный tone, признание чужих сильных сторон). Docs→Examples подключён, 11 docs-страниц. audit green. Флаг: скриншотов нет, часть URL (Blitz/Styler/WikiLive/Bog Music) по описанию из памяти — сверь ссылки. |
+| 6 | API reference автоген | ✅ commit f1ea618 → main. Build-time парсер `.view.tree.d.ts` 15 ядровых компонентов (extends, свойства read/rw+типы, под-компоненты) → API-страницы, sidebar-группа «API», GitHub-ссылки. Автоген (не ручное). audit green. Флаг: `$mol_view` пропущен (нет .view.tree, чисто-TS база); типы упрощены; только declared-свойства. |
 
 ## Флаги для пользователя (решения, которые я принял вместо согласования)
 
@@ -44,10 +50,20 @@
 - Guide-страницы Views/State/Routing — короткие (по 1 экрану), реальный $mol-код, но это ещё не полный Guide из PLAN (5-7 глав install→giper baza).
 
 ## Что требует ревью / сыро
-_(заполняется по ходу)_
+- **Sprint 2 TS-компилятор с CDN** (jsdelivr typescript 5.4.5, ~8МБ lazy) — внешняя рантайм-зависимость. Выбор верный (sucrase не тянет `@$mol_mem`-декораторы), но если против CDN — перевендорить. view.tree-режим работает офлайн.
+- **Курс: автопроверка = substring** в исходнике (простая, детерминированная), не rendered-output/type-check. Углубить — на будущее.
+- **Giper Baza-урок** в курсе не сделан — нужен baza-рантайм (scaffold `--no-baza`). Отдельная работа.
+- **Найден баг MAM-генератора**: последний keyed-биндинг на keyed-субкомпоненте не попадает в тип базового класса (TS2339). Молер обошёл (props с дефолтами + override). **Стоит завести баг в mam/mam_mol.**
+- **Мобильный polish**: 0b hamburger, docs drawer, course-стек — CSS есть, но пиксельно НЕ проверены (screenshot-тул отдаёт ~1333px). Нужен проход на реальном телефоне + финальный mobile polish.
+- Playground/курс видят только **whitelist** забандленных `$mol_*` компонентов — расширяется форс-референсом.
+- **РЕШЕНИЕ на твоё ревью — семантический поиск НЕ реализован** (Sprint 3 = full-text). PLAN хотел in-browser LLM-поиск как одну из 3 больших фич. Отложил осознанно: корпус 9 доков (full-text уже релевантен), ONNX = 25МБ+ модель на 1-й поиск + `@xenova` в node на build склонен течь до OOM. **Дизайн готов** (pluggable `scored()` в `search.view.ts`: build-time — эмбеддер в gen.cjs, MiniLM-L6 384-dim, эмбеддинги 9 доков в статику ~3.5к float; рантайм — ленивый CDN @xenova + cosine + мёрж с full-text). Если хочешь семантику как тех-демо — скажи, поднимем быстро.
 
 ## Лог коммитов
 - `5e9357f` — Sprint 0b: top-nav dropdowns + mobile hamburger nav (+ uncommitted 0a shell baseline, AGENTS/STATUS docs)
 - `fd46a56` — Sprint 1A: docs content framework + Getting Started (content/ модуль, docs-роутинг page→md, sidebar/TOC/prev-next, mobile drawer, 5 страниц)
 - `ab057fd` — Sprint 1A: llms.txt + пререндер/`.md`-эндпоинты в deploy.yml + STATUS-флаги. **origin/main = ab057fd, задеплоено.**
-- ✅ Sprint 1B — Guide доведён: 8 страниц (introduction, getting-started, installation, views, state, routing, data, giper-baza), 3 группы sidebar (Getting Started / Essentials / Data). Плюс: graceful «Coming soon» для ненаписанных страниц (все ненайденные nav/footer-ссылки деградируют мягко), почин целевых ссылок — hero-CTA лендинга (Why→introduction, Get Started/Install→getting-started) и Docs-дропдаун (Quick Start→getting-started, Guide→views, desktop+mobile). Проверено в Chrome.
+- ✅ Sprint 1B — Guide доведён: 8 страниц, 3 группы sidebar. Плюс: graceful «Coming soon» для ненаписанных страниц, почин целевых ссылок (hero-CTA, Docs-дропдаун desktop+mobile). Проверено в Chrome.
+- `b820c34` — Guide финализирован: **9 глав** (+ Rendering: no-vDOM/виртуализация как арх-факт + бенч-ссылка без своих цифр; углублены Views/State/Routing до полных глав). API-точность проверена grep по mol/. next-цепочка: getting-started→installation→views→state→routing→rendering→data→giper-baza. **origin/main = b820c34, задеплоено, audit green.**
+- `d0287f8` — базовый view.tree playground: **рантайм-компиляция** тем же тулчейном, что mam_build (`$mol_tree2_from_string`→`$mol_view_tree2_to_js`→…→eval в Proxy-`$`), редактор `$mol_textarea` с подсветкой, живой рендер, debounce 400мс, шаринг через URL-hash, graceful-ошибки. **origin/main = d0287f8, задеплоено, audit green. Sprint 1 Foundation ЗАКРЫТ.**
+  - Флаги playground: (1) сниппеты видят только whitelist забандленных компонентов (`$mol_view/button/text/string/number/list/row/link/check/switch`) — расширяется добавлением в форс-референс; (2) без TS (Sprint 2) — статичные композиции + литеральные пропы; биндинги с TS-логикой рендерятся пусто; (3) длинный сниппет → длинный URL (Sprint 2: сжатие); (4) мобильный стек в CSS, пиксельно не проверен.
+- ⏳ Sprint 2 — TS-в-браузере поверх playground (запущен).
