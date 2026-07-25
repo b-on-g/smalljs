@@ -2,38 +2,244 @@ namespace $ {
 
 	const { rem } = $mol_style_unit
 
+	const topbar = rem( 4 )
+
+	// One sidebar navigation link (also used for prev/next captions).
+	const sidebar_link = {
+		flex: { direction: 'row' },
+		justify: { content: 'flex-start' },
+		padding: { top: rem( 0.3 ), bottom: rem( 0.3 ), left: rem( 0.625 ), right: rem( 0.625 ) },
+		border: { radius: rem( 0.375 ) },
+		color: $bog_builderui_tokens.shade,
+		font: { size: rem( 0.875 ), weight: 500 },
+
+		':hover': {
+			background: { color: $bog_builderui_tokens.hover },
+			color: $bog_builderui_tokens.text,
+		},
+
+		// active page — $mol_link sets mol_link_current="true"
+		'@': {
+			mol_link_current: {
+				true: {
+					color: $bog_builderui_tokens.special,
+					background: { color: $bog_builderui_tokens.hover },
+					font: { weight: 600 },
+				},
+			},
+		},
+	} as const
+
 	$mol_style_define( $bog_smalljs_docs, {
 
 		display: 'grid',
-		gridTemplateColumns: '16rem 1fr 15rem',
+		gridTemplateColumns: `16rem minmax(0, 1fr) 15rem`,
 		flex: { grow: 1 },
+		align: { items: 'start' },
 		minHeight: 0,
 
-		Sidebar: {
-			padding: $mol_gap.block,
-			border: { right: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+		Menu_toggle: {
+			display: 'none',
+			flex: { direction: 'row', grow: 0 },
+			align: { items: 'center' },
+			gap: $mol_gap.text,
+			gridColumn: '1 / -1',
+			position: 'sticky',
+			top: topbar,
+			zIndex: 80,
+			padding: { top: rem( 0.5 ), bottom: rem( 0.5 ), left: $mol_gap.block, right: $mol_gap.block },
+			background: { color: $bog_builderui_tokens.back },
+			border: { bottom: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+			font: { weight: 600 },
+			color: $bog_builderui_tokens.text,
 		},
+
+		Menu_icon: {
+			width: rem( 1.25 ),
+			height: rem( 1.25 ),
+			flex: { shrink: 0 },
+		},
+
+		Sidebar: {
+			position: 'sticky',
+			top: topbar,
+			maxHeight: $mol_style_func.calc( '100vh - 4rem' ),
+			padding: { top: $mol_gap.block, bottom: $mol_gap.block, left: rem( 0.75 ), right: rem( 0.75 ) },
+			border: { right: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+			background: { color: $bog_builderui_tokens.back },
+		},
+
+		Group: {
+			flex: { direction: 'column' },
+			gap: rem( 0.0625 ),
+			margin: { bottom: $mol_gap.block },
+		},
+
+		Group_title: {
+			padding: { top: rem( 0.5 ), bottom: rem( 0.25 ), left: rem( 0.625 ), right: rem( 0.625 ) },
+			font: { size: rem( 0.6875 ), weight: 700 },
+			color: $bog_builderui_tokens.shade,
+			textTransform: 'uppercase',
+			letterSpacing: rem( 0.03 ),
+		},
+
+		Link: sidebar_link,
 
 		Main: {
-			padding: { top: $mol_gap.block, bottom: $mol_gap.block, left: rem(3), right: rem(3) },
+			flex: { direction: 'column' },
+			minWidth: 0,
+			padding: { top: rem( 2 ), bottom: rem( 3 ), left: rem( 3 ), right: rem( 3 ) },
 		},
 
-		Toc: {
-			padding: $mol_gap.block,
-			border: { left: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+		Body: {
+			flex: { direction: 'column' },
+			maxWidth: rem( 48 ),
+			width: '100%',
 		},
 
-		Title: {
-			font: { size: rem(2.5), weight: 700 },
-			padding: { bottom: $mol_gap.block },
+		Edit: {
+			flex: { direction: 'row' },
+			align: { items: 'center' },
+			gap: $mol_gap.text,
+			margin: { top: rem( 2 ) },
+			color: $bog_builderui_tokens.control,
+			font: { size: rem( 0.875 ), weight: 500 },
+
+			':hover': { color: $bog_builderui_tokens.focus },
+		},
+
+		Edit_icon: {
+			width: rem( 1 ),
+			height: rem( 1 ),
 		},
 
 		Nav: {
-			flex: { direction: 'row' },
+			flex: { direction: 'row', wrap: 'wrap' },
 			justify: { content: 'space-between' },
+			gap: $mol_gap.block,
+			maxWidth: rem( 48 ),
 			padding: { top: $mol_gap.block, bottom: $mol_gap.block },
 			border: { top: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
-			margin: { top: $mol_gap.block },
+			margin: { top: rem( 2 ) },
+		},
+
+		Prev: {
+			flex: { direction: 'column', grow: 1, basis: rem( 12 ) },
+			align: { items: 'flex-start' },
+			gap: rem( 0.125 ),
+			padding: $mol_gap.block,
+			border: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line, radius: rem( 0.5 ) },
+
+			':hover': { border: { color: $bog_builderui_tokens.focus } },
+		},
+
+		Next: {
+			flex: { direction: 'column', grow: 1, basis: rem( 12 ) },
+			align: { items: 'flex-end' },
+			gap: rem( 0.125 ),
+			padding: $mol_gap.block,
+			border: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line, radius: rem( 0.5 ) },
+
+			':hover': { border: { color: $bog_builderui_tokens.focus } },
+		},
+
+		Prev_hint: {
+			font: { size: rem( 0.75 ) },
+			color: $bog_builderui_tokens.shade,
+		},
+
+		Next_hint: {
+			font: { size: rem( 0.75 ) },
+			color: $bog_builderui_tokens.shade,
+		},
+
+		Prev_title: {
+			color: $bog_builderui_tokens.control,
+			font: { weight: 600 },
+		},
+
+		Next_title: {
+			color: $bog_builderui_tokens.control,
+			font: { weight: 600 },
+		},
+
+		Toc: {
+			position: 'sticky',
+			top: topbar,
+			maxHeight: $mol_style_func.calc( '100vh - 4rem' ),
+			padding: { top: rem( 2 ), bottom: $mol_gap.block, left: rem( 1 ), right: rem( 1 ) },
+			border: { left: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+		},
+
+		Toc_title: {
+			padding: { bottom: rem( 0.5 ) },
+			font: { size: rem( 0.75 ), weight: 700 },
+			color: $bog_builderui_tokens.shade,
+			textTransform: 'uppercase',
+			letterSpacing: rem( 0.03 ),
+		},
+
+		Toc_list: {
+			flex: { direction: 'column' },
+			gap: rem( 0.0625 ),
+		},
+
+		Toc_link: {
+			padding: { top: rem( 0.25 ), bottom: rem( 0.25 ), left: rem( 0.5 ), right: rem( 0.5 ) },
+			border: { radius: rem( 0.25 ) },
+			color: $bog_builderui_tokens.shade,
+			font: { size: rem( 0.8125 ) },
+
+			':hover': { color: $bog_builderui_tokens.text },
+
+			'@': {
+				mol_link_current: {
+					true: { color: $bog_builderui_tokens.special },
+				},
+			},
+		},
+
+		'@media': {
+
+			// Tablet: drop the right-hand table of contents.
+			'(max-width: 63.9375rem)': {
+				gridTemplateColumns: `16rem minmax(0, 1fr)`,
+				Toc: { display: 'none' },
+			},
+
+			// Phone: sidebar becomes a slide-in drawer, content full width.
+			'(max-width: 47.9375rem)': {
+				gridTemplateColumns: `minmax(0, 1fr)`,
+
+				Menu_toggle: { display: 'flex' },
+
+				Main: {
+					padding: { top: rem( 1.25 ), bottom: rem( 2 ), left: rem( 1.25 ), right: rem( 1.25 ) },
+				},
+
+				Sidebar: {
+					position: 'fixed',
+					top: topbar,
+					bottom: 0,
+					left: 0,
+					zIndex: 90,
+					width: rem( 17 ),
+					maxWidth: '85vw',
+					transform: 'translateX(-100%)',
+					transition: 'transform 0.2s',
+					boxShadow: '0 0 24px -6px #00000055',
+				},
+
+				// drawer open state
+				'@': {
+					bog_smalljs_sidebar_open: {
+						true: {
+							Sidebar: { transform: 'translateX(0)' },
+						},
+					},
+				},
+			},
+
 		},
 
 	} )

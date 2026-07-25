@@ -1,38 +1,59 @@
 $bog_smalljs_docs $mol_view
-	edit_uri \https://github.com/b-on-g/smalljs/edit/master/docs/page.view.tree
+	page \introduction
+	page_md \
+	title_text \
+	edit_uri \
+	sidebar_open? false
+	attr *
+		bog_smalljs_sidebar_open <= sidebar_open
 	sub /
-		<= Sidebar $mol_scroll
+		<= Menu_toggle $mol_button_minor
+			click? <=> menu_toggle? null
 			sub /
-				<= Group1 $mol_view
-					sub /
-						<= Group1_title @ \Getting Started
-				<= Group2 $mol_view
-					sub /
-						<= Group2_title @ \Essentials
+				<= Menu_icon $mol_icon_menu
+				<= Menu_label $mol_view
+					sub / <= title_text
+		<= Sidebar $mol_scroll
+			sub <= sidebar_groups /
 		<= Main $mol_scroll
 			sub /
-				<= Content $mol_view
-					sub /
-						<= Title $mol_view
-							sub /
-								<= Title_text @ \Page Title
-						<= Body $mol_text
-							text @ \Page content goes here.
+				<= Body $mol_text
+					text <= page_md
 				<= Edit $mol_link
-					title @ \Edit this page on GitHub
 					uri <= edit_uri
-				<= Nav $mol_view
 					sub /
-						<= Prev $mol_link
-							title @ \Previous page
-							arg *
-								section \docs
-								page \
-						<= Next $mol_link
-							title @ \Next page
-							arg *
-								section \docs
-								page \
+						<= Edit_icon $mol_icon_pencil
+						<= Edit_label @ \Edit this page on GitHub
+				<= Nav $mol_view
+					sub <= nav_links /
 		<= Toc $mol_scroll
 			sub /
-				<= Toc_title @ \On this page
+				<= Toc_title $mol_view
+					sub / <= toc_title_text @ \On this page
+				<= Toc_list $mol_view
+					sub <= toc_links /
+	Group* $mol_view
+		sub <= group_content* /
+	Group_title* $mol_view
+		sub / <= group_title_text* \
+	Link* $mol_link
+		arg <= link_arg* *
+		event_click? <=> nav_click? null
+		sub / <= link_title* \
+	Toc_link* $mol_link
+		arg <= toc_arg* *
+		sub / <= toc_text* \
+	Prev $mol_link
+		arg <= prev_arg *
+		sub /
+			<= Prev_hint $mol_view
+				sub / <= prev_hint_text @ \Previous
+			<= Prev_title $mol_view
+				sub / <= prev_title \
+	Next $mol_link
+		arg <= next_arg *
+		sub /
+			<= Next_hint $mol_view
+				sub / <= next_hint_text @ \Next
+			<= Next_title $mol_view
+				sub / <= next_title \
