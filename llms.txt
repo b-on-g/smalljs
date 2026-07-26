@@ -25,6 +25,12 @@
 - [Showcase](https://b-on-g.github.io/smalljs/docs/showcase.md): Real apps and tools built with $mol, from community platforms to devtools.
 - [From React, Vue & Svelte](https://b-on-g.github.io/smalljs/docs/rosetta.md): A concept translation table for developers coming from other frameworks.
 
+## Advanced
+
+- [Plugins](https://b-on-g.github.io/smalljs/docs/plugins.md): Element-less components that attach behaviour (hotkeys, theme, navigation) to a host view.
+- [Module metadata](https://b-on-g.github.io/smalljs/docs/meta.md): The meta.tree file: include, deploy, and pack directives for a module.
+- [Ghost views](https://b-on-g.github.io/smalljs/docs/ghost.md): Node-less views that borrow another component's DOM element to mix in behaviour.
+
 ## About
 
 - [FAQ](https://b-on-g.github.io/smalljs/docs/faq.md): Common questions about $mol and smalljs: readiness, size, learning curve, and getting help.

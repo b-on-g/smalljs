@@ -13631,6 +13631,14 @@ var $;
                             ]
                         },
                         {
+                            "title": "Advanced",
+                            "pages": [
+                                "plugins",
+                                "meta",
+                                "ghost"
+                            ]
+                        },
+                        {
                             "title": "About",
                             "pages": [
                                 "faq",
@@ -13729,6 +13737,24 @@ var $;
                     title: "From React, Vue & Svelte",
                     file: 'content/en/docs/rosetta.md',
                     md: "# From React, Vue & Svelte\n\nIf you have built UIs with React, Vue, or Svelte, you already understand most of what \u0024mol does — the names are just different. Those frameworks are excellent and popular for good reason; this page is a translation table, not a competition, to help you feel at home quickly.\n\n## Concept map\n\n| Idea | React | Vue | Svelte | \u0024mol |\n|------|-------|-----|--------|------|\n| Component | function / class | SFC (`.vue`) | `.svelte` file | `.view.tree` + `.view.ts` |\n| Local state | `useState` | `ref` / `reactive` | `let x` | `@ \u0024mol_mem` |\n| Derived value | `useMemo` | `computed` | `\u0024: y = …` | `@ \u0024mol_mem` (reads other cells) |\n| Side effect | `useEffect` | `watchEffect` | `\u0024: { … }` | `@ \u0024mol_action` (explicit, never automatic) |\n| Props | props | props | `export let` | bindings in `view.tree` |\n| Event | `onClick` | `@click` | `on:click` | `click? <=> handler?` |\n| Two-way input | controlled input | `v-model` | `bind:value` | `value? <=> field?` |\n| List | `items.map()` | `v-for` | `{#each}` | keyed `Row*` |\n| Conditional | `cond && …` | `v-if` | `{#if}` | assign `null` to remove |\n| Shared state | Redux / Context | Pinia / provide | stores | any object with `@ \u0024mol_mem` |\n| Routing | React Router | Vue Router | SvelteKit | `\u0024mol_state_arg` |\n| Styling | CSS-in-JS | scoped `<style>` | `<style>` | typed `.view.css.ts` |\n\n## What tends to feel new\n\n- **Reactivity is automatic and non-optional.** Like Vue's `ref` or Svelte's `\u0024:`, a `@ \u0024mol_mem` value updates its readers by itself — but there is no dependency array to maintain and no manual subscription anywhere.\n- **Effects are separated from computations.** React folds derivation and effects into hooks; \u0024mol keeps them apart: `@ \u0024mol_mem` only computes, `@ \u0024mol_action` performs effects. That split is what removes most \"why did this run twice?\" puzzles.\n- **State is just objects.** There is no dedicated store library to adopt — a shared value is a reactive property on any object, so global state and component state work the same way.\n\n## Try the translation\n\nThe fastest way to internalize the mapping is to write a little of both: open the [Playground](#!section=playground), port a small component you know, and see how it lands. Or start from [Getting Started](#!section=docs/page=getting-started).\n",
+                },
+                'plugins': {
+                    slug: 'plugins',
+                    title: "Plugins",
+                    file: 'content/en/docs/plugins.md',
+                    md: "# Plugins\n\nA **plugin** is a component with no DOM element of its own. Instead of rendering into the page, it attaches behaviour to the element of the component that hosts it — much like a directive. You list plugins under `plugins /` in a view.tree; they run alongside the view but never show up in its `sub`.\n\n```tree\n\u0024my_app \u0024mol_view\n\tplugins /\n\t\t<= Theme \u0024mol_theme_auto\n\t\t<= Search_key \u0024mol_hotkey\n\t\t\tkey *\n\t\t\t\tK? <=> open_search?\n\tsub /\n\t\t<= Content \u0024my_content\n```\n\nBecause a plugin shares its host's element, it can add event listeners, attributes, or reactive side-effects to that element without wrapping it in extra markup.\n\n## Plugins you'll use often\n\n- **`\u0024mol_hotkey`** — bind keyboard shortcuts. `key * escape? <=> close?` runs `close` on Escape; set `mod_ctrl true` to require Ctrl/⌘.\n- **`\u0024mol_theme_auto`** — apply a light/dark theme to the host subtree.\n- **`\u0024mol_nav`** — arrow-key navigation across a list of components (`keys_y`, `current_y`).\n- **`\u0024mol_speech`** — speech recognition input.\n\n## Writing one\n\nA plugin extends `\u0024mol_plugin` (which is itself element-less) and typically wires an `event` to a handler:\n\n```tree\n\u0024my_autosave \u0024mol_plugin\n\tevent *\n\t\t^\n\t\tinput? <=> save? null\n```\n\nAttach it to any view via that view's `plugins /` list, and it augments that view's element.\n",
+                },
+                'meta': {
+                    slug: 'meta',
+                    title: "Module metadata",
+                    file: 'content/en/docs/meta.md',
+                    md: "# Module metadata\n\nAlongside a module's components, a `name.meta.tree` file declares **build and deploy metadata** — things that are about the module as a whole rather than any single view. The app module is the usual place for it.\n\nHere is this site's `app.meta.tree`:\n\n```tree\ninclude \\/mol/offline/install\ninclude \\/bog/builderui/theme.css\ndeploy \\/bog/smalljs/assets\n```\n\n## Directives\n\n- **`include \\/path`** — pull another module's files into this bundle. `\\/mol/offline/install` adds PWA offline support; `\\/bog/builderui/theme.css` pulls a raw CSS file into the build. Use it to bring in assets or side-effect modules that no class references directly.\n- **`deploy \\/path`** — extra paths to ship with the production deploy (images, fonts, and other static assets).\n- **`pack <name> git \\<url>`** — maps a namespace to the git repository MAM fetches it from, e.g. `pack mol git \\https://github.com/hyoo-ru/mam_mol.git`. This is how `\u0024mol_*`, `\u0024hyoo_*`, and your own packages resolve to real code.\n\n## Where it lives\n\n`pack` declarations belong in the **workspace-root** `.meta.tree` — that is the registry of every package the workspace can pull. Keep them there, not in submodules; a submodule's own `meta.tree` should only carry `include`/`deploy` that are specific to it.\n",
+                },
+                'ghost': {
+                    slug: 'ghost',
+                    title: "Ghost views",
+                    file: 'content/en/docs/ghost.md',
+                    md: "# Ghost views\n\n`\u0024mol_ghost` is a **node-less** view. Instead of creating its own DOM element, it borrows the element of its `Sub()` and mixes its own attributes, styles, and behaviour onto it. In one line from the source: *\"mixin view logic to DOM node of another component.\"*\n\n```tree\n\u0024mol_ghost \u0024mol_view\n\tSub \u0024mol_view\n```\n\nA normal `\u0024mol_view` renders its own element. A ghost renders **none** — it reuses the child's element, so nothing extra is added to the DOM tree.\n\n## When to reach for it\n\nUse a ghost when you want to attach behaviour to an existing component *without* wrapping it in another element — dragging, dropping, follow-on-scroll, transitions. Several framework components are built on it:\n\n- **`\u0024mol_drag`** / **`\u0024mol_drop`** — pointer drag-and-drop\n- **`\u0024mol_transit`** — enter/leave transitions\n- **`\u0024mol_follower`** — keep an element aligned to another as it scrolls\n- **`\u0024mol_book_page`** — a page inside `\u0024mol_book2` navigation\n\n## Relation to plugins\n\n`\u0024mol_plugin` — the base every [plugin](#!section=docs/page=plugins) extends — is element-less for the same reason: it augments the host's element rather than adding one. A ghost is the general form (wrap one child and take over its node); a plugin is the specialised form you list under `plugins /`.\n",
                 },
                 'faq': {
                     slug: 'faq',
