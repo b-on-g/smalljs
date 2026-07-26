@@ -25,6 +25,12 @@
 - [Showcase](https://b-on-g.github.io/smalljs/docs/showcase.md): Real apps and tools built with $mol, from community platforms to devtools.
 - [From React, Vue & Svelte](https://b-on-g.github.io/smalljs/docs/rosetta.md): A concept translation table for developers coming from other frameworks.
 
+## About
+
+- [FAQ](https://b-on-g.github.io/smalljs/docs/faq.md): Common questions about $mol and smalljs: readiness, size, learning curve, and getting help.
+- [Team](https://b-on-g.github.io/smalljs/docs/team.md): Who builds $mol and how to contribute to the open monorepo.
+- [Releases](https://b-on-g.github.io/smalljs/docs/releases.md): How $mol is delivered continuously from the mam_mol monorepo, and how to follow changes.
+
 ## API
 
 - [$mol_button_major](https://b-on-g.github.io/smalljs/docs/api-mol-button-major.md): API reference for $mol_button_major.

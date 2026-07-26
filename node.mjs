@@ -8213,27 +8213,6 @@ var $;
 			(obj.event_click) = (next) => ((this.nav_pick(next)));
 			return obj;
 		}
-		Docs_glossary(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Docs_glossary_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "glossary"});
-			(obj.event_click) = (next) => ((this.nav_pick(next)));
-			return obj;
-		}
-		Docs_errors(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Docs_errors_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "errors"});
-			(obj.event_click) = (next) => ((this.nav_pick(next)));
-			return obj;
-		}
-		Docs_migration(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Docs_migration_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "migration"});
-			(obj.event_click) = (next) => ((this.nav_pick(next)));
-			return obj;
-		}
 		Docs_menu(){
 			const obj = new this.$.$mol_view();
 			(obj.sub) = () => ([
@@ -8241,10 +8220,7 @@ var $;
 				(this.Docs_guide()), 
 				(this.Docs_tutorial()), 
 				(this.Docs_examples()), 
-				(this.Docs_api()), 
-				(this.Docs_glossary()), 
-				(this.Docs_errors()), 
-				(this.Docs_migration())
+				(this.Docs_api())
 			]);
 			return obj;
 		}
@@ -8269,24 +8245,10 @@ var $;
 			const obj = new this.$.$mol_icon_chevron_down();
 			return obj;
 		}
-		Eco_themes(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Eco_themes_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "themes"});
-			(obj.event_click) = (next) => ((this.nav_pick(next)));
-			return obj;
-		}
 		Eco_components(){
 			const obj = new this.$.$mol_link();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Eco_components_title")));
 			(obj.uri) = () => ("https://mol.hyoo.ru/");
-			(obj.event_click) = (next) => ((this.nav_pick(next)));
-			return obj;
-		}
-		Eco_plugins(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Eco_plugins_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "plugins"});
 			(obj.event_click) = (next) => ((this.nav_pick(next)));
 			return obj;
 		}
@@ -8305,17 +8267,17 @@ var $;
 			(obj.event_click) = (next) => ((this.nav_pick(next)));
 			return obj;
 		}
-		Eco_baza(){
+		Eco_fetch(){
 			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Eco_baza_title")));
-			(obj.uri) = () => ("https://github.com/hyoo-ru/mam_mol/tree/master/crus");
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Eco_fetch_title")));
+			(obj.uri) = () => ("https://github.com/hyoo-ru/mam_mol/tree/master/fetch");
 			(obj.event_click) = (next) => ((this.nav_pick(next)));
 			return obj;
 		}
-		Eco_crowd(){
+		Eco_compare(){
 			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Eco_crowd_title")));
-			(obj.uri) = () => ("https://github.com/hyoo-ru/mam_mol/tree/master/crowd");
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Eco_compare_title")));
+			(obj.uri) = () => ("https://github.com/hyoo-ru/mam_mol/tree/master/compare/deep");
 			(obj.event_click) = (next) => ((this.nav_pick(next)));
 			return obj;
 		}
@@ -8326,17 +8288,31 @@ var $;
 			(obj.event_click) = (next) => ((this.nav_pick(next)));
 			return obj;
 		}
+		Eco_crowd(){
+			const obj = new this.$.$mol_link();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Eco_crowd_title")));
+			(obj.uri) = () => ("https://github.com/hyoo-ru/crowd.hyoo.ru");
+			(obj.event_click) = (next) => ((this.nav_pick(next)));
+			return obj;
+		}
+		Eco_baza(){
+			const obj = new this.$.$mol_link();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Eco_baza_title")));
+			(obj.uri) = () => ("https://github.com/giper-dev/baza");
+			(obj.event_click) = (next) => ((this.nav_pick(next)));
+			return obj;
+		}
 		Ecosystem_menu(){
 			const obj = new this.$.$mol_view();
 			(obj.sub) = () => ([
-				(this.Eco_themes()), 
 				(this.Eco_components()), 
-				(this.Eco_plugins()), 
 				(this.Eco_libs_title()), 
 				(this.Eco_wire()), 
-				(this.Eco_baza()), 
+				(this.Eco_fetch()), 
+				(this.Eco_compare()), 
+				(this.Eco_router()), 
 				(this.Eco_crowd()), 
-				(this.Eco_router())
+				(this.Eco_baza())
 			]);
 			return obj;
 		}
@@ -8376,28 +8352,12 @@ var $;
 			(obj.event_click) = (next) => ((this.nav_pick(next)));
 			return obj;
 		}
-		About_conduct(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_About_conduct_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "code-of-conduct"});
-			(obj.event_click) = (next) => ((this.nav_pick(next)));
-			return obj;
-		}
-		About_privacy(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_About_privacy_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "privacy"});
-			(obj.event_click) = (next) => ((this.nav_pick(next)));
-			return obj;
-		}
 		About_menu(){
 			const obj = new this.$.$mol_view();
 			(obj.sub) = () => ([
 				(this.About_faq()), 
 				(this.About_team()), 
-				(this.About_releases()), 
-				(this.About_conduct()), 
-				(this.About_privacy())
+				(this.About_releases())
 			]);
 			return obj;
 		}
@@ -8409,48 +8369,13 @@ var $;
 			(obj.bubble_content) = () => ([(this.About_menu())]);
 			return obj;
 		}
-		Support_label(){
-			return (this.$.$mol_locale.text("$bog_smalljs_top_Support_label"));
-		}
-		Support_chevron(){
-			const obj = new this.$.$mol_icon_chevron_down();
-			return obj;
-		}
-		Support_discussions(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Support_discussions_title")));
-			(obj.uri) = () => ("https://github.com/hyoo-ru/mam/discussions");
-			(obj.event_click) = (next) => ((this.nav_pick(next)));
-			return obj;
-		}
-		Support_dev(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Support_dev_title")));
-			(obj.uri) = () => ("https://dev.to/t/mol");
-			(obj.event_click) = (next) => ((this.nav_pick(next)));
-			return obj;
-		}
-		Support_menu(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Support_discussions()), (this.Support_dev())]);
-			return obj;
-		}
-		Support_pick(){
-			const obj = new this.$.$mol_pick();
-			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Support_pick_hint")));
-			(obj.align) = () => ("bottom_left");
-			(obj.trigger_content) = () => ([(this.Support_label()), (this.Support_chevron())]);
-			(obj.bubble_content) = () => ([(this.Support_menu())]);
-			return obj;
-		}
 		Nav(){
 			const obj = new this.$.$mol_view();
 			(obj.sub) = () => ([
 				(this.Docs_pick()), 
 				(this.Nav_playground()), 
 				(this.Ecosystem_pick()), 
-				(this.About_pick()), 
-				(this.Support_pick())
+				(this.About_pick())
 			]);
 			return obj;
 		}
@@ -8500,27 +8425,6 @@ var $;
 			(obj.event_click) = (next) => ((this.nav_pick(next)));
 			return obj;
 		}
-		M_docs_glossary(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_M_docs_glossary_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "glossary"});
-			(obj.event_click) = (next) => ((this.nav_pick(next)));
-			return obj;
-		}
-		M_docs_errors(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_M_docs_errors_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "errors"});
-			(obj.event_click) = (next) => ((this.nav_pick(next)));
-			return obj;
-		}
-		M_docs_migration(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_M_docs_migration_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "migration"});
-			(obj.event_click) = (next) => ((this.nav_pick(next)));
-			return obj;
-		}
 		Docs_group(){
 			const obj = new this.$.$mol_expander();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Docs_group_title")));
@@ -8529,31 +8433,14 @@ var $;
 				(this.M_docs_guide()), 
 				(this.M_docs_tutorial()), 
 				(this.M_docs_examples()), 
-				(this.M_docs_api()), 
-				(this.M_docs_glossary()), 
-				(this.M_docs_errors()), 
-				(this.M_docs_migration())
+				(this.M_docs_api())
 			]);
-			return obj;
-		}
-		M_eco_themes(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_M_eco_themes_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "themes"});
-			(obj.event_click) = (next) => ((this.nav_pick(next)));
 			return obj;
 		}
 		M_eco_components(){
 			const obj = new this.$.$mol_link();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_M_eco_components_title")));
 			(obj.uri) = () => ("https://mol.hyoo.ru/");
-			(obj.event_click) = (next) => ((this.nav_pick(next)));
-			return obj;
-		}
-		M_eco_plugins(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_M_eco_plugins_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "plugins"});
 			(obj.event_click) = (next) => ((this.nav_pick(next)));
 			return obj;
 		}
@@ -8572,17 +8459,17 @@ var $;
 			(obj.event_click) = (next) => ((this.nav_pick(next)));
 			return obj;
 		}
-		M_eco_baza(){
+		M_eco_fetch(){
 			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_M_eco_baza_title")));
-			(obj.uri) = () => ("https://github.com/hyoo-ru/mam_mol/tree/master/crus");
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_M_eco_fetch_title")));
+			(obj.uri) = () => ("https://github.com/hyoo-ru/mam_mol/tree/master/fetch");
 			(obj.event_click) = (next) => ((this.nav_pick(next)));
 			return obj;
 		}
-		M_eco_crowd(){
+		M_eco_compare(){
 			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_M_eco_crowd_title")));
-			(obj.uri) = () => ("https://github.com/hyoo-ru/mam_mol/tree/master/crowd");
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_M_eco_compare_title")));
+			(obj.uri) = () => ("https://github.com/hyoo-ru/mam_mol/tree/master/compare/deep");
 			(obj.event_click) = (next) => ((this.nav_pick(next)));
 			return obj;
 		}
@@ -8593,18 +8480,32 @@ var $;
 			(obj.event_click) = (next) => ((this.nav_pick(next)));
 			return obj;
 		}
+		M_eco_crowd(){
+			const obj = new this.$.$mol_link();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_M_eco_crowd_title")));
+			(obj.uri) = () => ("https://github.com/hyoo-ru/crowd.hyoo.ru");
+			(obj.event_click) = (next) => ((this.nav_pick(next)));
+			return obj;
+		}
+		M_eco_baza(){
+			const obj = new this.$.$mol_link();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_M_eco_baza_title")));
+			(obj.uri) = () => ("https://github.com/giper-dev/baza");
+			(obj.event_click) = (next) => ((this.nav_pick(next)));
+			return obj;
+		}
 		Ecosystem_group(){
 			const obj = new this.$.$mol_expander();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Ecosystem_group_title")));
 			(obj.content) = () => ([
-				(this.M_eco_themes()), 
 				(this.M_eco_components()), 
-				(this.M_eco_plugins()), 
 				(this.M_eco_libs_title()), 
 				(this.M_eco_wire()), 
-				(this.M_eco_baza()), 
+				(this.M_eco_fetch()), 
+				(this.M_eco_compare()), 
+				(this.M_eco_router()), 
 				(this.M_eco_crowd()), 
-				(this.M_eco_router())
+				(this.M_eco_baza())
 			]);
 			return obj;
 		}
@@ -8629,50 +8530,14 @@ var $;
 			(obj.event_click) = (next) => ((this.nav_pick(next)));
 			return obj;
 		}
-		M_about_conduct(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_M_about_conduct_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "code-of-conduct"});
-			(obj.event_click) = (next) => ((this.nav_pick(next)));
-			return obj;
-		}
-		M_about_privacy(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_M_about_privacy_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "privacy"});
-			(obj.event_click) = (next) => ((this.nav_pick(next)));
-			return obj;
-		}
 		About_group(){
 			const obj = new this.$.$mol_expander();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_About_group_title")));
 			(obj.content) = () => ([
 				(this.M_about_faq()), 
 				(this.M_about_team()), 
-				(this.M_about_releases()), 
-				(this.M_about_conduct()), 
-				(this.M_about_privacy())
+				(this.M_about_releases())
 			]);
-			return obj;
-		}
-		M_support_discussions(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_M_support_discussions_title")));
-			(obj.uri) = () => ("https://github.com/hyoo-ru/mam/discussions");
-			(obj.event_click) = (next) => ((this.nav_pick(next)));
-			return obj;
-		}
-		M_support_dev(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_M_support_dev_title")));
-			(obj.uri) = () => ("https://dev.to/t/mol");
-			(obj.event_click) = (next) => ((this.nav_pick(next)));
-			return obj;
-		}
-		Support_group(){
-			const obj = new this.$.$mol_expander();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Support_group_title")));
-			(obj.content) = () => ([(this.M_support_discussions()), (this.M_support_dev())]);
 			return obj;
 		}
 		Mobile_menu(){
@@ -8681,8 +8546,7 @@ var $;
 				(this.Mobile_playground()), 
 				(this.Docs_group()), 
 				(this.Ecosystem_group()), 
-				(this.About_group()), 
-				(this.Support_group())
+				(this.About_group())
 			]);
 			return obj;
 		}
@@ -8718,7 +8582,7 @@ var $;
 			return null;
 		}
 		github_uri(){
-			return "https://github.com/b-on-g/smalljs";
+			return "https://github.com/hyoo-ru/mam_mol";
 		}
 		logo_uri(){
 			return "bog/smalljs/assets/logo.svg";
@@ -8759,36 +8623,26 @@ var $;
 	($mol_mem(($.$bog_smalljs_top.prototype), "Docs_tutorial"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Docs_examples"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Docs_api"));
-	($mol_mem(($.$bog_smalljs_top.prototype), "Docs_glossary"));
-	($mol_mem(($.$bog_smalljs_top.prototype), "Docs_errors"));
-	($mol_mem(($.$bog_smalljs_top.prototype), "Docs_migration"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Docs_menu"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Docs_pick"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Nav_playground"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Ecosystem_chevron"));
-	($mol_mem(($.$bog_smalljs_top.prototype), "Eco_themes"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Eco_components"));
-	($mol_mem(($.$bog_smalljs_top.prototype), "Eco_plugins"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Eco_libs_title"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Eco_wire"));
-	($mol_mem(($.$bog_smalljs_top.prototype), "Eco_baza"));
-	($mol_mem(($.$bog_smalljs_top.prototype), "Eco_crowd"));
+	($mol_mem(($.$bog_smalljs_top.prototype), "Eco_fetch"));
+	($mol_mem(($.$bog_smalljs_top.prototype), "Eco_compare"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Eco_router"));
+	($mol_mem(($.$bog_smalljs_top.prototype), "Eco_crowd"));
+	($mol_mem(($.$bog_smalljs_top.prototype), "Eco_baza"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Ecosystem_menu"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Ecosystem_pick"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "About_chevron"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "About_faq"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "About_team"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "About_releases"));
-	($mol_mem(($.$bog_smalljs_top.prototype), "About_conduct"));
-	($mol_mem(($.$bog_smalljs_top.prototype), "About_privacy"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "About_menu"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "About_pick"));
-	($mol_mem(($.$bog_smalljs_top.prototype), "Support_chevron"));
-	($mol_mem(($.$bog_smalljs_top.prototype), "Support_discussions"));
-	($mol_mem(($.$bog_smalljs_top.prototype), "Support_dev"));
-	($mol_mem(($.$bog_smalljs_top.prototype), "Support_menu"));
-	($mol_mem(($.$bog_smalljs_top.prototype), "Support_pick"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Nav"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Burger_icon"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Mobile_playground"));
@@ -8797,28 +8651,20 @@ var $;
 	($mol_mem(($.$bog_smalljs_top.prototype), "M_docs_tutorial"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "M_docs_examples"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "M_docs_api"));
-	($mol_mem(($.$bog_smalljs_top.prototype), "M_docs_glossary"));
-	($mol_mem(($.$bog_smalljs_top.prototype), "M_docs_errors"));
-	($mol_mem(($.$bog_smalljs_top.prototype), "M_docs_migration"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Docs_group"));
-	($mol_mem(($.$bog_smalljs_top.prototype), "M_eco_themes"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "M_eco_components"));
-	($mol_mem(($.$bog_smalljs_top.prototype), "M_eco_plugins"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "M_eco_libs_title"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "M_eco_wire"));
-	($mol_mem(($.$bog_smalljs_top.prototype), "M_eco_baza"));
-	($mol_mem(($.$bog_smalljs_top.prototype), "M_eco_crowd"));
+	($mol_mem(($.$bog_smalljs_top.prototype), "M_eco_fetch"));
+	($mol_mem(($.$bog_smalljs_top.prototype), "M_eco_compare"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "M_eco_router"));
+	($mol_mem(($.$bog_smalljs_top.prototype), "M_eco_crowd"));
+	($mol_mem(($.$bog_smalljs_top.prototype), "M_eco_baza"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Ecosystem_group"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "M_about_faq"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "M_about_team"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "M_about_releases"));
-	($mol_mem(($.$bog_smalljs_top.prototype), "M_about_conduct"));
-	($mol_mem(($.$bog_smalljs_top.prototype), "M_about_privacy"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "About_group"));
-	($mol_mem(($.$bog_smalljs_top.prototype), "M_support_discussions"));
-	($mol_mem(($.$bog_smalljs_top.prototype), "M_support_dev"));
-	($mol_mem(($.$bog_smalljs_top.prototype), "Support_group"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Mobile_menu"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Burger"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Lang_icon"));
@@ -8845,7 +8691,6 @@ var $;
                 this.Docs_pick().showed(false);
                 this.Ecosystem_pick().showed(false);
                 this.About_pick().showed(false);
-                this.Support_pick().showed(false);
                 this.Burger().showed(false);
             }
         }
@@ -8945,11 +8790,9 @@ var $;
         Docs_chevron: { width: rem(0.875), height: rem(0.875) },
         Ecosystem_chevron: { width: rem(0.875), height: rem(0.875) },
         About_chevron: { width: rem(0.875), height: rem(0.875) },
-        Support_chevron: { width: rem(0.875), height: rem(0.875) },
         Docs_menu: menu_panel,
         Ecosystem_menu: menu_panel,
         About_menu: menu_panel,
-        Support_menu: menu_panel,
         Eco_libs_title: {
             padding: { top: rem(0.5), bottom: rem(0.25), left: rem(0.625), right: rem(0.625) },
             font: { size: rem(0.6875), weight: 600 },
@@ -13753,6 +13596,14 @@ var $;
                             ]
                         },
                         {
+                            "title": "About",
+                            "pages": [
+                                "faq",
+                                "team",
+                                "releases"
+                            ]
+                        },
+                        {
                             "title": "API",
                             "pages": [
                                 "api-mol-button-major",
@@ -13843,6 +13694,24 @@ var $;
                     title: "From React, Vue & Svelte",
                     file: 'content/en/docs/rosetta.md',
                     md: "# From React, Vue & Svelte\n\nIf you have built UIs with React, Vue, or Svelte, you already understand most of what \u0024mol does — the names are just different. Those frameworks are excellent and popular for good reason; this page is a translation table, not a competition, to help you feel at home quickly.\n\n## Concept map\n\n| Idea | React | Vue | Svelte | \u0024mol |\n|------|-------|-----|--------|------|\n| Component | function / class | SFC (`.vue`) | `.svelte` file | `.view.tree` + `.view.ts` |\n| Local state | `useState` | `ref` / `reactive` | `let x` | `@ \u0024mol_mem` |\n| Derived value | `useMemo` | `computed` | `\u0024: y = …` | `@ \u0024mol_mem` (reads other cells) |\n| Side effect | `useEffect` | `watchEffect` | `\u0024: { … }` | `@ \u0024mol_action` (explicit, never automatic) |\n| Props | props | props | `export let` | bindings in `view.tree` |\n| Event | `onClick` | `@click` | `on:click` | `click? <=> handler?` |\n| Two-way input | controlled input | `v-model` | `bind:value` | `value? <=> field?` |\n| List | `items.map()` | `v-for` | `{#each}` | keyed `Row*` |\n| Conditional | `cond && …` | `v-if` | `{#if}` | assign `null` to remove |\n| Shared state | Redux / Context | Pinia / provide | stores | any object with `@ \u0024mol_mem` |\n| Routing | React Router | Vue Router | SvelteKit | `\u0024mol_state_arg` |\n| Styling | CSS-in-JS | scoped `<style>` | `<style>` | typed `.view.css.ts` |\n\n## What tends to feel new\n\n- **Reactivity is automatic and non-optional.** Like Vue's `ref` or Svelte's `\u0024:`, a `@ \u0024mol_mem` value updates its readers by itself — but there is no dependency array to maintain and no manual subscription anywhere.\n- **Effects are separated from computations.** React folds derivation and effects into hooks; \u0024mol keeps them apart: `@ \u0024mol_mem` only computes, `@ \u0024mol_action` performs effects. That split is what removes most \"why did this run twice?\" puzzles.\n- **State is just objects.** There is no dedicated store library to adopt — a shared value is a reactive property on any object, so global state and component state work the same way.\n\n## Try the translation\n\nThe fastest way to internalize the mapping is to write a little of both: open the [Playground](#!section=playground), port a small component you know, and see how it lands. Or start from [Getting Started](#!section=docs/page=getting-started).\n",
+                },
+                'faq': {
+                    slug: 'faq',
+                    title: "FAQ",
+                    file: 'content/en/docs/faq.md',
+                    md: "# FAQ\n\n## What is smalljs?\n\nsmalljs is the documentation site for **\u0024mol** — a reactive UI framework with typed views, automatic reactivity, and no virtual DOM. The framework itself is developed in the open by the hyoo-ru community; this site gathers a guide, an interactive course, a live playground, and an API reference in one place.\n\n## Is \u0024mol production-ready?\n\nYes. \u0024mol powers real apps and internal tools — see the [Showcase](#!section=docs/page=showcase). It ships from a single monorepo (MAM) and is used daily by its authors and community.\n\n## How big is the runtime?\n\nSmall. A typical \u0024mol app ships around 100 KB of framework code, and rendering is virtualized by default — components outside the viewport are never created. See [Rendering](#!section=docs/page=rendering) for the details and benchmarks.\n\n## Do I have to learn a new template language?\n\nYou learn `view.tree`, a compact tree syntax for declaring component layout. It is intentionally small — the [Views](#!section=docs/page=views) chapter covers everything you need in one sitting. Logic stays in plain TypeScript, and styles are typed too.\n\n## How is it different from React, Vue or Svelte?\n\nReactivity is automatic — there is no `useState`, `useEffect`, or manual subscription. You describe *what* the UI is; \u0024mol decides *how* and *when* to update it. The [concept translation table](#!section=docs/page=rosetta) maps ideas from other frameworks onto \u0024mol.\n\n## Where do I get help?\n\n- Ask in the [DEV community](https://dev.to/t/mol)\n- Browse the [\u0024mol source and issues on GitHub](https://github.com/hyoo-ru/mam_mol)\n- Read the reference docs at [mol.hyoo.ru](https://mol.hyoo.ru/)\n\n## What license is it under?\n\nMIT. You can use \u0024mol in commercial and open-source projects freely.\n",
+                },
+                'team': {
+                    slug: 'team',
+                    title: "Team",
+                    file: 'content/en/docs/team.md',
+                    md: "# Team\n\n\u0024mol is built in the open by **[hyoo-ru](https://github.com/hyoo-ru)** — the community around its author, Dmitry Karlovsky ([nin-jin](https://github.com/nin-jin)). Development happens in a single monorepo, [mam_mol](https://github.com/hyoo-ru/mam_mol), where the framework, its components, and the tooling all live together.\n\nThe ecosystem is a group effort: the core framework, the [\u0024hyoo_crowd](https://github.com/hyoo-ru/crowd.hyoo.ru) CRDT library, [Giper Baza](https://github.com/giper-dev/baza), and dozens of published components all come from contributors working in the same workspace.\n\n## Contributing\n\n- The whole ecosystem is MIT-licensed and open to pull requests.\n- Every module lives in the [mam_mol](https://github.com/hyoo-ru/mam_mol) monorepo — fork, add a folder, open a PR.\n- Discuss ideas and share what you build in the [DEV community](https://dev.to/t/mol).\n\nThis documentation site is maintained separately at [b-on-g/smalljs](https://github.com/b-on-g/smalljs); every page has an *Edit on GitHub* link if you spot something to improve.\n",
+                },
+                'releases': {
+                    slug: 'releases',
+                    title: "Releases",
+                    file: 'content/en/docs/releases.md',
+                    md: "# Releases\n\n\u0024mol is delivered **continuously**. Instead of cutting numbered versions, the framework ships straight from the [mam_mol](https://github.com/hyoo-ru/mam_mol) monorepo — every merged change is immediately available to anyone building against it. The MAM build tool always pulls the current sources, so there is no upgrade step and no version matrix to reconcile.\n\n## Following changes\n\n- **Commit history** — the [mam_mol commits](https://github.com/hyoo-ru/mam_mol/commits/master) are the canonical changelog.\n- **Per-module history** — each component folder on GitHub carries its own commit log, so you can watch just the parts you use.\n- **DEV community** — notable additions and write-ups are shared under the [#mol tag](https://dev.to/t/mol).\n\n## What this means in practice\n\nBecause there are no breaking release boundaries, the framework favours backward-compatible evolution: components gain features without renaming, and the typed `view.tree` interfaces make incompatibilities surface at compile time rather than at runtime. If a build stops compiling after an update, the TypeScript errors point you straight at what changed.\n",
                 },
                 'api-mol-button-major': {
                     slug: 'api-mol-button-major',
@@ -14257,21 +14126,12 @@ var $;
 			]);
 			return obj;
 		}
-		Sponsor_banner_text(){
-			return (this.$.$mol_locale.text("$bog_smalljs_landing_Sponsor_banner_text"));
-		}
-		Sponsor_banner(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Sponsor_banner_text())]);
-			return obj;
-		}
 		Hero(){
 			const obj = new this.$.$mol_view();
 			(obj.sub) = () => ([
 				(this.Hero_title()), 
 				(this.Hero_subtitle()), 
-				(this.Hero_actions()), 
-				(this.Sponsor_banner())
+				(this.Hero_actions())
 			]);
 			return obj;
 		}
@@ -14338,55 +14198,6 @@ var $;
 			]);
 			return obj;
 		}
-		Sponsors_title_text(){
-			return (this.$.$mol_locale.text("$bog_smalljs_landing_Sponsors_title_text"));
-		}
-		Sponsors_title(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Sponsors_title_text())]);
-			return obj;
-		}
-		Sponsor_card1(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([]);
-			return obj;
-		}
-		Sponsor_card2(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([]);
-			return obj;
-		}
-		Sponsor_card3(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([]);
-			return obj;
-		}
-		Sponsors_grid(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([
-				(this.Sponsor_card1()), 
-				(this.Sponsor_card2()), 
-				(this.Sponsor_card3())
-			]);
-			return obj;
-		}
-		Sponsors_cta_text(){
-			return (this.$.$mol_locale.text("$bog_smalljs_landing_Sponsors_cta_text"));
-		}
-		Sponsors_cta(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Sponsors_cta_text())]);
-			return obj;
-		}
-		Sponsors(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([
-				(this.Sponsors_title()), 
-				(this.Sponsors_grid()), 
-				(this.Sponsors_cta())
-			]);
-			return obj;
-		}
 		Footer_sect_docs_title_text(){
 			return (this.$.$mol_locale.text("$bog_smalljs_landing_Footer_sect_docs_title_text"));
 		}
@@ -14398,49 +14209,31 @@ var $;
 		Footer_link_quickstart(){
 			const obj = new this.$.$mol_link();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_quickstart_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "quick-start"});
+			(obj.arg) = () => ({"section": "docs", "page": "getting-started"});
 			return obj;
 		}
 		Footer_link_guide(){
 			const obj = new this.$.$mol_link();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_guide_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "guide"});
+			(obj.arg) = () => ({"section": "docs", "page": "views"});
 			return obj;
 		}
 		Footer_link_tutorial(){
 			const obj = new this.$.$mol_link();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_tutorial_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "tutorial"});
+			(obj.arg) = () => ({"section": "course", "page": ""});
 			return obj;
 		}
 		Footer_link_examples(){
 			const obj = new this.$.$mol_link();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_examples_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "examples"});
+			(obj.arg) = () => ({"section": "docs", "page": "showcase"});
 			return obj;
 		}
 		Footer_link_api(){
 			const obj = new this.$.$mol_link();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_api_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "api"});
-			return obj;
-		}
-		Footer_link_glossary(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_glossary_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "glossary"});
-			return obj;
-		}
-		Footer_link_errref(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_errref_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "error-reference"});
-			return obj;
-		}
-		Footer_link_migration(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_migration_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "migration"});
+			(obj.arg) = () => ({"section": "docs", "page": "api-mol-string"});
 			return obj;
 		}
 		Footer_sect_docs(){
@@ -14451,11 +14244,13 @@ var $;
 				(this.Footer_link_guide()), 
 				(this.Footer_link_tutorial()), 
 				(this.Footer_link_examples()), 
-				(this.Footer_link_api()), 
-				(this.Footer_link_glossary()), 
-				(this.Footer_link_errref()), 
-				(this.Footer_link_migration())
+				(this.Footer_link_api())
 			]);
+			return obj;
+		}
+		Footer_col1(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Footer_sect_docs())]);
 			return obj;
 		}
 		Footer_sect_about_title_text(){
@@ -14469,37 +14264,19 @@ var $;
 		Footer_link_faq(){
 			const obj = new this.$.$mol_link();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_faq_title")));
-			(obj.arg) = () => ({"section": "about", "page": "faq"});
+			(obj.arg) = () => ({"section": "docs", "page": "faq"});
 			return obj;
 		}
 		Footer_link_team(){
 			const obj = new this.$.$mol_link();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_team_title")));
-			(obj.arg) = () => ({"section": "about", "page": "team"});
+			(obj.arg) = () => ({"section": "docs", "page": "team"});
 			return obj;
 		}
 		Footer_link_releases(){
 			const obj = new this.$.$mol_link();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_releases_title")));
-			(obj.arg) = () => ({"section": "about", "page": "releases"});
-			return obj;
-		}
-		Footer_link_community(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_community_title")));
-			(obj.arg) = () => ({"section": "about", "page": "community"});
-			return obj;
-		}
-		Footer_link_coc(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_coc_title")));
-			(obj.arg) = () => ({"section": "about", "page": "code-of-conduct"});
-			return obj;
-		}
-		Footer_link_privacy(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_privacy_title")));
-			(obj.arg) = () => ({"section": "about", "page": "privacy"});
+			(obj.arg) = () => ({"section": "docs", "page": "releases"});
 			return obj;
 		}
 		Footer_sect_about(){
@@ -14508,45 +14285,13 @@ var $;
 				(this.Footer_sect_about_title()), 
 				(this.Footer_link_faq()), 
 				(this.Footer_link_team()), 
-				(this.Footer_link_releases()), 
-				(this.Footer_link_community()), 
-				(this.Footer_link_coc()), 
-				(this.Footer_link_privacy())
+				(this.Footer_link_releases())
 			]);
 			return obj;
 		}
-		Footer_col1(){
+		Footer_col2(){
 			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Footer_sect_docs()), (this.Footer_sect_about())]);
-			return obj;
-		}
-		Footer_sect_support_title_text(){
-			return (this.$.$mol_locale.text("$bog_smalljs_landing_Footer_sect_support_title_text"));
-		}
-		Footer_sect_support_title(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Footer_sect_support_title_text())]);
-			return obj;
-		}
-		Footer_link_sponsor(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_sponsor_title")));
-			(obj.arg) = () => ({"section": "support", "page": "sponsor"});
-			return obj;
-		}
-		Footer_link_partners(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_partners_title")));
-			(obj.arg) = () => ({"section": "support", "page": "partners"});
-			return obj;
-		}
-		Footer_sect_support(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([
-				(this.Footer_sect_support_title()), 
-				(this.Footer_link_sponsor()), 
-				(this.Footer_link_partners())
-			]);
+			(obj.sub) = () => ([(this.Footer_sect_about())]);
 			return obj;
 		}
 		Footer_sect_resources_title_text(){
@@ -14557,52 +14302,10 @@ var $;
 			(obj.sub) = () => ([(this.Footer_sect_resources_title_text())]);
 			return obj;
 		}
-		Footer_link_themes(){
+		Footer_link_playground(){
 			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_themes_title")));
-			(obj.arg) = () => ({"section": "ecosystem", "page": "themes"});
-			return obj;
-		}
-		Footer_link_ui(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_ui_title")));
-			(obj.arg) = () => ({"section": "ecosystem", "page": "components"});
-			return obj;
-		}
-		Footer_link_plugins(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_plugins_title")));
-			(obj.arg) = () => ({"section": "ecosystem", "page": "plugins"});
-			return obj;
-		}
-		Footer_link_jobs(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_jobs_title")));
-			(obj.arg) = () => ({"section": "ecosystem", "page": "jobs"});
-			return obj;
-		}
-		Footer_sect_resources(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([
-				(this.Footer_sect_resources_title()), 
-				(this.Footer_link_themes()), 
-				(this.Footer_link_ui()), 
-				(this.Footer_link_plugins()), 
-				(this.Footer_link_jobs())
-			]);
-			return obj;
-		}
-		Footer_col2(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Footer_sect_support()), (this.Footer_sect_resources())]);
-			return obj;
-		}
-		Footer_sect_courses_title_text(){
-			return (this.$.$mol_locale.text("$bog_smalljs_landing_Footer_sect_courses_title_text"));
-		}
-		Footer_sect_courses_title(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Footer_sect_courses_title_text())]);
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_playground_title")));
+			(obj.arg) = () => ({"section": "playground", "page": ""});
 			return obj;
 		}
 		Footer_link_course(){
@@ -14611,23 +14314,10 @@ var $;
 			(obj.arg) = () => ({"section": "course", "page": ""});
 			return obj;
 		}
-		Footer_sect_courses(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Footer_sect_courses_title()), (this.Footer_link_course())]);
-			return obj;
-		}
-		Footer_sect_help_title_text(){
-			return (this.$.$mol_locale.text("$bog_smalljs_landing_Footer_sect_help_title_text"));
-		}
-		Footer_sect_help_title(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Footer_sect_help_title_text())]);
-			return obj;
-		}
-		Footer_link_ghdisc(){
+		Footer_link_ui(){
 			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_ghdisc_title")));
-			(obj.uri) = () => ("https://github.com/b-on-g/smalljs/discussions");
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_ui_title")));
+			(obj.uri) = () => ("https://mol.hyoo.ru/");
 			(obj.target) = () => ("_blank");
 			return obj;
 		}
@@ -14638,58 +14328,20 @@ var $;
 			(obj.target) = () => ("_blank");
 			return obj;
 		}
-		Footer_sect_help(){
+		Footer_sect_resources(){
 			const obj = new this.$.$mol_view();
 			(obj.sub) = () => ([
-				(this.Footer_sect_help_title()), 
-				(this.Footer_link_ghdisc()), 
+				(this.Footer_sect_resources_title()), 
+				(this.Footer_link_playground()), 
+				(this.Footer_link_course()), 
+				(this.Footer_link_ui()), 
 				(this.Footer_link_dev())
-			]);
-			return obj;
-		}
-		Footer_sect_news_title_text(){
-			return (this.$.$mol_locale.text("$bog_smalljs_landing_Footer_sect_news_title_text"));
-		}
-		Footer_sect_news_title(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Footer_sect_news_title_text())]);
-			return obj;
-		}
-		Footer_link_blog(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_blog_title")));
-			(obj.arg) = () => ({"section": "news", "page": "blog"});
-			return obj;
-		}
-		Footer_link_events(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_events_title")));
-			(obj.arg) = () => ({"section": "news", "page": "events"});
-			return obj;
-		}
-		Footer_link_newsletters(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_newsletters_title")));
-			(obj.arg) = () => ({"section": "news", "page": "newsletters"});
-			return obj;
-		}
-		Footer_sect_news(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([
-				(this.Footer_sect_news_title()), 
-				(this.Footer_link_blog()), 
-				(this.Footer_link_events()), 
-				(this.Footer_link_newsletters())
 			]);
 			return obj;
 		}
 		Footer_col3(){
 			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([
-				(this.Footer_sect_courses()), 
-				(this.Footer_sect_help()), 
-				(this.Footer_sect_news())
-			]);
+			(obj.sub) = () => ([(this.Footer_sect_resources())]);
 			return obj;
 		}
 		Footer_sect_libs_title_text(){
@@ -14703,25 +14355,43 @@ var $;
 		Footer_link_wire(){
 			const obj = new this.$.$mol_link();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_wire_title")));
-			(obj.arg) = () => ({"section": "libs", "page": "wire"});
+			(obj.uri) = () => ("https://github.com/hyoo-ru/mam_mol/tree/master/wire");
+			(obj.target) = () => ("_blank");
 			return obj;
 		}
-		Footer_link_baza(){
+		Footer_link_fetch(){
 			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_baza_title")));
-			(obj.arg) = () => ({"section": "libs", "page": "baza"});
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_fetch_title")));
+			(obj.uri) = () => ("https://github.com/hyoo-ru/mam_mol/tree/master/fetch");
+			(obj.target) = () => ("_blank");
 			return obj;
 		}
-		Footer_link_crowd(){
+		Footer_link_compare(){
 			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_crowd_title")));
-			(obj.arg) = () => ({"section": "libs", "page": "crowd"});
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_compare_title")));
+			(obj.uri) = () => ("https://github.com/hyoo-ru/mam_mol/tree/master/compare/deep");
+			(obj.target) = () => ("_blank");
 			return obj;
 		}
 		Footer_link_router(){
 			const obj = new this.$.$mol_link();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_router_title")));
-			(obj.arg) = () => ({"section": "libs", "page": "router"});
+			(obj.uri) = () => ("https://github.com/hyoo-ru/mam_mol/tree/master/state/arg");
+			(obj.target) = () => ("_blank");
+			return obj;
+		}
+		Footer_link_crowd(){
+			const obj = new this.$.$mol_link();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_crowd_title")));
+			(obj.uri) = () => ("https://github.com/hyoo-ru/crowd.hyoo.ru");
+			(obj.target) = () => ("_blank");
+			return obj;
+		}
+		Footer_link_baza(){
+			const obj = new this.$.$mol_link();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_baza_title")));
+			(obj.uri) = () => ("https://github.com/giper-dev/baza");
+			(obj.target) = () => ("_blank");
 			return obj;
 		}
 		Footer_sect_libs(){
@@ -14729,9 +14399,11 @@ var $;
 			(obj.sub) = () => ([
 				(this.Footer_sect_libs_title()), 
 				(this.Footer_link_wire()), 
-				(this.Footer_link_baza()), 
+				(this.Footer_link_fetch()), 
+				(this.Footer_link_compare()), 
+				(this.Footer_link_router()), 
 				(this.Footer_link_crowd()), 
-				(this.Footer_link_router())
+				(this.Footer_link_baza())
 			]);
 			return obj;
 		}
@@ -14780,7 +14452,6 @@ var $;
 			return [
 				(this.Hero()), 
 				(this.Features()), 
-				(this.Sponsors()), 
 				(this.Footer())
 			];
 		}
@@ -14796,7 +14467,6 @@ var $;
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Hero_cta_play_icon"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Hero_cta_play"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Hero_actions"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Sponsor_banner"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Hero"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Feature1_title"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Feature1_text"));
@@ -14808,61 +14478,34 @@ var $;
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Feature3_text"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Feature3"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Features"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Sponsors_title"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Sponsor_card1"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Sponsor_card2"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Sponsor_card3"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Sponsors_grid"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Sponsors_cta"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Sponsors"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_docs_title"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_quickstart"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_guide"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_tutorial"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_examples"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_api"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_glossary"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_errref"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_migration"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_docs"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_col1"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_about_title"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_faq"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_team"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_releases"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_community"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_coc"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_privacy"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_about"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_col1"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_support_title"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_sponsor"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_partners"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_support"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_resources_title"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_themes"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_ui"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_plugins"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_jobs"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_resources"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_col2"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_courses_title"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_resources_title"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_playground"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_course"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_courses"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_help_title"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_ghdisc"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_ui"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_dev"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_help"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_news_title"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_blog"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_events"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_newsletters"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_news"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_resources"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_col3"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_libs_title"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_wire"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_baza"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_crowd"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_fetch"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_compare"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_router"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_crowd"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_baza"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_libs"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_col4"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_cols"));
@@ -14963,16 +14606,6 @@ var $;
             font: { weight: 600 },
         },
         Hero_cta_play_icon: { width: rem(0.875), height: rem(0.875) },
-        Sponsor_banner: {
-            align: { items: 'center' },
-            justify: { content: 'center' },
-            padding: { top: $mol_gap.block, bottom: $mol_gap.block, left: $mol_gap.block, right: $mol_gap.block },
-            margin: { top: rem(3), left: 'auto', right: 'auto' },
-            font: { size: rem(0.875) },
-            color: $bog_builderui_tokens.text,
-            border: { top: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line }, bottom: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
-            width: '100%',
-        },
         Features: {
             display: 'grid',
             gridTemplateColumns: 'repeat(3, 1fr)',
@@ -14999,42 +14632,6 @@ var $;
             font: { size: rem(1.25), weight: 600 },
             '::first-letter': { color: $bog_builderui_tokens.special },
         },
-        Sponsors: {
-            flex: { direction: 'column' },
-            align: { items: 'flex-start' },
-            gap: $mol_gap.block,
-            padding: { top: rem(3), bottom: rem(3), left: $mol_gap.block, right: $mol_gap.block },
-            maxWidth: rem(75),
-            margin: { left: 'auto', right: 'auto' },
-            width: '100%',
-        },
-        Sponsors_title: { font: { size: rem(1.25), weight: 600 } },
-        Sponsors_grid: {
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: $mol_gap.block,
-            width: '100%',
-        },
-        Sponsor_card1: {
-            background: { color: $bog_builderui_tokens.card },
-            border: { radius: rem(0.5), width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
-            height: rem(8),
-        },
-        Sponsor_card2: {
-            background: { color: $bog_builderui_tokens.card },
-            border: { radius: rem(0.5), width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
-            height: rem(8),
-        },
-        Sponsor_card3: {
-            background: { color: $bog_builderui_tokens.card },
-            border: { radius: rem(0.5), width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
-            height: rem(8),
-        },
-        Sponsors_cta: {
-            align: { self: 'center' },
-            color: $bog_builderui_tokens.shade,
-            font: { size: rem(0.875) },
-        },
         Footer: {
             flex: { direction: 'column' },
             gap: rem(2),
@@ -15057,19 +14654,11 @@ var $;
         Footer_col4: { flex: { direction: 'column' }, gap: rem(2) },
         Footer_sect_docs: { flex: { direction: 'column' }, gap: rem(0.75) },
         Footer_sect_about: { flex: { direction: 'column' }, gap: rem(0.75) },
-        Footer_sect_support: { flex: { direction: 'column' }, gap: rem(0.75) },
         Footer_sect_resources: { flex: { direction: 'column' }, gap: rem(0.75) },
-        Footer_sect_courses: { flex: { direction: 'column' }, gap: rem(0.75) },
-        Footer_sect_help: { flex: { direction: 'column' }, gap: rem(0.75) },
-        Footer_sect_news: { flex: { direction: 'column' }, gap: rem(0.75) },
         Footer_sect_libs: { flex: { direction: 'column' }, gap: rem(0.75) },
         Footer_sect_docs_title: { font: { size: rem(1), weight: 700 }, padding: { bottom: rem(0.25) } },
         Footer_sect_about_title: { font: { size: rem(1), weight: 700 }, padding: { bottom: rem(0.25) } },
-        Footer_sect_support_title: { font: { size: rem(1), weight: 700 }, padding: { bottom: rem(0.25) } },
         Footer_sect_resources_title: { font: { size: rem(1), weight: 700 }, padding: { bottom: rem(0.25) } },
-        Footer_sect_courses_title: { font: { size: rem(1), weight: 700 }, padding: { bottom: rem(0.25) } },
-        Footer_sect_help_title: { font: { size: rem(1), weight: 700 }, padding: { bottom: rem(0.25) } },
-        Footer_sect_news_title: { font: { size: rem(1), weight: 700 }, padding: { bottom: rem(0.25) } },
         Footer_sect_libs_title: { font: { size: rem(1), weight: 700 }, padding: { bottom: rem(0.25) } },
         Footer_copy: {
             flex: { direction: 'column' },
