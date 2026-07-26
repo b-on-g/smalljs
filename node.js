@@ -14583,6 +14583,10 @@ var $;
             font: { size: rem(1.0625) },
             background: { color: $bog_builderui_tokens.card },
             border: { bottom: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+            // round top corners so the field follows the panel's rounding (its square
+            // corners were filling the panel's rounded top and making it look square)
+            borderTopLeftRadius: rem(0.75),
+            borderTopRightRadius: rem(0.75),
             color: $bog_builderui_tokens.text,
         },
         Hint: {
