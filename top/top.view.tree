@@ -4,7 +4,6 @@ $bog_smalljs_top $mol_view
 	logo_uri \bog/smalljs/assets/logo.svg
 	search_click? null
 	nav_pick? null
-	lang_open? null
 	sub /
 		<= Logo $mol_link
 			arg *
@@ -138,6 +137,10 @@ $bog_smalljs_top $mol_view
 										section \docs
 										page \releases
 									event_click? <=> nav_pick?
+								<= About_telegram $mol_link
+									title @ \Telegram
+									uri \https://t.me/giper_dev
+									event_click? <=> nav_pick?
 		<= Burger $mol_pick
 			hint @ \Menu
 			align \bottom_right
@@ -240,13 +243,25 @@ $bog_smalljs_top $mol_view
 										section \docs
 										page \releases
 									event_click? <=> nav_pick?
-		<= Lang $mol_button_minor
+								<= M_about_telegram $mol_link
+									title @ \Telegram
+									uri \https://t.me/giper_dev
+									event_click? <=> nav_pick?
+		<= Lang_pick $mol_pick
 			hint @ \Language
-			click? <=> lang_open?
-			sub /
+			align \bottom_right
+			trigger_content /
 				<= Lang_icon $mol_icon_translate
 				<= lang_label \EN
+				<= Lang_chevron $mol_icon_chevron_down
+			bubble_content /
+				<= Lang_menu $mol_view
+					sub <= lang_options /
 		<= Theme_toggle $bog_theme_switch
 			theme_auto <= Theme
 		<= Github $mol_link_source
 			uri <= github_uri
+	Lang_option* $mol_button_minor
+		sub /
+			<= lang_option_label* \
+			<= Lang_option_check* $mol_icon_check

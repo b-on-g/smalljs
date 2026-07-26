@@ -144,6 +144,10 @@ $bog_smalljs_landing $mol_view
 											title @ \UI Components
 											uri \https://mol.hyoo.ru/
 											target \_blank
+										<= Footer_link_telegram $mol_link
+											title @ \Telegram
+											uri \https://t.me/giper_dev
+											target \_blank
 										<= Footer_link_dev $mol_link
 											title @ \DEV Community
 											uri \https://dev.to/t/mol

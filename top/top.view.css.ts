@@ -171,15 +171,57 @@ namespace $ {
 			letterSpacing: rem(0.03),
 		},
 
-		Lang: {
+		Lang_pick: {
 			flex: { shrink: 0 },
-			gap: rem(0.25),
-			padding: { left: rem(0.5), right: rem(0.5), top: rem(0.4), bottom: rem(0.4) },
+
+			// the pick's trigger is a $mol_check anchor
+			$mol_check: {
+				flex: { direction: 'row' },
+				align: { items: 'center' },
+				gap: rem(0.25),
+				padding: { left: rem(0.5), right: rem(0.5), top: rem(0.4), bottom: rem(0.4) },
+				border: { radius: rem(0.375) },
+				font: { size: rem(0.8125), weight: 500 },
+			},
 		},
 
 		Lang_icon: {
 			width: rem(1.125),
 			height: rem(1.125),
+		},
+
+		Lang_chevron: { width: rem(0.875), height: rem(0.875) },
+
+		Lang_menu: {
+			flex: { direction: 'column' },
+			gap: rem(0.125),
+			padding: { top: rem(0.5), bottom: rem(0.5), left: rem(0.5), right: rem(0.5) },
+			minWidth: rem(9),
+			background: { color: $bog_builderui_tokens.card },
+			border: { radius: rem(0.5) },
+		},
+
+		Lang_option: {
+			flex: { direction: 'row', grow: 1 },
+			justify: { content: 'flex-start' },
+			align: { items: 'center' },
+			gap: rem(0.75),
+			padding: { top: rem(0.375), bottom: rem(0.375), left: rem(0.625), right: rem(0.625) },
+			border: { radius: rem(0.375) },
+			color: $bog_builderui_tokens.text,
+			font: { size: rem(0.875), weight: 500 },
+
+			':hover': {
+				background: { color: $bog_builderui_tokens.hover },
+				color: $bog_builderui_tokens.special,
+			},
+		},
+
+		Lang_option_check: {
+			width: rem(1),
+			height: rem(1),
+			flex: { shrink: 0 },
+			color: $bog_builderui_tokens.special,
 		},
 
 		Github: {
