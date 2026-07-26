@@ -15173,6 +15173,8 @@ var $;
             lineHeight: '1.25',
             textAlign: 'center',
             maxWidth: rem(60),
+            // long words ("micromodule" / "микромодульный") must break, not overflow on phones
+            overflowWrap: 'break-word',
         },
         Hero_title_accent: {
             display: 'inline',
@@ -15300,7 +15302,7 @@ var $;
                     padding: { top: rem(2.5), bottom: 0, left: rem(1.25), right: rem(1.25) },
                 },
                 Hero_title: {
-                    font: { size: rem(2.5) },
+                    font: { size: rem(2) },
                 },
                 Hero_subtitle: {
                     font: { size: rem(1.0625) },
