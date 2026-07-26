@@ -142,7 +142,7 @@ $bog_smalljs_landing $mol_view
 												page \
 										<= Footer_link_ui $mol_link
 											title @ \UI Components
-											uri \https://mol.hyoo.ru/
+											uri \https://mol.hyoo.ru/#!section=demos
 											target \_blank
 										<= Footer_link_telegram $mol_link
 											title @ \Telegram

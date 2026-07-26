@@ -81,7 +81,7 @@ $bog_smalljs_top $mol_view
 							sub /
 								<= Eco_components $mol_link
 									title @ \UI Components
-									uri \https://mol.hyoo.ru/
+									uri \https://mol.hyoo.ru/#!section=demos
 									event_click? <=> nav_pick?
 								<= Eco_libs_title $mol_view
 									sub /
@@ -193,7 +193,7 @@ $bog_smalljs_top $mol_view
 							content /
 								<= M_eco_components $mol_link
 									title @ \UI Components
-									uri \https://mol.hyoo.ru/
+									uri \https://mol.hyoo.ru/#!section=demos
 									event_click? <=> nav_pick?
 								<= M_eco_libs_title $mol_view
 									sub /
