@@ -1,0 +1,45 @@
+# smalljs
+
+> Documentation for $mol — a reactive UI framework with typed views, automatic reactivity, and no virtual DOM. Each page below is available as raw Markdown at the linked URL.
+
+## Getting Started
+
+- [Introduction](https://b-on-g.github.io/smalljs/docs/introduction.md): What $mol is, who it is for, and a taste of reactive views.
+- [Getting Started](https://b-on-g.github.io/smalljs/docs/getting-started.md): From an empty folder to a running, reactive $mol app in under 15 minutes.
+
+## Essentials
+
+- [Installation](https://b-on-g.github.io/smalljs/docs/installation.md): The MAM workspace, module layout, dev server, and production build.
+- [Views](https://b-on-g.github.io/smalljs/docs/views.md): Declaring and composing components with the view.tree language.
+- [State & Reactivity](https://b-on-g.github.io/smalljs/docs/state.md): Reactive properties, actions vs. computations, keyed and async state.
+- [Routing](https://b-on-g.github.io/smalljs/docs/routing.md): The URL as reactive state: screens, links, and multiple parameters.
+- [Rendering](https://b-on-g.github.io/smalljs/docs/rendering.md): No virtual DOM, lazy components, and virtualized rendering — plus reproducible benchmarks.
+
+## Data
+
+- [Data Fetching](https://b-on-g.github.io/smalljs/docs/data.md): Loading remote data with reactive async properties and loading states.
+- [Giper Baza](https://b-on-g.github.io/smalljs/docs/giper-baza.md): Local-first data with automatic sync: entities, atoms, and CRUD.
+
+## More
+
+- [Showcase](https://b-on-g.github.io/smalljs/docs/showcase.md): Real apps and tools built with $mol, from community platforms to devtools.
+- [From React, Vue & Svelte](https://b-on-g.github.io/smalljs/docs/rosetta.md): A concept translation table for developers coming from other frameworks.
+
+## API
+
+- [$mol_button_major](https://b-on-g.github.io/smalljs/docs/api-mol-button-major.md): API reference for $mol_button_major.
+- [$mol_button_minor](https://b-on-g.github.io/smalljs/docs/api-mol-button-minor.md): API reference for $mol_button_minor.
+- [$mol_string](https://b-on-g.github.io/smalljs/docs/api-mol-string.md): API reference for $mol_string.
+- [$mol_number](https://b-on-g.github.io/smalljs/docs/api-mol-number.md): API reference for $mol_number.
+- [$mol_text](https://b-on-g.github.io/smalljs/docs/api-mol-text.md): API reference for $mol_text.
+- [$mol_paragraph](https://b-on-g.github.io/smalljs/docs/api-mol-paragraph.md): API reference for $mol_paragraph.
+- [$mol_list](https://b-on-g.github.io/smalljs/docs/api-mol-list.md): API reference for $mol_list.
+- [$mol_row](https://b-on-g.github.io/smalljs/docs/api-mol-row.md): API reference for $mol_row.
+- [$mol_link](https://b-on-g.github.io/smalljs/docs/api-mol-link.md): API reference for $mol_link.
+- [$mol_check](https://b-on-g.github.io/smalljs/docs/api-mol-check.md): API reference for $mol_check.
+- [$mol_switch](https://b-on-g.github.io/smalljs/docs/api-mol-switch.md): API reference for $mol_switch.
+- [$mol_select](https://b-on-g.github.io/smalljs/docs/api-mol-select.md): API reference for $mol_select.
+- [$mol_scroll](https://b-on-g.github.io/smalljs/docs/api-mol-scroll.md): API reference for $mol_scroll.
+- [$mol_page](https://b-on-g.github.io/smalljs/docs/api-mol-page.md): API reference for $mol_page.
+- [$mol_pick](https://b-on-g.github.io/smalljs/docs/api-mol-pick.md): API reference for $mol_pick.
+

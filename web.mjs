@@ -7742,7 +7742,7 @@ var $;
 		}
 		Search(){
 			const obj = new this.$.$mol_button_minor();
-			(obj.click) = (next) => ((this.search_open(next)));
+			(obj.click) = (next) => ((this.search_click(next)));
 			(obj.sub) = () => ([
 				(this.Search_icon()), 
 				(this.Search_label()), 
@@ -7760,35 +7760,35 @@ var $;
 		Docs_quickstart(){
 			const obj = new this.$.$mol_link();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Docs_quickstart_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "quick-start"});
+			(obj.arg) = () => ({"section": "docs", "page": "getting-started"});
 			(obj.event_click) = (next) => ((this.nav_pick(next)));
 			return obj;
 		}
 		Docs_guide(){
 			const obj = new this.$.$mol_link();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Docs_guide_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "guide"});
+			(obj.arg) = () => ({"section": "docs", "page": "views"});
 			(obj.event_click) = (next) => ((this.nav_pick(next)));
 			return obj;
 		}
 		Docs_tutorial(){
 			const obj = new this.$.$mol_link();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Docs_tutorial_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "tutorial"});
+			(obj.arg) = () => ({"section": "course", "page": null});
 			(obj.event_click) = (next) => ((this.nav_pick(next)));
 			return obj;
 		}
 		Docs_examples(){
 			const obj = new this.$.$mol_link();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Docs_examples_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "examples"});
+			(obj.arg) = () => ({"section": "docs", "page": "showcase"});
 			(obj.event_click) = (next) => ((this.nav_pick(next)));
 			return obj;
 		}
 		Docs_api(){
 			const obj = new this.$.$mol_link();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Docs_api_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "api"});
+			(obj.arg) = () => ({"section": "docs", "page": "api-mol-string"});
 			(obj.event_click) = (next) => ((this.nav_pick(next)));
 			return obj;
 		}
@@ -8047,35 +8047,35 @@ var $;
 		M_docs_quickstart(){
 			const obj = new this.$.$mol_link();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_M_docs_quickstart_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "quick-start"});
+			(obj.arg) = () => ({"section": "docs", "page": "getting-started"});
 			(obj.event_click) = (next) => ((this.nav_pick(next)));
 			return obj;
 		}
 		M_docs_guide(){
 			const obj = new this.$.$mol_link();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_M_docs_guide_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "guide"});
+			(obj.arg) = () => ({"section": "docs", "page": "views"});
 			(obj.event_click) = (next) => ((this.nav_pick(next)));
 			return obj;
 		}
 		M_docs_tutorial(){
 			const obj = new this.$.$mol_link();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_M_docs_tutorial_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "tutorial"});
+			(obj.arg) = () => ({"section": "course", "page": null});
 			(obj.event_click) = (next) => ((this.nav_pick(next)));
 			return obj;
 		}
 		M_docs_examples(){
 			const obj = new this.$.$mol_link();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_M_docs_examples_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "examples"});
+			(obj.arg) = () => ({"section": "docs", "page": "showcase"});
 			(obj.event_click) = (next) => ((this.nav_pick(next)));
 			return obj;
 		}
 		M_docs_api(){
 			const obj = new this.$.$mol_link();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_M_docs_api_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "api"});
+			(obj.arg) = () => ({"section": "docs", "page": "api-mol-string"});
 			(obj.event_click) = (next) => ((this.nav_pick(next)));
 			return obj;
 		}
@@ -8302,7 +8302,7 @@ var $;
 		logo_uri(){
 			return "bog/smalljs/assets/logo.svg";
 		}
-		search_open(next){
+		search_click(next){
 			if(next !== undefined) return next;
 			return null;
 		}
@@ -8404,7 +8404,7 @@ var $;
 	($mol_mem(($.$bog_smalljs_top.prototype), "Lang"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Theme_toggle"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Github"));
-	($mol_mem(($.$bog_smalljs_top.prototype), "search_open"));
+	($mol_mem(($.$bog_smalljs_top.prototype), "search_click"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "nav_pick"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "lang_open"));
 
@@ -8609,9 +8609,434 @@ var $;
 })($ || ($ = {}));
 
 ;
-	($.$mol_icon_play) = class $mol_icon_play extends ($.$mol_icon) {
+	($.$mol_hotkey) = class $mol_hotkey extends ($.$mol_plugin) {
+		keydown(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		event(){
+			return {...(super.event()), "keydown": (next) => (this.keydown(next))};
+		}
+		key(){
+			return {};
+		}
+		mod_ctrl(){
+			return false;
+		}
+		mod_alt(){
+			return false;
+		}
+		mod_shift(){
+			return false;
+		}
+	};
+	($mol_mem(($.$mol_hotkey.prototype), "keydown"));
+
+
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        /**
+         * Plugin which adds handlers for keyboard keys.
+         * @see [mol_keyboard_code](../keyboard/code/code.ts)
+         */
+        class $mol_hotkey extends $.$mol_hotkey {
+            key() {
+                return super.key();
+            }
+            keydown(event) {
+                if (!event)
+                    return;
+                if (event.defaultPrevented)
+                    return;
+                let name = $mol_keyboard_code[event.keyCode];
+                if (this.mod_ctrl() !== (event.ctrlKey || event.metaKey))
+                    return;
+                if (this.mod_alt() !== event.altKey)
+                    return;
+                if (this.mod_shift() !== event.shiftKey)
+                    return;
+                const handle = this.key()[name];
+                if (handle)
+                    handle(event);
+            }
+        }
+        $$.$mol_hotkey = $mol_hotkey;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+	($.$mol_string) = class $mol_string extends ($.$mol_view) {
+		selection_watcher(){
+			return null;
+		}
+		error_report(){
+			return null;
+		}
+		disabled(){
+			return false;
+		}
+		value(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		value_changed(next){
+			return (this.value(next));
+		}
+		hint(){
+			return "";
+		}
+		hint_visible(){
+			return (this.hint());
+		}
+		spellcheck(){
+			return true;
+		}
+		autocomplete_native(){
+			return "";
+		}
+		selection_end(){
+			return 0;
+		}
+		selection_start(){
+			return 0;
+		}
+		keyboard(){
+			return "text";
+		}
+		enter(){
+			return "go";
+		}
+		length_max(){
+			return +Infinity;
+		}
+		type(next){
+			if(next !== undefined) return next;
+			return "text";
+		}
+		event_change(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		submit_with_ctrl(){
+			return false;
+		}
+		submit(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Submit(){
+			const obj = new this.$.$mol_hotkey();
+			(obj.mod_ctrl) = () => ((this.submit_with_ctrl()));
+			(obj.key) = () => ({"enter": (next) => (this.submit(next))});
+			return obj;
+		}
+		dom_name(){
+			return "input";
+		}
+		enabled(){
+			return true;
+		}
+		minimal_height(){
+			return 40;
+		}
+		autocomplete(){
+			return false;
+		}
+		selection(next){
+			if(next !== undefined) return next;
+			return [0, 0];
+		}
+		auto(){
+			return [(this.selection_watcher()), (this.error_report())];
+		}
+		field(){
+			return {
+				...(super.field()), 
+				"disabled": (this.disabled()), 
+				"value": (this.value_changed()), 
+				"placeholder": (this.hint_visible()), 
+				"spellcheck": (this.spellcheck()), 
+				"autocomplete": (this.autocomplete_native()), 
+				"selectionEnd": (this.selection_end()), 
+				"selectionStart": (this.selection_start()), 
+				"inputMode": (this.keyboard()), 
+				"enterkeyhint": (this.enter())
+			};
+		}
+		attr(){
+			return {
+				...(super.attr()), 
+				"maxlength": (this.length_max()), 
+				"type": (this.type())
+			};
+		}
+		event(){
+			return {...(super.event()), "input": (next) => (this.event_change(next))};
+		}
+		plugins(){
+			return [(this.Submit())];
+		}
+	};
+	($mol_mem(($.$mol_string.prototype), "value"));
+	($mol_mem(($.$mol_string.prototype), "type"));
+	($mol_mem(($.$mol_string.prototype), "event_change"));
+	($mol_mem(($.$mol_string.prototype), "submit"));
+	($mol_mem(($.$mol_string.prototype), "Submit"));
+	($mol_mem(($.$mol_string.prototype), "selection"));
+
+
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        /**
+         * An input field for entering single line text.
+         * @see https://mol.hyoo.ru/#!section=demos/demo=mol_string_demo
+         */
+        class $mol_string extends $.$mol_string {
+            event_change(next) {
+                if (!next)
+                    return;
+                const el = this.dom_node();
+                const from = el.selectionStart;
+                const to = el.selectionEnd;
+                try {
+                    el.value = this.value_changed(el.value);
+                }
+                catch (error) {
+                    const el = this.dom_node();
+                    if (error instanceof Error) {
+                        el.setCustomValidity(error.message);
+                        el.reportValidity();
+                    }
+                    $mol_fail_hidden(error);
+                }
+                if (to === null)
+                    return;
+                el.selectionEnd = to;
+                el.selectionStart = from;
+                this.selection_change(next);
+            }
+            error_report() {
+                try {
+                    if (this.focused())
+                        this.value();
+                }
+                catch (error) {
+                    const el = this.dom_node();
+                    if (error instanceof Error) {
+                        el.setCustomValidity(error.message);
+                        el.reportValidity();
+                    }
+                }
+            }
+            hint_visible() {
+                return (this.enabled() ? this.hint() : '') || ' ';
+            }
+            disabled() {
+                return !this.enabled();
+            }
+            autocomplete_native() {
+                return this.autocomplete() ? 'on' : 'off';
+            }
+            selection_watcher() {
+                return new $mol_dom_listener(this.$.$mol_dom_context.document, 'selectionchange', $mol_wire_async(event => this.selection_change(event)));
+            }
+            selection_change(event) {
+                const el = this.dom_node();
+                if (el !== this.$.$mol_dom_context.document.activeElement)
+                    return;
+                const [from, to] = this.selection([
+                    el.selectionStart,
+                    el.selectionEnd,
+                ]);
+                el.selectionEnd = to;
+                el.selectionStart = from;
+                if (to !== from && el.selectionEnd === el.selectionStart) {
+                    el.selectionEnd = to;
+                }
+            }
+            selection_start() {
+                const el = this.dom_node();
+                if (!this.focused())
+                    return undefined;
+                if (el.selectionStart == null)
+                    return undefined;
+                return this.selection()[0];
+            }
+            selection_end() {
+                const el = this.dom_node();
+                if (!this.focused())
+                    return undefined;
+                if (el.selectionEnd == null)
+                    return undefined;
+                return this.selection()[1];
+            }
+        }
+        __decorate([
+            $mol_action
+        ], $mol_string.prototype, "event_change", null);
+        __decorate([
+            $mol_mem
+        ], $mol_string.prototype, "error_report", null);
+        __decorate([
+            $mol_mem
+        ], $mol_string.prototype, "selection_watcher", null);
+        $$.$mol_string = $mol_string;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("mol/string/string.view.css", "[mol_string] {\n\tbox-sizing: border-box;\n\toutline-offset: 0;\n\tborder: none;\n\tborder-radius: var(--mol_gap_round);\n\twhite-space: pre-line;\n\toverflow: hidden;\n\ttext-overflow: ellipsis;\n\tpadding: var(--mol_gap_text);\n\ttext-align: left;\n\tposition: relative;\n\tfont: inherit;\n\tflex: 1 1 auto;\n\tbackground: transparent;\n\tmin-width: 0;\n\tcolor: inherit;\n\tbackground: var(--mol_theme_field);\n}\n\n[mol_string]:disabled:not(:placeholder-shown) {\n\tbackground-color: transparent;\n\tcolor: var(--mol_theme_text);\n}\n\n[mol_string]:where(:not(:disabled)) {\n\tbox-shadow: inset 0 0 0 1px var(--mol_theme_line);\n}\n\n[mol_string]:where(:not(:disabled)):hover {\n\tbox-shadow: inset 0 0 0 2px var(--mol_theme_line);\n\tz-index: var(--mol_layer_hover);\n}\n\n[mol_string]:focus {\n\toutline: none;\n\tz-index: var(--mol_layer_focus);\n\tcolor: var(--mol_theme_text);\n\tbox-shadow: inset 0 0 0 1px var(--mol_theme_focus);\n}\n\n[mol_string]::placeholder {\n\tcolor: var(--mol_theme_shade);\n}\n\n[mol_string]::-ms-clear {\n\tdisplay: none;\n}\n");
+})($ || ($ = {}));
+
+;
+	($.$bog_smalljs_search) = class $bog_smalljs_search extends ($.$mol_view) {
+		Escape(){
+			const obj = new this.$.$mol_hotkey();
+			(obj.key) = () => ({"escape": (next) => (this.close(next))});
+			return obj;
+		}
+		Backdrop(){
+			const obj = new this.$.$mol_view();
+			(obj.event) = () => ({"click": (next) => (this.close(next))});
+			return obj;
+		}
+		Field(){
+			const obj = new this.$.$mol_string();
+			(obj.value) = (next) => ((this.query(next)));
+			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_smalljs_search_Field_hint")));
+			return obj;
+		}
+		Hint(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.hint_text())]);
+			return obj;
+		}
+		result_rows(){
+			return [];
+		}
+		Results(){
+			const obj = new this.$.$mol_list();
+			(obj.rows) = () => ((this.result_rows()));
+			return obj;
+		}
+		Panel(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([
+				(this.Field()), 
+				(this.Hint()), 
+				(this.Results())
+			]);
+			return obj;
+		}
+		result_arg(id){
+			return {};
+		}
+		result_title(id){
+			return "";
+		}
+		Result_title(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.result_title(id))]);
+			return obj;
+		}
+		result_snippet(id){
+			return "";
+		}
+		Result_snippet(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.result_snippet(id))]);
+			return obj;
+		}
+		open(next){
+			if(next !== undefined) return next;
+			return false;
+		}
+		query(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		close(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		pick(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		attr(){
+			return {"bog_smalljs_search_open": (this.open())};
+		}
+		plugins(){
+			return [(this.Escape())];
+		}
+		sub(){
+			return [(this.Backdrop()), (this.Panel())];
+		}
+		Result(id){
+			const obj = new this.$.$mol_link();
+			(obj.arg) = () => ((this.result_arg(id)));
+			(obj.event_click) = (next) => ((this.pick(next)));
+			(obj.sub) = () => ([(this.Result_title(id)), (this.Result_snippet(id))]);
+			return obj;
+		}
+	};
+	($mol_mem(($.$bog_smalljs_search.prototype), "Escape"));
+	($mol_mem(($.$bog_smalljs_search.prototype), "Backdrop"));
+	($mol_mem(($.$bog_smalljs_search.prototype), "Field"));
+	($mol_mem(($.$bog_smalljs_search.prototype), "Hint"));
+	($mol_mem(($.$bog_smalljs_search.prototype), "Results"));
+	($mol_mem(($.$bog_smalljs_search.prototype), "Panel"));
+	($mol_mem_key(($.$bog_smalljs_search.prototype), "Result_title"));
+	($mol_mem_key(($.$bog_smalljs_search.prototype), "Result_snippet"));
+	($mol_mem(($.$bog_smalljs_search.prototype), "open"));
+	($mol_mem(($.$bog_smalljs_search.prototype), "query"));
+	($mol_mem(($.$bog_smalljs_search.prototype), "close"));
+	($mol_mem(($.$bog_smalljs_search.prototype), "pick"));
+	($mol_mem_key(($.$bog_smalljs_search.prototype), "Result"));
+
+
+;
+	($.$mol_button_major) = class $mol_button_major extends ($.$mol_button_minor) {
+		theme(){
+			return "$mol_theme_base";
+		}
+	};
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("mol/button/major/major.view.css", "[mol_button_major] {\n\tbackground-color: var(--mol_theme_back);\n\tcolor: var(--mol_theme_text);\n}\n");
+})($ || ($ = {}));
+
+;
+"use strict";
+
+
+;
+	($.$mol_icon_chevron_left) = class $mol_icon_chevron_left extends ($.$mol_icon) {
 		path(){
-			return "M8,5.14V19.14L19,12.14L8,5.14Z";
+			return "M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z";
 		}
 	};
 
@@ -8621,9 +9046,9 @@ var $;
 
 
 ;
-	($.$mol_icon_arrow_right) = class $mol_icon_arrow_right extends ($.$mol_icon) {
+	($.$mol_icon_chevron_right) = class $mol_icon_chevron_right extends ($.$mol_icon) {
 		path(){
-			return "M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z";
+			return "M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z";
 		}
 	};
 
@@ -8633,16 +9058,267 @@ var $;
 
 
 ;
-	($.$mol_icon_open_in_new) = class $mol_icon_open_in_new extends ($.$mol_icon) {
-		path(){
-			return "M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z";
+	($.$mol_number) = class $mol_number extends ($.$mol_view) {
+		precision(){
+			return 1;
+		}
+		event_dec(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		event_inc(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		event_dec_boost(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		event_inc_boost(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Hotkey(){
+			const obj = new this.$.$mol_hotkey();
+			(obj.key) = () => ({
+				"down": (next) => (this.event_dec(next)), 
+				"up": (next) => (this.event_inc(next)), 
+				"pageDown": (next) => (this.event_dec_boost(next)), 
+				"pageUp": (next) => (this.event_inc_boost(next))
+			});
+			return obj;
+		}
+		dec_enabled(){
+			return (this.enabled());
+		}
+		dec_icon(){
+			const obj = new this.$.$mol_icon_chevron_left();
+			return obj;
+		}
+		Dec(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.event_click) = (next) => ((this.event_dec(next)));
+			(obj.enabled) = () => ((this.dec_enabled()));
+			(obj.sub) = () => ([(this.dec_icon())]);
+			return obj;
+		}
+		type(){
+			return "text";
+		}
+		value_string(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		hint(){
+			return " ";
+		}
+		string_enabled(){
+			return (this.enabled());
+		}
+		submit(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		String(){
+			const obj = new this.$.$mol_string();
+			(obj.type) = () => ((this.type()));
+			(obj.keyboard) = () => ("decimal");
+			(obj.value) = (next) => ((this.value_string(next)));
+			(obj.hint) = () => ((this.hint()));
+			(obj.enabled) = () => ((this.string_enabled()));
+			(obj.submit) = (next) => ((this.submit(next)));
+			return obj;
+		}
+		inc_enabled(){
+			return (this.enabled());
+		}
+		inc_icon(){
+			const obj = new this.$.$mol_icon_chevron_right();
+			return obj;
+		}
+		Inc(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.event_click) = (next) => ((this.event_inc(next)));
+			(obj.enabled) = () => ((this.inc_enabled()));
+			(obj.sub) = () => ([(this.inc_icon())]);
+			return obj;
+		}
+		precision_view(){
+			return (this.precision());
+		}
+		precision_change(){
+			return (this.precision());
+		}
+		boost(){
+			return 10;
+		}
+		value_min(){
+			return -Infinity;
+		}
+		value_max(){
+			return +Infinity;
+		}
+		value(next){
+			if(next !== undefined) return next;
+			return +NaN;
+		}
+		enabled(){
+			return true;
+		}
+		plugins(){
+			return [(this.Hotkey())];
+		}
+		sub(){
+			return [
+				(this.Dec()), 
+				(this.String()), 
+				(this.Inc())
+			];
 		}
 	};
+	($mol_mem(($.$mol_number.prototype), "event_dec"));
+	($mol_mem(($.$mol_number.prototype), "event_inc"));
+	($mol_mem(($.$mol_number.prototype), "event_dec_boost"));
+	($mol_mem(($.$mol_number.prototype), "event_inc_boost"));
+	($mol_mem(($.$mol_number.prototype), "Hotkey"));
+	($mol_mem(($.$mol_number.prototype), "dec_icon"));
+	($mol_mem(($.$mol_number.prototype), "Dec"));
+	($mol_mem(($.$mol_number.prototype), "value_string"));
+	($mol_mem(($.$mol_number.prototype), "submit"));
+	($mol_mem(($.$mol_number.prototype), "String"));
+	($mol_mem(($.$mol_number.prototype), "inc_icon"));
+	($mol_mem(($.$mol_number.prototype), "Inc"));
+	($mol_mem(($.$mol_number.prototype), "value"));
 
 
 ;
 "use strict";
+var $;
+(function ($) {
+    $mol_style_attach("mol/number/number.css", "[mol_number] {\n\tdisplay: flex;\n\tflex: 0 1 auto;\n\tposition: relative;\n\talign-items: stretch;\n\tmax-width: 100%;\n}\n\n[mol_number_string] {\n\tappearance: textfield;\n\tflex: 1 1 7rem;\n\twidth: 7rem;\n}\n\n[mol_number_string]::-webkit-inner-spin-button {\n\tdisplay: none;\n}\n");
+})($ || ($ = {}));
 
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        /**
+         * Component for entering, incrementing and decrementing numeric values.
+         * @see https://mol.hyoo.ru/#!section=demos/demo=mol_number_demo
+         */
+        class $mol_number extends $.$mol_number {
+            value_limited(val) {
+                if (Number.isNaN(val))
+                    return this.value(val);
+                if (val === undefined)
+                    return this.value();
+                const min = this.value_min();
+                const max = this.value_max();
+                if (val < min)
+                    return this.value(min);
+                if (val > max)
+                    return this.value(max);
+                return this.value(val);
+            }
+            event_dec(next) {
+                this.value_limited((this.value_limited() || 0) - this.precision_change());
+                next?.preventDefault();
+            }
+            event_inc(next) {
+                this.value_limited((this.value_limited() || 0) + this.precision_change());
+                next?.preventDefault();
+            }
+            event_dec_boost(next) {
+                this.value_limited((this.value_limited() || 0) - this.precision_change() * this.boost());
+                next?.preventDefault();
+            }
+            event_inc_boost(next) {
+                this.value_limited((this.value_limited() || 0) + this.precision_change() * this.boost());
+                next?.preventDefault();
+            }
+            round(val) {
+                if (Number.isNaN(val))
+                    return '';
+                if (val === 0)
+                    return '0';
+                if (!val)
+                    return '';
+                const precision_view = this.precision_view();
+                if (!precision_view)
+                    return val.toFixed();
+                if (precision_view >= 1) {
+                    return (val / precision_view).toFixed();
+                }
+                else {
+                    const fixed_number = Math.log10(1 / precision_view);
+                    return val.toFixed(Math.ceil(fixed_number));
+                }
+            }
+            value_string(next) {
+                // Вытягиваем value
+                // Если кто-то поменяет из вне value, value_string надо обновить
+                const current = this.round(this.value_limited());
+                if (next === undefined)
+                    return current;
+                const precision = this.precision_view();
+                // Точку в конце поставить нельзя, если precision_view целое число > 0
+                if (precision - Math.floor(precision) === 0)
+                    next = next.replace(/[.,]/g, '');
+                // Запятые меняем на точки, удаляем не-цифры и не-точки и лишние ноли в начале целой части.
+                // Минус получится ввести только в начале.
+                next = (this.value_min() < 0 && next.startsWith('-') ? '-' : '')
+                    + next.replace(/,/g, '.').replace(/[^\d\.]/g, '').replace(/^0{2,}/, '0');
+                let dot_pos = next.indexOf('.');
+                if (dot_pos !== -1) {
+                    const prev = $mol_wire_probe(() => this.value_string()) ?? '';
+                    const dot_pos_prev = prev.indexOf('.');
+                    // Определяем где относительно предыдущей точки юзер поставил новую
+                    if (dot_pos_prev === dot_pos)
+                        dot_pos = next.lastIndexOf('.');
+                    // Из частей до и после новой точки старую точку удаляем
+                    const frac = next.slice(dot_pos + 1).replace(/\./g, '');
+                    // Если точка идет первой, перед ней пишем 0, что бы форматирование выглядело нормально в mask
+                    next = (next.slice(0, dot_pos) || '0').replace(/\./g, '') + '.' + frac;
+                }
+                // Оставляем старое значение в value есть сочетание, приводящие к NaN, например -.
+                if (Number.isNaN(Number(next)))
+                    return next;
+                if (next.endsWith('.'))
+                    return next;
+                if (next.endsWith('-'))
+                    return next;
+                // Если пустая строка - сетим NaN
+                // Применяем округления.
+                this.value_limited(Number(next || Number.NaN));
+                // Возвращаем все-равно не нормализованное значение
+                // Иначе нельзя ввести будет 10, если min/max 5..10
+                return next;
+            }
+            dec_enabled() {
+                return this.enabled() && (!((this.value() || 0) <= this.value_min()));
+            }
+            inc_enabled() {
+                return this.enabled() && (!((this.value() || 0) >= this.value_max()));
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $mol_number.prototype, "value_string", null);
+        __decorate([
+            $mol_mem
+        ], $mol_number.prototype, "dec_enabled", null);
+        __decorate([
+            $mol_mem
+        ], $mol_number.prototype, "inc_enabled", null);
+        $$.$mol_number = $mol_number;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
 
 ;
 	($.$mol_paragraph) = class $mol_paragraph extends ($.$mol_view) {
@@ -11493,6 +12169,1089 @@ var $;
 })($ || ($ = {}));
 
 ;
+	($.$mol_row) = class $mol_row extends ($.$mol_view) {};
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("mol/row/row.view.css", "[mol_row] {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\talign-items: flex-start;\n\talign-content: flex-start;\n\tjustify-content: flex-start;\n\tpadding: var(--mol_gap_block);\n\tgap: var(--mol_gap_block);\n\tflex: 0 0 auto;\n\tbox-sizing: border-box;\n\tmax-width: 100%;\n}\n\n[mol_row] > * {\n\tmax-width: 100%;\n}\n");
+})($ || ($ = {}));
+
+;
+"use strict";
+
+
+;
+	($.$mol_check_list) = class $mol_check_list extends ($.$mol_view) {
+		option_checked(id, next){
+			if(next !== undefined) return next;
+			return false;
+		}
+		option_title(id){
+			return "";
+		}
+		option_label(id){
+			return [(this.option_title(id))];
+		}
+		enabled(){
+			return true;
+		}
+		option_enabled(id){
+			return (this.enabled());
+		}
+		option_hint(id){
+			return "";
+		}
+		items(){
+			return [];
+		}
+		dictionary(){
+			return {};
+		}
+		Option(id){
+			const obj = new this.$.$mol_check();
+			(obj.checked) = (next) => ((this.option_checked(id, next)));
+			(obj.label) = () => ((this.option_label(id)));
+			(obj.enabled) = () => ((this.option_enabled(id)));
+			(obj.hint) = () => ((this.option_hint(id)));
+			(obj.minimal_height) = () => (24);
+			return obj;
+		}
+		options(){
+			return {};
+		}
+		keys(){
+			return [];
+		}
+		sub(){
+			return (this.items());
+		}
+	};
+	($mol_mem_key(($.$mol_check_list.prototype), "option_checked"));
+	($mol_mem_key(($.$mol_check_list.prototype), "Option"));
+
+
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        /**
+         * List of checkboxes
+         * @see https://mol.hyoo.ru/#!section=demos/demo=mol_check_list_demo
+         */
+        class $mol_check_list extends $.$mol_check_list {
+            options() {
+                return {};
+            }
+            dictionary(next) {
+                return next ?? {};
+            }
+            option_checked(id, next) {
+                const prev = this.dictionary();
+                if (next === undefined)
+                    return prev[id] ?? null;
+                const next_rec = { ...prev, [id]: next };
+                if (next === null)
+                    delete next_rec[id];
+                return this.dictionary(next_rec)[id] ?? null;
+            }
+            keys() {
+                return Object.keys(this.options());
+            }
+            items() {
+                return this.keys().map(key => this.Option(key));
+            }
+            option_title(key) {
+                return this.options()[key] || key;
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $mol_check_list.prototype, "keys", null);
+        __decorate([
+            $mol_mem
+        ], $mol_check_list.prototype, "items", null);
+        $$.$mol_check_list = $mol_check_list;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("mol/check/list/list.view.css", "[mol_check_list] {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\tflex: 1 1 auto;\n\tborder-radius: var(--mol_gap_round);\n\tgap: 1px;\n}\n\n[mol_check_list_option] {\n\tflex: 0 1 auto;\n}\n\n[mol_check_list_option]:where([mol_check_checked=\"true\"]) {\n\ttext-shadow: 0 0;\n\tcolor: var(--mol_theme_current);\n}\n\n[mol_check_list_option]:where([mol_check_checked=\"true\"][disabled]) {\n\tcolor: var(--mol_theme_text);\n}\n");
+})($ || ($ = {}));
+
+;
+	($.$mol_switch) = class $mol_switch extends ($.$mol_check_list) {
+		value(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+	};
+	($mol_mem(($.$mol_switch.prototype), "value"));
+
+
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        /**
+         * Buttons which switching the state
+         * @see https://mol.hyoo.ru/#!section=demos/demo=mol_switch_demo
+         */
+        class $mol_switch extends $.$mol_switch {
+            value(next) {
+                return $mol_state_session.value(`${this}.value()`, next) ?? '';
+            }
+            option_checked(key, next) {
+                if (next === undefined)
+                    return this.value() == key;
+                this.value(next ? key : '');
+                return next;
+            }
+        }
+        $$.$mol_switch = $mol_switch;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+	($.$mol_nav) = class $mol_nav extends ($.$mol_plugin) {
+		event_key(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		cycle(next){
+			if(next !== undefined) return next;
+			return false;
+		}
+		mod_ctrl(){
+			return false;
+		}
+		mod_shift(){
+			return false;
+		}
+		mod_alt(){
+			return false;
+		}
+		keys_x(next){
+			if(next !== undefined) return next;
+			return [];
+		}
+		keys_y(next){
+			if(next !== undefined) return next;
+			return [];
+		}
+		current_x(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		current_y(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		event_up(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		event_down(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		event_left(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		event_right(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		event(){
+			return {...(super.event()), "keydown": (next) => (this.event_key(next))};
+		}
+	};
+	($mol_mem(($.$mol_nav.prototype), "event_key"));
+	($mol_mem(($.$mol_nav.prototype), "cycle"));
+	($mol_mem(($.$mol_nav.prototype), "keys_x"));
+	($mol_mem(($.$mol_nav.prototype), "keys_y"));
+	($mol_mem(($.$mol_nav.prototype), "current_x"));
+	($mol_mem(($.$mol_nav.prototype), "current_y"));
+	($mol_mem(($.$mol_nav.prototype), "event_up"));
+	($mol_mem(($.$mol_nav.prototype), "event_down"));
+	($mol_mem(($.$mol_nav.prototype), "event_left"));
+	($mol_mem(($.$mol_nav.prototype), "event_right"));
+
+
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        /**
+         * Plugin which can navigate in list of items
+         * @see https://mol.hyoo.ru/#!section=demos/demo=mol_nav_demo
+         */
+        class $mol_nav extends $.$mol_nav {
+            event_key(event) {
+                if (!event)
+                    return event;
+                if (event.defaultPrevented)
+                    return;
+                if (this.mod_ctrl() && !event.ctrlKey)
+                    return;
+                if (this.mod_shift() && !event.shiftKey)
+                    return;
+                if (this.mod_alt() && !event.altKey)
+                    return;
+                switch (event.keyCode) {
+                    case $mol_keyboard_code.up: return this.event_up(event);
+                    case $mol_keyboard_code.down: return this.event_down(event);
+                    case $mol_keyboard_code.left: return this.event_left(event);
+                    case $mol_keyboard_code.right: return this.event_right(event);
+                    case $mol_keyboard_code.pageUp: return this.event_up(event);
+                    case $mol_keyboard_code.pageDown: return this.event_down(event);
+                }
+            }
+            event_up(event) {
+                if (!event)
+                    return event;
+                const keys = this.keys_y();
+                if (keys.length < 1)
+                    return;
+                const index_y = this.index_y();
+                const index_old = index_y === null ? 0 : index_y;
+                const index_new = (index_old + keys.length - 1) % keys.length;
+                event.preventDefault();
+                if (index_old === 0 && !this.cycle())
+                    return;
+                this.current_y(this.keys_y()[index_new]);
+            }
+            event_down(event) {
+                if (!event)
+                    return event;
+                const keys = this.keys_y();
+                if (keys.length < 1)
+                    return;
+                const index_y = this.index_y();
+                const index_old = index_y === null ? keys.length - 1 : index_y;
+                const index_new = (index_old + 1) % keys.length;
+                event.preventDefault();
+                if (index_new === 0 && !this.cycle())
+                    return;
+                this.current_y(this.keys_y()[index_new]);
+            }
+            event_left(event) {
+                if (!event)
+                    return event;
+                const keys = this.keys_x();
+                if (keys.length < 1)
+                    return;
+                const index_x = this.index_x();
+                const index_old = index_x === null ? 0 : index_x;
+                const index_new = (index_old + keys.length - 1) % keys.length;
+                event.preventDefault();
+                if (index_old === 0 && !this.cycle())
+                    return;
+                this.current_x(this.keys_x()[index_new]);
+            }
+            event_right(event) {
+                if (!event)
+                    return event;
+                const keys = this.keys_x();
+                if (keys.length < 1)
+                    return;
+                const index_x = this.index_x();
+                const index_old = index_x === null ? keys.length - 1 : index_x;
+                const index_new = (index_old + 1) % keys.length;
+                event.preventDefault();
+                if (index_new === 0 && !this.cycle())
+                    return;
+                this.current_x(this.keys_x()[index_new]);
+            }
+            index_y() {
+                let index = this.keys_y().indexOf(this.current_y());
+                if (index < 0)
+                    return null;
+                return index;
+            }
+            index_x() {
+                let index = this.keys_x().indexOf(this.current_x());
+                if (index < 0)
+                    return null;
+                return index;
+            }
+        }
+        $$.$mol_nav = $mol_nav;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+	($.$mol_icon_close) = class $mol_icon_close extends ($.$mol_icon) {
+		path(){
+			return "M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z";
+		}
+	};
+
+
+;
+"use strict";
+
+
+;
+	($.$mol_search) = class $mol_search extends ($.$mol_pop) {
+		clear(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Hotkey(){
+			const obj = new this.$.$mol_hotkey();
+			(obj.key) = () => ({"escape": (next) => (this.clear(next))});
+			return obj;
+		}
+		nav_components(){
+			return [];
+		}
+		nav_focused(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Nav(){
+			const obj = new this.$.$mol_nav();
+			(obj.keys_y) = () => ((this.nav_components()));
+			(obj.current_y) = (next) => ((this.nav_focused(next)));
+			return obj;
+		}
+		suggests_showed(next){
+			if(next !== undefined) return next;
+			return false;
+		}
+		query(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		hint(){
+			return (this.$.$mol_locale.text("$mol_search_hint"));
+		}
+		submit(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		enabled(){
+			return true;
+		}
+		keyboard(){
+			return "search";
+		}
+		enter(){
+			return "search";
+		}
+		bring(){
+			return (this.Query().bring());
+		}
+		Query(){
+			const obj = new this.$.$mol_string();
+			(obj.value) = (next) => ((this.query(next)));
+			(obj.hint) = () => ((this.hint()));
+			(obj.submit) = (next) => ((this.submit(next)));
+			(obj.enabled) = () => ((this.enabled()));
+			(obj.keyboard) = () => ((this.keyboard()));
+			(obj.enter) = () => ((this.enter()));
+			return obj;
+		}
+		Clear_icon(){
+			const obj = new this.$.$mol_icon_close();
+			return obj;
+		}
+		Clear(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.hint) = () => ((this.$.$mol_locale.text("$mol_search_Clear_hint")));
+			(obj.enabled) = () => ((this.enabled()));
+			(obj.click) = (next) => ((this.clear(next)));
+			(obj.sub) = () => ([(this.Clear_icon())]);
+			return obj;
+		}
+		anchor_content(){
+			return [(this.Query()), (this.Clear())];
+		}
+		menu_items(){
+			return [];
+		}
+		Menu(){
+			const obj = new this.$.$mol_list();
+			(obj.rows) = () => ((this.menu_items()));
+			return obj;
+		}
+		Bubble_pane(){
+			const obj = new this.$.$mol_scroll();
+			(obj.sub) = () => ([(this.Menu())]);
+			return obj;
+		}
+		suggest_select(id, next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		suggest_label(id){
+			return "";
+		}
+		Suggest_label(id){
+			const obj = new this.$.$mol_dimmer();
+			(obj.haystack) = () => ((this.suggest_label(id)));
+			(obj.needle) = () => ((this.query()));
+			return obj;
+		}
+		suggest_content(id){
+			return [(this.Suggest_label(id))];
+		}
+		suggests(){
+			return [];
+		}
+		plugins(){
+			return [
+				...(super.plugins()), 
+				(this.Hotkey()), 
+				(this.Nav())
+			];
+		}
+		showed(next){
+			return (this.suggests_showed(next));
+		}
+		align_hor(){
+			return "right";
+		}
+		Anchor(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.anchor_content()));
+			return obj;
+		}
+		bubble_content(){
+			return [(this.Bubble_pane())];
+		}
+		Suggest(id){
+			const obj = new this.$.$mol_button_minor();
+			(obj.click) = (next) => ((this.suggest_select(id, next)));
+			(obj.sub) = () => ((this.suggest_content(id)));
+			return obj;
+		}
+	};
+	($mol_mem(($.$mol_search.prototype), "clear"));
+	($mol_mem(($.$mol_search.prototype), "Hotkey"));
+	($mol_mem(($.$mol_search.prototype), "nav_focused"));
+	($mol_mem(($.$mol_search.prototype), "Nav"));
+	($mol_mem(($.$mol_search.prototype), "suggests_showed"));
+	($mol_mem(($.$mol_search.prototype), "query"));
+	($mol_mem(($.$mol_search.prototype), "submit"));
+	($mol_mem(($.$mol_search.prototype), "Query"));
+	($mol_mem(($.$mol_search.prototype), "Clear_icon"));
+	($mol_mem(($.$mol_search.prototype), "Clear"));
+	($mol_mem(($.$mol_search.prototype), "Menu"));
+	($mol_mem(($.$mol_search.prototype), "Bubble_pane"));
+	($mol_mem_key(($.$mol_search.prototype), "suggest_select"));
+	($mol_mem_key(($.$mol_search.prototype), "Suggest_label"));
+	($mol_mem(($.$mol_search.prototype), "Anchor"));
+	($mol_mem_key(($.$mol_search.prototype), "Suggest"));
+
+
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        /**
+         * Search input with suggest and clear button.
+         * @see https://mol.hyoo.ru/#!section=demos/demo=mol_search_demo
+         */
+        class $mol_search extends $.$mol_search {
+            anchor_content() {
+                return [
+                    this.Query(),
+                    ...this.query() ? [this.Clear()] : [],
+                ];
+            }
+            suggests_showed(next = true) {
+                this.query();
+                if (!this.focused())
+                    return false;
+                return next;
+            }
+            suggest_selected(next) {
+                if (next === undefined)
+                    return;
+                this.query(next);
+                this.Query().focused(true);
+            }
+            nav_components() {
+                return [
+                    this.Query(),
+                    ...this.menu_items(),
+                ];
+            }
+            nav_focused(component) {
+                if (!this.focused())
+                    return null;
+                if (component == null) {
+                    for (let comp of this.nav_components()) {
+                        if (comp && comp.focused())
+                            return comp;
+                    }
+                    return null;
+                }
+                if (this.suggests_showed()) {
+                    this.ensure_visible(component, "center");
+                    component.focused(true);
+                }
+                return component;
+            }
+            suggest_label(key) {
+                return key;
+            }
+            menu_items() {
+                return this.suggests().map((suggest) => this.Suggest(suggest));
+            }
+            suggest_select(id, event) {
+                this.query(id);
+                this.Query().selection([id.length, id.length]);
+                this.Query().focused(true);
+            }
+            clear(event) {
+                this.query('');
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $mol_search.prototype, "anchor_content", null);
+        __decorate([
+            $mol_mem
+        ], $mol_search.prototype, "suggests_showed", null);
+        __decorate([
+            $mol_mem
+        ], $mol_search.prototype, "nav_focused", null);
+        __decorate([
+            $mol_mem
+        ], $mol_search.prototype, "menu_items", null);
+        $$.$mol_search = $mol_search;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("mol/search/search.view.css", "[mol_search] {\n\talign-self: flex-start;\n\tflex: auto;\n}\n\n[mol_search_anchor] {\n\tflex: 1 1 auto;\n}\n\n[mol_search_query] {\n\tflex-grow: 1;\n}\n\n[mol_search_menu] {\n\tmin-height: .75rem;\n\tdisplay: flex;\n}\n\n[mol_search_suggest] {\n\ttext-align: left;\n}\n\n[mol_search_suggest_label_high] {\n\tcolor: var(--mol_theme_shade);\n\ttext-shadow: none;\n}\n");
+})($ || ($ = {}));
+
+;
+	($.$mol_icon_dots_vertical) = class $mol_icon_dots_vertical extends ($.$mol_icon) {
+		path(){
+			return "M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z";
+		}
+	};
+
+
+;
+"use strict";
+
+
+;
+	($.$mol_select) = class $mol_select extends ($.$mol_pick) {
+		enabled(){
+			return true;
+		}
+		event_select(id, next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		option_label(id){
+			return "";
+		}
+		filter_pattern(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		Option_label(id){
+			const obj = new this.$.$mol_dimmer();
+			(obj.haystack) = () => ((this.option_label(id)));
+			(obj.needle) = () => ((this.filter_pattern()));
+			return obj;
+		}
+		option_content(id){
+			return [(this.Option_label(id))];
+		}
+		no_options_message(){
+			return (this.$.$mol_locale.text("$mol_select_no_options_message"));
+		}
+		nav_components(){
+			return [];
+		}
+		option_focused(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		nav_cycle(next){
+			if(next !== undefined) return next;
+			return true;
+		}
+		Nav(){
+			const obj = new this.$.$mol_nav();
+			(obj.keys_y) = () => ((this.nav_components()));
+			(obj.current_y) = (next) => ((this.option_focused(next)));
+			(obj.cycle) = (next) => ((this.nav_cycle(next)));
+			return obj;
+		}
+		menu_content(){
+			return [];
+		}
+		Menu(){
+			const obj = new this.$.$mol_list();
+			(obj.rows) = () => ((this.menu_content()));
+			return obj;
+		}
+		Bubble_pane(){
+			const obj = new this.$.$mol_scroll();
+			(obj.sub) = () => ([(this.Menu())]);
+			return obj;
+		}
+		filter_hint(){
+			return (this.$.$mol_locale.text("$mol_select_filter_hint"));
+		}
+		submit(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		dictionary(next){
+			if(next !== undefined) return next;
+			return {};
+		}
+		options(){
+			return [];
+		}
+		value(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		option_label_default(){
+			return "";
+		}
+		Option_row(id){
+			const obj = new this.$.$mol_button_minor();
+			(obj.enabled) = () => ((this.enabled()));
+			(obj.event_click) = (next) => ((this.event_select(id, next)));
+			(obj.sub) = () => ((this.option_content(id)));
+			return obj;
+		}
+		No_options(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.no_options_message())]);
+			return obj;
+		}
+		plugins(){
+			return [...(super.plugins()), (this.Nav())];
+		}
+		hint(){
+			return (this.$.$mol_locale.text("$mol_select_hint"));
+		}
+		bubble_content(){
+			return [(this.Filter()), (this.Bubble_pane())];
+		}
+		Filter(){
+			const obj = new this.$.$mol_search();
+			(obj.query) = (next) => ((this.filter_pattern(next)));
+			(obj.hint) = () => ((this.filter_hint()));
+			(obj.submit) = (next) => ((this.submit(next)));
+			(obj.enabled) = () => ((this.enabled()));
+			return obj;
+		}
+		Trigger_icon(){
+			const obj = new this.$.$mol_icon_dots_vertical();
+			return obj;
+		}
+		trigger_enabled(){
+			return (this.enabled());
+		}
+	};
+	($mol_mem_key(($.$mol_select.prototype), "event_select"));
+	($mol_mem(($.$mol_select.prototype), "filter_pattern"));
+	($mol_mem_key(($.$mol_select.prototype), "Option_label"));
+	($mol_mem(($.$mol_select.prototype), "option_focused"));
+	($mol_mem(($.$mol_select.prototype), "nav_cycle"));
+	($mol_mem(($.$mol_select.prototype), "Nav"));
+	($mol_mem(($.$mol_select.prototype), "Menu"));
+	($mol_mem(($.$mol_select.prototype), "Bubble_pane"));
+	($mol_mem(($.$mol_select.prototype), "submit"));
+	($mol_mem(($.$mol_select.prototype), "dictionary"));
+	($mol_mem(($.$mol_select.prototype), "value"));
+	($mol_mem_key(($.$mol_select.prototype), "Option_row"));
+	($mol_mem(($.$mol_select.prototype), "No_options"));
+	($mol_mem(($.$mol_select.prototype), "Filter"));
+	($mol_mem(($.$mol_select.prototype), "Trigger_icon"));
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_match_text(query, values) {
+        const tags = query.toLowerCase().trim().split(/\s+/).filter(tag => tag);
+        if (tags.length === 0)
+            return () => true;
+        return (variant) => {
+            const vals = values(variant);
+            return tags.every(tag => vals.some(val => val.toLowerCase().indexOf(tag) >= 0));
+        };
+    }
+    $.$mol_match_text = $mol_match_text;
+})($ || ($ = {}));
+
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        /**
+         * Allow user to select value from various options and displays current value.
+         * @see https://mol.hyoo.ru/#!section=demos/demo=mol_select_demo_colors
+         */
+        class $mol_select extends $.$mol_select {
+            filter_pattern(next) {
+                this.focused();
+                return next || '';
+            }
+            open() {
+                this.showed(true);
+            }
+            options() {
+                return Object.keys(this.dictionary());
+            }
+            options_filtered() {
+                let options = this.options();
+                options = options.filter($mol_match_text(this.filter_pattern(), (id) => [this.option_label(id)]));
+                const index = options.indexOf(this.value());
+                if (index >= 0)
+                    options = [...options.slice(0, index), ...options.slice(index + 1)];
+                return options;
+            }
+            option_label(id) {
+                const value = this.dictionary()[id];
+                return (value == null ? id : value) || this.option_label_default();
+            }
+            option_rows() {
+                return this.options_filtered().map((option) => this.Option_row(option));
+            }
+            option_focused(component) {
+                if (component == null) {
+                    for (let comp of this.nav_components()) {
+                        if (comp && comp.focused())
+                            return comp;
+                    }
+                    return null;
+                }
+                if (this.showed()) {
+                    component.focused(true);
+                }
+                return component;
+            }
+            event_select(id, event) {
+                this.value(id);
+                this.showed(false);
+                event?.preventDefault();
+            }
+            nav_components() {
+                if (this.options().length > 1 && this.Filter()) {
+                    return [this.Filter(), ...this.option_rows()];
+                }
+                else {
+                    return this.option_rows();
+                }
+            }
+            trigger_content() {
+                return [
+                    ...this.option_content(this.value()),
+                    ...this.trigger_enabled() ? [this.Trigger_icon()] : [],
+                ];
+            }
+            menu_content() {
+                return [
+                    ...this.option_rows(),
+                    ...(this.options_filtered().length === 0) ? [this.No_options()] : []
+                ];
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $mol_select.prototype, "filter_pattern", null);
+        __decorate([
+            $mol_mem
+        ], $mol_select.prototype, "options", null);
+        __decorate([
+            $mol_mem
+        ], $mol_select.prototype, "options_filtered", null);
+        __decorate([
+            $mol_mem
+        ], $mol_select.prototype, "option_focused", null);
+        $$.$mol_select = $mol_select;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("mol/select/select.view.css", "[mol_select] {\n\tdisplay: flex;\n\tword-break: normal;\n\talign-self: flex-start;\n}\n\n[mol_select_option_row] {\n\tmin-width: 100%;\n\tpadding: 0;\n\tjustify-content: flex-start;\n}\n\n[mol_select_filter] {\n\tflex: 1 0 auto;\n\talign-self: stretch;\n}\n\n[mol_select_option_label] {\n\tpadding: var(--mol_gap_text);\n\ttext-align: left;\n\tmin-height: 1.5em;\n\tdisplay: block;\n\twhite-space: nowrap;\n}\n\n[mol_select_clear_option_content] {\n\tpadding: .5em 1rem .5rem 0;\n\ttext-align: left;\n\tbox-shadow: var(--mol_theme_line);\n\tflex: 1 0 auto;\n}\n\n[mol_select_no_options] {\n\tpadding: var(--mol_gap_text);\n\ttext-align: left;\n\tdisplay: block;\n\tcolor: var(--mol_theme_shade);\n}\n\n[mol_select_trigger] {\n\tpadding: 0;\n\tflex: 1 1 auto;\n\tdisplay: flex;\n}\n\n[mol_select_trigger] > * {\n\tmargin-right: -1rem;\n}\n\n[mol_select_trigger] > *:last-child {\n\tmargin-right: 0;\n}\n\n[mol_select_menu] {\n\tdisplay: flex;\n\tflex-direction: column;\n}\n\n");
+})($ || ($ = {}));
+
+;
+	($.$mol_page) = class $mol_page extends ($.$mol_view) {
+		tabindex(){
+			return -1;
+		}
+		Logo(){
+			return null;
+		}
+		title_content(){
+			return [(this.Logo()), (this.title())];
+		}
+		Title(){
+			const obj = new this.$.$mol_view();
+			(obj.dom_name) = () => ("h1");
+			(obj.sub) = () => ((this.title_content()));
+			return obj;
+		}
+		tools(){
+			return [];
+		}
+		Tools(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.tools()));
+			return obj;
+		}
+		head(){
+			return [(this.Title()), (this.Tools())];
+		}
+		Head(){
+			const obj = new this.$.$mol_view();
+			(obj.minimal_height) = () => (64);
+			(obj.dom_name) = () => ("header");
+			(obj.sub) = () => ((this.head()));
+			return obj;
+		}
+		body_scroll_top(next){
+			return (this.Body().scroll_top(next));
+		}
+		body(){
+			return [];
+		}
+		Body_content(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.body()));
+			return obj;
+		}
+		body_content(){
+			return [(this.Body_content())];
+		}
+		Body(){
+			const obj = new this.$.$mol_scroll();
+			(obj.sub) = () => ((this.body_content()));
+			return obj;
+		}
+		foot(){
+			return [];
+		}
+		Foot(){
+			const obj = new this.$.$mol_view();
+			(obj.dom_name) = () => ("footer");
+			(obj.sub) = () => ((this.foot()));
+			return obj;
+		}
+		dom_name(){
+			return "article";
+		}
+		attr(){
+			return {...(super.attr()), "tabIndex": (this.tabindex())};
+		}
+		sub(){
+			return [
+				(this.Head()), 
+				(this.Body()), 
+				(this.Foot())
+			];
+		}
+	};
+	($mol_mem(($.$mol_page.prototype), "Title"));
+	($mol_mem(($.$mol_page.prototype), "Tools"));
+	($mol_mem(($.$mol_page.prototype), "Head"));
+	($mol_mem(($.$mol_page.prototype), "Body_content"));
+	($mol_mem(($.$mol_page.prototype), "Body"));
+	($mol_mem(($.$mol_page.prototype), "Foot"));
+
+
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        const { per, rem } = $mol_style_unit;
+        const { hsla, blur } = $mol_style_func;
+        $mol_style_define($mol_page, {
+            display: 'flex',
+            flex: {
+                basis: 'auto',
+                direction: 'column',
+            },
+            position: 'relative',
+            alignSelf: 'stretch',
+            maxWidth: per(100),
+            maxHeight: per(100),
+            boxSizing: 'border-box',
+            color: $mol_theme.text,
+            // backdropFilter: blur( `3px` ), enforces layering
+            // zIndex: 0 ,
+            ':focus': {
+                outline: 'none',
+            },
+            Head: {
+                display: 'flex',
+                flexWrap: 'wrap',
+                justifyContent: 'flex-end',
+                flex: 'none',
+                position: 'relative',
+                margin: 0,
+                minHeight: rem(4),
+                padding: $mol_gap.block,
+                background: {
+                    color: $mol_theme.card,
+                },
+                border: {
+                    radius: $mol_gap.round,
+                },
+                box: {
+                    shadow: [
+                        [0, `-0.5rem`, `0.5rem`, `-0.5rem`, hsla(0, 0, 0, .25)],
+                        [0, `0.5rem`, `0.5rem`, `-0.5rem`, hsla(0, 0, 0, .25)],
+                    ],
+                },
+                zIndex: 2,
+                '@media': {
+                    'print': {
+                        box: {
+                            shadow: [[0, `1px`, 0, 0, hsla(0, 0, 0, .25)]],
+                        },
+                    },
+                },
+            },
+            Title: {
+                minHeight: rem(2),
+                margin: 0,
+                padding: $mol_gap.text,
+                gap: $mol_gap.text,
+                wordBreak: 'normal',
+                textShadow: '0 0',
+                font: {
+                    size: 'inherit',
+                    weight: 'normal',
+                },
+                flex: {
+                    grow: 1,
+                    shrink: 1,
+                    basis: 'auto',
+                },
+            },
+            Tools: {
+                flex: {
+                    basis: 'auto',
+                    grow: 0,
+                    shrink: 1,
+                },
+                display: 'flex',
+                justifyContent: 'flex-end',
+                alignItems: 'flex-start',
+                flexWrap: 'wrap',
+                '@media': {
+                    'print': {
+                        display: 'none',
+                    },
+                },
+            },
+            Body: {
+                flex: {
+                    grow: 1000,
+                    shrink: 1,
+                    basis: per(100),
+                },
+            },
+            Body_content: {
+                padding: $mol_gap.block,
+                minHeight: 0,
+                minWidth: 0,
+                flex: {
+                    direction: 'column',
+                    shrink: 1,
+                    grow: 1,
+                },
+                justify: {
+                    self: 'stretch',
+                },
+            },
+            Foot: {
+                display: 'flex',
+                justifyContent: 'space-between',
+                flex: 'none',
+                margin: 0,
+                background: {
+                    color: $mol_theme.card,
+                },
+                border: {
+                    radius: $mol_gap.round,
+                },
+                box: {
+                    shadow: [
+                        [0, `-0.5rem`, `0.5rem`, `-0.5rem`, hsla(0, 0, 0, .25)],
+                        [0, `0.5rem`, `0.5rem`, `-0.5rem`, hsla(0, 0, 0, .25)],
+                    ],
+                },
+                zIndex: 1,
+                padding: $mol_gap.block,
+                ':empty': {
+                    display: 'none',
+                },
+            },
+        });
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
 	($.$mol_text_list) = class $mol_text_list extends ($.$mol_text) {
 		type(){
 			return "";
@@ -11527,6 +13286,469 @@ var $;
 (function ($) {
     $mol_style_attach("mol/text/list/list.view.css", "[mol_text_list] {\r\n\tpadding-left: 1.75rem;\r\n}\r\n\r\n[mol_text_list_item] {\r\n\tcontain: none;\r\n\tdisplay: list-item;\r\n}\r\n\r\n[mol_text_list_item]::before {\r\n\tcontent: attr( mol_text_list_item_index ) \".\";\r\n\twidth: 1.25rem;\r\n\tdisplay: inline-block;\r\n\tposition: absolute;\r\n\tmargin-left: -1.75rem;\r\n\ttext-align: end;\r\n}\r\n\r\n[mol_text_list_type=\"-\"] > [mol_text_list_item]::before,\r\n[mol_text_list_type=\"*\"] > [mol_text_list_item]::before {\r\n\tcontent: \"•\";\r\n}\r\n");
 })($ || ($ = {}));
+
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    /**
+     * Docs content registry for smalljs. GENERATED by content/gen.cjs — do not
+     * edit by hand; edit the .md sources in content/en/docs/ and re-run the
+     * generator. Markdown is embedded (not fetched) so it bundles into web.js
+     * and works with the app/- deploy and the prerender step.
+     */
+    class $bog_smalljs_content extends $mol_object2 {
+        static sections() {
+            return [
+                {
+                    "id": "docs",
+                    "title": "Docs",
+                    "groups": [
+                        {
+                            "title": "Getting Started",
+                            "pages": [
+                                "introduction",
+                                "getting-started"
+                            ]
+                        },
+                        {
+                            "title": "Essentials",
+                            "pages": [
+                                "installation",
+                                "views",
+                                "state",
+                                "routing",
+                                "rendering"
+                            ]
+                        },
+                        {
+                            "title": "Data",
+                            "pages": [
+                                "data",
+                                "giper-baza"
+                            ]
+                        },
+                        {
+                            "title": "More",
+                            "pages": [
+                                "showcase",
+                                "rosetta"
+                            ]
+                        },
+                        {
+                            "title": "API",
+                            "pages": [
+                                "api-mol-button-major",
+                                "api-mol-button-minor",
+                                "api-mol-string",
+                                "api-mol-number",
+                                "api-mol-text",
+                                "api-mol-paragraph",
+                                "api-mol-list",
+                                "api-mol-row",
+                                "api-mol-link",
+                                "api-mol-check",
+                                "api-mol-switch",
+                                "api-mol-select",
+                                "api-mol-scroll",
+                                "api-mol-page",
+                                "api-mol-pick"
+                            ]
+                        }
+                    ]
+                }
+            ];
+        }
+        static pages() {
+            return {
+                'introduction': {
+                    slug: 'introduction',
+                    title: "Introduction",
+                    file: 'content/en/docs/introduction.md',
+                    md: "# Introduction\n\n## What is \u0024mol?\n\n\u0024mol is a reactive UI framework where you describe **what** the interface is, and the framework figures out **how** and **when** to update it. No virtual DOM, no manual subscriptions, no `useEffect`. You write components as a tree; \u0024mol renders only what is visible and recomputes only what actually changed.\n\nA component has three files:\n\n- `name.view.tree` — the declarative layout (a compact tree language)\n- `name.view.ts` — the behaviour (plain TypeScript classes)\n- `name.view.css.ts` — typed styles (checked by the compiler)\n\nThat separation is the whole idea: layout stays readable, logic stays testable, styles stay type-safe.\n\n## Who is it for?\n\n- You want a **small** app that stays small as it grows — the runtime is compact and rendering is virtualized by default.\n- You like **types everywhere** — even styles are checked by TypeScript.\n- You are tired of wiring reactivity by hand — state in \u0024mol is automatically reactive, like a spreadsheet.\n\n## A taste\n\nA counter, in full:\n\n```tree\n\u0024my_counter \u0024mol_view\n\tsub /\n\t\t<= Count \u0024mol_view\n\t\t\tsub / <= count \\\n\t\t<= Increment \u0024mol_button\n\t\t\tclick? <=> increment?\n\t\t\tsub / <= label \\+\n```\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_counter extends \u0024.\u0024my_counter {\n\t\t@ \u0024mol_mem count() { return 0 }\n\t\t@ \u0024mol_action increment() { this.count( this.count() + 1 ) }\n\t}\n}\n```\n\n`count` is reactive: anything that reads it re-renders automatically when it changes. There is no `setState`, no dependency array, no store to register.\n\n## Where to next?\n\nReady to run something on your own machine? Head to [Getting Started](#!section=docs/page=getting-started) and build a working app in under fifteen minutes.\n",
+                },
+                'getting-started': {
+                    slug: 'getting-started',
+                    title: "Getting Started",
+                    file: 'content/en/docs/getting-started.md',
+                    md: "# Getting Started\n\nThis page takes you from an empty folder to a running, reactive \u0024mol app. It should take about fifteen minutes. Every snippet below is real, working code — copy it as-is.\n\n## What you need\n\n- **Node.js 18+** and **git**. That is the whole list.\n\nYou do not install a global CLI or generate boilerplate you have to understand later. \u0024mol apps live inside the MAM workspace, which already knows how to build and serve them.\n\n## 1. Get the workspace\n\nMAM is the build tool and module registry for \u0024mol. Clone it and install once:\n\n```bash\ngit clone https://github.com/hyoo-ru/mam.git ./mam\ncd mam\nnpm install\nnpm start\n```\n\n`npm start` launches the dev server on `http://localhost:9080/`. It watches your files and rebuilds automatically — leave it running in its own terminal.\n\n## 2. Create a module\n\nA \u0024mol app is just a folder. Pick a namespace (yours, e.g. `my`) and a name (`hello`):\n\n```bash\nmkdir -p my/hello\n```\n\n> **One rule to remember:** underscores in a component name are folder separators. `\u0024my_hello` lives in `my/hello/`, `\u0024my_hello_form` would live in `my/hello/form/`. Module folder names never contain an underscore.\n\nNow add three files inside `my/hello/`.\n\n### index.html — the entry point\n\n```html\n<!doctype html>\n<html mol_view_root>\n\t<head>\n\t\t<meta charset=\"utf-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n\t</head>\n\t<body mol_view_root>\n\t\t<div mol_view_root=\"\u0024my_hello\"></div>\n\t\t<script src=\"web.js\"></script>\n\t</body>\n</html>\n```\n\nThe `mol_view_root=\"\u0024my_hello\"` attribute mounts your component when the page loads.\n\n### hello.view.tree — the layout\n\n```tree\n\u0024my_hello \u0024mol_page\n\ttitle @ \\Greeting\n\tbody /\n\t\t<= Name \u0024mol_string\n\t\t\thint @ \\Enter your name\n\t\t\tvalue? <=> name? \\\n\t\t<= Message \u0024mol_view\n\t\t\tsub / <= greeting \\\n```\n\nA few things worth naming:\n\n- `\u0024mol_page` and `\u0024mol_string` are built-in components — a page shell and a text input.\n- `<=` binds a property one way; `<=>` binds two ways. So `value? <=> name?` keeps the input and your `name` state in sync.\n- `@` marks a localizable string; `\\` starts a raw string.\n\n### hello.view.ts — the behaviour\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_hello extends \u0024.\u0024my_hello {\n\t\t@ \u0024mol_mem\n\t\tgreeting() {\n\t\t\tconst name = this.name()\n\t\t\treturn name ? `Hello, \u0024{name}!` : 'Please enter your name'\n\t\t}\n\t}\n}\n```\n\n`@ \u0024mol_mem` makes `greeting` a reactive, cached property. It reads `name()`, so the moment `name` changes, `greeting` recomputes and the message on screen updates. You never wrote a subscription, an effect, or a re-render call.\n\n## 3. Run it\n\nThe dev server from step 1 is already watching. Just open:\n\n```\nhttp://localhost:9080/my/hello/\n```\n\nType your name — the greeting updates as you type. That is \u0024mol reactivity: state flows to the view on its own.\n\n## 4. Add a second reactive value\n\nReactivity composes. Add a length counter that depends on the same `name`, with no extra wiring.\n\nIn `hello.view.tree`, add a line under `Message`:\n\n```tree\n\t\t<= Counter \u0024mol_view\n\t\t\tsub / <= counter \\\n```\n\nIn `hello.view.ts`, add the method:\n\n```typescript\n\t\t@ \u0024mol_mem\n\t\tcounter() {\n\t\t\treturn `\u0024{this.name().length} characters`\n\t\t}\n}\n```\n\nBoth `greeting` and `counter` read `name`; both update together. Add a third, add a tenth — the pattern does not change. This is why \u0024mol code stays flat as features pile up.\n\n## 5. Check your build\n\nMAM writes a diagnostics file next to every app. After a build, open:\n\n```\nhttp://localhost:9080/my/hello/-/web.audit.js\n```\n\nA clean audit means no unused deps, no type problems, nothing to fix. Make a habit of glancing at it — it catches mistakes before they reach a browser.\n\n## You built a \u0024mol app\n\nYou have a reactive component, two-way binding, and derived state — with three small files and zero configuration.\n\nKeep going: the **[Guide](#!section=docs/page=installation)** covers installation, views, state, routing, and data in depth — and turns this Hello World into something real.\n",
+                },
+                'installation': {
+                    slug: 'installation',
+                    title: "Installation",
+                    file: 'content/en/docs/installation.md',
+                    md: "# Installation\n\n[Getting Started](#!section=docs/page=getting-started) walks you through your first app step by step. This page is the reference: how a \u0024mol project is laid out and how the build works.\n\n## Requirements\n\n- **Node.js 18+** and **git**. Nothing else is installed globally.\n\n## The MAM workspace\n\n\u0024mol apps live inside **MAM** — the build tool and module registry. You clone it once and develop your modules inside it:\n\n```bash\ngit clone https://github.com/hyoo-ru/mam.git ./mam\ncd mam\nnpm install\nnpm start\n```\n\n`npm start` runs a watching dev server on `http://localhost:9080/`. It rebuilds on save and resolves dependencies automatically — you never maintain a bundler config.\n\n## How modules are named\n\nEvery component name maps to a folder path, and **each underscore is a folder separator**:\n\n```\n\u0024my_app          →  my/app/\n\u0024my_app_header   →  my/app/header/\n```\n\nModule folder names never contain an underscore — use nested folders for multi-word names. If a component you use never shows up in the bundle, the folder path almost always doesn't match the class name.\n\n## Anatomy of a module\n\nA component is a folder with up to four files:\n\n| File | Purpose |\n|------|---------|\n| `name.view.tree` | Declarative layout |\n| `name.view.ts` | Behaviour (TypeScript) |\n| `name.view.css.ts` | Typed styles |\n| `name.view.tree`, `index.html` | Entry point for an app module |\n\nThe `index.html` of an app mounts the root component:\n\n```html\n<body mol_view_root>\n\t<div mol_view_root=\"\u0024my_app\"></div>\n\t<script src=\"web.js\"></script>\n</body>\n```\n\n## Building for production\n\nThe dev server builds on the fly, but you can build any module explicitly from the workspace root:\n\n```bash\nnpm run start my/app\n```\n\nThe output lands in `my/app/-/` — including `web.js`, `web.css`, and `web.audit.js`. **Always check the audit:** a clean `web.audit.js` means no unused dependencies and no type errors.\n\n## Adding npm packages\n\nReference a package with `require` and MAM installs it on the next build:\n\n```typescript\nconst dayjs = require\u0028 'dayjs' ) as typeof import\u0028 'dayjs' )\n```\n\n## Next\n\nWith the workspace in place, learn how the UI itself is described — continue to [Views](#!section=docs/page=views).\n",
+                },
+                'views': {
+                    slug: 'views',
+                    title: "Views",
+                    file: 'content/en/docs/views.md',
+                    md: "# Views\n\nA view is a component: a node in the UI tree with its own layout, behaviour, and styles. This chapter covers how views are declared, wired to logic, composed, and reused.\n\n## Three files, one component\n\nA component `\u0024my_card` lives in `my/card/` and is described by up to three files, each with a clear job:\n\n- `card.view.tree` — **what** the component is: its structure and default bindings.\n- `card.view.ts` — **how** it behaves: TypeScript methods, reactive state.\n- `card.view.css.ts` — how it looks: typed styles checked by the compiler.\n\nKeeping structure, behaviour, and style apart is deliberate — each file stays small and readable, and the layout is never tangled with logic.\n\n## The view.tree language\n\n`view.tree` describes structure declaratively. Indentation is nesting; there are no closing tags.\n\n```tree\n\u0024my_card \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\\n\t\t<= Body \u0024mol_view\n\t\t\tsub / <= text \\\n```\n\n- `\u0024my_card \u0024mol_view` — your component extends the base `\u0024mol_view`.\n- `sub /` — the list of children.\n- `<= Title \u0024mol_view` — a named sub-view, addressable as `this.Title()` in TypeScript.\n- `<= title \\` — a bindable property with a default raw-string value (`\\` starts a raw string).\n\nEvery capitalized name (`Title`, `Body`) becomes a real property you can reach, override, or style. Every lowercase binding (`title`, `text`) becomes a value you can compute in `.view.ts`.\n\n## Binding properties\n\nTwo operators connect a property to its source:\n\n- `<=` **one-way**: the child reads a value from the owner.\n- `<=>` **two-way**: the value flows both directions — used for inputs.\n\n```tree\n\u0024my_form \u0024mol_view\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> text? \\\n```\n\nHere the input's `value` and the owner's `text` stay in sync automatically: type in the field and `text` updates; set `text` in code and the field reflects it.\n\n## Wiring to behaviour\n\nA binding with no default is implemented in `.view.ts`. The class extends the generated base of the same name:\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_card extends \u0024.\u0024my_card {\n\t\t@ \u0024mol_mem\n\t\ttitle() {\n\t\t\treturn 'Untitled'\n\t\t}\n\t}\n}\n```\n\nAnything the template binds — `title`, `text`, a sub-view's property — can be given logic here. Reactivity ([State](#!section=docs/page=state)) makes those values live.\n\n## Attributes and element type\n\nChange the underlying HTML element with `dom_name`, and set attributes through `attr`:\n\n```tree\n\u0024my_banner \u0024mol_view\n\tdom_name \\section\n\tattr *\n\t\t^\n\t\trole \\note\n```\n\nThe `^` inherits the parent's attributes so you don't drop the ones `\u0024mol_view` already sets.\n\n## Lists and keyed views\n\nA trailing `*` turns a sub-view into a family — one instance per key. Use it for rows:\n\n```tree\n\u0024my_list \u0024mol_list\n\trows /\n\t\t<= Row* \u0024mol_view\n\t\t\tsub / <= row_title* \\\n```\n\nThe framework creates a `Row` for each key you supply and, thanks to [virtualized rendering](#!section=docs/page=rendering), builds only the ones on screen.\n\n> When a keyed view itself contains keyed children, key the outer one with `Name*`, not `Name*0` — the indexed form leaves nested children unrendered.\n\n## Conditional views\n\nAssigning `null` removes a view from rendering. Subclass and null out what a variant doesn't need:\n\n```tree\n\u0024my_page_readonly \u0024my_page\n\tEdit_button null\n```\n\n## Composition and reuse\n\nViews compose by nesting, and specialize by extension. A card used inside a list:\n\n```tree\n\u0024my_user_card \u0024mol_view\n\tsub /\n\t\t<= Name \u0024mol_view\n\t\t\tsub / <= name \\\n\t\t<= Email \u0024mol_view\n\t\t\tsub / <= email \\\n\n\u0024my_users_list \u0024mol_list\n\trows /\n\t\t<= User* \u0024my_user_card\n\t\t\tname <= user_name* \\\n\t\t\temail <= user_email* \\\n```\n\n`\u0024my_users_list` never redefines what a card looks like — it reuses `\u0024my_user_card` and feeds each instance its data. This is the whole composition model: small views, wired together, specialized by `extends` when a variant is needed.\n\n## Next\n\nViews describe structure; what makes them come alive is reactive data. Continue to [State & Reactivity](#!section=docs/page=state).\n",
+                },
+                'state': {
+                    slug: 'state',
+                    title: "State & Reactivity",
+                    file: 'content/en/docs/state.md',
+                    md: "# State & Reactivity\n\n\u0024mol state behaves like a spreadsheet: you declare how a value is computed, and everything that depends on it updates by itself. No stores, no dispatch, no effect hooks — the dependency graph tracks what to recompute.\n\n## Reactive properties\n\nA method decorated with `@ \u0024mol_mem` is a cached, reactive cell. It runs once, remembers its result, and recomputes only when something it read has changed.\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_counter extends \u0024.\u0024my_counter {\n\t\t@ \u0024mol_mem count() { return 0 }\n\n\t\t@ \u0024mol_mem doubled() {\n\t\t\treturn this.count() * 2\n\t\t}\n\t}\n}\n```\n\n`doubled` reads `count`, so it subscribes to `count` automatically. Change `count` and every view showing `doubled` refreshes — there is nothing to subscribe to by hand.\n\n## Reading and writing\n\nA property is both getter and setter: call it with no argument to read, with an argument to write.\n\n```typescript\n@ \u0024mol_action\nincrement() {\n\tthis.count( this.count() + 1 )\n}\n```\n\n## Actions vs. computations\n\nThis one distinction keeps reactive code predictable:\n\n- `@ \u0024mol_mem` is a **pure computation** — only read other cells and return a value.\n- `@ \u0024mol_action` is an **effect** — writes to state, network calls, and timers belong here.\n\nWriting to a cell from inside a `@ \u0024mol_mem` creates a feedback loop (the write invalidates a dependency, which recomputes, which writes again). \u0024mol reports this as a *circular subscription*. The fix is always the same: keep side effects in actions, keep computations pure.\n\n| In `@ \u0024mol_mem` you may | but not |\n|---|---|\n| read other cells | write other cells |\n| `new SomeClass()` | `fetch()`, `await` |\n| return a value | `setTimeout`, DOM writes |\n\nButton handlers are generated as `@ \u0024mol_mem` on the base class; override them with `@ \u0024mol_action` so they can write safely:\n\n```typescript\n@ \u0024mol_action\nsubmit() {\n\tthis.saved( true )\n}\n```\n\n## Derived state composes\n\nBecause dependencies are tracked automatically, derived values chain without any wiring. Each reads the one before it; a change at the root ripples out exactly as far as it needs to:\n\n```typescript\n@ \u0024mol_mem full_name() {\n\treturn `\u0024{ this.first() } \u0024{ this.last() }`.trim()\n}\n\n@ \u0024mol_mem greeting() {\n\treturn this.full_name() ? `Hello, \u0024{ this.full_name() }!` : 'Hello!'\n}\n```\n\n## Keyed state\n\n`@ \u0024mol_mem_key` is a computation parameterized by a key — one cached cell per key. Ideal for per-row values:\n\n```typescript\n@ \u0024mol_mem_key\ntask_done( id: string, next?: boolean ) {\n\tconst task = this.task( id )\n\tif ( next !== undefined ) task.Done( null )!.val( next )\n\treturn task.Done()?.val() ?? false\n}\n```\n\n## Async is just a value\n\nReturn a promise from a `@ \u0024mol_mem` and the view shows a loading state until it resolves — no explicit loading flag:\n\n```typescript\n@ \u0024mol_mem\nasync data() {\n\tconst res = await fetch( '/api/data' )\n\treturn await res.json()\n}\n```\n\n[Data Fetching](#!section=docs/page=data) builds on this pattern.\n\n## Transient state between events\n\nState declared in `view.tree` resets between separate event handlers (drag/pan/gesture sequences), because \u0024mol wraps each handler in its own fiber. For values that must survive from one event to the next, use a plain TypeScript field instead of a reactive property:\n\n```typescript\nexport class \u0024my_canvas extends \u0024.\u0024my_canvas {\n\t// plain field — survives across events, not reactive\n\tdrag_id = ''\n\n\t@ \u0024mol_action pan_start() { this.drag_id = 'node_42' }\n\t@ \u0024mol_action pan_move() { if ( this.drag_id ) { /* ... */ } }\n}\n```\n\nUse a reactive cell when the view must react to the value; use a plain field for transient state only the handlers read.\n\n## Next\n\nReactive state is most useful when it's addressable — connect it to the URL in [Routing](#!section=docs/page=routing).\n",
+                },
+                'routing': {
+                    slug: 'routing',
+                    title: "Routing",
+                    file: 'content/en/docs/routing.md',
+                    md: "# Routing\n\nRouting in \u0024mol is not a separate library — the URL is just another piece of reactive state. Read it, write it, and views react the same way they react to any cell. The back button, deep links, and shareable URLs all come for free.\n\n## The URL as state\n\n`\u0024mol_state_arg` exposes URL parameters as reactive values. Bind one to a property and the address bar becomes your source of truth:\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_app extends \u0024.\u0024my_app {\n\t\t@ \u0024mol_mem\n\t\tpage( next?: string ) {\n\t\t\treturn \u0024mol_state_arg.value( 'page', next ) ?? 'home'\n\t\t}\n\t}\n}\n```\n\nReading `page()` returns the current value; calling `page('about')` navigates. Anything that reads `page()` re-renders on change — including the browser's back button, which updates the cell for you.\n\n## Switching screens\n\nCombine a routed value with a plain `switch` to choose what renders. Because views are [lazy](#!section=docs/page=rendering), the screens you don't show are never built:\n\n```typescript\n@ \u0024mol_mem\nbody_content() {\n\tswitch ( this.page() ) {\n\t\tcase 'about': return [ this.About() ]\n\t\tcase 'docs': return [ this.Docs() ]\n\t\tdefault: return [ this.Home() ]\n\t}\n}\n```\n\n## Links that set arguments\n\nIn `view.tree`, a link can set URL arguments declaratively — clicking it navigates with no handler:\n\n```tree\n<= About_link \u0024mol_link\n\targ *\n\t\tpage \\about\n\tsub / <= about_label \\About\n```\n\n`\u0024mol_link` also marks itself active (`mol_link_current`) when its arguments match the current URL, so highlighting the current page needs no extra state.\n\n## Multiple parameters\n\nArguments are independent, so a screen can route on several at once. This very docs site routes on both `section` and `page`:\n\n```tree\n<= Guide_link \u0024mol_link\n\targ *\n\t\tsection \\docs\n\t\tpage \\views\n```\n\nEach key round-trips through the URL, so any view is shareable and bookmarkable by construction. Setting one argument leaves the others untouched, which makes deep links — a specific section *and* page *and* anchor — just a matter of setting the keys you care about.\n\n## State that shouldn't be in the URL\n\nNot every piece of state belongs in the address bar. For values that should persist locally but not pollute links — a collapsed sidebar, a draft — use `\u0024mol_state_local`, which stores to `localStorage` with the same getter/setter shape:\n\n```typescript\n@ \u0024mol_mem\nsidebar_open( next?: boolean ) {\n\treturn \u0024mol_state_local.value( 'sidebar_open', next ) ?? false\n}\n```\n\nReach for `\u0024mol_state_arg` when the state should be shareable; `\u0024mol_state_local` when it should merely be remembered.\n\n## Next\n\nYou've covered how \u0024mol turns state into UI and URLs. See how it all reaches the screen efficiently in [Rendering](#!section=docs/page=rendering).\n",
+                },
+                'rendering': {
+                    slug: 'rendering',
+                    title: "Rendering",
+                    file: 'content/en/docs/rendering.md',
+                    md: "# Rendering\n\nThis chapter is about what happens between your reactive state changing and pixels updating on screen. You rarely have to think about it — but understanding the model explains why \u0024mol code stays fast without special effort.\n\n## No virtual DOM\n\n\u0024mol does not diff a virtual tree. Each view property is bound directly to the DOM node or attribute it controls, through the same reactive cells you already met in [State](#!section=docs/page=state). When a cell changes, only the exact bindings that read it re-run — not a subtree, not a component function, just the affected properties.\n\nThat means there is no reconciliation pass to optimize, no keys to hand-tune for a list diff, and no `memo`/`shouldComponentUpdate` to reach for. The dependency graph already knows the minimal set of updates.\n\n## Components are lazy\n\nA view is only constructed when something asks for it. A screen you never navigate to is never built; a tab you never open costs nothing. Because construction is on-demand and cached, composing large trees of components is cheap — the parts that aren't needed simply don't exist yet.\n\n## Rendering is virtualized\n\n\u0024mol renders only what is inside the viewport. Components scrolled out of view are not kept as hidden DOM — they are not created at all, and are built the moment they scroll into range. This is an architectural property of the framework, not an opt-in feature or a special list component: any layout is virtualized, so a list of ten items and a list of ten thousand cost about the same to display.\n\nThe practical effect is that you write ordinary component trees and long lists without reaching for windowing libraries.\n\n## Reproducible numbers\n\nPerformance claims are only useful if you can reproduce them. Rather than quote figures here, \u0024mol participates in the community **js-framework-benchmark**; you can read its results and re-run the suite yourself:\n\n<https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html>\n\nTreat that as the source of truth for comparisons — measured, versioned, and independent of this page.\n\n## Next\n\nThat completes the core model of how \u0024mol runs. Next, put it to work loading real data in [Data Fetching](#!section=docs/page=data).\n",
+                },
+                'data': {
+                    slug: 'data',
+                    title: "Data Fetching",
+                    file: 'content/en/docs/data.md',
+                    md: "# Data Fetching\n\nLoading remote data in \u0024mol is not a special API — an async value is just a reactive property that happens to return a promise. The view waits for it, shows a loading state, and re-renders when it resolves.\n\n## An async property\n\nReturn a promise from a `@ \u0024mol_mem` and read it like any other value:\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_users extends \u0024.\u0024my_users {\n\t\t@ \u0024mol_mem\n\t\tusers() {\n\t\t\treturn \u0024mol_fetch.json( 'https://api.example.com/users' ) as {\n\t\t\t\tid: number\n\t\t\t\tname: string\n\t\t\t}[]\n\t\t}\n\t}\n}\n```\n\n`\u0024mol_fetch` suspends the fiber until the response arrives. While it is pending, any view that reads `users()` automatically shows the built-in loading state — you write no `isLoading` flag.\n\n## Rendering the result\n\nBind the resolved data straight into a list:\n\n```typescript\n\t\t@ \u0024mol_mem\n\t\tuser_names() {\n\t\t\treturn this.users().map( user => user.name )\n\t\t}\n```\n\nWhen the promise resolves, `users()` updates, `user_names()` recomputes, and the list renders. No callbacks, no `useEffect`.\n\n## Reloading\n\nBecause it is just a reactive cell, you refetch by invalidating it. Depend on a token you can bump:\n\n```typescript\n\t\t@ \u0024mol_mem\n\t\treload_token( next?: number ) {\n\t\t\treturn next ?? 0\n\t\t}\n\n\t\t@ \u0024mol_mem\n\t\tusers() {\n\t\t\tthis.reload_token() // subscribe\n\t\t\treturn \u0024mol_fetch.json( 'https://api.example.com/users' ) as unknown[]\n\t\t}\n\n\t\t@ \u0024mol_action\n\t\treload() {\n\t\t\tthis.reload_token( this.reload_token() + 1 )\n\t\t}\n```\n\nCalling `reload()` changes the token, which invalidates `users()`, which refetches.\n\n## Errors\n\nA throw inside a reactive property propagates to the nearest view, which renders an error state instead of the content. To handle it yourself, catch and return a fallback:\n\n```typescript\n\t\t@ \u0024mol_mem\n\t\tusers_safe() {\n\t\t\ttry {\n\t\t\t\treturn this.users()\n\t\t\t} catch( error ) {\n\t\t\t\tif( error instanceof Promise ) throw error // still loading\n\t\t\t\treturn []\n\t\t\t}\n\t\t}\n```\n\nRe-throwing a `Promise` is how you let the loading state keep flowing while catching only real errors.\n\n## Next\n\nFor data that persists and syncs across clients without a backend, continue to [Giper Baza](#!section=docs/page=giper-baza).\n",
+                },
+                'giper-baza': {
+                    slug: 'giper-baza',
+                    title: "Giper Baza",
+                    file: 'content/en/docs/giper-baza.md',
+                    md: "# Giper Baza\n\nGiper Baza is \u0024mol's local-first data layer: a CRDT store that persists locally and syncs between clients automatically. You model data as entities; reads and writes look like ordinary reactive properties, and replication just happens.\n\n> This page introduces the shape of the API. Giper Baza is a large topic — treat this as a map, not the full territory.\n\n## Define an entity\n\nAn entity is a **pure schema** — a set of typed fields. Keep behaviour out of it; do the reading and writing in your views.\n\n```typescript\nnamespace \u0024 {\n\texport class \u0024my_task extends \u0024giper_baza_entity.with( {\n\t\tTitle: \u0024giper_baza_atom_text,\n\t\tDone: \u0024giper_baza_atom_bool,\n\t\tCreatedAt: \u0024giper_baza_atom_time,\n\t} ) {}\n}\n```\n\nEach field is an **atom** — a synced cell with a typed value.\n\n## Read and write\n\nGet the store, reach a list of entities, and map over them reactively:\n\n```typescript\n\t\t@ \u0024mol_mem\n\t\ttasks() {\n\t\t\treturn this.tasks_list().remote_list()\n\t\t}\n\n\t\t@ \u0024mol_mem_key\n\t\ttask_done( id: string, next?: boolean ) {\n\t\t\tconst task = this.task( id )\n\t\t\tif( next !== undefined ) task.Done( null )!.val( next )\n\t\t\treturn task.Done()?.val() ?? false\n\t\t}\n```\n\nReading `Done()?.val()` gives the current value; writing `Done(null)!.val(next)` sets it. Any view reading the atom re-renders when it — or a remote peer — changes it.\n\n## Create and remove\n\n```typescript\n\t\t@ \u0024mol_action\n\t\ttask_add( title: string ) {\n\t\t\tconst task = this.tasks_list().make( [ [ null, \u0024giper_baza_rank_read ] ] )!\n\t\t\ttask.Title( null )!.val( title )\n\t\t\ttask.Done( null )!.val( false )\n\t\t}\n\n\t\t@ \u0024mol_action\n\t\ttask_remove( id: string ) {\n\t\t\tthis.tasks_list().cut( this.task( id ).link() )\n\t\t}\n```\n\n## Sync is automatic\n\nThere is nothing to configure. Changes replicate to other clients in real time, and the same data is available offline — the store reconciles when a connection returns. Because writes are CRDT merges, concurrent edits from different devices combine without conflicts.\n\n## Where to next?\n\nYou now have the full arc: [Views](#!section=docs/page=views), [State](#!section=docs/page=state), [Routing](#!section=docs/page=routing), [Data Fetching](#!section=docs/page=data), and local-first storage. Try it all in the [Playground](#!section=playground).\n",
+                },
+                'showcase': {
+                    slug: 'showcase',
+                    title: "Showcase",
+                    file: 'content/en/docs/showcase.md',
+                    md: "# Showcase\n\nReal things built with \u0024mol — from community platforms to developer tools. Each one is a working app, not a demo.\n\n## Applications\n\n- **[vas3k.club](https://vas3k.club)** — a paid community platform. The front end is a \u0024mol single-page app over a Django backend; \u0024mol keeps the many interactive screens (feed, posts, profiles) reactive without a heavy client stack.\n- **Bog Music** — a music player that runs both as a Chrome extension and a web app, with background playback and offline caching. \u0024mol drives the UI and the local-first state.\n- **Blitz Quiz** — a Kahoot-style live quiz built on \u0024mol and Giper Baza. Rooms sync in real time through the CRDT layer, so there is no game server to run.\n- **\u0024mol Styler** — a visual editor for typed `.view.css.ts` styles (a Figma-like surface for \u0024mol components), itself written in \u0024mol.\n- **WikiLive** — a local-first wiki where each page is a Giper Baza land, edited live in the browser.\n\n## Tools\n\n- **MAM** — the build tool and module registry that every \u0024mol app lives in — and it is itself a \u0024mol project. [Source](https://github.com/hyoo-ru/mam).\n- **view.tree LSP** — language tooling and the `npm create view-tree-lsp` scaffolder that starts new \u0024mol apps.\n- **This site** — the documentation you are reading, including the [Playground](#!section=playground) and [course](#!section=course), is a \u0024mol app. The search, live code editor, and in-browser TypeScript are all built with the framework they document.\n\n## More\n\nThe [\u0024mol component catalog](https://mol.hyoo.ru) has dozens of live components and demos you can open and inspect.\n\nBuilding something with \u0024mol? The best next step is the [Playground](#!section=playground) — try an idea in seconds, then share the URL.\n",
+                },
+                'rosetta': {
+                    slug: 'rosetta',
+                    title: "From React, Vue & Svelte",
+                    file: 'content/en/docs/rosetta.md',
+                    md: "# From React, Vue & Svelte\n\nIf you have built UIs with React, Vue, or Svelte, you already understand most of what \u0024mol does — the names are just different. Those frameworks are excellent and popular for good reason; this page is a translation table, not a competition, to help you feel at home quickly.\n\n## Concept map\n\n| Idea | React | Vue | Svelte | \u0024mol |\n|------|-------|-----|--------|------|\n| Component | function / class | SFC (`.vue`) | `.svelte` file | `.view.tree` + `.view.ts` |\n| Local state | `useState` | `ref` / `reactive` | `let x` | `@ \u0024mol_mem` |\n| Derived value | `useMemo` | `computed` | `\u0024: y = …` | `@ \u0024mol_mem` (reads other cells) |\n| Side effect | `useEffect` | `watchEffect` | `\u0024: { … }` | `@ \u0024mol_action` (explicit, never automatic) |\n| Props | props | props | `export let` | bindings in `view.tree` |\n| Event | `onClick` | `@click` | `on:click` | `click? <=> handler?` |\n| Two-way input | controlled input | `v-model` | `bind:value` | `value? <=> field?` |\n| List | `items.map()` | `v-for` | `{#each}` | keyed `Row*` |\n| Conditional | `cond && …` | `v-if` | `{#if}` | assign `null` to remove |\n| Shared state | Redux / Context | Pinia / provide | stores | any object with `@ \u0024mol_mem` |\n| Routing | React Router | Vue Router | SvelteKit | `\u0024mol_state_arg` |\n| Styling | CSS-in-JS | scoped `<style>` | `<style>` | typed `.view.css.ts` |\n\n## What tends to feel new\n\n- **Reactivity is automatic and non-optional.** Like Vue's `ref` or Svelte's `\u0024:`, a `@ \u0024mol_mem` value updates its readers by itself — but there is no dependency array to maintain and no manual subscription anywhere.\n- **Effects are separated from computations.** React folds derivation and effects into hooks; \u0024mol keeps them apart: `@ \u0024mol_mem` only computes, `@ \u0024mol_action` performs effects. That split is what removes most \"why did this run twice?\" puzzles.\n- **State is just objects.** There is no dedicated store library to adopt — a shared value is a reactive property on any object, so global state and component state work the same way.\n\n## Try the translation\n\nThe fastest way to internalize the mapping is to write a little of both: open the [Playground](#!section=playground), port a small component you know, and see how it lands. Or start from [Getting Started](#!section=docs/page=getting-started).\n",
+                },
+                'api-mol-button-major': {
+                    slug: 'api-mol-button-major',
+                    title: "$mol_button_major",
+                    file: 'content/en/docs/api-mol-button-major.md',
+                    md: "# \u0024mol_button_major\n\nExtends `\u0024mol_button_minor`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/button/major)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `theme` | read | `string` |\n",
+                },
+                'api-mol-button-minor': {
+                    slug: 'api-mol-button-minor',
+                    title: "$mol_button_minor",
+                    file: 'content/en/docs/api-mol-button-minor.md',
+                    md: "# \u0024mol_button_minor\n\nExtends `\u0024mol_button_typed`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/button/minor)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n\u0024mol_button_minor adds no new bindable properties of its own — see `\u0024mol_button_typed`.\n",
+                },
+                'api-mol-string': {
+                    slug: 'api-mol-string',
+                    title: "$mol_string",
+                    file: 'content/en/docs/api-mol-string.md',
+                    md: "# \u0024mol_string\n\nExtends `\u0024mol_view`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/string)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `disabled` | read | `boolean` |\n| `value` | read / write | `string` |\n| `value_changed` | read / write | `as 'value'` |\n| `hint` | read | `string` |\n| `hint_visible` | read | `as 'hint'` |\n| `spellcheck` | read | `boolean` |\n| `autocomplete_native` | read | `string` |\n| `selection_end` | read | `number` |\n| `selection_start` | read | `number` |\n| `keyboard` | read | `string` |\n| `enter` | read | `string` |\n| `length_max` | read | `number` |\n| `type` | read / write | `string` |\n| `submit_with_ctrl` | read | `boolean` |\n| `Submit` | read | `\u0024mol_hotkey` |\n| `dom_name` | read | `string` |\n| `enabled` | read | `boolean` |\n| `minimal_height` | read | `number` |\n| `autocomplete` | read | `boolean` |\n| `auto` | read | `readonly(any)[]` |\n| `field` | read | `({` |\n| `attr` | read | `({` |\n| `event` | read | `({` |\n| `plugins` | read | `readonly(any)[]` |\n",
+                },
+                'api-mol-number': {
+                    slug: 'api-mol-number',
+                    title: "$mol_number",
+                    file: 'content/en/docs/api-mol-number.md',
+                    md: "# \u0024mol_number\n\nExtends `\u0024mol_view`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/number)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `precision` | read | `number` |\n| `Hotkey` | read | `\u0024mol_hotkey` |\n| `dec_enabled` | read | `as 'enabled'` |\n| `dec_icon` | read | `\u0024mol_icon_chevron_left` |\n| `Dec` | read | `\u0024mol_button_minor` |\n| `type` | read | `string` |\n| `value_string` | read / write | `string` |\n| `hint` | read | `string` |\n| `string_enabled` | read | `as 'enabled'` |\n| `String` | read | `\u0024mol_string` |\n| `inc_enabled` | read | `as 'enabled'` |\n| `inc_icon` | read | `\u0024mol_icon_chevron_right` |\n| `Inc` | read | `\u0024mol_button_minor` |\n| `precision_view` | read | `as 'precision'` |\n| `precision_change` | read | `as 'precision'` |\n| `boost` | read | `number` |\n| `value_min` | read | `number` |\n| `value_max` | read | `number` |\n| `value` | read / write | `number` |\n| `enabled` | read | `boolean` |\n| `plugins` | read | `readonly(any)[]` |\n| `sub` | read | `readonly(any)[]` |\n",
+                },
+                'api-mol-text': {
+                    slug: 'api-mol-text',
+                    title: "$mol_text",
+                    file: 'content/en/docs/api-mol-text.md',
+                    md: "# \u0024mol_text\n\nExtends `\u0024mol_list`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/text/text)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `highlight` | read | `string` |\n| `code_sidebar_showed` | read | `boolean` |\n| `pre_sidebar_showed` | read | `as 'code_sidebar_showed'` |\n| `uri_base` | read | `string` |\n| `text` | read | `string` |\n| `param` | read | `string` |\n| `flow_tokens` | read | `readonly(any)[]` |\n| `auto` | read | `readonly(any)[]` |\n",
+                },
+                'api-mol-paragraph': {
+                    slug: 'api-mol-paragraph',
+                    title: "$mol_paragraph",
+                    file: 'content/en/docs/api-mol-paragraph.md',
+                    md: "# \u0024mol_paragraph\n\nExtends `\u0024mol_view`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/paragraph)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `line_height` | read | `number` |\n| `letter_width` | read | `number` |\n| `width_limit` | read | `number` |\n| `row_width` | read | `number` |\n| `sub` | read | `readonly(any)[]` |\n",
+                },
+                'api-mol-list': {
+                    slug: 'api-mol-list',
+                    title: "$mol_list",
+                    file: 'content/en/docs/api-mol-list.md',
+                    md: "# \u0024mol_list\n\nExtends `\u0024mol_view`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/list)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `gap_before` | read | `number` |\n| `Gap_before` | read | `\u0024mol_view` |\n| `Empty` | read | `\u0024mol_view` |\n| `gap_after` | read | `number` |\n| `Gap_after` | read | `\u0024mol_view` |\n| `rows` | read | `readonly(\u0024mol_view)[]` |\n| `render_visible_only` | read | `boolean` |\n| `render_over` | read | `number` |\n| `sub` | read | `as 'rows'` |\n| `view_window_shift` | read / write | `number` |\n| `view_window` | read | `readonly(any)[]` |\n",
+                },
+                'api-mol-row': {
+                    slug: 'api-mol-row',
+                    title: "$mol_row",
+                    file: 'content/en/docs/api-mol-row.md',
+                    md: "# \u0024mol_row\n\nExtends `\u0024mol_view`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/row)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n\u0024mol_row adds no new bindable properties of its own — see `\u0024mol_view`.\n",
+                },
+                'api-mol-link': {
+                    slug: 'api-mol-link',
+                    title: "$mol_link",
+                    file: 'content/en/docs/api-mol-link.md',
+                    md: "# \u0024mol_link\n\nExtends `\u0024mol_view`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/link)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `uri_toggle` | read | `string` |\n| `hint` | read | `string` |\n| `hint_safe` | read | `as 'hint'` |\n| `target` | read | `string` |\n| `file_name` | read | `string` |\n| `current` | read | `boolean` |\n| `relation` | read | `string` |\n| `click` | read / write | `as 'event_click'` |\n| `uri` | read | `string` |\n| `dom_name` | read | `string` |\n| `uri_off` | read | `string` |\n| `external` | read | `boolean` |\n| `attr` | read | `({` |\n| `sub` | read | `readonly(\u0024mol_view_content)[]` |\n| `arg` | read | `Record<string, any>` |\n| `event` | read | `({` |\n",
+                },
+                'api-mol-check': {
+                    slug: 'api-mol-check',
+                    title: "$mol_check",
+                    file: 'content/en/docs/api-mol-check.md',
+                    md: "# \u0024mol_check\n\nExtends `\u0024mol_button_minor`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/check)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `checked` | read / write | `boolean` |\n| `aria_checked` | read | `string` |\n| `aria_role` | read | `string` |\n| `title` | read | `string` |\n| `Title` | read | `\u0024mol_view` |\n| `label` | read | `readonly(any)[]` |\n| `attr` | read | `({` |\n| `sub` | read | `readonly(\u0024mol_view_content)[]` |\n",
+                },
+                'api-mol-switch': {
+                    slug: 'api-mol-switch',
+                    title: "$mol_switch",
+                    file: 'content/en/docs/api-mol-switch.md',
+                    md: "# \u0024mol_switch\n\nExtends `\u0024mol_check_list`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/switch)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `value` | read / write | `string` |\n",
+                },
+                'api-mol-select': {
+                    slug: 'api-mol-select',
+                    title: "$mol_select",
+                    file: 'content/en/docs/api-mol-select.md',
+                    md: "# \u0024mol_select\n\nExtends `\u0024mol_pick`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/select)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `enabled` | read | `boolean` |\n| `filter_pattern` | read / write | `string` |\n| `no_options_message` | read | `string` |\n| `nav_components` | read | `readonly(\u0024mol_view)[]` |\n| `nav_cycle` | read / write | `boolean` |\n| `Nav` | read | `\u0024mol_nav` |\n| `menu_content` | read | `readonly(\u0024mol_view)[]` |\n| `Menu` | read | `\u0024mol_list` |\n| `Bubble_pane` | read | `\u0024mol_scroll` |\n| `filter_hint` | read | `string` |\n| `dictionary` | read / write | `Record<string, any>` |\n| `options` | read | `readonly(string)[]` |\n| `value` | read / write | `string` |\n| `option_label_default` | read | `string` |\n| `No_options` | read | `\u0024mol_view` |\n| `plugins` | read | `readonly(any)[]` |\n| `hint` | read | `string` |\n| `bubble_content` | read | `readonly(any)[]` |\n| `Filter` | read | `\u0024mol_search` |\n| `Trigger_icon` | read | `\u0024mol_icon_dots_vertical` |\n| `trigger_enabled` | read | `as 'enabled'` |\n",
+                },
+                'api-mol-scroll': {
+                    slug: 'api-mol-scroll',
+                    title: "$mol_scroll",
+                    file: 'content/en/docs/api-mol-scroll.md',
+                    md: "# \u0024mol_scroll\n\nExtends `\u0024mol_view`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/scroll)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `tabindex` | read | `number` |\n| `scroll_top` | read / write | `number` |\n| `scroll_left` | read / write | `number` |\n| `attr` | read | `({` |\n| `event` | read | `({` |\n",
+                },
+                'api-mol-page': {
+                    slug: 'api-mol-page',
+                    title: "$mol_page",
+                    file: 'content/en/docs/api-mol-page.md',
+                    md: "# \u0024mol_page\n\nExtends `\u0024mol_view`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/page)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `tabindex` | read | `number` |\n| `title_content` | read | `readonly(any)[]` |\n| `Title` | read | `\u0024mol_view` |\n| `tools` | read | `readonly(\u0024mol_view_content)[]` |\n| `Tools` | read | `\u0024mol_view` |\n| `head` | read | `readonly(any)[]` |\n| `Head` | read | `\u0024mol_view` |\n| `body_scroll_top` | read / write | `ReturnType< as 'Body'['scroll_top'] >` |\n| `body` | read | `readonly(\u0024mol_view)[]` |\n| `Body_content` | read | `\u0024mol_view` |\n| `body_content` | read | `readonly(any)[]` |\n| `Body` | read | `\u0024mol_scroll` |\n| `foot` | read | `readonly(\u0024mol_view)[]` |\n| `Foot` | read | `\u0024mol_view` |\n| `dom_name` | read | `string` |\n| `attr` | read | `({` |\n| `sub` | read | `readonly(any)[]` |\n",
+                },
+                'api-mol-pick': {
+                    slug: 'api-mol-pick',
+                    title: "$mol_pick",
+                    file: 'content/en/docs/api-mol-pick.md',
+                    md: "# \u0024mol_pick\n\nExtends `\u0024mol_pop`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/pick)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `trigger_enabled` | read | `boolean` |\n| `trigger_content` | read | `readonly(\u0024mol_view_content)[]` |\n| `hint` | read | `string` |\n| `Trigger` | read | `\u0024mol_check` |\n| `event` | read | `({` |\n| `Anchor` | read | `as 'Trigger'` |\n",
+                },
+            };
+        }
+        /** Flat ordered slug list for prev/next. */
+        static order(section = 'docs') {
+            const sec = this.sections().find(s => s.id === section);
+            if (!sec)
+                return [];
+            return sec.groups.flatMap(g => g.pages);
+        }
+        static page(slug) {
+            return this.pages()[slug] ?? null;
+        }
+        static default_slug() {
+            return 'introduction';
+        }
+    }
+    $.$bog_smalljs_content = $bog_smalljs_content;
+})($ || ($ = {}));
+
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        const Content = $bog_smalljs_content;
+        class $bog_smalljs_search extends $.$bog_smalljs_search {
+            close() { this.open(false); return null; }
+            pick() { this.open(false); return null; } // navigation happens via the link's arg
+            // All doc pages as a flat search corpus.
+            corpus() {
+                const seen = new Set();
+                const docs = [];
+                for (const section of Content.sections()) {
+                    for (const group of section.groups) {
+                        for (const slug of group.pages) {
+                            if (seen.has(slug))
+                                continue;
+                            seen.add(slug);
+                            const page = Content.page(slug);
+                            if (page)
+                                docs.push({ slug, title: page.title, text: page.md });
+                        }
+                    }
+                }
+                return docs;
+            }
+            // Full-text scored ranking (works instantly, offline).
+            scored() {
+                const query = this.query().trim().toLowerCase();
+                if (!query)
+                    return [];
+                const terms = query.split(/\s+/).filter(Boolean);
+                return this.corpus()
+                    .map(doc => {
+                    const title = doc.title.toLowerCase();
+                    const text = doc.text.toLowerCase();
+                    let score = 0;
+                    for (const term of terms) {
+                        if (title.includes(term))
+                            score += 10;
+                        let idx = text.indexOf(term), count = 0;
+                        while (idx >= 0) {
+                            count++;
+                            idx = text.indexOf(term, idx + term.length);
+                        }
+                        score += count;
+                    }
+                    return { doc, score };
+                })
+                    .filter(row => row.score > 0)
+                    .sort((a, b) => b.score - a.score)
+                    .slice(0, 8);
+            }
+            hint_text() {
+                const query = this.query().trim();
+                if (!query)
+                    return 'Type to search the documentation.';
+                const n = this.scored().length;
+                return n ? `${n} result${n > 1 ? 's' : ''}` : 'No matches.';
+            }
+            result_ids() {
+                return this.scored().map(row => row.doc.slug);
+            }
+            result_rows() {
+                return this.result_ids().map(slug => this.Result(slug));
+            }
+            result_arg(slug) {
+                return { section: 'docs', page: slug };
+            }
+            result_title(slug) {
+                return Content.page(slug)?.title ?? slug;
+            }
+            result_snippet(slug) {
+                const md = (Content.page(slug)?.md ?? '')
+                    .replace(/```[\s\S]*?```/g, ' ')
+                    .replace(/[#`*>]/g, ' ')
+                    .replace(/\s+/g, ' ')
+                    .trim();
+                const term = this.query().trim().toLowerCase().split(/\s+/)[0] ?? '';
+                const at = md.toLowerCase().indexOf(term);
+                if (at < 0)
+                    return md.slice(0, 130) + '…';
+                const start = Math.max(0, at - 40);
+                return (start > 0 ? '…' : '') + md.slice(start, start + 150).trim() + '…';
+            }
+        }
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_search.prototype, "close", null);
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_search.prototype, "pick", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_search.prototype, "scored", null);
+        $$.$bog_smalljs_search = $bog_smalljs_search;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    const { rem } = $mol_style_unit;
+    $mol_style_define($bog_smalljs_search, {
+        display: 'none',
+        position: 'fixed',
+        top: 0, left: 0, right: 0, bottom: 0,
+        zIndex: 1000,
+        justify: { content: 'center' },
+        align: { items: 'flex-start' },
+        '@': {
+            bog_smalljs_search_open: {
+                true: { display: 'flex' },
+            },
+        },
+        Backdrop: {
+            position: 'absolute',
+            top: 0, left: 0, right: 0, bottom: 0,
+            background: { color: '#00000099' },
+        },
+        Panel: {
+            position: 'relative',
+            flex: { direction: 'column' },
+            margin: { top: rem(5.5) },
+            width: rem(40),
+            maxWidth: '92vw',
+            maxHeight: '70vh',
+            overflow: { y: 'auto' },
+            background: { color: $bog_builderui_tokens.card },
+            border: { radius: rem(0.75), width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
+            boxShadow: '0 12px 48px -12px #00000080',
+        },
+        Field: {
+            flex: { shrink: 0 },
+            padding: { top: rem(0.5), bottom: rem(0.5), left: rem(0.875), right: rem(0.875) },
+            font: { size: rem(1.0625) },
+            background: { color: $bog_builderui_tokens.card },
+            border: { bottom: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+            color: $bog_builderui_tokens.text,
+        },
+        Hint: {
+            flex: { shrink: 0 },
+            padding: { top: rem(0.375), bottom: rem(0.375), left: rem(0.875), right: rem(0.875) },
+            font: { size: rem(0.75) },
+            color: $bog_builderui_tokens.shade,
+            background: { color: $bog_builderui_tokens.back },
+            border: { bottom: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+        },
+        Results: {
+            flex: { direction: 'column' },
+            padding: rem(0.375),
+        },
+        Result: {
+            flex: { direction: 'column' },
+            align: { items: 'flex-start' },
+            gap: rem(0.125),
+            padding: { top: rem(0.5), bottom: rem(0.5), left: rem(0.625), right: rem(0.625) },
+            border: { radius: rem(0.5) },
+            ':hover': { background: { color: $bog_builderui_tokens.hover } },
+        },
+        Result_title: {
+            font: { size: rem(0.9375), weight: 600 },
+            color: $bog_builderui_tokens.text,
+        },
+        Result_snippet: {
+            font: { size: rem(0.8125) },
+            color: $bog_builderui_tokens.shade,
+        },
+    });
+})($ || ($ = {}));
+
+;
+	($.$mol_icon_play) = class $mol_icon_play extends ($.$mol_icon) {
+		path(){
+			return "M8,5.14V19.14L19,12.14L8,5.14Z";
+		}
+	};
+
+
+;
+"use strict";
+
+
+;
+	($.$mol_icon_arrow_right) = class $mol_icon_arrow_right extends ($.$mol_icon) {
+		path(){
+			return "M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z";
+		}
+	};
+
+
+;
+"use strict";
+
+
+;
+	($.$mol_icon_open_in_new) = class $mol_icon_open_in_new extends ($.$mol_icon) {
+		path(){
+			return "M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z";
+		}
+	};
+
 
 ;
 "use strict";
@@ -11576,7 +13798,7 @@ var $;
 		}
 		Hero_cta_why(){
 			const obj = new this.$.$mol_link();
-			(obj.arg) = () => ({"section": "docs", "page": "why"});
+			(obj.arg) = () => ({"section": "docs", "page": "introduction"});
 			(obj.sub) = () => ([(this.Hero_cta_why_icon()), (this.Hero_cta_why_label())]);
 			return obj;
 		}
@@ -11589,14 +13811,14 @@ var $;
 		}
 		Hero_cta_start(){
 			const obj = new this.$.$mol_link();
-			(obj.arg) = () => ({"section": "docs", "page": "quick-start"});
+			(obj.arg) = () => ({"section": "docs", "page": "getting-started"});
 			(obj.sub) = () => ([(this.Hero_cta_start_label()), (this.Hero_cta_start_icon())]);
 			return obj;
 		}
 		Hero_cta_install(){
 			const obj = new this.$.$mol_link();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Hero_cta_install_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "install"});
+			(obj.arg) = () => ({"section": "docs", "page": "getting-started"});
 			return obj;
 		}
 		Hero_cta_play_label(){
@@ -12449,109 +14671,262 @@ var $;
 })($ || ($ = {}));
 
 ;
+	($.$mol_icon_menu) = class $mol_icon_menu extends ($.$mol_icon) {
+		path(){
+			return "M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z";
+		}
+	};
+
+
+;
+"use strict";
+
+
+;
+	($.$mol_icon_pencil) = class $mol_icon_pencil extends ($.$mol_icon) {
+		path(){
+			return "M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z";
+		}
+	};
+
+
+;
+"use strict";
+
+
+;
 	($.$bog_smalljs_docs) = class $bog_smalljs_docs extends ($.$mol_view) {
-		Group1_title(){
-			return (this.$.$mol_locale.text("$bog_smalljs_docs_Group1_title"));
+		menu_toggle(next){
+			if(next !== undefined) return next;
+			return null;
 		}
-		Group1(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Group1_title())]);
+		Menu_icon(){
+			const obj = new this.$.$mol_icon_menu();
 			return obj;
 		}
-		Group2_title(){
-			return (this.$.$mol_locale.text("$bog_smalljs_docs_Group2_title"));
-		}
-		Group2(){
+		Menu_label(){
 			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Group2_title())]);
+			(obj.sub) = () => ([(this.title_text())]);
 			return obj;
+		}
+		Menu_toggle(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.click) = (next) => ((this.menu_toggle(next)));
+			(obj.sub) = () => ([(this.Menu_icon()), (this.Menu_label())]);
+			return obj;
+		}
+		sidebar_groups(){
+			return [];
 		}
 		Sidebar(){
-			const obj = new this.$.$mol_scroll();
-			(obj.sub) = () => ([(this.Group1()), (this.Group2())]);
-			return obj;
-		}
-		Title_text(){
-			return (this.$.$mol_locale.text("$bog_smalljs_docs_Title_text"));
-		}
-		Title(){
 			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Title_text())]);
+			(obj.sub) = () => ((this.sidebar_groups()));
 			return obj;
 		}
 		Body(){
 			const obj = new this.$.$mol_text();
-			(obj.text) = () => ((this.$.$mol_locale.text("$bog_smalljs_docs_Body_text")));
+			(obj.text) = () => ((this.page_md()));
 			return obj;
 		}
-		Content(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Title()), (this.Body())]);
+		Edit_icon(){
+			const obj = new this.$.$mol_icon_pencil();
 			return obj;
+		}
+		Edit_label(){
+			return (this.$.$mol_locale.text("$bog_smalljs_docs_Edit_label"));
 		}
 		Edit(){
 			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_docs_Edit_title")));
 			(obj.uri) = () => ((this.edit_uri()));
+			(obj.sub) = () => ([(this.Edit_icon()), (this.Edit_label())]);
 			return obj;
 		}
-		Prev(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_docs_Prev_title")));
-			(obj.arg) = () => ({"section": "docs", "page": ""});
-			return obj;
-		}
-		Next(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_docs_Next_title")));
-			(obj.arg) = () => ({"section": "docs", "page": ""});
-			return obj;
+		nav_links(){
+			return [];
 		}
 		Nav(){
 			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Prev()), (this.Next())]);
+			(obj.sub) = () => ((this.nav_links()));
 			return obj;
 		}
 		Main(){
-			const obj = new this.$.$mol_scroll();
+			const obj = new this.$.$mol_view();
 			(obj.sub) = () => ([
-				(this.Content()), 
+				(this.Body()), 
 				(this.Edit()), 
 				(this.Nav())
 			]);
 			return obj;
 		}
-		Toc_title(){
-			return (this.$.$mol_locale.text("$bog_smalljs_docs_Toc_title"));
+		toc_title_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_docs_toc_title_text"));
 		}
-		Toc(){
-			const obj = new this.$.$mol_scroll();
-			(obj.sub) = () => ([(this.Toc_title())]);
+		Toc_title(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.toc_title_text())]);
 			return obj;
 		}
+		toc_links(){
+			return [];
+		}
+		Toc_list(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.toc_links()));
+			return obj;
+		}
+		Toc(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Toc_title()), (this.Toc_list())]);
+			return obj;
+		}
+		group_content(id){
+			return [];
+		}
+		group_title_text(id){
+			return "";
+		}
+		link_arg(id){
+			return {};
+		}
+		nav_click(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		link_title(id){
+			return "";
+		}
+		toc_arg(id){
+			return {};
+		}
+		toc_text(id){
+			return "";
+		}
+		prev_arg(){
+			return {};
+		}
+		prev_hint_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_docs_prev_hint_text"));
+		}
+		Prev_hint(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.prev_hint_text())]);
+			return obj;
+		}
+		prev_title(){
+			return "";
+		}
+		Prev_title(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.prev_title())]);
+			return obj;
+		}
+		next_arg(){
+			return {};
+		}
+		next_hint_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_docs_next_hint_text"));
+		}
+		Next_hint(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.next_hint_text())]);
+			return obj;
+		}
+		next_title(){
+			return "";
+		}
+		Next_title(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.next_title())]);
+			return obj;
+		}
+		page(){
+			return "introduction";
+		}
+		page_md(){
+			return "";
+		}
+		title_text(){
+			return "";
+		}
 		edit_uri(){
-			return "https://github.com/b-on-g/smalljs/edit/master/docs/page.view.tree";
+			return "";
+		}
+		sidebar_open(next){
+			if(next !== undefined) return next;
+			return false;
+		}
+		attr(){
+			return {"bog_smalljs_sidebar_open": (this.sidebar_open())};
 		}
 		sub(){
 			return [
+				(this.Menu_toggle()), 
 				(this.Sidebar()), 
 				(this.Main()), 
 				(this.Toc())
 			];
 		}
+		Group(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.group_content(id)));
+			return obj;
+		}
+		Group_title(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.group_title_text(id))]);
+			return obj;
+		}
+		Link(id){
+			const obj = new this.$.$mol_link();
+			(obj.arg) = () => ((this.link_arg(id)));
+			(obj.event_click) = (next) => ((this.nav_click(next)));
+			(obj.sub) = () => ([(this.link_title(id))]);
+			return obj;
+		}
+		Toc_link(id){
+			const obj = new this.$.$mol_link();
+			(obj.arg) = () => ((this.toc_arg(id)));
+			(obj.sub) = () => ([(this.toc_text(id))]);
+			return obj;
+		}
+		Prev(){
+			const obj = new this.$.$mol_link();
+			(obj.arg) = () => ((this.prev_arg()));
+			(obj.sub) = () => ([(this.Prev_hint()), (this.Prev_title())]);
+			return obj;
+		}
+		Next(){
+			const obj = new this.$.$mol_link();
+			(obj.arg) = () => ((this.next_arg()));
+			(obj.sub) = () => ([(this.Next_hint()), (this.Next_title())]);
+			return obj;
+		}
 	};
-	($mol_mem(($.$bog_smalljs_docs.prototype), "Group1"));
-	($mol_mem(($.$bog_smalljs_docs.prototype), "Group2"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "menu_toggle"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Menu_icon"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Menu_label"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Menu_toggle"));
 	($mol_mem(($.$bog_smalljs_docs.prototype), "Sidebar"));
-	($mol_mem(($.$bog_smalljs_docs.prototype), "Title"));
 	($mol_mem(($.$bog_smalljs_docs.prototype), "Body"));
-	($mol_mem(($.$bog_smalljs_docs.prototype), "Content"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Edit_icon"));
 	($mol_mem(($.$bog_smalljs_docs.prototype), "Edit"));
-	($mol_mem(($.$bog_smalljs_docs.prototype), "Prev"));
-	($mol_mem(($.$bog_smalljs_docs.prototype), "Next"));
 	($mol_mem(($.$bog_smalljs_docs.prototype), "Nav"));
 	($mol_mem(($.$bog_smalljs_docs.prototype), "Main"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Toc_title"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Toc_list"));
 	($mol_mem(($.$bog_smalljs_docs.prototype), "Toc"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "nav_click"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Prev_hint"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Prev_title"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Next_hint"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Next_title"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "sidebar_open"));
+	($mol_mem_key(($.$bog_smalljs_docs.prototype), "Group"));
+	($mol_mem_key(($.$bog_smalljs_docs.prototype), "Group_title"));
+	($mol_mem_key(($.$bog_smalljs_docs.prototype), "Link"));
+	($mol_mem_key(($.$bog_smalljs_docs.prototype), "Toc_link"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Prev"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Next"));
 
 
 ;
@@ -12564,8 +14939,143 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
+        const section = 'docs';
         class $bog_smalljs_docs extends $.$bog_smalljs_docs {
+            /** Current page slug, mirrored to the `page` URL argument. */
+            page(next) {
+                return this.$.$mol_state_arg.value('page', next) ?? $bog_smalljs_content.default_slug();
+            }
+            current() {
+                return $bog_smalljs_content.page(this.page());
+            }
+            page_md() {
+                const page = this.current();
+                if (page)
+                    return page.md;
+                // Unbuilt page — degrade gracefully instead of a bare error.
+                return [
+                    `# Coming soon`,
+                    ``,
+                    `This page hasn't been written yet — the docs are a work in progress.`,
+                    ``,
+                    `In the meantime, start with **[Getting Started](#!section=docs/page=getting-started)**`,
+                    `or read the [Introduction](#!section=docs/page=introduction).`,
+                ].join('\n');
+            }
+            title_text() {
+                return this.current()?.title ?? 'Coming soon';
+            }
+            edit_uri() {
+                const page = this.current();
+                if (!page)
+                    return 'https://github.com/b-on-g/smalljs';
+                return `https://github.com/b-on-g/smalljs/edit/main/${page.file}`;
+            }
+            // --- Mobile drawer ------------------------------------------------
+            menu_toggle() {
+                this.sidebar_open(!this.sidebar_open());
+            }
+            nav_click() {
+                this.sidebar_open(false);
+                return null;
+            }
+            // --- Sidebar ------------------------------------------------------
+            groups_data() {
+                return $bog_smalljs_content.sections().find(s => s.id === section)?.groups ?? [];
+            }
+            sidebar_groups() {
+                return this.groups_data().map((_, index) => this.Group(index));
+            }
+            group_title_text(index) {
+                return this.groups_data()[index].title;
+            }
+            group_content(index) {
+                const group = this.groups_data()[index];
+                return [
+                    this.Group_title(index),
+                    ...group.pages.map(slug => this.Link(slug)),
+                ];
+            }
+            link_title(slug) {
+                return $bog_smalljs_content.page(slug)?.title ?? slug;
+            }
+            link_arg(slug) {
+                return { section, page: slug };
+            }
+            // --- Table of contents (headings of the current page) -------------
+            toc_data() {
+                const items = [];
+                let in_code = false;
+                for (const line of this.page_md().split('\n')) {
+                    if (/^```/.test(line)) {
+                        in_code = !in_code;
+                        continue;
+                    }
+                    if (in_code)
+                        continue;
+                    const match = /^(#{2,3})\s+(.+?)\s*$/.exec(line);
+                    if (match)
+                        items.push({ level: match[1].length, text: match[2] });
+                }
+                return items;
+            }
+            toc_links() {
+                return this.toc_data().map((_, index) => this.Toc_link(index));
+            }
+            toc_text(index) {
+                return this.toc_data()[index].text;
+            }
+            /**
+             * Reuse $mol_text's own anchor mechanism: each heading renders a link
+             * whose arg key is the text component's `param`. Setting that arg makes
+             * the matching header `current`, and $mol_text auto-scrolls to it.
+             */
+            toc_arg(index) {
+                return { [this.Body().param()]: this.toc_data()[index].text };
+            }
+            // --- Prev / next --------------------------------------------------
+            order() {
+                return $bog_smalljs_content.order(section);
+            }
+            nav_index() {
+                return this.order().indexOf(this.page());
+            }
+            prev_slug() {
+                const index = this.nav_index();
+                return index > 0 ? this.order()[index - 1] : '';
+            }
+            next_slug() {
+                const index = this.nav_index();
+                const order = this.order();
+                return index >= 0 && index < order.length - 1 ? order[index + 1] : '';
+            }
+            prev_arg() {
+                return { section, page: this.prev_slug() };
+            }
+            next_arg() {
+                return { section, page: this.next_slug() };
+            }
+            prev_title() {
+                return $bog_smalljs_content.page(this.prev_slug())?.title ?? '';
+            }
+            next_title() {
+                return $bog_smalljs_content.page(this.next_slug())?.title ?? '';
+            }
+            nav_links() {
+                const links = [];
+                if (this.prev_slug())
+                    links.push(this.Prev());
+                if (this.next_slug())
+                    links.push(this.Next());
+                return links;
+            }
         }
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_docs.prototype, "menu_toggle", null);
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_docs.prototype, "nav_click", null);
         $$.$bog_smalljs_docs = $bog_smalljs_docs;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -12575,51 +15085,374 @@ var $;
 var $;
 (function ($) {
     const { rem } = $mol_style_unit;
+    const topbar = rem(4);
+    // One sidebar navigation link (also used for prev/next captions).
+    const sidebar_link = {
+        flex: { direction: 'row' },
+        justify: { content: 'flex-start' },
+        padding: { top: rem(0.3), bottom: rem(0.3), left: rem(0.625), right: rem(0.625) },
+        border: { radius: rem(0.375) },
+        color: $bog_builderui_tokens.shade,
+        font: { size: rem(0.875), weight: 500 },
+        ':hover': {
+            background: { color: $bog_builderui_tokens.hover },
+            color: $bog_builderui_tokens.text,
+        },
+        // active page — $mol_link sets mol_link_current="true"
+        '@': {
+            mol_link_current: {
+                true: {
+                    color: $bog_builderui_tokens.special,
+                    background: { color: $bog_builderui_tokens.hover },
+                    font: { weight: 600 },
+                },
+            },
+        },
+    };
     $mol_style_define($bog_smalljs_docs, {
         display: 'grid',
-        gridTemplateColumns: '16rem 1fr 15rem',
+        gridTemplateColumns: `16rem minmax(0, 1fr) 15rem`,
         flex: { grow: 1 },
+        align: { items: 'start' },
         minHeight: 0,
+        Menu_toggle: {
+            display: 'none',
+            flex: { direction: 'row', grow: 0 },
+            align: { items: 'center' },
+            gap: $mol_gap.text,
+            gridColumn: '1 / -1',
+            position: 'sticky',
+            top: topbar,
+            zIndex: 80,
+            padding: { top: rem(0.5), bottom: rem(0.5), left: $mol_gap.block, right: $mol_gap.block },
+            background: { color: $bog_builderui_tokens.back },
+            border: { bottom: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+            font: { weight: 600 },
+            color: $bog_builderui_tokens.text,
+        },
+        Menu_icon: {
+            width: rem(1.25),
+            height: rem(1.25),
+            flex: { shrink: 0 },
+        },
         Sidebar: {
-            padding: $mol_gap.block,
+            flex: { direction: 'column' },
+            position: 'sticky',
+            top: topbar,
+            maxHeight: $mol_style_func.calc('100vh - 4rem'),
+            overflow: { y: 'auto', x: 'hidden' },
+            padding: { top: $mol_gap.block, bottom: $mol_gap.block, left: rem(0.75), right: rem(0.75) },
             border: { right: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+            background: { color: $bog_builderui_tokens.back },
         },
+        Group: {
+            flex: { direction: 'column' },
+            gap: rem(0.0625),
+            margin: { bottom: $mol_gap.block },
+        },
+        Group_title: {
+            padding: { top: rem(0.5), bottom: rem(0.25), left: rem(0.625), right: rem(0.625) },
+            font: { size: rem(0.6875), weight: 700 },
+            color: $bog_builderui_tokens.shade,
+            textTransform: 'uppercase',
+            letterSpacing: rem(0.03),
+        },
+        Link: sidebar_link,
         Main: {
-            padding: { top: $mol_gap.block, bottom: $mol_gap.block, left: rem(3), right: rem(3) },
+            flex: { direction: 'column' },
+            minWidth: 0,
+            padding: { top: rem(2), bottom: rem(3), left: rem(3), right: rem(3) },
         },
-        Toc: {
-            padding: $mol_gap.block,
-            border: { left: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+        Body: {
+            flex: { direction: 'column' },
+            maxWidth: rem(48),
+            width: '100%',
         },
-        Title: {
-            font: { size: rem(2.5), weight: 700 },
-            padding: { bottom: $mol_gap.block },
+        Edit: {
+            flex: { direction: 'row' },
+            align: { items: 'center' },
+            gap: $mol_gap.text,
+            margin: { top: rem(2) },
+            color: $bog_builderui_tokens.control,
+            font: { size: rem(0.875), weight: 500 },
+            ':hover': { color: $bog_builderui_tokens.focus },
+        },
+        Edit_icon: {
+            width: rem(1),
+            height: rem(1),
         },
         Nav: {
-            flex: { direction: 'row' },
+            flex: { direction: 'row', wrap: 'wrap' },
             justify: { content: 'space-between' },
+            gap: $mol_gap.block,
+            maxWidth: rem(48),
             padding: { top: $mol_gap.block, bottom: $mol_gap.block },
             border: { top: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
-            margin: { top: $mol_gap.block },
+            margin: { top: rem(2) },
+        },
+        Prev: {
+            flex: { direction: 'column', grow: 1, basis: rem(12) },
+            align: { items: 'flex-start' },
+            gap: rem(0.125),
+            padding: $mol_gap.block,
+            border: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line, radius: rem(0.5) },
+            ':hover': { border: { color: $bog_builderui_tokens.focus } },
+        },
+        Next: {
+            flex: { direction: 'column', grow: 1, basis: rem(12) },
+            align: { items: 'flex-end' },
+            gap: rem(0.125),
+            padding: $mol_gap.block,
+            border: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line, radius: rem(0.5) },
+            ':hover': { border: { color: $bog_builderui_tokens.focus } },
+        },
+        Prev_hint: {
+            font: { size: rem(0.75) },
+            color: $bog_builderui_tokens.shade,
+        },
+        Next_hint: {
+            font: { size: rem(0.75) },
+            color: $bog_builderui_tokens.shade,
+        },
+        Prev_title: {
+            color: $bog_builderui_tokens.control,
+            font: { weight: 600 },
+        },
+        Next_title: {
+            color: $bog_builderui_tokens.control,
+            font: { weight: 600 },
+        },
+        Toc: {
+            flex: { direction: 'column' },
+            position: 'sticky',
+            top: topbar,
+            maxHeight: $mol_style_func.calc('100vh - 4rem'),
+            overflow: { y: 'auto', x: 'hidden' },
+            padding: { top: rem(2), bottom: $mol_gap.block, left: rem(1), right: rem(1) },
+            border: { left: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+        },
+        Toc_title: {
+            padding: { bottom: rem(0.5) },
+            font: { size: rem(0.75), weight: 700 },
+            color: $bog_builderui_tokens.shade,
+            textTransform: 'uppercase',
+            letterSpacing: rem(0.03),
+        },
+        Toc_list: {
+            flex: { direction: 'column' },
+            gap: rem(0.0625),
+        },
+        Toc_link: {
+            padding: { top: rem(0.25), bottom: rem(0.25), left: rem(0.5), right: rem(0.5) },
+            border: { radius: rem(0.25) },
+            color: $bog_builderui_tokens.shade,
+            font: { size: rem(0.8125) },
+            ':hover': { color: $bog_builderui_tokens.text },
+            '@': {
+                mol_link_current: {
+                    true: { color: $bog_builderui_tokens.special },
+                },
+            },
+        },
+        '@media': {
+            // Tablet: drop the right-hand table of contents.
+            '(max-width: 63.9375rem)': {
+                gridTemplateColumns: `16rem minmax(0, 1fr)`,
+                Toc: { display: 'none' },
+            },
+            // Phone: sidebar becomes a slide-in drawer, content full width.
+            '(max-width: 47.9375rem)': {
+                gridTemplateColumns: `minmax(0, 1fr)`,
+                Menu_toggle: { display: 'flex' },
+                Main: {
+                    padding: { top: rem(1.25), bottom: rem(2), left: rem(1.25), right: rem(1.25) },
+                },
+                Sidebar: {
+                    position: 'fixed',
+                    top: topbar,
+                    bottom: 0,
+                    left: 0,
+                    zIndex: 90,
+                    width: rem(17),
+                    maxWidth: '85vw',
+                    transform: 'translateX(-100%)',
+                    transition: 'transform 0.2s',
+                    boxShadow: '0 0 24px -6px #00000055',
+                },
+                // drawer open state
+                '@': {
+                    bog_smalljs_sidebar_open: {
+                        true: {
+                            Sidebar: { transform: 'translateX(0)' },
+                        },
+                    },
+                },
+            },
         },
     });
 })($ || ($ = {}));
 
 ;
-	($.$bog_smalljs_playground) = class $bog_smalljs_playground extends ($.$mol_view) {
-		Title(){
-			return (this.$.$mol_locale.text("$bog_smalljs_playground_Title"));
+	($.$mol_textarea) = class $mol_textarea extends ($.$mol_stack) {
+		clickable(next){
+			if(next !== undefined) return next;
+			return false;
 		}
-		Body(){
-			const obj = new this.$.$mol_text();
-			(obj.text) = () => ((this.$.$mol_locale.text("$bog_smalljs_playground_Body_text")));
+		sidebar_showed(){
+			return false;
+		}
+		press(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		hover(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		value(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		hint(){
+			return " ";
+		}
+		enabled(){
+			return true;
+		}
+		spellcheck(){
+			return true;
+		}
+		length_max(){
+			return +Infinity;
+		}
+		selection(next){
+			if(next !== undefined) return next;
+			return [];
+		}
+		bring(){
+			return (this.Edit().bring());
+		}
+		submit(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		submit_with_ctrl(){
+			return true;
+		}
+		Edit(){
+			const obj = new this.$.$mol_textarea_edit();
+			(obj.value) = (next) => ((this.value(next)));
+			(obj.hint) = () => ((this.hint()));
+			(obj.enabled) = () => ((this.enabled()));
+			(obj.spellcheck) = () => ((this.spellcheck()));
+			(obj.length_max) = () => ((this.length_max()));
+			(obj.selection) = (next) => ((this.selection(next)));
+			(obj.submit) = (next) => ((this.submit(next)));
+			(obj.submit_with_ctrl) = () => ((this.submit_with_ctrl()));
 			return obj;
 		}
+		row_numb(id){
+			return 0;
+		}
+		highlight(){
+			return "";
+		}
+		syntax(){
+			const obj = new this.$.$mol_syntax2();
+			return obj;
+		}
+		View(){
+			const obj = new this.$.$mol_text_code();
+			(obj.text) = () => ((this.value()));
+			(obj.render_visible_only) = () => (false);
+			(obj.row_numb) = (id) => ((this.row_numb(id)));
+			(obj.sidebar_showed) = () => ((this.sidebar_showed()));
+			(obj.highlight) = () => ((this.highlight()));
+			(obj.syntax) = () => ((this.syntax()));
+			return obj;
+		}
+		attr(){
+			return {
+				...(super.attr()), 
+				"mol_textarea_clickable": (this.clickable()), 
+				"mol_textarea_sidebar_showed": (this.sidebar_showed())
+			};
+		}
+		event(){
+			return {"keydown": (next) => (this.press(next)), "pointermove": (next) => (this.hover(next))};
+		}
 		sub(){
-			return [(this.Title()), (this.Body())];
+			return [(this.Edit()), (this.View())];
+		}
+		symbols_alt(){
+			return {
+				"comma": "<", 
+				"period": ">", 
+				"dash": "−", 
+				"equals": "≈", 
+				"graveAccent": "́", 
+				"forwardSlash": "÷", 
+				"E": "€", 
+				"V": "✔", 
+				"X": "×", 
+				"C": "©", 
+				"P": "§", 
+				"H": "₽", 
+				"key0": "°", 
+				"key8": "•", 
+				"key2": "@", 
+				"key3": "#", 
+				"key4": "$", 
+				"key6": "^", 
+				"key7": "&", 
+				"bracketOpen": "[", 
+				"bracketClose": "]", 
+				"slashBack": "|"
+			};
+		}
+		symbols_alt_ctrl(){
+			return {"space": " "};
+		}
+		symbols_alt_shift(){
+			return {
+				"V": "✅", 
+				"X": "❌", 
+				"O": "⭕", 
+				"key1": "❗", 
+				"key4": "💲", 
+				"key7": "❓", 
+				"comma": "«", 
+				"period": "»", 
+				"semicolon": "“", 
+				"quoteSingle": "”", 
+				"dash": "—", 
+				"equals": "≠", 
+				"graveAccent": "̱", 
+				"bracketOpen": "{", 
+				"bracketClose": "}"
+			};
 		}
 	};
-	($mol_mem(($.$bog_smalljs_playground.prototype), "Body"));
+	($mol_mem(($.$mol_textarea.prototype), "clickable"));
+	($mol_mem(($.$mol_textarea.prototype), "press"));
+	($mol_mem(($.$mol_textarea.prototype), "hover"));
+	($mol_mem(($.$mol_textarea.prototype), "value"));
+	($mol_mem(($.$mol_textarea.prototype), "selection"));
+	($mol_mem(($.$mol_textarea.prototype), "submit"));
+	($mol_mem(($.$mol_textarea.prototype), "Edit"));
+	($mol_mem(($.$mol_textarea.prototype), "syntax"));
+	($mol_mem(($.$mol_textarea.prototype), "View"));
+	($.$mol_textarea_edit) = class $mol_textarea_edit extends ($.$mol_string) {
+		dom_name(){
+			return "textarea";
+		}
+		enter(){
+			return "enter";
+		}
+		field(){
+			return {...(super.field()), "scrollTop": 0};
+		}
+	};
 
 
 ;
@@ -12632,9 +15465,95 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
-        class $bog_smalljs_playground extends $.$bog_smalljs_playground {
+        /**
+         * An input field for entering multiline text.
+         * @see https://mol.hyoo.ru/#!section=demos/demo=mol_textarea_demo
+         */
+        class $mol_textarea extends $.$mol_textarea {
+            indent_inc() {
+                let text = this.value();
+                let [from, to] = this.selection();
+                const rows = text.split('\n');
+                let start = 0;
+                for (let i = 0; i < rows.length; ++i) {
+                    let end = start + rows[i].length;
+                    if (end >= from && start <= to) {
+                        if (to === from || start !== to) {
+                            rows[i] = '\t' + rows[i];
+                            to += 1;
+                            end += 1;
+                        }
+                    }
+                    start = end + 1;
+                }
+                this.value(rows.join('\n'));
+                this.selection([from + 1, to]);
+            }
+            indent_dec() {
+                let text = this.value();
+                let [from, to] = this.selection();
+                const rows = text.split('\n');
+                let start = 0;
+                for (let i = 0; i < rows.length; ++i) {
+                    const end = start + rows[i].length;
+                    if (end >= from && start <= to && rows[i].startsWith('\t')) {
+                        rows[i] = rows[i].slice(1);
+                        to -= 1;
+                        if (start < from)
+                            from -= 1;
+                    }
+                    start = end + 1;
+                }
+                this.value(rows.join('\n'));
+                this.selection([from, to]);
+            }
+            symbol_insert(event) {
+                const symbol = event.shiftKey
+                    ? this.symbols_alt_shift()[$mol_keyboard_code[event.keyCode]]
+                    : event.ctrlKey
+                        ? this.symbols_alt_ctrl()[$mol_keyboard_code[event.keyCode]]
+                        : this.symbols_alt()[$mol_keyboard_code[event.keyCode]];
+                if (!symbol)
+                    return;
+                event.preventDefault();
+                document.execCommand('insertText', false, symbol);
+            }
+            clickable(next) {
+                if (!this.enabled())
+                    return true;
+                return next ?? false;
+            }
+            hover(event) {
+                this.clickable(event.ctrlKey);
+            }
+            press(event) {
+                if (event.altKey) {
+                    this.symbol_insert(event);
+                }
+                else {
+                    switch (event.keyCode) {
+                        case !event.shiftKey && $mol_keyboard_code.tab:
+                            this.indent_inc();
+                            break;
+                        case event.shiftKey && $mol_keyboard_code.tab:
+                            this.indent_dec();
+                            break;
+                        default: return;
+                    }
+                    event.preventDefault();
+                }
+            }
+            row_numb(index) {
+                return index;
+            }
+            syntax() {
+                return this.$.$mol_syntax2_md_code;
+            }
         }
-        $$.$bog_smalljs_playground = $bog_smalljs_playground;
+        __decorate([
+            $mol_mem
+        ], $mol_textarea.prototype, "clickable", null);
+        $$.$mol_textarea = $mol_textarea;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
 
@@ -12642,9 +15561,2307 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_define($bog_smalljs_playground, {
+    $mol_style_attach("mol/textarea/textarea.view.css", "[mol_textarea] {\n\tflex: 1 0 auto;\n\tflex-direction: column;\n\tvertical-align: top;\n\tmin-height: max-content;\n\twhite-space: pre-wrap;\n\tword-break: break-word;\n\tborder-radius: var(--mol_gap_round);\n\tfont-family: monospace;\n\tposition: relative;\n\ttab-size: 4;\n}\n\n[mol_textarea_view] {\n\tpointer-events: none;\n\twhite-space: inherit;\n\tfont-family: inherit;\n\ttab-size: inherit;\n\tuser-select: none;\n}\n\n[mol_textarea_view_copy] {\n\tpointer-events: all;\n}\n\n[mol_textarea_clickable] > [mol_textarea_view] {\n\tpointer-events: all;\n\tuser-select: auto;\n}\n\n[mol_textarea_clickable] > [mol_textarea_edit] {\n\tuser-select: none;\n}\n\n[mol_textarea_edit] {\n\tfont-family: inherit;\n\tpadding: var(--mol_gap_text);\n\tcolor: transparent !important;\n\tcaret-color: var(--mol_theme_text);\n\tresize: none;\n\ttext-align: inherit;\n\twhite-space: inherit;\n\tborder-radius: inherit;\n\toverflow-anchor: none;\n\tposition: absolute;\n\theight: 100%;\n\twidth: 100%;\n\ttab-size: inherit;\n}\n\n[mol_textarea_sidebar_showed] [mol_textarea_edit] {\n\tleft: 1.75rem;\n\twidth: calc( 100% - 1.75rem );\n}\n\n[mol_textarea_edit]:hover + [mol_textarea_view] {\n\tz-index: var(--mol_layer_hover);\n}\n\n[mol_textarea_edit]:focus + [mol_textarea_view] {\n\tz-index: var(--mol_layer_focus);\n}\n");
+})($ || ($ = {}));
+
+;
+	($.$bog_smalljs_playground) = class $bog_smalljs_playground extends ($.$mol_view) {
+		show_tree(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		tree_tab_label(){
+			return (this.$.$mol_locale.text("$bog_smalljs_playground_tree_tab_label"));
+		}
+		Tree_tab(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.click) = (next) => ((this.show_tree(next)));
+			(obj.sub) = () => ([(this.tree_tab_label())]);
+			return obj;
+		}
+		show_ts(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		ts_tab_label(){
+			return (this.$.$mol_locale.text("$bog_smalljs_playground_ts_tab_label"));
+		}
+		Ts_tab(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.click) = (next) => ((this.show_ts(next)));
+			(obj.sub) = () => ([(this.ts_tab_label())]);
+			return obj;
+		}
+		Tabs(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Tree_tab()), (this.Ts_tab())]);
+			return obj;
+		}
+		Editor(){
+			const obj = new this.$.$mol_textarea();
+			(obj.value) = (next) => ((this.draft(next)));
+			(obj.hint) = () => ((this.editor_hint()));
+			return obj;
+		}
+		Editor_pane(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Tabs()), (this.Editor())]);
+			return obj;
+		}
+		preview_label_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_playground_preview_label_text"));
+		}
+		Preview_label(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.preview_label_text())]);
+			return obj;
+		}
+		preview_content(){
+			return [];
+		}
+		Preview(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.preview_content()));
+			return obj;
+		}
+		Preview_pane(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Preview_label()), (this.Preview())]);
+			return obj;
+		}
+		tab(){
+			return "tree";
+		}
+		draft(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		editor_hint(){
+			return "";
+		}
+		seed_tree(){
+			return "";
+		}
+		seed_ts(){
+			return "";
+		}
+		store_scope(){
+			return "";
+		}
+		attr(){
+			return {"bog_smalljs_pg_tab": (this.tab())};
+		}
+		sub(){
+			return [(this.Editor_pane()), (this.Preview_pane())];
+		}
+	};
+	($mol_mem(($.$bog_smalljs_playground.prototype), "show_tree"));
+	($mol_mem(($.$bog_smalljs_playground.prototype), "Tree_tab"));
+	($mol_mem(($.$bog_smalljs_playground.prototype), "show_ts"));
+	($mol_mem(($.$bog_smalljs_playground.prototype), "Ts_tab"));
+	($mol_mem(($.$bog_smalljs_playground.prototype), "Tabs"));
+	($mol_mem(($.$bog_smalljs_playground.prototype), "Editor"));
+	($mol_mem(($.$bog_smalljs_playground.prototype), "Editor_pane"));
+	($mol_mem(($.$bog_smalljs_playground.prototype), "Preview_label"));
+	($mol_mem(($.$bog_smalljs_playground.prototype), "Preview"));
+	($mol_mem(($.$bog_smalljs_playground.prototype), "Preview_pane"));
+	($mol_mem(($.$bog_smalljs_playground.prototype), "draft"));
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    /** Position in any resource. */
+    class $mol_span extends $mol_object2 {
+        uri;
+        source;
+        row;
+        col;
+        length;
+        constructor(uri, source, row, col, length) {
+            super();
+            this.uri = uri;
+            this.source = source;
+            this.row = row;
+            this.col = col;
+            this.length = length;
+            this[Symbol.toStringTag] = this.uri + ('#' + this.row + ':' + this.col + '/' + this.length);
+        }
+        /** Span for begin of unknown resource */
+        static unknown = $mol_span.begin('?');
+        /** Makes new span for begin of resource. */
+        static begin(uri, source = '') {
+            return new $mol_span(uri, source, 1, 1, 0);
+        }
+        /** Makes new span for end of resource. */
+        static end(uri, source) {
+            return new $mol_span(uri, source, 1, source.length + 1, 0);
+        }
+        /** Makes new span for entire resource. */
+        static entire(uri, source) {
+            return new $mol_span(uri, source, 1, 1, source.length);
+        }
+        toString() {
+            return this[Symbol.toStringTag];
+        }
+        toJSON() {
+            return {
+                uri: this.uri,
+                row: this.row,
+                col: this.col,
+                length: this.length
+            };
+        }
+        /** Makes new error for this span. */
+        error(message, Class = Error) {
+            return new Class(`${message} (${this})`);
+        }
+        /** Makes new span for same uri. */
+        span(row, col, length) {
+            return new $mol_span(this.uri, this.source, row, col, length);
+        }
+        /** Makes new span after end of this. */
+        after(length = 0) {
+            return new $mol_span(this.uri, this.source, this.row, this.col + this.length, length);
+        }
+        /** Makes new span between begin and end. */
+        slice(begin, end = -1) {
+            let len = this.length;
+            if (begin < 0)
+                begin += len;
+            if (end < 0)
+                end += len;
+            if (begin < 0 || begin > len)
+                this.$.$mol_fail(this.error(`Begin value '${begin}' out of range`, RangeError));
+            if (end < 0 || end > len)
+                this.$.$mol_fail(this.error(`End value '${end}' out of range`, RangeError));
+            if (end < begin)
+                this.$.$mol_fail(this.error(`End value '${end}' can't be less than begin value`, RangeError));
+            return this.span(this.row, this.col + begin, end - begin);
+        }
+    }
+    $.$mol_span = $mol_span;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    /** Syntax error with cordinates and source line snippet. */
+    class $mol_error_syntax extends SyntaxError {
+        reason;
+        line;
+        span;
+        constructor(reason, line, span) {
+            super(`${reason}\n${span}\n${line.substring(0, span.col - 1).replace(/\S/g, ' ')}${''.padEnd(span.length, '!')}\n${line}`);
+            this.reason = reason;
+            this.line = line;
+            this.span = span;
+        }
+    }
+    $.$mol_error_syntax = $mol_error_syntax;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    /** Parses tree format from string. */
+    function $mol_tree2_from_string(str, uri = '?') {
+        const span = $mol_span.entire(uri, str);
+        var root = $mol_tree2.list([], span);
+        var stack = [root];
+        var pos = 0, row = 0, min_indent = 0;
+        while (str.length > pos) {
+            var indent = 0;
+            var line_start = pos;
+            row++;
+            // read indent
+            while (str.length > pos && str[pos] == '\t') {
+                indent++;
+                pos++;
+            }
+            if (!root.kids.length) {
+                min_indent = indent;
+            }
+            indent -= min_indent;
+            // invalid tab size
+            if (indent < 0 || indent >= stack.length) {
+                const sp = span.span(row, 1, pos - line_start);
+                // skip error line
+                while (str.length > pos && str[pos] != '\n') {
+                    pos++;
+                }
+                if (indent < 0) {
+                    if (str.length > pos) {
+                        this.$mol_fail(new this.$mol_error_syntax(`Too few tabs`, str.substring(line_start, pos), sp));
+                    }
+                }
+                else {
+                    this.$mol_fail(new this.$mol_error_syntax(`Too many tabs`, str.substring(line_start, pos), sp));
+                }
+            }
+            stack.length = indent + 1;
+            var parent = stack[indent];
+            // parse types
+            while (str.length > pos && str[pos] != '\\' && str[pos] != '\n') {
+                // type can not contain space and tab
+                var error_start = pos;
+                while (str.length > pos && (str[pos] == ' ' || str[pos] == '\t')) {
+                    pos++;
+                }
+                if (pos > error_start) {
+                    let line_end = str.indexOf('\n', pos);
+                    if (line_end === -1)
+                        line_end = str.length;
+                    const sp = span.span(row, error_start - line_start + 1, pos - error_start);
+                    this.$mol_fail(new this.$mol_error_syntax(`Wrong nodes separator`, str.substring(line_start, line_end), sp));
+                }
+                // read type
+                var type_start = pos;
+                while (str.length > pos &&
+                    str[pos] != '\\' &&
+                    str[pos] != ' ' &&
+                    str[pos] != '\t' &&
+                    str[pos] != '\n') {
+                    pos++;
+                }
+                if (pos > type_start) {
+                    let next = new $mol_tree2(str.slice(type_start, pos), '', [], span.span(row, type_start - line_start + 1, pos - type_start));
+                    const parent_kids = parent.kids;
+                    parent_kids.push(next);
+                    parent = next;
+                }
+                // read one space if exists
+                if (str.length > pos && str[pos] == ' ') {
+                    pos++;
+                }
+            }
+            // read data
+            if (str.length > pos && str[pos] == '\\') {
+                var data_start = pos;
+                while (str.length > pos && str[pos] != '\n') {
+                    pos++;
+                }
+                let next = new $mol_tree2('', str.slice(data_start + 1, pos), [], span.span(row, data_start - line_start + 2, pos - data_start - 1));
+                const parent_kids = parent.kids;
+                parent_kids.push(next);
+                parent = next;
+            }
+            // now must be end of text
+            if (str.length === pos && stack.length > 0) {
+                const sp = span.span(row, pos - line_start + 1, 1);
+                this.$mol_fail(new this.$mol_error_syntax(`Unexpected EOF, LF required`, str.substring(line_start, str.length), sp));
+            }
+            stack.push(parent);
+            pos++;
+        }
+        return root;
+    }
+    $.$mol_tree2_from_string = $mol_tree2_from_string;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    /** Serializes tree to string in tree format. */
+    function $mol_tree2_to_string(tree) {
+        let output = [];
+        function dump(tree, prefix = '') {
+            if (tree.type.length) {
+                if (!prefix.length) {
+                    prefix = "\t";
+                }
+                output.push(tree.type);
+                if (tree.kids.length == 1) {
+                    output.push(' ');
+                    dump(tree.kids[0], prefix);
+                    return;
+                }
+                output.push("\n");
+            }
+            else if (tree.value.length || prefix.length) {
+                output.push("\\" + tree.value + "\n");
+            }
+            for (const kid of tree.kids) {
+                output.push(prefix);
+                dump(kid, prefix + "\t");
+            }
+        }
+        dump(tree);
+        return output.join('');
+    }
+    $.$mol_tree2_to_string = $mol_tree2_to_string;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    /**
+     * Abstract Syntax Tree with human readable serialization.
+     * Avoid direct instantiation. Use static factories instead.
+     * @see https://github.com/nin-jin/tree.d
+     */
+    class $mol_tree2 extends Object {
+        type;
+        value;
+        kids;
+        span;
+        constructor(
+        /** Type of structural node, `value` should be empty */
+        type, 
+        /** Content of data node, `type` should be empty */
+        value, 
+        /** Child nodes */
+        kids, 
+        /** Position in most far source resource */
+        span) {
+            super();
+            this.type = type;
+            this.value = value;
+            this.kids = kids;
+            this.span = span;
+            this[Symbol.toStringTag] = type || '\\' + value;
+        }
+        /** Makes collection node. */
+        static list(kids, span = $mol_span.unknown) {
+            return new $mol_tree2('', '', kids, span);
+        }
+        /** Makes new derived collection node. */
+        list(kids) {
+            return $mol_tree2.list(kids, this.span);
+        }
+        /** Makes data node for any string. */
+        static data(value, kids = [], span = $mol_span.unknown) {
+            const chunks = value.split('\n');
+            if (chunks.length > 1) {
+                let kid_span = span.span(span.row, span.col, 0);
+                const data = chunks.map(chunk => {
+                    kid_span = kid_span.after(chunk.length);
+                    return new $mol_tree2('', chunk, [], kid_span);
+                });
+                kids = [...data, ...kids];
+                value = '';
+            }
+            return new $mol_tree2('', value, kids, span);
+        }
+        /** Makes new derived data node. */
+        data(value, kids = []) {
+            return $mol_tree2.data(value, kids, this.span);
+        }
+        /** Makes struct node. */
+        static struct(type, kids = [], span = $mol_span.unknown) {
+            if (/[ \n\t\\]/.test(type)) {
+                $$.$mol_fail(span.error(`Wrong type ${JSON.stringify(type)}`));
+            }
+            return new $mol_tree2(type, '', kids, span);
+        }
+        /** Makes new derived structural node. */
+        struct(type, kids = []) {
+            return $mol_tree2.struct(type, kids, this.span);
+        }
+        /** Makes new derived node with different kids id defined. */
+        clone(kids, span = this.span) {
+            return new $mol_tree2(this.type, this.value, kids, span);
+        }
+        /** Returns multiline text content. */
+        text() {
+            var values = [];
+            for (var kid of this.kids) {
+                if (kid.type)
+                    continue;
+                values.push(kid.value);
+            }
+            return this.value + values.join('\n');
+        }
+        /** Parses tree format. */
+        /** @deprecated Use $mol_tree2_from_string */
+        static fromString(str, uri = 'unknown') {
+            return $$.$mol_tree2_from_string(str, uri);
+        }
+        /** Serializes to tree format. */
+        toString() {
+            return $$.$mol_tree2_to_string(this);
+        }
+        /** Makes new tree with node overrided by path. */
+        insert(value, ...path) {
+            return this.update($mol_maybe(value), ...path)[0];
+        }
+        /** Makes new tree with node overrided by path. */
+        update(value, ...path) {
+            if (path.length === 0)
+                return value;
+            const type = path[0];
+            if (typeof type === 'string') {
+                let replaced = false;
+                const sub = this.kids.flatMap((item, index) => {
+                    if (item.type !== type)
+                        return item;
+                    replaced = true;
+                    return item.update(value, ...path.slice(1));
+                }).filter(Boolean);
+                if (!replaced && value) {
+                    sub.push(...this.struct(type, []).update(value, ...path.slice(1)));
+                }
+                return [this.clone(sub)];
+            }
+            else if (typeof type === 'number') {
+                const ins = (this.kids[type] || this.list([]))
+                    .update(value, ...path.slice(1));
+                return [this.clone([
+                        ...this.kids.slice(0, type),
+                        ...ins,
+                        ...this.kids.slice(type + 1),
+                    ])];
+            }
+            else {
+                const kids = ((this.kids.length === 0) ? [this.list([])] : this.kids)
+                    .flatMap(item => item.update(value, ...path.slice(1)));
+                return [this.clone(kids)];
+            }
+        }
+        /** Query nodes by path. */
+        select(...path) {
+            let next = [this];
+            for (const type of path) {
+                if (!next.length)
+                    break;
+                const prev = next;
+                next = [];
+                for (var item of prev) {
+                    switch (typeof (type)) {
+                        case 'string':
+                            for (var child of item.kids) {
+                                if (child.type == type) {
+                                    next.push(child);
+                                }
+                            }
+                            break;
+                        case 'number':
+                            if (type < item.kids.length)
+                                next.push(item.kids[type]);
+                            break;
+                        default: next.push(...item.kids);
+                    }
+                }
+            }
+            return this.list(next);
+        }
+        /** Filter kids by path or value. */
+        filter(path, value) {
+            const sub = this.kids.filter(item => {
+                var found = item.select(...path);
+                if (value === undefined) {
+                    return Boolean(found.kids.length);
+                }
+                else {
+                    return found.kids.some(child => child.value == value);
+                }
+            });
+            return this.clone(sub);
+        }
+        hack_self(belt, context = {}) {
+            let handle = belt[this.type] || belt[''];
+            if (!handle || handle === Object.prototype[this.type]) {
+                handle = (input, belt, context) => [
+                    input.clone(input.hack(belt, context), context.span)
+                ];
+            }
+            try {
+                return handle(this, belt, context);
+            }
+            catch (error) {
+                error.message += `\n${this.clone([])}${this.span}`;
+                $mol_fail_hidden(error);
+            }
+        }
+        /** Transform tree through context with transformers */
+        hack(belt, context = {}) {
+            return [].concat(...this.kids.map(child => child.hack_self(belt, context)));
+        }
+        /** Makes Error with node coordinates. */
+        error(message, Class = Error) {
+            return this.span.error(`${message}\n${this.clone([])}`, Class);
+        }
+    }
+    $.$mol_tree2 = $mol_tree2;
+    class $mol_tree2_empty extends $mol_tree2 {
+        constructor() {
+            super('', '', [], $mol_span.unknown);
+        }
+    }
+    $.$mol_tree2_empty = $mol_tree2_empty;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_view_tree2_error extends Error {
+        spans;
+        constructor(message, spans) {
+            super(message);
+            this.spans = spans;
+        }
+        toJSON() {
+            return {
+                message: this.message,
+                spans: this.spans
+            };
+        }
+    }
+    $.$mol_view_tree2_error = $mol_view_tree2_error;
+    class $mol_view_tree2_error_suggestions {
+        suggestions;
+        constructor(suggestions) {
+            this.suggestions = suggestions;
+        }
+        toString() {
+            return this.suggestions.map(suggestion => `\`${suggestion}\``).join(', ');
+        }
+        toJSON() {
+            return this.suggestions;
+        }
+    }
+    $.$mol_view_tree2_error_suggestions = $mol_view_tree2_error_suggestions;
+    function $mol_view_tree2_error_str(strings, ...parts) {
+        const spans = [];
+        for (const part of parts) {
+            if (part instanceof $mol_span)
+                spans.push(part);
+            if (Array.isArray(part) && part.length > 0 && part[0] instanceof $mol_span)
+                spans.push(...part);
+        }
+        return new $mol_view_tree2_error(join(strings, parts), spans);
+    }
+    $.$mol_view_tree2_error_str = $mol_view_tree2_error_str;
+    function join(strings, objects) {
+        let result = '';
+        let obj_pos = 0;
+        let obj_len = objects.length;
+        for (const str of strings) {
+            result += str;
+            if (obj_pos < obj_len) {
+                const obj = objects[obj_pos++];
+                if (Array.isArray(obj))
+                    result += obj.map(item => `\`${item}\``).join(', ');
+                else
+                    result += `\`${String(obj)}\``;
+            }
+        }
+        return result;
+    }
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_view_tree2_child(tree) {
+        if (tree.kids.length === 0) {
+            return this.$mol_fail($mol_view_tree2_error_str `Required one child at ${tree.span}`);
+        }
+        if (tree.kids.length > 1) {
+            return this.$mol_fail($mol_view_tree2_error_str `Should be only one child at ${tree.span}`);
+        }
+        return tree.kids[0];
+    }
+    $.$mol_view_tree2_child = $mol_view_tree2_child;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_view_tree2_classes(defs) {
+        return defs.clone(defs.hack({
+            '-': () => []
+        }));
+    }
+    $.$mol_view_tree2_classes = $mol_view_tree2_classes;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_view_tree2_normalize(defs) {
+        return defs.clone($mol_view_tree2_classes(defs).kids.map(cl => cl.clone([
+            this.$mol_view_tree2_class_super(cl).clone(this.$mol_view_tree2_class_props(cl))
+        ])));
+    }
+    $.$mol_view_tree2_normalize = $mol_view_tree2_normalize;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    const { begin, end, latin_only, or, optional, repeat_greedy } = $mol_regexp;
+    $.$mol_view_tree2_prop_signature = $mol_regexp.from([
+        begin,
+        { name: repeat_greedy(latin_only, 1) },
+        { key: optional(['*', repeat_greedy(latin_only, 0)]) },
+        { next: optional(['?', repeat_greedy(latin_only, 0)]) },
+        end,
+    ]);
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_view_tree2_prop_parts(prop) {
+        const groups = [...prop.type.matchAll($mol_view_tree2_prop_signature)][0]?.groups;
+        if (!groups) {
+            this.$mol_fail($mol_view_tree2_error_str `Required prop like some*? at ${prop.span}`);
+        }
+        return {
+            name: groups.name,
+            key: groups.key,
+            next: groups.next ? '?' : ''
+        };
+    }
+    $.$mol_view_tree2_prop_parts = $mol_view_tree2_prop_parts;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    const regular_regex = /^\w+$/;
+    function $mol_view_tree2_prop_quote(name) {
+        if (regular_regex.test(name.value))
+            return name;
+        return name.data(JSON.stringify(name.value));
+    }
+    $.$mol_view_tree2_prop_quote = $mol_view_tree2_prop_quote;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    const class_regex = /^[$A-Z][$\w<>\[\]()"'?|]+$/;
+    function $mol_view_tree2_class_match(klass) {
+        if (!klass?.type)
+            return false;
+        if (klass.type === 'NaN' || klass.type === 'Infinity')
+            return false;
+        return class_regex.test(klass.type);
+    }
+    $.$mol_view_tree2_class_match = $mol_view_tree2_class_match;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    const err = $mol_view_tree2_error_str;
+    function $mol_view_tree2_class_super(klass) {
+        if (!$mol_view_tree2_class_match(klass))
+            return this.$mol_fail(err `Wrong class name at ${klass.span}`);
+        const superclass = klass.kids.length === 1 ? klass.kids[0] : undefined;
+        if (!superclass)
+            return this.$mol_fail(err `No super class at ${klass.span}`);
+        if (!$mol_view_tree2_class_match(superclass))
+            return this.$mol_fail(err `Wrong super class name ${JSON.stringify(superclass.type).replace(/(^"|"$)/g, "")} at ${superclass.span}`);
+        return superclass;
+    }
+    $.$mol_view_tree2_class_super = $mol_view_tree2_class_super;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    const err = $mol_view_tree2_error_str;
+    const is_writable = (input) => input.type.includes('?');
+    function $mol_view_tree2_class_props(klass) {
+        let props = this.$mol_view_tree2_class_super(klass);
+        // ! syntax to * and ?val syntax to ?
+        props = props.clone(props.hack({
+            '': (node, belt) => {
+                const next = node.type.indexOf('?');
+                const id = node.type.indexOf('!');
+                let normal = node.type;
+                const ch = node.type[id + 1];
+                if (id !== -1 && ch?.toUpperCase() !== ch?.toLowerCase())
+                    normal = `${normal.substring(0, id)}*${next === -1 ? '' : '?'}`;
+                else if (next !== -1)
+                    normal = normal.substring(0, next + 1);
+                if (node.type === normal)
+                    return [node.clone(node.hack(belt))];
+                console.warn(`Syntax ${node.type} at ${node.span} is deprecated. Use ${normal} instead`);
+                return [node.struct(normal, node.hack(belt))];
+            }
+        }));
+        const props_inner = {};
+        const add_inner = (prop) => {
+            const { name } = this.$mol_view_tree2_prop_parts(prop);
+            const prev = props_inner[name];
+            if (prev && prev.kids[0]?.toString() !== prop.kids[0]?.toString()) {
+                this.$mol_fail(err `Need an equal default values at ${prev.span} vs ${prop.span}`);
+            }
+            props_inner[name] = prop;
+        };
+        const upper = (operator, belt, context) => {
+            const prop = this.$mol_view_tree2_child(operator);
+            const defs = prop.hack(belt, { factory: prop });
+            if (defs.length)
+                add_inner(prop.clone(defs));
+            return [operator.clone([prop.clone([])])];
+        };
+        const props_root = props.hack({
+            '<=': upper,
+            '<=>': upper,
+            '^': (operator, belt, context) => {
+                if (operator.kids.length === 0)
+                    return [operator];
+                return upper(operator, belt, context);
+            },
+            '': (left, belt, context) => {
+                let right;
+                const operator = left.kids[0];
+                if (operator?.type === '=>' && context.factory) {
+                    right = operator.kids[0];
+                    if (!right)
+                        this.$mol_fail(err `Need a child ${operator.span}`);
+                    if (!context.factory)
+                        this.$mol_fail(err `Need a parent ${left.span}`);
+                    if (is_writable(left) !== is_writable(right))
+                        this.$mol_fail(err `Left and right operands are not compatible at ${operator.span}`);
+                    add_inner(right.clone([
+                        right.struct('=', [
+                            context.factory.struct(context.factory.type.replace(/\*.*/, '*'), [left.clone([])]),
+                        ]),
+                    ]));
+                }
+                else if (operator?.type === "<=>") {
+                    const right = operator.kids[0];
+                    if (!right)
+                        this.$mol_fail(err `Need a child ${operator.span}`);
+                    if (!is_writable(left))
+                        this.$mol_fail(err `Expected writable at ${left.span}`);
+                    if (!is_writable(right))
+                        this.$mol_fail(err `Expected writable at ${right.span}`);
+                }
+                else if (context.factory && operator?.type === "<=" && is_writable(left)) {
+                    this.$mol_fail(err `Expected readonly at ${left.span}`);
+                }
+                if (right)
+                    context = { factory: right.clone([]) };
+                else if (operator && !context.factory && $mol_view_tree2_class_match(operator)) {
+                    context = { factory: left.clone([]) };
+                }
+                const hacked = left.clone(left.hack(belt, context));
+                return [hacked];
+            }
+        }, { factory: undefined });
+        for (const prop of props_root)
+            add_inner(prop);
+        return Object.values(props_inner);
+    }
+    $.$mol_view_tree2_class_props = $mol_view_tree2_class_props;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_tree2_js_is_number(type) {
+        return type.match(/[\+\-]*NaN/) || !Number.isNaN(Number(type));
+    }
+    $.$mol_tree2_js_is_number = $mol_tree2_js_is_number;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    const err = $mol_view_tree2_error_str;
+    function name_of(prop) {
+        return this.$mol_view_tree2_prop_parts(prop).name;
+    }
+    function params_of(prop, bidi = true) {
+        const { key, next } = this.$mol_view_tree2_prop_parts(prop);
+        return prop.struct('(,)', [
+            ...key
+                ? [prop.struct('id')]
+                : [],
+            ...(bidi && next) ? [prop.struct('next')] : [],
+        ]);
+    }
+    function args_of(prop, bidi = true) {
+        const { key, next } = this.$mol_view_tree2_prop_parts(prop);
+        return prop.struct('(,)', [
+            ...key
+                ? key.length > 1
+                    ? [prop.data(key.slice(1))]
+                    : [prop.struct('id')]
+                : [],
+            ...(bidi && next) ? [prop.struct('next')] : [],
+        ]);
+    }
+    function call_method_name(child, optional) {
+        return child.struct(optional ? '?.[]' : '[]', [
+            child.data(name_of.call(this, child))
+        ]);
+    }
+    function call_of(bind, bidi = true) {
+        if (bind.kids.length === 0) {
+            return this.$mol_fail(err `Required one child at ${bind.span}`);
+        }
+        const chain = [bind.struct('this')];
+        for (const child of bind.kids) {
+            chain.push(call_method_name.call(this, child, chain.length > 1), args_of.call(this, child, bidi));
+        }
+        return bind.struct('()', chain);
+    }
+    const localized_string = $$.$mol_tree2_from_string(`
+		()
+			this
+			[] \\$
+			[] \\$mol_locale
+			[] \\text
+			(,) #key
+	`, 'localized_string');
+    function klass_body(acc, prop) {
+        const { klass, members, addons } = acc;
+        const { name, key, next } = this.$mol_view_tree2_prop_parts(prop);
+        const decorate = () => {
+            return prop.struct('()', [
+                prop.struct(key ? '$mol_mem_key' : '$mol_mem'),
+                prop.struct('(,)', [
+                    prop.struct('()', [
+                        klass.struct('$'),
+                        prop.struct('[]', [
+                            klass.data(klass.type),
+                        ]),
+                        prop.struct('[]', [
+                            prop.data('prototype'),
+                        ]),
+                    ]),
+                    prop.data(name),
+                ]),
+            ]);
+        };
+        const op = prop.kids[0];
+        const is_delegate = op?.type === '<=>' || op?.type === '=';
+        if (!is_delegate && next)
+            addons.push(decorate());
+        const val = prop.hack({
+            '@': (locale, belt, context) => {
+                const chain = context.chain?.join('_');
+                return localized_string.hack({
+                    '#key': key => [locale.data(`${klass.type}_${name}${chain ? `_${chain}` : ''}`)],
+                });
+            },
+            '<=': bind => [call_of.call(this, bind, false)],
+            '<=>': bind => [call_of.call(this, bind, true)],
+            '=>': bind => [],
+            '^': (ref, belt, context) => [
+                ref.struct('...', [
+                    // prop ^ foo
+                    ref.kids[0]?.type
+                        ? ref.struct('()', [
+                            ref.struct('this'),
+                            ref.struct('[]', [ref.data(name_of.call(this, ref.kids[0]))]),
+                            args_of.call(this, ref.kids[0])
+                        ])
+                        // Having $having foo / ^
+                        : context.chain
+                            ? ref.struct('()', [
+                                ref.struct('this'),
+                                ref.struct('[]', [ref.data('$')]),
+                                ref.struct('[]', [ref.data(op.type)]),
+                                ref.struct('[]', [ref.data('prototype')]),
+                                ref.struct('[]', [ref.data(context.chain[0])]),
+                                ref.struct('[]', [ref.data('call')]),
+                                ref.struct('(,)', [ref.struct('obj')]),
+                                ...context.chain.slice(1).map(field => ref.struct('[]', [ref.data(field)]))
+                            ])
+                            // prop ^
+                            : ref.struct('()', [
+                                ref.struct('super'),
+                                ref.struct('[]', [ref.data(name)]),
+                                ref.struct('(,)')
+                            ]),
+                ]),
+            ],
+            '=': bind => [bind.struct('()', [
+                    bind.struct('this'),
+                    ...bind.hack({ '': (method, belt, ctx) => [
+                            call_method_name.call(this, method, (ctx.item_index++) > 0),
+                            args_of.call(this, method),
+                            ...method.hack(belt),
+                        ] }, { item_index: 0 }),
+                ])],
+            '': (input, belt, context) => {
+                if (input.type[0] === '*') {
+                    return [
+                        input.struct('{,}', input.kids.map(field => {
+                            if (field.type === '^')
+                                return field.list([field]).hack(belt, context)[0];
+                            const field_name = (field.type || field.value).replace(/\?\w*$/, '');
+                            return field.struct(':', [
+                                field.data(field_name),
+                                field.kids[0].type === '<=>'
+                                    ? field.struct('=>', [
+                                        params_of.call(this, field),
+                                        ...field.hack(belt),
+                                    ])
+                                    : field.hack(belt, { ...context, chain: [...context.chain ?? [], field_name] })[0],
+                            ]);
+                        }).filter(this.$mol_guard_defined))
+                    ];
+                }
+                if (input.type[0] === '/')
+                    return [
+                        input.struct('[,]', input.hack(belt, context)),
+                    ];
+                if (input.type && $mol_tree2_js_is_number(input.type))
+                    return [
+                        input
+                    ];
+                if ($mol_view_tree2_class_match(input)) {
+                    if (!next)
+                        addons.push(decorate());
+                    const overrides = [];
+                    for (const over of input.kids) {
+                        if (over.type[0] === '/')
+                            continue;
+                        const bind = over.kids[0];
+                        if (bind.type === '=>')
+                            continue;
+                        const over_name = name_of.call(this, over);
+                        const body = [
+                            args_of.call(this, over),
+                            over.struct('()', over.hack(belt, { chain: [over.type] })),
+                        ];
+                        overrides.push(over.struct('=', [
+                            over.struct('()', [
+                                over.struct('obj'),
+                                over.struct('[]', [
+                                    over.data(over_name),
+                                ]),
+                            ]),
+                            over.struct('=>', body),
+                        ]));
+                    }
+                    return [
+                        input.struct('const', [
+                            input.struct('obj'),
+                            input.struct('new', [
+                                input.struct('this'),
+                                input.struct('[]', [
+                                    input.data('$'),
+                                ]),
+                                input.struct('[]', [
+                                    input.data(input.type.replace(/<.+>/g, '')),
+                                ]),
+                                input.struct('(,)', input.select('/', null).hack(belt)),
+                            ]),
+                        ]),
+                        ...overrides,
+                        input.struct('obj'),
+                    ];
+                }
+                return [input];
+            },
+        });
+        members.push(prop.struct('.', [
+            prop.data(name),
+            params_of.call(this, prop),
+            prop.struct('{;}', [
+                ...next && !is_delegate ? [
+                    prop.struct('if', [
+                        prop.struct('(!==)', [
+                            prop.struct('next'),
+                            prop.struct('undefined'),
+                        ]),
+                        prop.struct('return', [
+                            prop.struct('next'),
+                        ]),
+                    ]),
+                ] : [],
+                ...val.slice(0, -1),
+                prop.struct('return', val.slice(-1)),
+            ]),
+        ]));
+        return acc;
+    }
+    function $mol_view_tree2_to_js(descr) {
+        descr = $mol_view_tree2_classes(descr);
+        const definitions = [];
+        for (const klass of descr.kids) {
+            const parent = klass.kids[0];
+            const props = this.$mol_view_tree2_class_props(klass);
+            const addons = [];
+            const members = [];
+            const acc = { klass, addons, members };
+            for (const prop of props) {
+                try {
+                    klass_body.call(this, acc, prop);
+                }
+                catch (e) {
+                    e.message += ` at ${prop.span}`;
+                    $mol_fail_hidden(e);
+                }
+            }
+            definitions.push(klass.struct('=', [
+                klass.struct('()', [
+                    klass.struct('$'),
+                    klass.struct('[]', [
+                        klass.data(klass.type),
+                    ]),
+                ]),
+                klass.struct('class', [
+                    klass.struct(klass.type),
+                    parent.struct('extends', [
+                        parent.struct('()', [
+                            parent.struct('$'),
+                            parent.struct('[]', [
+                                parent.data(parent.type),
+                            ]),
+                        ]),
+                    ]),
+                    klass.struct('{}', members),
+                ]),
+            ]), ...addons);
+        }
+        return descr.list([
+            descr.struct(';', definitions)
+        ]);
+    }
+    $.$mol_view_tree2_to_js = $mol_view_tree2_to_js;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    /** Dynamic sources import. */
+    class $mol_import extends $mol_object2 {
+        static module(uri) {
+            $mol_wire_solid();
+            return $mol_wire_sync(this).module_async(uri);
+        }
+        static module_async(uri) {
+            return import(uri);
+        }
+        static script(uri) {
+            $mol_wire_solid();
+            return $mol_wire_sync(this).script_async(uri);
+        }
+        static script_async(uri) {
+            const doc = $mol_dom_context.document;
+            const script = doc.createElement('script');
+            script.src = uri;
+            doc.head.appendChild(script);
+            return new Promise((done, fail) => {
+                script.onload = () => done($mol_dom_context);
+                script.onerror = () => fail(new Error(`Can not import ${uri}`));
+            });
+        }
+        static style(uri) {
+            return $mol_wire_sync(this).style_async(uri);
+        }
+        static style_async(uri) {
+            const doc = $mol_dom_context.document;
+            const style = doc.createElement('link');
+            style.rel = 'stylesheet';
+            style.href = uri;
+            doc.head.appendChild(style);
+            return new Promise((done, fail) => {
+                style.onload = () => done(style.sheet);
+                style.onerror = () => fail(new Error(`Can not import ${uri}`));
+            });
+        }
+    }
+    __decorate([
+        $mol_mem_key
+    ], $mol_import, "module", null);
+    __decorate([
+        $mol_mem_key
+    ], $mol_import, "script", null);
+    __decorate([
+        $mol_mem_key
+    ], $mol_import, "style", null);
+    $.$mol_import = $mol_import;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_tree2_text_to_string(text) {
+        let res = '';
+        function visit(text, prefix, inline) {
+            if (text.type === 'indent') {
+                if (inline)
+                    res += '\n';
+                for (let kid of text.kids) {
+                    visit(kid, prefix + '\t', false);
+                }
+                if (inline)
+                    res += prefix;
+            }
+            else if (text.type === 'line') {
+                if (!inline)
+                    res += prefix;
+                for (let kid of text.kids) {
+                    visit(kid, prefix, true);
+                }
+                if (!inline)
+                    res += '\n';
+            }
+            else {
+                if (!inline)
+                    res += prefix;
+                res += text.text();
+                if (!inline)
+                    res += '\n';
+            }
+        }
+        for (let kid of text.kids) {
+            visit(kid, '', false);
+        }
+        return res;
+    }
+    $.$mol_tree2_text_to_string = $mol_tree2_text_to_string;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+    function $mol_vlq_encode(val) {
+        const sign = val < 0 ? 1 : 0;
+        if (sign)
+            val = -val;
+        let index = sign | ((val & 0b1111) << 1);
+        val >>>= 4;
+        let res = '';
+        while (val) {
+            index |= 1 << 5;
+            res += alphabet[index];
+            if (!val)
+                break;
+            index = val & 0b11111;
+            val >>>= 5;
+        }
+        res += alphabet[index];
+        return res;
+    }
+    $.$mol_vlq_encode = $mol_vlq_encode;
+})($ || ($ = {}));
+
+;
+"use strict";
+
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_tree2_text_to_sourcemap(tree) {
+        let col = 1;
+        let prev_span;
+        let prev_index = 0;
+        let prev_col = 1;
+        let mappings = '';
+        let line = [];
+        const file_indexes = new Map();
+        const file_sources = new Map();
+        function span2index(span) {
+            if (file_indexes.has(span.uri))
+                return file_indexes.get(span.uri);
+            const index = file_indexes.size;
+            file_indexes.set(span.uri, index);
+            file_sources.set(span.uri, span.source);
+            return index;
+        }
+        function next_line() {
+            if (!line.length)
+                return;
+            mappings += line.join(',') + ';';
+            line = [];
+            col = 1;
+            prev_col = 1;
+        }
+        function visit(text, prefix, inline) {
+            function indent() {
+                col += prefix;
+            }
+            if (inline && text.type === 'indent')
+                next_line();
+            if (prev_span !== text.span || col === 1) {
+                const index = span2index(text.span);
+                line.push($mol_vlq_encode(col - prev_col) +
+                    $mol_vlq_encode(index - prev_index) +
+                    $mol_vlq_encode(text.span.row - (prev_span?.row ?? 1)) +
+                    $mol_vlq_encode(text.span.col - (prev_span?.col ?? 1)));
+                prev_col = col;
+                prev_span = text.span;
+                prev_index = index;
+            }
+            if (text.type === 'indent') {
+                for (let kid of text.kids) {
+                    visit(kid, prefix + 1, false);
+                }
+                if (inline)
+                    next_line();
+            }
+            else if (text.type === 'line') {
+                if (!inline)
+                    indent();
+                for (let kid of text.kids) {
+                    visit(kid, prefix, true);
+                }
+                if (!inline)
+                    next_line();
+            }
+            else {
+                if (!inline)
+                    indent();
+                col += text.text().length;
+                if (!inline)
+                    next_line();
+            }
+        }
+        for (let kid of tree.kids) {
+            visit(kid, 0, false);
+        }
+        next_line();
+        const map = {
+            version: 3,
+            sources: [...file_sources.keys()],
+            sourcesContent: [...file_sources.values()],
+            mappings,
+        };
+        return map;
+    }
+    $.$mol_tree2_text_to_sourcemap = $mol_tree2_text_to_sourcemap;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_sourcemap_url(uri, type = 'js') {
+        if (type === 'css')
+            return `\n/*# sourceMappingURL=${uri}*/`;
+        return `\n//# sourceMappingURL=${uri}`;
+    }
+    $.$mol_sourcemap_url = $mol_sourcemap_url;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    const prefix = '# sourceMappingURL=data:application/json,';
+    const end_comment = ' */';
+    function $mol_sourcemap_dataurl_decode(data) {
+        const index = data.lastIndexOf(prefix);
+        if (index === -1)
+            return undefined;
+        data = data.substring(index + prefix.length);
+        if (data.endsWith(end_comment))
+            data = data.substring(0, data.length - end_comment.length);
+        const decoded = this.decodeURIComponent(data);
+        try {
+            const map = JSON.parse(decoded);
+            if (!map)
+                return undefined;
+            if (typeof map.mappings === 'string' && map.mappings.startsWith(';;')) {
+                map.mappings = map.mappings.substring(2);
+            }
+            return map;
+        }
+        catch (e) {
+            if (e instanceof Error)
+                e.message += ', origin=' + decoded;
+            $mol_fail_hidden(e);
+        }
+    }
+    $.$mol_sourcemap_dataurl_decode = $mol_sourcemap_dataurl_decode;
+    function $mol_sourcemap_dataurl_encode(map, type = 'js') {
+        const str = JSON.stringify({ ...map, mappings: ';;' + map.mappings });
+        return this.$mol_sourcemap_url('data:application/json,' + this.encodeURIComponent(str), type);
+    }
+    $.$mol_sourcemap_dataurl_encode = $mol_sourcemap_dataurl_encode;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_tree2_text_to_string_mapped(text, type) {
+        const code = this.$mol_tree2_text_to_string(text);
+        const map = this.$mol_tree2_text_to_sourcemap(text);
+        const chunk = this.$mol_sourcemap_dataurl_encode(map, type);
+        return code + chunk;
+    }
+    $.$mol_tree2_text_to_string_mapped = $mol_tree2_text_to_string_mapped;
+    function $mol_tree2_text_to_string_mapped_js(text) {
+        return this.$mol_tree2_text_to_string_mapped(text, 'js');
+    }
+    $.$mol_tree2_text_to_string_mapped_js = $mol_tree2_text_to_string_mapped_js;
+    function $mol_tree2_text_to_string_mapped_css(text) {
+        return this.$mol_tree2_text_to_string_mapped(text, 'css');
+    }
+    $.$mol_tree2_text_to_string_mapped_css = $mol_tree2_text_to_string_mapped_css;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    function is_identifier(tree) {
+        if (tree.type)
+            return false;
+        return /^[a-z_$][a-z_$0-9]*$/i.test(tree.text());
+    }
+    function $mol_tree2_js_to_text(js) {
+        function sequence(open, separator, close) {
+            return (input, belt) => [
+                input.struct('line', [
+                    ...open ? [input.data(open)] : [],
+                    input.struct(separator && input.kids.length > 2 ? 'indent' : 'line', [].concat(...input.kids.map((kid, index) => [
+                        kid.struct('line', [
+                            ...kid.list([kid]).hack(belt),
+                            ...(separator && index < input.kids.length - 1) ? [input.data(separator)] : [],
+                        ]),
+                    ]))),
+                    ...close ? [input.data(close)] : [],
+                ]),
+            ];
+        }
+        function block(open, separator, close) {
+            return (input, belt) => [
+                ...open ? [input.data(open)] : [],
+                ...input.kids.length === 0 ? [] : [input.struct('indent', input.kids.map((kid, index) => kid.struct('line', [
+                        ...kid.list([kid]).hack(belt),
+                        ...(separator) ? [input.data(separator)] : [],
+                    ])))],
+                ...close ? [input.data(close)] : [],
+            ];
+        }
+        function duplet(open, separator, close) {
+            return (input, belt) => [
+                input.struct('line', [
+                    ...open ? [input.data(open)] : [],
+                    ...input.list(input.kids.slice(0, 1)).hack(belt),
+                    ...(separator && input.kids.length > 1) ? [input.data(separator)] : [],
+                    ...input.list(input.kids.slice(1, 2)).hack(belt),
+                    ...close ? [input.data(close)] : [],
+                ]),
+            ];
+        }
+        function triplet(open, separator12, separator23, close) {
+            return (input, belt) => [
+                input.struct('line', [
+                    ...open ? [input.data(open)] : [],
+                    ...input.list(input.kids.slice(0, 1)).hack(belt),
+                    ...(separator12 && input.kids.length > 1) ? [input.data(separator12)] : [],
+                    ...input.list(input.kids.slice(1, 2)).hack(belt),
+                    ...(separator23 && input.kids.length > 2) ? [input.data(separator23)] : [],
+                    ...input.list(input.kids.slice(2, 3)).hack(belt),
+                    ...close ? [input.data(close)] : [],
+                ]),
+            ];
+        }
+        return js.list(js.hack({
+            '+': sequence('+'),
+            '-': sequence('-'),
+            '!': sequence('!'),
+            '~': sequence('~'),
+            'return': sequence('return '),
+            'break': sequence('break '),
+            'continue': sequence('continue '),
+            'yield': sequence('yield '),
+            'yield*': sequence('yield* '),
+            'await': sequence('await '),
+            'void': sequence('void '),
+            'delete': sequence('delete '),
+            'typeof': sequence('typeof '),
+            'new': sequence('new '),
+            '...': sequence('...'),
+            '@++': sequence('', '', '++'),
+            '@--': sequence('', '', '--'),
+            '(in)': sequence('(', ' in ', ')'),
+            '(instanceof)': sequence('(', ' instanceof ', ')'),
+            '(+)': sequence('(', ' + ', ')'),
+            '(-)': sequence('(', ' - ', ')'),
+            '(*)': sequence('(', ' * ', ')'),
+            '(/)': sequence('(', ' / ', ')'),
+            '(%)': sequence('(', ' % ', ')'),
+            '(**)': sequence('(', ' ** ', ')'),
+            '(<)': sequence('(', ' < ', ')'),
+            '(<=)': sequence('(', ' <= ', ')'),
+            '(>)': sequence('(', ' > ', ')'),
+            '(>=)': sequence('(', ' >= ', ')'),
+            '(==)': sequence('(', ' == ', ')'),
+            '(!=)': sequence('(', ' != ', ')'),
+            '(===)': sequence('(', ' === ', ')'),
+            '(!==)': sequence('(', ' !== ', ')'),
+            '(<<)': sequence('(', ' << ', ')'),
+            '(>>)': sequence('(', ' >> ', ')'),
+            '(>>>)': sequence('(', ' >>> ', ')'),
+            '(&)': sequence('(', ' & ', ')'),
+            '(|)': sequence('(', ' | ', ')'),
+            '(^)': sequence('(', ' ^ ', ')'),
+            '(&&)': sequence('(', ' && ', ')'),
+            '(||)': sequence('(', ' || ', ')'),
+            '(,)': sequence('(', ', ', ')'),
+            '{;}': block('{', ';', '}'),
+            ';': block('', ';', ''),
+            '[,]': sequence('[', ', ', ']'),
+            '{,}': sequence('{', ', ', '}'),
+            '()': sequence('(', '', ')'),
+            '{}': block('{', '', '}'),
+            '[]': (input, belt) => {
+                const first = input.kids[0];
+                if (!is_identifier(first))
+                    return sequence('[', '', ']')(input, belt);
+                else
+                    return [input.data('.' + first.text())];
+            },
+            '?.[]': (input, belt) => {
+                const first = input.kids[0];
+                if (!is_identifier(first))
+                    return sequence('?.[', '', ']')(input, belt);
+                else
+                    return [input.data('?.' + first.text())];
+            },
+            ':': (input, belt) => input.kids[0].type
+                ? duplet('[', ']: ')(input, belt)
+                : duplet('', ': ')(input, belt),
+            'let': duplet('let ', ' = '),
+            'const': duplet('const ', ' = '),
+            'var': duplet('var ', ' = '),
+            '=': duplet('', ' = '),
+            '+=': duplet('', ' += '),
+            '-=': duplet('', ' -= '),
+            '*=': duplet('', ' *= '),
+            '/=': duplet('', ' /= '),
+            '%=': duplet('', ' %= '),
+            '**=': duplet('', ' **= '),
+            '<<=': duplet('', ' <<= '),
+            '>>=': duplet('', ' >>= '),
+            '>>>=': duplet('', ' >>>= '),
+            '&=': duplet('', ' &= '),
+            '|=': duplet('', ' |= '),
+            '^=': duplet('', ' ^= '),
+            '&&=': duplet('', ' &&= '),
+            '||=': duplet('', ' ||= '),
+            '=>': duplet('', ' => '),
+            'async=>': duplet('async ', ' => '),
+            'function': triplet('function '),
+            'function*': triplet('function* '),
+            'async': triplet('async function '),
+            'async*': triplet('async function* '),
+            'class': triplet('class ', ' '),
+            'extends': sequence('extends ', '', ' '),
+            'if': triplet('if', ' ', 'else'),
+            '?:': triplet('', ' ? ', ' : '),
+            '.': (input, belt) => {
+                const first = input.kids[0];
+                if (!is_identifier(first))
+                    return triplet('[', ']')(input, belt);
+                else
+                    return [
+                        input.data(first.text()),
+                        ...input.list(input.kids.slice(1)).hack(belt),
+                    ];
+            },
+            'get': triplet('get [', ']'),
+            'set': triplet('set [', ']'),
+            'static': triplet('static [', ']'),
+            '/./': sequence(),
+            '.global': sequence('g'),
+            '.multiline': sequence('m'),
+            '.ignoreCase': sequence('i'),
+            '.source': (input, belt) => [
+                input.data('/'),
+                input.data(JSON.stringify(input.text()).slice(1, -1)),
+                input.data('/'),
+            ],
+            '``': (input, belt) => {
+                return [
+                    input.struct('line', [
+                        input.data('`'),
+                        ...[].concat(...input.kids.map(kid => {
+                            if (kid.type) {
+                                return [
+                                    kid.data('${'),
+                                    ...kid.list([kid]).hack(belt),
+                                    kid.data('}'),
+                                ];
+                            }
+                            else {
+                                return [
+                                    input.data(JSON.stringify(kid.text()).slice(1, -1)),
+                                ];
+                            }
+                        })),
+                        input.data('`'),
+                    ]),
+                ];
+            },
+            '': (input, belt) => {
+                // string
+                if (!input.type)
+                    return [
+                        input.data(JSON.stringify(input.text())),
+                    ];
+                // variable
+                if (/^[\w$#][\w0-9$]*$/i.test(input.type))
+                    return [
+                        input.data(input.type),
+                        // ... input.hack( context ),
+                    ];
+                // number
+                if ($mol_tree2_js_is_number(input.type))
+                    return [
+                        input.data(input.type)
+                    ];
+                $mol_fail(new SyntaxError(`Wrong node type`));
+            },
+        }));
+    }
+    $.$mol_tree2_js_to_text = $mol_tree2_js_to_text;
+})($ || ($ = {}));
+
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($_1) {
+    var $$;
+    (function ($$) {
+        // TypeScript compiler, lazy-loaded from a CDN only when the user writes logic.
+        const TS_CDN = 'https://cdn.jsdelivr.net/npm/typescript@5.4.5/lib/typescript.js';
+        /**
+         * A live view.tree + view.ts playground. view.tree is compiled with $mol's own
+         * toolchain ($mol_tree2_from_string -> $mol_view_tree2_to_js -> ...); optional
+         * view.ts logic is transpiled in the browser by the TypeScript compiler and
+         * layered on top as a subclass. We do NOT write a parser.
+         *
+         * Snippet components must be bundled into this app, so they are force-referenced
+         * here (in a doc comment, which MAM keeps) to pull them into the bundle:
+         * $mol_view $mol_button_major $mol_button_minor $mol_string $mol_number
+         * $mol_text $mol_paragraph $mol_list $mol_row $mol_link $mol_check $mol_switch
+         */
+        class $bog_smalljs_playground extends $.$bog_smalljs_playground {
+            // --- default snippets --------------------------------------------
+            default_tree() {
+                if (this.seed_tree())
+                    return this.seed_tree(); // seeded by an embedder (e.g. course)
+                const S = String.fromCharCode(36); // "$" — kept out of MAM's dep scan
+                return [
+                    `${S}my_demo ${S}mol_view`,
+                    `\tcount_text \\0`,
+                    `\tinc? null`,
+                    `\tsub /`,
+                    `\t\t<= Value ${S}mol_view`,
+                    `\t\t\tsub / <= count_text`,
+                    `\t\t<= Button ${S}mol_button_major`,
+                    `\t\t\tclick? <=> inc?`,
+                    `\t\t\tsub / <= button_label \\Count up`,
+                ].join('\n') + '\n';
+            }
+            default_ts() {
+                return this.seed_ts(); // empty by default so the TS compiler isn't fetched until needed
+            }
+            // --- tabs ---------------------------------------------------------
+            tab(next) {
+                return this.$.$mol_state_arg.value('tab', next) ?? 'tree';
+            }
+            show_tree() { this.tab('tree'); return null; }
+            show_ts() { this.tab('ts'); return null; }
+            editor_hint() {
+                return this.tab() === 'ts'
+                    ? 'Optional — add a class with logic (state, actions), e.g. count() and inc().'
+                    : 'Type a view.tree here…';
+            }
+            // Persistence funnel — standalone stores in the URL hash (shareable); when an
+            // embedder sets store_scope (e.g. the course, per lesson), store in localStorage.
+            stored(key, next) {
+                const scope = this.store_scope();
+                if (scope)
+                    return this.$.$mol_state_local.value(`${scope}/${key}`, next) ?? null;
+                return this.$.$mol_state_arg.value(key, next) ?? null;
+            }
+            // --- editor sources (immediate) + debounced committed copies ------
+            tree_draft(next) {
+                if (next !== undefined) {
+                    this.schedule('code', next);
+                    return next;
+                }
+                return this.stored('code') || this.default_tree();
+            }
+            ts_draft(next) {
+                if (next !== undefined) {
+                    this.schedule('ts', next);
+                    return next;
+                }
+                return this.stored('ts') || this.default_ts();
+            }
+            tree_committed(next) {
+                return next ?? (this.stored('code') || this.default_tree());
+            }
+            ts_committed(next) {
+                return next ?? (this.stored('ts') || this.default_ts());
+            }
+            // One editor, bound to the active tab's source.
+            draft(next) {
+                const ts_mode = this.tab() === 'ts';
+                if (next !== undefined)
+                    return ts_mode ? this.ts_draft(next) : this.tree_draft(next);
+                return ts_mode ? this.ts_draft() : this.tree_draft();
+            }
+            // --- debounce -----------------------------------------------------
+            timers = {};
+            schedule(key, value) {
+                this.timers[key]?.destructor();
+                this.timers[key] = new this.$.$mol_after_timeout(400, () => this.commit(key, value));
+            }
+            commit(key, value) {
+                this.stored(key, value);
+                if (key === 'ts')
+                    this.ts_committed(value);
+                else
+                    this.tree_committed(value);
+            }
+            // --- compilation --------------------------------------------------
+            // TypeScript compiler, fetched on demand (suspends the preview until ready).
+            ts_lib() {
+                this.$.$mol_import.script(TS_CDN);
+                const ts = globalThis.ts;
+                if (!ts)
+                    throw new Error('TypeScript compiler is unavailable.');
+                return ts;
+            }
+            compile() {
+                const $ = this.$;
+                const tree_src = this.tree_committed();
+                const ts_src = this.ts_committed();
+                const root = /(\$[\w$]+)/.exec(tree_src)?.[1];
+                if (!root)
+                    throw new Error('No component found — the first line must declare one (a name and a base view).');
+                if (/^\$(mol|hyoo|bog|node)_/.test(root)) {
+                    throw new Error(`Choose another name — ${root} is reserved by the framework.`);
+                }
+                // view.tree -> base class, evaluated into the real namespace so child
+                // components and cross-references resolve at render time.
+                const tree = $.$mol_tree2_from_string(tree_src, 'playground.view.tree');
+                const tree_js = $.$mol_tree2_text_to_string_mapped_js($.$mol_tree2_js_to_text($.$mol_view_tree2_to_js(tree)));
+                new Function('$', '$mol_mem', '$mol_mem_key', tree_js)($, $.$mol_mem, $.$mol_mem_key);
+                // optional view.ts -> subclass with logic, transpiled in the browser.
+                if (ts_src.trim()) {
+                    const ts = this.ts_lib();
+                    const out = ts.transpileModule(ts_src, {
+                        compilerOptions: {
+                            experimentalDecorators: true,
+                            target: ts.ScriptTarget.ES2018,
+                            module: ts.ModuleKind.None,
+                        },
+                    }).outputText;
+                    const body = out + `\n;return typeof ${root} !== 'undefined' ? ${root} : null;`;
+                    const Sub = new Function('$', '$mol_mem', '$mol_mem_key', '$mol_action', body)($, $.$mol_mem, $.$mol_mem_key, $.$mol_action);
+                    if (typeof Sub === 'function')
+                        return new Sub();
+                }
+                const Base = $[root];
+                if (typeof Base !== 'function')
+                    throw new Error(`Component ${root} could not be built.`);
+                return new Base();
+            }
+            error_box(message) {
+                const box = new this.$.$mol_view();
+                box.dom_name = () => 'pre';
+                box.sub = () => ['⚠ ' + message];
+                return box;
+            }
+            preview_content() {
+                try {
+                    return [this.compile()];
+                }
+                catch (error) {
+                    if (error instanceof Promise)
+                        throw error; // TS still loading — keep the loading state
+                    return [this.error_box(error instanceof Error ? error.message : String(error))];
+                }
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_playground.prototype, "tab", null);
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_playground.prototype, "show_tree", null);
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_playground.prototype, "show_ts", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_playground.prototype, "tree_draft", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_playground.prototype, "ts_draft", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_playground.prototype, "tree_committed", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_playground.prototype, "ts_committed", null);
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_playground.prototype, "schedule", null);
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_playground.prototype, "commit", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_playground.prototype, "preview_content", null);
+        $$.$bog_smalljs_playground = $bog_smalljs_playground;
+    })($$ = $_1.$$ || ($_1.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    const { rem } = $mol_style_unit;
+    const line = { width: '1px', style: 'solid', color: $bog_builderui_tokens.line };
+    const label = {
+        flex: { shrink: 0 },
+        padding: { top: rem(0.5), bottom: rem(0.5), left: rem(0.875), right: rem(0.875) },
+        font: { size: rem(0.6875), weight: 700 },
+        color: $bog_builderui_tokens.shade,
+        textTransform: 'uppercase',
+        letterSpacing: rem(0.03),
+        background: { color: $bog_builderui_tokens.back },
+        border: { bottom: line },
+    };
+    const pane = {
         flex: { direction: 'column' },
-        padding: $mol_gap.block,
+        minWidth: 0,
+        minHeight: 0,
+        overflow: { x: 'hidden', y: 'hidden' },
+    };
+    const tab = {
+        flex: { grow: 0 },
+        padding: { top: rem(0.4), bottom: rem(0.4), left: rem(0.75), right: rem(0.75) },
+        border: { radius: rem(0) },
+        font: { size: rem(0.75), weight: 600 },
+        color: $bog_builderui_tokens.shade,
+        background: { color: $bog_builderui_tokens.back },
+    };
+    const tab_active = {
+        color: $bog_builderui_tokens.special,
+        background: { color: $bog_builderui_tokens.card },
+    };
+    $mol_style_define($bog_smalljs_playground, {
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        flex: { grow: 1 },
+        minHeight: 0,
+        height: $mol_style_func.calc('100vh - 4rem'),
+        background: { color: $bog_builderui_tokens.back },
+        Editor_pane: {
+            ...pane,
+            border: { right: line },
+        },
+        Preview_pane: pane,
+        Tabs: {
+            flex: { direction: 'row', shrink: 0 },
+            align: { items: 'stretch' },
+            border: { bottom: line },
+            background: { color: $bog_builderui_tokens.back },
+        },
+        Tree_tab: tab,
+        Ts_tab: tab,
+        Preview_label: label,
+        Editor: {
+            flex: { grow: 1 },
+            minHeight: 0,
+            border: { radius: rem(0) },
+            font: { family: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace', size: rem(0.8125) },
+        },
+        Preview: {
+            flex: { direction: 'column', grow: 1 },
+            minHeight: 0,
+            overflow: { y: 'auto' },
+            padding: $mol_gap.block,
+            color: $bog_builderui_tokens.text,
+        },
+        '@': {
+            bog_smalljs_pg_tab: {
+                tree: { Tree_tab: tab_active },
+                ts: { Ts_tab: tab_active },
+            },
+        },
+        '@media': {
+            '(max-width: 47.9375rem)': {
+                gridTemplateColumns: '1fr',
+                gridTemplateRows: '1fr 1fr',
+                Editor_pane: {
+                    ...pane,
+                    border: { right: { width: '0px', style: 'solid', color: $bog_builderui_tokens.line }, bottom: line },
+                },
+            },
+        },
+    });
+})($ || ($ = {}));
+
+;
+	($.$bog_smalljs_course) = class $bog_smalljs_course extends ($.$mol_view) {
+		lesson_links(){
+			return [];
+		}
+		Lesson_list(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.lesson_links()));
+			return obj;
+		}
+		Instruction(){
+			const obj = new this.$.$mol_text();
+			(obj.text) = () => ((this.lesson_md()));
+			return obj;
+		}
+		Status(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.status_text())]);
+			return obj;
+		}
+		prev_arg(){
+			return {};
+		}
+		prev_label(){
+			return (this.$.$mol_locale.text("$bog_smalljs_course_prev_label"));
+		}
+		Prev(){
+			const obj = new this.$.$mol_link();
+			(obj.arg) = () => ((this.prev_arg()));
+			(obj.sub) = () => ([(this.prev_label())]);
+			return obj;
+		}
+		toggle_solution(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Solution_btn(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.click) = (next) => ((this.toggle_solution(next)));
+			(obj.sub) = () => ([(this.solution_label())]);
+			return obj;
+		}
+		next_arg(){
+			return {};
+		}
+		next_label(){
+			return (this.$.$mol_locale.text("$bog_smalljs_course_next_label"));
+		}
+		Next(){
+			const obj = new this.$.$mol_link();
+			(obj.arg) = () => ((this.next_arg()));
+			(obj.sub) = () => ([(this.next_label())]);
+			return obj;
+		}
+		Controls(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([
+				(this.Prev()), 
+				(this.Solution_btn()), 
+				(this.Next())
+			]);
+			return obj;
+		}
+		Solution_block(){
+			const obj = new this.$.$mol_text();
+			(obj.text) = () => ((this.solution_md()));
+			return obj;
+		}
+		Aside(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([
+				(this.Lesson_list()), 
+				(this.Instruction()), 
+				(this.Status()), 
+				(this.Controls()), 
+				(this.Solution_block())
+			]);
+			return obj;
+		}
+		editor_host(){
+			return [];
+		}
+		Editor_host(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.editor_host()));
+			return obj;
+		}
+		lesson_arg(id){
+			return {};
+		}
+		lesson_link_label(id){
+			return "";
+		}
+		lesson(){
+			return "hello";
+		}
+		solution_shown(next){
+			if(next !== undefined) return next;
+			return false;
+		}
+		editor_seed_tree(id){
+			return "";
+		}
+		editor_seed_ts(id){
+			return "";
+		}
+		editor_store_key(id){
+			return "";
+		}
+		lesson_md(){
+			return "";
+		}
+		status_text(){
+			return "";
+		}
+		solution_label(){
+			return "";
+		}
+		solution_md(){
+			return "";
+		}
+		sub(){
+			return [(this.Aside()), (this.Editor_host())];
+		}
+		Lesson_link(id){
+			const obj = new this.$.$mol_link();
+			(obj.arg) = () => ((this.lesson_arg(id)));
+			(obj.sub) = () => ([(this.lesson_link_label(id))]);
+			return obj;
+		}
+		Editor(id){
+			const obj = new this.$.$bog_smalljs_playground();
+			(obj.store_scope) = () => ((this.editor_store_key(id)));
+			(obj.seed_tree) = () => ((this.editor_seed_tree(id)));
+			(obj.seed_ts) = () => ((this.editor_seed_ts(id)));
+			return obj;
+		}
+	};
+	($mol_mem(($.$bog_smalljs_course.prototype), "Lesson_list"));
+	($mol_mem(($.$bog_smalljs_course.prototype), "Instruction"));
+	($mol_mem(($.$bog_smalljs_course.prototype), "Status"));
+	($mol_mem(($.$bog_smalljs_course.prototype), "Prev"));
+	($mol_mem(($.$bog_smalljs_course.prototype), "toggle_solution"));
+	($mol_mem(($.$bog_smalljs_course.prototype), "Solution_btn"));
+	($mol_mem(($.$bog_smalljs_course.prototype), "Next"));
+	($mol_mem(($.$bog_smalljs_course.prototype), "Controls"));
+	($mol_mem(($.$bog_smalljs_course.prototype), "Solution_block"));
+	($mol_mem(($.$bog_smalljs_course.prototype), "Aside"));
+	($mol_mem(($.$bog_smalljs_course.prototype), "Editor_host"));
+	($mol_mem(($.$bog_smalljs_course.prototype), "solution_shown"));
+	($mol_mem_key(($.$bog_smalljs_course.prototype), "Lesson_link"));
+	($mol_mem_key(($.$bog_smalljs_course.prototype), "Editor"));
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    /**
+     * Interactive course lessons. GENERATED by content/gen.cjs — edit the lessons
+     * array there and re-run the generator. Code snippets are embedded escaped so
+     * their $mol_* examples are not mistaken for module dependencies.
+     */
+    class $bog_smalljs_lessons extends $mol_object2 {
+        static all() {
+            return [
+                this.lesson('hello'),
+                this.lesson('views'),
+                this.lesson('state'),
+                this.lesson('events'),
+                this.lesson('routing'),
+            ];
+        }
+        static ids() {
+            return ['hello', 'views', 'state', 'events', 'routing'];
+        }
+        static map() {
+            return {
+                'hello': {
+                    id: 'hello',
+                    title: "Hello World",
+                    expect: "Hello",
+                    expect_in: 'tree',
+                    md: "# Hello World\n\nWelcome! On the left is a live \u0024mol editor — **view.tree** describes structure and the result renders on the right.\n\nRight now the component shows a placeholder. Change the text after the `\\` and watch the preview update instantly.\n\n**Goal:** make the greeting say hello to \u0024mol.",
+                    start_tree: "\u0024my_demo \u0024mol_view\n\tsub /\n\t\t<= Greeting \u0024mol_view\n\t\t\tsub / <= greeting \\Edit me\n",
+                    start_ts: "",
+                    solution_tree: "\u0024my_demo \u0024mol_view\n\tsub /\n\t\t<= Greeting \u0024mol_view\n\t\t\tsub / <= greeting \\Hello, \u0024mol!\n",
+                    solution_ts: "",
+                },
+                'views': {
+                    id: 'views',
+                    title: "Views",
+                    expect: "Subtitle",
+                    expect_in: 'tree',
+                    md: "# Views\n\nA view is built from other views. Here `\u0024my_demo` has one child; add a second so the card shows a title *and* a subtitle.\n\n**Goal:** add a `Subtitle` sub-view under `sub /`, with its own text.",
+                    start_tree: "\u0024my_demo \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\My component\n",
+                    start_ts: "",
+                    solution_tree: "\u0024my_demo \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\My component\n\t\t<= Subtitle \u0024mol_view\n\t\t\tsub / <= subtitle \\Built from views\n",
+                    solution_ts: "",
+                },
+                'state': {
+                    id: 'state',
+                    title: "State",
+                    expect: "\u0024mol_mem",
+                    expect_in: 'ts',
+                    md: "# State\n\nLogic lives in **view.ts** — switch to that tab. `@ \u0024mol_mem` makes a value reactive: everything that reads it updates on its own.\n\n**Goal:** in view.ts, give the component a reactive `count()` and a `count_text()` that returns it as a string, so the preview shows a number.\n\nStuck? Press **Solution**.",
+                    start_tree: "\u0024my_demo \u0024mol_view\n\tcount_text \\?\n\tsub /\n\t\t<= Value \u0024mol_view\n\t\t\tsub / <= count_text\n",
+                    start_ts: "",
+                    solution_tree: "\u0024my_demo \u0024mol_view\n\tcount_text \\?\n\tsub /\n\t\t<= Value \u0024mol_view\n\t\t\tsub / <= count_text\n",
+                    solution_ts: "class \u0024my_demo extends \u0024.\u0024my_demo {\n\t@ \u0024mol_mem count( next?: number ) { return next ?? 5 }\n\tcount_text() { return String( this.count() ) }\n}\n",
+                },
+                'events': {
+                    id: 'events',
+                    title: "Events",
+                    expect: "\u0024mol_action",
+                    expect_in: 'ts',
+                    md: "# Events\n\nInteractivity comes from event handlers. The view.tree already wires the button’s `click` to an `inc?` action — you implement `inc` in view.ts as a `@ \u0024mol_action` that changes state.\n\n**Goal:** make the button increase the count on each click.",
+                    start_tree: "\u0024my_demo \u0024mol_view\n\tcount_text \\0\n\tinc? null\n\tsub /\n\t\t<= Value \u0024mol_view\n\t\t\tsub / <= count_text\n\t\t<= Button \u0024mol_button_major\n\t\t\tclick? <=> inc?\n\t\t\tsub / <= button_label \\+1\n",
+                    start_ts: "",
+                    solution_tree: "\u0024my_demo \u0024mol_view\n\tcount_text \\0\n\tinc? null\n\tsub /\n\t\t<= Value \u0024mol_view\n\t\t\tsub / <= count_text\n\t\t<= Button \u0024mol_button_major\n\t\t\tclick? <=> inc?\n\t\t\tsub / <= button_label \\+1\n",
+                    solution_ts: "class \u0024my_demo extends \u0024.\u0024my_demo {\n\t@ \u0024mol_mem count( next?: number ) { return next ?? 0 }\n\t@ \u0024mol_action inc() { this.count( this.count() + 1 ) }\n\tcount_text() { return String( this.count() ) }\n}\n",
+                },
+                'routing': {
+                    id: 'routing',
+                    title: "Routing",
+                    expect: "\u0024mol_state_arg",
+                    expect_in: 'ts',
+                    md: "# Routing\n\nThe URL is just reactive state. `\u0024mol_state_arg` reads and writes a query parameter, so a value survives reloads and is shareable.\n\n**Goal:** back the input with a URL argument named `name` in view.ts, and echo it below.",
+                    start_tree: "\u0024my_demo \u0024mol_view\n\tname? \\\n\techo \\\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> name?\n\t\t\thint \\Type your name\n\t\t<= Echo \u0024mol_view\n\t\t\tsub / <= echo\n",
+                    start_ts: "",
+                    solution_tree: "\u0024my_demo \u0024mol_view\n\tname? \\\n\techo \\\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> name?\n\t\t\thint \\Type your name\n\t\t<= Echo \u0024mol_view\n\t\t\tsub / <= echo\n",
+                    solution_ts: "class \u0024my_demo extends \u0024.\u0024my_demo {\n\t@ \u0024mol_mem name( next?: string ) { return \u0024.\u0024mol_state_arg.value( 'name', next ) ?? '' }\n\techo() { return this.name() ? 'Hello, ' + this.name() + '!' : '' }\n}\n",
+                },
+            };
+        }
+        static lesson(id) {
+            return this.map()[id] ?? null;
+        }
+        static first() { return this.ids()[0]; }
+    }
+    $.$bog_smalljs_lessons = $bog_smalljs_lessons;
+})($ || ($ = {}));
+
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        const Lessons = $bog_smalljs_lessons;
+        class $bog_smalljs_course extends $.$bog_smalljs_course {
+            lesson(next) {
+                return this.$.$mol_state_arg.value('lesson', next) ?? Lessons.first();
+            }
+            current() {
+                return Lessons.lesson(this.lesson());
+            }
+            lesson_md() {
+                return this.current()?.md ?? '# Not found';
+            }
+            ids() {
+                return Lessons.ids();
+            }
+            // --- lesson list --------------------------------------------------
+            lesson_links() {
+                return this.ids().map(id => this.Lesson_link(id));
+            }
+            lesson_arg(id) {
+                return { section: 'course', page: null, lesson: id };
+            }
+            lesson_link_label(id) {
+                const num = this.ids().indexOf(id) + 1;
+                const title = Lessons.lesson(id)?.title ?? id;
+                return `${this.done(id) ? '✓ ' : ''}${num}. ${title}`;
+            }
+            // --- embedded editor (one per lesson, seeded + scoped) ------------
+            editor_host() {
+                return [this.Editor(this.lesson())];
+            }
+            editor_seed_tree(id) {
+                return Lessons.lesson(id)?.start_tree ?? '';
+            }
+            editor_seed_ts(id) {
+                return Lessons.lesson(id)?.start_ts ?? '';
+            }
+            editor_store_key(id) {
+                return `smalljs/course/${id}`;
+            }
+            // --- solution -----------------------------------------------------
+            toggle_solution() {
+                this.solution_shown(!this.solution_shown());
+                return null;
+            }
+            solution_label() {
+                return this.solution_shown() ? 'Hide solution' : 'Show solution';
+            }
+            solution_md() {
+                const lesson = this.current();
+                if (!this.solution_shown() || !lesson)
+                    return '';
+                const parts = ['## Solution', '', '```tree', lesson.solution_tree.trimEnd(), '```'];
+                if (lesson.solution_ts.trim()) {
+                    parts.push('', '```typescript', lesson.solution_ts.trimEnd(), '```');
+                }
+                return parts.join('\n');
+            }
+            // --- auto-check + progress ----------------------------------------
+            // Current source for a lesson (localStorage edit, or the starter).
+            lesson_source(lesson) {
+                const key = lesson.expect_in === 'ts' ? 'ts' : 'code';
+                const stored = this.$.$mol_state_local.value(`smalljs/course/${lesson.id}/${key}`);
+                const seed = lesson.expect_in === 'ts' ? lesson.start_ts : lesson.start_tree;
+                return (stored ?? seed);
+            }
+            passed(lesson) {
+                return this.lesson_source(lesson).includes(lesson.expect);
+            }
+            done(id) {
+                const lesson = Lessons.lesson(id);
+                return lesson ? this.passed(lesson) : false;
+            }
+            status_text() {
+                const lesson = this.current();
+                if (!lesson)
+                    return '';
+                return this.passed(lesson)
+                    ? '✓ Looks good — move on when you are ready.'
+                    : 'Edit the code on the right to complete this step.';
+            }
+            // --- prev / next --------------------------------------------------
+            nav_index() {
+                return this.ids().indexOf(this.lesson());
+            }
+            prev_arg() {
+                const index = this.nav_index();
+                return { section: 'course', page: null, lesson: index > 0 ? this.ids()[index - 1] : this.lesson() };
+            }
+            next_arg() {
+                const index = this.nav_index();
+                const ids = this.ids();
+                return { section: 'course', page: null, lesson: index < ids.length - 1 ? ids[index + 1] : this.lesson() };
+            }
+        }
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_course.prototype, "toggle_solution", null);
+        $$.$bog_smalljs_course = $bog_smalljs_course;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    const { rem } = $mol_style_unit;
+    const line = { width: '1px', style: 'solid', color: $bog_builderui_tokens.line };
+    $mol_style_define($bog_smalljs_course, {
+        display: 'grid',
+        gridTemplateColumns: '22rem 1fr',
+        flex: { grow: 1 },
+        minHeight: 0,
+        height: $mol_style_func.calc('100vh - 4rem'),
+        background: { color: $bog_builderui_tokens.back },
+        Aside: {
+            flex: { direction: 'column' },
+            minHeight: 0,
+            overflow: { y: 'auto' },
+            gap: $mol_gap.block,
+            padding: { top: $mol_gap.block, bottom: $mol_gap.block, left: rem(1.25), right: rem(1.25) },
+            border: { right: line },
+        },
+        Lesson_list: {
+            flex: { direction: 'column' },
+            gap: rem(0.0625),
+            padding: { bottom: rem(0.5) },
+            border: { bottom: line },
+        },
+        Lesson_link: {
+            flex: { direction: 'row' },
+            justify: { content: 'flex-start' },
+            padding: { top: rem(0.3), bottom: rem(0.3), left: rem(0.5), right: rem(0.5) },
+            border: { radius: rem(0.375) },
+            color: $bog_builderui_tokens.shade,
+            font: { size: rem(0.8125), weight: 500 },
+            ':hover': { background: { color: $bog_builderui_tokens.hover }, color: $bog_builderui_tokens.text },
+            '@': {
+                mol_link_current: {
+                    true: {
+                        color: $bog_builderui_tokens.special,
+                        background: { color: $bog_builderui_tokens.hover },
+                        font: { weight: 600 },
+                    },
+                },
+            },
+        },
+        Instruction: {
+            flex: { direction: 'column' },
+        },
+        Status: {
+            padding: { top: rem(0.5), bottom: rem(0.5), left: rem(0.75), right: rem(0.75) },
+            border: { radius: rem(0.375) },
+            background: { color: $bog_builderui_tokens.card },
+            color: $bog_builderui_tokens.shade,
+            font: { size: rem(0.8125) },
+        },
+        Controls: {
+            flex: { direction: 'row', wrap: 'wrap' },
+            align: { items: 'center' },
+            justify: { content: 'space-between' },
+            gap: $mol_gap.text,
+        },
+        Solution_block: {
+            flex: { direction: 'column' },
+        },
+        Editor_host: {
+            display: 'flex',
+            minWidth: 0,
+            minHeight: 0,
+        },
+        '@media': {
+            '(max-width: 47.9375rem)': {
+                gridTemplateColumns: '1fr',
+                gridTemplateRows: 'auto auto',
+                height: 'auto',
+                Aside: {
+                    flex: { direction: 'column' },
+                    minHeight: 0,
+                    overflow: { y: 'visible' },
+                    gap: $mol_gap.block,
+                    padding: { top: $mol_gap.block, bottom: $mol_gap.block, left: rem(1.25), right: rem(1.25) },
+                    border: { right: { width: '0px', style: 'solid', color: $bog_builderui_tokens.line }, bottom: line },
+                },
+            },
+        },
     });
 })($ || ($ = {}));
 
@@ -12696,305 +17913,6 @@ var $;
             bottom: '1rem',
         },
     });
-})($ || ($ = {}));
-
-;
-	($.$mol_hotkey) = class $mol_hotkey extends ($.$mol_plugin) {
-		keydown(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		event(){
-			return {...(super.event()), "keydown": (next) => (this.keydown(next))};
-		}
-		key(){
-			return {};
-		}
-		mod_ctrl(){
-			return false;
-		}
-		mod_alt(){
-			return false;
-		}
-		mod_shift(){
-			return false;
-		}
-	};
-	($mol_mem(($.$mol_hotkey.prototype), "keydown"));
-
-
-;
-"use strict";
-
-
-;
-"use strict";
-var $;
-(function ($) {
-    var $$;
-    (function ($$) {
-        /**
-         * Plugin which adds handlers for keyboard keys.
-         * @see [mol_keyboard_code](../keyboard/code/code.ts)
-         */
-        class $mol_hotkey extends $.$mol_hotkey {
-            key() {
-                return super.key();
-            }
-            keydown(event) {
-                if (!event)
-                    return;
-                if (event.defaultPrevented)
-                    return;
-                let name = $mol_keyboard_code[event.keyCode];
-                if (this.mod_ctrl() !== (event.ctrlKey || event.metaKey))
-                    return;
-                if (this.mod_alt() !== event.altKey)
-                    return;
-                if (this.mod_shift() !== event.shiftKey)
-                    return;
-                const handle = this.key()[name];
-                if (handle)
-                    handle(event);
-            }
-        }
-        $$.$mol_hotkey = $mol_hotkey;
-    })($$ = $.$$ || ($.$$ = {}));
-})($ || ($ = {}));
-
-;
-	($.$mol_string) = class $mol_string extends ($.$mol_view) {
-		selection_watcher(){
-			return null;
-		}
-		error_report(){
-			return null;
-		}
-		disabled(){
-			return false;
-		}
-		value(next){
-			if(next !== undefined) return next;
-			return "";
-		}
-		value_changed(next){
-			return (this.value(next));
-		}
-		hint(){
-			return "";
-		}
-		hint_visible(){
-			return (this.hint());
-		}
-		spellcheck(){
-			return true;
-		}
-		autocomplete_native(){
-			return "";
-		}
-		selection_end(){
-			return 0;
-		}
-		selection_start(){
-			return 0;
-		}
-		keyboard(){
-			return "text";
-		}
-		enter(){
-			return "go";
-		}
-		length_max(){
-			return +Infinity;
-		}
-		type(next){
-			if(next !== undefined) return next;
-			return "text";
-		}
-		event_change(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		submit_with_ctrl(){
-			return false;
-		}
-		submit(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		Submit(){
-			const obj = new this.$.$mol_hotkey();
-			(obj.mod_ctrl) = () => ((this.submit_with_ctrl()));
-			(obj.key) = () => ({"enter": (next) => (this.submit(next))});
-			return obj;
-		}
-		dom_name(){
-			return "input";
-		}
-		enabled(){
-			return true;
-		}
-		minimal_height(){
-			return 40;
-		}
-		autocomplete(){
-			return false;
-		}
-		selection(next){
-			if(next !== undefined) return next;
-			return [0, 0];
-		}
-		auto(){
-			return [(this.selection_watcher()), (this.error_report())];
-		}
-		field(){
-			return {
-				...(super.field()), 
-				"disabled": (this.disabled()), 
-				"value": (this.value_changed()), 
-				"placeholder": (this.hint_visible()), 
-				"spellcheck": (this.spellcheck()), 
-				"autocomplete": (this.autocomplete_native()), 
-				"selectionEnd": (this.selection_end()), 
-				"selectionStart": (this.selection_start()), 
-				"inputMode": (this.keyboard()), 
-				"enterkeyhint": (this.enter())
-			};
-		}
-		attr(){
-			return {
-				...(super.attr()), 
-				"maxlength": (this.length_max()), 
-				"type": (this.type())
-			};
-		}
-		event(){
-			return {...(super.event()), "input": (next) => (this.event_change(next))};
-		}
-		plugins(){
-			return [(this.Submit())];
-		}
-	};
-	($mol_mem(($.$mol_string.prototype), "value"));
-	($mol_mem(($.$mol_string.prototype), "type"));
-	($mol_mem(($.$mol_string.prototype), "event_change"));
-	($mol_mem(($.$mol_string.prototype), "submit"));
-	($mol_mem(($.$mol_string.prototype), "Submit"));
-	($mol_mem(($.$mol_string.prototype), "selection"));
-
-
-;
-"use strict";
-
-
-;
-"use strict";
-var $;
-(function ($) {
-    var $$;
-    (function ($$) {
-        /**
-         * An input field for entering single line text.
-         * @see https://mol.hyoo.ru/#!section=demos/demo=mol_string_demo
-         */
-        class $mol_string extends $.$mol_string {
-            event_change(next) {
-                if (!next)
-                    return;
-                const el = this.dom_node();
-                const from = el.selectionStart;
-                const to = el.selectionEnd;
-                try {
-                    el.value = this.value_changed(el.value);
-                }
-                catch (error) {
-                    const el = this.dom_node();
-                    if (error instanceof Error) {
-                        el.setCustomValidity(error.message);
-                        el.reportValidity();
-                    }
-                    $mol_fail_hidden(error);
-                }
-                if (to === null)
-                    return;
-                el.selectionEnd = to;
-                el.selectionStart = from;
-                this.selection_change(next);
-            }
-            error_report() {
-                try {
-                    if (this.focused())
-                        this.value();
-                }
-                catch (error) {
-                    const el = this.dom_node();
-                    if (error instanceof Error) {
-                        el.setCustomValidity(error.message);
-                        el.reportValidity();
-                    }
-                }
-            }
-            hint_visible() {
-                return (this.enabled() ? this.hint() : '') || ' ';
-            }
-            disabled() {
-                return !this.enabled();
-            }
-            autocomplete_native() {
-                return this.autocomplete() ? 'on' : 'off';
-            }
-            selection_watcher() {
-                return new $mol_dom_listener(this.$.$mol_dom_context.document, 'selectionchange', $mol_wire_async(event => this.selection_change(event)));
-            }
-            selection_change(event) {
-                const el = this.dom_node();
-                if (el !== this.$.$mol_dom_context.document.activeElement)
-                    return;
-                const [from, to] = this.selection([
-                    el.selectionStart,
-                    el.selectionEnd,
-                ]);
-                el.selectionEnd = to;
-                el.selectionStart = from;
-                if (to !== from && el.selectionEnd === el.selectionStart) {
-                    el.selectionEnd = to;
-                }
-            }
-            selection_start() {
-                const el = this.dom_node();
-                if (!this.focused())
-                    return undefined;
-                if (el.selectionStart == null)
-                    return undefined;
-                return this.selection()[0];
-            }
-            selection_end() {
-                const el = this.dom_node();
-                if (!this.focused())
-                    return undefined;
-                if (el.selectionEnd == null)
-                    return undefined;
-                return this.selection()[1];
-            }
-        }
-        __decorate([
-            $mol_action
-        ], $mol_string.prototype, "event_change", null);
-        __decorate([
-            $mol_mem
-        ], $mol_string.prototype, "error_report", null);
-        __decorate([
-            $mol_mem
-        ], $mol_string.prototype, "selection_watcher", null);
-        $$.$mol_string = $mol_string;
-    })($$ = $.$$ || ($.$$ = {}));
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    $mol_style_attach("mol/string/string.view.css", "[mol_string] {\n\tbox-sizing: border-box;\n\toutline-offset: 0;\n\tborder: none;\n\tborder-radius: var(--mol_gap_round);\n\twhite-space: pre-line;\n\toverflow: hidden;\n\ttext-overflow: ellipsis;\n\tpadding: var(--mol_gap_text);\n\ttext-align: left;\n\tposition: relative;\n\tfont: inherit;\n\tflex: 1 1 auto;\n\tbackground: transparent;\n\tmin-width: 0;\n\tcolor: inherit;\n\tbackground: var(--mol_theme_field);\n}\n\n[mol_string]:disabled:not(:placeholder-shown) {\n\tbackground-color: transparent;\n\tcolor: var(--mol_theme_text);\n}\n\n[mol_string]:where(:not(:disabled)) {\n\tbox-shadow: inset 0 0 0 1px var(--mol_theme_line);\n}\n\n[mol_string]:where(:not(:disabled)):hover {\n\tbox-shadow: inset 0 0 0 2px var(--mol_theme_line);\n\tz-index: var(--mol_layer_hover);\n}\n\n[mol_string]:focus {\n\toutline: none;\n\tz-index: var(--mol_layer_focus);\n\tcolor: var(--mol_theme_text);\n\tbox-shadow: inset 0 0 0 1px var(--mol_theme_focus);\n}\n\n[mol_string]::placeholder {\n\tcolor: var(--mol_theme_shade);\n}\n\n[mol_string]::-ms-clear {\n\tdisplay: none;\n}\n");
 })($ || ($ = {}));
 
 ;
@@ -14563,704 +19481,6 @@ var $;
 })($ || ($ = {}));
 
 ;
-	($.$mol_nav) = class $mol_nav extends ($.$mol_plugin) {
-		event_key(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		cycle(next){
-			if(next !== undefined) return next;
-			return false;
-		}
-		mod_ctrl(){
-			return false;
-		}
-		mod_shift(){
-			return false;
-		}
-		mod_alt(){
-			return false;
-		}
-		keys_x(next){
-			if(next !== undefined) return next;
-			return [];
-		}
-		keys_y(next){
-			if(next !== undefined) return next;
-			return [];
-		}
-		current_x(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		current_y(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		event_up(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		event_down(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		event_left(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		event_right(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		event(){
-			return {...(super.event()), "keydown": (next) => (this.event_key(next))};
-		}
-	};
-	($mol_mem(($.$mol_nav.prototype), "event_key"));
-	($mol_mem(($.$mol_nav.prototype), "cycle"));
-	($mol_mem(($.$mol_nav.prototype), "keys_x"));
-	($mol_mem(($.$mol_nav.prototype), "keys_y"));
-	($mol_mem(($.$mol_nav.prototype), "current_x"));
-	($mol_mem(($.$mol_nav.prototype), "current_y"));
-	($mol_mem(($.$mol_nav.prototype), "event_up"));
-	($mol_mem(($.$mol_nav.prototype), "event_down"));
-	($mol_mem(($.$mol_nav.prototype), "event_left"));
-	($mol_mem(($.$mol_nav.prototype), "event_right"));
-
-
-;
-"use strict";
-
-
-;
-"use strict";
-var $;
-(function ($) {
-    var $$;
-    (function ($$) {
-        /**
-         * Plugin which can navigate in list of items
-         * @see https://mol.hyoo.ru/#!section=demos/demo=mol_nav_demo
-         */
-        class $mol_nav extends $.$mol_nav {
-            event_key(event) {
-                if (!event)
-                    return event;
-                if (event.defaultPrevented)
-                    return;
-                if (this.mod_ctrl() && !event.ctrlKey)
-                    return;
-                if (this.mod_shift() && !event.shiftKey)
-                    return;
-                if (this.mod_alt() && !event.altKey)
-                    return;
-                switch (event.keyCode) {
-                    case $mol_keyboard_code.up: return this.event_up(event);
-                    case $mol_keyboard_code.down: return this.event_down(event);
-                    case $mol_keyboard_code.left: return this.event_left(event);
-                    case $mol_keyboard_code.right: return this.event_right(event);
-                    case $mol_keyboard_code.pageUp: return this.event_up(event);
-                    case $mol_keyboard_code.pageDown: return this.event_down(event);
-                }
-            }
-            event_up(event) {
-                if (!event)
-                    return event;
-                const keys = this.keys_y();
-                if (keys.length < 1)
-                    return;
-                const index_y = this.index_y();
-                const index_old = index_y === null ? 0 : index_y;
-                const index_new = (index_old + keys.length - 1) % keys.length;
-                event.preventDefault();
-                if (index_old === 0 && !this.cycle())
-                    return;
-                this.current_y(this.keys_y()[index_new]);
-            }
-            event_down(event) {
-                if (!event)
-                    return event;
-                const keys = this.keys_y();
-                if (keys.length < 1)
-                    return;
-                const index_y = this.index_y();
-                const index_old = index_y === null ? keys.length - 1 : index_y;
-                const index_new = (index_old + 1) % keys.length;
-                event.preventDefault();
-                if (index_new === 0 && !this.cycle())
-                    return;
-                this.current_y(this.keys_y()[index_new]);
-            }
-            event_left(event) {
-                if (!event)
-                    return event;
-                const keys = this.keys_x();
-                if (keys.length < 1)
-                    return;
-                const index_x = this.index_x();
-                const index_old = index_x === null ? 0 : index_x;
-                const index_new = (index_old + keys.length - 1) % keys.length;
-                event.preventDefault();
-                if (index_old === 0 && !this.cycle())
-                    return;
-                this.current_x(this.keys_x()[index_new]);
-            }
-            event_right(event) {
-                if (!event)
-                    return event;
-                const keys = this.keys_x();
-                if (keys.length < 1)
-                    return;
-                const index_x = this.index_x();
-                const index_old = index_x === null ? keys.length - 1 : index_x;
-                const index_new = (index_old + 1) % keys.length;
-                event.preventDefault();
-                if (index_new === 0 && !this.cycle())
-                    return;
-                this.current_x(this.keys_x()[index_new]);
-            }
-            index_y() {
-                let index = this.keys_y().indexOf(this.current_y());
-                if (index < 0)
-                    return null;
-                return index;
-            }
-            index_x() {
-                let index = this.keys_x().indexOf(this.current_x());
-                if (index < 0)
-                    return null;
-                return index;
-            }
-        }
-        $$.$mol_nav = $mol_nav;
-    })($$ = $.$$ || ($.$$ = {}));
-})($ || ($ = {}));
-
-;
-	($.$mol_icon_close) = class $mol_icon_close extends ($.$mol_icon) {
-		path(){
-			return "M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z";
-		}
-	};
-
-
-;
-"use strict";
-
-
-;
-	($.$mol_search) = class $mol_search extends ($.$mol_pop) {
-		clear(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		Hotkey(){
-			const obj = new this.$.$mol_hotkey();
-			(obj.key) = () => ({"escape": (next) => (this.clear(next))});
-			return obj;
-		}
-		nav_components(){
-			return [];
-		}
-		nav_focused(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		Nav(){
-			const obj = new this.$.$mol_nav();
-			(obj.keys_y) = () => ((this.nav_components()));
-			(obj.current_y) = (next) => ((this.nav_focused(next)));
-			return obj;
-		}
-		suggests_showed(next){
-			if(next !== undefined) return next;
-			return false;
-		}
-		query(next){
-			if(next !== undefined) return next;
-			return "";
-		}
-		hint(){
-			return (this.$.$mol_locale.text("$mol_search_hint"));
-		}
-		submit(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		enabled(){
-			return true;
-		}
-		keyboard(){
-			return "search";
-		}
-		enter(){
-			return "search";
-		}
-		bring(){
-			return (this.Query().bring());
-		}
-		Query(){
-			const obj = new this.$.$mol_string();
-			(obj.value) = (next) => ((this.query(next)));
-			(obj.hint) = () => ((this.hint()));
-			(obj.submit) = (next) => ((this.submit(next)));
-			(obj.enabled) = () => ((this.enabled()));
-			(obj.keyboard) = () => ((this.keyboard()));
-			(obj.enter) = () => ((this.enter()));
-			return obj;
-		}
-		Clear_icon(){
-			const obj = new this.$.$mol_icon_close();
-			return obj;
-		}
-		Clear(){
-			const obj = new this.$.$mol_button_minor();
-			(obj.hint) = () => ((this.$.$mol_locale.text("$mol_search_Clear_hint")));
-			(obj.enabled) = () => ((this.enabled()));
-			(obj.click) = (next) => ((this.clear(next)));
-			(obj.sub) = () => ([(this.Clear_icon())]);
-			return obj;
-		}
-		anchor_content(){
-			return [(this.Query()), (this.Clear())];
-		}
-		menu_items(){
-			return [];
-		}
-		Menu(){
-			const obj = new this.$.$mol_list();
-			(obj.rows) = () => ((this.menu_items()));
-			return obj;
-		}
-		Bubble_pane(){
-			const obj = new this.$.$mol_scroll();
-			(obj.sub) = () => ([(this.Menu())]);
-			return obj;
-		}
-		suggest_select(id, next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		suggest_label(id){
-			return "";
-		}
-		Suggest_label(id){
-			const obj = new this.$.$mol_dimmer();
-			(obj.haystack) = () => ((this.suggest_label(id)));
-			(obj.needle) = () => ((this.query()));
-			return obj;
-		}
-		suggest_content(id){
-			return [(this.Suggest_label(id))];
-		}
-		suggests(){
-			return [];
-		}
-		plugins(){
-			return [
-				...(super.plugins()), 
-				(this.Hotkey()), 
-				(this.Nav())
-			];
-		}
-		showed(next){
-			return (this.suggests_showed(next));
-		}
-		align_hor(){
-			return "right";
-		}
-		Anchor(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ((this.anchor_content()));
-			return obj;
-		}
-		bubble_content(){
-			return [(this.Bubble_pane())];
-		}
-		Suggest(id){
-			const obj = new this.$.$mol_button_minor();
-			(obj.click) = (next) => ((this.suggest_select(id, next)));
-			(obj.sub) = () => ((this.suggest_content(id)));
-			return obj;
-		}
-	};
-	($mol_mem(($.$mol_search.prototype), "clear"));
-	($mol_mem(($.$mol_search.prototype), "Hotkey"));
-	($mol_mem(($.$mol_search.prototype), "nav_focused"));
-	($mol_mem(($.$mol_search.prototype), "Nav"));
-	($mol_mem(($.$mol_search.prototype), "suggests_showed"));
-	($mol_mem(($.$mol_search.prototype), "query"));
-	($mol_mem(($.$mol_search.prototype), "submit"));
-	($mol_mem(($.$mol_search.prototype), "Query"));
-	($mol_mem(($.$mol_search.prototype), "Clear_icon"));
-	($mol_mem(($.$mol_search.prototype), "Clear"));
-	($mol_mem(($.$mol_search.prototype), "Menu"));
-	($mol_mem(($.$mol_search.prototype), "Bubble_pane"));
-	($mol_mem_key(($.$mol_search.prototype), "suggest_select"));
-	($mol_mem_key(($.$mol_search.prototype), "Suggest_label"));
-	($mol_mem(($.$mol_search.prototype), "Anchor"));
-	($mol_mem_key(($.$mol_search.prototype), "Suggest"));
-
-
-;
-"use strict";
-
-
-;
-"use strict";
-var $;
-(function ($) {
-    var $$;
-    (function ($$) {
-        /**
-         * Search input with suggest and clear button.
-         * @see https://mol.hyoo.ru/#!section=demos/demo=mol_search_demo
-         */
-        class $mol_search extends $.$mol_search {
-            anchor_content() {
-                return [
-                    this.Query(),
-                    ...this.query() ? [this.Clear()] : [],
-                ];
-            }
-            suggests_showed(next = true) {
-                this.query();
-                if (!this.focused())
-                    return false;
-                return next;
-            }
-            suggest_selected(next) {
-                if (next === undefined)
-                    return;
-                this.query(next);
-                this.Query().focused(true);
-            }
-            nav_components() {
-                return [
-                    this.Query(),
-                    ...this.menu_items(),
-                ];
-            }
-            nav_focused(component) {
-                if (!this.focused())
-                    return null;
-                if (component == null) {
-                    for (let comp of this.nav_components()) {
-                        if (comp && comp.focused())
-                            return comp;
-                    }
-                    return null;
-                }
-                if (this.suggests_showed()) {
-                    this.ensure_visible(component, "center");
-                    component.focused(true);
-                }
-                return component;
-            }
-            suggest_label(key) {
-                return key;
-            }
-            menu_items() {
-                return this.suggests().map((suggest) => this.Suggest(suggest));
-            }
-            suggest_select(id, event) {
-                this.query(id);
-                this.Query().selection([id.length, id.length]);
-                this.Query().focused(true);
-            }
-            clear(event) {
-                this.query('');
-            }
-        }
-        __decorate([
-            $mol_mem
-        ], $mol_search.prototype, "anchor_content", null);
-        __decorate([
-            $mol_mem
-        ], $mol_search.prototype, "suggests_showed", null);
-        __decorate([
-            $mol_mem
-        ], $mol_search.prototype, "nav_focused", null);
-        __decorate([
-            $mol_mem
-        ], $mol_search.prototype, "menu_items", null);
-        $$.$mol_search = $mol_search;
-    })($$ = $.$$ || ($.$$ = {}));
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    $mol_style_attach("mol/search/search.view.css", "[mol_search] {\n\talign-self: flex-start;\n\tflex: auto;\n}\n\n[mol_search_anchor] {\n\tflex: 1 1 auto;\n}\n\n[mol_search_query] {\n\tflex-grow: 1;\n}\n\n[mol_search_menu] {\n\tmin-height: .75rem;\n\tdisplay: flex;\n}\n\n[mol_search_suggest] {\n\ttext-align: left;\n}\n\n[mol_search_suggest_label_high] {\n\tcolor: var(--mol_theme_shade);\n\ttext-shadow: none;\n}\n");
-})($ || ($ = {}));
-
-;
-	($.$mol_icon_dots_vertical) = class $mol_icon_dots_vertical extends ($.$mol_icon) {
-		path(){
-			return "M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z";
-		}
-	};
-
-
-;
-"use strict";
-
-
-;
-	($.$mol_select) = class $mol_select extends ($.$mol_pick) {
-		enabled(){
-			return true;
-		}
-		event_select(id, next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		option_label(id){
-			return "";
-		}
-		filter_pattern(next){
-			if(next !== undefined) return next;
-			return "";
-		}
-		Option_label(id){
-			const obj = new this.$.$mol_dimmer();
-			(obj.haystack) = () => ((this.option_label(id)));
-			(obj.needle) = () => ((this.filter_pattern()));
-			return obj;
-		}
-		option_content(id){
-			return [(this.Option_label(id))];
-		}
-		no_options_message(){
-			return (this.$.$mol_locale.text("$mol_select_no_options_message"));
-		}
-		nav_components(){
-			return [];
-		}
-		option_focused(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		nav_cycle(next){
-			if(next !== undefined) return next;
-			return true;
-		}
-		Nav(){
-			const obj = new this.$.$mol_nav();
-			(obj.keys_y) = () => ((this.nav_components()));
-			(obj.current_y) = (next) => ((this.option_focused(next)));
-			(obj.cycle) = (next) => ((this.nav_cycle(next)));
-			return obj;
-		}
-		menu_content(){
-			return [];
-		}
-		Menu(){
-			const obj = new this.$.$mol_list();
-			(obj.rows) = () => ((this.menu_content()));
-			return obj;
-		}
-		Bubble_pane(){
-			const obj = new this.$.$mol_scroll();
-			(obj.sub) = () => ([(this.Menu())]);
-			return obj;
-		}
-		filter_hint(){
-			return (this.$.$mol_locale.text("$mol_select_filter_hint"));
-		}
-		submit(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		dictionary(next){
-			if(next !== undefined) return next;
-			return {};
-		}
-		options(){
-			return [];
-		}
-		value(next){
-			if(next !== undefined) return next;
-			return "";
-		}
-		option_label_default(){
-			return "";
-		}
-		Option_row(id){
-			const obj = new this.$.$mol_button_minor();
-			(obj.enabled) = () => ((this.enabled()));
-			(obj.event_click) = (next) => ((this.event_select(id, next)));
-			(obj.sub) = () => ((this.option_content(id)));
-			return obj;
-		}
-		No_options(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.no_options_message())]);
-			return obj;
-		}
-		plugins(){
-			return [...(super.plugins()), (this.Nav())];
-		}
-		hint(){
-			return (this.$.$mol_locale.text("$mol_select_hint"));
-		}
-		bubble_content(){
-			return [(this.Filter()), (this.Bubble_pane())];
-		}
-		Filter(){
-			const obj = new this.$.$mol_search();
-			(obj.query) = (next) => ((this.filter_pattern(next)));
-			(obj.hint) = () => ((this.filter_hint()));
-			(obj.submit) = (next) => ((this.submit(next)));
-			(obj.enabled) = () => ((this.enabled()));
-			return obj;
-		}
-		Trigger_icon(){
-			const obj = new this.$.$mol_icon_dots_vertical();
-			return obj;
-		}
-		trigger_enabled(){
-			return (this.enabled());
-		}
-	};
-	($mol_mem_key(($.$mol_select.prototype), "event_select"));
-	($mol_mem(($.$mol_select.prototype), "filter_pattern"));
-	($mol_mem_key(($.$mol_select.prototype), "Option_label"));
-	($mol_mem(($.$mol_select.prototype), "option_focused"));
-	($mol_mem(($.$mol_select.prototype), "nav_cycle"));
-	($mol_mem(($.$mol_select.prototype), "Nav"));
-	($mol_mem(($.$mol_select.prototype), "Menu"));
-	($mol_mem(($.$mol_select.prototype), "Bubble_pane"));
-	($mol_mem(($.$mol_select.prototype), "submit"));
-	($mol_mem(($.$mol_select.prototype), "dictionary"));
-	($mol_mem(($.$mol_select.prototype), "value"));
-	($mol_mem_key(($.$mol_select.prototype), "Option_row"));
-	($mol_mem(($.$mol_select.prototype), "No_options"));
-	($mol_mem(($.$mol_select.prototype), "Filter"));
-	($mol_mem(($.$mol_select.prototype), "Trigger_icon"));
-
-
-;
-"use strict";
-var $;
-(function ($) {
-    function $mol_match_text(query, values) {
-        const tags = query.toLowerCase().trim().split(/\s+/).filter(tag => tag);
-        if (tags.length === 0)
-            return () => true;
-        return (variant) => {
-            const vals = values(variant);
-            return tags.every(tag => vals.some(val => val.toLowerCase().indexOf(tag) >= 0));
-        };
-    }
-    $.$mol_match_text = $mol_match_text;
-})($ || ($ = {}));
-
-;
-"use strict";
-
-
-;
-"use strict";
-var $;
-(function ($) {
-    var $$;
-    (function ($$) {
-        /**
-         * Allow user to select value from various options and displays current value.
-         * @see https://mol.hyoo.ru/#!section=demos/demo=mol_select_demo_colors
-         */
-        class $mol_select extends $.$mol_select {
-            filter_pattern(next) {
-                this.focused();
-                return next || '';
-            }
-            open() {
-                this.showed(true);
-            }
-            options() {
-                return Object.keys(this.dictionary());
-            }
-            options_filtered() {
-                let options = this.options();
-                options = options.filter($mol_match_text(this.filter_pattern(), (id) => [this.option_label(id)]));
-                const index = options.indexOf(this.value());
-                if (index >= 0)
-                    options = [...options.slice(0, index), ...options.slice(index + 1)];
-                return options;
-            }
-            option_label(id) {
-                const value = this.dictionary()[id];
-                return (value == null ? id : value) || this.option_label_default();
-            }
-            option_rows() {
-                return this.options_filtered().map((option) => this.Option_row(option));
-            }
-            option_focused(component) {
-                if (component == null) {
-                    for (let comp of this.nav_components()) {
-                        if (comp && comp.focused())
-                            return comp;
-                    }
-                    return null;
-                }
-                if (this.showed()) {
-                    component.focused(true);
-                }
-                return component;
-            }
-            event_select(id, event) {
-                this.value(id);
-                this.showed(false);
-                event?.preventDefault();
-            }
-            nav_components() {
-                if (this.options().length > 1 && this.Filter()) {
-                    return [this.Filter(), ...this.option_rows()];
-                }
-                else {
-                    return this.option_rows();
-                }
-            }
-            trigger_content() {
-                return [
-                    ...this.option_content(this.value()),
-                    ...this.trigger_enabled() ? [this.Trigger_icon()] : [],
-                ];
-            }
-            menu_content() {
-                return [
-                    ...this.option_rows(),
-                    ...(this.options_filtered().length === 0) ? [this.No_options()] : []
-                ];
-            }
-        }
-        __decorate([
-            $mol_mem
-        ], $mol_select.prototype, "filter_pattern", null);
-        __decorate([
-            $mol_mem
-        ], $mol_select.prototype, "options", null);
-        __decorate([
-            $mol_mem
-        ], $mol_select.prototype, "options_filtered", null);
-        __decorate([
-            $mol_mem
-        ], $mol_select.prototype, "option_focused", null);
-        $$.$mol_select = $mol_select;
-    })($$ = $.$$ || ($.$$ = {}));
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    $mol_style_attach("mol/select/select.view.css", "[mol_select] {\n\tdisplay: flex;\n\tword-break: normal;\n\talign-self: flex-start;\n}\n\n[mol_select_option_row] {\n\tmin-width: 100%;\n\tpadding: 0;\n\tjustify-content: flex-start;\n}\n\n[mol_select_filter] {\n\tflex: 1 0 auto;\n\talign-self: stretch;\n}\n\n[mol_select_option_label] {\n\tpadding: var(--mol_gap_text);\n\ttext-align: left;\n\tmin-height: 1.5em;\n\tdisplay: block;\n\twhite-space: nowrap;\n}\n\n[mol_select_clear_option_content] {\n\tpadding: .5em 1rem .5rem 0;\n\ttext-align: left;\n\tbox-shadow: var(--mol_theme_line);\n\tflex: 1 0 auto;\n}\n\n[mol_select_no_options] {\n\tpadding: var(--mol_gap_text);\n\ttext-align: left;\n\tdisplay: block;\n\tcolor: var(--mol_theme_shade);\n}\n\n[mol_select_trigger] {\n\tpadding: 0;\n\tflex: 1 1 auto;\n\tdisplay: flex;\n}\n\n[mol_select_trigger] > * {\n\tmargin-right: -1rem;\n}\n\n[mol_select_trigger] > *:last-child {\n\tmargin-right: 0;\n}\n\n[mol_select_menu] {\n\tdisplay: flex;\n\tflex-direction: column;\n}\n\n");
-})($ || ($ = {}));
-
-;
 	($.$bog_builderui_select) = class $bog_builderui_select extends ($.$mol_select) {};
 
 
@@ -15463,6 +19683,7 @@ var $;
 		}
 		Top(){
 			const obj = new this.$.$bog_smalljs_top();
+			(obj.search_click) = (next) => ((this.search_toggle(next)));
 			(obj.Theme) = () => ((this.Theme()));
 			return obj;
 		}
@@ -15474,9 +19695,22 @@ var $;
 			(obj.sub) = () => ((this.body_content()));
 			return obj;
 		}
+		Search(){
+			const obj = new this.$.$bog_smalljs_search();
+			(obj.open) = (next) => ((this.search_open(next)));
+			return obj;
+		}
 		section(next){
 			if(next !== undefined) return next;
 			return "home";
+		}
+		search_open(next){
+			if(next !== undefined) return next;
+			return false;
+		}
+		search_toggle(next){
+			if(next !== undefined) return next;
+			return null;
 		}
 		lights(){
 			return "light";
@@ -15494,7 +19728,11 @@ var $;
 			};
 		}
 		sub(){
-			return [(this.Top()), (this.Body())];
+			return [
+				(this.Top()), 
+				(this.Body()), 
+				(this.Search())
+			];
 		}
 		plugins(){
 			return [(this.Theme())];
@@ -15511,14 +19749,22 @@ var $;
 			const obj = new this.$.$bog_smalljs_playground();
 			return obj;
 		}
+		Course(){
+			const obj = new this.$.$bog_smalljs_course();
+			return obj;
+		}
 	};
 	($mol_mem(($.$bog_smalljs_app.prototype), "Theme"));
 	($mol_mem(($.$bog_smalljs_app.prototype), "Top"));
 	($mol_mem(($.$bog_smalljs_app.prototype), "Body"));
+	($mol_mem(($.$bog_smalljs_app.prototype), "Search"));
 	($mol_mem(($.$bog_smalljs_app.prototype), "section"));
+	($mol_mem(($.$bog_smalljs_app.prototype), "search_open"));
+	($mol_mem(($.$bog_smalljs_app.prototype), "search_toggle"));
 	($mol_mem(($.$bog_smalljs_app.prototype), "Landing"));
 	($mol_mem(($.$bog_smalljs_app.prototype), "Docs"));
 	($mol_mem(($.$bog_smalljs_app.prototype), "Playground"));
+	($mol_mem(($.$bog_smalljs_app.prototype), "Course"));
 
 
 ;
@@ -15668,6 +19914,10 @@ var $;
             section(next) {
                 return $mol_state_arg.value('section', next) ?? 'home';
             }
+            search_toggle() {
+                this.search_open(!this.search_open());
+                return null;
+            }
             lights() {
                 return this.Theme().is_light_now() ? 'light' : 'dark';
             }
@@ -15675,10 +19925,14 @@ var $;
                 switch (this.section()) {
                     case 'docs': return [this.Docs()];
                     case 'playground': return [this.Playground()];
+                    case 'course': return [this.Course()];
                     default: return [this.Landing()];
                 }
             }
         }
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_app.prototype, "search_toggle", null);
         $$.$bog_smalljs_app = $bog_smalljs_app;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));

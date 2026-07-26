@@ -290,7 +290,7 @@ $bog_smalljs_top $mol_view
 	Theme null
 	github_uri \https://github.com/b-on-g/smalljs
 	logo_uri \bog/smalljs/assets/logo.svg
-	search_open? null
+	search_click? null
 	nav_pick? null
 	lang_open? null
 	sub /
@@ -304,7 +304,7 @@ $bog_smalljs_top $mol_view
 					title @ \smalljs
 				<= Logo_text @ \smalljs
 		<= Search $mol_button_minor
-			click? <=> search_open?
+			click? <=> search_click?
 			sub /
 				<= Search_icon $mol_icon_magnify
 				<= Search_label $mol_view
@@ -328,31 +328,31 @@ $bog_smalljs_top $mol_view
 									title @ \Quick Start
 									arg *
 										section \docs
-										page \quick-start
+										page \getting-started
 									event_click? <=> nav_pick?
 								<= Docs_guide $mol_link
 									title @ \Guide
 									arg *
 										section \docs
-										page \guide
+										page \views
 									event_click? <=> nav_pick?
 								<= Docs_tutorial $mol_link
 									title @ \Tutorial
 									arg *
-										section \docs
-										page \tutorial
+										section \course
+										page null
 									event_click? <=> nav_pick?
 								<= Docs_examples $mol_link
 									title @ \Examples
 									arg *
 										section \docs
-										page \examples
+										page \showcase
 									event_click? <=> nav_pick?
 								<= Docs_api $mol_link
 									title @ \API
 									arg *
 										section \docs
-										page \api
+										page \api-mol-string
 									event_click? <=> nav_pick?
 								<= Docs_glossary $mol_link
 									title @ \Glossary
@@ -498,31 +498,31 @@ $bog_smalljs_top $mol_view
 									title @ \Quick Start
 									arg *
 										section \docs
-										page \quick-start
+										page \getting-started
 									event_click? <=> nav_pick?
 								<= M_docs_guide $mol_link
 									title @ \Guide
 									arg *
 										section \docs
-										page \guide
+										page \views
 									event_click? <=> nav_pick?
 								<= M_docs_tutorial $mol_link
 									title @ \Tutorial
 									arg *
-										section \docs
-										page \tutorial
+										section \course
+										page null
 									event_click? <=> nav_pick?
 								<= M_docs_examples $mol_link
 									title @ \Examples
 									arg *
 										section \docs
-										page \examples
+										page \showcase
 									event_click? <=> nav_pick?
 								<= M_docs_api $mol_link
 									title @ \API
 									arg *
 										section \docs
-										page \api
+										page \api-mol-string
 									event_click? <=> nav_pick?
 								<= M_docs_glossary $mol_link
 									title @ \Glossary
@@ -633,11 +633,121 @@ $bog_smalljs_top $mol_view
 		<= Github $mol_link_source
 			uri <= github_uri
 
-$mol_icon_play $mol_icon path \M8,5.14V19.14L19,12.14L8,5.14Z
+$mol_hotkey $mol_plugin
+	event *
+		^
+		keydown? <=> keydown? null
+	key *
+	mod_ctrl false
+	mod_alt false
+	mod_shift false
 
-$mol_icon_arrow_right $mol_icon path \M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z
+$mol_string $mol_view
+	dom_name \input
+	enabled true
+	minimal_height 40
+	autocomplete false
+	selection? /number
+		0
+		0
+	auto /
+		<= selection_watcher null
+		<= error_report null
+	field *
+		^
+		disabled <= disabled false
+		value <= value_changed? <=> value? \
+		placeholder <= hint_visible <= hint \
+		spellcheck <= spellcheck true
+		autocomplete <= autocomplete_native \
+		selectionEnd <= selection_end 0
+		selectionStart <= selection_start 0
+		inputMode <= keyboard \text
+		enterkeyhint <= enter \go
+	attr *
+		^
+		maxlength <= length_max +Infinity
+		type <= type? \text
+	event *
+		^
+		input? <=> event_change? null
+	plugins /
+		<= Submit $mol_hotkey
+			mod_ctrl <= submit_with_ctrl false
+			key * enter? <=> submit? null
 
-$mol_icon_open_in_new $mol_icon path \M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z
+$bog_smalljs_search $mol_view
+	open? false
+	query? \
+	close? null
+	pick? null
+	attr *
+		bog_smalljs_search_open <= open
+	plugins /$mol_plugin
+		<= Escape $mol_hotkey
+			key * escape? <=> close?
+	sub /
+		<= Backdrop $mol_view
+			event *
+				click? <=> close?
+		<= Panel $mol_view
+			sub /
+				<= Field $mol_string
+					value? <=> query?
+					hint @ \Search the documentation…
+				<= Hint $mol_view
+					sub / <= hint_text
+				<= Results $mol_list
+					rows <= result_rows /
+	Result* $mol_link
+		arg <= result_arg* *
+		event_click? <=> pick?
+		sub /
+			<= Result_title* $mol_view
+				sub / <= result_title* \
+			<= Result_snippet* $mol_view
+				sub / <= result_snippet* \
+
+$mol_button_major $mol_button_minor
+	theme \$mol_theme_base
+
+$mol_icon_chevron_left $mol_icon path \M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z
+
+$mol_icon_chevron_right $mol_icon path \M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z
+
+$mol_number $mol_view
+	precision_view <= precision 1
+	precision_change <= precision 1
+	boost 10
+	value_min -Infinity
+	value_max +Infinity
+	value? +NaN
+	enabled true
+	plugins /
+		<= Hotkey $mol_hotkey
+			key *
+				down? <=> event_dec? null
+				up? <=> event_inc? null
+				pageDown? <=> event_dec_boost? null
+				pageUp? <=> event_inc_boost? null
+	sub /
+		<= Dec $mol_button_minor
+			event_click? <=> event_dec? null
+			enabled <= dec_enabled <= enabled
+			sub / <= dec_icon $mol_icon_chevron_left
+		<= String $mol_string
+			- \ we don't want native number controls in mobile devices
+			- \ https://stackoverflow.com/questions/3790935/can-i-hide-the-html5-number-input-s-spin-box
+			type <= type \text
+			keyboard \decimal
+			value? <=> value_string? \
+			hint <= hint \ 
+			enabled <= string_enabled <= enabled
+			submit? <=> submit? null
+		<= Inc $mol_button_minor
+			event_click? <=> event_inc? null
+			enabled <= inc_enabled <= enabled
+			sub / <= inc_icon $mol_icon_chevron_right
 
 $mol_paragraph $mol_view
 	line_height 24
@@ -971,6 +1081,151 @@ $mol_text_span $mol_paragraph
 		^
 		mol_text_type <= type \
 
+$mol_row $mol_view
+
+$mol_check_list $mol_view
+	dictionary *
+	Option* $mol_check
+		checked? <=> option_checked*? false
+		label <= option_label* /
+			<= option_title* \
+		enabled <= option_enabled* <= enabled true
+		hint <= option_hint* \
+		minimal_height 24
+	options *
+	keys /string
+	sub <= items /$mol_check
+
+$mol_switch $mol_check_list
+	value? \
+
+$mol_nav $mol_plugin
+	cycle? false
+	-
+	mod_ctrl false
+	mod_shift false
+	mod_alt false
+	-
+	keys_x? /
+	keys_y? /
+	-
+	current_x? null
+	current_y? null
+	-
+	event_up? null
+	event_down? null
+	event_left? null
+	event_right? null
+	event *
+		^
+		keydown? <=> event_key? null
+
+$mol_icon_close $mol_icon path \M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z
+
+$mol_search $mol_pop
+	query? \
+	suggests /string
+	plugins /$mol_plugin
+		^
+		<= Hotkey $mol_hotkey
+			key * escape? <=> clear? null
+		<= Nav $mol_nav
+			keys_y <= nav_components /$mol_view
+			current_y? <=> nav_focused? null
+	showed? <=> suggests_showed? false
+	align_hor \right
+	Anchor $mol_view
+		sub <= anchor_content /
+			<= Query $mol_string
+				value? <=> query? \
+				hint <= hint @ \Search...
+				submit? <=> submit? null
+				enabled <= enabled true
+				keyboard <= keyboard \search
+				enter <= enter \search
+				bring => bring
+			<= Clear $mol_button_minor
+				hint @ \Clear
+				enabled <= enabled true
+				click? <=> clear? null
+				sub /
+					<= Clear_icon $mol_icon_close
+	bubble_content /$mol_view_content
+		<= Bubble_pane $mol_scroll
+			sub /
+				<= Menu $mol_list
+					rows <= menu_items /$mol_view
+	Suggest* $mol_button_minor
+		click? <=> suggest_select*? null
+		sub <= suggest_content* /$mol_view_content
+			<= Suggest_label* $mol_dimmer
+				haystack <= suggest_label* \
+				needle <= query? \
+
+$mol_icon_dots_vertical $mol_icon path \M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z
+
+$mol_select $mol_pick
+	dictionary? *
+	options /string
+	value? \
+	option_label_default \
+	Option_row* $mol_button_minor
+		enabled <= enabled true
+		event_click? <=> event_select*? null
+		sub <= option_content* /
+			<= Option_label* $mol_dimmer
+				haystack <= option_label* \
+				needle <= filter_pattern? \
+	No_options $mol_view
+		sub /
+			<= no_options_message @ \No options
+	plugins /
+		^
+		<= Nav $mol_nav
+			keys_y <= nav_components /$mol_view
+			current_y? <=> option_focused? null
+			cycle? <=> nav_cycle? true
+	hint @ \Pick..
+	bubble_content /
+		<= Filter
+		<= Bubble_pane $mol_scroll
+			sub /
+				<= Menu $mol_list
+					rows <= menu_content /$mol_view
+	Filter $mol_search
+		query? <=> filter_pattern? \
+		hint <= filter_hint @ \Filter..
+		submit? <=> submit? null
+		enabled <= enabled true
+	Trigger_icon $mol_icon_dots_vertical
+	trigger_enabled <= enabled
+
+$mol_page $mol_view
+	dom_name \article
+	attr *
+		^
+		tabIndex <= tabindex -1
+	sub /
+		<= Head $mol_view
+			minimal_height 64
+			dom_name \header
+			sub <= head /
+				<= Title $mol_view
+					dom_name \h1
+					sub <= title_content /
+						<= Logo null
+						<= title
+				<= Tools $mol_view
+					sub <= tools /$mol_view_content
+		<= Body $mol_scroll
+			scroll_top? => body_scroll_top?
+			sub <= body_content /
+				<= Body_content $mol_view
+					sub <= body /$mol_view
+		<= Foot $mol_view
+			dom_name \footer
+			sub <= foot /$mol_view
+
 $mol_text_list $mol_text
 	auto_scroll null
 	attr *
@@ -984,6 +1239,12 @@ $mol_text_list_item $mol_paragraph
 	attr *
 		^
 		mol_text_list_item_index <= index 0
+
+$mol_icon_play $mol_icon path \M8,5.14V19.14L19,12.14L8,5.14Z
+
+$mol_icon_arrow_right $mol_icon path \M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z
+
+$mol_icon_open_in_new $mol_icon path \M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z
 
 $bog_smalljs_landing $mol_view
 	sub /
@@ -1006,14 +1267,14 @@ $bog_smalljs_landing $mol_view
 						<= Hero_cta_why $mol_link
 							arg *
 								section \docs
-								page \why
+								page \introduction
 							sub /
 								<= Hero_cta_why_icon $mol_icon_play
 								<= Hero_cta_why_label @ \Why $mol
 						<= Hero_cta_start $mol_link
 							arg *
 								section \docs
-								page \quick-start
+								page \getting-started
 							sub /
 								<= Hero_cta_start_label @ \Get Started
 								<= Hero_cta_start_icon $mol_icon_arrow_right
@@ -1021,7 +1282,7 @@ $bog_smalljs_landing $mol_view
 							title @ \Install
 							arg *
 								section \docs
-								page \install
+								page \getting-started
 						<= Hero_cta_play $mol_link
 							arg *
 								section \playground
@@ -1277,95 +1538,222 @@ $bog_smalljs_landing $mol_view
 							sub /
 								<= Footer_copy_line2_text @ \Copyright © 2026 smalljs
 
+$mol_icon_menu $mol_icon path \M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z
+
+$mol_icon_pencil $mol_icon path \M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z
+
 $bog_smalljs_docs $mol_view
-	edit_uri \https://github.com/b-on-g/smalljs/edit/master/docs/page.view.tree
+	page \introduction
+	page_md \
+	title_text \
+	edit_uri \
+	sidebar_open? false
+	attr *
+		bog_smalljs_sidebar_open <= sidebar_open
 	sub /
-		<= Sidebar $mol_scroll
+		<= Menu_toggle $mol_button_minor
+			click? <=> menu_toggle? null
 			sub /
-				<= Group1 $mol_view
-					sub /
-						<= Group1_title @ \Getting Started
-				<= Group2 $mol_view
-					sub /
-						<= Group2_title @ \Essentials
-		<= Main $mol_scroll
+				<= Menu_icon $mol_icon_menu
+				<= Menu_label $mol_view
+					sub / <= title_text
+		<= Sidebar $mol_view
+			sub <= sidebar_groups /
+		<= Main $mol_view
 			sub /
-				<= Content $mol_view
-					sub /
-						<= Title $mol_view
-							sub /
-								<= Title_text @ \Page Title
-						<= Body $mol_text
-							text @ \Page content goes here.
+				<= Body $mol_text
+					text <= page_md
 				<= Edit $mol_link
-					title @ \Edit this page on GitHub
 					uri <= edit_uri
-				<= Nav $mol_view
 					sub /
-						<= Prev $mol_link
-							title @ \Previous page
-							arg *
-								section \docs
-								page \
-						<= Next $mol_link
-							title @ \Next page
-							arg *
-								section \docs
-								page \
-		<= Toc $mol_scroll
+						<= Edit_icon $mol_icon_pencil
+						<= Edit_label @ \Edit this page on GitHub
+				<= Nav $mol_view
+					sub <= nav_links /
+		<= Toc $mol_view
 			sub /
-				<= Toc_title @ \On this page
+				<= Toc_title $mol_view
+					sub / <= toc_title_text @ \On this page
+				<= Toc_list $mol_view
+					sub <= toc_links /
+	Group* $mol_view
+		sub <= group_content* /
+	Group_title* $mol_view
+		sub / <= group_title_text* \
+	Link* $mol_link
+		arg <= link_arg* *
+		event_click? <=> nav_click? null
+		sub / <= link_title* \
+	Toc_link* $mol_link
+		arg <= toc_arg* *
+		sub / <= toc_text* \
+	Prev $mol_link
+		arg <= prev_arg *
+		sub /
+			<= Prev_hint $mol_view
+				sub / <= prev_hint_text @ \Previous
+			<= Prev_title $mol_view
+				sub / <= prev_title \
+	Next $mol_link
+		arg <= next_arg *
+		sub /
+			<= Next_hint $mol_view
+				sub / <= next_hint_text @ \Next
+			<= Next_title $mol_view
+				sub / <= next_title \
 
-$bog_smalljs_playground $mol_view
-	sub /
-		<= Title @ \Playground
-		<= Body $mol_text
-			text @ \Coming in Sprint 2.
-
-$bog_builderui_card $bog_builderui_div
-
-$mol_hotkey $mol_plugin
-	event *
-		^
-		keydown? <=> keydown? null
-	key *
-	mod_ctrl false
-	mod_alt false
-	mod_shift false
-
-$mol_string $mol_view
-	dom_name \input
-	enabled true
-	minimal_height 40
-	autocomplete false
-	selection? /number
-		0
-		0
-	auto /
-		<= selection_watcher null
-		<= error_report null
-	field *
-		^
-		disabled <= disabled false
-		value <= value_changed? <=> value? \
-		placeholder <= hint_visible <= hint \
-		spellcheck <= spellcheck true
-		autocomplete <= autocomplete_native \
-		selectionEnd <= selection_end 0
-		selectionStart <= selection_start 0
-		inputMode <= keyboard \text
-		enterkeyhint <= enter \go
+$mol_textarea $mol_stack
 	attr *
 		^
-		maxlength <= length_max +Infinity
-		type <= type? \text
+		mol_textarea_clickable <= clickable? false
+		mol_textarea_sidebar_showed <= sidebar_showed false
 	event *
+		keydown? <=> press? null
+		pointermove? <=> hover? null
+	sub /
+		<= Edit $mol_textarea_edit
+			value? <=> value? \
+			hint <= hint \ 
+			enabled <= enabled true
+			spellcheck <= spellcheck true
+			length_max <= length_max +Infinity
+			selection? <=> selection? /number
+			bring => bring
+			submit? <=> submit? null
+			submit_with_ctrl <= submit_with_ctrl true
+		<= View $mol_text_code
+			text <= value
+			render_visible_only false
+			row_numb* <= row_numb* 0
+			sidebar_showed <= sidebar_showed
+			highlight <= highlight \
+			syntax <= syntax $mol_syntax2
+	symbols_alt *string
+		comma \<
+		period \>
+		dash \−
+		equals \≈
+		graveAccent \́
+		forwardSlash \÷
+		E \€
+		V \✔
+		X \×
+		C \©
+		P \§
+		H \₽
+		key0 \°
+		key8 \•
+		key2 \@
+		key3 \#
+		key4 \$
+		key6 \^
+		key7 \&
+		bracketOpen \[
+		bracketClose \]
+		slashBack \|
+	symbols_alt_ctrl *string
+		space \ 
+	symbols_alt_shift *string
+		V \✅
+		X \❌
+		O \⭕
+		key1 \❗
+		key4 \💲
+		key7 \❓
+		comma \«
+		period \»
+		semicolon \“
+		quoteSingle \”
+		dash \—
+		equals \≠
+		graveAccent \̱
+		bracketOpen \{
+		bracketClose \}
+
+$mol_textarea_edit $mol_string
+	dom_name \textarea
+	enter \enter
+	field *
 		^
-		input? <=> event_change? null
-	plugins /
-		<= Submit $mol_hotkey
-			mod_ctrl <= submit_with_ctrl false
-			key * enter? <=> submit? null
+		scrollTop 0
+
+$bog_smalljs_playground $mol_view
+	tab \tree
+	draft? \
+	editor_hint \
+	seed_tree \
+	seed_ts \
+	store_scope \
+	attr *
+		bog_smalljs_pg_tab <= tab
+	sub /
+		<= Editor_pane $mol_view
+			sub /
+				<= Tabs $mol_view
+					sub /
+						<= Tree_tab $mol_button_minor
+							click? <=> show_tree? null
+							sub / <= tree_tab_label @ \view.tree
+						<= Ts_tab $mol_button_minor
+							click? <=> show_ts? null
+							sub / <= ts_tab_label @ \view.ts
+				<= Editor $mol_textarea
+					value? <=> draft?
+					hint <= editor_hint
+		<= Preview_pane $mol_view
+			sub /
+				<= Preview_label $mol_view
+					sub / <= preview_label_text @ \Preview
+				<= Preview $mol_view
+					sub <= preview_content /
+
+$bog_smalljs_course $mol_view
+	lesson \hello
+	solution_shown? false
+	editor_seed_tree* \
+	editor_seed_ts* \
+	editor_store_key* \
+	lesson_md \
+	status_text \
+	solution_label \
+	solution_md \
+	editor_host /
+	lesson_links /
+	prev_arg *
+	next_arg *
+	sub /
+		<= Aside $mol_view
+			sub /
+				<= Lesson_list $mol_view
+					sub <= lesson_links /
+				<= Instruction $mol_text
+					text <= lesson_md
+				<= Status $mol_view
+					sub / <= status_text
+				<= Controls $mol_view
+					sub /
+						<= Prev $mol_link
+							arg <= prev_arg *
+							sub / <= prev_label @ \← Prev
+						<= Solution_btn $mol_button_minor
+							click? <=> toggle_solution? null
+							sub / <= solution_label
+						<= Next $mol_link
+							arg <= next_arg *
+							sub / <= next_label @ \Next →
+				<= Solution_block $mol_text
+					text <= solution_md
+		<= Editor_host $mol_view
+			sub <= editor_host /
+	Lesson_link* $mol_link
+		arg <= lesson_arg* *
+		sub / <= lesson_link_label* \
+	Editor* $bog_smalljs_playground
+		store_scope <= editor_store_key*
+		seed_tree <= editor_seed_tree*
+		seed_ts <= editor_seed_ts*
+
+$bog_builderui_card $bog_builderui_div
 
 $bog_builderui_field $mol_string
 	minimal_height 36
@@ -1643,107 +2031,6 @@ $mol_chart $mol_view
 
 $bog_builderui_chart $mol_chart
 
-$mol_nav $mol_plugin
-	cycle? false
-	-
-	mod_ctrl false
-	mod_shift false
-	mod_alt false
-	-
-	keys_x? /
-	keys_y? /
-	-
-	current_x? null
-	current_y? null
-	-
-	event_up? null
-	event_down? null
-	event_left? null
-	event_right? null
-	event *
-		^
-		keydown? <=> event_key? null
-
-$mol_icon_close $mol_icon path \M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z
-
-$mol_search $mol_pop
-	query? \
-	suggests /string
-	plugins /$mol_plugin
-		^
-		<= Hotkey $mol_hotkey
-			key * escape? <=> clear? null
-		<= Nav $mol_nav
-			keys_y <= nav_components /$mol_view
-			current_y? <=> nav_focused? null
-	showed? <=> suggests_showed? false
-	align_hor \right
-	Anchor $mol_view
-		sub <= anchor_content /
-			<= Query $mol_string
-				value? <=> query? \
-				hint <= hint @ \Search...
-				submit? <=> submit? null
-				enabled <= enabled true
-				keyboard <= keyboard \search
-				enter <= enter \search
-				bring => bring
-			<= Clear $mol_button_minor
-				hint @ \Clear
-				enabled <= enabled true
-				click? <=> clear? null
-				sub /
-					<= Clear_icon $mol_icon_close
-	bubble_content /$mol_view_content
-		<= Bubble_pane $mol_scroll
-			sub /
-				<= Menu $mol_list
-					rows <= menu_items /$mol_view
-	Suggest* $mol_button_minor
-		click? <=> suggest_select*? null
-		sub <= suggest_content* /$mol_view_content
-			<= Suggest_label* $mol_dimmer
-				haystack <= suggest_label* \
-				needle <= query? \
-
-$mol_icon_dots_vertical $mol_icon path \M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z
-
-$mol_select $mol_pick
-	dictionary? *
-	options /string
-	value? \
-	option_label_default \
-	Option_row* $mol_button_minor
-		enabled <= enabled true
-		event_click? <=> event_select*? null
-		sub <= option_content* /
-			<= Option_label* $mol_dimmer
-				haystack <= option_label* \
-				needle <= filter_pattern? \
-	No_options $mol_view
-		sub /
-			<= no_options_message @ \No options
-	plugins /
-		^
-		<= Nav $mol_nav
-			keys_y <= nav_components /$mol_view
-			current_y? <=> option_focused? null
-			cycle? <=> nav_cycle? true
-	hint @ \Pick..
-	bubble_content /
-		<= Filter
-		<= Bubble_pane $mol_scroll
-			sub /
-				<= Menu $mol_list
-					rows <= menu_content /$mol_view
-	Filter $mol_search
-		query? <=> filter_pattern? \
-		hint <= filter_hint @ \Filter..
-		submit? <=> submit? null
-		enabled <= enabled true
-	Trigger_icon $mol_icon_dots_vertical
-	trigger_enabled <= enabled
-
 $bog_builderui_select $mol_select
 
 $mol_pop_over $mol_pop
@@ -1760,6 +2047,8 @@ $bog_builderui_tooltip $mol_pop_over
 
 $bog_smalljs_app $bog_builderui_div
 	section? \home
+	search_open? false
+	search_toggle? null
 	lights \light
 	attr *
 		^
@@ -1772,6 +2061,7 @@ $bog_smalljs_app $bog_builderui_div
 		bog_builderui_font_head \eb-garamond
 	sub /
 		<= Top $bog_smalljs_top
+			search_click? <=> search_toggle?
 			Theme <= Theme $bog_theme_auto
 				theme_light \$mol_theme_calm_light
 				theme_dark \$mol_theme_calm_dark
@@ -1780,8 +2070,11 @@ $bog_smalljs_app $bog_builderui_div
 					\$mol_theme_calm_dark
 		<= Body $mol_view
 			sub <= body_content /
+		<= Search $bog_smalljs_search
+			open? <=> search_open?
 	plugins /
 		<= Theme
 	Landing $bog_smalljs_landing
 	Docs $bog_smalljs_docs
 	Playground $bog_smalljs_playground
+	Course $bog_smalljs_course
