@@ -7949,37 +7949,47 @@ declare namespace $ {
 		,
 		ReturnType< $mol_button_minor['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_5 = $mol_type_enforce<
+	type $mol_button_minor__click_bog_smalljs_playground_5 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['show_css'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_button_minor__sub_bog_smalljs_playground_6 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_button_minor['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_playground_7 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_textarea__value_bog_smalljs_playground_6 = $mol_type_enforce<
+	type $mol_textarea__value_bog_smalljs_playground_8 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['draft'] >
 		,
 		ReturnType< $mol_textarea['value'] >
 	>
-	type $mol_textarea__hint_bog_smalljs_playground_7 = $mol_type_enforce<
+	type $mol_textarea__hint_bog_smalljs_playground_9 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['editor_hint'] >
 		,
 		ReturnType< $mol_textarea['hint'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_8 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_playground_9 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
 	type $mol_view__sub_bog_smalljs_playground_10 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_playground['preview_content'] >
+		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
 	type $mol_view__sub_bog_smalljs_playground_11 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_playground_12 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['preview_content'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_playground_13 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
@@ -7991,6 +8001,9 @@ declare namespace $ {
 		show_ts( next?: any ): any
 		ts_tab_label( ): string
 		Ts_tab( ): $mol_button_minor
+		show_css( next?: any ): any
+		css_tab_label( ): string
+		Css_tab( ): $mol_button_minor
 		Tabs( ): $mol_view
 		Editor( ): $mol_textarea
 		Editor_pane( ): $mol_view
@@ -8004,6 +8017,7 @@ declare namespace $ {
 		editor_hint( ): string
 		seed_tree( ): string
 		seed_ts( ): string
+		seed_css( ): string
 		store_scope( ): string
 		attr( ): ({ 
 			'bog_smalljs_pg_tab': ReturnType< $bog_smalljs_playground['tab'] >,
@@ -8028,16 +8042,20 @@ declare namespace $.$$ {
      */
     class $bog_smalljs_playground extends $.$bog_smalljs_playground {
         default_tree(): string;
+        default_css(): string;
         default_ts(): string;
         tab(next?: string): string;
         show_tree(): null;
         show_ts(): null;
-        editor_hint(): "Optional — add a class with logic (state, actions), e.g. count() and inc()." | "Type a view.tree here…";
+        show_css(): null;
+        editor_hint(): "Optional — add a class with logic (state, actions), e.g. count() and inc()." | "Optional — style the component with $mol_style_define." | "Type a view.tree here…";
         stored(key: string, next?: string): string | null;
         tree_draft(next?: string): string;
         ts_draft(next?: string): string;
         tree_committed(next?: string): string;
         ts_committed(next?: string): string;
+        css_draft(next?: string): string;
+        css_committed(next?: string): string;
         draft(next?: string): string;
         timers: Record<string, $mol_after_timeout | null>;
         schedule(key: string, value: string): void;

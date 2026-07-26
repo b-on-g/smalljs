@@ -44,6 +44,7 @@
 	"$bog_smalljs_landing_Hero_title_accent_text": "micromodule",
 	"$bog_smalljs_landing_Hero_title_post": " framework",
 	"$bog_smalljs_landing_Hero_title_pre": "$mol — the reactive",
+	"$bog_smalljs_playground_css_tab_label": "view.css.ts",
 	"$bog_smalljs_playground_preview_label_text": "Preview",
 	"$bog_smalljs_playground_tree_tab_label": "view.tree",
 	"$bog_smalljs_playground_ts_tab_label": "view.ts",

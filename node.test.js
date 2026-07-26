@@ -16486,9 +16486,26 @@ var $;
 			(obj.sub) = () => ([(this.ts_tab_label())]);
 			return obj;
 		}
+		show_css(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		css_tab_label(){
+			return (this.$.$mol_locale.text("$bog_smalljs_playground_css_tab_label"));
+		}
+		Css_tab(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.click) = (next) => ((this.show_css(next)));
+			(obj.sub) = () => ([(this.css_tab_label())]);
+			return obj;
+		}
 		Tabs(){
 			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Tree_tab()), (this.Ts_tab())]);
+			(obj.sub) = () => ([
+				(this.Tree_tab()), 
+				(this.Ts_tab()), 
+				(this.Css_tab())
+			]);
 			return obj;
 		}
 		Editor(){
@@ -16539,6 +16556,9 @@ var $;
 		seed_ts(){
 			return "";
 		}
+		seed_css(){
+			return "";
+		}
 		store_scope(){
 			return "";
 		}
@@ -16553,6 +16573,8 @@ var $;
 	($mol_mem(($.$bog_smalljs_playground.prototype), "Tree_tab"));
 	($mol_mem(($.$bog_smalljs_playground.prototype), "show_ts"));
 	($mol_mem(($.$bog_smalljs_playground.prototype), "Ts_tab"));
+	($mol_mem(($.$bog_smalljs_playground.prototype), "show_css"));
+	($mol_mem(($.$bog_smalljs_playground.prototype), "Css_tab"));
 	($mol_mem(($.$bog_smalljs_playground.prototype), "Tabs"));
 	($mol_mem(($.$bog_smalljs_playground.prototype), "Editor"));
 	($mol_mem(($.$bog_smalljs_playground.prototype), "Editor_pane"));
@@ -17591,6 +17613,26 @@ var $;
                     `\t\t\tsub / <= button_label \\Count up`,
                 ].join('\n') + '\n';
             }
+            default_css() {
+                // An embedder controls the css via seed_css, mirroring default_ts's seed gate.
+                if (this.seed_tree())
+                    return this.seed_css();
+                // Standalone: a working view.css.ts sample that styles the default counter,
+                // so opening the css.ts tab shows real, applied styling.
+                const S = String.fromCharCode(36); // "$" — kept out of MAM's dep scan
+                return [
+                    `namespace ${S} {`,
+                    `\t${S}mol_style_define( ${S}my_demo, {`,
+                    `\t\tflex: { direction: 'column', gap: '1rem' },`,
+                    `\t\tpadding: '1.5rem',`,
+                    `\t\tValue: {`,
+                    `\t\t\tfont: { size: '2rem', weight: 700 },`,
+                    `\t\t\tcolor: '#0088ff',`,
+                    `\t\t},`,
+                    `\t} )`,
+                    `}`,
+                ].join('\n') + '\n';
+            }
             default_ts() {
                 // An embedder (e.g. the course) fully controls the ts via seed_ts,
                 // even when empty — mirror default_tree's seed gate.
@@ -17614,10 +17656,14 @@ var $;
             }
             show_tree() { this.tab('tree'); return null; }
             show_ts() { this.tab('ts'); return null; }
+            show_css() { this.tab('css'); return null; }
             editor_hint() {
-                return this.tab() === 'ts'
-                    ? 'Optional — add a class with logic (state, actions), e.g. count() and inc().'
-                    : 'Type a view.tree here…';
+                const tab = this.tab();
+                if (tab === 'ts')
+                    return 'Optional — add a class with logic (state, actions), e.g. count() and inc().';
+                if (tab === 'css')
+                    return 'Optional — style the component with $mol_style_define.';
+                return 'Type a view.tree here…';
             }
             // Persistence funnel — standalone stores in the URL hash (shareable); when an
             // embedder sets store_scope (e.g. the course, per lesson), store in localStorage.
@@ -17648,12 +17694,31 @@ var $;
             ts_committed(next) {
                 return next ?? (this.stored('ts') || this.default_ts());
             }
+            css_draft(next) {
+                if (next !== undefined) {
+                    this.schedule('css', next);
+                    return next;
+                }
+                return this.stored('css') || this.default_css();
+            }
+            css_committed(next) {
+                return next ?? (this.stored('css') || this.default_css());
+            }
             // One editor, bound to the active tab's source.
             draft(next) {
-                const ts_mode = this.tab() === 'ts';
-                if (next !== undefined)
-                    return ts_mode ? this.ts_draft(next) : this.tree_draft(next);
-                return ts_mode ? this.ts_draft() : this.tree_draft();
+                const tab = this.tab();
+                if (next !== undefined) {
+                    if (tab === 'ts')
+                        return this.ts_draft(next);
+                    if (tab === 'css')
+                        return this.css_draft(next);
+                    return this.tree_draft(next);
+                }
+                if (tab === 'ts')
+                    return this.ts_draft();
+                if (tab === 'css')
+                    return this.css_draft();
+                return this.tree_draft();
             }
             // --- debounce -----------------------------------------------------
             timers = {};
@@ -17665,6 +17730,8 @@ var $;
                 this.stored(key, value);
                 if (key === 'ts')
                     this.ts_committed(value);
+                else if (key === 'css')
+                    this.css_committed(value);
                 else
                     this.tree_committed(value);
             }
@@ -17692,6 +17759,18 @@ var $;
                 const tree = $.$mol_tree2_from_string(tree_src, 'playground.view.tree');
                 const tree_js = $.$mol_tree2_text_to_string_mapped_js($.$mol_tree2_js_to_text($.$mol_view_tree2_to_js(tree)));
                 new Function('$', '$mol_mem', '$mol_mem_key', tree_js)($, $.$mol_mem, $.$mol_mem_key);
+                // optional view.css.ts -> styles registered via $mol_style_define. The generated
+                // CSS targets the component by attribute selector (keyed by its name), so it applies
+                // to the rendered element regardless of order. $mol_style_attach is idempotent, so
+                // re-running on every recompile just updates the one <style> element.
+                const css_src = this.css_committed();
+                if (css_src.trim()) {
+                    const ts = this.ts_lib();
+                    const css_js = ts.transpileModule(css_src, {
+                        compilerOptions: { target: ts.ScriptTarget.ES2018, module: ts.ModuleKind.None },
+                    }).outputText;
+                    new Function('$', css_js)($);
+                }
                 // optional view.ts -> subclass with logic, transpiled in the browser.
                 if (ts_src.trim()) {
                     const ts = this.ts_lib();
@@ -17739,6 +17818,9 @@ var $;
             $mol_action
         ], $bog_smalljs_playground.prototype, "show_ts", null);
         __decorate([
+            $mol_action
+        ], $bog_smalljs_playground.prototype, "show_css", null);
+        __decorate([
             $mol_mem
         ], $bog_smalljs_playground.prototype, "tree_draft", null);
         __decorate([
@@ -17750,6 +17832,12 @@ var $;
         __decorate([
             $mol_mem
         ], $bog_smalljs_playground.prototype, "ts_committed", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_playground.prototype, "css_draft", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_playground.prototype, "css_committed", null);
         __decorate([
             $mol_action
         ], $bog_smalljs_playground.prototype, "schedule", null);
@@ -17818,6 +17906,7 @@ var $;
         },
         Tree_tab: tab,
         Ts_tab: tab,
+        Css_tab: tab,
         Preview_label: label,
         Editor: {
             flex: { grow: 1 },
@@ -17836,6 +17925,7 @@ var $;
             bog_smalljs_pg_tab: {
                 tree: { Tree_tab: tab_active },
                 ts: { Ts_tab: tab_active },
+                css: { Css_tab: tab_active },
             },
         },
         '@media': {
@@ -20306,7 +20396,7 @@ var $;
         flex: { direction: 'column' },
         height: '100vh',
         overflow: { y: 'auto', x: 'hidden' },
-        background: { color: $bog_builderui_tokens.back },
+        background: { color: $bog_builderui_tokens.card },
         color: $bog_builderui_tokens.text,
         Body: {
             flex: { direction: 'column', grow: 1 },

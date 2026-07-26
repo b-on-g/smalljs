@@ -2963,6 +2963,18 @@ h6[mol_text_header] {
 	color: var(--bog_builderui_shade);
 	background-color: var(--bog_builderui_back);
 }
+[bog_smalljs_playground_css_tab] {
+	flex-grow: 0;
+	padding-top: 0.4rem;
+	padding-bottom: 0.4rem;
+	padding-left: 0.75rem;
+	padding-right: 0.75rem;
+	border-radius: 0rem;
+	font-size: 0.75rem;
+	font-weight: 600;
+	color: var(--bog_builderui_shade);
+	background-color: var(--bog_builderui_back);
+}
 [bog_smalljs_playground_preview_label] {
 	flex-shrink: 0;
 	padding-top: 0.5rem;
@@ -2993,6 +3005,10 @@ h6[mol_text_header] {
 	overflow-y: auto;
 	padding: var(--mol_gap_block);
 	color: var(--bog_builderui_text);
+}
+[bog_smalljs_playground]:where([bog_smalljs_pg_tab="css"]) :where([bog_smalljs_playground_css_tab]) {
+	color: var(--bog_builderui_special);
+	background-color: var(--bog_builderui_card);
 }
 [bog_smalljs_playground]:where([bog_smalljs_pg_tab="ts"]) :where([bog_smalljs_playground_ts_tab]) {
 	color: var(--bog_builderui_special);
@@ -3568,7 +3584,7 @@ h6[mol_text_header] {
 	height: 100vh;
 	overflow-y: auto;
 	overflow-x: hidden;
-	background-color: var(--bog_builderui_back);
+	background-color: var(--bog_builderui_card);
 	color: var(--bog_builderui_text);
 }
 [bog_smalljs_app_body] {
