@@ -1231,14 +1231,14 @@ $bog_smalljs_landing $mol_view
 					sub /
 						<= Feature1_title $mol_view
 							sub /
-								<= Feature1_title_text @ \Modular
+								<= Feature1_title_text @ \Minimalistic
 						<= Feature1_text $mol_text
 							text @ \An incrementally adoptable ecosystem that scales between a single component and a full-stack local-first app.
 				<= Feature2 $mol_view
 					sub /
 						<= Feature2_title $mol_view
 							sub /
-								<= Feature2_title_text @ \Obvious
+								<= Feature2_title_text @ \Optimal
 						<= Feature2_text $mol_text
 							text @ \Build UIs as trees of components. Reactivity is automatic, side-effects are explicit.
 				<= Feature3 $mol_view
