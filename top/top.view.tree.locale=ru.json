@@ -47,5 +47,9 @@
 	"$bog_smalljs_top_M_about_releases_title": "Релизы",
 	"$bog_smalljs_top_About_group_title": "О проекте",
 	"$bog_smalljs_top_Burger_hint": "Меню",
-	"$bog_smalljs_top_Lang_hint": "Язык"
+	"$bog_smalljs_top_Lang_hint": "Язык",
+	"$bog_smalljs_top_Lang_pick_hint": "Выбрать язык",
+	"$bog_theme_switch_dark_hint": "Тёмная тема",
+	"$bog_theme_switch_light_hint": "Светлая тема",
+	"$bog_theme_switch_system_hint": "Системная тема"
 }
