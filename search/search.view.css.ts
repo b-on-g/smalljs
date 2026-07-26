@@ -81,4 +81,12 @@ namespace $ {
 
 	} )
 
+	// Keyboard-highlighted result row. Raw CSS because the custom attribute
+	// isn't part of $mol_link's typed attrs, so $mol_style_define rejects it.
+	$mol_style_attach( 'bog/smalljs/search/search.view.css', `
+		[bog_smalljs_search_current="true"] {
+			background-color: var(--bog_builderui_hover);
+		}
+	` )
+
 }

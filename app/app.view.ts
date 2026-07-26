@@ -7,8 +7,34 @@ namespace $.$$ {
 		}
 
 		@ $mol_action
+		open_search() {
+			this.search_open( true )
+			this.Search().focus()
+			return null
+		}
+
+		@ $mol_action
 		search_toggle() {
-			this.search_open( !this.search_open() )
+			if( this.search_open() ) this.search_open( false )
+			else this.open_search()
+			return null
+		}
+
+		// Global ⌘K / Ctrl+K opens the search overlay. Registered on window
+		// (via the `auto` binding) rather than a $mol_hotkey plugin: when
+		// nothing inside the app is focused the keydown targets <body>, which
+		// never reaches a plugin bound to the app-root element. `event.code`
+		// is layout-independent so it matches the physical K key.
+		@ $mol_mem
+		hotkeys() {
+			const win = this.$.$mol_dom_context
+			win.addEventListener( 'keydown', ( event: KeyboardEvent ) => {
+				if( event.defaultPrevented ) return
+				if( !( event.metaKey || event.ctrlKey ) ) return
+				if( event.code !== 'KeyK' ) return
+				event.preventDefault()
+				this.open_search()
+			} )
 			return null
 		}
 

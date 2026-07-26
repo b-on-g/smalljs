@@ -12,6 +12,8 @@ $bog_smalljs_app $bog_builderui_div
 		bog_builderui_radius \medium
 		bog_builderui_font_body \inter
 		bog_builderui_font_head \eb-garamond
+	auto /
+		<= hotkeys null
 	sub /
 		<= Top $bog_smalljs_top
 			search_click? <=> search_toggle?
