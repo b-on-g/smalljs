@@ -13,9 +13,14 @@ namespace $.$$ {
 			return $bog_smalljs_content.page( this.page() )
 		}
 
+		/** Active UI language; reading it makes the page reactive to switches. */
+		lang() {
+			return this.$.$mol_locale.lang()
+		}
+
 		page_md() {
-			const page = this.current()
-			if( page ) return page.md
+			const md = $bog_smalljs_content.page_md( this.page(), this.lang() )
+			if( md ) return md
 			// Unbuilt page — degrade gracefully instead of a bare error.
 			return [
 				`# Coming soon`,
@@ -28,7 +33,7 @@ namespace $.$$ {
 		}
 
 		title_text() {
-			return this.current()?.title ?? 'Coming soon'
+			return $bog_smalljs_content.page_title( this.page(), this.lang() ) ?? 'Coming soon'
 		}
 
 		edit_uri() {
@@ -73,7 +78,7 @@ namespace $.$$ {
 		}
 
 		link_title( slug: string ) {
-			return $bog_smalljs_content.page( slug )?.title ?? slug
+			return $bog_smalljs_content.page_title( slug, this.lang() ) ?? slug
 		}
 
 		link_arg( slug: string ) {
@@ -141,11 +146,11 @@ namespace $.$$ {
 		}
 
 		prev_title() {
-			return $bog_smalljs_content.page( this.prev_slug() )?.title ?? ''
+			return $bog_smalljs_content.page_title( this.prev_slug(), this.lang() ) ?? ''
 		}
 
 		next_title() {
-			return $bog_smalljs_content.page( this.next_slug() )?.title ?? ''
+			return $bog_smalljs_content.page_title( this.next_slug(), this.lang() ) ?? ''
 		}
 
 		nav_links() {

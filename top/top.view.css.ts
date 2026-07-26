@@ -173,7 +173,8 @@ namespace $ {
 
 		Lang: {
 			flex: { shrink: 0 },
-			padding: rem(0.4),
+			gap: rem(0.25),
+			padding: { left: rem(0.5), right: rem(0.5), top: rem(0.4), bottom: rem(0.4) },
 		},
 
 		Lang_icon: {
@@ -190,8 +191,6 @@ namespace $ {
 				Search: { display: 'none' },
 				Nav: { display: 'none' },
 				Burger: { display: 'inline-flex' },
-				// EN-only for now; drop the language button so the bar fits.
-				Lang: { display: 'none' },
 				padding: { left: rem(0.75), right: rem(0.75), top: $mol_gap.text, bottom: $mol_gap.text },
 			},
 		},

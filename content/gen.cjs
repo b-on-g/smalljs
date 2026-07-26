@@ -146,15 +146,49 @@ function embed( text ) {
 
 const slugs = Object.keys( titles )
 
+// --- Translations. EN is the source/fallback; any content/<lang>/docs/<slug>.md
+// that exists is bundled alongside as a per-language override. The RU title is
+// derived from the translated page's first `# ` heading, so translators only
+// touch the .md — no separate title manifest to keep in sync.
+const langs = [ 'ru' ]
+
+function first_heading( md ) {
+	const m = md.match( /^#\s+(.+?)\s*$/m )
+	return m ? m[ 1 ] : null
+}
+
+function translations( slug ) {
+	const tr = {}
+	for ( const lang of langs ) {
+		const file = path.join( root, lang, 'docs', `${ slug }.md` )
+		if ( !fs.existsSync( file ) ) continue
+		const md = fs.readFileSync( file, 'utf8' )
+		tr[ lang ] = { title: first_heading( md ) ?? titles[ slug ], md }
+	}
+	return tr
+}
+
+let translated_count = 0
+
 const page_entries = slugs.map( slug => {
 	const file = `content/en/docs/${ slug }.md`
 	const md = fs.readFileSync( path.join( docs_dir, `${ slug }.md` ), 'utf8' )
+	const tr = translations( slug )
+	const tr_keys = Object.keys( tr )
+	if ( tr_keys.length ) translated_count++
+	const tr_entries = tr_keys.map( lang => (
+		`\t\t\t\t\t\t${ lang }: {\n` +
+		`\t\t\t\t\t\t\ttitle: ${ JSON.stringify( tr[ lang ].title ) },\n` +
+		`\t\t\t\t\t\t\tmd: ${ embed( tr[ lang ].md ) },\n` +
+		`\t\t\t\t\t\t},`
+	) ).join( '\n' )
 	return (
 		`\t\t\t\t'${ slug }': {\n` +
 		`\t\t\t\t\tslug: '${ slug }',\n` +
 		`\t\t\t\t\ttitle: ${ JSON.stringify( titles[ slug ] ) },\n` +
 		`\t\t\t\t\tfile: '${ file }',\n` +
 		`\t\t\t\t\tmd: ${ embed( md ) },\n` +
+		( tr_keys.length ? `\t\t\t\t\ttr: {\n${ tr_entries }\n\t\t\t\t\t},\n` : '' ) +
 		`\t\t\t\t},`
 	)
 } ).join( '\n' )
@@ -168,12 +202,19 @@ const out = `namespace $ {
 	 * and works with the app/- deploy and the prerender step.
 	 */
 
+	export type $bog_smalljs_content_translation = {
+		title: string
+		md: string
+	}
+
 	export type $bog_smalljs_content_page = {
 		slug: string
 		title: string
 		/** GitHub-relative path, for the Edit-on-GitHub link. */
 		file: string
 		md: string
+		/** Per-language overrides, keyed by lang code. EN lives in title/md above. */
+		tr?: Readonly< Record< string, $bog_smalljs_content_translation > >
 	}
 
 	export type $bog_smalljs_content_group = {
@@ -208,6 +249,20 @@ ${ page_entries }
 
 		static page( slug: string ): $bog_smalljs_content_page | null {
 			return this.pages()[ slug ] ?? null
+		}
+
+		/** Markdown for a page in the given language, falling back to EN. */
+		static page_md( slug: string, lang = 'en' ): string | null {
+			const page = this.pages()[ slug ]
+			if( !page ) return null
+			return page.tr?.[ lang ]?.md ?? page.md
+		}
+
+		/** Localized title for a page, falling back to EN. */
+		static page_title( slug: string, lang = 'en' ): string | null {
+			const page = this.pages()[ slug ]
+			if( !page ) return null
+			return page.tr?.[ lang ]?.title ?? page.title
 		}
 
 		static default_slug(): string {
@@ -399,4 +454,4 @@ const lessons_dir = path.join( root, '..', 'lessons' )
 fs.mkdirSync( lessons_dir, { recursive: true } )
 fs.writeFileSync( path.join( lessons_dir, 'lessons.ts' ), lessons_ts )
 
-console.log( `generated: content.ts (${ slugs.length } pages, incl. ${ api_count } API) + llms.txt + lessons.ts (${ lessons.length } lessons)` )
+console.log( `generated: content.ts (${ slugs.length } pages, incl. ${ api_count } API, ${ translated_count } translated) + llms.txt + lessons.ts (${ lessons.length } lessons)` )
