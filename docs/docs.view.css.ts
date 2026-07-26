@@ -248,4 +248,13 @@ namespace $ {
 
 	} )
 
+	// $mol_text renders a list bullet/number via [mol_text_list_item]::before with
+	// position:absolute + margin-left:-1.75rem, but the item itself has no
+	// positioning context, so the marker anchors to the scroll container and drifts
+	// away from its line while scrolling. Give each item its own positioning context
+	// so the marker stays glued to it. Raw CSS (attribute belongs to foreign $mol_text).
+	$mol_style_attach( '$bog_smalljs_docs.list_marker', `
+		[bog_smalljs_docs_body] [mol_text_list_item] { position: relative }
+	` )
+
 }
