@@ -18,6 +18,7 @@
 ## Data
 
 - [Data Fetching](https://b-on-g.github.io/smalljs/docs/data.md): Loading remote data with reactive async properties and loading states.
+- [Data Schemas](https://b-on-g.github.io/smalljs/docs/data-schema.md): Runtime typing and validation of backend data with $mol_data and $mol_schema.
 - [Giper Baza](https://b-on-g.github.io/smalljs/docs/giper-baza.md): Local-first data with automatic sync: entities, atoms, and CRUD.
 
 ## More
