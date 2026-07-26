@@ -158,6 +158,43 @@ namespace $ {
 			padding: { top: rem(2) },
 		},
 
+		'@media': {
+
+			// Phone: shrink the oversized hero, stack features and footer so
+			// nothing overflows the viewport width.
+			'(max-width: 47.9375rem)': {
+
+				Hero: {
+					padding: { top: rem(2.5), bottom: 0, left: rem(1.25), right: rem(1.25) },
+				},
+
+				Hero_title: {
+					font: { size: rem(2.5) },
+				},
+
+				Hero_subtitle: {
+					font: { size: rem(1.0625) },
+				},
+
+				Features: {
+					gridTemplateColumns: '1fr',
+					gap: rem(1.5),
+					padding: { top: rem(2.5), bottom: rem(2.5), left: rem(1.25), right: rem(1.25) },
+				},
+
+				Footer: {
+					padding: { top: rem(2.5), bottom: rem(2), left: rem(1.25), right: rem(1.25) },
+				},
+
+				Footer_cols: {
+					gridTemplateColumns: '1fr 1fr',
+					gap: rem(1.5),
+				},
+
+			},
+
+		},
+
 	} )
 
 }
