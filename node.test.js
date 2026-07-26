@@ -8116,6 +8116,18 @@ var $;
 
 
 ;
+	($.$mol_icon_check) = class $mol_icon_check extends ($.$mol_icon) {
+		path(){
+			return "M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z";
+		}
+	};
+
+
+;
+"use strict";
+
+
+;
 	($.$bog_smalljs_top) = class $bog_smalljs_top extends ($.$mol_view) {
 		Logo_image(){
 			const obj = new this.$.$mol_image();
@@ -8343,12 +8355,20 @@ var $;
 			(obj.event_click) = (next) => ((this.nav_pick(next)));
 			return obj;
 		}
+		About_telegram(){
+			const obj = new this.$.$mol_link();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_About_telegram_title")));
+			(obj.uri) = () => ("https://t.me/giper_dev");
+			(obj.event_click) = (next) => ((this.nav_pick(next)));
+			return obj;
+		}
 		About_menu(){
 			const obj = new this.$.$mol_view();
 			(obj.sub) = () => ([
 				(this.About_faq()), 
 				(this.About_team()), 
-				(this.About_releases())
+				(this.About_releases()), 
+				(this.About_telegram())
 			]);
 			return obj;
 		}
@@ -8521,13 +8541,21 @@ var $;
 			(obj.event_click) = (next) => ((this.nav_pick(next)));
 			return obj;
 		}
+		M_about_telegram(){
+			const obj = new this.$.$mol_link();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_M_about_telegram_title")));
+			(obj.uri) = () => ("https://t.me/giper_dev");
+			(obj.event_click) = (next) => ((this.nav_pick(next)));
+			return obj;
+		}
 		About_group(){
 			const obj = new this.$.$mol_expander();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_About_group_title")));
 			(obj.content) = () => ([
 				(this.M_about_faq()), 
 				(this.M_about_team()), 
-				(this.M_about_releases())
+				(this.M_about_releases()), 
+				(this.M_about_telegram())
 			]);
 			return obj;
 		}
@@ -8556,11 +8584,28 @@ var $;
 		lang_label(){
 			return "EN";
 		}
-		Lang(){
-			const obj = new this.$.$mol_button_minor();
-			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Lang_hint")));
-			(obj.click) = (next) => ((this.lang_open(next)));
-			(obj.sub) = () => ([(this.Lang_icon()), (this.lang_label())]);
+		Lang_chevron(){
+			const obj = new this.$.$mol_icon_chevron_down();
+			return obj;
+		}
+		lang_options(){
+			return [];
+		}
+		Lang_menu(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.lang_options()));
+			return obj;
+		}
+		Lang_pick(){
+			const obj = new this.$.$mol_pick();
+			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Lang_pick_hint")));
+			(obj.align) = () => ("bottom_right");
+			(obj.trigger_content) = () => ([
+				(this.Lang_icon()), 
+				(this.lang_label()), 
+				(this.Lang_chevron())
+			]);
+			(obj.bubble_content) = () => ([(this.Lang_menu())]);
 			return obj;
 		}
 		Theme_toggle(){
@@ -8571,6 +8616,13 @@ var $;
 		Github(){
 			const obj = new this.$.$mol_link_source();
 			(obj.uri) = () => ((this.github_uri()));
+			return obj;
+		}
+		lang_option_label(id){
+			return "";
+		}
+		Lang_option_check(id){
+			const obj = new this.$.$mol_icon_check();
 			return obj;
 		}
 		Theme(){
@@ -8590,20 +8642,21 @@ var $;
 			if(next !== undefined) return next;
 			return null;
 		}
-		lang_open(next){
-			if(next !== undefined) return next;
-			return null;
-		}
 		sub(){
 			return [
 				(this.Logo()), 
 				(this.Search()), 
 				(this.Nav()), 
 				(this.Burger()), 
-				(this.Lang()), 
+				(this.Lang_pick()), 
 				(this.Theme_toggle()), 
 				(this.Github())
 			];
+		}
+		Lang_option(id){
+			const obj = new this.$.$mol_button_minor();
+			(obj.sub) = () => ([(this.lang_option_label(id)), (this.Lang_option_check(id))]);
+			return obj;
 		}
 	};
 	($mol_mem(($.$bog_smalljs_top.prototype), "Logo_image"));
@@ -8636,6 +8689,7 @@ var $;
 	($mol_mem(($.$bog_smalljs_top.prototype), "About_faq"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "About_team"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "About_releases"));
+	($mol_mem(($.$bog_smalljs_top.prototype), "About_telegram"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "About_menu"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "About_pick"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Nav"));
@@ -8659,16 +8713,20 @@ var $;
 	($mol_mem(($.$bog_smalljs_top.prototype), "M_about_faq"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "M_about_team"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "M_about_releases"));
+	($mol_mem(($.$bog_smalljs_top.prototype), "M_about_telegram"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "About_group"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Mobile_menu"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Burger"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Lang_icon"));
-	($mol_mem(($.$bog_smalljs_top.prototype), "Lang"));
+	($mol_mem(($.$bog_smalljs_top.prototype), "Lang_chevron"));
+	($mol_mem(($.$bog_smalljs_top.prototype), "Lang_menu"));
+	($mol_mem(($.$bog_smalljs_top.prototype), "Lang_pick"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Theme_toggle"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Github"));
+	($mol_mem_key(($.$bog_smalljs_top.prototype), "Lang_option_check"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "search_click"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "nav_pick"));
-	($mol_mem(($.$bog_smalljs_top.prototype), "lang_open"));
+	($mol_mem_key(($.$bog_smalljs_top.prototype), "Lang_option"));
 
 
 ;
@@ -8688,27 +8746,60 @@ var $;
                 this.About_pick().showed(false);
                 this.Burger().showed(false);
             }
-            // --- Language (EN ↔ RU) ------------------------------------------------
+            // --- Language dropdown -------------------------------------------------
             // Reuses the framework-native $mol_locale: lang() reads/writes the current
             // locale, persisted in localStorage. Every localized `@ \…` string and the
             // docs content recompute reactively because they read $mol_locale.lang().
+            //
+            // The list is data-driven — add a language by adding one row here.
+            langs() {
+                return [
+                    { code: 'en', label: 'English' },
+                    { code: 'ru', label: 'Русский' },
+                ];
+            }
             lang(next) {
                 return this.$.$mol_locale.lang(next);
             }
-            lang_open() {
-                this.lang(this.lang() === 'ru' ? 'en' : 'ru');
-                return null;
-            }
             lang_label() {
-                return this.lang() === 'ru' ? 'RU' : 'EN';
+                return this.lang().toUpperCase();
+            }
+            lang_options() {
+                return this.langs().map(item => this.Lang_option(item.code));
+            }
+            lang_option_label(code) {
+                return this.langs().find(item => item.code === code)?.label ?? code;
+            }
+            /** Wire each option's click to its own language (keyed handler by closure). */
+            Lang_option(code) {
+                const option = super.Lang_option(code);
+                option.click = () => this.lang_select(code);
+                return option;
+            }
+            /** Show the check only next to the active language. */
+            Lang_option_check(code) {
+                if (this.lang() !== code)
+                    return null;
+                return super.Lang_option_check(code);
+            }
+            lang_select(code) {
+                this.lang(code);
+                this.Lang_pick().showed(false);
+                return null;
             }
         }
         __decorate([
             $mol_action
         ], $bog_smalljs_top.prototype, "nav_pick", null);
         __decorate([
+            $mol_mem_key
+        ], $bog_smalljs_top.prototype, "Lang_option", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_smalljs_top.prototype, "Lang_option_check", null);
+        __decorate([
             $mol_action
-        ], $bog_smalljs_top.prototype, "lang_open", null);
+        ], $bog_smalljs_top.prototype, "lang_select", null);
         $$.$bog_smalljs_top = $bog_smalljs_top;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -8863,14 +8954,50 @@ var $;
             textTransform: 'uppercase',
             letterSpacing: rem(0.03),
         },
-        Lang: {
+        Lang_pick: {
             flex: { shrink: 0 },
-            gap: rem(0.25),
-            padding: { left: rem(0.5), right: rem(0.5), top: rem(0.4), bottom: rem(0.4) },
+            // the pick's trigger is a $mol_check anchor
+            $mol_check: {
+                flex: { direction: 'row' },
+                align: { items: 'center' },
+                gap: rem(0.25),
+                padding: { left: rem(0.5), right: rem(0.5), top: rem(0.4), bottom: rem(0.4) },
+                border: { radius: rem(0.375) },
+                font: { size: rem(0.8125), weight: 500 },
+            },
         },
         Lang_icon: {
             width: rem(1.125),
             height: rem(1.125),
+        },
+        Lang_chevron: { width: rem(0.875), height: rem(0.875) },
+        Lang_menu: {
+            flex: { direction: 'column' },
+            gap: rem(0.125),
+            padding: { top: rem(0.5), bottom: rem(0.5), left: rem(0.5), right: rem(0.5) },
+            minWidth: rem(9),
+            background: { color: $bog_builderui_tokens.card },
+            border: { radius: rem(0.5) },
+        },
+        Lang_option: {
+            flex: { direction: 'row', grow: 1 },
+            justify: { content: 'flex-start' },
+            align: { items: 'center' },
+            gap: rem(0.75),
+            padding: { top: rem(0.375), bottom: rem(0.375), left: rem(0.625), right: rem(0.625) },
+            border: { radius: rem(0.375) },
+            color: $bog_builderui_tokens.text,
+            font: { size: rem(0.875), weight: 500 },
+            ':hover': {
+                background: { color: $bog_builderui_tokens.hover },
+                color: $bog_builderui_tokens.special,
+            },
+        },
+        Lang_option_check: {
+            width: rem(1),
+            height: rem(1),
+            flex: { shrink: 0 },
+            color: $bog_builderui_tokens.special,
         },
         Github: {
             flex: { shrink: 0 },
@@ -14808,6 +14935,13 @@ var $;
 			(obj.target) = () => ("_blank");
 			return obj;
 		}
+		Footer_link_telegram(){
+			const obj = new this.$.$mol_link();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_telegram_title")));
+			(obj.uri) = () => ("https://t.me/giper_dev");
+			(obj.target) = () => ("_blank");
+			return obj;
+		}
 		Footer_link_dev(){
 			const obj = new this.$.$mol_link();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_dev_title")));
@@ -14822,6 +14956,7 @@ var $;
 				(this.Footer_link_playground()), 
 				(this.Footer_link_course()), 
 				(this.Footer_link_ui()), 
+				(this.Footer_link_telegram()), 
 				(this.Footer_link_dev())
 			]);
 			return obj;
@@ -14983,6 +15118,7 @@ var $;
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_playground"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_course"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_ui"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_telegram"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_dev"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_resources"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_col3"));
@@ -15810,6 +15946,14 @@ var $;
             },
         },
     });
+    // $mol_text renders a list bullet/number via [mol_text_list_item]::before with
+    // position:absolute + margin-left:-1.75rem, but the item itself has no
+    // positioning context, so the marker anchors to the scroll container and drifts
+    // away from its line while scrolling. Give each item its own positioning context
+    // so the marker stays glued to it. Raw CSS (attribute belongs to foreign $mol_text).
+    $mol_style_attach('$bog_smalljs_docs.list_marker', `
+		[bog_smalljs_docs_body] [mol_text_list_item] { position: relative }
+	`);
 })($ || ($ = {}));
 
 ;

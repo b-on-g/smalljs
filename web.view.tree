@@ -286,13 +286,14 @@ $mol_link_source $mol_link
 	sub /
 		<= Icon $mol_icon_script_text
 
+$mol_icon_check $mol_icon path \M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z
+
 $bog_smalljs_top $mol_view
 	Theme null
 	github_uri \https://github.com/hyoo-ru/mam_mol
 	logo_uri \bog/smalljs/assets/logo.svg
 	search_click? null
 	nav_pick? null
-	lang_open? null
 	sub /
 		<= Logo $mol_link
 			arg *
@@ -426,6 +427,10 @@ $bog_smalljs_top $mol_view
 										section \docs
 										page \releases
 									event_click? <=> nav_pick?
+								<= About_telegram $mol_link
+									title @ \Telegram
+									uri \https://t.me/giper_dev
+									event_click? <=> nav_pick?
 		<= Burger $mol_pick
 			hint @ \Menu
 			align \bottom_right
@@ -528,16 +533,28 @@ $bog_smalljs_top $mol_view
 										section \docs
 										page \releases
 									event_click? <=> nav_pick?
-		<= Lang $mol_button_minor
+								<= M_about_telegram $mol_link
+									title @ \Telegram
+									uri \https://t.me/giper_dev
+									event_click? <=> nav_pick?
+		<= Lang_pick $mol_pick
 			hint @ \Language
-			click? <=> lang_open?
-			sub /
+			align \bottom_right
+			trigger_content /
 				<= Lang_icon $mol_icon_translate
 				<= lang_label \EN
+				<= Lang_chevron $mol_icon_chevron_down
+			bubble_content /
+				<= Lang_menu $mol_view
+					sub <= lang_options /
 		<= Theme_toggle $bog_theme_switch
 			theme_auto <= Theme
 		<= Github $mol_link_source
 			uri <= github_uri
+	Lang_option* $mol_button_minor
+		sub /
+			<= lang_option_label* \
+			<= Lang_option_check* $mol_icon_check
 
 $mol_hotkey $mol_plugin
 	event *
@@ -1309,6 +1326,10 @@ $bog_smalljs_landing $mol_view
 										<= Footer_link_ui $mol_link
 											title @ \UI Components
 											uri \https://mol.hyoo.ru/
+											target \_blank
+										<= Footer_link_telegram $mol_link
+											title @ \Telegram
+											uri \https://t.me/giper_dev
 											target \_blank
 										<= Footer_link_dev $mol_link
 											title @ \DEV Community

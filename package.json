@@ -234,6 +234,7 @@
     "$mol_link_source",
     "$mol_icon_script_text",
     "$mol_icon_script",
+    "$mol_icon_check",
     "$bog_smalljs_search",
     "$bog_smalljs_content",
     "$mol_button_major",
