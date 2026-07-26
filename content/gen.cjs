@@ -26,6 +26,7 @@ const sections = [
 			{ title: 'Essentials', pages: [ 'installation', 'views', 'state', 'routing', 'rendering' ] },
 			{ title: 'Data', pages: [ 'data', 'giper-baza' ] },
 			{ title: 'More', pages: [ 'showcase', 'rosetta' ] },
+			{ title: 'About', pages: [ 'faq', 'team', 'releases' ] },
 		],
 	},
 ]
@@ -43,6 +44,9 @@ const meta = {
 	'giper-baza': { title: 'Giper Baza', summary: 'Local-first data with automatic sync: entities, atoms, and CRUD.' },
 	'showcase': { title: 'Showcase', summary: 'Real apps and tools built with $mol, from community platforms to devtools.' },
 	'rosetta': { title: 'From React, Vue & Svelte', summary: 'A concept translation table for developers coming from other frameworks.' },
+	'faq': { title: 'FAQ', summary: 'Common questions about $mol and smalljs: readiness, size, learning curve, and getting help.' },
+	'team': { title: 'Team', summary: 'Who builds $mol and how to contribute to the open monorepo.' },
+	'releases': { title: 'Releases', summary: 'How $mol is delivered continuously from the mam_mol monorepo, and how to follow changes.' },
 }
 
 // --- API reference autogen -----------------------------------------------------

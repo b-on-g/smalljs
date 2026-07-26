@@ -7,7 +7,6 @@ namespace $.$$ {
 			this.Docs_pick().showed( false )
 			this.Ecosystem_pick().showed( false )
 			this.About_pick().showed( false )
-			this.Support_pick().showed( false )
 			this.Burger().showed( false )
 		}
 

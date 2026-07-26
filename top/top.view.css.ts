@@ -99,12 +99,10 @@ namespace $ {
 		Docs_chevron: { width: rem(0.875), height: rem(0.875) },
 		Ecosystem_chevron: { width: rem(0.875), height: rem(0.875) },
 		About_chevron: { width: rem(0.875), height: rem(0.875) },
-		Support_chevron: { width: rem(0.875), height: rem(0.875) },
 
 		Docs_menu: menu_panel,
 		Ecosystem_menu: menu_panel,
 		About_menu: menu_panel,
-		Support_menu: menu_panel,
 
 		Eco_libs_title: {
 			padding: { top: rem(0.5), bottom: rem(0.25), left: rem(0.625), right: rem(0.625) },

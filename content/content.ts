@@ -66,6 +66,14 @@ namespace $ {
 							]
 						},
 						{
+							"title": "About",
+							"pages": [
+								"faq",
+								"team",
+								"releases"
+							]
+						},
+						{
 							"title": "API",
 							"pages": [
 								"api-mol-button-major",
@@ -157,6 +165,24 @@ namespace $ {
 					title: "From React, Vue & Svelte",
 					file: 'content/en/docs/rosetta.md',
 					md: "# From React, Vue & Svelte\n\nIf you have built UIs with React, Vue, or Svelte, you already understand most of what \u0024mol does — the names are just different. Those frameworks are excellent and popular for good reason; this page is a translation table, not a competition, to help you feel at home quickly.\n\n## Concept map\n\n| Idea | React | Vue | Svelte | \u0024mol |\n|------|-------|-----|--------|------|\n| Component | function / class | SFC (`.vue`) | `.svelte` file | `.view.tree` + `.view.ts` |\n| Local state | `useState` | `ref` / `reactive` | `let x` | `@ \u0024mol_mem` |\n| Derived value | `useMemo` | `computed` | `\u0024: y = …` | `@ \u0024mol_mem` (reads other cells) |\n| Side effect | `useEffect` | `watchEffect` | `\u0024: { … }` | `@ \u0024mol_action` (explicit, never automatic) |\n| Props | props | props | `export let` | bindings in `view.tree` |\n| Event | `onClick` | `@click` | `on:click` | `click? <=> handler?` |\n| Two-way input | controlled input | `v-model` | `bind:value` | `value? <=> field?` |\n| List | `items.map()` | `v-for` | `{#each}` | keyed `Row*` |\n| Conditional | `cond && …` | `v-if` | `{#if}` | assign `null` to remove |\n| Shared state | Redux / Context | Pinia / provide | stores | any object with `@ \u0024mol_mem` |\n| Routing | React Router | Vue Router | SvelteKit | `\u0024mol_state_arg` |\n| Styling | CSS-in-JS | scoped `<style>` | `<style>` | typed `.view.css.ts` |\n\n## What tends to feel new\n\n- **Reactivity is automatic and non-optional.** Like Vue's `ref` or Svelte's `\u0024:`, a `@ \u0024mol_mem` value updates its readers by itself — but there is no dependency array to maintain and no manual subscription anywhere.\n- **Effects are separated from computations.** React folds derivation and effects into hooks; \u0024mol keeps them apart: `@ \u0024mol_mem` only computes, `@ \u0024mol_action` performs effects. That split is what removes most \"why did this run twice?\" puzzles.\n- **State is just objects.** There is no dedicated store library to adopt — a shared value is a reactive property on any object, so global state and component state work the same way.\n\n## Try the translation\n\nThe fastest way to internalize the mapping is to write a little of both: open the [Playground](#!section=playground), port a small component you know, and see how it lands. Or start from [Getting Started](#!section=docs/page=getting-started).\n",
+				},
+				'faq': {
+					slug: 'faq',
+					title: "FAQ",
+					file: 'content/en/docs/faq.md',
+					md: "# FAQ\n\n## What is smalljs?\n\nsmalljs is the documentation site for **\u0024mol** — a reactive UI framework with typed views, automatic reactivity, and no virtual DOM. The framework itself is developed in the open by the hyoo-ru community; this site gathers a guide, an interactive course, a live playground, and an API reference in one place.\n\n## Is \u0024mol production-ready?\n\nYes. \u0024mol powers real apps and internal tools — see the [Showcase](#!section=docs/page=showcase). It ships from a single monorepo (MAM) and is used daily by its authors and community.\n\n## How big is the runtime?\n\nSmall. A typical \u0024mol app ships around 100 KB of framework code, and rendering is virtualized by default — components outside the viewport are never created. See [Rendering](#!section=docs/page=rendering) for the details and benchmarks.\n\n## Do I have to learn a new template language?\n\nYou learn `view.tree`, a compact tree syntax for declaring component layout. It is intentionally small — the [Views](#!section=docs/page=views) chapter covers everything you need in one sitting. Logic stays in plain TypeScript, and styles are typed too.\n\n## How is it different from React, Vue or Svelte?\n\nReactivity is automatic — there is no `useState`, `useEffect`, or manual subscription. You describe *what* the UI is; \u0024mol decides *how* and *when* to update it. The [concept translation table](#!section=docs/page=rosetta) maps ideas from other frameworks onto \u0024mol.\n\n## Where do I get help?\n\n- Ask in the [DEV community](https://dev.to/t/mol)\n- Browse the [\u0024mol source and issues on GitHub](https://github.com/hyoo-ru/mam_mol)\n- Read the reference docs at [mol.hyoo.ru](https://mol.hyoo.ru/)\n\n## What license is it under?\n\nMIT. You can use \u0024mol in commercial and open-source projects freely.\n",
+				},
+				'team': {
+					slug: 'team',
+					title: "Team",
+					file: 'content/en/docs/team.md',
+					md: "# Team\n\n\u0024mol is built in the open by **[hyoo-ru](https://github.com/hyoo-ru)** — the community around its author, Dmitry Karlovsky ([nin-jin](https://github.com/nin-jin)). Development happens in a single monorepo, [mam_mol](https://github.com/hyoo-ru/mam_mol), where the framework, its components, and the tooling all live together.\n\nThe ecosystem is a group effort: the core framework, the [\u0024hyoo_crowd](https://github.com/hyoo-ru/crowd.hyoo.ru) CRDT library, [Giper Baza](https://github.com/giper-dev/baza), and dozens of published components all come from contributors working in the same workspace.\n\n## Contributing\n\n- The whole ecosystem is MIT-licensed and open to pull requests.\n- Every module lives in the [mam_mol](https://github.com/hyoo-ru/mam_mol) monorepo — fork, add a folder, open a PR.\n- Discuss ideas and share what you build in the [DEV community](https://dev.to/t/mol).\n\nThis documentation site is maintained separately at [b-on-g/smalljs](https://github.com/b-on-g/smalljs); every page has an *Edit on GitHub* link if you spot something to improve.\n",
+				},
+				'releases': {
+					slug: 'releases',
+					title: "Releases",
+					file: 'content/en/docs/releases.md',
+					md: "# Releases\n\n\u0024mol is delivered **continuously**. Instead of cutting numbered versions, the framework ships straight from the [mam_mol](https://github.com/hyoo-ru/mam_mol) monorepo — every merged change is immediately available to anyone building against it. The MAM build tool always pulls the current sources, so there is no upgrade step and no version matrix to reconcile.\n\n## Following changes\n\n- **Commit history** — the [mam_mol commits](https://github.com/hyoo-ru/mam_mol/commits/master) are the canonical changelog.\n- **Per-module history** — each component folder on GitHub carries its own commit log, so you can watch just the parts you use.\n- **DEV community** — notable additions and write-ups are shared under the [#mol tag](https://dev.to/t/mol).\n\n## What this means in practice\n\nBecause there are no breaking release boundaries, the framework favours backward-compatible evolution: components gain features without renaming, and the typed `view.tree` interfaces make incompatibilities surface at compile time rather than at runtime. If a build stops compiling after an update, the TypeScript errors point you straight at what changed.\n",
 				},
 				'api-mol-button-major': {
 					slug: 'api-mol-button-major',

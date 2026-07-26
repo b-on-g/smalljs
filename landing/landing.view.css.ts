@@ -86,17 +86,6 @@ namespace $ {
 
 		Hero_cta_play_icon: { width: rem(0.875), height: rem(0.875) },
 
-		Sponsor_banner: {
-			align: { items: 'center' },
-			justify: { content: 'center' },
-			padding: { top: $mol_gap.block, bottom: $mol_gap.block, left: $mol_gap.block, right: $mol_gap.block },
-			margin: { top: rem(3), left: 'auto', right: 'auto' },
-			font: { size: rem(0.875) },
-			color: $bog_builderui_tokens.text,
-			border: { top: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line }, bottom: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
-			width: '100%',
-		},
-
 		Features: {
 			display: 'grid',
 			gridTemplateColumns: 'repeat(3, 1fr)',
@@ -126,47 +115,6 @@ namespace $ {
 			'::first-letter': { color: $bog_builderui_tokens.special },
 		},
 
-		Sponsors: {
-			flex: { direction: 'column' },
-			align: { items: 'flex-start' },
-			gap: $mol_gap.block,
-			padding: { top: rem(3), bottom: rem(3), left: $mol_gap.block, right: $mol_gap.block },
-			maxWidth: rem(75),
-			margin: { left: 'auto', right: 'auto' },
-			width: '100%',
-		},
-
-		Sponsors_title: { font: { size: rem(1.25), weight: 600 } },
-
-		Sponsors_grid: {
-			display: 'grid',
-			gridTemplateColumns: 'repeat(3, 1fr)',
-			gap: $mol_gap.block,
-			width: '100%',
-		},
-
-		Sponsor_card1: {
-			background: { color: $bog_builderui_tokens.card },
-			border: { radius: rem(0.5), width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
-			height: rem(8),
-		},
-		Sponsor_card2: {
-			background: { color: $bog_builderui_tokens.card },
-			border: { radius: rem(0.5), width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
-			height: rem(8),
-		},
-		Sponsor_card3: {
-			background: { color: $bog_builderui_tokens.card },
-			border: { radius: rem(0.5), width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
-			height: rem(8),
-		},
-
-		Sponsors_cta: {
-			align: { self: 'center' },
-			color: $bog_builderui_tokens.shade,
-			font: { size: rem(0.875) },
-		},
-
 		Footer: {
 			flex: { direction: 'column' },
 			gap: rem(2),
@@ -192,20 +140,12 @@ namespace $ {
 
 		Footer_sect_docs: { flex: { direction: 'column' }, gap: rem(0.75) },
 		Footer_sect_about: { flex: { direction: 'column' }, gap: rem(0.75) },
-		Footer_sect_support: { flex: { direction: 'column' }, gap: rem(0.75) },
 		Footer_sect_resources: { flex: { direction: 'column' }, gap: rem(0.75) },
-		Footer_sect_courses: { flex: { direction: 'column' }, gap: rem(0.75) },
-		Footer_sect_help: { flex: { direction: 'column' }, gap: rem(0.75) },
-		Footer_sect_news: { flex: { direction: 'column' }, gap: rem(0.75) },
 		Footer_sect_libs: { flex: { direction: 'column' }, gap: rem(0.75) },
 
 		Footer_sect_docs_title: { font: { size: rem(1), weight: 700 }, padding: { bottom: rem(0.25) } },
 		Footer_sect_about_title: { font: { size: rem(1), weight: 700 }, padding: { bottom: rem(0.25) } },
-		Footer_sect_support_title: { font: { size: rem(1), weight: 700 }, padding: { bottom: rem(0.25) } },
 		Footer_sect_resources_title: { font: { size: rem(1), weight: 700 }, padding: { bottom: rem(0.25) } },
-		Footer_sect_courses_title: { font: { size: rem(1), weight: 700 }, padding: { bottom: rem(0.25) } },
-		Footer_sect_help_title: { font: { size: rem(1), weight: 700 }, padding: { bottom: rem(0.25) } },
-		Footer_sect_news_title: { font: { size: rem(1), weight: 700 }, padding: { bottom: rem(0.25) } },
 		Footer_sect_libs_title: { font: { size: rem(1), weight: 700 }, padding: { bottom: rem(0.25) } },
 
 		Footer_copy: {

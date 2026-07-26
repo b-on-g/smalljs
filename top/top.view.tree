@@ -1,6 +1,6 @@
 $bog_smalljs_top $mol_view
 	Theme null
-	github_uri \https://github.com/b-on-g/smalljs
+	github_uri \https://github.com/hyoo-ru/mam_mol
 	logo_uri \bog/smalljs/assets/logo.svg
 	search_click? null
 	nav_pick? null
@@ -66,24 +66,6 @@ $bog_smalljs_top $mol_view
 										section \docs
 										page \api-mol-string
 									event_click? <=> nav_pick?
-								<= Docs_glossary $mol_link
-									title @ \Glossary
-									arg *
-										section \docs
-										page \glossary
-									event_click? <=> nav_pick?
-								<= Docs_errors $mol_link
-									title @ \Error Reference
-									arg *
-										section \docs
-										page \errors
-									event_click? <=> nav_pick?
-								<= Docs_migration $mol_link
-									title @ \Migration
-									arg *
-										section \docs
-										page \migration
-									event_click? <=> nav_pick?
 				<= Nav_playground $mol_link
 					title @ \Playground
 					arg *
@@ -98,21 +80,9 @@ $bog_smalljs_top $mol_view
 					bubble_content /
 						<= Ecosystem_menu $mol_view
 							sub /
-								<= Eco_themes $mol_link
-									title @ \Themes
-									arg *
-										section \docs
-										page \themes
-									event_click? <=> nav_pick?
 								<= Eco_components $mol_link
 									title @ \UI Components
 									uri \https://mol.hyoo.ru/
-									event_click? <=> nav_pick?
-								<= Eco_plugins $mol_link
-									title @ \Plugins
-									arg *
-										section \docs
-										page \plugins
 									event_click? <=> nav_pick?
 								<= Eco_libs_title $mol_view
 									sub /
@@ -121,17 +91,25 @@ $bog_smalljs_top $mol_view
 									title @ \$mol_wire
 									uri \https://github.com/hyoo-ru/mam_mol/tree/master/wire
 									event_click? <=> nav_pick?
-								<= Eco_baza $mol_link
-									title @ \Giper Baza
-									uri \https://github.com/hyoo-ru/mam_mol/tree/master/crus
+								<= Eco_fetch $mol_link
+									title @ \$mol_fetch
+									uri \https://github.com/hyoo-ru/mam_mol/tree/master/fetch
+									event_click? <=> nav_pick?
+								<= Eco_compare $mol_link
+									title @ \$mol_compare_deep
+									uri \https://github.com/hyoo-ru/mam_mol/tree/master/compare/deep
+									event_click? <=> nav_pick?
+								<= Eco_router $mol_link
+									title @ \$mol_state_arg
+									uri \https://github.com/hyoo-ru/mam_mol/tree/master/state/arg
 									event_click? <=> nav_pick?
 								<= Eco_crowd $mol_link
 									title @ \$hyoo_crowd
-									uri \https://github.com/hyoo-ru/mam_mol/tree/master/crowd
+									uri \https://github.com/hyoo-ru/crowd.hyoo.ru
 									event_click? <=> nav_pick?
-								<= Eco_router $mol_link
-									title @ \$mol_router
-									uri \https://github.com/hyoo-ru/mam_mol/tree/master/state/arg
+								<= Eco_baza $mol_link
+									title @ \Giper Baza
+									uri \https://github.com/giper-dev/baza
 									event_click? <=> nav_pick?
 				<= About_pick $mol_pick
 					hint @ \About
@@ -159,35 +137,6 @@ $bog_smalljs_top $mol_view
 									arg *
 										section \docs
 										page \releases
-									event_click? <=> nav_pick?
-								<= About_conduct $mol_link
-									title @ \Code of Conduct
-									arg *
-										section \docs
-										page \code-of-conduct
-									event_click? <=> nav_pick?
-								<= About_privacy $mol_link
-									title @ \Privacy Policy
-									arg *
-										section \docs
-										page \privacy
-									event_click? <=> nav_pick?
-				<= Support_pick $mol_pick
-					hint @ \Support
-					align \bottom_left
-					trigger_content /
-						<= Support_label @ \Support
-						<= Support_chevron $mol_icon_chevron_down
-					bubble_content /
-						<= Support_menu $mol_view
-							sub /
-								<= Support_discussions $mol_link
-									title @ \GitHub Discussions
-									uri \https://github.com/hyoo-ru/mam/discussions
-									event_click? <=> nav_pick?
-								<= Support_dev $mol_link
-									title @ \DEV Community
-									uri \https://dev.to/t/mol
 									event_click? <=> nav_pick?
 		<= Burger $mol_pick
 			hint @ \Menu
@@ -236,42 +185,12 @@ $bog_smalljs_top $mol_view
 										section \docs
 										page \api-mol-string
 									event_click? <=> nav_pick?
-								<= M_docs_glossary $mol_link
-									title @ \Glossary
-									arg *
-										section \docs
-										page \glossary
-									event_click? <=> nav_pick?
-								<= M_docs_errors $mol_link
-									title @ \Error Reference
-									arg *
-										section \docs
-										page \errors
-									event_click? <=> nav_pick?
-								<= M_docs_migration $mol_link
-									title @ \Migration
-									arg *
-										section \docs
-										page \migration
-									event_click? <=> nav_pick?
 						<= Ecosystem_group $mol_expander
 							title @ \Ecosystem
 							content /
-								<= M_eco_themes $mol_link
-									title @ \Themes
-									arg *
-										section \docs
-										page \themes
-									event_click? <=> nav_pick?
 								<= M_eco_components $mol_link
 									title @ \UI Components
 									uri \https://mol.hyoo.ru/
-									event_click? <=> nav_pick?
-								<= M_eco_plugins $mol_link
-									title @ \Plugins
-									arg *
-										section \docs
-										page \plugins
 									event_click? <=> nav_pick?
 								<= M_eco_libs_title $mol_view
 									sub /
@@ -280,17 +199,25 @@ $bog_smalljs_top $mol_view
 									title @ \$mol_wire
 									uri \https://github.com/hyoo-ru/mam_mol/tree/master/wire
 									event_click? <=> nav_pick?
-								<= M_eco_baza $mol_link
-									title @ \Giper Baza
-									uri \https://github.com/hyoo-ru/mam_mol/tree/master/crus
+								<= M_eco_fetch $mol_link
+									title @ \$mol_fetch
+									uri \https://github.com/hyoo-ru/mam_mol/tree/master/fetch
+									event_click? <=> nav_pick?
+								<= M_eco_compare $mol_link
+									title @ \$mol_compare_deep
+									uri \https://github.com/hyoo-ru/mam_mol/tree/master/compare/deep
+									event_click? <=> nav_pick?
+								<= M_eco_router $mol_link
+									title @ \$mol_state_arg
+									uri \https://github.com/hyoo-ru/mam_mol/tree/master/state/arg
 									event_click? <=> nav_pick?
 								<= M_eco_crowd $mol_link
 									title @ \$hyoo_crowd
-									uri \https://github.com/hyoo-ru/mam_mol/tree/master/crowd
+									uri \https://github.com/hyoo-ru/crowd.hyoo.ru
 									event_click? <=> nav_pick?
-								<= M_eco_router $mol_link
-									title @ \$mol_router
-									uri \https://github.com/hyoo-ru/mam_mol/tree/master/state/arg
+								<= M_eco_baza $mol_link
+									title @ \Giper Baza
+									uri \https://github.com/giper-dev/baza
 									event_click? <=> nav_pick?
 						<= About_group $mol_expander
 							title @ \About
@@ -312,29 +239,6 @@ $bog_smalljs_top $mol_view
 									arg *
 										section \docs
 										page \releases
-									event_click? <=> nav_pick?
-								<= M_about_conduct $mol_link
-									title @ \Code of Conduct
-									arg *
-										section \docs
-										page \code-of-conduct
-									event_click? <=> nav_pick?
-								<= M_about_privacy $mol_link
-									title @ \Privacy Policy
-									arg *
-										section \docs
-										page \privacy
-									event_click? <=> nav_pick?
-						<= Support_group $mol_expander
-							title @ \Support
-							content /
-								<= M_support_discussions $mol_link
-									title @ \GitHub Discussions
-									uri \https://github.com/hyoo-ru/mam/discussions
-									event_click? <=> nav_pick?
-								<= M_support_dev $mol_link
-									title @ \DEV Community
-									uri \https://dev.to/t/mol
 									event_click? <=> nav_pick?
 		<= Lang $mol_button_minor
 			click? <=> lang_open?
