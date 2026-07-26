@@ -22,7 +22,7 @@ $mol рендерит только то, что внутри вьюпорта. �
 
 Заявления о производительности полезны, только если их можно воспроизвести. Вместо того чтобы приводить цифры здесь, $mol участвует в общедоступном **js-framework-benchmark**; вы можете прочитать его результаты и перезапустить набор тестов сами:
 
-<https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html>
+[результаты js-framework-benchmark](https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html)
 
 Считайте это источником истины для сравнений — измеренным, версионированным и независимым от этой страницы.
 

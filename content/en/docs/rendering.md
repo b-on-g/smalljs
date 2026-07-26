@@ -22,7 +22,7 @@ The practical effect is that you write ordinary component trees and long lists w
 
 Performance claims are only useful if you can reproduce them. Rather than quote figures here, $mol participates in the community **js-framework-benchmark**; you can read its results and re-run the suite yourself:
 
-<https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html>
+[js-framework-benchmark results](https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html)
 
 Treat that as the source of truth for comparisons — measured, versioned, and independent of this page.
 
