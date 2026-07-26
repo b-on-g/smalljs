@@ -8867,6 +8867,9 @@ var $;
                 Search: { display: 'none' },
                 Nav: { display: 'none' },
                 Burger: { display: 'inline-flex' },
+                // EN-only for now; drop the language button so the bar fits.
+                Lang: { display: 'none' },
+                padding: { left: rem(0.75), right: rem(0.75), top: $mol_gap.text, bottom: $mol_gap.text },
             },
         },
     });
@@ -14795,6 +14798,33 @@ var $;
             textAlign: 'center',
             padding: { top: rem(2) },
         },
+        '@media': {
+            // Phone: shrink the oversized hero, stack features and footer so
+            // nothing overflows the viewport width.
+            '(max-width: 47.9375rem)': {
+                Hero: {
+                    padding: { top: rem(2.5), bottom: 0, left: rem(1.25), right: rem(1.25) },
+                },
+                Hero_title: {
+                    font: { size: rem(2.5) },
+                },
+                Hero_subtitle: {
+                    font: { size: rem(1.0625) },
+                },
+                Features: {
+                    gridTemplateColumns: '1fr',
+                    gap: rem(1.5),
+                    padding: { top: rem(2.5), bottom: rem(2.5), left: rem(1.25), right: rem(1.25) },
+                },
+                Footer: {
+                    padding: { top: rem(2.5), bottom: rem(2), left: rem(1.25), right: rem(1.25) },
+                },
+                Footer_cols: {
+                    gridTemplateColumns: '1fr 1fr',
+                    gap: rem(1.5),
+                },
+            },
+        },
     });
 })($ || ($ = {}));
 
@@ -16880,7 +16910,21 @@ var $;
                 ].join('\n') + '\n';
             }
             default_ts() {
-                return this.seed_ts(); // empty by default so the TS compiler isn't fetched until needed
+                // An embedder (e.g. the course) fully controls the ts via seed_ts,
+                // even when empty — mirror default_tree's seed gate.
+                if (this.seed_tree())
+                    return this.seed_ts();
+                // Standalone playground: ship a working counter so the default
+                // example is live on open (the tree alone has no logic, so inc()
+                // would be dead). This does fetch the TS compiler on first render.
+                const S = String.fromCharCode(36); // "$" — kept out of MAM's dep scan
+                return [
+                    `class ${S}my_demo extends ${S}.${S}my_demo {`,
+                    `\t@ ${S}mol_mem count( next?: number ) { return next ?? 0 }`,
+                    `\t@ ${S}mol_action inc() { this.count( this.count() + 1 ) }`,
+                    `\tcount_text() { return String( this.count() ) }`,
+                    `}`,
+                ].join('\n') + '\n';
             }
             // --- tabs ---------------------------------------------------------
             tab(next) {
@@ -17075,6 +17119,7 @@ var $;
         display: 'grid',
         gridTemplateColumns: '1fr 1fr',
         flex: { grow: 1 },
+        minWidth: 0, // shrink to the container (e.g. embedded in the course column) instead of forcing content width
         minHeight: 0,
         height: $mol_style_func.calc('100vh - 4rem'),
         background: { color: $bog_builderui_tokens.back },
