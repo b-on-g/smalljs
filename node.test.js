@@ -15266,7 +15266,9 @@ var $;
             gap: rem(2),
             padding: { top: rem(4), bottom: rem(3), left: rem(4), right: rem(4) },
             border: { top: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
-            margin: { top: 'auto' },
+            // center the 75rem footer on wide screens like the hero/features (it only
+            // had margin-top:auto, so it hugged the left while the rest was centered)
+            margin: { top: 'auto', left: 'auto', right: 'auto' },
             maxWidth: rem(75),
             width: '100%',
         },
