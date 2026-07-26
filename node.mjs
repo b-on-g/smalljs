@@ -8260,7 +8260,7 @@ var $;
 		Eco_components(){
 			const obj = new this.$.$mol_link();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Eco_components_title")));
-			(obj.uri) = () => ("https://mol.hyoo.ru/");
+			(obj.uri) = () => ("https://mol.hyoo.ru/#!section=demos");
 			(obj.event_click) = (next) => ((this.nav_pick(next)));
 			return obj;
 		}
@@ -8460,7 +8460,7 @@ var $;
 		M_eco_components(){
 			const obj = new this.$.$mol_link();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_M_eco_components_title")));
-			(obj.uri) = () => ("https://mol.hyoo.ru/");
+			(obj.uri) = () => ("https://mol.hyoo.ru/#!section=demos");
 			(obj.event_click) = (next) => ((this.nav_pick(next)));
 			return obj;
 		}
@@ -14153,7 +14153,7 @@ var $;
                     slug: 'showcase',
                     title: "Showcase",
                     file: 'content/en/docs/showcase.md',
-                    md: "# Showcase\n\nReal things built with \u0024mol — from community platforms to developer tools. Each one is a working app, not a demo.\n\n## Applications\n\n- **[vas3k.club](https://vas3k.club)** — a paid community platform. The front end is a \u0024mol single-page app over a Django backend; \u0024mol keeps the many interactive screens (feed, posts, profiles) reactive without a heavy client stack.\n- **Bog Music** — a music player that runs both as a Chrome extension and a web app, with background playback and offline caching. \u0024mol drives the UI and the local-first state.\n- **Blitz Quiz** — a Kahoot-style live quiz built on \u0024mol and Giper Baza. Rooms sync in real time through the CRDT layer, so there is no game server to run.\n- **\u0024mol Styler** — a visual editor for typed `.view.css.ts` styles (a Figma-like surface for \u0024mol components), itself written in \u0024mol.\n- **WikiLive** — a local-first wiki where each page is a Giper Baza land, edited live in the browser.\n\n## Tools\n\n- **MAM** — the build tool and module registry that every \u0024mol app lives in — and it is itself a \u0024mol project. [Source](https://github.com/hyoo-ru/mam).\n- **view.tree LSP** — language tooling and the `npm create view-tree-lsp` scaffolder that starts new \u0024mol apps.\n- **This site** — the documentation you are reading, including the [Playground](#!section=playground) and [course](#!section=course), is a \u0024mol app. The search, live code editor, and in-browser TypeScript are all built with the framework they document.\n\n## More\n\nThe [\u0024mol component catalog](https://mol.hyoo.ru) has dozens of live components and demos you can open and inspect.\n\nBuilding something with \u0024mol? The best next step is the [Playground](#!section=playground) — try an idea in seconds, then share the URL.\n",
+                    md: "# Showcase\n\nReal things built with \u0024mol — community apps, commercial products, and developer tools. Each one is a working app, not a demo.\n\n## Apps\n\n- **[Bog Music](https://b-on-g.github.io/music/)** — a music player that runs both as a Chrome extension and a web app, with background playback and offline caching. \u0024mol drives the UI and the local-first state.\n- **[Blitz Quiz](https://b-on-g.github.io/blitz/)** — a Kahoot-style live quiz built on \u0024mol and Giper Baza. Rooms sync in real time through the CRDT layer, so there is no game server to run.\n- **[VDO Rebalance](https://b-on-g.github.io/invest/)** — a local-first investing tool: drop in an `.xlsx` portfolio and get the trades that rebalance it. State lives in the browser over Giper Baza.\n- **[\u0024hyoo_budget](https://budget.hyoo.ru)** — a collaborative, local-first personal-budget app. It took first place at the Beautiful Code hackathon.\n- **[\u0024hyoo_talks](https://talks.hyoo.ru)** — an embeddable messenger. A prototype built for Sberbank took second place at Moscow City Hack.\n- **[Virtual avatar](https://avatar.ocas.ai)** — a 3D character you can talk to, play chess with, or ask to present slides. A commercial product with \u0024mol driving the interface over third-party libraries.\n\n## Design system & tools\n\n- **[BuilderUI](https://b-on-g.github.io/builderui/)** — a shadcn-style design system for \u0024mol: typed components — buttons, dialogs, selects, cards, charts, and more — plus a Studio for live theming (base color, accent, chart palette, radius, fonts, light/dark). This documentation site is built on it.\n- **This site** — the documentation you are reading, including the [Playground](#!section=playground) and [course](#!section=course), is a \u0024mol app. The search, live code editor, and in-browser TypeScript are all built with the framework they document.\n- **MAM** — the build tool and module registry that every \u0024mol app lives in, and itself a \u0024mol project. It is developer tooling rather than a hosted app; the source is on GitHub.\n- **view.tree LSP** — language tooling and an `npm create view-tree-lsp` scaffolder that starts new \u0024mol apps. Editor tooling, so there is no running app to open.\n\n## Hackathons and commercial use\n\n\u0024mol has won repeatedly at hackathons: first place at Beautiful Code ([\u0024hyoo_budget](https://budget.hyoo.ru)), first place at AC-VO-PPR-Hackathon (gesture-and-voice control of a street display), and prize-winning prototypes at More Tech, Moscow City Hack, and Dev Hack. It also ships in commercial and industrial systems — from an online-store back office to drone-defense control panels. The \u0024mol [success-stories page](https://mol.hyoo.ru/#!section=docs/=xanlom_yimh6x) has the details.\n\n## More\n\nThe [\u0024mol component catalog](https://mol.hyoo.ru/#!section=demos) has dozens of live components and demos you can open and inspect.\n\nBuilding something with \u0024mol? The best next step is the [Playground](#!section=playground) — try an idea in seconds, then share the URL.\n",
                     tr: {
                         ru: {
                             title: "Витрина",
@@ -15157,7 +15157,7 @@ var $;
 		Footer_link_ui(){
 			const obj = new this.$.$mol_link();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_ui_title")));
-			(obj.uri) = () => ("https://mol.hyoo.ru/");
+			(obj.uri) = () => ("https://mol.hyoo.ru/#!section=demos");
 			(obj.target) = () => ("_blank");
 			return obj;
 		}
