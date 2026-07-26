@@ -5,7 +5,7 @@ namespace $ {
 		flex: { direction: 'column' },
 		height: '100vh',
 		overflow: { y: 'auto', x: 'hidden' },
-		background: { color: $bog_builderui_tokens.back },
+		background: { color: $bog_builderui_tokens.card },
 		color: $bog_builderui_tokens.text,
 
 		Body: {

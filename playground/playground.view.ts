@@ -34,6 +34,26 @@ namespace $.$$ {
 			].join( '\n' ) + '\n'
 		}
 
+		default_css() {
+			// An embedder controls the css via seed_css, mirroring default_ts's seed gate.
+			if ( this.seed_tree() ) return this.seed_css()
+			// Standalone: a working view.css.ts sample that styles the default counter,
+			// so opening the css.ts tab shows real, applied styling.
+			const S = String.fromCharCode( 36 ) // "$" — kept out of MAM's dep scan
+			return [
+				`namespace ${ S } {`,
+				`\t${ S }mol_style_define( ${ S }my_demo, {`,
+				`\t\tflex: { direction: 'column', gap: '1rem' },`,
+				`\t\tpadding: '1.5rem',`,
+				`\t\tValue: {`,
+				`\t\t\tfont: { size: '2rem', weight: 700 },`,
+				`\t\t\tcolor: '#0088ff',`,
+				`\t\t},`,
+				`\t} )`,
+				`}`,
+			].join( '\n' ) + '\n'
+		}
+
 		default_ts() {
 			// An embedder (e.g. the course) fully controls the ts via seed_ts,
 			// even when empty — mirror default_tree's seed gate.
@@ -64,10 +84,14 @@ namespace $.$$ {
 		@ $mol_action
 		show_ts() { this.tab( 'ts' ); return null }
 
+		@ $mol_action
+		show_css() { this.tab( 'css' ); return null }
+
 		editor_hint() {
-			return this.tab() === 'ts'
-				? 'Optional — add a class with logic (state, actions), e.g. count() and inc().'
-				: 'Type a view.tree here…'
+			const tab = this.tab()
+			if ( tab === 'ts' ) return 'Optional — add a class with logic (state, actions), e.g. count() and inc().'
+			if ( tab === 'css' ) return 'Optional — style the component with $mol_style_define.'
+			return 'Type a view.tree here…'
 		}
 
 		// Persistence funnel — standalone stores in the URL hash (shareable); when an
@@ -102,11 +126,28 @@ namespace $.$$ {
 			return next ?? ( this.stored( 'ts' ) || this.default_ts() )
 		}
 
+		@ $mol_mem
+		css_draft( next?: string ) {
+			if ( next !== undefined ) { this.schedule( 'css', next ); return next }
+			return this.stored( 'css' ) || this.default_css()
+		}
+
+		@ $mol_mem
+		css_committed( next?: string ) {
+			return next ?? ( this.stored( 'css' ) || this.default_css() )
+		}
+
 		// One editor, bound to the active tab's source.
 		draft( next?: string ) {
-			const ts_mode = this.tab() === 'ts'
-			if ( next !== undefined ) return ts_mode ? this.ts_draft( next ) : this.tree_draft( next )
-			return ts_mode ? this.ts_draft() : this.tree_draft()
+			const tab = this.tab()
+			if ( next !== undefined ) {
+				if ( tab === 'ts' ) return this.ts_draft( next )
+				if ( tab === 'css' ) return this.css_draft( next )
+				return this.tree_draft( next )
+			}
+			if ( tab === 'ts' ) return this.ts_draft()
+			if ( tab === 'css' ) return this.css_draft()
+			return this.tree_draft()
 		}
 
 		// --- debounce -----------------------------------------------------
@@ -123,6 +164,7 @@ namespace $.$$ {
 		commit( key: string, value: string ) {
 			this.stored( key, value )
 			if ( key === 'ts' ) this.ts_committed( value )
+			else if ( key === 'css' ) this.css_committed( value )
 			else this.tree_committed( value )
 		}
 
@@ -155,6 +197,19 @@ namespace $.$$ {
 				$.$mol_tree2_js_to_text( $.$mol_view_tree2_to_js( tree ) ),
 			)
 			new Function( '$', '$mol_mem', '$mol_mem_key', tree_js )( $, $.$mol_mem, $.$mol_mem_key )
+
+			// optional view.css.ts -> styles registered via $mol_style_define. The generated
+			// CSS targets the component by attribute selector (keyed by its name), so it applies
+			// to the rendered element regardless of order. $mol_style_attach is idempotent, so
+			// re-running on every recompile just updates the one <style> element.
+			const css_src = this.css_committed()
+			if ( css_src.trim() ) {
+				const ts = this.ts_lib()
+				const css_js = ts.transpileModule( css_src, {
+					compilerOptions: { target: ts.ScriptTarget.ES2018, module: ts.ModuleKind.None },
+				} ).outputText
+				new Function( '$', css_js )( $ )
+			}
 
 			// optional view.ts -> subclass with logic, transpiled in the browser.
 			if ( ts_src.trim() ) {

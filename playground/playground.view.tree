@@ -4,6 +4,7 @@ $bog_smalljs_playground $mol_view
 	editor_hint \
 	seed_tree \
 	seed_ts \
+	seed_css \
 	store_scope \
 	attr *
 		bog_smalljs_pg_tab <= tab
@@ -18,6 +19,9 @@ $bog_smalljs_playground $mol_view
 						<= Ts_tab $mol_button_minor
 							click? <=> show_ts? null
 							sub / <= ts_tab_label @ \view.ts
+						<= Css_tab $mol_button_minor
+							click? <=> show_css? null
+							sub / <= css_tab_label @ \view.css.ts
 				<= Editor $mol_textarea
 					value? <=> draft?
 					hint <= editor_hint

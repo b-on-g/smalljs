@@ -62,6 +62,7 @@ namespace $ {
 
 		Tree_tab: tab,
 		Ts_tab: tab,
+		Css_tab: tab,
 
 		Preview_label: label,
 
@@ -84,6 +85,7 @@ namespace $ {
 			bog_smalljs_pg_tab: {
 				tree: { Tree_tab: tab_active },
 				ts: { Ts_tab: tab_active },
+				css: { Css_tab: tab_active },
 			},
 		},
 
