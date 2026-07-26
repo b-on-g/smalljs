@@ -529,9 +529,11 @@ $bog_smalljs_top $mol_view
 										page \releases
 									event_click? <=> nav_pick?
 		<= Lang $mol_button_minor
+			hint @ \Language
 			click? <=> lang_open?
 			sub /
 				<= Lang_icon $mol_icon_translate
+				<= lang_label \EN
 		<= Theme_toggle $bog_theme_switch
 			theme_auto <= Theme
 		<= Github $mol_link_source

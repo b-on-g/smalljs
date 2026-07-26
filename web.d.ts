@@ -3831,22 +3831,27 @@ declare namespace $ {
 		,
 		ReturnType< $mol_pick['bubble_content'] >
 	>
-	type $mol_button_minor__click_bog_smalljs_top_133 = $mol_type_enforce<
+	type $mol_button_minor__hint_bog_smalljs_top_133 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_button_minor['hint'] >
+	>
+	type $mol_button_minor__click_bog_smalljs_top_134 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_top['lang_open'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_button_minor__sub_bog_smalljs_top_134 = $mol_type_enforce<
+	type $mol_button_minor__sub_bog_smalljs_top_135 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_button_minor['sub'] >
 	>
-	type $bog_theme_switch__theme_auto_bog_smalljs_top_135 = $mol_type_enforce<
+	type $bog_theme_switch__theme_auto_bog_smalljs_top_136 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_top['Theme'] >
 		,
 		ReturnType< $bog_theme_switch['theme_auto'] >
 	>
-	type $mol_link_source__uri_bog_smalljs_top_136 = $mol_type_enforce<
+	type $mol_link_source__uri_bog_smalljs_top_137 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_top['github_uri'] >
 		,
 		ReturnType< $mol_link_source['uri'] >
@@ -3917,6 +3922,7 @@ declare namespace $ {
 		Mobile_menu( ): $mol_view
 		Burger( ): $mol_pick
 		Lang_icon( ): $mol_icon_translate
+		lang_label( ): string
 		Lang( ): $mol_button_minor
 		Theme_toggle( ): $bog_theme_switch
 		Github( ): $mol_link_source
@@ -3935,6 +3941,9 @@ declare namespace $ {
 declare namespace $.$$ {
     class $bog_smalljs_top extends $.$bog_smalljs_top {
         nav_pick(): void;
+        lang(next?: string): string;
+        lang_open(): null;
+        lang_label(): "RU" | "EN";
     }
 }
 
@@ -6367,12 +6376,18 @@ declare namespace $ {
      * generator. Markdown is embedded (not fetched) so it bundles into web.js
      * and works with the app/- deploy and the prerender step.
      */
+    type $bog_smalljs_content_translation = {
+        title: string;
+        md: string;
+    };
     type $bog_smalljs_content_page = {
         slug: string;
         title: string;
         /** GitHub-relative path, for the Edit-on-GitHub link. */
         file: string;
         md: string;
+        /** Per-language overrides, keyed by lang code. EN lives in title/md above. */
+        tr?: Readonly<Record<string, $bog_smalljs_content_translation>>;
     };
     type $bog_smalljs_content_group = {
         title: string;
@@ -6389,6 +6404,10 @@ declare namespace $ {
         /** Flat ordered slug list for prev/next. */
         static order(section?: string): readonly string[];
         static page(slug: string): $bog_smalljs_content_page | null;
+        /** Markdown for a page in the given language, falling back to EN. */
+        static page_md(slug: string, lang?: string): string | null;
+        /** Localized title for a page, falling back to EN. */
+        static page_title(slug: string, lang?: string): string | null;
         static default_slug(): string;
     }
 }
@@ -7408,6 +7427,8 @@ declare namespace $.$$ {
         /** Current page slug, mirrored to the `page` URL argument. */
         page(next?: string): string;
         current(): $bog_smalljs_content_page | null;
+        /** Active UI language; reading it makes the page reactive to switches. */
+        lang(): string;
         page_md(): string;
         title_text(): string;
         edit_uri(): string;
