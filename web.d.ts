@@ -6402,65 +6402,93 @@ declare namespace $ {
 		,
 		ReturnType< $mol_hotkey['key'] >
 	>
-	type $mol_view__event_bog_smalljs_search_2 = $mol_type_enforce<
+	type $mol_hotkey__key_bog_smalljs_search_2 = $mol_type_enforce<
+		({ 
+			down( next?: ReturnType< $bog_smalljs_search['select_next'] > ): ReturnType< $bog_smalljs_search['select_next'] >,
+		}) 
+		,
+		ReturnType< $mol_hotkey['key'] >
+	>
+	type $mol_hotkey__key_bog_smalljs_search_3 = $mol_type_enforce<
+		({ 
+			up( next?: ReturnType< $bog_smalljs_search['select_prev'] > ): ReturnType< $bog_smalljs_search['select_prev'] >,
+		}) 
+		,
+		ReturnType< $mol_hotkey['key'] >
+	>
+	type $mol_view__event_bog_smalljs_search_4 = $mol_type_enforce<
 		({ 
 			click( next?: ReturnType< $bog_smalljs_search['close'] > ): ReturnType< $bog_smalljs_search['close'] >,
 		}) 
 		,
 		ReturnType< $mol_view['event'] >
 	>
-	type $mol_string__value_bog_smalljs_search_3 = $mol_type_enforce<
+	type $mol_string__value_bog_smalljs_search_5 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_search['query'] >
 		,
 		ReturnType< $mol_string['value'] >
 	>
-	type $mol_string__hint_bog_smalljs_search_4 = $mol_type_enforce<
+	type $mol_string__hint_bog_smalljs_search_6 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_string['hint'] >
 	>
-	type $mol_view__sub_bog_smalljs_search_5 = $mol_type_enforce<
-		readonly(any)[]
+	type $mol_string__submit_bog_smalljs_search_7 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_search['activate'] >
 		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_list__rows_bog_smalljs_search_6 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_search['result_rows'] >
-		,
-		ReturnType< $mol_list['rows'] >
-	>
-	type $mol_view__sub_bog_smalljs_search_7 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
+		ReturnType< $mol_string['submit'] >
 	>
 	type $mol_view__sub_bog_smalljs_search_8 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_search_9 = $mol_type_enforce<
+	type $mol_list__rows_bog_smalljs_search_9 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_search['result_rows'] >
+		,
+		ReturnType< $mol_list['rows'] >
+	>
+	type $mol_view__sub_bog_smalljs_search_10 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_link__arg_bog_smalljs_search_10 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_search_11 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_search_12 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_link__arg_bog_smalljs_search_13 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_search['result_arg'] >
 		,
 		ReturnType< $mol_link['arg'] >
 	>
-	type $mol_link__event_click_bog_smalljs_search_11 = $mol_type_enforce<
+	type $mol_link__event_click_bog_smalljs_search_14 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_search['pick'] >
 		,
 		ReturnType< $mol_link['event_click'] >
 	>
-	type $mol_link__sub_bog_smalljs_search_12 = $mol_type_enforce<
+	type $mol_link__attr_bog_smalljs_search_15 = $mol_type_enforce<
+		({ 
+			'bog_smalljs_search_current': ReturnType< $bog_smalljs_search['result_current'] >,
+		})  & ReturnType< $mol_link['attr'] >
+		,
+		ReturnType< $mol_link['attr'] >
+	>
+	type $mol_link__sub_bog_smalljs_search_16 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_link['sub'] >
 	>
 	export class $bog_smalljs_search extends $mol_view {
 		Escape( ): $mol_hotkey
+		Nav_down( ): $mol_hotkey
+		Nav_up( ): $mol_hotkey
 		Backdrop( ): $mol_view
 		Field( ): $mol_string
 		Hint( ): $mol_view
@@ -6468,6 +6496,7 @@ declare namespace $ {
 		Results( ): $mol_list
 		Panel( ): $mol_view
 		result_arg( id: any): Record<string, any>
+		result_current( id: any): boolean
 		result_title( id: any): string
 		Result_title( id: any): $mol_view
 		result_snippet( id: any): string
@@ -6475,7 +6504,11 @@ declare namespace $ {
 		open( next?: boolean ): boolean
 		query( next?: string ): string
 		close( next?: any ): any
-		pick( next?: any ): any
+		focus( next?: any ): any
+		activate( next?: any ): any
+		select_next( next?: any ): any
+		select_prev( next?: any ): any
+		pick( id: any, next?: any ): any
 		attr( ): ({ 
 			'bog_smalljs_search_open': ReturnType< $bog_smalljs_search['open'] >,
 		}) 
@@ -6495,7 +6528,15 @@ declare namespace $.$$ {
     };
     export class $bog_smalljs_search extends $.$bog_smalljs_search {
         close(): null;
-        pick(): null;
+        focus(): null;
+        go(slug: string): null;
+        pick(slug: string, event?: Event): null;
+        activate(event?: unknown): null;
+        active_at(_key: string, next?: number): number;
+        active(next?: number): number;
+        select_next(event?: KeyboardEvent): null;
+        select_prev(event?: KeyboardEvent): null;
+        result_current(slug: string): boolean;
         corpus(): readonly Doc[];
         scored(): {
             doc: Doc;
@@ -8986,6 +9027,7 @@ declare namespace $ {
 		ReturnType< $bog_smalljs_search['open'] >
 	>
 	export class $bog_smalljs_app extends $bog_builderui_div {
+		hotkeys( ): any
 		Theme( ): $bog_theme_auto
 		Top( ): $bog_smalljs_top
 		body_content( ): readonly(any)[]
@@ -9004,6 +9046,7 @@ declare namespace $ {
 			'bog_builderui_font_body': string,
 			'bog_builderui_font_head': string,
 		})  & ReturnType< $bog_builderui_div['attr'] >
+		auto( ): readonly(any)[]
 		sub( ): readonly(any)[]
 		plugins( ): readonly(any)[]
 		Landing( ): $bog_smalljs_landing
@@ -9018,7 +9061,9 @@ declare namespace $ {
 declare namespace $.$$ {
     class $bog_smalljs_app extends $.$bog_smalljs_app {
         section(next?: string): string;
+        open_search(): null;
         search_toggle(): null;
+        hotkeys(): null;
         lights(): "light" | "dark";
         body_content(): $.$bog_smalljs_playground[] | $.$bog_smalljs_docs[] | $.$bog_smalljs_course[] | $.$bog_smalljs_landing[];
     }

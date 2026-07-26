@@ -584,12 +584,20 @@ $bog_smalljs_search $mol_view
 	open? false
 	query? \
 	close? null
-	pick? null
+	focus? null
+	activate? null
+	select_next? null
+	select_prev? null
+	pick*? null
 	attr *
 		bog_smalljs_search_open <= open
 	plugins /$mol_plugin
 		<= Escape $mol_hotkey
 			key * escape? <=> close?
+		<= Nav_down $mol_hotkey
+			key * down? <=> select_next?
+		<= Nav_up $mol_hotkey
+			key * up? <=> select_prev?
 	sub /
 		<= Backdrop $mol_view
 			event *
@@ -599,13 +607,17 @@ $bog_smalljs_search $mol_view
 				<= Field $mol_string
 					value? <=> query?
 					hint @ \Search the documentation…
+					submit? <=> activate?
 				<= Hint $mol_view
 					sub / <= hint_text
 				<= Results $mol_list
 					rows <= result_rows /
 	Result* $mol_link
 		arg <= result_arg* *
-		event_click? <=> pick?
+		event_click? <=> pick*?
+		attr *
+			^
+			bog_smalljs_search_current <= result_current* false
 		sub /
 			<= Result_title* $mol_view
 				sub / <= result_title* \
@@ -1861,6 +1873,8 @@ $bog_smalljs_app $bog_builderui_div
 		bog_builderui_radius \medium
 		bog_builderui_font_body \inter
 		bog_builderui_font_head \eb-garamond
+	auto /
+		<= hotkeys null
 	sub /
 		<= Top $bog_smalljs_top
 			search_click? <=> search_toggle?

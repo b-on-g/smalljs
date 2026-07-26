@@ -8757,6 +8757,16 @@ var $;
 			(obj.key) = () => ({"escape": (next) => (this.close(next))});
 			return obj;
 		}
+		Nav_down(){
+			const obj = new this.$.$mol_hotkey();
+			(obj.key) = () => ({"down": (next) => (this.select_next(next))});
+			return obj;
+		}
+		Nav_up(){
+			const obj = new this.$.$mol_hotkey();
+			(obj.key) = () => ({"up": (next) => (this.select_prev(next))});
+			return obj;
+		}
 		Backdrop(){
 			const obj = new this.$.$mol_view();
 			(obj.event) = () => ({"click": (next) => (this.close(next))});
@@ -8766,6 +8776,7 @@ var $;
 			const obj = new this.$.$mol_string();
 			(obj.value) = (next) => ((this.query(next)));
 			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_smalljs_search_Field_hint")));
+			(obj.submit) = (next) => ((this.activate(next)));
 			return obj;
 		}
 		Hint(){
@@ -8792,6 +8803,9 @@ var $;
 		}
 		result_arg(id){
 			return {};
+		}
+		result_current(id){
+			return false;
 		}
 		result_title(id){
 			return "";
@@ -8821,7 +8835,23 @@ var $;
 			if(next !== undefined) return next;
 			return null;
 		}
-		pick(next){
+		focus(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		activate(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		select_next(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		select_prev(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		pick(id, next){
 			if(next !== undefined) return next;
 			return null;
 		}
@@ -8829,7 +8859,11 @@ var $;
 			return {"bog_smalljs_search_open": (this.open())};
 		}
 		plugins(){
-			return [(this.Escape())];
+			return [
+				(this.Escape()), 
+				(this.Nav_down()), 
+				(this.Nav_up())
+			];
 		}
 		sub(){
 			return [(this.Backdrop()), (this.Panel())];
@@ -8837,12 +8871,15 @@ var $;
 		Result(id){
 			const obj = new this.$.$mol_link();
 			(obj.arg) = () => ((this.result_arg(id)));
-			(obj.event_click) = (next) => ((this.pick(next)));
+			(obj.event_click) = (next) => ((this.pick(id, next)));
+			(obj.attr) = () => ({...(this.$.$mol_link.prototype.attr.call(obj)), "bog_smalljs_search_current": (this.result_current(id))});
 			(obj.sub) = () => ([(this.Result_title(id)), (this.Result_snippet(id))]);
 			return obj;
 		}
 	};
 	($mol_mem(($.$bog_smalljs_search.prototype), "Escape"));
+	($mol_mem(($.$bog_smalljs_search.prototype), "Nav_down"));
+	($mol_mem(($.$bog_smalljs_search.prototype), "Nav_up"));
 	($mol_mem(($.$bog_smalljs_search.prototype), "Backdrop"));
 	($mol_mem(($.$bog_smalljs_search.prototype), "Field"));
 	($mol_mem(($.$bog_smalljs_search.prototype), "Hint"));
@@ -8853,7 +8890,11 @@ var $;
 	($mol_mem(($.$bog_smalljs_search.prototype), "open"));
 	($mol_mem(($.$bog_smalljs_search.prototype), "query"));
 	($mol_mem(($.$bog_smalljs_search.prototype), "close"));
-	($mol_mem(($.$bog_smalljs_search.prototype), "pick"));
+	($mol_mem(($.$bog_smalljs_search.prototype), "focus"));
+	($mol_mem(($.$bog_smalljs_search.prototype), "activate"));
+	($mol_mem(($.$bog_smalljs_search.prototype), "select_next"));
+	($mol_mem(($.$bog_smalljs_search.prototype), "select_prev"));
+	($mol_mem_key(($.$bog_smalljs_search.prototype), "pick"));
 	($mol_mem_key(($.$bog_smalljs_search.prototype), "Result"));
 
 
@@ -13422,7 +13463,67 @@ var $;
         const Content = $bog_smalljs_content;
         class $bog_smalljs_search extends $.$bog_smalljs_search {
             close() { this.open(false); return null; }
-            pick() { this.open(false); return null; } // navigation happens via the link's arg
+            // Focus the input. Called from an action (never from a @$mol_mem —
+            // focused() is a reactive setter, and writing another cell inside a
+            // mem freezes this component's rendering). $mol defers the actual
+            // DOM .focus() a tick, so it lands after the overlay is shown.
+            focus() {
+                this.Field().focused(true);
+                return null;
+            }
+            // Navigate to a doc page. Explicit arg writes (not the link's own
+            // href) so a result ALWAYS lands on its page — even when it targets
+            // the page you are already on. $mol_link would otherwise treat a
+            // "current" link as a toggle and strip the args, bouncing you home.
+            go(slug) {
+                const arg = this.$.$mol_state_arg;
+                arg.value('section', 'docs');
+                arg.value('page', slug);
+                this.open(false);
+                return null;
+            }
+            pick(slug, event) {
+                event?.preventDefault(); // stop $mol_link's toggle navigation
+                this.go(slug);
+                return null;
+            }
+            // Enter activates the highlighted result (or the first one).
+            activate(event) {
+                const ids = this.result_ids();
+                if (!ids.length)
+                    return null;
+                this.go(ids[this.active()]);
+                return null;
+            }
+            // --- Highlighted result (keyboard ↑/↓) ---------------------------
+            // Keyed by the current result set so a new query resets to the top,
+            // while stays reactive so the highlight re-renders on every move.
+            active_at(_key, next) {
+                return next ?? 0;
+            }
+            active(next) {
+                return this.active_at(this.result_ids().join('|'), next);
+            }
+            select_next(event) {
+                event?.preventDefault();
+                const n = this.result_ids().length;
+                if (!n)
+                    return null;
+                this.active(Math.min(n - 1, this.active() + 1));
+                return null;
+            }
+            select_prev(event) {
+                event?.preventDefault();
+                const n = this.result_ids().length;
+                if (!n)
+                    return null;
+                this.active(Math.max(0, this.active() - 1));
+                return null;
+            }
+            result_current(slug) {
+                const ids = this.result_ids();
+                return ids[this.active()] === slug;
+            }
             // All doc pages as a flat search corpus.
             corpus() {
                 const seen = new Set();
@@ -13473,7 +13574,7 @@ var $;
                 if (!query)
                     return 'Type to search the documentation.';
                 const n = this.scored().length;
-                return n ? `${n} result${n > 1 ? 's' : ''}` : 'No matches.';
+                return n ? `${n} result${n > 1 ? 's' : ''} — ↑↓ to move, Enter to open` : 'No matches.';
             }
             result_ids() {
                 return this.scored().map(row => row.doc.slug);
@@ -13506,7 +13607,25 @@ var $;
         ], $bog_smalljs_search.prototype, "close", null);
         __decorate([
             $mol_action
+        ], $bog_smalljs_search.prototype, "focus", null);
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_search.prototype, "go", null);
+        __decorate([
+            $mol_action
         ], $bog_smalljs_search.prototype, "pick", null);
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_search.prototype, "activate", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_smalljs_search.prototype, "active_at", null);
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_search.prototype, "select_next", null);
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_search.prototype, "select_prev", null);
         __decorate([
             $mol_mem
         ], $bog_smalljs_search.prototype, "scored", null);
@@ -13585,6 +13704,13 @@ var $;
             color: $bog_builderui_tokens.shade,
         },
     });
+    // Keyboard-highlighted result row. Raw CSS because the custom attribute
+    // isn't part of $mol_link's typed attrs, so $mol_style_define rejects it.
+    $mol_style_attach('bog/smalljs/search/search.view.css', `
+		[bog_smalljs_search_current="true"] {
+			background-color: var(--bog_builderui_hover);
+		}
+	`);
 })($ || ($ = {}));
 
 ;
@@ -19263,6 +19389,9 @@ var $;
 
 ;
 	($.$bog_smalljs_app) = class $bog_smalljs_app extends ($.$bog_builderui_div) {
+		hotkeys(){
+			return null;
+		}
 		Theme(){
 			const obj = new this.$.$bog_theme_auto();
 			(obj.theme_light) = () => ("$mol_theme_calm_light");
@@ -19315,6 +19444,9 @@ var $;
 				"bog_builderui_font_body": "inter", 
 				"bog_builderui_font_head": "eb-garamond"
 			};
+		}
+		auto(){
+			return [(this.hotkeys())];
 		}
 		sub(){
 			return [
@@ -19503,8 +19635,35 @@ var $;
             section(next) {
                 return $mol_state_arg.value('section', next) ?? 'home';
             }
+            open_search() {
+                this.search_open(true);
+                this.Search().focus();
+                return null;
+            }
             search_toggle() {
-                this.search_open(!this.search_open());
+                if (this.search_open())
+                    this.search_open(false);
+                else
+                    this.open_search();
+                return null;
+            }
+            // Global ⌘K / Ctrl+K opens the search overlay. Registered on window
+            // (via the `auto` binding) rather than a $mol_hotkey plugin: when
+            // nothing inside the app is focused the keydown targets <body>, which
+            // never reaches a plugin bound to the app-root element. `event.code`
+            // is layout-independent so it matches the physical K key.
+            hotkeys() {
+                const win = this.$.$mol_dom_context;
+                win.addEventListener('keydown', (event) => {
+                    if (event.defaultPrevented)
+                        return;
+                    if (!(event.metaKey || event.ctrlKey))
+                        return;
+                    if (event.code !== 'KeyK')
+                        return;
+                    event.preventDefault();
+                    this.open_search();
+                });
                 return null;
             }
             lights() {
@@ -19521,7 +19680,13 @@ var $;
         }
         __decorate([
             $mol_action
+        ], $bog_smalljs_app.prototype, "open_search", null);
+        __decorate([
+            $mol_action
         ], $bog_smalljs_app.prototype, "search_toggle", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_app.prototype, "hotkeys", null);
         $$.$bog_smalljs_app = $bog_smalljs_app;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
