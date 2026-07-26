@@ -9125,6 +9125,7 @@ declare namespace $ {
 		ReturnType< $bog_smalljs_search['open'] >
 	>
 	export class $bog_smalljs_app extends $bog_builderui_div {
+		dir( ): string
 		hotkeys( ): any
 		Theme( ): $bog_theme_auto
 		Top( ): $bog_smalljs_top
@@ -9136,6 +9137,7 @@ declare namespace $ {
 		search_toggle( next?: any ): any
 		lights( ): string
 		attr( ): ({ 
+			'dir': ReturnType< $bog_smalljs_app['dir'] >,
 			'bog_builderui_lights': ReturnType< $bog_smalljs_app['lights'] >,
 			'bog_builderui_base': string,
 			'bog_builderui_theme': string,
@@ -9163,6 +9165,8 @@ declare namespace $.$$ {
         search_toggle(): null;
         hotkeys(): null;
         lights(): "light" | "dark";
+        /** Right-to-left layout for RTL languages (currently Persian). */
+        dir(): "rtl" | "ltr";
         body_content(): $.$bog_smalljs_playground[] | $.$bog_smalljs_docs[] | $.$bog_smalljs_course[] | $.$bog_smalljs_landing[];
     }
 }
