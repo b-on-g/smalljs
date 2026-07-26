@@ -24,7 +24,7 @@ const sections = [
 		groups: [
 			{ title: 'Getting Started', pages: [ 'introduction', 'getting-started' ] },
 			{ title: 'Essentials', pages: [ 'installation', 'views', 'state', 'routing', 'rendering' ] },
-			{ title: 'Data', pages: [ 'data', 'giper-baza' ] },
+			{ title: 'Data', pages: [ 'data', 'data-schema', 'giper-baza' ] },
 			{ title: 'More', pages: [ 'showcase', 'rosetta' ] },
 			{ title: 'Advanced', pages: [ 'plugins', 'meta', 'ghost' ] },
 			{ title: 'About', pages: [ 'faq', 'team', 'releases' ] },
@@ -42,6 +42,7 @@ const meta = {
 	'routing': { title: 'Routing', summary: 'The URL as reactive state: screens, links, and multiple parameters.' },
 	'rendering': { title: 'Rendering', summary: 'No virtual DOM, lazy components, and virtualized rendering — plus reproducible benchmarks.' },
 	'data': { title: 'Data Fetching', summary: 'Loading remote data with reactive async properties and loading states.' },
+	'data-schema': { title: 'Data Schemas', summary: 'Runtime typing and validation of backend data with $mol_data and $mol_schema.' },
 	'giper-baza': { title: 'Giper Baza', summary: 'Local-first data with automatic sync: entities, atoms, and CRUD.' },
 	'showcase': { title: 'Showcase', summary: 'Real apps and tools built with $mol, from community platforms to devtools.' },
 	'rosetta': { title: 'From React, Vue & Svelte', summary: 'A concept translation table for developers coming from other frameworks.' },
