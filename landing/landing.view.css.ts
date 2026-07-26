@@ -19,6 +19,8 @@ namespace $ {
 			lineHeight: '1.25',
 			textAlign: 'center',
 			maxWidth: rem(60),
+			// long words ("micromodule" / "микромодульный") must break, not overflow on phones
+			overflowWrap: 'break-word',
 		},
 
 		Hero_title_accent: {
@@ -169,7 +171,7 @@ namespace $ {
 				},
 
 				Hero_title: {
-					font: { size: rem(2.5) },
+					font: { size: rem(2) },
 				},
 
 				Hero_subtitle: {
