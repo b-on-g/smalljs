@@ -18,9 +18,26 @@ namespace $.$$ {
 		// The list is data-driven — add a language by adding one row here.
 
 		langs() {
+			// code = $mol_locale key (must be [A-Za-z0-9_] — MAM's locale-file
+			// regex rejects hyphens, so Traditional Chinese is `zh_hk`, not `zh-hk`).
+			// label = the language's own native name. Add a language by adding a row
+			// here plus its *.locale=<code>.json files and content/<code>/docs/*.md.
 			return [
 				{ code: 'en', label: 'English' },
+				{ code: 'zh', label: '简体中文' },
+				{ code: 'zh_hk', label: '繁體中文' },
+				{ code: 'ja', label: '日本語' },
+				{ code: 'ko', label: '한국어' },
+				{ code: 'fr', label: 'Français' },
+				{ code: 'de', label: 'Deutsch' },
+				{ code: 'pt', label: 'Português' },
+				{ code: 'it', label: 'Italiano' },
 				{ code: 'ru', label: 'Русский' },
+				{ code: 'uk', label: 'Українська' },
+				{ code: 'pl', label: 'Polski' },
+				{ code: 'cs', label: 'Čeština' },
+				{ code: 'fa', label: 'فارسی' },
+				{ code: 'bn', label: 'বাংলা' },
 			]
 		}
 

@@ -5,6 +5,7 @@ $bog_smalljs_app $bog_builderui_div
 	lights \light
 	attr *
 		^
+		dir <= dir \ltr
 		bog_builderui_lights <= lights
 		bog_builderui_base \zinc
 		bog_builderui_theme \sky

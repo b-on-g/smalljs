@@ -150,7 +150,7 @@ const slugs = Object.keys( titles )
 // that exists is bundled alongside as a per-language override. The RU title is
 // derived from the translated page's first `# ` heading, so translators only
 // touch the .md — no separate title manifest to keep in sync.
-const langs = [ 'ru' ]
+const langs = [ 'zh', 'zh_hk', 'ja', 'ko', 'fr', 'de', 'pt', 'it', 'ru', 'uk', 'pl', 'cs', 'fa', 'bn' ]
 
 function first_heading( md ) {
 	const m = md.match( /^#\s+(.+?)\s*$/m )

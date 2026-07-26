@@ -42,6 +42,11 @@ namespace $.$$ {
 			return this.Theme().is_light_now() ? 'light' : 'dark'
 		}
 
+		/** Right-to-left layout for RTL languages (currently Persian). */
+		dir() {
+			return this.$.$mol_locale.lang() === 'fa' ? 'rtl' : 'ltr'
+		}
+
 		body_content() {
 			switch( this.section() ) {
 				case 'docs': return [ this.Docs() ]
