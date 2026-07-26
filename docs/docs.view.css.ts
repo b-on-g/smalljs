@@ -259,4 +259,12 @@ namespace $ {
 		[bog_smalljs_docs_body] [mol_text_list] { position: relative }
 	` )
 
+	// Deep-linking to a heading (TOC click / shared URL with Docs.Body=<heading>)
+	// scrolls it to the very top of the scroll container, where the 64px sticky top
+	// bar hides it — the page looks like it jumped past the heading. scroll-margin-top
+	// leaves room so the anchored heading lands just below the bar. $mol_text honors it.
+	$mol_style_attach( '$bog_smalljs_docs.header_anchor', `
+		[bog_smalljs_docs_body] [mol_text_header] { scroll-margin-top: 5rem }
+	` )
+
 }
