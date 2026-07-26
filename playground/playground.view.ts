@@ -35,7 +35,20 @@ namespace $.$$ {
 		}
 
 		default_ts() {
-			return this.seed_ts() // empty by default so the TS compiler isn't fetched until needed
+			// An embedder (e.g. the course) fully controls the ts via seed_ts,
+			// even when empty — mirror default_tree's seed gate.
+			if ( this.seed_tree() ) return this.seed_ts()
+			// Standalone playground: ship a working counter so the default
+			// example is live on open (the tree alone has no logic, so inc()
+			// would be dead). This does fetch the TS compiler on first render.
+			const S = String.fromCharCode( 36 ) // "$" — kept out of MAM's dep scan
+			return [
+				`class ${ S }my_demo extends ${ S }.${ S }my_demo {`,
+				`\t@ ${ S }mol_mem count( next?: number ) { return next ?? 0 }`,
+				`\t@ ${ S }mol_action inc() { this.count( this.count() + 1 ) }`,
+				`\tcount_text() { return String( this.count() ) }`,
+				`}`,
+			].join( '\n' ) + '\n'
 		}
 
 		// --- tabs ---------------------------------------------------------

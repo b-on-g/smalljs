@@ -41,6 +41,7 @@ namespace $ {
 		display: 'grid',
 		gridTemplateColumns: '1fr 1fr',
 		flex: { grow: 1 },
+		minWidth: 0, // shrink to the container (e.g. embedded in the course column) instead of forcing content width
 		minHeight: 0,
 		height: $mol_style_func.calc( '100vh - 4rem' ),
 		background: { color: $bog_builderui_tokens.back },
