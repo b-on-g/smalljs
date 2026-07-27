@@ -20,4 +20,4 @@ Use a ghost when you want to attach behaviour to an existing component *without*
 
 ## Relation to plugins
 
-`$mol_plugin` — the base every [plugin](#!section=docs/page=plugins) extends — is element-less for the same reason: it augments the host's element rather than adding one. A ghost is the general form (wrap one child and take over its node); a plugin is the specialised form you list under `plugins /`.
+`$mol_plugin`, the base every [plugin](#!section=docs/page=plugins) extends, is element-less for the same reason: it augments the host's element rather than adding one. A ghost is the general form (wrap one child and take over its node); a plugin is the specialised form you list under `plugins /`.

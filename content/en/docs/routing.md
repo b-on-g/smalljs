@@ -58,7 +58,7 @@ Arguments are independent, so a screen can route on several at once. This very d
 		page \views
 ```
 
-Each key round-trips through the URL, so any view is shareable and bookmarkable by construction. Setting one argument leaves the others untouched, which makes deep links — a specific section *and* page *and* anchor — just a matter of setting the keys you care about.
+Each key round-trips through the URL, so any view is shareable and bookmarkable by construction. Setting one argument leaves the others untouched, which makes a deep link (a specific section, page, and anchor) just a matter of setting the keys you care about.
 
 ## State that shouldn't be in the URL
 

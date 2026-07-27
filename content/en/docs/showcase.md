@@ -13,7 +13,7 @@ Real things built with $mol — community apps, commercial products, and develop
 
 ## Design system & tools
 
-- **[BuilderUI](https://b-on-g.github.io/builderui/)** — a shadcn-style design system for $mol: typed components — buttons, dialogs, selects, cards, charts, and more — plus a Studio for live theming (base color, accent, chart palette, radius, fonts, light/dark). This documentation site is built on it.
+- **[BuilderUI](https://b-on-g.github.io/builderui/)** — a shadcn-style design system for $mol: typed components (buttons, dialogs, selects, cards, charts, and more) plus a Studio for live theming (base color, accent, chart palette, radius, fonts, light/dark). This documentation site is built on it.
 - **This site** — the documentation you are reading, including the [Playground](#!section=playground) and [course](#!section=course), is a $mol app. The search, live code editor, and in-browser TypeScript are all built with the framework they document.
 - **MAM** — the build tool and module registry that every $mol app lives in, and itself a $mol project. It is developer tooling rather than a hosted app; the source is on GitHub.
 - **view.tree LSP** — language tooling and an `npm create view-tree-lsp` scaffolder that starts new $mol apps. Editor tooling, so there is no running app to open.

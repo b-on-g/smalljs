@@ -1,6 +1,6 @@
 # Data Schemas
 
-Data that comes back from a network request is `any` — TypeScript trusts your cast, but the server might send something else. $mol ships two small runtime-schema libraries that turn untrusted JSON into a typed, validated value and fail loudly — with a readable path — when the shape is wrong. Use them right where data enters the app, most often on a [fetch](#!section=docs/page=data) response.
+Data that comes back from a network request is `any` — TypeScript trusts your cast, but the server might send something else. $mol ships two small runtime-schema libraries that turn untrusted JSON into a typed, validated value and fail loudly, with a readable path, when the shape is wrong. Use them right where data enters the app, most often on a [fetch](#!section=docs/page=data) response.
 
 ## Two libraries
 
@@ -39,7 +39,7 @@ function greet( user: typeof UserDTO.Value ) {
 }
 ```
 
-The building blocks include `$mol_data_string`, `$mol_data_number`, `$mol_data_integer`, `$mol_data_boolean`, `$mol_data_email`, `$mol_data_optional`, `$mol_data_nullable`, `$mol_data_variant` (one of several types), `$mol_data_array`, `$mol_data_dict`, and `$mol_data_record`. `$mol_data_pipe` feeds a parsed value into a transform — for example an ISO string into a `$mol_time_moment` — which doubles as (de)serialization.
+The building blocks include `$mol_data_string`, `$mol_data_number`, `$mol_data_integer`, `$mol_data_boolean`, `$mol_data_email`, `$mol_data_optional`, `$mol_data_nullable`, `$mol_data_variant` (one of several types), `$mol_data_array`, `$mol_data_dict`, and `$mol_data_record`. `$mol_data_pipe` feeds a parsed value into a transform, for example an ISO string into a `$mol_time_moment`, which doubles as (de)serialization.
 
 ## $mol_schema
 
