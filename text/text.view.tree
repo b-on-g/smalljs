@@ -1,0 +1,20 @@
+$bog_smalljs_text $mol_text
+	Pre* $bog_smalljs_text_code
+		text <= pre_text* \
+		row_themes <= pre_themes* /string
+		highlight <= highlight \
+		uri_resolve* <= uri_resolve* \
+		sidebar_showed <= pre_sidebar_showed <= code_sidebar_showed true
+		lang <= pre_lang* \
+		playground_arg <= pre_playground_arg* *
+		playground_showed <= pre_playground_showed* false
+
+$bog_smalljs_text_code $mol_text_code
+	lang \
+	playground_arg *
+	playground_showed false
+	Playground $mol_link
+		arg <= playground_arg
+		hint @ \Open in Playground
+		sub /
+			<= Playground_icon $mol_icon_launch
