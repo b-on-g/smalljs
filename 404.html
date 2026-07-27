@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="color-scheme" content="light dark" />
+<meta name="robots" content="noindex" />
+<title>Page not found — smalljs</title>
+<style>
+	:root {
+		color-scheme: light dark;
+		--bg: light-dark(#f8fafc, #0b1220);
+		--card: light-dark(#ffffff, #111827);
+		--border: light-dark(#e2e8f0, #1e293b);
+		--text: light-dark(#0f172a, #e2e8f0);
+		--code: light-dark(#020617, #f1f5f9);
+		--subtitle: light-dark(#475569, #cbd5e1);
+		--btn-border: light-dark(#cbd5e1, #334155);
+		--btn-hover-bg: light-dark(#f1f5f9, #1e293b);
+		--primary: light-dark(#0284c7, #38bdf8);
+		--primary-text: light-dark(#ffffff, #0b1220);
+		--primary-hover: light-dark(#0369a1, #0ea5e9);
+		--shadow: light-dark(0 10px 30px rgba(15,23,42,.08), 0 10px 30px rgba(0,0,0,.4));
+	}
+
+	*, *::before, *::after { box-sizing: border-box; }
+	html, body { margin: 0; padding: 0; height: 100%; }
+	body {
+		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+		background: var(--bg);
+		color: var(--text);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 100dvh;
+		padding: 1rem;
+		-webkit-font-smoothing: antialiased;
+	}
+	.card {
+		background: var(--card);
+		border: 1px solid var(--border);
+		border-radius: 1rem;
+		padding: 2rem;
+		max-width: 28rem;
+		width: 100%;
+		text-align: center;
+		box-shadow: var(--shadow);
+	}
+	.code {
+		font-size: 4.5rem;
+		font-weight: 800;
+		letter-spacing: -.04em;
+		line-height: 1;
+		margin: 0 0 .5rem;
+		color: var(--code);
+	}
+	.title {
+		font-size: 1.125rem;
+		margin: 0 0 1.5rem;
+		color: var(--subtitle);
+	}
+	.actions {
+		display: flex;
+		gap: .5rem;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+	.btn {
+		appearance: none;
+		border: 1px solid var(--btn-border);
+		background: transparent;
+		color: var(--text);
+		padding: .625rem 1.25rem;
+		border-radius: .5rem;
+		cursor: pointer;
+		font-family: inherit;
+		font-size: .9375rem;
+		text-decoration: none;
+		transition: background-color 120ms, border-color 120ms;
+		display: inline-flex;
+		align-items: center;
+		gap: .4rem;
+	}
+	.btn:hover { background: var(--btn-hover-bg); }
+	.btn.primary {
+		background: var(--primary);
+		border-color: var(--primary);
+		color: var(--primary-text);
+		font-weight: 600;
+	}
+	.btn.primary:hover {
+		background: var(--primary-hover);
+		border-color: var(--primary-hover);
+	}
+</style>
+<body>
+	<div class="card">
+		<div class="code">404</div>
+		<p class="title">This page could not be found.</p>
+		<div class="actions">
+			<button class="btn" type="button" id="spa">← Back</button>
+			<a class="btn primary" id="home" href="spa">Go home</a>
+		</div>
+	</div>
+<script>
+	// SPA fallback for GitHub Pages, per rafgraph/spa-github-pages.
+	// project-pages layout is `b-on-g.github.io/smalljs/…`, so keep 1 path segment.
+	;( function () {
+		var keep = 1
+		var l = window.location
+		var segments = l.pathname.slice( 1 ).split( '/' )
+		var root = l.pathname.split( '/' ).slice( 0, 1 + keep ).join( '/' ) + '/'
+		var rest = segments.slice( keep ).filter( Boolean ).join( '/' ).replace( /&/g, '~and~' )
+
+		function spaFallback( e ) {
+			if( e ) e.preventDefault()
+			l.replace(
+				l.protocol + '//' + l.hostname + ( l.port ? ':' + l.port : '' ) +
+				root + '?/' + rest +
+				( l.search ? '&' + l.search.slice( 1 ).replace( /&/g, '~and~' ) : '' ) +
+				l.hash
+			)
+		}
+
+		document.getElementById( 'spa' ).addEventListener( 'click', spaFallback )
+		document.getElementById( 'home' ).addEventListener( 'click', spaFallback )
+
+		if( rest ) spaFallback()
+	} )()
+</script>
+</body>
+</html>

@@ -54,6 +54,10 @@ jobs:
                   cp bog/smalljs/content/llms.txt bog/smalljs/app/-/llms.txt
                   cp bog/smalljs/content/sitemap.xml bog/smalljs/app/-/sitemap.xml
                   cp bog/smalljs/content/robots.txt bog/smalljs/app/-/robots.txt
+                  # SPA fallback: GitHub Pages serves 404.html for any unknown path
+                  # under the mount; its rafgraph redirect hands the deep-link back to
+                  # index.html, which $bog_builderui_router expands into the real path.
+                  cp bog/smalljs/404.html bog/smalljs/app/-/404.html
 
             # Full $bog_seo pipeline: build the SEO server, serve the deploy folder at
             # a root port (as gh-pages does), and dump prerendered HTML with injected
