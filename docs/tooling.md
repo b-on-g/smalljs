@@ -10,20 +10,37 @@ $mol works in any editor, but a small set of tools makes `.view.tree` and typed 
 npm create view-tree-lsp bog/myapp
 ```
 
-The argument is the module path (`namespace/name`, or the equivalent `bog_myapp`). It writes the `view.tree`, `view.ts`, `view.css.ts`, and `index.html` for a working app, and can add optional pieces:
-
-- a **Giper Baza** local-first store
-- a **Docker** setup
-- a **Tauri** desktop shell
-- **GitHub Actions** for prerender and `gh-pages` deploy
-
-Skip any of them with flags (npm passes them after `--`):
+The argument is the module path (`namespace/name`, or the equivalent `bog_myapp`). It writes the `view.tree`, `view.ts`, `view.css.ts`, and `index.html` for a working app, plus the GitHub Actions to deploy it. By default it also includes a **Giper Baza** local-first store, a **Docker** setup, and a **Tauri** desktop shell. Turn any of them off with a flag (npm forwards flags after the `--`):
 
 ```bash
-npm create view-tree-lsp bog/myapp -- --no-tauri --no-docker --no-baza
+npm create view-tree-lsp bog/myapp -- --no-baza --no-docker --no-tauri
 ```
 
+A few pieces are opt-in instead:
+
+- `--backend` adds a `$mol_server` REST backend with `node:sqlite` storage and a shared TypeScript item type
+- `--prerender` and `--seo` add search-engine visibility, described under [Continuous integration](#!section=docs/page=tooling/Docs.Body=Continuous%20integration) below
+
 The scaffolder is a thin wrapper over the CLI in the language server, so `view-tree-lsp create bog/myapp` does the same thing once the server is installed.
+
+## Continuous integration
+
+The scaffolder writes GitHub Actions to `.github/workflows/`, so a new project deploys and releases without extra setup.
+
+`deploy.yml` runs on every push. It builds the app with `hyoo-ru/mam_build`, publishes `app/-` to **GitHub Pages** from `main`, and gives each `feature/*` branch its own preview folder — removed automatically when the branch is deleted.
+
+### SEO
+
+Two independent options, both triggered on `v*` tags:
+
+- **`--prerender`** renders the screens you list (such as `home`) to static HTML with `b-on-g/mol-prerender-action`, so crawlers and link previews see real content.
+- **`--seo`** adds the `$bog_seo` runtime: a pathname router with a sitemap, `robots.txt`, `llms.txt`, and per-page meta injection. The job serves the build, dumps canonical prerendered HTML, and folds it back into the deploy.
+
+Reach for the prerender action when a handful of public screens need to be crawlable, and for `$bog_seo` when you need sitemaps and per-page metadata.
+
+### Tauri desktop
+
+With the Tauri option, `tauri.yml` builds desktop binaries on `v*` tags (or on demand) through the reusable `b-on-g/tauri-mol-workflow-template` workflow, from the same module you deploy to the web.
 
 ## Language server
 
