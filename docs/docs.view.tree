@@ -17,7 +17,7 @@ $bog_smalljs_docs $mol_view
 			sub <= sidebar_groups /
 		<= Main $mol_view
 			sub /
-				<= Body $mol_text
+				<= Body $bog_smalljs_text
 					text <= page_md
 				<= Edit $mol_link
 					uri <= edit_uri
