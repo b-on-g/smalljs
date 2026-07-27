@@ -335,13 +335,17 @@ for ( const sec of sections ) {
 fs.writeFileSync( path.join( root, 'llms.txt' ), llms )
 
 // --- sitemap.xml + robots.txt ------------------------------------------------
-// The app is a hash-routed SPA, so `#!section=…` deep links are not distinct URLs
-// to crawlers. The genuinely crawlable URLs are the site root and the raw Markdown
-// endpoints (/docs/<slug>.md) that the deploy publishes. Enumerate those here
-// deterministically instead of relying on a link crawl (which only ever sees root).
+// The app now uses path-based routing ($bog_builderui_router), so every screen is a
+// distinct, crawlable URL — `/smalljs/section=docs/page=<slug>` etc. These are the
+// exact pathnames the router writes to the address bar (segments = `key=val` joined
+// by `/`), so they match the canonical/hreflang links the app emits 1:1. Enumerate
+// them deterministically from the manifest here rather than relying on a link crawl.
+// The raw Markdown endpoints (/docs/<slug>.md) remain published and indexed via
+// llms.txt for LLM citation; the sitemap points crawlers at the real app URLs.
 const lastmod = new Date().toISOString().slice( 0, 10 )
 const sitemap_urls = [ prod_base + '/' ]
-	.concat( slugs.map( slug => `${ prod_base }/docs/${ slug }.md` ) )
+	.concat( slugs.map( slug => `${ prod_base }/section=docs/page=${ slug }` ) )
+	.concat( [ `${ prod_base }/section=playground`, `${ prod_base }/section=course` ] )
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n`
 	+ `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`
 	+ sitemap_urls.map( loc =>
