@@ -18,6 +18,20 @@ namespace $.$$ {
 
 	export class $bog_smalljs_app extends $.$bog_smalljs_app {
 
+		/** Path-based routing: clean `/smalljs/section=docs/page=views` URLs on the
+		 *  deployed site, so every page is a distinct, crawlable URL for bots and
+		 *  social unfurls. $bog_builderui_router is a drop-in $mol_state_arg.
+		 *
+		 *  We pass the explicit production mount `/smalljs/` rather than relying on
+		 *  no-arg auto-detection: activate() then installs only when the current
+		 *  pathname already starts with `/smalljs/` (its own guard). On the mam dev
+		 *  server the path is `/bog/smalljs/app/-/test.html`, which does not — so this
+		 *  is a clean no-op there and the standard hash router stays active, keeping
+		 *  local dev (and its non-SPA file server) working unchanged. */
+		static {
+			$bog_builderui_router.activate( '/smalljs/' )
+		}
+
 		section( next?: string ) {
 			return $mol_state_arg.value( 'section', next ) ?? 'home'
 		}
@@ -35,10 +49,13 @@ namespace $.$$ {
 			}
 		}
 
-		/** Serialize arg pairs into a $mol `#!a=b/c=d` hash (empty when no args). */
-		route_hash( extra: [ string, string ][] = [] ) {
+		/** Serialize arg pairs into a router pathname segment (`section=docs/page=views`),
+		 *  matching exactly what $bog_builderui_router.make_link writes to the URL on
+		 *  the deploy. Empty (home) → '', so `prod_base + route_path()` stays the bare
+		 *  site root. */
+		route_path( extra: [ string, string ][] = [] ) {
 			const pairs = [ ... extra, ... this.route_args() ]
-			return pairs.length ? '#!' + pairs.map( ( [ k, v ] )=> `${ k }=${ v }` ).join( '/' ) : ''
+			return pairs.map( ( [ k, v ] )=> `${ k }=${ v }` ).join( '/' )
 		}
 
 		/** Per-page, per-language SEO/social metadata. Read by $bog_meta_attr →
@@ -46,8 +63,7 @@ namespace $.$$ {
 		 *  <head> as <title>/<meta>/<link> for bots and social unfurls. */
 		meta(): $bog_meta_data {
 			const lang = this.$.$mol_locale.lang()
-			const hash = this.route_hash()
-			const canonical = prod_base + hash
+			const canonical = prod_base + this.route_path()
 
 			let title = `${ site_name } — the $mol reactive framework`
 			let description = default_description
@@ -72,7 +88,7 @@ namespace $.$$ {
 
 			const alternates = meta_langs.map( code => ( {
 				lang: hreflang_code( code ),
-				href: prod_base + this.route_hash( [ [ 'mol_locale', code ] ] ),
+				href: prod_base + this.route_path( [ [ 'mol_locale', code ] ] ),
 			} ) )
 			alternates.push( { lang: 'x-default', href: canonical } )
 
