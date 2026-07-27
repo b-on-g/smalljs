@@ -1269,90 +1269,900 @@ namespace $ {
 					title: "$mol_button_major",
 					file: 'content/en/docs/api-mol-button-major.md',
 					md: "# \u0024mol_button_major\n\nExtends `\u0024mol_button_minor`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/button/major)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `theme` | read | `string` |\n",
+					tr: {
+						zh: {
+							title: "$mol_button_major",
+							md: "# \u0024mol_button_major\n\n继承自 `\u0024mol_button_minor`。[在 GitHub 上查看源码](https://github.com/hyoo-ru/mam_mol/tree/master/button/major)\n\n本参考由组件的带类型 `.view.tree` 接口生成。\n\n## 属性\n\n| 属性 | 访问 | 类型 |\n|---|---|---|\n| `theme` | 读 | `string` |\n",
+						},
+						zh_hk: {
+							title: "$mol_button_major",
+							md: "# \u0024mol_button_major\n\n繼承自 `\u0024mol_button_minor`。[在 GitHub 上查看原始碼](https://github.com/hyoo-ru/mam_mol/tree/master/button/major)\n\n本參考由元件的帶型別 `.view.tree` 介面生成。\n\n## 屬性\n\n| 屬性 | 存取 | 型別 |\n|---|---|---|\n| `theme` | 讀 | `string` |\n",
+						},
+						ja: {
+							title: "$mol_button_major",
+							md: "# \u0024mol_button_major\n\n`\u0024mol_button_minor` を継承。[GitHub でソースを見る](https://github.com/hyoo-ru/mam_mol/tree/master/button/major)\n\nこのリファレンスはコンポーネントの型付き `.view.tree` インターフェイスから生成されています。\n\n## プロパティ\n\n| プロパティ | アクセス | 型 |\n|---|---|---|\n| `theme` | 読み取り | `string` |\n",
+						},
+						ko: {
+							title: "$mol_button_major",
+							md: "# \u0024mol_button_major\n\n`\u0024mol_button_minor`을(를) 확장합니다. [GitHub에서 소스 보기](https://github.com/hyoo-ru/mam_mol/tree/master/button/major)\n\n이 레퍼런스는 컴포넌트의 타입이 있는 `.view.tree` 인터페이스에서 생성됩니다.\n\n## 속성\n\n| 속성 | 접근 | 타입 |\n|---|---|---|\n| `theme` | 읽기 | `string` |\n",
+						},
+						fr: {
+							title: "$mol_button_major",
+							md: "# \u0024mol_button_major\n\nÉtend `\u0024mol_button_minor`. [Voir la source sur GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/button/major)\n\nCette référence est générée à partir de l'interface typée `.view.tree` du composant.\n\n## Propriétés\n\n| Propriété | Accès | Type |\n|---|---|---|\n| `theme` | lecture | `string` |\n",
+						},
+						de: {
+							title: "$mol_button_major",
+							md: "# \u0024mol_button_major\n\nErweitert `\u0024mol_button_minor`. [Quellcode auf GitHub ansehen](https://github.com/hyoo-ru/mam_mol/tree/master/button/major)\n\nDiese Referenz wird aus der typisierten `.view.tree`-Schnittstelle der Komponente generiert.\n\n## Eigenschaften\n\n| Eigenschaft | Zugriff | Typ |\n|---|---|---|\n| `theme` | Lesen | `string` |\n",
+						},
+						pt: {
+							title: "$mol_button_major",
+							md: "# \u0024mol_button_major\n\nEstende `\u0024mol_button_minor`. [Ver o código-fonte no GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/button/major)\n\nEsta referência é gerada a partir da interface tipada `.view.tree` do componente.\n\n## Propriedades\n\n| Propriedade | Acesso | Tipo |\n|---|---|---|\n| `theme` | leitura | `string` |\n",
+						},
+						it: {
+							title: "$mol_button_major",
+							md: "# \u0024mol_button_major\n\nEstende `\u0024mol_button_minor`. [Vedi il sorgente su GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/button/major)\n\nQuesto riferimento è generato dall'interfaccia tipizzata `.view.tree` del componente.\n\n## Proprietà\n\n| Proprietà | Accesso | Tipo |\n|---|---|---|\n| `theme` | lettura | `string` |\n",
+						},
+						uk: {
+							title: "$mol_button_major",
+							md: "# \u0024mol_button_major\n\nРозширює `\u0024mol_button_minor`. [Переглянути код на GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/button/major)\n\nЦей довідник згенеровано з типізованого інтерфейсу `.view.tree` компонента.\n\n## Властивості\n\n| Властивість | Доступ | Тип |\n|---|---|---|\n| `theme` | читання | `string` |\n",
+						},
+						pl: {
+							title: "$mol_button_major",
+							md: "# \u0024mol_button_major\n\nRozszerza `\u0024mol_button_minor`. [Zobacz źródło na GitHubie](https://github.com/hyoo-ru/mam_mol/tree/master/button/major)\n\nTa referencja jest generowana z typowanego interfejsu `.view.tree` komponentu.\n\n## Właściwości\n\n| Właściwość | Dostęp | Typ |\n|---|---|---|\n| `theme` | odczyt | `string` |\n",
+						},
+						cs: {
+							title: "$mol_button_major",
+							md: "# \u0024mol_button_major\n\nRozšiřuje `\u0024mol_button_minor`. [Zobrazit zdroj na GitHubu](https://github.com/hyoo-ru/mam_mol/tree/master/button/major)\n\nTato reference je generována z typovaného rozhraní `.view.tree` komponenty.\n\n## Vlastnosti\n\n| Vlastnost | Přístup | Typ |\n|---|---|---|\n| `theme` | čtení | `string` |\n",
+						},
+						fa: {
+							title: "$mol_button_major",
+							md: "# \u0024mol_button_major\n\n`\u0024mol_button_minor` را گسترش می‌دهد. [دیدنِ سورس در GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/button/major)\n\nاین مرجع از واسطِ نوع‌دارِ `.view.tree`ِ کامپوننت تولید شده است.\n\n## ویژگی‌ها\n\n| ویژگی | دسترسی | نوع |\n|---|---|---|\n| `theme` | خواندن | `string` |\n",
+						},
+						bn: {
+							title: "$mol_button_major",
+							md: "# \u0024mol_button_major\n\n`\u0024mol_button_minor` কে এক্সটেন্ড করে। [GitHub-এ সোর্স দেখুন](https://github.com/hyoo-ru/mam_mol/tree/master/button/major)\n\nএই রেফারেন্স কম্পোনেন্টের টাইপড `.view.tree` ইন্টারফেস থেকে জেনারেট করা হয়।\n\n## প্রপার্টি\n\n| প্রপার্টি | অ্যাক্সেস | টাইপ |\n|---|---|---|\n| `theme` | পড়া | `string` |\n",
+						},
+					},
 				},
 				'api-mol-button-minor': {
 					slug: 'api-mol-button-minor',
 					title: "$mol_button_minor",
 					file: 'content/en/docs/api-mol-button-minor.md',
 					md: "# \u0024mol_button_minor\n\nExtends `\u0024mol_button_typed`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/button/minor)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n\u0024mol_button_minor adds no new bindable properties of its own — see `\u0024mol_button_typed`.\n",
+					tr: {
+						zh: {
+							title: "$mol_button_minor",
+							md: "# \u0024mol_button_minor\n\n继承自 `\u0024mol_button_typed`。[在 GitHub 上查看源码](https://github.com/hyoo-ru/mam_mol/tree/master/button/minor)\n\n本参考由组件的带类型 `.view.tree` 接口生成。\n\n## 属性\n\n\u0024mol_button_minor adds no new bindable properties of its own — see `\u0024mol_button_typed`.\n",
+						},
+						zh_hk: {
+							title: "$mol_button_minor",
+							md: "# \u0024mol_button_minor\n\n繼承自 `\u0024mol_button_typed`。[在 GitHub 上查看原始碼](https://github.com/hyoo-ru/mam_mol/tree/master/button/minor)\n\n本參考由元件的帶型別 `.view.tree` 介面生成。\n\n## 屬性\n\n\u0024mol_button_minor adds no new bindable properties of its own — see `\u0024mol_button_typed`.\n",
+						},
+						ja: {
+							title: "$mol_button_minor",
+							md: "# \u0024mol_button_minor\n\n`\u0024mol_button_typed` を継承。[GitHub でソースを見る](https://github.com/hyoo-ru/mam_mol/tree/master/button/minor)\n\nこのリファレンスはコンポーネントの型付き `.view.tree` インターフェイスから生成されています。\n\n## プロパティ\n\n\u0024mol_button_minor adds no new bindable properties of its own — see `\u0024mol_button_typed`.\n",
+						},
+						ko: {
+							title: "$mol_button_minor",
+							md: "# \u0024mol_button_minor\n\n`\u0024mol_button_typed`을(를) 확장합니다. [GitHub에서 소스 보기](https://github.com/hyoo-ru/mam_mol/tree/master/button/minor)\n\n이 레퍼런스는 컴포넌트의 타입이 있는 `.view.tree` 인터페이스에서 생성됩니다.\n\n## 속성\n\n\u0024mol_button_minor adds no new bindable properties of its own — see `\u0024mol_button_typed`.\n",
+						},
+						fr: {
+							title: "$mol_button_minor",
+							md: "# \u0024mol_button_minor\n\nÉtend `\u0024mol_button_typed`. [Voir la source sur GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/button/minor)\n\nCette référence est générée à partir de l'interface typée `.view.tree` du composant.\n\n## Propriétés\n\n\u0024mol_button_minor adds no new bindable properties of its own — see `\u0024mol_button_typed`.\n",
+						},
+						de: {
+							title: "$mol_button_minor",
+							md: "# \u0024mol_button_minor\n\nErweitert `\u0024mol_button_typed`. [Quellcode auf GitHub ansehen](https://github.com/hyoo-ru/mam_mol/tree/master/button/minor)\n\nDiese Referenz wird aus der typisierten `.view.tree`-Schnittstelle der Komponente generiert.\n\n## Eigenschaften\n\n\u0024mol_button_minor adds no new bindable properties of its own — see `\u0024mol_button_typed`.\n",
+						},
+						pt: {
+							title: "$mol_button_minor",
+							md: "# \u0024mol_button_minor\n\nEstende `\u0024mol_button_typed`. [Ver o código-fonte no GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/button/minor)\n\nEsta referência é gerada a partir da interface tipada `.view.tree` do componente.\n\n## Propriedades\n\n\u0024mol_button_minor adds no new bindable properties of its own — see `\u0024mol_button_typed`.\n",
+						},
+						it: {
+							title: "$mol_button_minor",
+							md: "# \u0024mol_button_minor\n\nEstende `\u0024mol_button_typed`. [Vedi il sorgente su GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/button/minor)\n\nQuesto riferimento è generato dall'interfaccia tipizzata `.view.tree` del componente.\n\n## Proprietà\n\n\u0024mol_button_minor adds no new bindable properties of its own — see `\u0024mol_button_typed`.\n",
+						},
+						uk: {
+							title: "$mol_button_minor",
+							md: "# \u0024mol_button_minor\n\nРозширює `\u0024mol_button_typed`. [Переглянути код на GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/button/minor)\n\nЦей довідник згенеровано з типізованого інтерфейсу `.view.tree` компонента.\n\n## Властивості\n\n\u0024mol_button_minor adds no new bindable properties of its own — see `\u0024mol_button_typed`.\n",
+						},
+						pl: {
+							title: "$mol_button_minor",
+							md: "# \u0024mol_button_minor\n\nRozszerza `\u0024mol_button_typed`. [Zobacz źródło na GitHubie](https://github.com/hyoo-ru/mam_mol/tree/master/button/minor)\n\nTa referencja jest generowana z typowanego interfejsu `.view.tree` komponentu.\n\n## Właściwości\n\n\u0024mol_button_minor adds no new bindable properties of its own — see `\u0024mol_button_typed`.\n",
+						},
+						cs: {
+							title: "$mol_button_minor",
+							md: "# \u0024mol_button_minor\n\nRozšiřuje `\u0024mol_button_typed`. [Zobrazit zdroj na GitHubu](https://github.com/hyoo-ru/mam_mol/tree/master/button/minor)\n\nTato reference je generována z typovaného rozhraní `.view.tree` komponenty.\n\n## Vlastnosti\n\n\u0024mol_button_minor adds no new bindable properties of its own — see `\u0024mol_button_typed`.\n",
+						},
+						fa: {
+							title: "$mol_button_minor",
+							md: "# \u0024mol_button_minor\n\n`\u0024mol_button_typed` را گسترش می‌دهد. [دیدنِ سورس در GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/button/minor)\n\nاین مرجع از واسطِ نوع‌دارِ `.view.tree`ِ کامپوننت تولید شده است.\n\n## ویژگی‌ها\n\n\u0024mol_button_minor adds no new bindable properties of its own — see `\u0024mol_button_typed`.\n",
+						},
+						bn: {
+							title: "$mol_button_minor",
+							md: "# \u0024mol_button_minor\n\n`\u0024mol_button_typed` কে এক্সটেন্ড করে। [GitHub-এ সোর্স দেখুন](https://github.com/hyoo-ru/mam_mol/tree/master/button/minor)\n\nএই রেফারেন্স কম্পোনেন্টের টাইপড `.view.tree` ইন্টারফেস থেকে জেনারেট করা হয়।\n\n## প্রপার্টি\n\n\u0024mol_button_minor adds no new bindable properties of its own — see `\u0024mol_button_typed`.\n",
+						},
+					},
 				},
 				'api-mol-string': {
 					slug: 'api-mol-string',
 					title: "$mol_string",
 					file: 'content/en/docs/api-mol-string.md',
 					md: "# \u0024mol_string\n\nExtends `\u0024mol_view`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/string)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `disabled` | read | `boolean` |\n| `value` | read / write | `string` |\n| `value_changed` | read / write | `as 'value'` |\n| `hint` | read | `string` |\n| `hint_visible` | read | `as 'hint'` |\n| `spellcheck` | read | `boolean` |\n| `autocomplete_native` | read | `string` |\n| `selection_end` | read | `number` |\n| `selection_start` | read | `number` |\n| `keyboard` | read | `string` |\n| `enter` | read | `string` |\n| `length_max` | read | `number` |\n| `type` | read / write | `string` |\n| `submit_with_ctrl` | read | `boolean` |\n| `Submit` | read | `\u0024mol_hotkey` |\n| `dom_name` | read | `string` |\n| `enabled` | read | `boolean` |\n| `minimal_height` | read | `number` |\n| `autocomplete` | read | `boolean` |\n| `auto` | read | `readonly(any)[]` |\n| `field` | read | `({` |\n| `attr` | read | `({` |\n| `event` | read | `({` |\n| `plugins` | read | `readonly(any)[]` |\n",
+					tr: {
+						zh: {
+							title: "$mol_string",
+							md: "# \u0024mol_string\n\n继承自 `\u0024mol_view`。[在 GitHub 上查看源码](https://github.com/hyoo-ru/mam_mol/tree/master/string)\n\n本参考由组件的带类型 `.view.tree` 接口生成。\n\n## 属性\n\n| 属性 | 访问 | 类型 |\n|---|---|---|\n| `disabled` | 读 | `boolean` |\n| `value` | 读 / 写 | `string` |\n| `value_changed` | 读 / 写 | `as 'value'` |\n| `hint` | 读 | `string` |\n| `hint_visible` | 读 | `as 'hint'` |\n| `spellcheck` | 读 | `boolean` |\n| `autocomplete_native` | 读 | `string` |\n| `selection_end` | 读 | `number` |\n| `selection_start` | 读 | `number` |\n| `keyboard` | 读 | `string` |\n| `enter` | 读 | `string` |\n| `length_max` | 读 | `number` |\n| `type` | 读 / 写 | `string` |\n| `submit_with_ctrl` | 读 | `boolean` |\n| `Submit` | 读 | `\u0024mol_hotkey` |\n| `dom_name` | 读 | `string` |\n| `enabled` | 读 | `boolean` |\n| `minimal_height` | 读 | `number` |\n| `autocomplete` | 读 | `boolean` |\n| `auto` | 读 | `readonly(any)[]` |\n| `field` | 读 | `({` |\n| `attr` | 读 | `({` |\n| `event` | 读 | `({` |\n| `plugins` | 读 | `readonly(any)[]` |\n",
+						},
+						zh_hk: {
+							title: "$mol_string",
+							md: "# \u0024mol_string\n\n繼承自 `\u0024mol_view`。[在 GitHub 上查看原始碼](https://github.com/hyoo-ru/mam_mol/tree/master/string)\n\n本參考由元件的帶型別 `.view.tree` 介面生成。\n\n## 屬性\n\n| 屬性 | 存取 | 型別 |\n|---|---|---|\n| `disabled` | 讀 | `boolean` |\n| `value` | 讀 / 寫 | `string` |\n| `value_changed` | 讀 / 寫 | `as 'value'` |\n| `hint` | 讀 | `string` |\n| `hint_visible` | 讀 | `as 'hint'` |\n| `spellcheck` | 讀 | `boolean` |\n| `autocomplete_native` | 讀 | `string` |\n| `selection_end` | 讀 | `number` |\n| `selection_start` | 讀 | `number` |\n| `keyboard` | 讀 | `string` |\n| `enter` | 讀 | `string` |\n| `length_max` | 讀 | `number` |\n| `type` | 讀 / 寫 | `string` |\n| `submit_with_ctrl` | 讀 | `boolean` |\n| `Submit` | 讀 | `\u0024mol_hotkey` |\n| `dom_name` | 讀 | `string` |\n| `enabled` | 讀 | `boolean` |\n| `minimal_height` | 讀 | `number` |\n| `autocomplete` | 讀 | `boolean` |\n| `auto` | 讀 | `readonly(any)[]` |\n| `field` | 讀 | `({` |\n| `attr` | 讀 | `({` |\n| `event` | 讀 | `({` |\n| `plugins` | 讀 | `readonly(any)[]` |\n",
+						},
+						ja: {
+							title: "$mol_string",
+							md: "# \u0024mol_string\n\n`\u0024mol_view` を継承。[GitHub でソースを見る](https://github.com/hyoo-ru/mam_mol/tree/master/string)\n\nこのリファレンスはコンポーネントの型付き `.view.tree` インターフェイスから生成されています。\n\n## プロパティ\n\n| プロパティ | アクセス | 型 |\n|---|---|---|\n| `disabled` | 読み取り | `boolean` |\n| `value` | 読み取り / 書き込み | `string` |\n| `value_changed` | 読み取り / 書き込み | `as 'value'` |\n| `hint` | 読み取り | `string` |\n| `hint_visible` | 読み取り | `as 'hint'` |\n| `spellcheck` | 読み取り | `boolean` |\n| `autocomplete_native` | 読み取り | `string` |\n| `selection_end` | 読み取り | `number` |\n| `selection_start` | 読み取り | `number` |\n| `keyboard` | 読み取り | `string` |\n| `enter` | 読み取り | `string` |\n| `length_max` | 読み取り | `number` |\n| `type` | 読み取り / 書き込み | `string` |\n| `submit_with_ctrl` | 読み取り | `boolean` |\n| `Submit` | 読み取り | `\u0024mol_hotkey` |\n| `dom_name` | 読み取り | `string` |\n| `enabled` | 読み取り | `boolean` |\n| `minimal_height` | 読み取り | `number` |\n| `autocomplete` | 読み取り | `boolean` |\n| `auto` | 読み取り | `readonly(any)[]` |\n| `field` | 読み取り | `({` |\n| `attr` | 読み取り | `({` |\n| `event` | 読み取り | `({` |\n| `plugins` | 読み取り | `readonly(any)[]` |\n",
+						},
+						ko: {
+							title: "$mol_string",
+							md: "# \u0024mol_string\n\n`\u0024mol_view`을(를) 확장합니다. [GitHub에서 소스 보기](https://github.com/hyoo-ru/mam_mol/tree/master/string)\n\n이 레퍼런스는 컴포넌트의 타입이 있는 `.view.tree` 인터페이스에서 생성됩니다.\n\n## 속성\n\n| 속성 | 접근 | 타입 |\n|---|---|---|\n| `disabled` | 읽기 | `boolean` |\n| `value` | 읽기 / 쓰기 | `string` |\n| `value_changed` | 읽기 / 쓰기 | `as 'value'` |\n| `hint` | 읽기 | `string` |\n| `hint_visible` | 읽기 | `as 'hint'` |\n| `spellcheck` | 읽기 | `boolean` |\n| `autocomplete_native` | 읽기 | `string` |\n| `selection_end` | 읽기 | `number` |\n| `selection_start` | 읽기 | `number` |\n| `keyboard` | 읽기 | `string` |\n| `enter` | 읽기 | `string` |\n| `length_max` | 읽기 | `number` |\n| `type` | 읽기 / 쓰기 | `string` |\n| `submit_with_ctrl` | 읽기 | `boolean` |\n| `Submit` | 읽기 | `\u0024mol_hotkey` |\n| `dom_name` | 읽기 | `string` |\n| `enabled` | 읽기 | `boolean` |\n| `minimal_height` | 읽기 | `number` |\n| `autocomplete` | 읽기 | `boolean` |\n| `auto` | 읽기 | `readonly(any)[]` |\n| `field` | 읽기 | `({` |\n| `attr` | 읽기 | `({` |\n| `event` | 읽기 | `({` |\n| `plugins` | 읽기 | `readonly(any)[]` |\n",
+						},
+						fr: {
+							title: "$mol_string",
+							md: "# \u0024mol_string\n\nÉtend `\u0024mol_view`. [Voir la source sur GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/string)\n\nCette référence est générée à partir de l'interface typée `.view.tree` du composant.\n\n## Propriétés\n\n| Propriété | Accès | Type |\n|---|---|---|\n| `disabled` | lecture | `boolean` |\n| `value` | lecture / écriture | `string` |\n| `value_changed` | lecture / écriture | `as 'value'` |\n| `hint` | lecture | `string` |\n| `hint_visible` | lecture | `as 'hint'` |\n| `spellcheck` | lecture | `boolean` |\n| `autocomplete_native` | lecture | `string` |\n| `selection_end` | lecture | `number` |\n| `selection_start` | lecture | `number` |\n| `keyboard` | lecture | `string` |\n| `enter` | lecture | `string` |\n| `length_max` | lecture | `number` |\n| `type` | lecture / écriture | `string` |\n| `submit_with_ctrl` | lecture | `boolean` |\n| `Submit` | lecture | `\u0024mol_hotkey` |\n| `dom_name` | lecture | `string` |\n| `enabled` | lecture | `boolean` |\n| `minimal_height` | lecture | `number` |\n| `autocomplete` | lecture | `boolean` |\n| `auto` | lecture | `readonly(any)[]` |\n| `field` | lecture | `({` |\n| `attr` | lecture | `({` |\n| `event` | lecture | `({` |\n| `plugins` | lecture | `readonly(any)[]` |\n",
+						},
+						de: {
+							title: "$mol_string",
+							md: "# \u0024mol_string\n\nErweitert `\u0024mol_view`. [Quellcode auf GitHub ansehen](https://github.com/hyoo-ru/mam_mol/tree/master/string)\n\nDiese Referenz wird aus der typisierten `.view.tree`-Schnittstelle der Komponente generiert.\n\n## Eigenschaften\n\n| Eigenschaft | Zugriff | Typ |\n|---|---|---|\n| `disabled` | Lesen | `boolean` |\n| `value` | Lesen / Schreiben | `string` |\n| `value_changed` | Lesen / Schreiben | `as 'value'` |\n| `hint` | Lesen | `string` |\n| `hint_visible` | Lesen | `as 'hint'` |\n| `spellcheck` | Lesen | `boolean` |\n| `autocomplete_native` | Lesen | `string` |\n| `selection_end` | Lesen | `number` |\n| `selection_start` | Lesen | `number` |\n| `keyboard` | Lesen | `string` |\n| `enter` | Lesen | `string` |\n| `length_max` | Lesen | `number` |\n| `type` | Lesen / Schreiben | `string` |\n| `submit_with_ctrl` | Lesen | `boolean` |\n| `Submit` | Lesen | `\u0024mol_hotkey` |\n| `dom_name` | Lesen | `string` |\n| `enabled` | Lesen | `boolean` |\n| `minimal_height` | Lesen | `number` |\n| `autocomplete` | Lesen | `boolean` |\n| `auto` | Lesen | `readonly(any)[]` |\n| `field` | Lesen | `({` |\n| `attr` | Lesen | `({` |\n| `event` | Lesen | `({` |\n| `plugins` | Lesen | `readonly(any)[]` |\n",
+						},
+						pt: {
+							title: "$mol_string",
+							md: "# \u0024mol_string\n\nEstende `\u0024mol_view`. [Ver o código-fonte no GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/string)\n\nEsta referência é gerada a partir da interface tipada `.view.tree` do componente.\n\n## Propriedades\n\n| Propriedade | Acesso | Tipo |\n|---|---|---|\n| `disabled` | leitura | `boolean` |\n| `value` | leitura / escrita | `string` |\n| `value_changed` | leitura / escrita | `as 'value'` |\n| `hint` | leitura | `string` |\n| `hint_visible` | leitura | `as 'hint'` |\n| `spellcheck` | leitura | `boolean` |\n| `autocomplete_native` | leitura | `string` |\n| `selection_end` | leitura | `number` |\n| `selection_start` | leitura | `number` |\n| `keyboard` | leitura | `string` |\n| `enter` | leitura | `string` |\n| `length_max` | leitura | `number` |\n| `type` | leitura / escrita | `string` |\n| `submit_with_ctrl` | leitura | `boolean` |\n| `Submit` | leitura | `\u0024mol_hotkey` |\n| `dom_name` | leitura | `string` |\n| `enabled` | leitura | `boolean` |\n| `minimal_height` | leitura | `number` |\n| `autocomplete` | leitura | `boolean` |\n| `auto` | leitura | `readonly(any)[]` |\n| `field` | leitura | `({` |\n| `attr` | leitura | `({` |\n| `event` | leitura | `({` |\n| `plugins` | leitura | `readonly(any)[]` |\n",
+						},
+						it: {
+							title: "$mol_string",
+							md: "# \u0024mol_string\n\nEstende `\u0024mol_view`. [Vedi il sorgente su GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/string)\n\nQuesto riferimento è generato dall'interfaccia tipizzata `.view.tree` del componente.\n\n## Proprietà\n\n| Proprietà | Accesso | Tipo |\n|---|---|---|\n| `disabled` | lettura | `boolean` |\n| `value` | lettura / scrittura | `string` |\n| `value_changed` | lettura / scrittura | `as 'value'` |\n| `hint` | lettura | `string` |\n| `hint_visible` | lettura | `as 'hint'` |\n| `spellcheck` | lettura | `boolean` |\n| `autocomplete_native` | lettura | `string` |\n| `selection_end` | lettura | `number` |\n| `selection_start` | lettura | `number` |\n| `keyboard` | lettura | `string` |\n| `enter` | lettura | `string` |\n| `length_max` | lettura | `number` |\n| `type` | lettura / scrittura | `string` |\n| `submit_with_ctrl` | lettura | `boolean` |\n| `Submit` | lettura | `\u0024mol_hotkey` |\n| `dom_name` | lettura | `string` |\n| `enabled` | lettura | `boolean` |\n| `minimal_height` | lettura | `number` |\n| `autocomplete` | lettura | `boolean` |\n| `auto` | lettura | `readonly(any)[]` |\n| `field` | lettura | `({` |\n| `attr` | lettura | `({` |\n| `event` | lettura | `({` |\n| `plugins` | lettura | `readonly(any)[]` |\n",
+						},
+						uk: {
+							title: "$mol_string",
+							md: "# \u0024mol_string\n\nРозширює `\u0024mol_view`. [Переглянути код на GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/string)\n\nЦей довідник згенеровано з типізованого інтерфейсу `.view.tree` компонента.\n\n## Властивості\n\n| Властивість | Доступ | Тип |\n|---|---|---|\n| `disabled` | читання | `boolean` |\n| `value` | читання / запис | `string` |\n| `value_changed` | читання / запис | `as 'value'` |\n| `hint` | читання | `string` |\n| `hint_visible` | читання | `as 'hint'` |\n| `spellcheck` | читання | `boolean` |\n| `autocomplete_native` | читання | `string` |\n| `selection_end` | читання | `number` |\n| `selection_start` | читання | `number` |\n| `keyboard` | читання | `string` |\n| `enter` | читання | `string` |\n| `length_max` | читання | `number` |\n| `type` | читання / запис | `string` |\n| `submit_with_ctrl` | читання | `boolean` |\n| `Submit` | читання | `\u0024mol_hotkey` |\n| `dom_name` | читання | `string` |\n| `enabled` | читання | `boolean` |\n| `minimal_height` | читання | `number` |\n| `autocomplete` | читання | `boolean` |\n| `auto` | читання | `readonly(any)[]` |\n| `field` | читання | `({` |\n| `attr` | читання | `({` |\n| `event` | читання | `({` |\n| `plugins` | читання | `readonly(any)[]` |\n",
+						},
+						pl: {
+							title: "$mol_string",
+							md: "# \u0024mol_string\n\nRozszerza `\u0024mol_view`. [Zobacz źródło na GitHubie](https://github.com/hyoo-ru/mam_mol/tree/master/string)\n\nTa referencja jest generowana z typowanego interfejsu `.view.tree` komponentu.\n\n## Właściwości\n\n| Właściwość | Dostęp | Typ |\n|---|---|---|\n| `disabled` | odczyt | `boolean` |\n| `value` | odczyt / zapis | `string` |\n| `value_changed` | odczyt / zapis | `as 'value'` |\n| `hint` | odczyt | `string` |\n| `hint_visible` | odczyt | `as 'hint'` |\n| `spellcheck` | odczyt | `boolean` |\n| `autocomplete_native` | odczyt | `string` |\n| `selection_end` | odczyt | `number` |\n| `selection_start` | odczyt | `number` |\n| `keyboard` | odczyt | `string` |\n| `enter` | odczyt | `string` |\n| `length_max` | odczyt | `number` |\n| `type` | odczyt / zapis | `string` |\n| `submit_with_ctrl` | odczyt | `boolean` |\n| `Submit` | odczyt | `\u0024mol_hotkey` |\n| `dom_name` | odczyt | `string` |\n| `enabled` | odczyt | `boolean` |\n| `minimal_height` | odczyt | `number` |\n| `autocomplete` | odczyt | `boolean` |\n| `auto` | odczyt | `readonly(any)[]` |\n| `field` | odczyt | `({` |\n| `attr` | odczyt | `({` |\n| `event` | odczyt | `({` |\n| `plugins` | odczyt | `readonly(any)[]` |\n",
+						},
+						cs: {
+							title: "$mol_string",
+							md: "# \u0024mol_string\n\nRozšiřuje `\u0024mol_view`. [Zobrazit zdroj na GitHubu](https://github.com/hyoo-ru/mam_mol/tree/master/string)\n\nTato reference je generována z typovaného rozhraní `.view.tree` komponenty.\n\n## Vlastnosti\n\n| Vlastnost | Přístup | Typ |\n|---|---|---|\n| `disabled` | čtení | `boolean` |\n| `value` | čtení / zápis | `string` |\n| `value_changed` | čtení / zápis | `as 'value'` |\n| `hint` | čtení | `string` |\n| `hint_visible` | čtení | `as 'hint'` |\n| `spellcheck` | čtení | `boolean` |\n| `autocomplete_native` | čtení | `string` |\n| `selection_end` | čtení | `number` |\n| `selection_start` | čtení | `number` |\n| `keyboard` | čtení | `string` |\n| `enter` | čtení | `string` |\n| `length_max` | čtení | `number` |\n| `type` | čtení / zápis | `string` |\n| `submit_with_ctrl` | čtení | `boolean` |\n| `Submit` | čtení | `\u0024mol_hotkey` |\n| `dom_name` | čtení | `string` |\n| `enabled` | čtení | `boolean` |\n| `minimal_height` | čtení | `number` |\n| `autocomplete` | čtení | `boolean` |\n| `auto` | čtení | `readonly(any)[]` |\n| `field` | čtení | `({` |\n| `attr` | čtení | `({` |\n| `event` | čtení | `({` |\n| `plugins` | čtení | `readonly(any)[]` |\n",
+						},
+						fa: {
+							title: "$mol_string",
+							md: "# \u0024mol_string\n\n`\u0024mol_view` را گسترش می‌دهد. [دیدنِ سورس در GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/string)\n\nاین مرجع از واسطِ نوع‌دارِ `.view.tree`ِ کامپوننت تولید شده است.\n\n## ویژگی‌ها\n\n| ویژگی | دسترسی | نوع |\n|---|---|---|\n| `disabled` | خواندن | `boolean` |\n| `value` | خواندن / نوشتن | `string` |\n| `value_changed` | خواندن / نوشتن | `as 'value'` |\n| `hint` | خواندن | `string` |\n| `hint_visible` | خواندن | `as 'hint'` |\n| `spellcheck` | خواندن | `boolean` |\n| `autocomplete_native` | خواندن | `string` |\n| `selection_end` | خواندن | `number` |\n| `selection_start` | خواندن | `number` |\n| `keyboard` | خواندن | `string` |\n| `enter` | خواندن | `string` |\n| `length_max` | خواندن | `number` |\n| `type` | خواندن / نوشتن | `string` |\n| `submit_with_ctrl` | خواندن | `boolean` |\n| `Submit` | خواندن | `\u0024mol_hotkey` |\n| `dom_name` | خواندن | `string` |\n| `enabled` | خواندن | `boolean` |\n| `minimal_height` | خواندن | `number` |\n| `autocomplete` | خواندن | `boolean` |\n| `auto` | خواندن | `readonly(any)[]` |\n| `field` | خواندن | `({` |\n| `attr` | خواندن | `({` |\n| `event` | خواندن | `({` |\n| `plugins` | خواندن | `readonly(any)[]` |\n",
+						},
+						bn: {
+							title: "$mol_string",
+							md: "# \u0024mol_string\n\n`\u0024mol_view` কে এক্সটেন্ড করে। [GitHub-এ সোর্স দেখুন](https://github.com/hyoo-ru/mam_mol/tree/master/string)\n\nএই রেফারেন্স কম্পোনেন্টের টাইপড `.view.tree` ইন্টারফেস থেকে জেনারেট করা হয়।\n\n## প্রপার্টি\n\n| প্রপার্টি | অ্যাক্সেস | টাইপ |\n|---|---|---|\n| `disabled` | পড়া | `boolean` |\n| `value` | পড়া / লেখা | `string` |\n| `value_changed` | পড়া / লেখা | `as 'value'` |\n| `hint` | পড়া | `string` |\n| `hint_visible` | পড়া | `as 'hint'` |\n| `spellcheck` | পড়া | `boolean` |\n| `autocomplete_native` | পড়া | `string` |\n| `selection_end` | পড়া | `number` |\n| `selection_start` | পড়া | `number` |\n| `keyboard` | পড়া | `string` |\n| `enter` | পড়া | `string` |\n| `length_max` | পড়া | `number` |\n| `type` | পড়া / লেখা | `string` |\n| `submit_with_ctrl` | পড়া | `boolean` |\n| `Submit` | পড়া | `\u0024mol_hotkey` |\n| `dom_name` | পড়া | `string` |\n| `enabled` | পড়া | `boolean` |\n| `minimal_height` | পড়া | `number` |\n| `autocomplete` | পড়া | `boolean` |\n| `auto` | পড়া | `readonly(any)[]` |\n| `field` | পড়া | `({` |\n| `attr` | পড়া | `({` |\n| `event` | পড়া | `({` |\n| `plugins` | পড়া | `readonly(any)[]` |\n",
+						},
+					},
 				},
 				'api-mol-number': {
 					slug: 'api-mol-number',
 					title: "$mol_number",
 					file: 'content/en/docs/api-mol-number.md',
 					md: "# \u0024mol_number\n\nExtends `\u0024mol_view`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/number)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `precision` | read | `number` |\n| `Hotkey` | read | `\u0024mol_hotkey` |\n| `dec_enabled` | read | `as 'enabled'` |\n| `dec_icon` | read | `\u0024mol_icon_chevron_left` |\n| `Dec` | read | `\u0024mol_button_minor` |\n| `type` | read | `string` |\n| `value_string` | read / write | `string` |\n| `hint` | read | `string` |\n| `string_enabled` | read | `as 'enabled'` |\n| `String` | read | `\u0024mol_string` |\n| `inc_enabled` | read | `as 'enabled'` |\n| `inc_icon` | read | `\u0024mol_icon_chevron_right` |\n| `Inc` | read | `\u0024mol_button_minor` |\n| `precision_view` | read | `as 'precision'` |\n| `precision_change` | read | `as 'precision'` |\n| `boost` | read | `number` |\n| `value_min` | read | `number` |\n| `value_max` | read | `number` |\n| `value` | read / write | `number` |\n| `enabled` | read | `boolean` |\n| `plugins` | read | `readonly(any)[]` |\n| `sub` | read | `readonly(any)[]` |\n",
+					tr: {
+						zh: {
+							title: "$mol_number",
+							md: "# \u0024mol_number\n\n继承自 `\u0024mol_view`。[在 GitHub 上查看源码](https://github.com/hyoo-ru/mam_mol/tree/master/number)\n\n本参考由组件的带类型 `.view.tree` 接口生成。\n\n## 属性\n\n| 属性 | 访问 | 类型 |\n|---|---|---|\n| `precision` | 读 | `number` |\n| `Hotkey` | 读 | `\u0024mol_hotkey` |\n| `dec_enabled` | 读 | `as 'enabled'` |\n| `dec_icon` | 读 | `\u0024mol_icon_chevron_left` |\n| `Dec` | 读 | `\u0024mol_button_minor` |\n| `type` | 读 | `string` |\n| `value_string` | 读 / 写 | `string` |\n| `hint` | 读 | `string` |\n| `string_enabled` | 读 | `as 'enabled'` |\n| `String` | 读 | `\u0024mol_string` |\n| `inc_enabled` | 读 | `as 'enabled'` |\n| `inc_icon` | 读 | `\u0024mol_icon_chevron_right` |\n| `Inc` | 读 | `\u0024mol_button_minor` |\n| `precision_view` | 读 | `as 'precision'` |\n| `precision_change` | 读 | `as 'precision'` |\n| `boost` | 读 | `number` |\n| `value_min` | 读 | `number` |\n| `value_max` | 读 | `number` |\n| `value` | 读 / 写 | `number` |\n| `enabled` | 读 | `boolean` |\n| `plugins` | 读 | `readonly(any)[]` |\n| `sub` | 读 | `readonly(any)[]` |\n",
+						},
+						zh_hk: {
+							title: "$mol_number",
+							md: "# \u0024mol_number\n\n繼承自 `\u0024mol_view`。[在 GitHub 上查看原始碼](https://github.com/hyoo-ru/mam_mol/tree/master/number)\n\n本參考由元件的帶型別 `.view.tree` 介面生成。\n\n## 屬性\n\n| 屬性 | 存取 | 型別 |\n|---|---|---|\n| `precision` | 讀 | `number` |\n| `Hotkey` | 讀 | `\u0024mol_hotkey` |\n| `dec_enabled` | 讀 | `as 'enabled'` |\n| `dec_icon` | 讀 | `\u0024mol_icon_chevron_left` |\n| `Dec` | 讀 | `\u0024mol_button_minor` |\n| `type` | 讀 | `string` |\n| `value_string` | 讀 / 寫 | `string` |\n| `hint` | 讀 | `string` |\n| `string_enabled` | 讀 | `as 'enabled'` |\n| `String` | 讀 | `\u0024mol_string` |\n| `inc_enabled` | 讀 | `as 'enabled'` |\n| `inc_icon` | 讀 | `\u0024mol_icon_chevron_right` |\n| `Inc` | 讀 | `\u0024mol_button_minor` |\n| `precision_view` | 讀 | `as 'precision'` |\n| `precision_change` | 讀 | `as 'precision'` |\n| `boost` | 讀 | `number` |\n| `value_min` | 讀 | `number` |\n| `value_max` | 讀 | `number` |\n| `value` | 讀 / 寫 | `number` |\n| `enabled` | 讀 | `boolean` |\n| `plugins` | 讀 | `readonly(any)[]` |\n| `sub` | 讀 | `readonly(any)[]` |\n",
+						},
+						ja: {
+							title: "$mol_number",
+							md: "# \u0024mol_number\n\n`\u0024mol_view` を継承。[GitHub でソースを見る](https://github.com/hyoo-ru/mam_mol/tree/master/number)\n\nこのリファレンスはコンポーネントの型付き `.view.tree` インターフェイスから生成されています。\n\n## プロパティ\n\n| プロパティ | アクセス | 型 |\n|---|---|---|\n| `precision` | 読み取り | `number` |\n| `Hotkey` | 読み取り | `\u0024mol_hotkey` |\n| `dec_enabled` | 読み取り | `as 'enabled'` |\n| `dec_icon` | 読み取り | `\u0024mol_icon_chevron_left` |\n| `Dec` | 読み取り | `\u0024mol_button_minor` |\n| `type` | 読み取り | `string` |\n| `value_string` | 読み取り / 書き込み | `string` |\n| `hint` | 読み取り | `string` |\n| `string_enabled` | 読み取り | `as 'enabled'` |\n| `String` | 読み取り | `\u0024mol_string` |\n| `inc_enabled` | 読み取り | `as 'enabled'` |\n| `inc_icon` | 読み取り | `\u0024mol_icon_chevron_right` |\n| `Inc` | 読み取り | `\u0024mol_button_minor` |\n| `precision_view` | 読み取り | `as 'precision'` |\n| `precision_change` | 読み取り | `as 'precision'` |\n| `boost` | 読み取り | `number` |\n| `value_min` | 読み取り | `number` |\n| `value_max` | 読み取り | `number` |\n| `value` | 読み取り / 書き込み | `number` |\n| `enabled` | 読み取り | `boolean` |\n| `plugins` | 読み取り | `readonly(any)[]` |\n| `sub` | 読み取り | `readonly(any)[]` |\n",
+						},
+						ko: {
+							title: "$mol_number",
+							md: "# \u0024mol_number\n\n`\u0024mol_view`을(를) 확장합니다. [GitHub에서 소스 보기](https://github.com/hyoo-ru/mam_mol/tree/master/number)\n\n이 레퍼런스는 컴포넌트의 타입이 있는 `.view.tree` 인터페이스에서 생성됩니다.\n\n## 속성\n\n| 속성 | 접근 | 타입 |\n|---|---|---|\n| `precision` | 읽기 | `number` |\n| `Hotkey` | 읽기 | `\u0024mol_hotkey` |\n| `dec_enabled` | 읽기 | `as 'enabled'` |\n| `dec_icon` | 읽기 | `\u0024mol_icon_chevron_left` |\n| `Dec` | 읽기 | `\u0024mol_button_minor` |\n| `type` | 읽기 | `string` |\n| `value_string` | 읽기 / 쓰기 | `string` |\n| `hint` | 읽기 | `string` |\n| `string_enabled` | 읽기 | `as 'enabled'` |\n| `String` | 읽기 | `\u0024mol_string` |\n| `inc_enabled` | 읽기 | `as 'enabled'` |\n| `inc_icon` | 읽기 | `\u0024mol_icon_chevron_right` |\n| `Inc` | 읽기 | `\u0024mol_button_minor` |\n| `precision_view` | 읽기 | `as 'precision'` |\n| `precision_change` | 읽기 | `as 'precision'` |\n| `boost` | 읽기 | `number` |\n| `value_min` | 읽기 | `number` |\n| `value_max` | 읽기 | `number` |\n| `value` | 읽기 / 쓰기 | `number` |\n| `enabled` | 읽기 | `boolean` |\n| `plugins` | 읽기 | `readonly(any)[]` |\n| `sub` | 읽기 | `readonly(any)[]` |\n",
+						},
+						fr: {
+							title: "$mol_number",
+							md: "# \u0024mol_number\n\nÉtend `\u0024mol_view`. [Voir la source sur GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/number)\n\nCette référence est générée à partir de l'interface typée `.view.tree` du composant.\n\n## Propriétés\n\n| Propriété | Accès | Type |\n|---|---|---|\n| `precision` | lecture | `number` |\n| `Hotkey` | lecture | `\u0024mol_hotkey` |\n| `dec_enabled` | lecture | `as 'enabled'` |\n| `dec_icon` | lecture | `\u0024mol_icon_chevron_left` |\n| `Dec` | lecture | `\u0024mol_button_minor` |\n| `type` | lecture | `string` |\n| `value_string` | lecture / écriture | `string` |\n| `hint` | lecture | `string` |\n| `string_enabled` | lecture | `as 'enabled'` |\n| `String` | lecture | `\u0024mol_string` |\n| `inc_enabled` | lecture | `as 'enabled'` |\n| `inc_icon` | lecture | `\u0024mol_icon_chevron_right` |\n| `Inc` | lecture | `\u0024mol_button_minor` |\n| `precision_view` | lecture | `as 'precision'` |\n| `precision_change` | lecture | `as 'precision'` |\n| `boost` | lecture | `number` |\n| `value_min` | lecture | `number` |\n| `value_max` | lecture | `number` |\n| `value` | lecture / écriture | `number` |\n| `enabled` | lecture | `boolean` |\n| `plugins` | lecture | `readonly(any)[]` |\n| `sub` | lecture | `readonly(any)[]` |\n",
+						},
+						de: {
+							title: "$mol_number",
+							md: "# \u0024mol_number\n\nErweitert `\u0024mol_view`. [Quellcode auf GitHub ansehen](https://github.com/hyoo-ru/mam_mol/tree/master/number)\n\nDiese Referenz wird aus der typisierten `.view.tree`-Schnittstelle der Komponente generiert.\n\n## Eigenschaften\n\n| Eigenschaft | Zugriff | Typ |\n|---|---|---|\n| `precision` | Lesen | `number` |\n| `Hotkey` | Lesen | `\u0024mol_hotkey` |\n| `dec_enabled` | Lesen | `as 'enabled'` |\n| `dec_icon` | Lesen | `\u0024mol_icon_chevron_left` |\n| `Dec` | Lesen | `\u0024mol_button_minor` |\n| `type` | Lesen | `string` |\n| `value_string` | Lesen / Schreiben | `string` |\n| `hint` | Lesen | `string` |\n| `string_enabled` | Lesen | `as 'enabled'` |\n| `String` | Lesen | `\u0024mol_string` |\n| `inc_enabled` | Lesen | `as 'enabled'` |\n| `inc_icon` | Lesen | `\u0024mol_icon_chevron_right` |\n| `Inc` | Lesen | `\u0024mol_button_minor` |\n| `precision_view` | Lesen | `as 'precision'` |\n| `precision_change` | Lesen | `as 'precision'` |\n| `boost` | Lesen | `number` |\n| `value_min` | Lesen | `number` |\n| `value_max` | Lesen | `number` |\n| `value` | Lesen / Schreiben | `number` |\n| `enabled` | Lesen | `boolean` |\n| `plugins` | Lesen | `readonly(any)[]` |\n| `sub` | Lesen | `readonly(any)[]` |\n",
+						},
+						pt: {
+							title: "$mol_number",
+							md: "# \u0024mol_number\n\nEstende `\u0024mol_view`. [Ver o código-fonte no GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/number)\n\nEsta referência é gerada a partir da interface tipada `.view.tree` do componente.\n\n## Propriedades\n\n| Propriedade | Acesso | Tipo |\n|---|---|---|\n| `precision` | leitura | `number` |\n| `Hotkey` | leitura | `\u0024mol_hotkey` |\n| `dec_enabled` | leitura | `as 'enabled'` |\n| `dec_icon` | leitura | `\u0024mol_icon_chevron_left` |\n| `Dec` | leitura | `\u0024mol_button_minor` |\n| `type` | leitura | `string` |\n| `value_string` | leitura / escrita | `string` |\n| `hint` | leitura | `string` |\n| `string_enabled` | leitura | `as 'enabled'` |\n| `String` | leitura | `\u0024mol_string` |\n| `inc_enabled` | leitura | `as 'enabled'` |\n| `inc_icon` | leitura | `\u0024mol_icon_chevron_right` |\n| `Inc` | leitura | `\u0024mol_button_minor` |\n| `precision_view` | leitura | `as 'precision'` |\n| `precision_change` | leitura | `as 'precision'` |\n| `boost` | leitura | `number` |\n| `value_min` | leitura | `number` |\n| `value_max` | leitura | `number` |\n| `value` | leitura / escrita | `number` |\n| `enabled` | leitura | `boolean` |\n| `plugins` | leitura | `readonly(any)[]` |\n| `sub` | leitura | `readonly(any)[]` |\n",
+						},
+						it: {
+							title: "$mol_number",
+							md: "# \u0024mol_number\n\nEstende `\u0024mol_view`. [Vedi il sorgente su GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/number)\n\nQuesto riferimento è generato dall'interfaccia tipizzata `.view.tree` del componente.\n\n## Proprietà\n\n| Proprietà | Accesso | Tipo |\n|---|---|---|\n| `precision` | lettura | `number` |\n| `Hotkey` | lettura | `\u0024mol_hotkey` |\n| `dec_enabled` | lettura | `as 'enabled'` |\n| `dec_icon` | lettura | `\u0024mol_icon_chevron_left` |\n| `Dec` | lettura | `\u0024mol_button_minor` |\n| `type` | lettura | `string` |\n| `value_string` | lettura / scrittura | `string` |\n| `hint` | lettura | `string` |\n| `string_enabled` | lettura | `as 'enabled'` |\n| `String` | lettura | `\u0024mol_string` |\n| `inc_enabled` | lettura | `as 'enabled'` |\n| `inc_icon` | lettura | `\u0024mol_icon_chevron_right` |\n| `Inc` | lettura | `\u0024mol_button_minor` |\n| `precision_view` | lettura | `as 'precision'` |\n| `precision_change` | lettura | `as 'precision'` |\n| `boost` | lettura | `number` |\n| `value_min` | lettura | `number` |\n| `value_max` | lettura | `number` |\n| `value` | lettura / scrittura | `number` |\n| `enabled` | lettura | `boolean` |\n| `plugins` | lettura | `readonly(any)[]` |\n| `sub` | lettura | `readonly(any)[]` |\n",
+						},
+						uk: {
+							title: "$mol_number",
+							md: "# \u0024mol_number\n\nРозширює `\u0024mol_view`. [Переглянути код на GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/number)\n\nЦей довідник згенеровано з типізованого інтерфейсу `.view.tree` компонента.\n\n## Властивості\n\n| Властивість | Доступ | Тип |\n|---|---|---|\n| `precision` | читання | `number` |\n| `Hotkey` | читання | `\u0024mol_hotkey` |\n| `dec_enabled` | читання | `as 'enabled'` |\n| `dec_icon` | читання | `\u0024mol_icon_chevron_left` |\n| `Dec` | читання | `\u0024mol_button_minor` |\n| `type` | читання | `string` |\n| `value_string` | читання / запис | `string` |\n| `hint` | читання | `string` |\n| `string_enabled` | читання | `as 'enabled'` |\n| `String` | читання | `\u0024mol_string` |\n| `inc_enabled` | читання | `as 'enabled'` |\n| `inc_icon` | читання | `\u0024mol_icon_chevron_right` |\n| `Inc` | читання | `\u0024mol_button_minor` |\n| `precision_view` | читання | `as 'precision'` |\n| `precision_change` | читання | `as 'precision'` |\n| `boost` | читання | `number` |\n| `value_min` | читання | `number` |\n| `value_max` | читання | `number` |\n| `value` | читання / запис | `number` |\n| `enabled` | читання | `boolean` |\n| `plugins` | читання | `readonly(any)[]` |\n| `sub` | читання | `readonly(any)[]` |\n",
+						},
+						pl: {
+							title: "$mol_number",
+							md: "# \u0024mol_number\n\nRozszerza `\u0024mol_view`. [Zobacz źródło na GitHubie](https://github.com/hyoo-ru/mam_mol/tree/master/number)\n\nTa referencja jest generowana z typowanego interfejsu `.view.tree` komponentu.\n\n## Właściwości\n\n| Właściwość | Dostęp | Typ |\n|---|---|---|\n| `precision` | odczyt | `number` |\n| `Hotkey` | odczyt | `\u0024mol_hotkey` |\n| `dec_enabled` | odczyt | `as 'enabled'` |\n| `dec_icon` | odczyt | `\u0024mol_icon_chevron_left` |\n| `Dec` | odczyt | `\u0024mol_button_minor` |\n| `type` | odczyt | `string` |\n| `value_string` | odczyt / zapis | `string` |\n| `hint` | odczyt | `string` |\n| `string_enabled` | odczyt | `as 'enabled'` |\n| `String` | odczyt | `\u0024mol_string` |\n| `inc_enabled` | odczyt | `as 'enabled'` |\n| `inc_icon` | odczyt | `\u0024mol_icon_chevron_right` |\n| `Inc` | odczyt | `\u0024mol_button_minor` |\n| `precision_view` | odczyt | `as 'precision'` |\n| `precision_change` | odczyt | `as 'precision'` |\n| `boost` | odczyt | `number` |\n| `value_min` | odczyt | `number` |\n| `value_max` | odczyt | `number` |\n| `value` | odczyt / zapis | `number` |\n| `enabled` | odczyt | `boolean` |\n| `plugins` | odczyt | `readonly(any)[]` |\n| `sub` | odczyt | `readonly(any)[]` |\n",
+						},
+						cs: {
+							title: "$mol_number",
+							md: "# \u0024mol_number\n\nRozšiřuje `\u0024mol_view`. [Zobrazit zdroj na GitHubu](https://github.com/hyoo-ru/mam_mol/tree/master/number)\n\nTato reference je generována z typovaného rozhraní `.view.tree` komponenty.\n\n## Vlastnosti\n\n| Vlastnost | Přístup | Typ |\n|---|---|---|\n| `precision` | čtení | `number` |\n| `Hotkey` | čtení | `\u0024mol_hotkey` |\n| `dec_enabled` | čtení | `as 'enabled'` |\n| `dec_icon` | čtení | `\u0024mol_icon_chevron_left` |\n| `Dec` | čtení | `\u0024mol_button_minor` |\n| `type` | čtení | `string` |\n| `value_string` | čtení / zápis | `string` |\n| `hint` | čtení | `string` |\n| `string_enabled` | čtení | `as 'enabled'` |\n| `String` | čtení | `\u0024mol_string` |\n| `inc_enabled` | čtení | `as 'enabled'` |\n| `inc_icon` | čtení | `\u0024mol_icon_chevron_right` |\n| `Inc` | čtení | `\u0024mol_button_minor` |\n| `precision_view` | čtení | `as 'precision'` |\n| `precision_change` | čtení | `as 'precision'` |\n| `boost` | čtení | `number` |\n| `value_min` | čtení | `number` |\n| `value_max` | čtení | `number` |\n| `value` | čtení / zápis | `number` |\n| `enabled` | čtení | `boolean` |\n| `plugins` | čtení | `readonly(any)[]` |\n| `sub` | čtení | `readonly(any)[]` |\n",
+						},
+						fa: {
+							title: "$mol_number",
+							md: "# \u0024mol_number\n\n`\u0024mol_view` را گسترش می‌دهد. [دیدنِ سورس در GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/number)\n\nاین مرجع از واسطِ نوع‌دارِ `.view.tree`ِ کامپوننت تولید شده است.\n\n## ویژگی‌ها\n\n| ویژگی | دسترسی | نوع |\n|---|---|---|\n| `precision` | خواندن | `number` |\n| `Hotkey` | خواندن | `\u0024mol_hotkey` |\n| `dec_enabled` | خواندن | `as 'enabled'` |\n| `dec_icon` | خواندن | `\u0024mol_icon_chevron_left` |\n| `Dec` | خواندن | `\u0024mol_button_minor` |\n| `type` | خواندن | `string` |\n| `value_string` | خواندن / نوشتن | `string` |\n| `hint` | خواندن | `string` |\n| `string_enabled` | خواندن | `as 'enabled'` |\n| `String` | خواندن | `\u0024mol_string` |\n| `inc_enabled` | خواندن | `as 'enabled'` |\n| `inc_icon` | خواندن | `\u0024mol_icon_chevron_right` |\n| `Inc` | خواندن | `\u0024mol_button_minor` |\n| `precision_view` | خواندن | `as 'precision'` |\n| `precision_change` | خواندن | `as 'precision'` |\n| `boost` | خواندن | `number` |\n| `value_min` | خواندن | `number` |\n| `value_max` | خواندن | `number` |\n| `value` | خواندن / نوشتن | `number` |\n| `enabled` | خواندن | `boolean` |\n| `plugins` | خواندن | `readonly(any)[]` |\n| `sub` | خواندن | `readonly(any)[]` |\n",
+						},
+						bn: {
+							title: "$mol_number",
+							md: "# \u0024mol_number\n\n`\u0024mol_view` কে এক্সটেন্ড করে। [GitHub-এ সোর্স দেখুন](https://github.com/hyoo-ru/mam_mol/tree/master/number)\n\nএই রেফারেন্স কম্পোনেন্টের টাইপড `.view.tree` ইন্টারফেস থেকে জেনারেট করা হয়।\n\n## প্রপার্টি\n\n| প্রপার্টি | অ্যাক্সেস | টাইপ |\n|---|---|---|\n| `precision` | পড়া | `number` |\n| `Hotkey` | পড়া | `\u0024mol_hotkey` |\n| `dec_enabled` | পড়া | `as 'enabled'` |\n| `dec_icon` | পড়া | `\u0024mol_icon_chevron_left` |\n| `Dec` | পড়া | `\u0024mol_button_minor` |\n| `type` | পড়া | `string` |\n| `value_string` | পড়া / লেখা | `string` |\n| `hint` | পড়া | `string` |\n| `string_enabled` | পড়া | `as 'enabled'` |\n| `String` | পড়া | `\u0024mol_string` |\n| `inc_enabled` | পড়া | `as 'enabled'` |\n| `inc_icon` | পড়া | `\u0024mol_icon_chevron_right` |\n| `Inc` | পড়া | `\u0024mol_button_minor` |\n| `precision_view` | পড়া | `as 'precision'` |\n| `precision_change` | পড়া | `as 'precision'` |\n| `boost` | পড়া | `number` |\n| `value_min` | পড়া | `number` |\n| `value_max` | পড়া | `number` |\n| `value` | পড়া / লেখা | `number` |\n| `enabled` | পড়া | `boolean` |\n| `plugins` | পড়া | `readonly(any)[]` |\n| `sub` | পড়া | `readonly(any)[]` |\n",
+						},
+					},
 				},
 				'api-mol-text': {
 					slug: 'api-mol-text',
 					title: "$mol_text",
 					file: 'content/en/docs/api-mol-text.md',
 					md: "# \u0024mol_text\n\nExtends `\u0024mol_list`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/text/text)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `highlight` | read | `string` |\n| `code_sidebar_showed` | read | `boolean` |\n| `pre_sidebar_showed` | read | `as 'code_sidebar_showed'` |\n| `uri_base` | read | `string` |\n| `text` | read | `string` |\n| `param` | read | `string` |\n| `flow_tokens` | read | `readonly(any)[]` |\n| `auto` | read | `readonly(any)[]` |\n",
+					tr: {
+						zh: {
+							title: "$mol_text",
+							md: "# \u0024mol_text\n\n继承自 `\u0024mol_list`。[在 GitHub 上查看源码](https://github.com/hyoo-ru/mam_mol/tree/master/text/text)\n\n本参考由组件的带类型 `.view.tree` 接口生成。\n\n## 属性\n\n| 属性 | 访问 | 类型 |\n|---|---|---|\n| `highlight` | 读 | `string` |\n| `code_sidebar_showed` | 读 | `boolean` |\n| `pre_sidebar_showed` | 读 | `as 'code_sidebar_showed'` |\n| `uri_base` | 读 | `string` |\n| `text` | 读 | `string` |\n| `param` | 读 | `string` |\n| `flow_tokens` | 读 | `readonly(any)[]` |\n| `auto` | 读 | `readonly(any)[]` |\n",
+						},
+						zh_hk: {
+							title: "$mol_text",
+							md: "# \u0024mol_text\n\n繼承自 `\u0024mol_list`。[在 GitHub 上查看原始碼](https://github.com/hyoo-ru/mam_mol/tree/master/text/text)\n\n本參考由元件的帶型別 `.view.tree` 介面生成。\n\n## 屬性\n\n| 屬性 | 存取 | 型別 |\n|---|---|---|\n| `highlight` | 讀 | `string` |\n| `code_sidebar_showed` | 讀 | `boolean` |\n| `pre_sidebar_showed` | 讀 | `as 'code_sidebar_showed'` |\n| `uri_base` | 讀 | `string` |\n| `text` | 讀 | `string` |\n| `param` | 讀 | `string` |\n| `flow_tokens` | 讀 | `readonly(any)[]` |\n| `auto` | 讀 | `readonly(any)[]` |\n",
+						},
+						ja: {
+							title: "$mol_text",
+							md: "# \u0024mol_text\n\n`\u0024mol_list` を継承。[GitHub でソースを見る](https://github.com/hyoo-ru/mam_mol/tree/master/text/text)\n\nこのリファレンスはコンポーネントの型付き `.view.tree` インターフェイスから生成されています。\n\n## プロパティ\n\n| プロパティ | アクセス | 型 |\n|---|---|---|\n| `highlight` | 読み取り | `string` |\n| `code_sidebar_showed` | 読み取り | `boolean` |\n| `pre_sidebar_showed` | 読み取り | `as 'code_sidebar_showed'` |\n| `uri_base` | 読み取り | `string` |\n| `text` | 読み取り | `string` |\n| `param` | 読み取り | `string` |\n| `flow_tokens` | 読み取り | `readonly(any)[]` |\n| `auto` | 読み取り | `readonly(any)[]` |\n",
+						},
+						ko: {
+							title: "$mol_text",
+							md: "# \u0024mol_text\n\n`\u0024mol_list`을(를) 확장합니다. [GitHub에서 소스 보기](https://github.com/hyoo-ru/mam_mol/tree/master/text/text)\n\n이 레퍼런스는 컴포넌트의 타입이 있는 `.view.tree` 인터페이스에서 생성됩니다.\n\n## 속성\n\n| 속성 | 접근 | 타입 |\n|---|---|---|\n| `highlight` | 읽기 | `string` |\n| `code_sidebar_showed` | 읽기 | `boolean` |\n| `pre_sidebar_showed` | 읽기 | `as 'code_sidebar_showed'` |\n| `uri_base` | 읽기 | `string` |\n| `text` | 읽기 | `string` |\n| `param` | 읽기 | `string` |\n| `flow_tokens` | 읽기 | `readonly(any)[]` |\n| `auto` | 읽기 | `readonly(any)[]` |\n",
+						},
+						fr: {
+							title: "$mol_text",
+							md: "# \u0024mol_text\n\nÉtend `\u0024mol_list`. [Voir la source sur GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/text/text)\n\nCette référence est générée à partir de l'interface typée `.view.tree` du composant.\n\n## Propriétés\n\n| Propriété | Accès | Type |\n|---|---|---|\n| `highlight` | lecture | `string` |\n| `code_sidebar_showed` | lecture | `boolean` |\n| `pre_sidebar_showed` | lecture | `as 'code_sidebar_showed'` |\n| `uri_base` | lecture | `string` |\n| `text` | lecture | `string` |\n| `param` | lecture | `string` |\n| `flow_tokens` | lecture | `readonly(any)[]` |\n| `auto` | lecture | `readonly(any)[]` |\n",
+						},
+						de: {
+							title: "$mol_text",
+							md: "# \u0024mol_text\n\nErweitert `\u0024mol_list`. [Quellcode auf GitHub ansehen](https://github.com/hyoo-ru/mam_mol/tree/master/text/text)\n\nDiese Referenz wird aus der typisierten `.view.tree`-Schnittstelle der Komponente generiert.\n\n## Eigenschaften\n\n| Eigenschaft | Zugriff | Typ |\n|---|---|---|\n| `highlight` | Lesen | `string` |\n| `code_sidebar_showed` | Lesen | `boolean` |\n| `pre_sidebar_showed` | Lesen | `as 'code_sidebar_showed'` |\n| `uri_base` | Lesen | `string` |\n| `text` | Lesen | `string` |\n| `param` | Lesen | `string` |\n| `flow_tokens` | Lesen | `readonly(any)[]` |\n| `auto` | Lesen | `readonly(any)[]` |\n",
+						},
+						pt: {
+							title: "$mol_text",
+							md: "# \u0024mol_text\n\nEstende `\u0024mol_list`. [Ver o código-fonte no GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/text/text)\n\nEsta referência é gerada a partir da interface tipada `.view.tree` do componente.\n\n## Propriedades\n\n| Propriedade | Acesso | Tipo |\n|---|---|---|\n| `highlight` | leitura | `string` |\n| `code_sidebar_showed` | leitura | `boolean` |\n| `pre_sidebar_showed` | leitura | `as 'code_sidebar_showed'` |\n| `uri_base` | leitura | `string` |\n| `text` | leitura | `string` |\n| `param` | leitura | `string` |\n| `flow_tokens` | leitura | `readonly(any)[]` |\n| `auto` | leitura | `readonly(any)[]` |\n",
+						},
+						it: {
+							title: "$mol_text",
+							md: "# \u0024mol_text\n\nEstende `\u0024mol_list`. [Vedi il sorgente su GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/text/text)\n\nQuesto riferimento è generato dall'interfaccia tipizzata `.view.tree` del componente.\n\n## Proprietà\n\n| Proprietà | Accesso | Tipo |\n|---|---|---|\n| `highlight` | lettura | `string` |\n| `code_sidebar_showed` | lettura | `boolean` |\n| `pre_sidebar_showed` | lettura | `as 'code_sidebar_showed'` |\n| `uri_base` | lettura | `string` |\n| `text` | lettura | `string` |\n| `param` | lettura | `string` |\n| `flow_tokens` | lettura | `readonly(any)[]` |\n| `auto` | lettura | `readonly(any)[]` |\n",
+						},
+						uk: {
+							title: "$mol_text",
+							md: "# \u0024mol_text\n\nРозширює `\u0024mol_list`. [Переглянути код на GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/text/text)\n\nЦей довідник згенеровано з типізованого інтерфейсу `.view.tree` компонента.\n\n## Властивості\n\n| Властивість | Доступ | Тип |\n|---|---|---|\n| `highlight` | читання | `string` |\n| `code_sidebar_showed` | читання | `boolean` |\n| `pre_sidebar_showed` | читання | `as 'code_sidebar_showed'` |\n| `uri_base` | читання | `string` |\n| `text` | читання | `string` |\n| `param` | читання | `string` |\n| `flow_tokens` | читання | `readonly(any)[]` |\n| `auto` | читання | `readonly(any)[]` |\n",
+						},
+						pl: {
+							title: "$mol_text",
+							md: "# \u0024mol_text\n\nRozszerza `\u0024mol_list`. [Zobacz źródło na GitHubie](https://github.com/hyoo-ru/mam_mol/tree/master/text/text)\n\nTa referencja jest generowana z typowanego interfejsu `.view.tree` komponentu.\n\n## Właściwości\n\n| Właściwość | Dostęp | Typ |\n|---|---|---|\n| `highlight` | odczyt | `string` |\n| `code_sidebar_showed` | odczyt | `boolean` |\n| `pre_sidebar_showed` | odczyt | `as 'code_sidebar_showed'` |\n| `uri_base` | odczyt | `string` |\n| `text` | odczyt | `string` |\n| `param` | odczyt | `string` |\n| `flow_tokens` | odczyt | `readonly(any)[]` |\n| `auto` | odczyt | `readonly(any)[]` |\n",
+						},
+						cs: {
+							title: "$mol_text",
+							md: "# \u0024mol_text\n\nRozšiřuje `\u0024mol_list`. [Zobrazit zdroj na GitHubu](https://github.com/hyoo-ru/mam_mol/tree/master/text/text)\n\nTato reference je generována z typovaného rozhraní `.view.tree` komponenty.\n\n## Vlastnosti\n\n| Vlastnost | Přístup | Typ |\n|---|---|---|\n| `highlight` | čtení | `string` |\n| `code_sidebar_showed` | čtení | `boolean` |\n| `pre_sidebar_showed` | čtení | `as 'code_sidebar_showed'` |\n| `uri_base` | čtení | `string` |\n| `text` | čtení | `string` |\n| `param` | čtení | `string` |\n| `flow_tokens` | čtení | `readonly(any)[]` |\n| `auto` | čtení | `readonly(any)[]` |\n",
+						},
+						fa: {
+							title: "$mol_text",
+							md: "# \u0024mol_text\n\n`\u0024mol_list` را گسترش می‌دهد. [دیدنِ سورس در GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/text/text)\n\nاین مرجع از واسطِ نوع‌دارِ `.view.tree`ِ کامپوننت تولید شده است.\n\n## ویژگی‌ها\n\n| ویژگی | دسترسی | نوع |\n|---|---|---|\n| `highlight` | خواندن | `string` |\n| `code_sidebar_showed` | خواندن | `boolean` |\n| `pre_sidebar_showed` | خواندن | `as 'code_sidebar_showed'` |\n| `uri_base` | خواندن | `string` |\n| `text` | خواندن | `string` |\n| `param` | خواندن | `string` |\n| `flow_tokens` | خواندن | `readonly(any)[]` |\n| `auto` | خواندن | `readonly(any)[]` |\n",
+						},
+						bn: {
+							title: "$mol_text",
+							md: "# \u0024mol_text\n\n`\u0024mol_list` কে এক্সটেন্ড করে। [GitHub-এ সোর্স দেখুন](https://github.com/hyoo-ru/mam_mol/tree/master/text/text)\n\nএই রেফারেন্স কম্পোনেন্টের টাইপড `.view.tree` ইন্টারফেস থেকে জেনারেট করা হয়।\n\n## প্রপার্টি\n\n| প্রপার্টি | অ্যাক্সেস | টাইপ |\n|---|---|---|\n| `highlight` | পড়া | `string` |\n| `code_sidebar_showed` | পড়া | `boolean` |\n| `pre_sidebar_showed` | পড়া | `as 'code_sidebar_showed'` |\n| `uri_base` | পড়া | `string` |\n| `text` | পড়া | `string` |\n| `param` | পড়া | `string` |\n| `flow_tokens` | পড়া | `readonly(any)[]` |\n| `auto` | পড়া | `readonly(any)[]` |\n",
+						},
+					},
 				},
 				'api-mol-paragraph': {
 					slug: 'api-mol-paragraph',
 					title: "$mol_paragraph",
 					file: 'content/en/docs/api-mol-paragraph.md',
 					md: "# \u0024mol_paragraph\n\nExtends `\u0024mol_view`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/paragraph)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `line_height` | read | `number` |\n| `letter_width` | read | `number` |\n| `width_limit` | read | `number` |\n| `row_width` | read | `number` |\n| `sub` | read | `readonly(any)[]` |\n",
+					tr: {
+						zh: {
+							title: "$mol_paragraph",
+							md: "# \u0024mol_paragraph\n\n继承自 `\u0024mol_view`。[在 GitHub 上查看源码](https://github.com/hyoo-ru/mam_mol/tree/master/paragraph)\n\n本参考由组件的带类型 `.view.tree` 接口生成。\n\n## 属性\n\n| 属性 | 访问 | 类型 |\n|---|---|---|\n| `line_height` | 读 | `number` |\n| `letter_width` | 读 | `number` |\n| `width_limit` | 读 | `number` |\n| `row_width` | 读 | `number` |\n| `sub` | 读 | `readonly(any)[]` |\n",
+						},
+						zh_hk: {
+							title: "$mol_paragraph",
+							md: "# \u0024mol_paragraph\n\n繼承自 `\u0024mol_view`。[在 GitHub 上查看原始碼](https://github.com/hyoo-ru/mam_mol/tree/master/paragraph)\n\n本參考由元件的帶型別 `.view.tree` 介面生成。\n\n## 屬性\n\n| 屬性 | 存取 | 型別 |\n|---|---|---|\n| `line_height` | 讀 | `number` |\n| `letter_width` | 讀 | `number` |\n| `width_limit` | 讀 | `number` |\n| `row_width` | 讀 | `number` |\n| `sub` | 讀 | `readonly(any)[]` |\n",
+						},
+						ja: {
+							title: "$mol_paragraph",
+							md: "# \u0024mol_paragraph\n\n`\u0024mol_view` を継承。[GitHub でソースを見る](https://github.com/hyoo-ru/mam_mol/tree/master/paragraph)\n\nこのリファレンスはコンポーネントの型付き `.view.tree` インターフェイスから生成されています。\n\n## プロパティ\n\n| プロパティ | アクセス | 型 |\n|---|---|---|\n| `line_height` | 読み取り | `number` |\n| `letter_width` | 読み取り | `number` |\n| `width_limit` | 読み取り | `number` |\n| `row_width` | 読み取り | `number` |\n| `sub` | 読み取り | `readonly(any)[]` |\n",
+						},
+						ko: {
+							title: "$mol_paragraph",
+							md: "# \u0024mol_paragraph\n\n`\u0024mol_view`을(를) 확장합니다. [GitHub에서 소스 보기](https://github.com/hyoo-ru/mam_mol/tree/master/paragraph)\n\n이 레퍼런스는 컴포넌트의 타입이 있는 `.view.tree` 인터페이스에서 생성됩니다.\n\n## 속성\n\n| 속성 | 접근 | 타입 |\n|---|---|---|\n| `line_height` | 읽기 | `number` |\n| `letter_width` | 읽기 | `number` |\n| `width_limit` | 읽기 | `number` |\n| `row_width` | 읽기 | `number` |\n| `sub` | 읽기 | `readonly(any)[]` |\n",
+						},
+						fr: {
+							title: "$mol_paragraph",
+							md: "# \u0024mol_paragraph\n\nÉtend `\u0024mol_view`. [Voir la source sur GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/paragraph)\n\nCette référence est générée à partir de l'interface typée `.view.tree` du composant.\n\n## Propriétés\n\n| Propriété | Accès | Type |\n|---|---|---|\n| `line_height` | lecture | `number` |\n| `letter_width` | lecture | `number` |\n| `width_limit` | lecture | `number` |\n| `row_width` | lecture | `number` |\n| `sub` | lecture | `readonly(any)[]` |\n",
+						},
+						de: {
+							title: "$mol_paragraph",
+							md: "# \u0024mol_paragraph\n\nErweitert `\u0024mol_view`. [Quellcode auf GitHub ansehen](https://github.com/hyoo-ru/mam_mol/tree/master/paragraph)\n\nDiese Referenz wird aus der typisierten `.view.tree`-Schnittstelle der Komponente generiert.\n\n## Eigenschaften\n\n| Eigenschaft | Zugriff | Typ |\n|---|---|---|\n| `line_height` | Lesen | `number` |\n| `letter_width` | Lesen | `number` |\n| `width_limit` | Lesen | `number` |\n| `row_width` | Lesen | `number` |\n| `sub` | Lesen | `readonly(any)[]` |\n",
+						},
+						pt: {
+							title: "$mol_paragraph",
+							md: "# \u0024mol_paragraph\n\nEstende `\u0024mol_view`. [Ver o código-fonte no GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/paragraph)\n\nEsta referência é gerada a partir da interface tipada `.view.tree` do componente.\n\n## Propriedades\n\n| Propriedade | Acesso | Tipo |\n|---|---|---|\n| `line_height` | leitura | `number` |\n| `letter_width` | leitura | `number` |\n| `width_limit` | leitura | `number` |\n| `row_width` | leitura | `number` |\n| `sub` | leitura | `readonly(any)[]` |\n",
+						},
+						it: {
+							title: "$mol_paragraph",
+							md: "# \u0024mol_paragraph\n\nEstende `\u0024mol_view`. [Vedi il sorgente su GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/paragraph)\n\nQuesto riferimento è generato dall'interfaccia tipizzata `.view.tree` del componente.\n\n## Proprietà\n\n| Proprietà | Accesso | Tipo |\n|---|---|---|\n| `line_height` | lettura | `number` |\n| `letter_width` | lettura | `number` |\n| `width_limit` | lettura | `number` |\n| `row_width` | lettura | `number` |\n| `sub` | lettura | `readonly(any)[]` |\n",
+						},
+						uk: {
+							title: "$mol_paragraph",
+							md: "# \u0024mol_paragraph\n\nРозширює `\u0024mol_view`. [Переглянути код на GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/paragraph)\n\nЦей довідник згенеровано з типізованого інтерфейсу `.view.tree` компонента.\n\n## Властивості\n\n| Властивість | Доступ | Тип |\n|---|---|---|\n| `line_height` | читання | `number` |\n| `letter_width` | читання | `number` |\n| `width_limit` | читання | `number` |\n| `row_width` | читання | `number` |\n| `sub` | читання | `readonly(any)[]` |\n",
+						},
+						pl: {
+							title: "$mol_paragraph",
+							md: "# \u0024mol_paragraph\n\nRozszerza `\u0024mol_view`. [Zobacz źródło na GitHubie](https://github.com/hyoo-ru/mam_mol/tree/master/paragraph)\n\nTa referencja jest generowana z typowanego interfejsu `.view.tree` komponentu.\n\n## Właściwości\n\n| Właściwość | Dostęp | Typ |\n|---|---|---|\n| `line_height` | odczyt | `number` |\n| `letter_width` | odczyt | `number` |\n| `width_limit` | odczyt | `number` |\n| `row_width` | odczyt | `number` |\n| `sub` | odczyt | `readonly(any)[]` |\n",
+						},
+						cs: {
+							title: "$mol_paragraph",
+							md: "# \u0024mol_paragraph\n\nRozšiřuje `\u0024mol_view`. [Zobrazit zdroj na GitHubu](https://github.com/hyoo-ru/mam_mol/tree/master/paragraph)\n\nTato reference je generována z typovaného rozhraní `.view.tree` komponenty.\n\n## Vlastnosti\n\n| Vlastnost | Přístup | Typ |\n|---|---|---|\n| `line_height` | čtení | `number` |\n| `letter_width` | čtení | `number` |\n| `width_limit` | čtení | `number` |\n| `row_width` | čtení | `number` |\n| `sub` | čtení | `readonly(any)[]` |\n",
+						},
+						fa: {
+							title: "$mol_paragraph",
+							md: "# \u0024mol_paragraph\n\n`\u0024mol_view` را گسترش می‌دهد. [دیدنِ سورس در GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/paragraph)\n\nاین مرجع از واسطِ نوع‌دارِ `.view.tree`ِ کامپوننت تولید شده است.\n\n## ویژگی‌ها\n\n| ویژگی | دسترسی | نوع |\n|---|---|---|\n| `line_height` | خواندن | `number` |\n| `letter_width` | خواندن | `number` |\n| `width_limit` | خواندن | `number` |\n| `row_width` | خواندن | `number` |\n| `sub` | خواندن | `readonly(any)[]` |\n",
+						},
+						bn: {
+							title: "$mol_paragraph",
+							md: "# \u0024mol_paragraph\n\n`\u0024mol_view` কে এক্সটেন্ড করে। [GitHub-এ সোর্স দেখুন](https://github.com/hyoo-ru/mam_mol/tree/master/paragraph)\n\nএই রেফারেন্স কম্পোনেন্টের টাইপড `.view.tree` ইন্টারফেস থেকে জেনারেট করা হয়।\n\n## প্রপার্টি\n\n| প্রপার্টি | অ্যাক্সেস | টাইপ |\n|---|---|---|\n| `line_height` | পড়া | `number` |\n| `letter_width` | পড়া | `number` |\n| `width_limit` | পড়া | `number` |\n| `row_width` | পড়া | `number` |\n| `sub` | পড়া | `readonly(any)[]` |\n",
+						},
+					},
 				},
 				'api-mol-list': {
 					slug: 'api-mol-list',
 					title: "$mol_list",
 					file: 'content/en/docs/api-mol-list.md',
 					md: "# \u0024mol_list\n\nExtends `\u0024mol_view`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/list)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `gap_before` | read | `number` |\n| `Gap_before` | read | `\u0024mol_view` |\n| `Empty` | read | `\u0024mol_view` |\n| `gap_after` | read | `number` |\n| `Gap_after` | read | `\u0024mol_view` |\n| `rows` | read | `readonly(\u0024mol_view)[]` |\n| `render_visible_only` | read | `boolean` |\n| `render_over` | read | `number` |\n| `sub` | read | `as 'rows'` |\n| `view_window_shift` | read / write | `number` |\n| `view_window` | read | `readonly(any)[]` |\n",
+					tr: {
+						zh: {
+							title: "$mol_list",
+							md: "# \u0024mol_list\n\n继承自 `\u0024mol_view`。[在 GitHub 上查看源码](https://github.com/hyoo-ru/mam_mol/tree/master/list)\n\n本参考由组件的带类型 `.view.tree` 接口生成。\n\n## 属性\n\n| 属性 | 访问 | 类型 |\n|---|---|---|\n| `gap_before` | 读 | `number` |\n| `Gap_before` | 读 | `\u0024mol_view` |\n| `Empty` | 读 | `\u0024mol_view` |\n| `gap_after` | 读 | `number` |\n| `Gap_after` | 读 | `\u0024mol_view` |\n| `rows` | 读 | `readonly(\u0024mol_view)[]` |\n| `render_visible_only` | 读 | `boolean` |\n| `render_over` | 读 | `number` |\n| `sub` | 读 | `as 'rows'` |\n| `view_window_shift` | 读 / 写 | `number` |\n| `view_window` | 读 | `readonly(any)[]` |\n",
+						},
+						zh_hk: {
+							title: "$mol_list",
+							md: "# \u0024mol_list\n\n繼承自 `\u0024mol_view`。[在 GitHub 上查看原始碼](https://github.com/hyoo-ru/mam_mol/tree/master/list)\n\n本參考由元件的帶型別 `.view.tree` 介面生成。\n\n## 屬性\n\n| 屬性 | 存取 | 型別 |\n|---|---|---|\n| `gap_before` | 讀 | `number` |\n| `Gap_before` | 讀 | `\u0024mol_view` |\n| `Empty` | 讀 | `\u0024mol_view` |\n| `gap_after` | 讀 | `number` |\n| `Gap_after` | 讀 | `\u0024mol_view` |\n| `rows` | 讀 | `readonly(\u0024mol_view)[]` |\n| `render_visible_only` | 讀 | `boolean` |\n| `render_over` | 讀 | `number` |\n| `sub` | 讀 | `as 'rows'` |\n| `view_window_shift` | 讀 / 寫 | `number` |\n| `view_window` | 讀 | `readonly(any)[]` |\n",
+						},
+						ja: {
+							title: "$mol_list",
+							md: "# \u0024mol_list\n\n`\u0024mol_view` を継承。[GitHub でソースを見る](https://github.com/hyoo-ru/mam_mol/tree/master/list)\n\nこのリファレンスはコンポーネントの型付き `.view.tree` インターフェイスから生成されています。\n\n## プロパティ\n\n| プロパティ | アクセス | 型 |\n|---|---|---|\n| `gap_before` | 読み取り | `number` |\n| `Gap_before` | 読み取り | `\u0024mol_view` |\n| `Empty` | 読み取り | `\u0024mol_view` |\n| `gap_after` | 読み取り | `number` |\n| `Gap_after` | 読み取り | `\u0024mol_view` |\n| `rows` | 読み取り | `readonly(\u0024mol_view)[]` |\n| `render_visible_only` | 読み取り | `boolean` |\n| `render_over` | 読み取り | `number` |\n| `sub` | 読み取り | `as 'rows'` |\n| `view_window_shift` | 読み取り / 書き込み | `number` |\n| `view_window` | 読み取り | `readonly(any)[]` |\n",
+						},
+						ko: {
+							title: "$mol_list",
+							md: "# \u0024mol_list\n\n`\u0024mol_view`을(를) 확장합니다. [GitHub에서 소스 보기](https://github.com/hyoo-ru/mam_mol/tree/master/list)\n\n이 레퍼런스는 컴포넌트의 타입이 있는 `.view.tree` 인터페이스에서 생성됩니다.\n\n## 속성\n\n| 속성 | 접근 | 타입 |\n|---|---|---|\n| `gap_before` | 읽기 | `number` |\n| `Gap_before` | 읽기 | `\u0024mol_view` |\n| `Empty` | 읽기 | `\u0024mol_view` |\n| `gap_after` | 읽기 | `number` |\n| `Gap_after` | 읽기 | `\u0024mol_view` |\n| `rows` | 읽기 | `readonly(\u0024mol_view)[]` |\n| `render_visible_only` | 읽기 | `boolean` |\n| `render_over` | 읽기 | `number` |\n| `sub` | 읽기 | `as 'rows'` |\n| `view_window_shift` | 읽기 / 쓰기 | `number` |\n| `view_window` | 읽기 | `readonly(any)[]` |\n",
+						},
+						fr: {
+							title: "$mol_list",
+							md: "# \u0024mol_list\n\nÉtend `\u0024mol_view`. [Voir la source sur GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/list)\n\nCette référence est générée à partir de l'interface typée `.view.tree` du composant.\n\n## Propriétés\n\n| Propriété | Accès | Type |\n|---|---|---|\n| `gap_before` | lecture | `number` |\n| `Gap_before` | lecture | `\u0024mol_view` |\n| `Empty` | lecture | `\u0024mol_view` |\n| `gap_after` | lecture | `number` |\n| `Gap_after` | lecture | `\u0024mol_view` |\n| `rows` | lecture | `readonly(\u0024mol_view)[]` |\n| `render_visible_only` | lecture | `boolean` |\n| `render_over` | lecture | `number` |\n| `sub` | lecture | `as 'rows'` |\n| `view_window_shift` | lecture / écriture | `number` |\n| `view_window` | lecture | `readonly(any)[]` |\n",
+						},
+						de: {
+							title: "$mol_list",
+							md: "# \u0024mol_list\n\nErweitert `\u0024mol_view`. [Quellcode auf GitHub ansehen](https://github.com/hyoo-ru/mam_mol/tree/master/list)\n\nDiese Referenz wird aus der typisierten `.view.tree`-Schnittstelle der Komponente generiert.\n\n## Eigenschaften\n\n| Eigenschaft | Zugriff | Typ |\n|---|---|---|\n| `gap_before` | Lesen | `number` |\n| `Gap_before` | Lesen | `\u0024mol_view` |\n| `Empty` | Lesen | `\u0024mol_view` |\n| `gap_after` | Lesen | `number` |\n| `Gap_after` | Lesen | `\u0024mol_view` |\n| `rows` | Lesen | `readonly(\u0024mol_view)[]` |\n| `render_visible_only` | Lesen | `boolean` |\n| `render_over` | Lesen | `number` |\n| `sub` | Lesen | `as 'rows'` |\n| `view_window_shift` | Lesen / Schreiben | `number` |\n| `view_window` | Lesen | `readonly(any)[]` |\n",
+						},
+						pt: {
+							title: "$mol_list",
+							md: "# \u0024mol_list\n\nEstende `\u0024mol_view`. [Ver o código-fonte no GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/list)\n\nEsta referência é gerada a partir da interface tipada `.view.tree` do componente.\n\n## Propriedades\n\n| Propriedade | Acesso | Tipo |\n|---|---|---|\n| `gap_before` | leitura | `number` |\n| `Gap_before` | leitura | `\u0024mol_view` |\n| `Empty` | leitura | `\u0024mol_view` |\n| `gap_after` | leitura | `number` |\n| `Gap_after` | leitura | `\u0024mol_view` |\n| `rows` | leitura | `readonly(\u0024mol_view)[]` |\n| `render_visible_only` | leitura | `boolean` |\n| `render_over` | leitura | `number` |\n| `sub` | leitura | `as 'rows'` |\n| `view_window_shift` | leitura / escrita | `number` |\n| `view_window` | leitura | `readonly(any)[]` |\n",
+						},
+						it: {
+							title: "$mol_list",
+							md: "# \u0024mol_list\n\nEstende `\u0024mol_view`. [Vedi il sorgente su GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/list)\n\nQuesto riferimento è generato dall'interfaccia tipizzata `.view.tree` del componente.\n\n## Proprietà\n\n| Proprietà | Accesso | Tipo |\n|---|---|---|\n| `gap_before` | lettura | `number` |\n| `Gap_before` | lettura | `\u0024mol_view` |\n| `Empty` | lettura | `\u0024mol_view` |\n| `gap_after` | lettura | `number` |\n| `Gap_after` | lettura | `\u0024mol_view` |\n| `rows` | lettura | `readonly(\u0024mol_view)[]` |\n| `render_visible_only` | lettura | `boolean` |\n| `render_over` | lettura | `number` |\n| `sub` | lettura | `as 'rows'` |\n| `view_window_shift` | lettura / scrittura | `number` |\n| `view_window` | lettura | `readonly(any)[]` |\n",
+						},
+						uk: {
+							title: "$mol_list",
+							md: "# \u0024mol_list\n\nРозширює `\u0024mol_view`. [Переглянути код на GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/list)\n\nЦей довідник згенеровано з типізованого інтерфейсу `.view.tree` компонента.\n\n## Властивості\n\n| Властивість | Доступ | Тип |\n|---|---|---|\n| `gap_before` | читання | `number` |\n| `Gap_before` | читання | `\u0024mol_view` |\n| `Empty` | читання | `\u0024mol_view` |\n| `gap_after` | читання | `number` |\n| `Gap_after` | читання | `\u0024mol_view` |\n| `rows` | читання | `readonly(\u0024mol_view)[]` |\n| `render_visible_only` | читання | `boolean` |\n| `render_over` | читання | `number` |\n| `sub` | читання | `as 'rows'` |\n| `view_window_shift` | читання / запис | `number` |\n| `view_window` | читання | `readonly(any)[]` |\n",
+						},
+						pl: {
+							title: "$mol_list",
+							md: "# \u0024mol_list\n\nRozszerza `\u0024mol_view`. [Zobacz źródło na GitHubie](https://github.com/hyoo-ru/mam_mol/tree/master/list)\n\nTa referencja jest generowana z typowanego interfejsu `.view.tree` komponentu.\n\n## Właściwości\n\n| Właściwość | Dostęp | Typ |\n|---|---|---|\n| `gap_before` | odczyt | `number` |\n| `Gap_before` | odczyt | `\u0024mol_view` |\n| `Empty` | odczyt | `\u0024mol_view` |\n| `gap_after` | odczyt | `number` |\n| `Gap_after` | odczyt | `\u0024mol_view` |\n| `rows` | odczyt | `readonly(\u0024mol_view)[]` |\n| `render_visible_only` | odczyt | `boolean` |\n| `render_over` | odczyt | `number` |\n| `sub` | odczyt | `as 'rows'` |\n| `view_window_shift` | odczyt / zapis | `number` |\n| `view_window` | odczyt | `readonly(any)[]` |\n",
+						},
+						cs: {
+							title: "$mol_list",
+							md: "# \u0024mol_list\n\nRozšiřuje `\u0024mol_view`. [Zobrazit zdroj na GitHubu](https://github.com/hyoo-ru/mam_mol/tree/master/list)\n\nTato reference je generována z typovaného rozhraní `.view.tree` komponenty.\n\n## Vlastnosti\n\n| Vlastnost | Přístup | Typ |\n|---|---|---|\n| `gap_before` | čtení | `number` |\n| `Gap_before` | čtení | `\u0024mol_view` |\n| `Empty` | čtení | `\u0024mol_view` |\n| `gap_after` | čtení | `number` |\n| `Gap_after` | čtení | `\u0024mol_view` |\n| `rows` | čtení | `readonly(\u0024mol_view)[]` |\n| `render_visible_only` | čtení | `boolean` |\n| `render_over` | čtení | `number` |\n| `sub` | čtení | `as 'rows'` |\n| `view_window_shift` | čtení / zápis | `number` |\n| `view_window` | čtení | `readonly(any)[]` |\n",
+						},
+						fa: {
+							title: "$mol_list",
+							md: "# \u0024mol_list\n\n`\u0024mol_view` را گسترش می‌دهد. [دیدنِ سورس در GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/list)\n\nاین مرجع از واسطِ نوع‌دارِ `.view.tree`ِ کامپوننت تولید شده است.\n\n## ویژگی‌ها\n\n| ویژگی | دسترسی | نوع |\n|---|---|---|\n| `gap_before` | خواندن | `number` |\n| `Gap_before` | خواندن | `\u0024mol_view` |\n| `Empty` | خواندن | `\u0024mol_view` |\n| `gap_after` | خواندن | `number` |\n| `Gap_after` | خواندن | `\u0024mol_view` |\n| `rows` | خواندن | `readonly(\u0024mol_view)[]` |\n| `render_visible_only` | خواندن | `boolean` |\n| `render_over` | خواندن | `number` |\n| `sub` | خواندن | `as 'rows'` |\n| `view_window_shift` | خواندن / نوشتن | `number` |\n| `view_window` | خواندن | `readonly(any)[]` |\n",
+						},
+						bn: {
+							title: "$mol_list",
+							md: "# \u0024mol_list\n\n`\u0024mol_view` কে এক্সটেন্ড করে। [GitHub-এ সোর্স দেখুন](https://github.com/hyoo-ru/mam_mol/tree/master/list)\n\nএই রেফারেন্স কম্পোনেন্টের টাইপড `.view.tree` ইন্টারফেস থেকে জেনারেট করা হয়।\n\n## প্রপার্টি\n\n| প্রপার্টি | অ্যাক্সেস | টাইপ |\n|---|---|---|\n| `gap_before` | পড়া | `number` |\n| `Gap_before` | পড়া | `\u0024mol_view` |\n| `Empty` | পড়া | `\u0024mol_view` |\n| `gap_after` | পড়া | `number` |\n| `Gap_after` | পড়া | `\u0024mol_view` |\n| `rows` | পড়া | `readonly(\u0024mol_view)[]` |\n| `render_visible_only` | পড়া | `boolean` |\n| `render_over` | পড়া | `number` |\n| `sub` | পড়া | `as 'rows'` |\n| `view_window_shift` | পড়া / লেখা | `number` |\n| `view_window` | পড়া | `readonly(any)[]` |\n",
+						},
+					},
 				},
 				'api-mol-row': {
 					slug: 'api-mol-row',
 					title: "$mol_row",
 					file: 'content/en/docs/api-mol-row.md',
 					md: "# \u0024mol_row\n\nExtends `\u0024mol_view`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/row)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n\u0024mol_row adds no new bindable properties of its own — see `\u0024mol_view`.\n",
+					tr: {
+						zh: {
+							title: "$mol_row",
+							md: "# \u0024mol_row\n\n继承自 `\u0024mol_view`。[在 GitHub 上查看源码](https://github.com/hyoo-ru/mam_mol/tree/master/row)\n\n本参考由组件的带类型 `.view.tree` 接口生成。\n\n## 属性\n\n\u0024mol_row adds no new bindable properties of its own — see `\u0024mol_view`.\n",
+						},
+						zh_hk: {
+							title: "$mol_row",
+							md: "# \u0024mol_row\n\n繼承自 `\u0024mol_view`。[在 GitHub 上查看原始碼](https://github.com/hyoo-ru/mam_mol/tree/master/row)\n\n本參考由元件的帶型別 `.view.tree` 介面生成。\n\n## 屬性\n\n\u0024mol_row adds no new bindable properties of its own — see `\u0024mol_view`.\n",
+						},
+						ja: {
+							title: "$mol_row",
+							md: "# \u0024mol_row\n\n`\u0024mol_view` を継承。[GitHub でソースを見る](https://github.com/hyoo-ru/mam_mol/tree/master/row)\n\nこのリファレンスはコンポーネントの型付き `.view.tree` インターフェイスから生成されています。\n\n## プロパティ\n\n\u0024mol_row adds no new bindable properties of its own — see `\u0024mol_view`.\n",
+						},
+						ko: {
+							title: "$mol_row",
+							md: "# \u0024mol_row\n\n`\u0024mol_view`을(를) 확장합니다. [GitHub에서 소스 보기](https://github.com/hyoo-ru/mam_mol/tree/master/row)\n\n이 레퍼런스는 컴포넌트의 타입이 있는 `.view.tree` 인터페이스에서 생성됩니다.\n\n## 속성\n\n\u0024mol_row adds no new bindable properties of its own — see `\u0024mol_view`.\n",
+						},
+						fr: {
+							title: "$mol_row",
+							md: "# \u0024mol_row\n\nÉtend `\u0024mol_view`. [Voir la source sur GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/row)\n\nCette référence est générée à partir de l'interface typée `.view.tree` du composant.\n\n## Propriétés\n\n\u0024mol_row adds no new bindable properties of its own — see `\u0024mol_view`.\n",
+						},
+						de: {
+							title: "$mol_row",
+							md: "# \u0024mol_row\n\nErweitert `\u0024mol_view`. [Quellcode auf GitHub ansehen](https://github.com/hyoo-ru/mam_mol/tree/master/row)\n\nDiese Referenz wird aus der typisierten `.view.tree`-Schnittstelle der Komponente generiert.\n\n## Eigenschaften\n\n\u0024mol_row adds no new bindable properties of its own — see `\u0024mol_view`.\n",
+						},
+						pt: {
+							title: "$mol_row",
+							md: "# \u0024mol_row\n\nEstende `\u0024mol_view`. [Ver o código-fonte no GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/row)\n\nEsta referência é gerada a partir da interface tipada `.view.tree` do componente.\n\n## Propriedades\n\n\u0024mol_row adds no new bindable properties of its own — see `\u0024mol_view`.\n",
+						},
+						it: {
+							title: "$mol_row",
+							md: "# \u0024mol_row\n\nEstende `\u0024mol_view`. [Vedi il sorgente su GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/row)\n\nQuesto riferimento è generato dall'interfaccia tipizzata `.view.tree` del componente.\n\n## Proprietà\n\n\u0024mol_row adds no new bindable properties of its own — see `\u0024mol_view`.\n",
+						},
+						uk: {
+							title: "$mol_row",
+							md: "# \u0024mol_row\n\nРозширює `\u0024mol_view`. [Переглянути код на GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/row)\n\nЦей довідник згенеровано з типізованого інтерфейсу `.view.tree` компонента.\n\n## Властивості\n\n\u0024mol_row adds no new bindable properties of its own — see `\u0024mol_view`.\n",
+						},
+						pl: {
+							title: "$mol_row",
+							md: "# \u0024mol_row\n\nRozszerza `\u0024mol_view`. [Zobacz źródło na GitHubie](https://github.com/hyoo-ru/mam_mol/tree/master/row)\n\nTa referencja jest generowana z typowanego interfejsu `.view.tree` komponentu.\n\n## Właściwości\n\n\u0024mol_row adds no new bindable properties of its own — see `\u0024mol_view`.\n",
+						},
+						cs: {
+							title: "$mol_row",
+							md: "# \u0024mol_row\n\nRozšiřuje `\u0024mol_view`. [Zobrazit zdroj na GitHubu](https://github.com/hyoo-ru/mam_mol/tree/master/row)\n\nTato reference je generována z typovaného rozhraní `.view.tree` komponenty.\n\n## Vlastnosti\n\n\u0024mol_row adds no new bindable properties of its own — see `\u0024mol_view`.\n",
+						},
+						fa: {
+							title: "$mol_row",
+							md: "# \u0024mol_row\n\n`\u0024mol_view` را گسترش می‌دهد. [دیدنِ سورس در GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/row)\n\nاین مرجع از واسطِ نوع‌دارِ `.view.tree`ِ کامپوننت تولید شده است.\n\n## ویژگی‌ها\n\n\u0024mol_row adds no new bindable properties of its own — see `\u0024mol_view`.\n",
+						},
+						bn: {
+							title: "$mol_row",
+							md: "# \u0024mol_row\n\n`\u0024mol_view` কে এক্সটেন্ড করে। [GitHub-এ সোর্স দেখুন](https://github.com/hyoo-ru/mam_mol/tree/master/row)\n\nএই রেফারেন্স কম্পোনেন্টের টাইপড `.view.tree` ইন্টারফেস থেকে জেনারেট করা হয়।\n\n## প্রপার্টি\n\n\u0024mol_row adds no new bindable properties of its own — see `\u0024mol_view`.\n",
+						},
+					},
 				},
 				'api-mol-link': {
 					slug: 'api-mol-link',
 					title: "$mol_link",
 					file: 'content/en/docs/api-mol-link.md',
 					md: "# \u0024mol_link\n\nExtends `\u0024mol_view`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/link)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `uri_toggle` | read | `string` |\n| `hint` | read | `string` |\n| `hint_safe` | read | `as 'hint'` |\n| `target` | read | `string` |\n| `file_name` | read | `string` |\n| `current` | read | `boolean` |\n| `relation` | read | `string` |\n| `click` | read / write | `as 'event_click'` |\n| `uri` | read | `string` |\n| `dom_name` | read | `string` |\n| `uri_off` | read | `string` |\n| `external` | read | `boolean` |\n| `attr` | read | `({` |\n| `sub` | read | `readonly(\u0024mol_view_content)[]` |\n| `arg` | read | `Record<string, any>` |\n| `event` | read | `({` |\n",
+					tr: {
+						zh: {
+							title: "$mol_link",
+							md: "# \u0024mol_link\n\n继承自 `\u0024mol_view`。[在 GitHub 上查看源码](https://github.com/hyoo-ru/mam_mol/tree/master/link)\n\n本参考由组件的带类型 `.view.tree` 接口生成。\n\n## 属性\n\n| 属性 | 访问 | 类型 |\n|---|---|---|\n| `uri_toggle` | 读 | `string` |\n| `hint` | 读 | `string` |\n| `hint_safe` | 读 | `as 'hint'` |\n| `target` | 读 | `string` |\n| `file_name` | 读 | `string` |\n| `current` | 读 | `boolean` |\n| `relation` | 读 | `string` |\n| `click` | 读 / 写 | `as 'event_click'` |\n| `uri` | 读 | `string` |\n| `dom_name` | 读 | `string` |\n| `uri_off` | 读 | `string` |\n| `external` | 读 | `boolean` |\n| `attr` | 读 | `({` |\n| `sub` | 读 | `readonly(\u0024mol_view_content)[]` |\n| `arg` | 读 | `Record<string, any>` |\n| `event` | 读 | `({` |\n",
+						},
+						zh_hk: {
+							title: "$mol_link",
+							md: "# \u0024mol_link\n\n繼承自 `\u0024mol_view`。[在 GitHub 上查看原始碼](https://github.com/hyoo-ru/mam_mol/tree/master/link)\n\n本參考由元件的帶型別 `.view.tree` 介面生成。\n\n## 屬性\n\n| 屬性 | 存取 | 型別 |\n|---|---|---|\n| `uri_toggle` | 讀 | `string` |\n| `hint` | 讀 | `string` |\n| `hint_safe` | 讀 | `as 'hint'` |\n| `target` | 讀 | `string` |\n| `file_name` | 讀 | `string` |\n| `current` | 讀 | `boolean` |\n| `relation` | 讀 | `string` |\n| `click` | 讀 / 寫 | `as 'event_click'` |\n| `uri` | 讀 | `string` |\n| `dom_name` | 讀 | `string` |\n| `uri_off` | 讀 | `string` |\n| `external` | 讀 | `boolean` |\n| `attr` | 讀 | `({` |\n| `sub` | 讀 | `readonly(\u0024mol_view_content)[]` |\n| `arg` | 讀 | `Record<string, any>` |\n| `event` | 讀 | `({` |\n",
+						},
+						ja: {
+							title: "$mol_link",
+							md: "# \u0024mol_link\n\n`\u0024mol_view` を継承。[GitHub でソースを見る](https://github.com/hyoo-ru/mam_mol/tree/master/link)\n\nこのリファレンスはコンポーネントの型付き `.view.tree` インターフェイスから生成されています。\n\n## プロパティ\n\n| プロパティ | アクセス | 型 |\n|---|---|---|\n| `uri_toggle` | 読み取り | `string` |\n| `hint` | 読み取り | `string` |\n| `hint_safe` | 読み取り | `as 'hint'` |\n| `target` | 読み取り | `string` |\n| `file_name` | 読み取り | `string` |\n| `current` | 読み取り | `boolean` |\n| `relation` | 読み取り | `string` |\n| `click` | 読み取り / 書き込み | `as 'event_click'` |\n| `uri` | 読み取り | `string` |\n| `dom_name` | 読み取り | `string` |\n| `uri_off` | 読み取り | `string` |\n| `external` | 読み取り | `boolean` |\n| `attr` | 読み取り | `({` |\n| `sub` | 読み取り | `readonly(\u0024mol_view_content)[]` |\n| `arg` | 読み取り | `Record<string, any>` |\n| `event` | 読み取り | `({` |\n",
+						},
+						ko: {
+							title: "$mol_link",
+							md: "# \u0024mol_link\n\n`\u0024mol_view`을(를) 확장합니다. [GitHub에서 소스 보기](https://github.com/hyoo-ru/mam_mol/tree/master/link)\n\n이 레퍼런스는 컴포넌트의 타입이 있는 `.view.tree` 인터페이스에서 생성됩니다.\n\n## 속성\n\n| 속성 | 접근 | 타입 |\n|---|---|---|\n| `uri_toggle` | 읽기 | `string` |\n| `hint` | 읽기 | `string` |\n| `hint_safe` | 읽기 | `as 'hint'` |\n| `target` | 읽기 | `string` |\n| `file_name` | 읽기 | `string` |\n| `current` | 읽기 | `boolean` |\n| `relation` | 읽기 | `string` |\n| `click` | 읽기 / 쓰기 | `as 'event_click'` |\n| `uri` | 읽기 | `string` |\n| `dom_name` | 읽기 | `string` |\n| `uri_off` | 읽기 | `string` |\n| `external` | 읽기 | `boolean` |\n| `attr` | 읽기 | `({` |\n| `sub` | 읽기 | `readonly(\u0024mol_view_content)[]` |\n| `arg` | 읽기 | `Record<string, any>` |\n| `event` | 읽기 | `({` |\n",
+						},
+						fr: {
+							title: "$mol_link",
+							md: "# \u0024mol_link\n\nÉtend `\u0024mol_view`. [Voir la source sur GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/link)\n\nCette référence est générée à partir de l'interface typée `.view.tree` du composant.\n\n## Propriétés\n\n| Propriété | Accès | Type |\n|---|---|---|\n| `uri_toggle` | lecture | `string` |\n| `hint` | lecture | `string` |\n| `hint_safe` | lecture | `as 'hint'` |\n| `target` | lecture | `string` |\n| `file_name` | lecture | `string` |\n| `current` | lecture | `boolean` |\n| `relation` | lecture | `string` |\n| `click` | lecture / écriture | `as 'event_click'` |\n| `uri` | lecture | `string` |\n| `dom_name` | lecture | `string` |\n| `uri_off` | lecture | `string` |\n| `external` | lecture | `boolean` |\n| `attr` | lecture | `({` |\n| `sub` | lecture | `readonly(\u0024mol_view_content)[]` |\n| `arg` | lecture | `Record<string, any>` |\n| `event` | lecture | `({` |\n",
+						},
+						de: {
+							title: "$mol_link",
+							md: "# \u0024mol_link\n\nErweitert `\u0024mol_view`. [Quellcode auf GitHub ansehen](https://github.com/hyoo-ru/mam_mol/tree/master/link)\n\nDiese Referenz wird aus der typisierten `.view.tree`-Schnittstelle der Komponente generiert.\n\n## Eigenschaften\n\n| Eigenschaft | Zugriff | Typ |\n|---|---|---|\n| `uri_toggle` | Lesen | `string` |\n| `hint` | Lesen | `string` |\n| `hint_safe` | Lesen | `as 'hint'` |\n| `target` | Lesen | `string` |\n| `file_name` | Lesen | `string` |\n| `current` | Lesen | `boolean` |\n| `relation` | Lesen | `string` |\n| `click` | Lesen / Schreiben | `as 'event_click'` |\n| `uri` | Lesen | `string` |\n| `dom_name` | Lesen | `string` |\n| `uri_off` | Lesen | `string` |\n| `external` | Lesen | `boolean` |\n| `attr` | Lesen | `({` |\n| `sub` | Lesen | `readonly(\u0024mol_view_content)[]` |\n| `arg` | Lesen | `Record<string, any>` |\n| `event` | Lesen | `({` |\n",
+						},
+						pt: {
+							title: "$mol_link",
+							md: "# \u0024mol_link\n\nEstende `\u0024mol_view`. [Ver o código-fonte no GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/link)\n\nEsta referência é gerada a partir da interface tipada `.view.tree` do componente.\n\n## Propriedades\n\n| Propriedade | Acesso | Tipo |\n|---|---|---|\n| `uri_toggle` | leitura | `string` |\n| `hint` | leitura | `string` |\n| `hint_safe` | leitura | `as 'hint'` |\n| `target` | leitura | `string` |\n| `file_name` | leitura | `string` |\n| `current` | leitura | `boolean` |\n| `relation` | leitura | `string` |\n| `click` | leitura / escrita | `as 'event_click'` |\n| `uri` | leitura | `string` |\n| `dom_name` | leitura | `string` |\n| `uri_off` | leitura | `string` |\n| `external` | leitura | `boolean` |\n| `attr` | leitura | `({` |\n| `sub` | leitura | `readonly(\u0024mol_view_content)[]` |\n| `arg` | leitura | `Record<string, any>` |\n| `event` | leitura | `({` |\n",
+						},
+						it: {
+							title: "$mol_link",
+							md: "# \u0024mol_link\n\nEstende `\u0024mol_view`. [Vedi il sorgente su GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/link)\n\nQuesto riferimento è generato dall'interfaccia tipizzata `.view.tree` del componente.\n\n## Proprietà\n\n| Proprietà | Accesso | Tipo |\n|---|---|---|\n| `uri_toggle` | lettura | `string` |\n| `hint` | lettura | `string` |\n| `hint_safe` | lettura | `as 'hint'` |\n| `target` | lettura | `string` |\n| `file_name` | lettura | `string` |\n| `current` | lettura | `boolean` |\n| `relation` | lettura | `string` |\n| `click` | lettura / scrittura | `as 'event_click'` |\n| `uri` | lettura | `string` |\n| `dom_name` | lettura | `string` |\n| `uri_off` | lettura | `string` |\n| `external` | lettura | `boolean` |\n| `attr` | lettura | `({` |\n| `sub` | lettura | `readonly(\u0024mol_view_content)[]` |\n| `arg` | lettura | `Record<string, any>` |\n| `event` | lettura | `({` |\n",
+						},
+						uk: {
+							title: "$mol_link",
+							md: "# \u0024mol_link\n\nРозширює `\u0024mol_view`. [Переглянути код на GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/link)\n\nЦей довідник згенеровано з типізованого інтерфейсу `.view.tree` компонента.\n\n## Властивості\n\n| Властивість | Доступ | Тип |\n|---|---|---|\n| `uri_toggle` | читання | `string` |\n| `hint` | читання | `string` |\n| `hint_safe` | читання | `as 'hint'` |\n| `target` | читання | `string` |\n| `file_name` | читання | `string` |\n| `current` | читання | `boolean` |\n| `relation` | читання | `string` |\n| `click` | читання / запис | `as 'event_click'` |\n| `uri` | читання | `string` |\n| `dom_name` | читання | `string` |\n| `uri_off` | читання | `string` |\n| `external` | читання | `boolean` |\n| `attr` | читання | `({` |\n| `sub` | читання | `readonly(\u0024mol_view_content)[]` |\n| `arg` | читання | `Record<string, any>` |\n| `event` | читання | `({` |\n",
+						},
+						pl: {
+							title: "$mol_link",
+							md: "# \u0024mol_link\n\nRozszerza `\u0024mol_view`. [Zobacz źródło na GitHubie](https://github.com/hyoo-ru/mam_mol/tree/master/link)\n\nTa referencja jest generowana z typowanego interfejsu `.view.tree` komponentu.\n\n## Właściwości\n\n| Właściwość | Dostęp | Typ |\n|---|---|---|\n| `uri_toggle` | odczyt | `string` |\n| `hint` | odczyt | `string` |\n| `hint_safe` | odczyt | `as 'hint'` |\n| `target` | odczyt | `string` |\n| `file_name` | odczyt | `string` |\n| `current` | odczyt | `boolean` |\n| `relation` | odczyt | `string` |\n| `click` | odczyt / zapis | `as 'event_click'` |\n| `uri` | odczyt | `string` |\n| `dom_name` | odczyt | `string` |\n| `uri_off` | odczyt | `string` |\n| `external` | odczyt | `boolean` |\n| `attr` | odczyt | `({` |\n| `sub` | odczyt | `readonly(\u0024mol_view_content)[]` |\n| `arg` | odczyt | `Record<string, any>` |\n| `event` | odczyt | `({` |\n",
+						},
+						cs: {
+							title: "$mol_link",
+							md: "# \u0024mol_link\n\nRozšiřuje `\u0024mol_view`. [Zobrazit zdroj na GitHubu](https://github.com/hyoo-ru/mam_mol/tree/master/link)\n\nTato reference je generována z typovaného rozhraní `.view.tree` komponenty.\n\n## Vlastnosti\n\n| Vlastnost | Přístup | Typ |\n|---|---|---|\n| `uri_toggle` | čtení | `string` |\n| `hint` | čtení | `string` |\n| `hint_safe` | čtení | `as 'hint'` |\n| `target` | čtení | `string` |\n| `file_name` | čtení | `string` |\n| `current` | čtení | `boolean` |\n| `relation` | čtení | `string` |\n| `click` | čtení / zápis | `as 'event_click'` |\n| `uri` | čtení | `string` |\n| `dom_name` | čtení | `string` |\n| `uri_off` | čtení | `string` |\n| `external` | čtení | `boolean` |\n| `attr` | čtení | `({` |\n| `sub` | čtení | `readonly(\u0024mol_view_content)[]` |\n| `arg` | čtení | `Record<string, any>` |\n| `event` | čtení | `({` |\n",
+						},
+						fa: {
+							title: "$mol_link",
+							md: "# \u0024mol_link\n\n`\u0024mol_view` را گسترش می‌دهد. [دیدنِ سورس در GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/link)\n\nاین مرجع از واسطِ نوع‌دارِ `.view.tree`ِ کامپوننت تولید شده است.\n\n## ویژگی‌ها\n\n| ویژگی | دسترسی | نوع |\n|---|---|---|\n| `uri_toggle` | خواندن | `string` |\n| `hint` | خواندن | `string` |\n| `hint_safe` | خواندن | `as 'hint'` |\n| `target` | خواندن | `string` |\n| `file_name` | خواندن | `string` |\n| `current` | خواندن | `boolean` |\n| `relation` | خواندن | `string` |\n| `click` | خواندن / نوشتن | `as 'event_click'` |\n| `uri` | خواندن | `string` |\n| `dom_name` | خواندن | `string` |\n| `uri_off` | خواندن | `string` |\n| `external` | خواندن | `boolean` |\n| `attr` | خواندن | `({` |\n| `sub` | خواندن | `readonly(\u0024mol_view_content)[]` |\n| `arg` | خواندن | `Record<string, any>` |\n| `event` | خواندن | `({` |\n",
+						},
+						bn: {
+							title: "$mol_link",
+							md: "# \u0024mol_link\n\n`\u0024mol_view` কে এক্সটেন্ড করে। [GitHub-এ সোর্স দেখুন](https://github.com/hyoo-ru/mam_mol/tree/master/link)\n\nএই রেফারেন্স কম্পোনেন্টের টাইপড `.view.tree` ইন্টারফেস থেকে জেনারেট করা হয়।\n\n## প্রপার্টি\n\n| প্রপার্টি | অ্যাক্সেস | টাইপ |\n|---|---|---|\n| `uri_toggle` | পড়া | `string` |\n| `hint` | পড়া | `string` |\n| `hint_safe` | পড়া | `as 'hint'` |\n| `target` | পড়া | `string` |\n| `file_name` | পড়া | `string` |\n| `current` | পড়া | `boolean` |\n| `relation` | পড়া | `string` |\n| `click` | পড়া / লেখা | `as 'event_click'` |\n| `uri` | পড়া | `string` |\n| `dom_name` | পড়া | `string` |\n| `uri_off` | পড়া | `string` |\n| `external` | পড়া | `boolean` |\n| `attr` | পড়া | `({` |\n| `sub` | পড়া | `readonly(\u0024mol_view_content)[]` |\n| `arg` | পড়া | `Record<string, any>` |\n| `event` | পড়া | `({` |\n",
+						},
+					},
 				},
 				'api-mol-check': {
 					slug: 'api-mol-check',
 					title: "$mol_check",
 					file: 'content/en/docs/api-mol-check.md',
 					md: "# \u0024mol_check\n\nExtends `\u0024mol_button_minor`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/check)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `checked` | read / write | `boolean` |\n| `aria_checked` | read | `string` |\n| `aria_role` | read | `string` |\n| `title` | read | `string` |\n| `Title` | read | `\u0024mol_view` |\n| `label` | read | `readonly(any)[]` |\n| `attr` | read | `({` |\n| `sub` | read | `readonly(\u0024mol_view_content)[]` |\n",
+					tr: {
+						zh: {
+							title: "$mol_check",
+							md: "# \u0024mol_check\n\n继承自 `\u0024mol_button_minor`。[在 GitHub 上查看源码](https://github.com/hyoo-ru/mam_mol/tree/master/check)\n\n本参考由组件的带类型 `.view.tree` 接口生成。\n\n## 属性\n\n| 属性 | 访问 | 类型 |\n|---|---|---|\n| `checked` | 读 / 写 | `boolean` |\n| `aria_checked` | 读 | `string` |\n| `aria_role` | 读 | `string` |\n| `title` | 读 | `string` |\n| `Title` | 读 | `\u0024mol_view` |\n| `label` | 读 | `readonly(any)[]` |\n| `attr` | 读 | `({` |\n| `sub` | 读 | `readonly(\u0024mol_view_content)[]` |\n",
+						},
+						zh_hk: {
+							title: "$mol_check",
+							md: "# \u0024mol_check\n\n繼承自 `\u0024mol_button_minor`。[在 GitHub 上查看原始碼](https://github.com/hyoo-ru/mam_mol/tree/master/check)\n\n本參考由元件的帶型別 `.view.tree` 介面生成。\n\n## 屬性\n\n| 屬性 | 存取 | 型別 |\n|---|---|---|\n| `checked` | 讀 / 寫 | `boolean` |\n| `aria_checked` | 讀 | `string` |\n| `aria_role` | 讀 | `string` |\n| `title` | 讀 | `string` |\n| `Title` | 讀 | `\u0024mol_view` |\n| `label` | 讀 | `readonly(any)[]` |\n| `attr` | 讀 | `({` |\n| `sub` | 讀 | `readonly(\u0024mol_view_content)[]` |\n",
+						},
+						ja: {
+							title: "$mol_check",
+							md: "# \u0024mol_check\n\n`\u0024mol_button_minor` を継承。[GitHub でソースを見る](https://github.com/hyoo-ru/mam_mol/tree/master/check)\n\nこのリファレンスはコンポーネントの型付き `.view.tree` インターフェイスから生成されています。\n\n## プロパティ\n\n| プロパティ | アクセス | 型 |\n|---|---|---|\n| `checked` | 読み取り / 書き込み | `boolean` |\n| `aria_checked` | 読み取り | `string` |\n| `aria_role` | 読み取り | `string` |\n| `title` | 読み取り | `string` |\n| `Title` | 読み取り | `\u0024mol_view` |\n| `label` | 読み取り | `readonly(any)[]` |\n| `attr` | 読み取り | `({` |\n| `sub` | 読み取り | `readonly(\u0024mol_view_content)[]` |\n",
+						},
+						ko: {
+							title: "$mol_check",
+							md: "# \u0024mol_check\n\n`\u0024mol_button_minor`을(를) 확장합니다. [GitHub에서 소스 보기](https://github.com/hyoo-ru/mam_mol/tree/master/check)\n\n이 레퍼런스는 컴포넌트의 타입이 있는 `.view.tree` 인터페이스에서 생성됩니다.\n\n## 속성\n\n| 속성 | 접근 | 타입 |\n|---|---|---|\n| `checked` | 읽기 / 쓰기 | `boolean` |\n| `aria_checked` | 읽기 | `string` |\n| `aria_role` | 읽기 | `string` |\n| `title` | 읽기 | `string` |\n| `Title` | 읽기 | `\u0024mol_view` |\n| `label` | 읽기 | `readonly(any)[]` |\n| `attr` | 읽기 | `({` |\n| `sub` | 읽기 | `readonly(\u0024mol_view_content)[]` |\n",
+						},
+						fr: {
+							title: "$mol_check",
+							md: "# \u0024mol_check\n\nÉtend `\u0024mol_button_minor`. [Voir la source sur GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/check)\n\nCette référence est générée à partir de l'interface typée `.view.tree` du composant.\n\n## Propriétés\n\n| Propriété | Accès | Type |\n|---|---|---|\n| `checked` | lecture / écriture | `boolean` |\n| `aria_checked` | lecture | `string` |\n| `aria_role` | lecture | `string` |\n| `title` | lecture | `string` |\n| `Title` | lecture | `\u0024mol_view` |\n| `label` | lecture | `readonly(any)[]` |\n| `attr` | lecture | `({` |\n| `sub` | lecture | `readonly(\u0024mol_view_content)[]` |\n",
+						},
+						de: {
+							title: "$mol_check",
+							md: "# \u0024mol_check\n\nErweitert `\u0024mol_button_minor`. [Quellcode auf GitHub ansehen](https://github.com/hyoo-ru/mam_mol/tree/master/check)\n\nDiese Referenz wird aus der typisierten `.view.tree`-Schnittstelle der Komponente generiert.\n\n## Eigenschaften\n\n| Eigenschaft | Zugriff | Typ |\n|---|---|---|\n| `checked` | Lesen / Schreiben | `boolean` |\n| `aria_checked` | Lesen | `string` |\n| `aria_role` | Lesen | `string` |\n| `title` | Lesen | `string` |\n| `Title` | Lesen | `\u0024mol_view` |\n| `label` | Lesen | `readonly(any)[]` |\n| `attr` | Lesen | `({` |\n| `sub` | Lesen | `readonly(\u0024mol_view_content)[]` |\n",
+						},
+						pt: {
+							title: "$mol_check",
+							md: "# \u0024mol_check\n\nEstende `\u0024mol_button_minor`. [Ver o código-fonte no GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/check)\n\nEsta referência é gerada a partir da interface tipada `.view.tree` do componente.\n\n## Propriedades\n\n| Propriedade | Acesso | Tipo |\n|---|---|---|\n| `checked` | leitura / escrita | `boolean` |\n| `aria_checked` | leitura | `string` |\n| `aria_role` | leitura | `string` |\n| `title` | leitura | `string` |\n| `Title` | leitura | `\u0024mol_view` |\n| `label` | leitura | `readonly(any)[]` |\n| `attr` | leitura | `({` |\n| `sub` | leitura | `readonly(\u0024mol_view_content)[]` |\n",
+						},
+						it: {
+							title: "$mol_check",
+							md: "# \u0024mol_check\n\nEstende `\u0024mol_button_minor`. [Vedi il sorgente su GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/check)\n\nQuesto riferimento è generato dall'interfaccia tipizzata `.view.tree` del componente.\n\n## Proprietà\n\n| Proprietà | Accesso | Tipo |\n|---|---|---|\n| `checked` | lettura / scrittura | `boolean` |\n| `aria_checked` | lettura | `string` |\n| `aria_role` | lettura | `string` |\n| `title` | lettura | `string` |\n| `Title` | lettura | `\u0024mol_view` |\n| `label` | lettura | `readonly(any)[]` |\n| `attr` | lettura | `({` |\n| `sub` | lettura | `readonly(\u0024mol_view_content)[]` |\n",
+						},
+						uk: {
+							title: "$mol_check",
+							md: "# \u0024mol_check\n\nРозширює `\u0024mol_button_minor`. [Переглянути код на GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/check)\n\nЦей довідник згенеровано з типізованого інтерфейсу `.view.tree` компонента.\n\n## Властивості\n\n| Властивість | Доступ | Тип |\n|---|---|---|\n| `checked` | читання / запис | `boolean` |\n| `aria_checked` | читання | `string` |\n| `aria_role` | читання | `string` |\n| `title` | читання | `string` |\n| `Title` | читання | `\u0024mol_view` |\n| `label` | читання | `readonly(any)[]` |\n| `attr` | читання | `({` |\n| `sub` | читання | `readonly(\u0024mol_view_content)[]` |\n",
+						},
+						pl: {
+							title: "$mol_check",
+							md: "# \u0024mol_check\n\nRozszerza `\u0024mol_button_minor`. [Zobacz źródło na GitHubie](https://github.com/hyoo-ru/mam_mol/tree/master/check)\n\nTa referencja jest generowana z typowanego interfejsu `.view.tree` komponentu.\n\n## Właściwości\n\n| Właściwość | Dostęp | Typ |\n|---|---|---|\n| `checked` | odczyt / zapis | `boolean` |\n| `aria_checked` | odczyt | `string` |\n| `aria_role` | odczyt | `string` |\n| `title` | odczyt | `string` |\n| `Title` | odczyt | `\u0024mol_view` |\n| `label` | odczyt | `readonly(any)[]` |\n| `attr` | odczyt | `({` |\n| `sub` | odczyt | `readonly(\u0024mol_view_content)[]` |\n",
+						},
+						cs: {
+							title: "$mol_check",
+							md: "# \u0024mol_check\n\nRozšiřuje `\u0024mol_button_minor`. [Zobrazit zdroj na GitHubu](https://github.com/hyoo-ru/mam_mol/tree/master/check)\n\nTato reference je generována z typovaného rozhraní `.view.tree` komponenty.\n\n## Vlastnosti\n\n| Vlastnost | Přístup | Typ |\n|---|---|---|\n| `checked` | čtení / zápis | `boolean` |\n| `aria_checked` | čtení | `string` |\n| `aria_role` | čtení | `string` |\n| `title` | čtení | `string` |\n| `Title` | čtení | `\u0024mol_view` |\n| `label` | čtení | `readonly(any)[]` |\n| `attr` | čtení | `({` |\n| `sub` | čtení | `readonly(\u0024mol_view_content)[]` |\n",
+						},
+						fa: {
+							title: "$mol_check",
+							md: "# \u0024mol_check\n\n`\u0024mol_button_minor` را گسترش می‌دهد. [دیدنِ سورس در GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/check)\n\nاین مرجع از واسطِ نوع‌دارِ `.view.tree`ِ کامپوننت تولید شده است.\n\n## ویژگی‌ها\n\n| ویژگی | دسترسی | نوع |\n|---|---|---|\n| `checked` | خواندن / نوشتن | `boolean` |\n| `aria_checked` | خواندن | `string` |\n| `aria_role` | خواندن | `string` |\n| `title` | خواندن | `string` |\n| `Title` | خواندن | `\u0024mol_view` |\n| `label` | خواندن | `readonly(any)[]` |\n| `attr` | خواندن | `({` |\n| `sub` | خواندن | `readonly(\u0024mol_view_content)[]` |\n",
+						},
+						bn: {
+							title: "$mol_check",
+							md: "# \u0024mol_check\n\n`\u0024mol_button_minor` কে এক্সটেন্ড করে। [GitHub-এ সোর্স দেখুন](https://github.com/hyoo-ru/mam_mol/tree/master/check)\n\nএই রেফারেন্স কম্পোনেন্টের টাইপড `.view.tree` ইন্টারফেস থেকে জেনারেট করা হয়।\n\n## প্রপার্টি\n\n| প্রপার্টি | অ্যাক্সেস | টাইপ |\n|---|---|---|\n| `checked` | পড়া / লেখা | `boolean` |\n| `aria_checked` | পড়া | `string` |\n| `aria_role` | পড়া | `string` |\n| `title` | পড়া | `string` |\n| `Title` | পড়া | `\u0024mol_view` |\n| `label` | পড়া | `readonly(any)[]` |\n| `attr` | পড়া | `({` |\n| `sub` | পড়া | `readonly(\u0024mol_view_content)[]` |\n",
+						},
+					},
 				},
 				'api-mol-switch': {
 					slug: 'api-mol-switch',
 					title: "$mol_switch",
 					file: 'content/en/docs/api-mol-switch.md',
 					md: "# \u0024mol_switch\n\nExtends `\u0024mol_check_list`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/switch)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `value` | read / write | `string` |\n",
+					tr: {
+						zh: {
+							title: "$mol_switch",
+							md: "# \u0024mol_switch\n\n继承自 `\u0024mol_check_list`。[在 GitHub 上查看源码](https://github.com/hyoo-ru/mam_mol/tree/master/switch)\n\n本参考由组件的带类型 `.view.tree` 接口生成。\n\n## 属性\n\n| 属性 | 访问 | 类型 |\n|---|---|---|\n| `value` | 读 / 写 | `string` |\n",
+						},
+						zh_hk: {
+							title: "$mol_switch",
+							md: "# \u0024mol_switch\n\n繼承自 `\u0024mol_check_list`。[在 GitHub 上查看原始碼](https://github.com/hyoo-ru/mam_mol/tree/master/switch)\n\n本參考由元件的帶型別 `.view.tree` 介面生成。\n\n## 屬性\n\n| 屬性 | 存取 | 型別 |\n|---|---|---|\n| `value` | 讀 / 寫 | `string` |\n",
+						},
+						ja: {
+							title: "$mol_switch",
+							md: "# \u0024mol_switch\n\n`\u0024mol_check_list` を継承。[GitHub でソースを見る](https://github.com/hyoo-ru/mam_mol/tree/master/switch)\n\nこのリファレンスはコンポーネントの型付き `.view.tree` インターフェイスから生成されています。\n\n## プロパティ\n\n| プロパティ | アクセス | 型 |\n|---|---|---|\n| `value` | 読み取り / 書き込み | `string` |\n",
+						},
+						ko: {
+							title: "$mol_switch",
+							md: "# \u0024mol_switch\n\n`\u0024mol_check_list`을(를) 확장합니다. [GitHub에서 소스 보기](https://github.com/hyoo-ru/mam_mol/tree/master/switch)\n\n이 레퍼런스는 컴포넌트의 타입이 있는 `.view.tree` 인터페이스에서 생성됩니다.\n\n## 속성\n\n| 속성 | 접근 | 타입 |\n|---|---|---|\n| `value` | 읽기 / 쓰기 | `string` |\n",
+						},
+						fr: {
+							title: "$mol_switch",
+							md: "# \u0024mol_switch\n\nÉtend `\u0024mol_check_list`. [Voir la source sur GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/switch)\n\nCette référence est générée à partir de l'interface typée `.view.tree` du composant.\n\n## Propriétés\n\n| Propriété | Accès | Type |\n|---|---|---|\n| `value` | lecture / écriture | `string` |\n",
+						},
+						de: {
+							title: "$mol_switch",
+							md: "# \u0024mol_switch\n\nErweitert `\u0024mol_check_list`. [Quellcode auf GitHub ansehen](https://github.com/hyoo-ru/mam_mol/tree/master/switch)\n\nDiese Referenz wird aus der typisierten `.view.tree`-Schnittstelle der Komponente generiert.\n\n## Eigenschaften\n\n| Eigenschaft | Zugriff | Typ |\n|---|---|---|\n| `value` | Lesen / Schreiben | `string` |\n",
+						},
+						pt: {
+							title: "$mol_switch",
+							md: "# \u0024mol_switch\n\nEstende `\u0024mol_check_list`. [Ver o código-fonte no GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/switch)\n\nEsta referência é gerada a partir da interface tipada `.view.tree` do componente.\n\n## Propriedades\n\n| Propriedade | Acesso | Tipo |\n|---|---|---|\n| `value` | leitura / escrita | `string` |\n",
+						},
+						it: {
+							title: "$mol_switch",
+							md: "# \u0024mol_switch\n\nEstende `\u0024mol_check_list`. [Vedi il sorgente su GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/switch)\n\nQuesto riferimento è generato dall'interfaccia tipizzata `.view.tree` del componente.\n\n## Proprietà\n\n| Proprietà | Accesso | Tipo |\n|---|---|---|\n| `value` | lettura / scrittura | `string` |\n",
+						},
+						uk: {
+							title: "$mol_switch",
+							md: "# \u0024mol_switch\n\nРозширює `\u0024mol_check_list`. [Переглянути код на GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/switch)\n\nЦей довідник згенеровано з типізованого інтерфейсу `.view.tree` компонента.\n\n## Властивості\n\n| Властивість | Доступ | Тип |\n|---|---|---|\n| `value` | читання / запис | `string` |\n",
+						},
+						pl: {
+							title: "$mol_switch",
+							md: "# \u0024mol_switch\n\nRozszerza `\u0024mol_check_list`. [Zobacz źródło na GitHubie](https://github.com/hyoo-ru/mam_mol/tree/master/switch)\n\nTa referencja jest generowana z typowanego interfejsu `.view.tree` komponentu.\n\n## Właściwości\n\n| Właściwość | Dostęp | Typ |\n|---|---|---|\n| `value` | odczyt / zapis | `string` |\n",
+						},
+						cs: {
+							title: "$mol_switch",
+							md: "# \u0024mol_switch\n\nRozšiřuje `\u0024mol_check_list`. [Zobrazit zdroj na GitHubu](https://github.com/hyoo-ru/mam_mol/tree/master/switch)\n\nTato reference je generována z typovaného rozhraní `.view.tree` komponenty.\n\n## Vlastnosti\n\n| Vlastnost | Přístup | Typ |\n|---|---|---|\n| `value` | čtení / zápis | `string` |\n",
+						},
+						fa: {
+							title: "$mol_switch",
+							md: "# \u0024mol_switch\n\n`\u0024mol_check_list` را گسترش می‌دهد. [دیدنِ سورس در GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/switch)\n\nاین مرجع از واسطِ نوع‌دارِ `.view.tree`ِ کامپوننت تولید شده است.\n\n## ویژگی‌ها\n\n| ویژگی | دسترسی | نوع |\n|---|---|---|\n| `value` | خواندن / نوشتن | `string` |\n",
+						},
+						bn: {
+							title: "$mol_switch",
+							md: "# \u0024mol_switch\n\n`\u0024mol_check_list` কে এক্সটেন্ড করে। [GitHub-এ সোর্স দেখুন](https://github.com/hyoo-ru/mam_mol/tree/master/switch)\n\nএই রেফারেন্স কম্পোনেন্টের টাইপড `.view.tree` ইন্টারফেস থেকে জেনারেট করা হয়।\n\n## প্রপার্টি\n\n| প্রপার্টি | অ্যাক্সেস | টাইপ |\n|---|---|---|\n| `value` | পড়া / লেখা | `string` |\n",
+						},
+					},
 				},
 				'api-mol-select': {
 					slug: 'api-mol-select',
 					title: "$mol_select",
 					file: 'content/en/docs/api-mol-select.md',
 					md: "# \u0024mol_select\n\nExtends `\u0024mol_pick`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/select)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `enabled` | read | `boolean` |\n| `filter_pattern` | read / write | `string` |\n| `no_options_message` | read | `string` |\n| `nav_components` | read | `readonly(\u0024mol_view)[]` |\n| `nav_cycle` | read / write | `boolean` |\n| `Nav` | read | `\u0024mol_nav` |\n| `menu_content` | read | `readonly(\u0024mol_view)[]` |\n| `Menu` | read | `\u0024mol_list` |\n| `Bubble_pane` | read | `\u0024mol_scroll` |\n| `filter_hint` | read | `string` |\n| `dictionary` | read / write | `Record<string, any>` |\n| `options` | read | `readonly(string)[]` |\n| `value` | read / write | `string` |\n| `option_label_default` | read | `string` |\n| `No_options` | read | `\u0024mol_view` |\n| `plugins` | read | `readonly(any)[]` |\n| `hint` | read | `string` |\n| `bubble_content` | read | `readonly(any)[]` |\n| `Filter` | read | `\u0024mol_search` |\n| `Trigger_icon` | read | `\u0024mol_icon_dots_vertical` |\n| `trigger_enabled` | read | `as 'enabled'` |\n",
+					tr: {
+						zh: {
+							title: "$mol_select",
+							md: "# \u0024mol_select\n\n继承自 `\u0024mol_pick`。[在 GitHub 上查看源码](https://github.com/hyoo-ru/mam_mol/tree/master/select)\n\n本参考由组件的带类型 `.view.tree` 接口生成。\n\n## 属性\n\n| 属性 | 访问 | 类型 |\n|---|---|---|\n| `enabled` | 读 | `boolean` |\n| `filter_pattern` | 读 / 写 | `string` |\n| `no_options_message` | 读 | `string` |\n| `nav_components` | 读 | `readonly(\u0024mol_view)[]` |\n| `nav_cycle` | 读 / 写 | `boolean` |\n| `Nav` | 读 | `\u0024mol_nav` |\n| `menu_content` | 读 | `readonly(\u0024mol_view)[]` |\n| `Menu` | 读 | `\u0024mol_list` |\n| `Bubble_pane` | 读 | `\u0024mol_scroll` |\n| `filter_hint` | 读 | `string` |\n| `dictionary` | 读 / 写 | `Record<string, any>` |\n| `options` | 读 | `readonly(string)[]` |\n| `value` | 读 / 写 | `string` |\n| `option_label_default` | 读 | `string` |\n| `No_options` | 读 | `\u0024mol_view` |\n| `plugins` | 读 | `readonly(any)[]` |\n| `hint` | 读 | `string` |\n| `bubble_content` | 读 | `readonly(any)[]` |\n| `Filter` | 读 | `\u0024mol_search` |\n| `Trigger_icon` | 读 | `\u0024mol_icon_dots_vertical` |\n| `trigger_enabled` | 读 | `as 'enabled'` |\n",
+						},
+						zh_hk: {
+							title: "$mol_select",
+							md: "# \u0024mol_select\n\n繼承自 `\u0024mol_pick`。[在 GitHub 上查看原始碼](https://github.com/hyoo-ru/mam_mol/tree/master/select)\n\n本參考由元件的帶型別 `.view.tree` 介面生成。\n\n## 屬性\n\n| 屬性 | 存取 | 型別 |\n|---|---|---|\n| `enabled` | 讀 | `boolean` |\n| `filter_pattern` | 讀 / 寫 | `string` |\n| `no_options_message` | 讀 | `string` |\n| `nav_components` | 讀 | `readonly(\u0024mol_view)[]` |\n| `nav_cycle` | 讀 / 寫 | `boolean` |\n| `Nav` | 讀 | `\u0024mol_nav` |\n| `menu_content` | 讀 | `readonly(\u0024mol_view)[]` |\n| `Menu` | 讀 | `\u0024mol_list` |\n| `Bubble_pane` | 讀 | `\u0024mol_scroll` |\n| `filter_hint` | 讀 | `string` |\n| `dictionary` | 讀 / 寫 | `Record<string, any>` |\n| `options` | 讀 | `readonly(string)[]` |\n| `value` | 讀 / 寫 | `string` |\n| `option_label_default` | 讀 | `string` |\n| `No_options` | 讀 | `\u0024mol_view` |\n| `plugins` | 讀 | `readonly(any)[]` |\n| `hint` | 讀 | `string` |\n| `bubble_content` | 讀 | `readonly(any)[]` |\n| `Filter` | 讀 | `\u0024mol_search` |\n| `Trigger_icon` | 讀 | `\u0024mol_icon_dots_vertical` |\n| `trigger_enabled` | 讀 | `as 'enabled'` |\n",
+						},
+						ja: {
+							title: "$mol_select",
+							md: "# \u0024mol_select\n\n`\u0024mol_pick` を継承。[GitHub でソースを見る](https://github.com/hyoo-ru/mam_mol/tree/master/select)\n\nこのリファレンスはコンポーネントの型付き `.view.tree` インターフェイスから生成されています。\n\n## プロパティ\n\n| プロパティ | アクセス | 型 |\n|---|---|---|\n| `enabled` | 読み取り | `boolean` |\n| `filter_pattern` | 読み取り / 書き込み | `string` |\n| `no_options_message` | 読み取り | `string` |\n| `nav_components` | 読み取り | `readonly(\u0024mol_view)[]` |\n| `nav_cycle` | 読み取り / 書き込み | `boolean` |\n| `Nav` | 読み取り | `\u0024mol_nav` |\n| `menu_content` | 読み取り | `readonly(\u0024mol_view)[]` |\n| `Menu` | 読み取り | `\u0024mol_list` |\n| `Bubble_pane` | 読み取り | `\u0024mol_scroll` |\n| `filter_hint` | 読み取り | `string` |\n| `dictionary` | 読み取り / 書き込み | `Record<string, any>` |\n| `options` | 読み取り | `readonly(string)[]` |\n| `value` | 読み取り / 書き込み | `string` |\n| `option_label_default` | 読み取り | `string` |\n| `No_options` | 読み取り | `\u0024mol_view` |\n| `plugins` | 読み取り | `readonly(any)[]` |\n| `hint` | 読み取り | `string` |\n| `bubble_content` | 読み取り | `readonly(any)[]` |\n| `Filter` | 読み取り | `\u0024mol_search` |\n| `Trigger_icon` | 読み取り | `\u0024mol_icon_dots_vertical` |\n| `trigger_enabled` | 読み取り | `as 'enabled'` |\n",
+						},
+						ko: {
+							title: "$mol_select",
+							md: "# \u0024mol_select\n\n`\u0024mol_pick`을(를) 확장합니다. [GitHub에서 소스 보기](https://github.com/hyoo-ru/mam_mol/tree/master/select)\n\n이 레퍼런스는 컴포넌트의 타입이 있는 `.view.tree` 인터페이스에서 생성됩니다.\n\n## 속성\n\n| 속성 | 접근 | 타입 |\n|---|---|---|\n| `enabled` | 읽기 | `boolean` |\n| `filter_pattern` | 읽기 / 쓰기 | `string` |\n| `no_options_message` | 읽기 | `string` |\n| `nav_components` | 읽기 | `readonly(\u0024mol_view)[]` |\n| `nav_cycle` | 읽기 / 쓰기 | `boolean` |\n| `Nav` | 읽기 | `\u0024mol_nav` |\n| `menu_content` | 읽기 | `readonly(\u0024mol_view)[]` |\n| `Menu` | 읽기 | `\u0024mol_list` |\n| `Bubble_pane` | 읽기 | `\u0024mol_scroll` |\n| `filter_hint` | 읽기 | `string` |\n| `dictionary` | 읽기 / 쓰기 | `Record<string, any>` |\n| `options` | 읽기 | `readonly(string)[]` |\n| `value` | 읽기 / 쓰기 | `string` |\n| `option_label_default` | 읽기 | `string` |\n| `No_options` | 읽기 | `\u0024mol_view` |\n| `plugins` | 읽기 | `readonly(any)[]` |\n| `hint` | 읽기 | `string` |\n| `bubble_content` | 읽기 | `readonly(any)[]` |\n| `Filter` | 읽기 | `\u0024mol_search` |\n| `Trigger_icon` | 읽기 | `\u0024mol_icon_dots_vertical` |\n| `trigger_enabled` | 읽기 | `as 'enabled'` |\n",
+						},
+						fr: {
+							title: "$mol_select",
+							md: "# \u0024mol_select\n\nÉtend `\u0024mol_pick`. [Voir la source sur GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/select)\n\nCette référence est générée à partir de l'interface typée `.view.tree` du composant.\n\n## Propriétés\n\n| Propriété | Accès | Type |\n|---|---|---|\n| `enabled` | lecture | `boolean` |\n| `filter_pattern` | lecture / écriture | `string` |\n| `no_options_message` | lecture | `string` |\n| `nav_components` | lecture | `readonly(\u0024mol_view)[]` |\n| `nav_cycle` | lecture / écriture | `boolean` |\n| `Nav` | lecture | `\u0024mol_nav` |\n| `menu_content` | lecture | `readonly(\u0024mol_view)[]` |\n| `Menu` | lecture | `\u0024mol_list` |\n| `Bubble_pane` | lecture | `\u0024mol_scroll` |\n| `filter_hint` | lecture | `string` |\n| `dictionary` | lecture / écriture | `Record<string, any>` |\n| `options` | lecture | `readonly(string)[]` |\n| `value` | lecture / écriture | `string` |\n| `option_label_default` | lecture | `string` |\n| `No_options` | lecture | `\u0024mol_view` |\n| `plugins` | lecture | `readonly(any)[]` |\n| `hint` | lecture | `string` |\n| `bubble_content` | lecture | `readonly(any)[]` |\n| `Filter` | lecture | `\u0024mol_search` |\n| `Trigger_icon` | lecture | `\u0024mol_icon_dots_vertical` |\n| `trigger_enabled` | lecture | `as 'enabled'` |\n",
+						},
+						de: {
+							title: "$mol_select",
+							md: "# \u0024mol_select\n\nErweitert `\u0024mol_pick`. [Quellcode auf GitHub ansehen](https://github.com/hyoo-ru/mam_mol/tree/master/select)\n\nDiese Referenz wird aus der typisierten `.view.tree`-Schnittstelle der Komponente generiert.\n\n## Eigenschaften\n\n| Eigenschaft | Zugriff | Typ |\n|---|---|---|\n| `enabled` | Lesen | `boolean` |\n| `filter_pattern` | Lesen / Schreiben | `string` |\n| `no_options_message` | Lesen | `string` |\n| `nav_components` | Lesen | `readonly(\u0024mol_view)[]` |\n| `nav_cycle` | Lesen / Schreiben | `boolean` |\n| `Nav` | Lesen | `\u0024mol_nav` |\n| `menu_content` | Lesen | `readonly(\u0024mol_view)[]` |\n| `Menu` | Lesen | `\u0024mol_list` |\n| `Bubble_pane` | Lesen | `\u0024mol_scroll` |\n| `filter_hint` | Lesen | `string` |\n| `dictionary` | Lesen / Schreiben | `Record<string, any>` |\n| `options` | Lesen | `readonly(string)[]` |\n| `value` | Lesen / Schreiben | `string` |\n| `option_label_default` | Lesen | `string` |\n| `No_options` | Lesen | `\u0024mol_view` |\n| `plugins` | Lesen | `readonly(any)[]` |\n| `hint` | Lesen | `string` |\n| `bubble_content` | Lesen | `readonly(any)[]` |\n| `Filter` | Lesen | `\u0024mol_search` |\n| `Trigger_icon` | Lesen | `\u0024mol_icon_dots_vertical` |\n| `trigger_enabled` | Lesen | `as 'enabled'` |\n",
+						},
+						pt: {
+							title: "$mol_select",
+							md: "# \u0024mol_select\n\nEstende `\u0024mol_pick`. [Ver o código-fonte no GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/select)\n\nEsta referência é gerada a partir da interface tipada `.view.tree` do componente.\n\n## Propriedades\n\n| Propriedade | Acesso | Tipo |\n|---|---|---|\n| `enabled` | leitura | `boolean` |\n| `filter_pattern` | leitura / escrita | `string` |\n| `no_options_message` | leitura | `string` |\n| `nav_components` | leitura | `readonly(\u0024mol_view)[]` |\n| `nav_cycle` | leitura / escrita | `boolean` |\n| `Nav` | leitura | `\u0024mol_nav` |\n| `menu_content` | leitura | `readonly(\u0024mol_view)[]` |\n| `Menu` | leitura | `\u0024mol_list` |\n| `Bubble_pane` | leitura | `\u0024mol_scroll` |\n| `filter_hint` | leitura | `string` |\n| `dictionary` | leitura / escrita | `Record<string, any>` |\n| `options` | leitura | `readonly(string)[]` |\n| `value` | leitura / escrita | `string` |\n| `option_label_default` | leitura | `string` |\n| `No_options` | leitura | `\u0024mol_view` |\n| `plugins` | leitura | `readonly(any)[]` |\n| `hint` | leitura | `string` |\n| `bubble_content` | leitura | `readonly(any)[]` |\n| `Filter` | leitura | `\u0024mol_search` |\n| `Trigger_icon` | leitura | `\u0024mol_icon_dots_vertical` |\n| `trigger_enabled` | leitura | `as 'enabled'` |\n",
+						},
+						it: {
+							title: "$mol_select",
+							md: "# \u0024mol_select\n\nEstende `\u0024mol_pick`. [Vedi il sorgente su GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/select)\n\nQuesto riferimento è generato dall'interfaccia tipizzata `.view.tree` del componente.\n\n## Proprietà\n\n| Proprietà | Accesso | Tipo |\n|---|---|---|\n| `enabled` | lettura | `boolean` |\n| `filter_pattern` | lettura / scrittura | `string` |\n| `no_options_message` | lettura | `string` |\n| `nav_components` | lettura | `readonly(\u0024mol_view)[]` |\n| `nav_cycle` | lettura / scrittura | `boolean` |\n| `Nav` | lettura | `\u0024mol_nav` |\n| `menu_content` | lettura | `readonly(\u0024mol_view)[]` |\n| `Menu` | lettura | `\u0024mol_list` |\n| `Bubble_pane` | lettura | `\u0024mol_scroll` |\n| `filter_hint` | lettura | `string` |\n| `dictionary` | lettura / scrittura | `Record<string, any>` |\n| `options` | lettura | `readonly(string)[]` |\n| `value` | lettura / scrittura | `string` |\n| `option_label_default` | lettura | `string` |\n| `No_options` | lettura | `\u0024mol_view` |\n| `plugins` | lettura | `readonly(any)[]` |\n| `hint` | lettura | `string` |\n| `bubble_content` | lettura | `readonly(any)[]` |\n| `Filter` | lettura | `\u0024mol_search` |\n| `Trigger_icon` | lettura | `\u0024mol_icon_dots_vertical` |\n| `trigger_enabled` | lettura | `as 'enabled'` |\n",
+						},
+						uk: {
+							title: "$mol_select",
+							md: "# \u0024mol_select\n\nРозширює `\u0024mol_pick`. [Переглянути код на GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/select)\n\nЦей довідник згенеровано з типізованого інтерфейсу `.view.tree` компонента.\n\n## Властивості\n\n| Властивість | Доступ | Тип |\n|---|---|---|\n| `enabled` | читання | `boolean` |\n| `filter_pattern` | читання / запис | `string` |\n| `no_options_message` | читання | `string` |\n| `nav_components` | читання | `readonly(\u0024mol_view)[]` |\n| `nav_cycle` | читання / запис | `boolean` |\n| `Nav` | читання | `\u0024mol_nav` |\n| `menu_content` | читання | `readonly(\u0024mol_view)[]` |\n| `Menu` | читання | `\u0024mol_list` |\n| `Bubble_pane` | читання | `\u0024mol_scroll` |\n| `filter_hint` | читання | `string` |\n| `dictionary` | читання / запис | `Record<string, any>` |\n| `options` | читання | `readonly(string)[]` |\n| `value` | читання / запис | `string` |\n| `option_label_default` | читання | `string` |\n| `No_options` | читання | `\u0024mol_view` |\n| `plugins` | читання | `readonly(any)[]` |\n| `hint` | читання | `string` |\n| `bubble_content` | читання | `readonly(any)[]` |\n| `Filter` | читання | `\u0024mol_search` |\n| `Trigger_icon` | читання | `\u0024mol_icon_dots_vertical` |\n| `trigger_enabled` | читання | `as 'enabled'` |\n",
+						},
+						pl: {
+							title: "$mol_select",
+							md: "# \u0024mol_select\n\nRozszerza `\u0024mol_pick`. [Zobacz źródło na GitHubie](https://github.com/hyoo-ru/mam_mol/tree/master/select)\n\nTa referencja jest generowana z typowanego interfejsu `.view.tree` komponentu.\n\n## Właściwości\n\n| Właściwość | Dostęp | Typ |\n|---|---|---|\n| `enabled` | odczyt | `boolean` |\n| `filter_pattern` | odczyt / zapis | `string` |\n| `no_options_message` | odczyt | `string` |\n| `nav_components` | odczyt | `readonly(\u0024mol_view)[]` |\n| `nav_cycle` | odczyt / zapis | `boolean` |\n| `Nav` | odczyt | `\u0024mol_nav` |\n| `menu_content` | odczyt | `readonly(\u0024mol_view)[]` |\n| `Menu` | odczyt | `\u0024mol_list` |\n| `Bubble_pane` | odczyt | `\u0024mol_scroll` |\n| `filter_hint` | odczyt | `string` |\n| `dictionary` | odczyt / zapis | `Record<string, any>` |\n| `options` | odczyt | `readonly(string)[]` |\n| `value` | odczyt / zapis | `string` |\n| `option_label_default` | odczyt | `string` |\n| `No_options` | odczyt | `\u0024mol_view` |\n| `plugins` | odczyt | `readonly(any)[]` |\n| `hint` | odczyt | `string` |\n| `bubble_content` | odczyt | `readonly(any)[]` |\n| `Filter` | odczyt | `\u0024mol_search` |\n| `Trigger_icon` | odczyt | `\u0024mol_icon_dots_vertical` |\n| `trigger_enabled` | odczyt | `as 'enabled'` |\n",
+						},
+						cs: {
+							title: "$mol_select",
+							md: "# \u0024mol_select\n\nRozšiřuje `\u0024mol_pick`. [Zobrazit zdroj na GitHubu](https://github.com/hyoo-ru/mam_mol/tree/master/select)\n\nTato reference je generována z typovaného rozhraní `.view.tree` komponenty.\n\n## Vlastnosti\n\n| Vlastnost | Přístup | Typ |\n|---|---|---|\n| `enabled` | čtení | `boolean` |\n| `filter_pattern` | čtení / zápis | `string` |\n| `no_options_message` | čtení | `string` |\n| `nav_components` | čtení | `readonly(\u0024mol_view)[]` |\n| `nav_cycle` | čtení / zápis | `boolean` |\n| `Nav` | čtení | `\u0024mol_nav` |\n| `menu_content` | čtení | `readonly(\u0024mol_view)[]` |\n| `Menu` | čtení | `\u0024mol_list` |\n| `Bubble_pane` | čtení | `\u0024mol_scroll` |\n| `filter_hint` | čtení | `string` |\n| `dictionary` | čtení / zápis | `Record<string, any>` |\n| `options` | čtení | `readonly(string)[]` |\n| `value` | čtení / zápis | `string` |\n| `option_label_default` | čtení | `string` |\n| `No_options` | čtení | `\u0024mol_view` |\n| `plugins` | čtení | `readonly(any)[]` |\n| `hint` | čtení | `string` |\n| `bubble_content` | čtení | `readonly(any)[]` |\n| `Filter` | čtení | `\u0024mol_search` |\n| `Trigger_icon` | čtení | `\u0024mol_icon_dots_vertical` |\n| `trigger_enabled` | čtení | `as 'enabled'` |\n",
+						},
+						fa: {
+							title: "$mol_select",
+							md: "# \u0024mol_select\n\n`\u0024mol_pick` را گسترش می‌دهد. [دیدنِ سورس در GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/select)\n\nاین مرجع از واسطِ نوع‌دارِ `.view.tree`ِ کامپوننت تولید شده است.\n\n## ویژگی‌ها\n\n| ویژگی | دسترسی | نوع |\n|---|---|---|\n| `enabled` | خواندن | `boolean` |\n| `filter_pattern` | خواندن / نوشتن | `string` |\n| `no_options_message` | خواندن | `string` |\n| `nav_components` | خواندن | `readonly(\u0024mol_view)[]` |\n| `nav_cycle` | خواندن / نوشتن | `boolean` |\n| `Nav` | خواندن | `\u0024mol_nav` |\n| `menu_content` | خواندن | `readonly(\u0024mol_view)[]` |\n| `Menu` | خواندن | `\u0024mol_list` |\n| `Bubble_pane` | خواندن | `\u0024mol_scroll` |\n| `filter_hint` | خواندن | `string` |\n| `dictionary` | خواندن / نوشتن | `Record<string, any>` |\n| `options` | خواندن | `readonly(string)[]` |\n| `value` | خواندن / نوشتن | `string` |\n| `option_label_default` | خواندن | `string` |\n| `No_options` | خواندن | `\u0024mol_view` |\n| `plugins` | خواندن | `readonly(any)[]` |\n| `hint` | خواندن | `string` |\n| `bubble_content` | خواندن | `readonly(any)[]` |\n| `Filter` | خواندن | `\u0024mol_search` |\n| `Trigger_icon` | خواندن | `\u0024mol_icon_dots_vertical` |\n| `trigger_enabled` | خواندن | `as 'enabled'` |\n",
+						},
+						bn: {
+							title: "$mol_select",
+							md: "# \u0024mol_select\n\n`\u0024mol_pick` কে এক্সটেন্ড করে। [GitHub-এ সোর্স দেখুন](https://github.com/hyoo-ru/mam_mol/tree/master/select)\n\nএই রেফারেন্স কম্পোনেন্টের টাইপড `.view.tree` ইন্টারফেস থেকে জেনারেট করা হয়।\n\n## প্রপার্টি\n\n| প্রপার্টি | অ্যাক্সেস | টাইপ |\n|---|---|---|\n| `enabled` | পড়া | `boolean` |\n| `filter_pattern` | পড়া / লেখা | `string` |\n| `no_options_message` | পড়া | `string` |\n| `nav_components` | পড়া | `readonly(\u0024mol_view)[]` |\n| `nav_cycle` | পড়া / লেখা | `boolean` |\n| `Nav` | পড়া | `\u0024mol_nav` |\n| `menu_content` | পড়া | `readonly(\u0024mol_view)[]` |\n| `Menu` | পড়া | `\u0024mol_list` |\n| `Bubble_pane` | পড়া | `\u0024mol_scroll` |\n| `filter_hint` | পড়া | `string` |\n| `dictionary` | পড়া / লেখা | `Record<string, any>` |\n| `options` | পড়া | `readonly(string)[]` |\n| `value` | পড়া / লেখা | `string` |\n| `option_label_default` | পড়া | `string` |\n| `No_options` | পড়া | `\u0024mol_view` |\n| `plugins` | পড়া | `readonly(any)[]` |\n| `hint` | পড়া | `string` |\n| `bubble_content` | পড়া | `readonly(any)[]` |\n| `Filter` | পড়া | `\u0024mol_search` |\n| `Trigger_icon` | পড়া | `\u0024mol_icon_dots_vertical` |\n| `trigger_enabled` | পড়া | `as 'enabled'` |\n",
+						},
+					},
 				},
 				'api-mol-scroll': {
 					slug: 'api-mol-scroll',
 					title: "$mol_scroll",
 					file: 'content/en/docs/api-mol-scroll.md',
 					md: "# \u0024mol_scroll\n\nExtends `\u0024mol_view`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/scroll)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `tabindex` | read | `number` |\n| `scroll_top` | read / write | `number` |\n| `scroll_left` | read / write | `number` |\n| `attr` | read | `({` |\n| `event` | read | `({` |\n",
+					tr: {
+						zh: {
+							title: "$mol_scroll",
+							md: "# \u0024mol_scroll\n\n继承自 `\u0024mol_view`。[在 GitHub 上查看源码](https://github.com/hyoo-ru/mam_mol/tree/master/scroll)\n\n本参考由组件的带类型 `.view.tree` 接口生成。\n\n## 属性\n\n| 属性 | 访问 | 类型 |\n|---|---|---|\n| `tabindex` | 读 | `number` |\n| `scroll_top` | 读 / 写 | `number` |\n| `scroll_left` | 读 / 写 | `number` |\n| `attr` | 读 | `({` |\n| `event` | 读 | `({` |\n",
+						},
+						zh_hk: {
+							title: "$mol_scroll",
+							md: "# \u0024mol_scroll\n\n繼承自 `\u0024mol_view`。[在 GitHub 上查看原始碼](https://github.com/hyoo-ru/mam_mol/tree/master/scroll)\n\n本參考由元件的帶型別 `.view.tree` 介面生成。\n\n## 屬性\n\n| 屬性 | 存取 | 型別 |\n|---|---|---|\n| `tabindex` | 讀 | `number` |\n| `scroll_top` | 讀 / 寫 | `number` |\n| `scroll_left` | 讀 / 寫 | `number` |\n| `attr` | 讀 | `({` |\n| `event` | 讀 | `({` |\n",
+						},
+						ja: {
+							title: "$mol_scroll",
+							md: "# \u0024mol_scroll\n\n`\u0024mol_view` を継承。[GitHub でソースを見る](https://github.com/hyoo-ru/mam_mol/tree/master/scroll)\n\nこのリファレンスはコンポーネントの型付き `.view.tree` インターフェイスから生成されています。\n\n## プロパティ\n\n| プロパティ | アクセス | 型 |\n|---|---|---|\n| `tabindex` | 読み取り | `number` |\n| `scroll_top` | 読み取り / 書き込み | `number` |\n| `scroll_left` | 読み取り / 書き込み | `number` |\n| `attr` | 読み取り | `({` |\n| `event` | 読み取り | `({` |\n",
+						},
+						ko: {
+							title: "$mol_scroll",
+							md: "# \u0024mol_scroll\n\n`\u0024mol_view`을(를) 확장합니다. [GitHub에서 소스 보기](https://github.com/hyoo-ru/mam_mol/tree/master/scroll)\n\n이 레퍼런스는 컴포넌트의 타입이 있는 `.view.tree` 인터페이스에서 생성됩니다.\n\n## 속성\n\n| 속성 | 접근 | 타입 |\n|---|---|---|\n| `tabindex` | 읽기 | `number` |\n| `scroll_top` | 읽기 / 쓰기 | `number` |\n| `scroll_left` | 읽기 / 쓰기 | `number` |\n| `attr` | 읽기 | `({` |\n| `event` | 읽기 | `({` |\n",
+						},
+						fr: {
+							title: "$mol_scroll",
+							md: "# \u0024mol_scroll\n\nÉtend `\u0024mol_view`. [Voir la source sur GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/scroll)\n\nCette référence est générée à partir de l'interface typée `.view.tree` du composant.\n\n## Propriétés\n\n| Propriété | Accès | Type |\n|---|---|---|\n| `tabindex` | lecture | `number` |\n| `scroll_top` | lecture / écriture | `number` |\n| `scroll_left` | lecture / écriture | `number` |\n| `attr` | lecture | `({` |\n| `event` | lecture | `({` |\n",
+						},
+						de: {
+							title: "$mol_scroll",
+							md: "# \u0024mol_scroll\n\nErweitert `\u0024mol_view`. [Quellcode auf GitHub ansehen](https://github.com/hyoo-ru/mam_mol/tree/master/scroll)\n\nDiese Referenz wird aus der typisierten `.view.tree`-Schnittstelle der Komponente generiert.\n\n## Eigenschaften\n\n| Eigenschaft | Zugriff | Typ |\n|---|---|---|\n| `tabindex` | Lesen | `number` |\n| `scroll_top` | Lesen / Schreiben | `number` |\n| `scroll_left` | Lesen / Schreiben | `number` |\n| `attr` | Lesen | `({` |\n| `event` | Lesen | `({` |\n",
+						},
+						pt: {
+							title: "$mol_scroll",
+							md: "# \u0024mol_scroll\n\nEstende `\u0024mol_view`. [Ver o código-fonte no GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/scroll)\n\nEsta referência é gerada a partir da interface tipada `.view.tree` do componente.\n\n## Propriedades\n\n| Propriedade | Acesso | Tipo |\n|---|---|---|\n| `tabindex` | leitura | `number` |\n| `scroll_top` | leitura / escrita | `number` |\n| `scroll_left` | leitura / escrita | `number` |\n| `attr` | leitura | `({` |\n| `event` | leitura | `({` |\n",
+						},
+						it: {
+							title: "$mol_scroll",
+							md: "# \u0024mol_scroll\n\nEstende `\u0024mol_view`. [Vedi il sorgente su GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/scroll)\n\nQuesto riferimento è generato dall'interfaccia tipizzata `.view.tree` del componente.\n\n## Proprietà\n\n| Proprietà | Accesso | Tipo |\n|---|---|---|\n| `tabindex` | lettura | `number` |\n| `scroll_top` | lettura / scrittura | `number` |\n| `scroll_left` | lettura / scrittura | `number` |\n| `attr` | lettura | `({` |\n| `event` | lettura | `({` |\n",
+						},
+						uk: {
+							title: "$mol_scroll",
+							md: "# \u0024mol_scroll\n\nРозширює `\u0024mol_view`. [Переглянути код на GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/scroll)\n\nЦей довідник згенеровано з типізованого інтерфейсу `.view.tree` компонента.\n\n## Властивості\n\n| Властивість | Доступ | Тип |\n|---|---|---|\n| `tabindex` | читання | `number` |\n| `scroll_top` | читання / запис | `number` |\n| `scroll_left` | читання / запис | `number` |\n| `attr` | читання | `({` |\n| `event` | читання | `({` |\n",
+						},
+						pl: {
+							title: "$mol_scroll",
+							md: "# \u0024mol_scroll\n\nRozszerza `\u0024mol_view`. [Zobacz źródło na GitHubie](https://github.com/hyoo-ru/mam_mol/tree/master/scroll)\n\nTa referencja jest generowana z typowanego interfejsu `.view.tree` komponentu.\n\n## Właściwości\n\n| Właściwość | Dostęp | Typ |\n|---|---|---|\n| `tabindex` | odczyt | `number` |\n| `scroll_top` | odczyt / zapis | `number` |\n| `scroll_left` | odczyt / zapis | `number` |\n| `attr` | odczyt | `({` |\n| `event` | odczyt | `({` |\n",
+						},
+						cs: {
+							title: "$mol_scroll",
+							md: "# \u0024mol_scroll\n\nRozšiřuje `\u0024mol_view`. [Zobrazit zdroj na GitHubu](https://github.com/hyoo-ru/mam_mol/tree/master/scroll)\n\nTato reference je generována z typovaného rozhraní `.view.tree` komponenty.\n\n## Vlastnosti\n\n| Vlastnost | Přístup | Typ |\n|---|---|---|\n| `tabindex` | čtení | `number` |\n| `scroll_top` | čtení / zápis | `number` |\n| `scroll_left` | čtení / zápis | `number` |\n| `attr` | čtení | `({` |\n| `event` | čtení | `({` |\n",
+						},
+						fa: {
+							title: "$mol_scroll",
+							md: "# \u0024mol_scroll\n\n`\u0024mol_view` را گسترش می‌دهد. [دیدنِ سورس در GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/scroll)\n\nاین مرجع از واسطِ نوع‌دارِ `.view.tree`ِ کامپوننت تولید شده است.\n\n## ویژگی‌ها\n\n| ویژگی | دسترسی | نوع |\n|---|---|---|\n| `tabindex` | خواندن | `number` |\n| `scroll_top` | خواندن / نوشتن | `number` |\n| `scroll_left` | خواندن / نوشتن | `number` |\n| `attr` | خواندن | `({` |\n| `event` | خواندن | `({` |\n",
+						},
+						bn: {
+							title: "$mol_scroll",
+							md: "# \u0024mol_scroll\n\n`\u0024mol_view` কে এক্সটেন্ড করে। [GitHub-এ সোর্স দেখুন](https://github.com/hyoo-ru/mam_mol/tree/master/scroll)\n\nএই রেফারেন্স কম্পোনেন্টের টাইপড `.view.tree` ইন্টারফেস থেকে জেনারেট করা হয়।\n\n## প্রপার্টি\n\n| প্রপার্টি | অ্যাক্সেস | টাইপ |\n|---|---|---|\n| `tabindex` | পড়া | `number` |\n| `scroll_top` | পড়া / লেখা | `number` |\n| `scroll_left` | পড়া / লেখা | `number` |\n| `attr` | পড়া | `({` |\n| `event` | পড়া | `({` |\n",
+						},
+					},
 				},
 				'api-mol-page': {
 					slug: 'api-mol-page',
 					title: "$mol_page",
 					file: 'content/en/docs/api-mol-page.md',
 					md: "# \u0024mol_page\n\nExtends `\u0024mol_view`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/page)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `tabindex` | read | `number` |\n| `title_content` | read | `readonly(any)[]` |\n| `Title` | read | `\u0024mol_view` |\n| `tools` | read | `readonly(\u0024mol_view_content)[]` |\n| `Tools` | read | `\u0024mol_view` |\n| `head` | read | `readonly(any)[]` |\n| `Head` | read | `\u0024mol_view` |\n| `body_scroll_top` | read / write | `ReturnType< as 'Body'['scroll_top'] >` |\n| `body` | read | `readonly(\u0024mol_view)[]` |\n| `Body_content` | read | `\u0024mol_view` |\n| `body_content` | read | `readonly(any)[]` |\n| `Body` | read | `\u0024mol_scroll` |\n| `foot` | read | `readonly(\u0024mol_view)[]` |\n| `Foot` | read | `\u0024mol_view` |\n| `dom_name` | read | `string` |\n| `attr` | read | `({` |\n| `sub` | read | `readonly(any)[]` |\n",
+					tr: {
+						zh: {
+							title: "$mol_page",
+							md: "# \u0024mol_page\n\n继承自 `\u0024mol_view`。[在 GitHub 上查看源码](https://github.com/hyoo-ru/mam_mol/tree/master/page)\n\n本参考由组件的带类型 `.view.tree` 接口生成。\n\n## 属性\n\n| 属性 | 访问 | 类型 |\n|---|---|---|\n| `tabindex` | 读 | `number` |\n| `title_content` | 读 | `readonly(any)[]` |\n| `Title` | 读 | `\u0024mol_view` |\n| `tools` | 读 | `readonly(\u0024mol_view_content)[]` |\n| `Tools` | 读 | `\u0024mol_view` |\n| `head` | 读 | `readonly(any)[]` |\n| `Head` | 读 | `\u0024mol_view` |\n| `body_scroll_top` | 读 / 写 | `ReturnType< as 'Body'['scroll_top'] >` |\n| `body` | 读 | `readonly(\u0024mol_view)[]` |\n| `Body_content` | 读 | `\u0024mol_view` |\n| `body_content` | 读 | `readonly(any)[]` |\n| `Body` | 读 | `\u0024mol_scroll` |\n| `foot` | 读 | `readonly(\u0024mol_view)[]` |\n| `Foot` | 读 | `\u0024mol_view` |\n| `dom_name` | 读 | `string` |\n| `attr` | 读 | `({` |\n| `sub` | 读 | `readonly(any)[]` |\n",
+						},
+						zh_hk: {
+							title: "$mol_page",
+							md: "# \u0024mol_page\n\n繼承自 `\u0024mol_view`。[在 GitHub 上查看原始碼](https://github.com/hyoo-ru/mam_mol/tree/master/page)\n\n本參考由元件的帶型別 `.view.tree` 介面生成。\n\n## 屬性\n\n| 屬性 | 存取 | 型別 |\n|---|---|---|\n| `tabindex` | 讀 | `number` |\n| `title_content` | 讀 | `readonly(any)[]` |\n| `Title` | 讀 | `\u0024mol_view` |\n| `tools` | 讀 | `readonly(\u0024mol_view_content)[]` |\n| `Tools` | 讀 | `\u0024mol_view` |\n| `head` | 讀 | `readonly(any)[]` |\n| `Head` | 讀 | `\u0024mol_view` |\n| `body_scroll_top` | 讀 / 寫 | `ReturnType< as 'Body'['scroll_top'] >` |\n| `body` | 讀 | `readonly(\u0024mol_view)[]` |\n| `Body_content` | 讀 | `\u0024mol_view` |\n| `body_content` | 讀 | `readonly(any)[]` |\n| `Body` | 讀 | `\u0024mol_scroll` |\n| `foot` | 讀 | `readonly(\u0024mol_view)[]` |\n| `Foot` | 讀 | `\u0024mol_view` |\n| `dom_name` | 讀 | `string` |\n| `attr` | 讀 | `({` |\n| `sub` | 讀 | `readonly(any)[]` |\n",
+						},
+						ja: {
+							title: "$mol_page",
+							md: "# \u0024mol_page\n\n`\u0024mol_view` を継承。[GitHub でソースを見る](https://github.com/hyoo-ru/mam_mol/tree/master/page)\n\nこのリファレンスはコンポーネントの型付き `.view.tree` インターフェイスから生成されています。\n\n## プロパティ\n\n| プロパティ | アクセス | 型 |\n|---|---|---|\n| `tabindex` | 読み取り | `number` |\n| `title_content` | 読み取り | `readonly(any)[]` |\n| `Title` | 読み取り | `\u0024mol_view` |\n| `tools` | 読み取り | `readonly(\u0024mol_view_content)[]` |\n| `Tools` | 読み取り | `\u0024mol_view` |\n| `head` | 読み取り | `readonly(any)[]` |\n| `Head` | 読み取り | `\u0024mol_view` |\n| `body_scroll_top` | 読み取り / 書き込み | `ReturnType< as 'Body'['scroll_top'] >` |\n| `body` | 読み取り | `readonly(\u0024mol_view)[]` |\n| `Body_content` | 読み取り | `\u0024mol_view` |\n| `body_content` | 読み取り | `readonly(any)[]` |\n| `Body` | 読み取り | `\u0024mol_scroll` |\n| `foot` | 読み取り | `readonly(\u0024mol_view)[]` |\n| `Foot` | 読み取り | `\u0024mol_view` |\n| `dom_name` | 読み取り | `string` |\n| `attr` | 読み取り | `({` |\n| `sub` | 読み取り | `readonly(any)[]` |\n",
+						},
+						ko: {
+							title: "$mol_page",
+							md: "# \u0024mol_page\n\n`\u0024mol_view`을(를) 확장합니다. [GitHub에서 소스 보기](https://github.com/hyoo-ru/mam_mol/tree/master/page)\n\n이 레퍼런스는 컴포넌트의 타입이 있는 `.view.tree` 인터페이스에서 생성됩니다.\n\n## 속성\n\n| 속성 | 접근 | 타입 |\n|---|---|---|\n| `tabindex` | 읽기 | `number` |\n| `title_content` | 읽기 | `readonly(any)[]` |\n| `Title` | 읽기 | `\u0024mol_view` |\n| `tools` | 읽기 | `readonly(\u0024mol_view_content)[]` |\n| `Tools` | 읽기 | `\u0024mol_view` |\n| `head` | 읽기 | `readonly(any)[]` |\n| `Head` | 읽기 | `\u0024mol_view` |\n| `body_scroll_top` | 읽기 / 쓰기 | `ReturnType< as 'Body'['scroll_top'] >` |\n| `body` | 읽기 | `readonly(\u0024mol_view)[]` |\n| `Body_content` | 읽기 | `\u0024mol_view` |\n| `body_content` | 읽기 | `readonly(any)[]` |\n| `Body` | 읽기 | `\u0024mol_scroll` |\n| `foot` | 읽기 | `readonly(\u0024mol_view)[]` |\n| `Foot` | 읽기 | `\u0024mol_view` |\n| `dom_name` | 읽기 | `string` |\n| `attr` | 읽기 | `({` |\n| `sub` | 읽기 | `readonly(any)[]` |\n",
+						},
+						fr: {
+							title: "$mol_page",
+							md: "# \u0024mol_page\n\nÉtend `\u0024mol_view`. [Voir la source sur GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/page)\n\nCette référence est générée à partir de l'interface typée `.view.tree` du composant.\n\n## Propriétés\n\n| Propriété | Accès | Type |\n|---|---|---|\n| `tabindex` | lecture | `number` |\n| `title_content` | lecture | `readonly(any)[]` |\n| `Title` | lecture | `\u0024mol_view` |\n| `tools` | lecture | `readonly(\u0024mol_view_content)[]` |\n| `Tools` | lecture | `\u0024mol_view` |\n| `head` | lecture | `readonly(any)[]` |\n| `Head` | lecture | `\u0024mol_view` |\n| `body_scroll_top` | lecture / écriture | `ReturnType< as 'Body'['scroll_top'] >` |\n| `body` | lecture | `readonly(\u0024mol_view)[]` |\n| `Body_content` | lecture | `\u0024mol_view` |\n| `body_content` | lecture | `readonly(any)[]` |\n| `Body` | lecture | `\u0024mol_scroll` |\n| `foot` | lecture | `readonly(\u0024mol_view)[]` |\n| `Foot` | lecture | `\u0024mol_view` |\n| `dom_name` | lecture | `string` |\n| `attr` | lecture | `({` |\n| `sub` | lecture | `readonly(any)[]` |\n",
+						},
+						de: {
+							title: "$mol_page",
+							md: "# \u0024mol_page\n\nErweitert `\u0024mol_view`. [Quellcode auf GitHub ansehen](https://github.com/hyoo-ru/mam_mol/tree/master/page)\n\nDiese Referenz wird aus der typisierten `.view.tree`-Schnittstelle der Komponente generiert.\n\n## Eigenschaften\n\n| Eigenschaft | Zugriff | Typ |\n|---|---|---|\n| `tabindex` | Lesen | `number` |\n| `title_content` | Lesen | `readonly(any)[]` |\n| `Title` | Lesen | `\u0024mol_view` |\n| `tools` | Lesen | `readonly(\u0024mol_view_content)[]` |\n| `Tools` | Lesen | `\u0024mol_view` |\n| `head` | Lesen | `readonly(any)[]` |\n| `Head` | Lesen | `\u0024mol_view` |\n| `body_scroll_top` | Lesen / Schreiben | `ReturnType< as 'Body'['scroll_top'] >` |\n| `body` | Lesen | `readonly(\u0024mol_view)[]` |\n| `Body_content` | Lesen | `\u0024mol_view` |\n| `body_content` | Lesen | `readonly(any)[]` |\n| `Body` | Lesen | `\u0024mol_scroll` |\n| `foot` | Lesen | `readonly(\u0024mol_view)[]` |\n| `Foot` | Lesen | `\u0024mol_view` |\n| `dom_name` | Lesen | `string` |\n| `attr` | Lesen | `({` |\n| `sub` | Lesen | `readonly(any)[]` |\n",
+						},
+						pt: {
+							title: "$mol_page",
+							md: "# \u0024mol_page\n\nEstende `\u0024mol_view`. [Ver o código-fonte no GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/page)\n\nEsta referência é gerada a partir da interface tipada `.view.tree` do componente.\n\n## Propriedades\n\n| Propriedade | Acesso | Tipo |\n|---|---|---|\n| `tabindex` | leitura | `number` |\n| `title_content` | leitura | `readonly(any)[]` |\n| `Title` | leitura | `\u0024mol_view` |\n| `tools` | leitura | `readonly(\u0024mol_view_content)[]` |\n| `Tools` | leitura | `\u0024mol_view` |\n| `head` | leitura | `readonly(any)[]` |\n| `Head` | leitura | `\u0024mol_view` |\n| `body_scroll_top` | leitura / escrita | `ReturnType< as 'Body'['scroll_top'] >` |\n| `body` | leitura | `readonly(\u0024mol_view)[]` |\n| `Body_content` | leitura | `\u0024mol_view` |\n| `body_content` | leitura | `readonly(any)[]` |\n| `Body` | leitura | `\u0024mol_scroll` |\n| `foot` | leitura | `readonly(\u0024mol_view)[]` |\n| `Foot` | leitura | `\u0024mol_view` |\n| `dom_name` | leitura | `string` |\n| `attr` | leitura | `({` |\n| `sub` | leitura | `readonly(any)[]` |\n",
+						},
+						it: {
+							title: "$mol_page",
+							md: "# \u0024mol_page\n\nEstende `\u0024mol_view`. [Vedi il sorgente su GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/page)\n\nQuesto riferimento è generato dall'interfaccia tipizzata `.view.tree` del componente.\n\n## Proprietà\n\n| Proprietà | Accesso | Tipo |\n|---|---|---|\n| `tabindex` | lettura | `number` |\n| `title_content` | lettura | `readonly(any)[]` |\n| `Title` | lettura | `\u0024mol_view` |\n| `tools` | lettura | `readonly(\u0024mol_view_content)[]` |\n| `Tools` | lettura | `\u0024mol_view` |\n| `head` | lettura | `readonly(any)[]` |\n| `Head` | lettura | `\u0024mol_view` |\n| `body_scroll_top` | lettura / scrittura | `ReturnType< as 'Body'['scroll_top'] >` |\n| `body` | lettura | `readonly(\u0024mol_view)[]` |\n| `Body_content` | lettura | `\u0024mol_view` |\n| `body_content` | lettura | `readonly(any)[]` |\n| `Body` | lettura | `\u0024mol_scroll` |\n| `foot` | lettura | `readonly(\u0024mol_view)[]` |\n| `Foot` | lettura | `\u0024mol_view` |\n| `dom_name` | lettura | `string` |\n| `attr` | lettura | `({` |\n| `sub` | lettura | `readonly(any)[]` |\n",
+						},
+						uk: {
+							title: "$mol_page",
+							md: "# \u0024mol_page\n\nРозширює `\u0024mol_view`. [Переглянути код на GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/page)\n\nЦей довідник згенеровано з типізованого інтерфейсу `.view.tree` компонента.\n\n## Властивості\n\n| Властивість | Доступ | Тип |\n|---|---|---|\n| `tabindex` | читання | `number` |\n| `title_content` | читання | `readonly(any)[]` |\n| `Title` | читання | `\u0024mol_view` |\n| `tools` | читання | `readonly(\u0024mol_view_content)[]` |\n| `Tools` | читання | `\u0024mol_view` |\n| `head` | читання | `readonly(any)[]` |\n| `Head` | читання | `\u0024mol_view` |\n| `body_scroll_top` | читання / запис | `ReturnType< as 'Body'['scroll_top'] >` |\n| `body` | читання | `readonly(\u0024mol_view)[]` |\n| `Body_content` | читання | `\u0024mol_view` |\n| `body_content` | читання | `readonly(any)[]` |\n| `Body` | читання | `\u0024mol_scroll` |\n| `foot` | читання | `readonly(\u0024mol_view)[]` |\n| `Foot` | читання | `\u0024mol_view` |\n| `dom_name` | читання | `string` |\n| `attr` | читання | `({` |\n| `sub` | читання | `readonly(any)[]` |\n",
+						},
+						pl: {
+							title: "$mol_page",
+							md: "# \u0024mol_page\n\nRozszerza `\u0024mol_view`. [Zobacz źródło na GitHubie](https://github.com/hyoo-ru/mam_mol/tree/master/page)\n\nTa referencja jest generowana z typowanego interfejsu `.view.tree` komponentu.\n\n## Właściwości\n\n| Właściwość | Dostęp | Typ |\n|---|---|---|\n| `tabindex` | odczyt | `number` |\n| `title_content` | odczyt | `readonly(any)[]` |\n| `Title` | odczyt | `\u0024mol_view` |\n| `tools` | odczyt | `readonly(\u0024mol_view_content)[]` |\n| `Tools` | odczyt | `\u0024mol_view` |\n| `head` | odczyt | `readonly(any)[]` |\n| `Head` | odczyt | `\u0024mol_view` |\n| `body_scroll_top` | odczyt / zapis | `ReturnType< as 'Body'['scroll_top'] >` |\n| `body` | odczyt | `readonly(\u0024mol_view)[]` |\n| `Body_content` | odczyt | `\u0024mol_view` |\n| `body_content` | odczyt | `readonly(any)[]` |\n| `Body` | odczyt | `\u0024mol_scroll` |\n| `foot` | odczyt | `readonly(\u0024mol_view)[]` |\n| `Foot` | odczyt | `\u0024mol_view` |\n| `dom_name` | odczyt | `string` |\n| `attr` | odczyt | `({` |\n| `sub` | odczyt | `readonly(any)[]` |\n",
+						},
+						cs: {
+							title: "$mol_page",
+							md: "# \u0024mol_page\n\nRozšiřuje `\u0024mol_view`. [Zobrazit zdroj na GitHubu](https://github.com/hyoo-ru/mam_mol/tree/master/page)\n\nTato reference je generována z typovaného rozhraní `.view.tree` komponenty.\n\n## Vlastnosti\n\n| Vlastnost | Přístup | Typ |\n|---|---|---|\n| `tabindex` | čtení | `number` |\n| `title_content` | čtení | `readonly(any)[]` |\n| `Title` | čtení | `\u0024mol_view` |\n| `tools` | čtení | `readonly(\u0024mol_view_content)[]` |\n| `Tools` | čtení | `\u0024mol_view` |\n| `head` | čtení | `readonly(any)[]` |\n| `Head` | čtení | `\u0024mol_view` |\n| `body_scroll_top` | čtení / zápis | `ReturnType< as 'Body'['scroll_top'] >` |\n| `body` | čtení | `readonly(\u0024mol_view)[]` |\n| `Body_content` | čtení | `\u0024mol_view` |\n| `body_content` | čtení | `readonly(any)[]` |\n| `Body` | čtení | `\u0024mol_scroll` |\n| `foot` | čtení | `readonly(\u0024mol_view)[]` |\n| `Foot` | čtení | `\u0024mol_view` |\n| `dom_name` | čtení | `string` |\n| `attr` | čtení | `({` |\n| `sub` | čtení | `readonly(any)[]` |\n",
+						},
+						fa: {
+							title: "$mol_page",
+							md: "# \u0024mol_page\n\n`\u0024mol_view` را گسترش می‌دهد. [دیدنِ سورس در GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/page)\n\nاین مرجع از واسطِ نوع‌دارِ `.view.tree`ِ کامپوننت تولید شده است.\n\n## ویژگی‌ها\n\n| ویژگی | دسترسی | نوع |\n|---|---|---|\n| `tabindex` | خواندن | `number` |\n| `title_content` | خواندن | `readonly(any)[]` |\n| `Title` | خواندن | `\u0024mol_view` |\n| `tools` | خواندن | `readonly(\u0024mol_view_content)[]` |\n| `Tools` | خواندن | `\u0024mol_view` |\n| `head` | خواندن | `readonly(any)[]` |\n| `Head` | خواندن | `\u0024mol_view` |\n| `body_scroll_top` | خواندن / نوشتن | `ReturnType< as 'Body'['scroll_top'] >` |\n| `body` | خواندن | `readonly(\u0024mol_view)[]` |\n| `Body_content` | خواندن | `\u0024mol_view` |\n| `body_content` | خواندن | `readonly(any)[]` |\n| `Body` | خواندن | `\u0024mol_scroll` |\n| `foot` | خواندن | `readonly(\u0024mol_view)[]` |\n| `Foot` | خواندن | `\u0024mol_view` |\n| `dom_name` | خواندن | `string` |\n| `attr` | خواندن | `({` |\n| `sub` | خواندن | `readonly(any)[]` |\n",
+						},
+						bn: {
+							title: "$mol_page",
+							md: "# \u0024mol_page\n\n`\u0024mol_view` কে এক্সটেন্ড করে। [GitHub-এ সোর্স দেখুন](https://github.com/hyoo-ru/mam_mol/tree/master/page)\n\nএই রেফারেন্স কম্পোনেন্টের টাইপড `.view.tree` ইন্টারফেস থেকে জেনারেট করা হয়।\n\n## প্রপার্টি\n\n| প্রপার্টি | অ্যাক্সেস | টাইপ |\n|---|---|---|\n| `tabindex` | পড়া | `number` |\n| `title_content` | পড়া | `readonly(any)[]` |\n| `Title` | পড়া | `\u0024mol_view` |\n| `tools` | পড়া | `readonly(\u0024mol_view_content)[]` |\n| `Tools` | পড়া | `\u0024mol_view` |\n| `head` | পড়া | `readonly(any)[]` |\n| `Head` | পড়া | `\u0024mol_view` |\n| `body_scroll_top` | পড়া / লেখা | `ReturnType< as 'Body'['scroll_top'] >` |\n| `body` | পড়া | `readonly(\u0024mol_view)[]` |\n| `Body_content` | পড়া | `\u0024mol_view` |\n| `body_content` | পড়া | `readonly(any)[]` |\n| `Body` | পড়া | `\u0024mol_scroll` |\n| `foot` | পড়া | `readonly(\u0024mol_view)[]` |\n| `Foot` | পড়া | `\u0024mol_view` |\n| `dom_name` | পড়া | `string` |\n| `attr` | পড়া | `({` |\n| `sub` | পড়া | `readonly(any)[]` |\n",
+						},
+					},
 				},
 				'api-mol-pick': {
 					slug: 'api-mol-pick',
 					title: "$mol_pick",
 					file: 'content/en/docs/api-mol-pick.md',
 					md: "# \u0024mol_pick\n\nExtends `\u0024mol_pop`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/pick)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `trigger_enabled` | read | `boolean` |\n| `trigger_content` | read | `readonly(\u0024mol_view_content)[]` |\n| `hint` | read | `string` |\n| `Trigger` | read | `\u0024mol_check` |\n| `event` | read | `({` |\n| `Anchor` | read | `as 'Trigger'` |\n",
+					tr: {
+						zh: {
+							title: "$mol_pick",
+							md: "# \u0024mol_pick\n\n继承自 `\u0024mol_pop`。[在 GitHub 上查看源码](https://github.com/hyoo-ru/mam_mol/tree/master/pick)\n\n本参考由组件的带类型 `.view.tree` 接口生成。\n\n## 属性\n\n| 属性 | 访问 | 类型 |\n|---|---|---|\n| `trigger_enabled` | 读 | `boolean` |\n| `trigger_content` | 读 | `readonly(\u0024mol_view_content)[]` |\n| `hint` | 读 | `string` |\n| `Trigger` | 读 | `\u0024mol_check` |\n| `event` | 读 | `({` |\n| `Anchor` | 读 | `as 'Trigger'` |\n",
+						},
+						zh_hk: {
+							title: "$mol_pick",
+							md: "# \u0024mol_pick\n\n繼承自 `\u0024mol_pop`。[在 GitHub 上查看原始碼](https://github.com/hyoo-ru/mam_mol/tree/master/pick)\n\n本參考由元件的帶型別 `.view.tree` 介面生成。\n\n## 屬性\n\n| 屬性 | 存取 | 型別 |\n|---|---|---|\n| `trigger_enabled` | 讀 | `boolean` |\n| `trigger_content` | 讀 | `readonly(\u0024mol_view_content)[]` |\n| `hint` | 讀 | `string` |\n| `Trigger` | 讀 | `\u0024mol_check` |\n| `event` | 讀 | `({` |\n| `Anchor` | 讀 | `as 'Trigger'` |\n",
+						},
+						ja: {
+							title: "$mol_pick",
+							md: "# \u0024mol_pick\n\n`\u0024mol_pop` を継承。[GitHub でソースを見る](https://github.com/hyoo-ru/mam_mol/tree/master/pick)\n\nこのリファレンスはコンポーネントの型付き `.view.tree` インターフェイスから生成されています。\n\n## プロパティ\n\n| プロパティ | アクセス | 型 |\n|---|---|---|\n| `trigger_enabled` | 読み取り | `boolean` |\n| `trigger_content` | 読み取り | `readonly(\u0024mol_view_content)[]` |\n| `hint` | 読み取り | `string` |\n| `Trigger` | 読み取り | `\u0024mol_check` |\n| `event` | 読み取り | `({` |\n| `Anchor` | 読み取り | `as 'Trigger'` |\n",
+						},
+						ko: {
+							title: "$mol_pick",
+							md: "# \u0024mol_pick\n\n`\u0024mol_pop`을(를) 확장합니다. [GitHub에서 소스 보기](https://github.com/hyoo-ru/mam_mol/tree/master/pick)\n\n이 레퍼런스는 컴포넌트의 타입이 있는 `.view.tree` 인터페이스에서 생성됩니다.\n\n## 속성\n\n| 속성 | 접근 | 타입 |\n|---|---|---|\n| `trigger_enabled` | 읽기 | `boolean` |\n| `trigger_content` | 읽기 | `readonly(\u0024mol_view_content)[]` |\n| `hint` | 읽기 | `string` |\n| `Trigger` | 읽기 | `\u0024mol_check` |\n| `event` | 읽기 | `({` |\n| `Anchor` | 읽기 | `as 'Trigger'` |\n",
+						},
+						fr: {
+							title: "$mol_pick",
+							md: "# \u0024mol_pick\n\nÉtend `\u0024mol_pop`. [Voir la source sur GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/pick)\n\nCette référence est générée à partir de l'interface typée `.view.tree` du composant.\n\n## Propriétés\n\n| Propriété | Accès | Type |\n|---|---|---|\n| `trigger_enabled` | lecture | `boolean` |\n| `trigger_content` | lecture | `readonly(\u0024mol_view_content)[]` |\n| `hint` | lecture | `string` |\n| `Trigger` | lecture | `\u0024mol_check` |\n| `event` | lecture | `({` |\n| `Anchor` | lecture | `as 'Trigger'` |\n",
+						},
+						de: {
+							title: "$mol_pick",
+							md: "# \u0024mol_pick\n\nErweitert `\u0024mol_pop`. [Quellcode auf GitHub ansehen](https://github.com/hyoo-ru/mam_mol/tree/master/pick)\n\nDiese Referenz wird aus der typisierten `.view.tree`-Schnittstelle der Komponente generiert.\n\n## Eigenschaften\n\n| Eigenschaft | Zugriff | Typ |\n|---|---|---|\n| `trigger_enabled` | Lesen | `boolean` |\n| `trigger_content` | Lesen | `readonly(\u0024mol_view_content)[]` |\n| `hint` | Lesen | `string` |\n| `Trigger` | Lesen | `\u0024mol_check` |\n| `event` | Lesen | `({` |\n| `Anchor` | Lesen | `as 'Trigger'` |\n",
+						},
+						pt: {
+							title: "$mol_pick",
+							md: "# \u0024mol_pick\n\nEstende `\u0024mol_pop`. [Ver o código-fonte no GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/pick)\n\nEsta referência é gerada a partir da interface tipada `.view.tree` do componente.\n\n## Propriedades\n\n| Propriedade | Acesso | Tipo |\n|---|---|---|\n| `trigger_enabled` | leitura | `boolean` |\n| `trigger_content` | leitura | `readonly(\u0024mol_view_content)[]` |\n| `hint` | leitura | `string` |\n| `Trigger` | leitura | `\u0024mol_check` |\n| `event` | leitura | `({` |\n| `Anchor` | leitura | `as 'Trigger'` |\n",
+						},
+						it: {
+							title: "$mol_pick",
+							md: "# \u0024mol_pick\n\nEstende `\u0024mol_pop`. [Vedi il sorgente su GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/pick)\n\nQuesto riferimento è generato dall'interfaccia tipizzata `.view.tree` del componente.\n\n## Proprietà\n\n| Proprietà | Accesso | Tipo |\n|---|---|---|\n| `trigger_enabled` | lettura | `boolean` |\n| `trigger_content` | lettura | `readonly(\u0024mol_view_content)[]` |\n| `hint` | lettura | `string` |\n| `Trigger` | lettura | `\u0024mol_check` |\n| `event` | lettura | `({` |\n| `Anchor` | lettura | `as 'Trigger'` |\n",
+						},
+						uk: {
+							title: "$mol_pick",
+							md: "# \u0024mol_pick\n\nРозширює `\u0024mol_pop`. [Переглянути код на GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/pick)\n\nЦей довідник згенеровано з типізованого інтерфейсу `.view.tree` компонента.\n\n## Властивості\n\n| Властивість | Доступ | Тип |\n|---|---|---|\n| `trigger_enabled` | читання | `boolean` |\n| `trigger_content` | читання | `readonly(\u0024mol_view_content)[]` |\n| `hint` | читання | `string` |\n| `Trigger` | читання | `\u0024mol_check` |\n| `event` | читання | `({` |\n| `Anchor` | читання | `as 'Trigger'` |\n",
+						},
+						pl: {
+							title: "$mol_pick",
+							md: "# \u0024mol_pick\n\nRozszerza `\u0024mol_pop`. [Zobacz źródło na GitHubie](https://github.com/hyoo-ru/mam_mol/tree/master/pick)\n\nTa referencja jest generowana z typowanego interfejsu `.view.tree` komponentu.\n\n## Właściwości\n\n| Właściwość | Dostęp | Typ |\n|---|---|---|\n| `trigger_enabled` | odczyt | `boolean` |\n| `trigger_content` | odczyt | `readonly(\u0024mol_view_content)[]` |\n| `hint` | odczyt | `string` |\n| `Trigger` | odczyt | `\u0024mol_check` |\n| `event` | odczyt | `({` |\n| `Anchor` | odczyt | `as 'Trigger'` |\n",
+						},
+						cs: {
+							title: "$mol_pick",
+							md: "# \u0024mol_pick\n\nRozšiřuje `\u0024mol_pop`. [Zobrazit zdroj na GitHubu](https://github.com/hyoo-ru/mam_mol/tree/master/pick)\n\nTato reference je generována z typovaného rozhraní `.view.tree` komponenty.\n\n## Vlastnosti\n\n| Vlastnost | Přístup | Typ |\n|---|---|---|\n| `trigger_enabled` | čtení | `boolean` |\n| `trigger_content` | čtení | `readonly(\u0024mol_view_content)[]` |\n| `hint` | čtení | `string` |\n| `Trigger` | čtení | `\u0024mol_check` |\n| `event` | čtení | `({` |\n| `Anchor` | čtení | `as 'Trigger'` |\n",
+						},
+						fa: {
+							title: "$mol_pick",
+							md: "# \u0024mol_pick\n\n`\u0024mol_pop` را گسترش می‌دهد. [دیدنِ سورس در GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/pick)\n\nاین مرجع از واسطِ نوع‌دارِ `.view.tree`ِ کامپوننت تولید شده است.\n\n## ویژگی‌ها\n\n| ویژگی | دسترسی | نوع |\n|---|---|---|\n| `trigger_enabled` | خواندن | `boolean` |\n| `trigger_content` | خواندن | `readonly(\u0024mol_view_content)[]` |\n| `hint` | خواندن | `string` |\n| `Trigger` | خواندن | `\u0024mol_check` |\n| `event` | خواندن | `({` |\n| `Anchor` | خواندن | `as 'Trigger'` |\n",
+						},
+						bn: {
+							title: "$mol_pick",
+							md: "# \u0024mol_pick\n\n`\u0024mol_pop` কে এক্সটেন্ড করে। [GitHub-এ সোর্স দেখুন](https://github.com/hyoo-ru/mam_mol/tree/master/pick)\n\nএই রেফারেন্স কম্পোনেন্টের টাইপড `.view.tree` ইন্টারফেস থেকে জেনারেট করা হয়।\n\n## প্রপার্টি\n\n| প্রপার্টি | অ্যাক্সেস | টাইপ |\n|---|---|---|\n| `trigger_enabled` | পড়া | `boolean` |\n| `trigger_content` | পড়া | `readonly(\u0024mol_view_content)[]` |\n| `hint` | পড়া | `string` |\n| `Trigger` | পড়া | `\u0024mol_check` |\n| `event` | পড়া | `({` |\n| `Anchor` | পড়া | `as 'Trigger'` |\n",
+						},
+					},
 				},
 			}
 		}
