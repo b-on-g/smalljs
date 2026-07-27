@@ -22,7 +22,7 @@ const sections = [
 		id: 'docs',
 		title: 'Docs',
 		groups: [
-			{ title: 'Getting Started', pages: [ 'introduction', 'getting-started' ] },
+			{ title: 'Getting Started', pages: [ 'introduction', 'getting-started', 'tooling' ] },
 			{ title: 'Essentials', pages: [ 'installation', 'views', 'state', 'routing', 'rendering' ] },
 			{ title: 'Data', pages: [ 'data', 'data-schema', 'giper-baza' ] },
 			{ title: 'More', pages: [ 'showcase', 'rosetta' ] },
@@ -36,6 +36,7 @@ const sections = [
 const meta = {
 	'introduction': { title: 'Introduction', summary: 'What $mol is, who it is for, and a taste of reactive views.' },
 	'getting-started': { title: 'Getting Started', summary: 'From an empty folder to a running, reactive $mol app in under 15 minutes.' },
+	'tooling': { title: 'Tooling', summary: 'Project scaffolder, view.tree language server, and editor support for Zed and VS Code.' },
 	'installation': { title: 'Installation', summary: 'The MAM workspace, module layout, dev server, and production build.' },
 	'views': { title: 'Views', summary: 'Declaring and composing components with the view.tree language.' },
 	'state': { title: 'State & Reactivity', summary: 'Reactive properties, actions vs. computations, keyed and async state.' },
