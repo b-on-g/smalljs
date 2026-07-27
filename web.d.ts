@@ -4134,6 +4134,1165 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $mol_schema_any extends Object {
+        static [Symbol.toStringTag]: string;
+        static [$mol_key_handle](): string;
+        /** Short user-readable identity. */
+        static toString(): string;
+        /** Type-predicate that checks value by schema. */
+        static check<This extends typeof $mol_schema_any, Value>(this: This, value: Value): value is Value & This['default'];
+        /** `instanceof` support */
+        static [Symbol.hasInstance]<This extends typeof $mol_schema_any, Value>(this: This, value: Value): value is Value & This['default'];
+        /** Type-parser that fails of wrong values. */
+        static guard<This extends typeof $mol_schema_any, Value>(this: This, value: Value): Value & This['default'];
+        /** Type-caster that normalizes wrong values. */
+        static cast<This extends typeof $mol_schema_any>(this: This, value: unknown): This['default'];
+        /** Default value which conforms schema. */
+        static default: unknown;
+    }
+}
+
+declare namespace $ {
+    class $mol_schema_float extends $mol_schema_any {
+        static guard<This extends typeof $mol_schema_any, Value>(this: This, value: Value): Value & This['default'];
+        static default: number;
+    }
+}
+
+declare namespace $ {
+    class $mol_schema_integer extends $mol_schema_float {
+        $mol_schema_integer: boolean;
+        static guard<This extends typeof $mol_schema_any, Value>(this: This, value: Value): Value & This['default'];
+        static default: number & $mol_schema_integer;
+    }
+}
+
+declare namespace $ {
+    class $mol_schema_bigint extends $mol_schema_any {
+        static guard<This extends typeof $mol_schema_any, Value>(this: This, value: Value): Value & This['default'];
+        static cast<This extends typeof $mol_schema_any>(this: This, value: unknown): This['default'];
+        static default: bigint;
+    }
+}
+
+declare namespace $ {
+    class $mol_schema_boolean extends $mol_schema_any {
+        static guard<This extends typeof $mol_schema_any, Value>(this: This, value: Value): Value & This['default'];
+        static default: boolean;
+    }
+}
+
+declare namespace $ {
+    class $mol_schema_string extends $mol_schema_any {
+        static guard<This extends typeof $mol_schema_any, Value>(this: This, value: Value): Value & This['default'];
+        static cast<This extends typeof $mol_schema_any>(this: This, value: unknown): This['default'];
+        static default: string;
+    }
+}
+
+declare namespace $ {
+    class $mol_memo_key extends $mol_wrapper {
+        static wrap<This extends object, Key, Value>(task: (this: This, key: Key, next?: Value) => Value): (this: This, key: Key, next?: Value) => Value | undefined;
+    }
+}
+
+declare namespace $ {
+    let $mol_schema_pattern: <Pattern extends RegExp>(this: void, Pattern: Pattern) => {
+        new (value?: any): {
+            constructor: Function;
+            toString(): string;
+            toLocaleString(): string;
+            valueOf(): Object;
+            hasOwnProperty(v: PropertyKey): boolean;
+            isPrototypeOf(v: Object): boolean;
+            propertyIsEnumerable(v: PropertyKey): boolean;
+        };
+        Pattern: Pattern;
+        toString(): string;
+        guard<This extends typeof $mol_schema_any, Value>(this: This, value: Value): Value & This["default"];
+        cast<This extends typeof $mol_schema_any>(this: This, value: unknown): This["default"];
+        default: string;
+        check<This extends typeof $mol_schema_any, Value_1>(this: This, value: Value_1): value is Value_1 & This["default"];
+        [Symbol.toStringTag]: string;
+        [$mol_key_handle](): string;
+        [Symbol.hasInstance]<This extends typeof $mol_schema_any, Value_2>(this: This, value: Value_2): value is Value_2 & This["default"];
+        getPrototypeOf(o: any): any;
+        getOwnPropertyDescriptor(o: any, p: PropertyKey): PropertyDescriptor | undefined;
+        getOwnPropertyNames(o: any): string[];
+        create(o: object | null): any;
+        create(o: object | null, properties: PropertyDescriptorMap & ThisType<any>): any;
+        defineProperty<T>(o: T, p: PropertyKey, attributes: PropertyDescriptor & ThisType<any>): T;
+        defineProperties<T>(o: T, properties: PropertyDescriptorMap & ThisType<any>): T;
+        seal<T>(o: T): T;
+        freeze<T extends Function>(f: T): T;
+        freeze<T extends {
+            [idx: string]: U | null | undefined | object;
+        }, U extends string | bigint | number | boolean | symbol>(o: T): Readonly<T>;
+        freeze<T>(o: T): Readonly<T>;
+        preventExtensions<T>(o: T): T;
+        isSealed(o: any): boolean;
+        isFrozen(o: any): boolean;
+        isExtensible(o: any): boolean;
+        keys(o: object): string[];
+        keys(o: {}): string[];
+        assign<T extends {}, U_1>(target: T, source: U_1): T & U_1;
+        assign<T extends {}, U_2, V>(target: T, source1: U_2, source2: V): T & U_2 & V;
+        assign<T extends {}, U_3, V_1, W>(target: T, source1: U_3, source2: V_1, source3: W): T & U_3 & V_1 & W;
+        assign(target: object, ...sources: any[]): any;
+        getOwnPropertySymbols(o: any): symbol[];
+        is(value1: any, value2: any): boolean;
+        setPrototypeOf(o: any, proto: object | null): any;
+        values<T>(o: {
+            [s: string]: T;
+        } | ArrayLike<T>): T[];
+        values(o: {}): any[];
+        entries<T>(o: {
+            [s: string]: T;
+        } | ArrayLike<T>): [string, T][];
+        entries(o: {}): [string, any][];
+        getOwnPropertyDescriptors<T>(o: T): { [P in keyof T]: TypedPropertyDescriptor<T[P]>; } & {
+            [x: string]: PropertyDescriptor;
+        };
+        fromEntries<T = any>(entries: Iterable<readonly [PropertyKey, T]>): {
+            [k: string]: T;
+        };
+        fromEntries(entries: Iterable<readonly any[]>): any;
+        hasOwn(o: object, v: PropertyKey): boolean;
+        groupBy<K extends PropertyKey, T>(items: Iterable<T>, keySelector: (item: T, index: number) => K): Partial<Record<K, T[]>>;
+    };
+}
+
+declare namespace $ {
+    let $mol_schema_instance: <Class extends new (...args: any[]) => any>(this: void, Class: Class) => Class extends typeof $mol_schema_any ? Class : {
+        new (value?: any): {
+            constructor: Function;
+            toString(): string;
+            toLocaleString(): string;
+            valueOf(): Object;
+            hasOwnProperty(v: PropertyKey): boolean;
+            isPrototypeOf(v: Object): boolean;
+            propertyIsEnumerable(v: PropertyKey): boolean;
+        };
+        Class: Class;
+        toString(): string;
+        guard<This extends typeof $mol_schema_any, Value>(this: This, value: Value): Value & This["default"];
+        cast<This extends typeof $mol_schema_any>(this: This, value: unknown): This["default"];
+        default: InstanceType<Class>;
+        check<This extends typeof $mol_schema_any, Value_1>(this: This, value: Value_1): value is Value_1 & This["default"];
+        [Symbol.toStringTag]: string;
+        [$mol_key_handle](): string;
+        [Symbol.hasInstance]<This extends typeof $mol_schema_any, Value_2>(this: This, value: Value_2): value is Value_2 & This["default"];
+        getPrototypeOf(o: any): any;
+        getOwnPropertyDescriptor(o: any, p: PropertyKey): PropertyDescriptor | undefined;
+        getOwnPropertyNames(o: any): string[];
+        create(o: object | null): any;
+        create(o: object | null, properties: PropertyDescriptorMap & ThisType<any>): any;
+        defineProperty<T>(o: T, p: PropertyKey, attributes: PropertyDescriptor & ThisType<any>): T;
+        defineProperties<T>(o: T, properties: PropertyDescriptorMap & ThisType<any>): T;
+        seal<T>(o: T): T;
+        freeze<T extends Function>(f: T): T;
+        freeze<T extends {
+            [idx: string]: U | null | undefined | object;
+        }, U extends string | bigint | number | boolean | symbol>(o: T): Readonly<T>;
+        freeze<T>(o: T): Readonly<T>;
+        preventExtensions<T>(o: T): T;
+        isSealed(o: any): boolean;
+        isFrozen(o: any): boolean;
+        isExtensible(o: any): boolean;
+        keys(o: object): string[];
+        keys(o: {}): string[];
+        assign<T extends {}, U_1>(target: T, source: U_1): T & U_1;
+        assign<T extends {}, U_2, V>(target: T, source1: U_2, source2: V): T & U_2 & V;
+        assign<T extends {}, U_3, V_1, W>(target: T, source1: U_3, source2: V_1, source3: W): T & U_3 & V_1 & W;
+        assign(target: object, ...sources: any[]): any;
+        getOwnPropertySymbols(o: any): symbol[];
+        is(value1: any, value2: any): boolean;
+        setPrototypeOf(o: any, proto: object | null): any;
+        values<T>(o: {
+            [s: string]: T;
+        } | ArrayLike<T>): T[];
+        values(o: {}): any[];
+        entries<T>(o: {
+            [s: string]: T;
+        } | ArrayLike<T>): [string, T][];
+        entries(o: {}): [string, any][];
+        getOwnPropertyDescriptors<T>(o: T): { [P in keyof T]: TypedPropertyDescriptor<T[P]>; } & {
+            [x: string]: PropertyDescriptor;
+        };
+        fromEntries<T = any>(entries: Iterable<readonly [PropertyKey, T]>): {
+            [k: string]: T;
+        };
+        fromEntries(entries: Iterable<readonly any[]>): any;
+        hasOwn(o: object, v: PropertyKey): boolean;
+        groupBy<K extends PropertyKey, T>(items: Iterable<T>, keySelector: (item: T, index: number) => K): Partial<Record<K, T[]>>;
+    };
+}
+
+declare namespace $ {
+    function $mol_schema_lazy<Value>(Schema: () => any): {
+        new (value?: any): {
+            constructor: Function;
+            toString(): string;
+            toLocaleString(): string;
+            valueOf(): Object;
+            hasOwnProperty(v: PropertyKey): boolean;
+            isPrototypeOf(v: Object): boolean;
+            propertyIsEnumerable(v: PropertyKey): boolean;
+        };
+        Schema: (this: void) => any;
+        guard<Val>(value: Val): Val & Value;
+        cast<Val>(value: Val): Value;
+        get default(): Value;
+        toString(): string;
+        check<This extends typeof $mol_schema_any, Value_1>(this: This, value: Value_1): value is Value_1 & This["default"];
+        [Symbol.toStringTag]: string;
+        [$mol_key_handle](): string;
+        [Symbol.hasInstance]<This extends typeof $mol_schema_any, Value_1>(this: This, value: Value_1): value is Value_1 & This["default"];
+        getPrototypeOf(o: any): any;
+        getOwnPropertyDescriptor(o: any, p: PropertyKey): PropertyDescriptor | undefined;
+        getOwnPropertyNames(o: any): string[];
+        create(o: object | null): any;
+        create(o: object | null, properties: PropertyDescriptorMap & ThisType<any>): any;
+        defineProperty<T>(o: T, p: PropertyKey, attributes: PropertyDescriptor & ThisType<any>): T;
+        defineProperties<T>(o: T, properties: PropertyDescriptorMap & ThisType<any>): T;
+        seal<T>(o: T): T;
+        freeze<T extends Function>(f: T): T;
+        freeze<T extends {
+            [idx: string]: U | null | undefined | object;
+        }, U extends string | bigint | number | boolean | symbol>(o: T): Readonly<T>;
+        freeze<T>(o: T): Readonly<T>;
+        preventExtensions<T>(o: T): T;
+        isSealed(o: any): boolean;
+        isFrozen(o: any): boolean;
+        isExtensible(o: any): boolean;
+        keys(o: object): string[];
+        keys(o: {}): string[];
+        assign<T extends {}, U>(target: T, source: U): T & U;
+        assign<T extends {}, U, V>(target: T, source1: U, source2: V): T & U & V;
+        assign<T extends {}, U, V, W>(target: T, source1: U, source2: V, source3: W): T & U & V & W;
+        assign(target: object, ...sources: any[]): any;
+        getOwnPropertySymbols(o: any): symbol[];
+        is(value1: any, value2: any): boolean;
+        setPrototypeOf(o: any, proto: object | null): any;
+        values<T>(o: {
+            [s: string]: T;
+        } | ArrayLike<T>): T[];
+        values(o: {}): any[];
+        entries<T>(o: {
+            [s: string]: T;
+        } | ArrayLike<T>): [string, T][];
+        entries(o: {}): [string, any][];
+        getOwnPropertyDescriptors<T>(o: T): { [P in keyof T]: TypedPropertyDescriptor<T[P]>; } & {
+            [x: string]: PropertyDescriptor;
+        };
+        fromEntries<T = any>(entries: Iterable<readonly [PropertyKey, T]>): {
+            [k: string]: T;
+        };
+        fromEntries(entries: Iterable<readonly any[]>): any;
+        hasOwn(o: object, v: PropertyKey): boolean;
+        groupBy<K extends PropertyKey, T>(items: Iterable<T>, keySelector: (item: T, index: number) => K): Partial<Record<K, T[]>>;
+    };
+}
+
+declare namespace $ {
+    let $mol_schema_some: <Variants extends readonly (typeof $mol_schema_any)[]>(this: void, Variants: Variants) => {
+        new (value?: any): {
+            constructor: Function;
+            toString(): string;
+            toLocaleString(): string;
+            valueOf(): Object;
+            hasOwnProperty(v: PropertyKey): boolean;
+            isPrototypeOf(v: Object): boolean;
+            propertyIsEnumerable(v: PropertyKey): boolean;
+        };
+        Variants: Variants;
+        toString(): string;
+        guard<This extends typeof $mol_schema_any, Value>(this: This, value: Value): Value & This["default"];
+        cast<This extends typeof $mol_schema_any>(this: This, value: unknown): This["default"];
+        default: Variants[number]["default"];
+        check<This extends typeof $mol_schema_any, Value_1>(this: This, value: Value_1): value is Value_1 & This["default"];
+        [Symbol.toStringTag]: string;
+        [$mol_key_handle](): string;
+        [Symbol.hasInstance]<This extends typeof $mol_schema_any, Value_2>(this: This, value: Value_2): value is Value_2 & This["default"];
+        getPrototypeOf(o: any): any;
+        getOwnPropertyDescriptor(o: any, p: PropertyKey): PropertyDescriptor | undefined;
+        getOwnPropertyNames(o: any): string[];
+        create(o: object | null): any;
+        create(o: object | null, properties: PropertyDescriptorMap & ThisType<any>): any;
+        defineProperty<T>(o: T, p: PropertyKey, attributes: PropertyDescriptor & ThisType<any>): T;
+        defineProperties<T>(o: T, properties: PropertyDescriptorMap & ThisType<any>): T;
+        seal<T>(o: T): T;
+        freeze<T extends Function>(f: T): T;
+        freeze<T extends {
+            [idx: string]: U | null | undefined | object;
+        }, U extends string | bigint | number | boolean | symbol>(o: T): Readonly<T>;
+        freeze<T>(o: T): Readonly<T>;
+        preventExtensions<T>(o: T): T;
+        isSealed(o: any): boolean;
+        isFrozen(o: any): boolean;
+        isExtensible(o: any): boolean;
+        keys(o: object): string[];
+        keys(o: {}): string[];
+        assign<T extends {}, U_1>(target: T, source: U_1): T & U_1;
+        assign<T extends {}, U_2, V>(target: T, source1: U_2, source2: V): T & U_2 & V;
+        assign<T extends {}, U_3, V_1, W>(target: T, source1: U_3, source2: V_1, source3: W): T & U_3 & V_1 & W;
+        assign(target: object, ...sources: any[]): any;
+        getOwnPropertySymbols(o: any): symbol[];
+        is(value1: any, value2: any): boolean;
+        setPrototypeOf(o: any, proto: object | null): any;
+        values<T>(o: {
+            [s: string]: T;
+        } | ArrayLike<T>): T[];
+        values(o: {}): any[];
+        entries<T>(o: {
+            [s: string]: T;
+        } | ArrayLike<T>): [string, T][];
+        entries(o: {}): [string, any][];
+        getOwnPropertyDescriptors<T>(o: T): { [P in keyof T]: TypedPropertyDescriptor<T[P]>; } & {
+            [x: string]: PropertyDescriptor;
+        };
+        fromEntries<T = any>(entries: Iterable<readonly [PropertyKey, T]>): {
+            [k: string]: T;
+        };
+        fromEntries(entries: Iterable<readonly any[]>): any;
+        hasOwn(o: object, v: PropertyKey): boolean;
+        groupBy<K extends PropertyKey, T>(items: Iterable<T>, keySelector: (item: T, index: number) => K): Partial<Record<K, T[]>>;
+    };
+}
+
+declare namespace $ {
+    let $mol_schema_dict: <Pair extends [Key: typeof $mol_schema_any & {
+        default: PropertyKey;
+    }, Val: typeof $mol_schema_any]>(this: void, Pair: Pair) => {
+        new (value?: any): {
+            constructor: Function;
+            toString(): string;
+            toLocaleString(): string;
+            valueOf(): Object;
+            hasOwnProperty(v: PropertyKey): boolean;
+            isPrototypeOf(v: Object): boolean;
+            propertyIsEnumerable(v: PropertyKey): boolean;
+        };
+        Pair: Pair;
+        toString(): string;
+        guard<This extends typeof $mol_schema_any, Value>(this: This, value: Value): Value & This["default"];
+        cast<This extends typeof $mol_schema_any>(this: This, value: unknown): This["default"];
+        default: Record<Pair[0]["default"], Pair[1]["default"]>;
+        check<This extends typeof $mol_schema_any, Value_1>(this: This, value: Value_1): value is Value_1 & This["default"];
+        [Symbol.toStringTag]: string;
+        [$mol_key_handle](): string;
+        [Symbol.hasInstance]<This extends typeof $mol_schema_any, Value_2>(this: This, value: Value_2): value is Value_2 & This["default"];
+        getPrototypeOf(o: any): any;
+        getOwnPropertyDescriptor(o: any, p: PropertyKey): PropertyDescriptor | undefined;
+        getOwnPropertyNames(o: any): string[];
+        create(o: object | null): any;
+        create(o: object | null, properties: PropertyDescriptorMap & ThisType<any>): any;
+        defineProperty<T>(o: T, p: PropertyKey, attributes: PropertyDescriptor & ThisType<any>): T;
+        defineProperties<T>(o: T, properties: PropertyDescriptorMap & ThisType<any>): T;
+        seal<T>(o: T): T;
+        freeze<T extends Function>(f: T): T;
+        freeze<T extends {
+            [idx: string]: U | null | undefined | object;
+        }, U extends string | bigint | number | boolean | symbol>(o: T): Readonly<T>;
+        freeze<T>(o: T): Readonly<T>;
+        preventExtensions<T>(o: T): T;
+        isSealed(o: any): boolean;
+        isFrozen(o: any): boolean;
+        isExtensible(o: any): boolean;
+        keys(o: object): string[];
+        keys(o: {}): string[];
+        assign<T extends {}, U_1>(target: T, source: U_1): T & U_1;
+        assign<T extends {}, U_2, V>(target: T, source1: U_2, source2: V): T & U_2 & V;
+        assign<T extends {}, U_3, V_1, W>(target: T, source1: U_3, source2: V_1, source3: W): T & U_3 & V_1 & W;
+        assign(target: object, ...sources: any[]): any;
+        getOwnPropertySymbols(o: any): symbol[];
+        is(value1: any, value2: any): boolean;
+        setPrototypeOf(o: any, proto: object | null): any;
+        values<T>(o: {
+            [s: string]: T;
+        } | ArrayLike<T>): T[];
+        values(o: {}): any[];
+        entries<T>(o: {
+            [s: string]: T;
+        } | ArrayLike<T>): [string, T][];
+        entries(o: {}): [string, any][];
+        getOwnPropertyDescriptors<T>(o: T): { [P in keyof T]: TypedPropertyDescriptor<T[P]>; } & {
+            [x: string]: PropertyDescriptor;
+        };
+        fromEntries<T = any>(entries: Iterable<readonly [PropertyKey, T]>): {
+            [k: string]: T;
+        };
+        fromEntries(entries: Iterable<readonly any[]>): any;
+        hasOwn(o: object, v: PropertyKey): boolean;
+        groupBy<K extends PropertyKey, T>(items: Iterable<T>, keySelector: (item: T, index: number) => K): Partial<Record<K, T[]>>;
+    };
+}
+
+declare namespace $ {
+    let $mol_schema_enum: <const Options extends readonly unknown[]>(this: void, Options: Options) => {
+        new (value?: any): {
+            constructor: Function;
+            toString(): string;
+            toLocaleString(): string;
+            valueOf(): Object;
+            hasOwnProperty(v: PropertyKey): boolean;
+            isPrototypeOf(v: Object): boolean;
+            propertyIsEnumerable(v: PropertyKey): boolean;
+        };
+        Options: Options;
+        toString(): string;
+        guard<This extends typeof $mol_schema_any, Value>(this: This, value: Value): Value & This["default"];
+        cast<This extends typeof $mol_schema_any>(this: This, value: unknown): This["default"];
+        default: Options[number];
+        check<This extends typeof $mol_schema_any, Value_1>(this: This, value: Value_1): value is Value_1 & This["default"];
+        [Symbol.toStringTag]: string;
+        [$mol_key_handle](): string;
+        [Symbol.hasInstance]<This extends typeof $mol_schema_any, Value_2>(this: This, value: Value_2): value is Value_2 & This["default"];
+        getPrototypeOf(o: any): any;
+        getOwnPropertyDescriptor(o: any, p: PropertyKey): PropertyDescriptor | undefined;
+        getOwnPropertyNames(o: any): string[];
+        create(o: object | null): any;
+        create(o: object | null, properties: PropertyDescriptorMap & ThisType<any>): any;
+        defineProperty<T>(o: T, p: PropertyKey, attributes: PropertyDescriptor & ThisType<any>): T;
+        defineProperties<T>(o: T, properties: PropertyDescriptorMap & ThisType<any>): T;
+        seal<T>(o: T): T;
+        freeze<T extends Function>(f: T): T;
+        freeze<T extends {
+            [idx: string]: U | null | undefined | object;
+        }, U extends string | bigint | number | boolean | symbol>(o: T): Readonly<T>;
+        freeze<T>(o: T): Readonly<T>;
+        preventExtensions<T>(o: T): T;
+        isSealed(o: any): boolean;
+        isFrozen(o: any): boolean;
+        isExtensible(o: any): boolean;
+        keys(o: object): string[];
+        keys(o: {}): string[];
+        assign<T extends {}, U_1>(target: T, source: U_1): T & U_1;
+        assign<T extends {}, U_2, V>(target: T, source1: U_2, source2: V): T & U_2 & V;
+        assign<T extends {}, U_3, V_1, W>(target: T, source1: U_3, source2: V_1, source3: W): T & U_3 & V_1 & W;
+        assign(target: object, ...sources: any[]): any;
+        getOwnPropertySymbols(o: any): symbol[];
+        is(value1: any, value2: any): boolean;
+        setPrototypeOf(o: any, proto: object | null): any;
+        values<T>(o: {
+            [s: string]: T;
+        } | ArrayLike<T>): T[];
+        values(o: {}): any[];
+        entries<T>(o: {
+            [s: string]: T;
+        } | ArrayLike<T>): [string, T][];
+        entries(o: {}): [string, any][];
+        getOwnPropertyDescriptors<T>(o: T): { [P in keyof T]: TypedPropertyDescriptor<T[P]>; } & {
+            [x: string]: PropertyDescriptor;
+        };
+        fromEntries<T = any>(entries: Iterable<readonly [PropertyKey, T]>): {
+            [k: string]: T;
+        };
+        fromEntries(entries: Iterable<readonly any[]>): any;
+        hasOwn(o: object, v: PropertyKey): boolean;
+        groupBy<K extends PropertyKey, T>(items: Iterable<T>, keySelector: (item: T, index: number) => K): Partial<Record<K, T[]>>;
+    };
+}
+
+declare namespace $ {
+    let $mol_schema_list: <Item extends typeof $mol_schema_any>(this: void, Item: Item) => {
+        new (value?: any): {
+            constructor: Function;
+            toString(): string;
+            toLocaleString(): string;
+            valueOf(): Object;
+            hasOwnProperty(v: PropertyKey): boolean;
+            isPrototypeOf(v: Object): boolean;
+            propertyIsEnumerable(v: PropertyKey): boolean;
+        };
+        Item: Item;
+        toString(): string;
+        guard<This extends typeof $mol_schema_any, Value>(this: This, value: Value): Value & This["default"];
+        cast<This extends typeof $mol_schema_any>(this: This, value: unknown): This["default"];
+        default: readonly Item["default"][];
+        check<This extends typeof $mol_schema_any, Value_1>(this: This, value: Value_1): value is Value_1 & This["default"];
+        [Symbol.toStringTag]: string;
+        [$mol_key_handle](): string;
+        [Symbol.hasInstance]<This extends typeof $mol_schema_any, Value_2>(this: This, value: Value_2): value is Value_2 & This["default"];
+        getPrototypeOf(o: any): any;
+        getOwnPropertyDescriptor(o: any, p: PropertyKey): PropertyDescriptor | undefined;
+        getOwnPropertyNames(o: any): string[];
+        create(o: object | null): any;
+        create(o: object | null, properties: PropertyDescriptorMap & ThisType<any>): any;
+        defineProperty<T>(o: T, p: PropertyKey, attributes: PropertyDescriptor & ThisType<any>): T;
+        defineProperties<T>(o: T, properties: PropertyDescriptorMap & ThisType<any>): T;
+        seal<T>(o: T): T;
+        freeze<T extends Function>(f: T): T;
+        freeze<T extends {
+            [idx: string]: U | null | undefined | object;
+        }, U extends string | bigint | number | boolean | symbol>(o: T): Readonly<T>;
+        freeze<T>(o: T): Readonly<T>;
+        preventExtensions<T>(o: T): T;
+        isSealed(o: any): boolean;
+        isFrozen(o: any): boolean;
+        isExtensible(o: any): boolean;
+        keys(o: object): string[];
+        keys(o: {}): string[];
+        assign<T extends {}, U_1>(target: T, source: U_1): T & U_1;
+        assign<T extends {}, U_2, V>(target: T, source1: U_2, source2: V): T & U_2 & V;
+        assign<T extends {}, U_3, V_1, W>(target: T, source1: U_3, source2: V_1, source3: W): T & U_3 & V_1 & W;
+        assign(target: object, ...sources: any[]): any;
+        getOwnPropertySymbols(o: any): symbol[];
+        is(value1: any, value2: any): boolean;
+        setPrototypeOf(o: any, proto: object | null): any;
+        values<T>(o: {
+            [s: string]: T;
+        } | ArrayLike<T>): T[];
+        values(o: {}): any[];
+        entries<T>(o: {
+            [s: string]: T;
+        } | ArrayLike<T>): [string, T][];
+        entries(o: {}): [string, any][];
+        getOwnPropertyDescriptors<T>(o: T): { [P in keyof T]: TypedPropertyDescriptor<T[P]>; } & {
+            [x: string]: PropertyDescriptor;
+        };
+        fromEntries<T = any>(entries: Iterable<readonly [PropertyKey, T]>): {
+            [k: string]: T;
+        };
+        fromEntries(entries: Iterable<readonly any[]>): any;
+        hasOwn(o: object, v: PropertyKey): boolean;
+        groupBy<K extends PropertyKey, T>(items: Iterable<T>, keySelector: (item: T, index: number) => K): Partial<Record<K, T[]>>;
+    };
+}
+
+declare namespace $ {
+    type JSON = null | boolean | number | string | JSON[] | {
+        [key: string]: JSON;
+    };
+    const $mol_schema_json_base: {
+        new (value?: any): {
+            constructor: Function;
+            toString(): string;
+            toLocaleString(): string;
+            valueOf(): Object;
+            hasOwnProperty(v: PropertyKey): boolean;
+            isPrototypeOf(v: Object): boolean;
+            propertyIsEnumerable(v: PropertyKey): boolean;
+        };
+        Schema: (this: void) => any;
+        guard<Val>(value: Val): Val & JSON;
+        cast<Val>(value: Val): JSON;
+        get default(): JSON;
+        toString(): string;
+        check<This extends typeof $mol_schema_any, Value>(this: This, value: Value): value is Value & This["default"];
+        [Symbol.toStringTag]: string;
+        [$mol_key_handle](): string;
+        [Symbol.hasInstance]<This extends typeof $mol_schema_any, Value>(this: This, value: Value): value is Value & This["default"];
+        getPrototypeOf(o: any): any;
+        getOwnPropertyDescriptor(o: any, p: PropertyKey): PropertyDescriptor | undefined;
+        getOwnPropertyNames(o: any): string[];
+        create(o: object | null): any;
+        create(o: object | null, properties: PropertyDescriptorMap & ThisType<any>): any;
+        defineProperty<T>(o: T, p: PropertyKey, attributes: PropertyDescriptor & ThisType<any>): T;
+        defineProperties<T>(o: T, properties: PropertyDescriptorMap & ThisType<any>): T;
+        seal<T>(o: T): T;
+        freeze<T extends Function>(f: T): T;
+        freeze<T extends {
+            [idx: string]: U | null | undefined | object;
+        }, U extends string | bigint | number | boolean | symbol>(o: T): Readonly<T>;
+        freeze<T>(o: T): Readonly<T>;
+        preventExtensions<T>(o: T): T;
+        isSealed(o: any): boolean;
+        isFrozen(o: any): boolean;
+        isExtensible(o: any): boolean;
+        keys(o: object): string[];
+        keys(o: {}): string[];
+        assign<T extends {}, U>(target: T, source: U): T & U;
+        assign<T extends {}, U, V>(target: T, source1: U, source2: V): T & U & V;
+        assign<T extends {}, U, V, W>(target: T, source1: U, source2: V, source3: W): T & U & V & W;
+        assign(target: object, ...sources: any[]): any;
+        getOwnPropertySymbols(o: any): symbol[];
+        is(value1: any, value2: any): boolean;
+        setPrototypeOf(o: any, proto: object | null): any;
+        values<T>(o: {
+            [s: string]: T;
+        } | ArrayLike<T>): T[];
+        values(o: {}): any[];
+        entries<T>(o: {
+            [s: string]: T;
+        } | ArrayLike<T>): [string, T][];
+        entries(o: {}): [string, any][];
+        getOwnPropertyDescriptors<T>(o: T): { [P in keyof T]: TypedPropertyDescriptor<T[P]>; } & {
+            [x: string]: PropertyDescriptor;
+        };
+        fromEntries<T = any>(entries: Iterable<readonly [PropertyKey, T]>): {
+            [k: string]: T;
+        };
+        fromEntries(entries: Iterable<readonly any[]>): any;
+        hasOwn(o: object, v: PropertyKey): boolean;
+        groupBy<K extends PropertyKey, T>(items: Iterable<T>, keySelector: (item: T, index: number) => K): Partial<Record<K, T[]>>;
+    };
+    export class $mol_schema_json extends $mol_schema_json_base {
+    }
+    export {};
+}
+
+declare namespace $ {
+    /**
+     * Converts union of types to intersection of same types
+     *
+     * 	$mol_type_intersect< number | string > // number & string
+     */
+    type $mol_type_intersect<Union> = (Union extends any ? (_: Union) => void : never) extends ((_: infer Intersection) => void) ? Intersection : never;
+}
+
+declare namespace $ {
+    let $mol_schema_every: <Schemas extends readonly (typeof $mol_schema_any)[]>(this: void, Schemas: Schemas) => {
+        new (value?: any): {
+            constructor: Function;
+            toString(): string;
+            toLocaleString(): string;
+            valueOf(): Object;
+            hasOwnProperty(v: PropertyKey): boolean;
+            isPrototypeOf(v: Object): boolean;
+            propertyIsEnumerable(v: PropertyKey): boolean;
+        };
+        Schemas: Schemas;
+        toString(): string;
+        guard<This extends typeof $mol_schema_any, Value>(this: This, value: Value): Value & This["default"];
+        cast<This extends typeof $mol_schema_any>(this: This, value: unknown): This["default"];
+        default: $mol_type_intersect<Schemas[number]["default"]>;
+        check<This extends typeof $mol_schema_any, Value_1>(this: This, value: Value_1): value is Value_1 & This["default"];
+        [Symbol.toStringTag]: string;
+        [$mol_key_handle](): string;
+        [Symbol.hasInstance]<This extends typeof $mol_schema_any, Value_2>(this: This, value: Value_2): value is Value_2 & This["default"];
+        getPrototypeOf(o: any): any;
+        getOwnPropertyDescriptor(o: any, p: PropertyKey): PropertyDescriptor | undefined;
+        getOwnPropertyNames(o: any): string[];
+        create(o: object | null): any;
+        create(o: object | null, properties: PropertyDescriptorMap & ThisType<any>): any;
+        defineProperty<T>(o: T, p: PropertyKey, attributes: PropertyDescriptor & ThisType<any>): T;
+        defineProperties<T>(o: T, properties: PropertyDescriptorMap & ThisType<any>): T;
+        seal<T>(o: T): T;
+        freeze<T extends Function>(f: T): T;
+        freeze<T extends {
+            [idx: string]: U | null | undefined | object;
+        }, U extends string | bigint | number | boolean | symbol>(o: T): Readonly<T>;
+        freeze<T>(o: T): Readonly<T>;
+        preventExtensions<T>(o: T): T;
+        isSealed(o: any): boolean;
+        isFrozen(o: any): boolean;
+        isExtensible(o: any): boolean;
+        keys(o: object): string[];
+        keys(o: {}): string[];
+        assign<T extends {}, U_1>(target: T, source: U_1): T & U_1;
+        assign<T extends {}, U_2, V>(target: T, source1: U_2, source2: V): T & U_2 & V;
+        assign<T extends {}, U_3, V_1, W>(target: T, source1: U_3, source2: V_1, source3: W): T & U_3 & V_1 & W;
+        assign(target: object, ...sources: any[]): any;
+        getOwnPropertySymbols(o: any): symbol[];
+        is(value1: any, value2: any): boolean;
+        setPrototypeOf(o: any, proto: object | null): any;
+        values<T>(o: {
+            [s: string]: T;
+        } | ArrayLike<T>): T[];
+        values(o: {}): any[];
+        entries<T>(o: {
+            [s: string]: T;
+        } | ArrayLike<T>): [string, T][];
+        entries(o: {}): [string, any][];
+        getOwnPropertyDescriptors<T>(o: T): { [P in keyof T]: TypedPropertyDescriptor<T[P]>; } & {
+            [x: string]: PropertyDescriptor;
+        };
+        fromEntries<T = any>(entries: Iterable<readonly [PropertyKey, T]>): {
+            [k: string]: T;
+        };
+        fromEntries(entries: Iterable<readonly any[]>): any;
+        hasOwn(o: object, v: PropertyKey): boolean;
+        groupBy<K extends PropertyKey, T>(items: Iterable<T>, keySelector: (item: T, index: number) => K): Partial<Record<K, T[]>>;
+    };
+}
+
+declare namespace $ {
+    let $mol_schema_range: <Value extends number | bigint, Range extends [min: Value, max: Value]>(this: void, Range: Range) => {
+        new (value?: any): {
+            constructor: Function;
+            toString(): string;
+            toLocaleString(): string;
+            valueOf(): Object;
+            hasOwnProperty(v: PropertyKey): boolean;
+            isPrototypeOf(v: Object): boolean;
+            propertyIsEnumerable(v: PropertyKey): boolean;
+        };
+        Range: Range;
+        toString(): string;
+        guard<This extends typeof $mol_schema_any, Val>(this: This, value: Val): Val & This["default"];
+        cast<This extends typeof $mol_schema_any>(this: This, value: Value): This["default"];
+        default: Range[0] & { [key in `$mol_schema_range_min=${Range[0]}`]: true; } & { [key_1 in `$mol_schema_range_max=${Range[1]}`]: true; };
+        check<This extends typeof $mol_schema_any, Value_1>(this: This, value: Value_1): value is Value_1 & This["default"];
+        [Symbol.toStringTag]: string;
+        [$mol_key_handle](): string;
+        [Symbol.hasInstance]<This extends typeof $mol_schema_any, Value_2>(this: This, value: Value_2): value is Value_2 & This["default"];
+        getPrototypeOf(o: any): any;
+        getOwnPropertyDescriptor(o: any, p: PropertyKey): PropertyDescriptor | undefined;
+        getOwnPropertyNames(o: any): string[];
+        create(o: object | null): any;
+        create(o: object | null, properties: PropertyDescriptorMap & ThisType<any>): any;
+        defineProperty<T>(o: T, p: PropertyKey, attributes: PropertyDescriptor & ThisType<any>): T;
+        defineProperties<T>(o: T, properties: PropertyDescriptorMap & ThisType<any>): T;
+        seal<T>(o: T): T;
+        freeze<T extends Function>(f: T): T;
+        freeze<T extends {
+            [idx: string]: U | null | undefined | object;
+        }, U extends string | bigint | number | boolean | symbol>(o: T): Readonly<T>;
+        freeze<T>(o: T): Readonly<T>;
+        preventExtensions<T>(o: T): T;
+        isSealed(o: any): boolean;
+        isFrozen(o: any): boolean;
+        isExtensible(o: any): boolean;
+        keys(o: object): string[];
+        keys(o: {}): string[];
+        assign<T extends {}, U_1>(target: T, source: U_1): T & U_1;
+        assign<T extends {}, U_2, V>(target: T, source1: U_2, source2: V): T & U_2 & V;
+        assign<T extends {}, U_3, V_1, W>(target: T, source1: U_3, source2: V_1, source3: W): T & U_3 & V_1 & W;
+        assign(target: object, ...sources: any[]): any;
+        getOwnPropertySymbols(o: any): symbol[];
+        is(value1: any, value2: any): boolean;
+        setPrototypeOf(o: any, proto: object | null): any;
+        values<T>(o: {
+            [s: string]: T;
+        } | ArrayLike<T>): T[];
+        values(o: {}): any[];
+        entries<T>(o: {
+            [s: string]: T;
+        } | ArrayLike<T>): [string, T][];
+        entries(o: {}): [string, any][];
+        getOwnPropertyDescriptors<T>(o: T): { [P in keyof T]: TypedPropertyDescriptor<T[P]>; } & {
+            [x: string]: PropertyDescriptor;
+        };
+        fromEntries<T = any>(entries: Iterable<readonly [PropertyKey, T]>): {
+            [k: string]: T;
+        };
+        fromEntries(entries: Iterable<readonly any[]>): any;
+        hasOwn(o: object, v: PropertyKey): boolean;
+        groupBy<K extends PropertyKey, T>(items: Iterable<T>, keySelector: (item: T, index: number) => K): Partial<Record<K, T[]>>;
+    };
+}
+
+declare namespace $ {
+    const $mol_schema_positive_base: {
+        new (value?: any): {
+            constructor: Function;
+            toString(): string;
+            toLocaleString(): string;
+            valueOf(): Object;
+            hasOwnProperty(v: PropertyKey): boolean;
+            isPrototypeOf(v: Object): boolean;
+            propertyIsEnumerable(v: PropertyKey): boolean;
+        };
+        Range: [0, number];
+        toString(): string;
+        guard<This extends typeof $mol_schema_any, Val>(this: This, value: Val): Val & This["default"];
+        cast<This extends typeof $mol_schema_any>(this: This, value: number | bigint): This["default"];
+        default: 0 & {
+            "$mol_schema_range_min=0": true;
+        } & {
+            [x: `$mol_schema_range_max=${number}`]: true;
+        };
+        check<This extends typeof $mol_schema_any, Value>(this: This, value: Value): value is Value & This["default"];
+        [Symbol.toStringTag]: string;
+        [$mol_key_handle](): string;
+        [Symbol.hasInstance]<This extends typeof $mol_schema_any, Value>(this: This, value: Value): value is Value & This["default"];
+        getPrototypeOf(o: any): any;
+        getOwnPropertyDescriptor(o: any, p: PropertyKey): PropertyDescriptor | undefined;
+        getOwnPropertyNames(o: any): string[];
+        create(o: object | null): any;
+        create(o: object | null, properties: PropertyDescriptorMap & ThisType<any>): any;
+        defineProperty<T>(o: T, p: PropertyKey, attributes: PropertyDescriptor & ThisType<any>): T;
+        defineProperties<T>(o: T, properties: PropertyDescriptorMap & ThisType<any>): T;
+        seal<T>(o: T): T;
+        freeze<T extends Function>(f: T): T;
+        freeze<T extends {
+            [idx: string]: U | null | undefined | object;
+        }, U extends string | bigint | number | boolean | symbol>(o: T): Readonly<T>;
+        freeze<T>(o: T): Readonly<T>;
+        preventExtensions<T>(o: T): T;
+        isSealed(o: any): boolean;
+        isFrozen(o: any): boolean;
+        isExtensible(o: any): boolean;
+        keys(o: object): string[];
+        keys(o: {}): string[];
+        assign<T extends {}, U>(target: T, source: U): T & U;
+        assign<T extends {}, U, V>(target: T, source1: U, source2: V): T & U & V;
+        assign<T extends {}, U, V, W>(target: T, source1: U, source2: V, source3: W): T & U & V & W;
+        assign(target: object, ...sources: any[]): any;
+        getOwnPropertySymbols(o: any): symbol[];
+        is(value1: any, value2: any): boolean;
+        setPrototypeOf(o: any, proto: object | null): any;
+        values<T>(o: {
+            [s: string]: T;
+        } | ArrayLike<T>): T[];
+        values(o: {}): any[];
+        entries<T>(o: {
+            [s: string]: T;
+        } | ArrayLike<T>): [string, T][];
+        entries(o: {}): [string, any][];
+        getOwnPropertyDescriptors<T>(o: T): { [P in keyof T]: TypedPropertyDescriptor<T[P]>; } & {
+            [x: string]: PropertyDescriptor;
+        };
+        fromEntries<T = any>(entries: Iterable<readonly [PropertyKey, T]>): {
+            [k: string]: T;
+        };
+        fromEntries(entries: Iterable<readonly any[]>): any;
+        hasOwn(o: object, v: PropertyKey): boolean;
+        groupBy<K extends PropertyKey, T>(items: Iterable<T>, keySelector: (item: T, index: number) => K): Partial<Record<K, T[]>>;
+    };
+    export class $mol_schema_positive extends $mol_schema_positive_base {
+    }
+    export {};
+}
+
+declare namespace $ {
+    const $mol_schema_natural_base: {
+        new (value?: any): {
+            constructor: Function;
+            toString(): string;
+            toLocaleString(): string;
+            valueOf(): Object;
+            hasOwnProperty(v: PropertyKey): boolean;
+            isPrototypeOf(v: Object): boolean;
+            propertyIsEnumerable(v: PropertyKey): boolean;
+        };
+        Schemas: (typeof $mol_schema_integer | typeof $mol_schema_positive)[];
+        toString(): string;
+        guard<This extends typeof $mol_schema_any, Value>(this: This, value: Value): Value & This["default"];
+        cast<This extends typeof $mol_schema_any>(this: This, value: unknown): This["default"];
+        default: 0 & {
+            "$mol_schema_range_min=0": true;
+        } & {
+            [x: `$mol_schema_range_max=${number}`]: true;
+        } & $mol_schema_integer;
+        check<This extends typeof $mol_schema_any, Value>(this: This, value: Value): value is Value & This["default"];
+        [Symbol.toStringTag]: string;
+        [$mol_key_handle](): string;
+        [Symbol.hasInstance]<This extends typeof $mol_schema_any, Value>(this: This, value: Value): value is Value & This["default"];
+        getPrototypeOf(o: any): any;
+        getOwnPropertyDescriptor(o: any, p: PropertyKey): PropertyDescriptor | undefined;
+        getOwnPropertyNames(o: any): string[];
+        create(o: object | null): any;
+        create(o: object | null, properties: PropertyDescriptorMap & ThisType<any>): any;
+        defineProperty<T>(o: T, p: PropertyKey, attributes: PropertyDescriptor & ThisType<any>): T;
+        defineProperties<T>(o: T, properties: PropertyDescriptorMap & ThisType<any>): T;
+        seal<T>(o: T): T;
+        freeze<T extends Function>(f: T): T;
+        freeze<T extends {
+            [idx: string]: U | null | undefined | object;
+        }, U extends string | bigint | number | boolean | symbol>(o: T): Readonly<T>;
+        freeze<T>(o: T): Readonly<T>;
+        preventExtensions<T>(o: T): T;
+        isSealed(o: any): boolean;
+        isFrozen(o: any): boolean;
+        isExtensible(o: any): boolean;
+        keys(o: object): string[];
+        keys(o: {}): string[];
+        assign<T extends {}, U>(target: T, source: U): T & U;
+        assign<T extends {}, U, V>(target: T, source1: U, source2: V): T & U & V;
+        assign<T extends {}, U, V, W>(target: T, source1: U, source2: V, source3: W): T & U & V & W;
+        assign(target: object, ...sources: any[]): any;
+        getOwnPropertySymbols(o: any): symbol[];
+        is(value1: any, value2: any): boolean;
+        setPrototypeOf(o: any, proto: object | null): any;
+        values<T>(o: {
+            [s: string]: T;
+        } | ArrayLike<T>): T[];
+        values(o: {}): any[];
+        entries<T>(o: {
+            [s: string]: T;
+        } | ArrayLike<T>): [string, T][];
+        entries(o: {}): [string, any][];
+        getOwnPropertyDescriptors<T>(o: T): { [P in keyof T]: TypedPropertyDescriptor<T[P]>; } & {
+            [x: string]: PropertyDescriptor;
+        };
+        fromEntries<T = any>(entries: Iterable<readonly [PropertyKey, T]>): {
+            [k: string]: T;
+        };
+        fromEntries(entries: Iterable<readonly any[]>): any;
+        hasOwn(o: object, v: PropertyKey): boolean;
+        groupBy<K extends PropertyKey, T>(items: Iterable<T>, keySelector: (item: T, index: number) => K): Partial<Record<K, T[]>>;
+    };
+    export class $mol_schema_natural extends $mol_schema_natural_base {
+    }
+    export {};
+}
+
+declare namespace $ {
+    const $mol_schema_negative_base: {
+        new (value?: any): {
+            constructor: Function;
+            toString(): string;
+            toLocaleString(): string;
+            valueOf(): Object;
+            hasOwnProperty(v: PropertyKey): boolean;
+            isPrototypeOf(v: Object): boolean;
+            propertyIsEnumerable(v: PropertyKey): boolean;
+        };
+        Range: [number, 0];
+        toString(): string;
+        guard<This extends typeof $mol_schema_any, Val>(this: This, value: Val): Val & This["default"];
+        cast<This extends typeof $mol_schema_any>(this: This, value: number | bigint): This["default"];
+        default: number & {
+            [x: `$mol_schema_range_min=${number}`]: true;
+        } & {
+            "$mol_schema_range_max=0": true;
+        };
+        check<This extends typeof $mol_schema_any, Value>(this: This, value: Value): value is Value & This["default"];
+        [Symbol.toStringTag]: string;
+        [$mol_key_handle](): string;
+        [Symbol.hasInstance]<This extends typeof $mol_schema_any, Value>(this: This, value: Value): value is Value & This["default"];
+        getPrototypeOf(o: any): any;
+        getOwnPropertyDescriptor(o: any, p: PropertyKey): PropertyDescriptor | undefined;
+        getOwnPropertyNames(o: any): string[];
+        create(o: object | null): any;
+        create(o: object | null, properties: PropertyDescriptorMap & ThisType<any>): any;
+        defineProperty<T>(o: T, p: PropertyKey, attributes: PropertyDescriptor & ThisType<any>): T;
+        defineProperties<T>(o: T, properties: PropertyDescriptorMap & ThisType<any>): T;
+        seal<T>(o: T): T;
+        freeze<T extends Function>(f: T): T;
+        freeze<T extends {
+            [idx: string]: U | null | undefined | object;
+        }, U extends string | bigint | number | boolean | symbol>(o: T): Readonly<T>;
+        freeze<T>(o: T): Readonly<T>;
+        preventExtensions<T>(o: T): T;
+        isSealed(o: any): boolean;
+        isFrozen(o: any): boolean;
+        isExtensible(o: any): boolean;
+        keys(o: object): string[];
+        keys(o: {}): string[];
+        assign<T extends {}, U>(target: T, source: U): T & U;
+        assign<T extends {}, U, V>(target: T, source1: U, source2: V): T & U & V;
+        assign<T extends {}, U, V, W>(target: T, source1: U, source2: V, source3: W): T & U & V & W;
+        assign(target: object, ...sources: any[]): any;
+        getOwnPropertySymbols(o: any): symbol[];
+        is(value1: any, value2: any): boolean;
+        setPrototypeOf(o: any, proto: object | null): any;
+        values<T>(o: {
+            [s: string]: T;
+        } | ArrayLike<T>): T[];
+        values(o: {}): any[];
+        entries<T>(o: {
+            [s: string]: T;
+        } | ArrayLike<T>): [string, T][];
+        entries(o: {}): [string, any][];
+        getOwnPropertyDescriptors<T>(o: T): { [P in keyof T]: TypedPropertyDescriptor<T[P]>; } & {
+            [x: string]: PropertyDescriptor;
+        };
+        fromEntries<T = any>(entries: Iterable<readonly [PropertyKey, T]>): {
+            [k: string]: T;
+        };
+        fromEntries(entries: Iterable<readonly any[]>): any;
+        hasOwn(o: object, v: PropertyKey): boolean;
+        groupBy<K extends PropertyKey, T>(items: Iterable<T>, keySelector: (item: T, index: number) => K): Partial<Record<K, T[]>>;
+    };
+    export class $mol_schema_negative extends $mol_schema_negative_base {
+    }
+    export {};
+}
+
+declare namespace $ {
+    let $mol_schema_maybe: <Some extends typeof $mol_schema_any>(this: void, Some: Some) => {
+        new (value?: any): {
+            constructor: Function;
+            toString(): string;
+            toLocaleString(): string;
+            valueOf(): Object;
+            hasOwnProperty(v: PropertyKey): boolean;
+            isPrototypeOf(v: Object): boolean;
+            propertyIsEnumerable(v: PropertyKey): boolean;
+        };
+        Some: Some;
+        toString(): string;
+        guard<This extends typeof $mol_schema_any, Value>(this: This, value: Value): Value & This["default"];
+        default: Some["default"] | null;
+        check<This extends typeof $mol_schema_any, Value_1>(this: This, value: Value_1): value is Value_1 & This["default"];
+        cast<This extends typeof $mol_schema_any>(this: This, value: unknown): This["default"];
+        [Symbol.toStringTag]: string;
+        [$mol_key_handle](): string;
+        [Symbol.hasInstance]<This extends typeof $mol_schema_any, Value_2>(this: This, value: Value_2): value is Value_2 & This["default"];
+        getPrototypeOf(o: any): any;
+        getOwnPropertyDescriptor(o: any, p: PropertyKey): PropertyDescriptor | undefined;
+        getOwnPropertyNames(o: any): string[];
+        create(o: object | null): any;
+        create(o: object | null, properties: PropertyDescriptorMap & ThisType<any>): any;
+        defineProperty<T>(o: T, p: PropertyKey, attributes: PropertyDescriptor & ThisType<any>): T;
+        defineProperties<T>(o: T, properties: PropertyDescriptorMap & ThisType<any>): T;
+        seal<T>(o: T): T;
+        freeze<T extends Function>(f: T): T;
+        freeze<T extends {
+            [idx: string]: U | null | undefined | object;
+        }, U extends string | bigint | number | boolean | symbol>(o: T): Readonly<T>;
+        freeze<T>(o: T): Readonly<T>;
+        preventExtensions<T>(o: T): T;
+        isSealed(o: any): boolean;
+        isFrozen(o: any): boolean;
+        isExtensible(o: any): boolean;
+        keys(o: object): string[];
+        keys(o: {}): string[];
+        assign<T extends {}, U_1>(target: T, source: U_1): T & U_1;
+        assign<T extends {}, U_2, V>(target: T, source1: U_2, source2: V): T & U_2 & V;
+        assign<T extends {}, U_3, V_1, W>(target: T, source1: U_3, source2: V_1, source3: W): T & U_3 & V_1 & W;
+        assign(target: object, ...sources: any[]): any;
+        getOwnPropertySymbols(o: any): symbol[];
+        is(value1: any, value2: any): boolean;
+        setPrototypeOf(o: any, proto: object | null): any;
+        values<T>(o: {
+            [s: string]: T;
+        } | ArrayLike<T>): T[];
+        values(o: {}): any[];
+        entries<T>(o: {
+            [s: string]: T;
+        } | ArrayLike<T>): [string, T][];
+        entries(o: {}): [string, any][];
+        getOwnPropertyDescriptors<T>(o: T): { [P in keyof T]: TypedPropertyDescriptor<T[P]>; } & {
+            [x: string]: PropertyDescriptor;
+        };
+        fromEntries<T = any>(entries: Iterable<readonly [PropertyKey, T]>): {
+            [k: string]: T;
+        };
+        fromEntries(entries: Iterable<readonly any[]>): any;
+        hasOwn(o: object, v: PropertyKey): boolean;
+        groupBy<K extends PropertyKey, T>(items: Iterable<T>, keySelector: (item: T, index: number) => K): Partial<Record<K, T[]>>;
+    };
+}
+
+declare namespace $ {
+    let $mol_schema_record: <Fields extends Record<string, typeof $mol_schema_any>>(this: void, Fields: Fields) => {
+        new (value?: any): {
+            constructor: Function;
+            toString(): string;
+            toLocaleString(): string;
+            valueOf(): Object;
+            hasOwnProperty(v: PropertyKey): boolean;
+            isPrototypeOf(v: Object): boolean;
+            propertyIsEnumerable(v: PropertyKey): boolean;
+        };
+        Fields: Fields;
+        toString(): string;
+        guard<This extends typeof $mol_schema_any, Value>(this: This, value: Value): Value & This["default"];
+        cast<This extends typeof $mol_schema_any>(this: This, value: unknown): This["default"];
+        default: { readonly [key in keyof Fields]: Fields[key]["default"]; };
+        check<This extends typeof $mol_schema_any, Value_1>(this: This, value: Value_1): value is Value_1 & This["default"];
+        [Symbol.toStringTag]: string;
+        [$mol_key_handle](): string;
+        [Symbol.hasInstance]<This extends typeof $mol_schema_any, Value_2>(this: This, value: Value_2): value is Value_2 & This["default"];
+        getPrototypeOf(o: any): any;
+        getOwnPropertyDescriptor(o: any, p: PropertyKey): PropertyDescriptor | undefined;
+        getOwnPropertyNames(o: any): string[];
+        create(o: object | null): any;
+        create(o: object | null, properties: PropertyDescriptorMap & ThisType<any>): any;
+        defineProperty<T>(o: T, p: PropertyKey, attributes: PropertyDescriptor & ThisType<any>): T;
+        defineProperties<T>(o: T, properties: PropertyDescriptorMap & ThisType<any>): T;
+        seal<T>(o: T): T;
+        freeze<T extends Function>(f: T): T;
+        freeze<T extends {
+            [idx: string]: U | null | undefined | object;
+        }, U extends string | bigint | number | boolean | symbol>(o: T): Readonly<T>;
+        freeze<T>(o: T): Readonly<T>;
+        preventExtensions<T>(o: T): T;
+        isSealed(o: any): boolean;
+        isFrozen(o: any): boolean;
+        isExtensible(o: any): boolean;
+        keys(o: object): string[];
+        keys(o: {}): string[];
+        assign<T extends {}, U_1>(target: T, source: U_1): T & U_1;
+        assign<T extends {}, U_2, V>(target: T, source1: U_2, source2: V): T & U_2 & V;
+        assign<T extends {}, U_3, V_1, W>(target: T, source1: U_3, source2: V_1, source3: W): T & U_3 & V_1 & W;
+        assign(target: object, ...sources: any[]): any;
+        getOwnPropertySymbols(o: any): symbol[];
+        is(value1: any, value2: any): boolean;
+        setPrototypeOf(o: any, proto: object | null): any;
+        values<T>(o: {
+            [s: string]: T;
+        } | ArrayLike<T>): T[];
+        values(o: {}): any[];
+        entries<T>(o: {
+            [s: string]: T;
+        } | ArrayLike<T>): [string, T][];
+        entries(o: {}): [string, any][];
+        getOwnPropertyDescriptors<T>(o: T): { [P in keyof T]: TypedPropertyDescriptor<T[P]>; } & {
+            [x: string]: PropertyDescriptor;
+        };
+        fromEntries<T = any>(entries: Iterable<readonly [PropertyKey, T]>): {
+            [k: string]: T;
+        };
+        fromEntries(entries: Iterable<readonly any[]>): any;
+        hasOwn(o: object, v: PropertyKey): boolean;
+        groupBy<K extends PropertyKey, T>(items: Iterable<T>, keySelector: (item: T, index: number) => K): Partial<Record<K, T[]>>;
+    };
+}
+
+declare namespace $ {
+    function $mol_schema_partial<Fields extends Record<string, typeof $mol_schema_any>>(Fields: Fields): {
+        new (value?: any): {
+            constructor: Function;
+            toString(): string;
+            toLocaleString(): string;
+            valueOf(): Object;
+            hasOwnProperty(v: PropertyKey): boolean;
+            isPrototypeOf(v: Object): boolean;
+            propertyIsEnumerable(v: PropertyKey): boolean;
+        };
+        Fields: Fields;
+        toString(): string;
+        guard<This extends typeof $mol_schema_any, Value>(this: This, value: Value): Value & This["default"];
+        cast<This extends typeof $mol_schema_any>(this: This, value: unknown): This["default"];
+        default: {
+            readonly [x: string]: any;
+        };
+        check<This extends typeof $mol_schema_any, Value>(this: This, value: Value): value is Value & This["default"];
+        [Symbol.toStringTag]: string;
+        [$mol_key_handle](): string;
+        [Symbol.hasInstance]<This extends typeof $mol_schema_any, Value>(this: This, value: Value): value is Value & This["default"];
+        getPrototypeOf(o: any): any;
+        getOwnPropertyDescriptor(o: any, p: PropertyKey): PropertyDescriptor | undefined;
+        getOwnPropertyNames(o: any): string[];
+        create(o: object | null): any;
+        create(o: object | null, properties: PropertyDescriptorMap & ThisType<any>): any;
+        defineProperty<T>(o: T, p: PropertyKey, attributes: PropertyDescriptor & ThisType<any>): T;
+        defineProperties<T>(o: T, properties: PropertyDescriptorMap & ThisType<any>): T;
+        seal<T>(o: T): T;
+        freeze<T extends Function>(f: T): T;
+        freeze<T extends {
+            [idx: string]: U | null | undefined | object;
+        }, U extends string | bigint | number | boolean | symbol>(o: T): Readonly<T>;
+        freeze<T>(o: T): Readonly<T>;
+        preventExtensions<T>(o: T): T;
+        isSealed(o: any): boolean;
+        isFrozen(o: any): boolean;
+        isExtensible(o: any): boolean;
+        keys(o: object): string[];
+        keys(o: {}): string[];
+        assign<T extends {}, U>(target: T, source: U): T & U;
+        assign<T extends {}, U, V>(target: T, source1: U, source2: V): T & U & V;
+        assign<T extends {}, U, V, W>(target: T, source1: U, source2: V, source3: W): T & U & V & W;
+        assign(target: object, ...sources: any[]): any;
+        getOwnPropertySymbols(o: any): symbol[];
+        is(value1: any, value2: any): boolean;
+        setPrototypeOf(o: any, proto: object | null): any;
+        values<T>(o: {
+            [s: string]: T;
+        } | ArrayLike<T>): T[];
+        values(o: {}): any[];
+        entries<T>(o: {
+            [s: string]: T;
+        } | ArrayLike<T>): [string, T][];
+        entries(o: {}): [string, any][];
+        getOwnPropertyDescriptors<T>(o: T): { [P in keyof T]: TypedPropertyDescriptor<T[P]>; } & {
+            [x: string]: PropertyDescriptor;
+        };
+        fromEntries<T = any>(entries: Iterable<readonly [PropertyKey, T]>): {
+            [k: string]: T;
+        };
+        fromEntries(entries: Iterable<readonly any[]>): any;
+        hasOwn(o: object, v: PropertyKey): boolean;
+        groupBy<K extends PropertyKey, T>(items: Iterable<T>, keySelector: (item: T, index: number) => K): Partial<Record<K, T[]>>;
+    };
+}
+
+declare namespace $ {
 }
 
 declare namespace $ {
@@ -4357,15 +5516,6 @@ declare namespace $ {
     type $mol_type_merge_object<Intersection> = {
         [Key in keyof Intersection]: Intersection[Key];
     };
-}
-
-declare namespace $ {
-    /**
-     * Converts union of types to intersection of same types
-     *
-     * 	$mol_type_intersect< number | string > // number & string
-     */
-    type $mol_type_intersect<Union> = (Union extends any ? (_: Union) => void : never) extends ((_: infer Intersection) => void) ? Intersection : never;
 }
 
 declare namespace $ {
@@ -6454,6 +7604,8 @@ declare namespace $ {
     type $bog_smalljs_content_page = {
         slug: string;
         title: string;
+        /** One-line description, used for meta/OG descriptions and llms.txt. */
+        summary: string;
         /** GitHub-relative path, for the Edit-on-GitHub link. */
         file: string;
         md: string;
@@ -6479,6 +7631,8 @@ declare namespace $ {
         static page_md(slug: string, lang?: string): string | null;
         /** Localized title for a page, falling back to EN. */
         static page_title(slug: string, lang?: string): string | null;
+        /** One-line summary for a page (language-neutral, from the manifest). */
+        static page_summary(slug: string): string | null;
         static default_slug(): string;
     }
 }
@@ -9253,6 +10407,32 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    interface $bog_meta_alternate {
+        /** BCP-47-ish language code, or 'x-default'. */
+        lang: string;
+        /** Absolute URL of the localized page. */
+        href: string;
+    }
+    interface $bog_meta_data {
+        title?: string;
+        description?: string;
+        canonical?: string;
+        og_title?: string;
+        og_description?: string;
+        og_image?: string;
+        og_type?: string;
+        /** hreflang alternates, emitted as <link rel="alternate" hreflang=…>. */
+        alternates?: $bog_meta_alternate[];
+    }
+    const $bog_meta_attr_name = "data-bog-meta";
+    function $bog_meta_compact(data: $bog_meta_data | undefined): $bog_meta_data | null;
+    function $bog_meta_attr(view: {
+        meta?(): $bog_meta_data;
+    }): Record<string, any>;
+    function $bog_meta_merge(base: $bog_meta_data, override: $bog_meta_data): $bog_meta_data;
+}
+
+declare namespace $ {
     function $mol_offline(): void;
 }
 
@@ -9304,6 +10484,7 @@ declare namespace $ {
 	export class $bog_smalljs_app extends $bog_builderui_div {
 		dir( ): string
 		hotkeys( ): any
+		locale_sync( ): any
 		Theme( ): $bog_theme_auto
 		Top( ): $bog_smalljs_top
 		body_content( ): readonly(any)[]
@@ -9338,6 +10519,28 @@ declare namespace $ {
 declare namespace $.$$ {
     class $bog_smalljs_app extends $.$bog_smalljs_app {
         section(next?: string): string;
+        /** Ordered arg pairs describing the current screen ($mol hash-router state). */
+        route_args(): [string, string][];
+        /** Serialize arg pairs into a $mol `#!a=b/c=d` hash (empty when no args). */
+        route_hash(extra?: [string, string][]): string;
+        /** Per-page, per-language SEO/social metadata. Read by $bog_meta_attr →
+         *  `data-bog-meta` on the root, which the $bog_seo prerenderer injects into
+         *  <head> as <title>/<meta>/<link> for bots and social unfurls. */
+        meta(): $bog_meta_data;
+        attr(): {
+            dir: ReturnType<$.$bog_smalljs_app["dir"]>;
+            bog_builderui_lights: ReturnType<$.$bog_smalljs_app["lights"]>;
+            bog_builderui_base: string;
+            bog_builderui_theme: string;
+            bog_builderui_chart: string;
+            bog_builderui_radius: string;
+            bog_builderui_font_body: string;
+            bog_builderui_font_head: string;
+        };
+        /** Honor a `?mol_locale=<code>` URL param once on load, so shared
+         *  localized links (and hreflang alternates) select the right language. */
+        locale_synced: boolean;
+        locale_sync(): null;
         open_search(): null;
         search_toggle(): null;
         hotkeys(): null;

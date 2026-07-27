@@ -2995,6 +2995,525 @@ var $;
 
 ;
 "use strict";
+var $;
+(function ($_1) {
+    var $$;
+    (function ($$) {
+        $mol_test({
+            "Cache of enum schema"($) {
+                $mol_assert_equal($mol_schema_enum(['foo']), $mol_schema_enum(['foo']));
+                $mol_assert_unique($mol_schema_enum(['foo']), $mol_schema_enum(['bar']));
+            },
+            "Enum options"($) {
+                const Config = $mol_schema_enum([123, 'foo']);
+                $mol_assert_equal('$mol_schema_enum<[123,"foo"]>', Config + '', $mol_key(Config));
+                $mol_assert_equal(true, Config.check(123));
+                $mol_assert_equal(true, Config.check('foo'));
+                $mol_assert_equal(false, Config.check(true));
+                $mol_assert_equal(false, Config.check(321));
+                $mol_assert_equal(false, Config.check('bar'));
+                $mol_assert_equal(Config.cast(123), 123);
+                $mol_assert_equal(Config.cast('foo'), 'foo');
+                $mol_assert_equal(Config.cast('bar'), 123);
+                $mol_assert_equal(123, Config.guard(123));
+                $mol_assert_fail(() => Config.guard(321), 'Wrong option');
+            },
+        });
+    })($$ = $_1.$$ || ($_1.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($_1) {
+    var $$;
+    (function ($$) {
+        $mol_test({
+            "Float schema"($) {
+                $mol_assert_equal('$mol_schema_float', $mol_schema_float + '', $mol_key($mol_schema_float));
+                $mol_assert_equal(true, $mol_schema_float.check(0));
+                $mol_assert_equal(true, $mol_schema_float.check(Number.NaN));
+                $mol_assert_equal(true, $mol_schema_float.check(Number.POSITIVE_INFINITY));
+                $mol_assert_equal(false, $mol_schema_float.check(null));
+                $mol_assert_equal(1.5, $mol_schema_float.cast(1.5));
+                $mol_assert_equal(Number.NaN, $mol_schema_float.cast('0'));
+                $mol_assert_equal(Number.EPSILON, $mol_schema_float.guard(Number.EPSILON));
+                $mol_assert_fail(() => $mol_schema_float.guard('0'), 'Wrong type');
+            },
+        });
+    })($$ = $_1.$$ || ($_1.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($_1) {
+    var $$;
+    (function ($$) {
+        $mol_test({
+            "String schema"($) {
+                $mol_assert_equal('$mol_schema_string', $mol_schema_string + '', $mol_key($mol_schema_string));
+                $mol_assert_equal(true, $mol_schema_string.check('foo'));
+                $mol_assert_equal(false, $mol_schema_string.check(123));
+                $mol_assert_equal('foo', $mol_schema_string.cast('foo'));
+                $mol_assert_equal('', $mol_schema_string.cast(123));
+                $mol_assert_equal('foo', $mol_schema_string.guard('foo'));
+                $mol_assert_fail(() => $mol_schema_string.guard(123), 'Wrong type');
+            },
+        });
+    })($$ = $_1.$$ || ($_1.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($_1) {
+    var $$;
+    (function ($$) {
+        $mol_test({
+            "Cache of some schema"($) {
+                $mol_assert_equal($mol_schema_some([$mol_schema_float]), $mol_schema_some([$mol_schema_float]));
+                $mol_assert_unique($mol_schema_some([$mol_schema_float]), $mol_schema_some([$mol_schema_string]));
+            },
+            "Some variant"($) {
+                const Config = $mol_schema_some([$mol_schema_float, $mol_schema_string]);
+                $mol_assert_equal('$mol_schema_some<[$mol_schema_float,$mol_schema_string]>', Config + '');
+                $mol_assert_equal(true, Config.check(123));
+                $mol_assert_equal(true, Config.check('foo'));
+                $mol_assert_equal(false, Config.check(true));
+                $mol_assert_equal(123, Config.cast(123));
+                $mol_assert_equal('foo', Config.cast('foo'));
+                $mol_assert_equal(Number.NaN, Config.cast(true));
+                $mol_assert_equal(123, Config.guard(123));
+                $mol_assert_fail(() => Config.guard(false), 'Wrong variant');
+            },
+        });
+    })($$ = $_1.$$ || ($_1.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($_1) {
+    var $$;
+    (function ($$) {
+        $mol_test({
+            "Cache of maybe schema"($) {
+                $mol_assert_equal($mol_schema_maybe($mol_schema_float), $mol_schema_maybe($mol_schema_float));
+                $mol_assert_unique($mol_schema_maybe($mol_schema_float), $mol_schema_maybe($mol_schema_string));
+            },
+            "Optional value"($) {
+                const Config = $mol_schema_maybe($mol_schema_string);
+                $mol_assert_equal('$mol_schema_maybe<$mol_schema_string>', Config + '');
+                $mol_assert_equal(true, Config.check('foo'));
+                $mol_assert_equal(true, Config.check(undefined));
+                $mol_assert_equal(true, Config.check(null));
+                $mol_assert_equal(false, Config.check(0));
+                $mol_assert_equal('foo', Config.cast('foo'));
+                $mol_assert_equal(undefined, Config.cast(undefined));
+                $mol_assert_equal(null, Config.cast(null));
+                $mol_assert_equal(null, Config.cast(0));
+                $mol_assert_equal('foo', Config.guard('foo'));
+                $mol_assert_fail(() => Config.guard(123), 'Wrong type');
+            },
+        });
+    })($$ = $_1.$$ || ($_1.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+
+;
+"use strict";
+var $;
+(function ($_1) {
+    var $$;
+    (function ($$) {
+        $mol_test({
+            "Integer schema"($) {
+                $mol_assert_equal('$mol_schema_integer', $mol_schema_integer + '', $mol_key($mol_schema_integer));
+                $mol_assert_equal(true, $mol_schema_integer.check(Number.MAX_SAFE_INTEGER));
+                $mol_assert_equal(true, $mol_schema_integer.check(Number.MIN_SAFE_INTEGER));
+                $mol_assert_equal(true, $mol_schema_integer.check(0));
+                $mol_assert_equal(false, $mol_schema_integer.check(Number.EPSILON));
+                $mol_assert_equal(false, $mol_schema_integer.check(Number.POSITIVE_INFINITY));
+                $mol_assert_equal(false, $mol_schema_integer.check(Number.NEGATIVE_INFINITY));
+                $mol_assert_equal(Number.MAX_SAFE_INTEGER, $mol_schema_integer.cast(Number.MAX_SAFE_INTEGER));
+                $mol_assert_equal(0, $mol_schema_integer.cast(Number.EPSILON));
+                $mol_assert_equal(0, $mol_schema_integer.cast(1.5));
+                $mol_assert_equal(0, $mol_schema_integer.guard(0));
+                $mol_assert_fail(() => $mol_schema_integer.guard(''), 'Wrong type');
+                $mol_assert_fail(() => $mol_schema_integer.guard(Number.NaN), 'Non finite');
+                $mol_assert_fail(() => $mol_schema_integer.guard(1.5), 'Non integer');
+            },
+        });
+    })($$ = $_1.$$ || ($_1.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($_1) {
+    var $$;
+    (function ($$) {
+        $mol_test({
+            "Cache of range schema"($) {
+                $mol_assert_equal($mol_schema_range([0, 1]), $mol_schema_range([0, 1]));
+                $mol_assert_unique($mol_schema_range([0, 1]), $mol_schema_range([0, 2]));
+            },
+            "Float range schema"($) {
+                const Range = $mol_schema_range([4, 8]);
+                $mol_assert_equal(true, Range.check(5.5));
+                $mol_assert_equal(true, Range.check(4));
+                $mol_assert_equal(true, Range.check(8));
+                $mol_assert_equal(false, Range.check(3));
+                $mol_assert_equal(false, Range.check(9));
+                $mol_assert_equal(4, Range.cast(3));
+                $mol_assert_equal(8, Range.cast(9));
+                $mol_assert_equal(4, Range.cast(Number.NaN));
+                $mol_assert_equal(5, Range.guard(5));
+                $mol_assert_fail(() => Range.guard(2), 'Too small');
+                $mol_assert_fail(() => Range.guard(10), 'Too large');
+                $mol_assert_fail(() => Range.guard({}), 'Uncomparable type');
+            },
+        });
+    })($$ = $_1.$$ || ($_1.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($_1) {
+    var $$;
+    (function ($$) {
+        $mol_test({
+            "Cache of every schema"($) {
+                $mol_assert_equal($mol_schema_every([$mol_schema_float]), $mol_schema_every([$mol_schema_float]));
+                $mol_assert_unique($mol_schema_every([$mol_schema_float]), $mol_schema_every([$mol_schema_string]));
+            },
+            "Range intersection"($) {
+                const Narrow = $mol_schema_every([$mol_schema_integer, $mol_schema_range([1, 8]), $mol_schema_range([4, 10])]);
+                $mol_assert_equal('$mol_schema_every<[$mol_schema_integer,$mol_schema_range<[1,8]>,$mol_schema_range<[4,10]>]>', Narrow + '');
+                $mol_assert_equal(true, Narrow.check(6));
+                $mol_assert_equal(true, Narrow.check(4));
+                $mol_assert_equal(true, Narrow.check(8));
+                $mol_assert_equal(false, Narrow.check(3));
+                $mol_assert_equal(false, Narrow.check(9));
+                $mol_assert_equal(false, Narrow.check(5.5));
+                $mol_assert_equal(4, Narrow.cast(3));
+                $mol_assert_equal(8, Narrow.cast(9));
+                $mol_assert_equal(4, Narrow.cast('6'));
+                $mol_assert_equal(5, Narrow.guard(5));
+                $mol_assert_fail(() => Narrow.guard(2), 'Too small');
+                $mol_assert_fail(() => Narrow.guard(10), 'Too large');
+                $mol_assert_fail(() => Narrow.guard(''), 'Wrong type');
+            },
+        });
+    })($$ = $_1.$$ || ($_1.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($_1) {
+    var $$;
+    (function ($$) {
+        $mol_test({
+            "Cache of list schema"($) {
+                $mol_assert_equal($mol_schema_list($mol_schema_float), $mol_schema_list($mol_schema_float));
+                $mol_assert_unique($mol_schema_list($mol_schema_float), $mol_schema_list($mol_schema_string));
+            },
+            "Array schema"($) {
+                const Vector = $mol_schema_list($mol_schema_float);
+                $mol_assert_equal('$mol_schema_list<$mol_schema_float>', Vector + '');
+                $mol_assert_equal(true, Vector.check([]));
+                $mol_assert_equal(true, Vector.check([123]));
+                $mol_assert_equal(false, Vector.check(['foo']));
+                $mol_assert_equal([123], Vector.cast([123]));
+                $mol_assert_equal([123, Number.NaN], Vector.cast([123, 'foo']));
+                $mol_assert_equal([], Vector.guard([]));
+                $mol_assert_equal([123], Vector.guard([123]));
+                $mol_assert_fail(() => Vector.guard(0), 'Non array');
+                $mol_assert_fail(() => Vector.guard([false]), 'Wrong item');
+            },
+        });
+    })($$ = $_1.$$ || ($_1.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($_1) {
+    var $$;
+    (function ($$) {
+        $mol_test({
+            "Cache of pattern schema"($) {
+                $mol_assert_equal($mol_schema_pattern(/foo/), $mol_schema_pattern(/foo/));
+                $mol_assert_unique($mol_schema_pattern(/foo/), $mol_schema_pattern(/bar/));
+            },
+            "String pattern schema"($) {
+                const Email = $mol_schema_pattern(/^.*@.*$/);
+                $mol_assert_equal('$mol_schema_pattern</^.*@.*$/>', Email + '', $mol_key(Email));
+                $mol_assert_equal(true, Email.check('foo@bar'));
+                $mol_assert_equal(false, Email.check('foo'));
+                $mol_assert_equal(false, Email.check(123));
+                $mol_assert_equal('foo@bar', Email.cast('foo@bar'));
+                $mol_assert_equal('', Email.cast('foo'));
+                $mol_assert_equal('', Email.cast(123));
+                $mol_assert_equal('foo@bar', Email.guard('foo@bar'));
+                $mol_assert_fail(() => Email.guard('foo'), 'Wrong string');
+            },
+        });
+    })($$ = $_1.$$ || ($_1.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($_1) {
+    var $$;
+    (function ($$) {
+        $mol_test({
+            "Boolean schema"($) {
+                $mol_assert_equal('$mol_schema_boolean', $mol_schema_boolean + '', $mol_key($mol_schema_boolean));
+                $mol_assert_equal(true, $mol_schema_boolean.check(false));
+                $mol_assert_equal(true, $mol_schema_boolean.check(true));
+                $mol_assert_equal(false, $mol_schema_boolean.check('true'));
+                $mol_assert_equal(false, $mol_schema_boolean.check(0));
+                $mol_assert_equal(false, $mol_schema_boolean.cast(false));
+                $mol_assert_equal(false, $mol_schema_boolean.cast('true'));
+                $mol_assert_equal(false, $mol_schema_boolean.guard(false));
+                $mol_assert_fail(() => $mol_schema_boolean.guard(null), 'Wrong type');
+            },
+        });
+    })($$ = $_1.$$ || ($_1.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($_1) {
+    $mol_test({
+        "Cache of dict schema"($) {
+            $mol_assert_equal($mol_schema_dict([$mol_schema_string, $mol_schema_float]), $mol_schema_dict([$mol_schema_string, $mol_schema_float]));
+            $mol_assert_unique($mol_schema_dict([$mol_schema_string, $mol_schema_float]), $mol_schema_dict([$mol_schema_string, $mol_schema_string]));
+        },
+        "Dictionary schema"($) {
+            const Flags = $mol_schema_dict([$mol_schema_pattern(/^[a-z]+$/), $mol_schema_boolean]);
+            $mol_assert_equal(true, Flags.check({}));
+            $mol_assert_equal(true, Flags.check({ foo: false }));
+            $mol_assert_equal(false, Flags.check({ f00: false }));
+            $mol_assert_equal(false, Flags.check([]));
+            $mol_assert_equal(false, Flags.check({ foo: 0 }));
+            $mol_assert_equal({ foo: false }, Flags.cast({ foo: false, f00: true }));
+            $mol_assert_equal({ foo: false }, Flags.cast({ foo: 123 }));
+            $mol_assert_equal({}, Flags.guard({}));
+            $mol_assert_equal({ foo: false }, Flags.guard({ foo: false }));
+            $mol_assert_fail(() => Flags.guard({ foo: 123 }), 'Wrong val');
+            $mol_assert_fail(() => Flags.guard({ f00: 123 }), 'Wrong key');
+        },
+    });
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($_1) {
+    var $$;
+    (function ($$) {
+        $mol_test({
+            "Cache of record schema"($) {
+                $mol_assert_equal($mol_schema_record({ foo: $mol_schema_float }), $mol_schema_record({ foo: $mol_schema_float }));
+                $mol_assert_unique($mol_schema_record({ foo: $mol_schema_float }), $mol_schema_record({ foo: $mol_schema_string }));
+            },
+            "Record schema"($) {
+                const User = $mol_schema_record({
+                    name: $mol_schema_string,
+                    age: $mol_schema_integer,
+                });
+                $mol_assert_equal('$mol_schema_record<{"name":$mol_schema_string,"age":$mol_schema_integer}>', User + '');
+                $mol_assert_equal(true, User.check({ name: 'foo', age: 123 }));
+                $mol_assert_equal(true, User.check({ name: 'foo', age: 123, height: 777 }));
+                $mol_assert_equal(false, User.check({}));
+                $mol_assert_equal(false, User.check({ name: 'foo', age: 1.5 }));
+                $mol_assert_equal({ name: 'foo', age: 123 }, User.cast({ name: 'foo', age: 123, height: 777 }));
+                $mol_assert_equal({ name: 'foo', age: 0 }, User.cast({ name: 'foo' }));
+                $mol_assert_equal({ name: 'foo', age: 123 }, User.guard({ name: 'foo', age: 123 }));
+                $mol_assert_equal({ name: 'foo', age: 123, salary: 777 }, User.guard({ name: 'foo', age: 123, salary: 777 }));
+                $mol_assert_fail(() => User.guard({}), 'Wrong field');
+                $mol_assert_fail(() => User.guard({ name: 'foo', age: 'bar' }), 'Wrong field');
+            },
+            "Record schema composition"($) {
+                const User = $mol_schema_record({
+                    name: $mol_schema_string,
+                    age: $mol_schema_integer,
+                });
+                const Admin = $mol_schema_record({
+                    ...User.Fields,
+                    space: $mol_schema_string,
+                });
+                $mol_assert_equal(false, Admin.check({ name: 'foo', age: 123 }));
+                $mol_assert_equal(true, Admin.check({ name: 'foo', age: 123, space: 'bar' }));
+                $mol_assert_equal({ name: 'foo', age: 123, space: '' }, Admin.cast({ name: 'foo', age: 123 }));
+                $mol_assert_equal({ name: 'foo', age: 123, space: 'bar' }, Admin.guard({ name: 'foo', age: 123, space: 'bar' }));
+                $mol_assert_fail(() => Admin.guard({ name: 'foo', age: 123 }), 'Wrong field');
+            },
+        });
+    })($$ = $_1.$$ || ($_1.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($_1) {
+    var $$;
+    (function ($$) {
+        $mol_test({
+            "Partial Record schema"($) {
+                const User = $mol_schema_partial({
+                    name: $mol_schema_string,
+                    age: $mol_schema_integer,
+                });
+                $mol_assert_equal(true, User.check({ name: 'foo', age: 123 }));
+                $mol_assert_equal(true, User.check({ name: null }));
+                $mol_assert_equal({ name: 'foo', age: null }, User.cast({ name: 'foo', age: false }));
+                $mol_assert_equal({ name: 'foo', age: undefined }, User.guard({ name: 'foo', age: undefined }));
+                $mol_assert_fail(() => User.guard({ name: 'foo', age: 'bar' }), 'Wrong field');
+            },
+        });
+    })($$ = $_1.$$ || ($_1.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($_1) {
+    var $$;
+    (function ($$) {
+        $mol_test({
+            "BigInt schema"($) {
+                $mol_assert_equal('$mol_schema_bigint', $mol_schema_bigint + '', $mol_key($mol_schema_bigint));
+                $mol_assert_equal(true, $mol_schema_bigint.check(0n));
+                $mol_assert_equal(false, $mol_schema_bigint.check(0));
+                $mol_assert_equal(1n, $mol_schema_bigint.cast(1n));
+                $mol_assert_equal(1n, $mol_schema_bigint.cast(1));
+                $mol_assert_equal(0n, $mol_schema_bigint.guard(0n));
+                $mol_assert_fail(() => $mol_schema_bigint.guard(1), 'Wrong type');
+            },
+        });
+    })($$ = $_1.$$ || ($_1.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($_1) {
+    var $$;
+    (function ($$) {
+        $mol_test({
+            "Cache of instance schema"($) {
+                $mol_assert_equal($mol_schema_instance(Uint8Array), $mol_schema_instance(Uint8Array));
+                $mol_assert_unique($mol_schema_instance(Uint8Array), $mol_schema_instance(Int8Array));
+            },
+            "Class instance schema"($) {
+                const Blob = $mol_schema_instance(Uint8Array);
+                $mol_assert_equal('$mol_schema_instance<Uint8Array>', Blob + '', $mol_key(Blob));
+                $mol_assert_equal(true, Blob.check(new Uint8Array));
+                $mol_assert_equal(false, Blob.check(new Int8Array));
+                $mol_assert_equal(false, Blob.check(null));
+                $mol_assert_equal(new Uint8Array([0, 1]), Blob.cast(new Uint8Array([0, 1])));
+                $mol_assert_fail(() => Blob.cast(new Int8Array), 'Wrong class');
+                $mol_assert_equal(new Uint8Array, Blob.guard(new Uint8Array));
+                $mol_assert_fail(() => Blob.guard(new Int8Array), 'Wrong class');
+            },
+            "Boxed instance schema"($) {
+                const Str = $mol_schema_instance(String);
+                $mol_assert_equal('$mol_schema_instance<String>', Str + '', $mol_key(Str));
+                $mol_assert_equal(true, Str.check(Object('')));
+                $mol_assert_equal(true, Str.check(''));
+                $mol_assert_equal(true, Object('') instanceof Str);
+            },
+            "Schema instance schema"($) {
+                const Str = $mol_schema_instance($mol_schema_instance(String));
+                $mol_assert_equal('$mol_schema_instance<String>', Str + '', $mol_key(Str));
+                $mol_assert_equal(true, Str.check(Object('')));
+                $mol_assert_equal(true, Str.check(''));
+                $mol_assert_equal(true, Object('') instanceof Str);
+            },
+        });
+    })($$ = $_1.$$ || ($_1.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($_1) {
+    var $$;
+    (function ($$) {
+        $mol_test({
+            "Integers as recursive Sets"($) {
+                class Schema extends $mol_schema_lazy(() => $mol_schema_list(Schema)) {
+                }
+                $mol_assert_equal(Schema.default, []);
+                $mol_assert_equal(Schema.check([]), true);
+                $mol_assert_equal(Schema.check(''), false);
+                $mol_assert_equal(Schema.guard([]), []);
+                $mol_assert_fail(() => Schema.guard(''), 'Non array');
+                $mol_assert_equal(Schema.cast([]), []);
+                $mol_assert_equal(Schema.cast(''), []);
+            },
+        });
+    })($$ = $_1.$$ || ($_1.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($_1) {
+    var $$;
+    (function ($$) {
+        $mol_test({
+            "JSON schema"($) {
+                $mol_assert_equal('$mol_schema_json', $mol_schema_json + '', $mol_key($mol_schema_json));
+                $mol_assert_equal(true, $mol_schema_json.check(null));
+                $mol_assert_equal(true, $mol_schema_json.check(0));
+                $mol_assert_equal(true, $mol_schema_json.check(false));
+                $mol_assert_equal(true, $mol_schema_json.check(''));
+                $mol_assert_equal(true, $mol_schema_json.check([]));
+                $mol_assert_equal(true, $mol_schema_json.check({}));
+                $mol_assert_equal(false, $mol_schema_json.check(undefined));
+                $mol_assert_equal(false, $mol_schema_json.check(new Date));
+                $mol_assert_equal(false, $mol_schema_json.check({ __proto__: {} }));
+                $mol_assert_equal({}, $mol_schema_json.cast(new Date));
+                $mol_assert_equal({ foo: 777, bar: {} }, $mol_schema_json.cast({ foo: 777, bar: new Date }));
+                $mol_assert_equal({ foo: [null, 0, false, ''] }, $mol_schema_json.guard({ foo: [null, 0, false, ''] }));
+                $mol_assert_fail(() => $mol_schema_json.guard({ foo: [new Date] }), 'Wrong variant');
+            },
+        });
+    })($$ = $_1.$$ || ($_1.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($_1) {
+    var $$;
+    (function ($$) {
+        $mol_test({
+            "Named composed scheme"($) {
+                $mol_assert_equal('Some', class Some extends $mol_schema_enum([123, 321]) {
+                } + '', class Some extends $mol_schema_some([$mol_schema_float]) {
+                } + '', class Some extends $mol_schema_maybe($mol_schema_float) {
+                } + '', class Some extends $mol_schema_every([$mol_schema_float]) {
+                } + '', class Some extends $mol_schema_list($mol_schema_float) {
+                } + '', class Some extends $mol_schema_dict([$mol_schema_string, $mol_schema_string]) {
+                } + '', class Some extends $mol_schema_record({ name: $mol_schema_string }) {
+                } + '', class Some extends $mol_schema_partial({ name: $mol_schema_string }) {
+                } + '');
+            },
+        });
+    })($$ = $_1.$$ || ($_1.$$ = {}));
+})($ || ($ = {}));
 
 ;
 "use strict";

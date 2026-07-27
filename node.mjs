@@ -9487,6 +9487,576 @@ var $;
 
 
 ;
+"use strict";
+var $;
+(function ($) {
+    class $mol_schema_any extends Object {
+        static [Symbol.toStringTag];
+        static [$mol_key_handle]() {
+            return this.toString();
+        }
+        /** Short user-readable identity. */
+        static toString() {
+            return $$.$mol_func_name(this);
+        }
+        /** Type-predicate that checks value by schema. */
+        static check(value) {
+            try {
+                this.guard(value);
+                return true;
+            }
+            catch (error) {
+                return false;
+            }
+        }
+        /** `instanceof` support */
+        static [Symbol.hasInstance](value) {
+            return this.check(value);
+        }
+        /** Type-parser that fails of wrong values. */
+        static guard(value) {
+            return value;
+        }
+        /** Type-caster that normalizes wrong values. */
+        static cast(value) {
+            try {
+                this.guard(value);
+                return value;
+            }
+            catch (error) {
+                return this.default;
+            }
+        }
+        /** Default value which conforms schema. */
+        static default = null;
+    }
+    $.$mol_schema_any = $mol_schema_any;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_schema_float extends $mol_schema_any {
+        static guard(value) {
+            if (typeof value === 'number')
+                return value;
+            return $mol_fail(new TypeError('Wrong type', { cause: { value, schema: this } }));
+        }
+        static default = Number.NaN;
+    }
+    $.$mol_schema_float = $mol_schema_float;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_schema_integer extends $mol_schema_float {
+        $mol_schema_integer = true;
+        static guard(value) {
+            const val = super.guard(value);
+            if (!Number.isFinite(val))
+                return $mol_fail(new TypeError('Non finite', { cause: { value, schema: this } }));
+            if (Math.trunc(val) !== val)
+                return $mol_fail(new TypeError('Non integer', { cause: { value, schema: this } }));
+            return val;
+        }
+        static default = 0;
+    }
+    $.$mol_schema_integer = $mol_schema_integer;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_schema_bigint extends $mol_schema_any {
+        static guard(value) {
+            if (typeof value === 'bigint')
+                return value;
+            return $mol_fail(new TypeError('Wrong type', { cause: { value, schema: this } }));
+        }
+        static cast(value) {
+            if (typeof value === 'number')
+                return BigInt($mol_schema_integer.cast(value));
+            return super.cast(value);
+        }
+        static default = 0n;
+    }
+    $.$mol_schema_bigint = $mol_schema_bigint;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_schema_boolean extends $mol_schema_any {
+        static guard(value) {
+            if (typeof value === 'boolean')
+                return value;
+            return $mol_fail(new TypeError('Wrong type', { cause: { value, schema: this } }));
+        }
+        static default = false;
+    }
+    $.$mol_schema_boolean = $mol_schema_boolean;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_schema_string extends $mol_schema_any {
+        static guard(value) {
+            if (typeof value === 'string')
+                return value;
+            return $mol_fail(new TypeError('Wrong type', { cause: { value, schema: this } }));
+        }
+        static cast(value) {
+            return super.cast(value);
+        }
+        static default = '';
+    }
+    $.$mol_schema_string = $mol_schema_string;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_memo_key extends $mol_wrapper {
+        static wrap(task) {
+            const store = new WeakMap();
+            const fun = function (key, next) {
+                let store2 = store.get(this ?? fun);
+                if (!store2)
+                    store.set(this ?? fun, store2 = new Map);
+                const key_str = $mol_key(key);
+                if (next === undefined && store2.has(key_str))
+                    return store2.get(key_str);
+                const val = task.call(this, key, next) ?? next;
+                store2.set(key_str, val);
+                return val;
+            };
+            Reflect.defineProperty(fun, 'name', { value: task.name + ' ' });
+            return fun;
+        }
+    }
+    $.$mol_memo_key = $mol_memo_key;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_schema_pattern = $mol_memo_key.func(function $mol_schema_pattern(Pattern) {
+        return class $mol_schema_pattern_ extends $mol_schema_string {
+            static Pattern = Pattern;
+            static toString() {
+                if (this !== $mol_schema_pattern_)
+                    return super.toString();
+                return '$mol_schema_pattern<' + $mol_key(Pattern) + '>';
+            }
+            static guard(value) {
+                if (Pattern.test(super.guard(value)))
+                    return value;
+                return $mol_fail(new TypeError('Wrong string', { cause: { value, schema: this } }));
+            }
+            static cast(value) {
+                return super.cast(value);
+            }
+            static default = '';
+        };
+    });
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_schema_instance = $mol_memo_key.func(function $mol_schema_instance(Class) {
+        class $mol_schema_instance_ extends $mol_schema_any {
+            static Class = Class;
+            static toString() {
+                if (this !== $mol_schema_instance_)
+                    return super.toString();
+                return '$mol_schema_instance<' + $$.$mol_func_name(Class) + '>';
+            }
+            static guard(value) {
+                if (value != null && Object(value) instanceof Class)
+                    return value;
+                return $mol_fail(new TypeError('Wrong class', { cause: { value, schema: this } }));
+            }
+            static cast(value) {
+                return this.guard(value);
+            }
+            static default;
+        }
+        return ((Class?.[Symbol.hasInstance] === $mol_schema_any[Symbol.hasInstance])
+            ? Class
+            : $mol_schema_instance_);
+    });
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_schema_lazy(Schema) {
+        // return $mol_delegate( $mol_schema_any, Schema )
+        return class $mol_schema_lazy_ extends $mol_schema_any {
+            static Schema = $mol_memo.func(Schema);
+            static guard(value) {
+                return this.Schema().guard(value);
+            }
+            static cast(value) {
+                return this.Schema().cast(value);
+            }
+            static get default() {
+                return this.Schema().default;
+            }
+        };
+    }
+    $.$mol_schema_lazy = $mol_schema_lazy;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_schema_some = $mol_memo_key.func(function $mol_schema_some(Variants) {
+        return class $mol_schema_some_ extends $mol_schema_any {
+            static Variants = Variants;
+            static toString() {
+                if (this !== $mol_schema_some_)
+                    return super.toString();
+                return '$mol_schema_some<' + $mol_key(Variants) + '>';
+            }
+            static guard(value) {
+                const errors = [];
+                for (const Variant of Variants) {
+                    try {
+                        return Variant.guard(value);
+                    }
+                    catch (error) {
+                        errors.push(error);
+                    }
+                }
+                return $mol_fail(new AggregateError(errors, 'Wrong variant', { cause: { value, schema: this } }));
+            }
+            static cast(value) {
+                try {
+                    return this.guard(value);
+                }
+                catch (error) {
+                    return Variants[0].cast(value);
+                }
+            }
+            static default = Variants[0].default;
+        };
+    });
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_schema_dict = $mol_memo_key.func(function $mol_schema_dict(Pair) {
+        return class $mol_schema_dict_ extends $mol_schema_any {
+            static Pair = Pair;
+            static toString() {
+                if (this !== $mol_schema_dict_)
+                    return super.toString();
+                return '$mol_schema_dict<' + $mol_key(Pair) + '>';
+            }
+            static guard(value) {
+                if (Object.getPrototypeOf(Object.getPrototypeOf(value))) {
+                    return $mol_fail(new TypeError('Non dictionary', { cause: { value, schema: this } }));
+                }
+                for (const key in value) {
+                    try {
+                        Pair[0].guard(key);
+                    }
+                    catch (error) {
+                        return $mol_fail(new TypeError('Wrong key', { cause: { key, error, value, schema: this } }));
+                    }
+                    try {
+                        Pair[1].guard(value[key]);
+                    }
+                    catch (error) {
+                        return $mol_fail(new TypeError('Wrong val', { cause: { key, error, value, schema: this } }));
+                    }
+                }
+                return value;
+            }
+            static cast(value) {
+                if (Object.getPrototypeOf(Object.getPrototypeOf(value)))
+                    return this.default;
+                const res = {};
+                for (const key in value) {
+                    if (!Pair[0].check(key))
+                        continue;
+                    res[key] = Pair[1].cast(value[key]);
+                }
+                return res;
+            }
+            static default = {};
+        };
+    });
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_schema_enum = $mol_memo_key.func(function $mol_schema_enum(Options) {
+        return class $mol_schema_enum_ extends $mol_schema_any {
+            static Options = Options;
+            static toString() {
+                if (this !== $mol_schema_enum_)
+                    return super.toString();
+                return '$mol_schema_enum<' + $mol_key(Options) + '>';
+            }
+            static guard(value) {
+                if (Options.some(Option => Object.is(Option, value)))
+                    return value;
+                return $mol_fail(new TypeError('Wrong option', { cause: { value, schema: this } }));
+            }
+            static cast(value) {
+                if (this.check(value))
+                    return value;
+                return Options[0];
+            }
+            static default = Options[0];
+        };
+    });
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_schema_list = $mol_memo_key.func(function $mol_schema_list(Item) {
+        return class $mol_schema_list_ extends $mol_schema_any {
+            static Item = Item;
+            static toString() {
+                if (this !== $mol_schema_list_)
+                    return super.toString();
+                return '$mol_schema_list<' + $mol_key(Item) + '>';
+            }
+            static guard(value) {
+                if (!Array.isArray(value))
+                    return $mol_fail(new TypeError('Non array', { cause: { value, schema: this } }));
+                for (const [index, item] of super.guard(value).entries()) {
+                    try {
+                        Item.guard(item);
+                    }
+                    catch (error) {
+                        return $mol_fail(new TypeError('Wrong item', { cause: { index, error, value, schema: this } }));
+                    }
+                }
+                return value;
+            }
+            static cast(value) {
+                if (!Array.isArray(value))
+                    return this.default;
+                return value.map(item => Item.cast(item));
+            }
+            static default = [];
+        };
+    });
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_schema_json extends $mol_schema_lazy(() => $mol_schema_some([
+        $mol_schema_dict([$mol_schema_string, $mol_schema_json]),
+        $mol_schema_enum([null]),
+        $mol_schema_boolean, $mol_schema_float, $mol_schema_string,
+        $mol_schema_list($mol_schema_json),
+    ])) {
+    }
+    $.$mol_schema_json = $mol_schema_json;
+})($ || ($ = {}));
+
+;
+"use strict";
+
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_schema_every = $mol_memo_key.func(function $mol_schema_every(Schemas) {
+        return class $mol_schema_every_ extends $mol_schema_any {
+            static Schemas = Schemas;
+            static toString() {
+                if (this !== $mol_schema_every_)
+                    return super.toString();
+                return '$mol_schema_every<' + $mol_key(Schemas) + '>';
+            }
+            static guard(value) {
+                for (const Schema of Schemas) {
+                    Schema.guard(value);
+                }
+                return value;
+            }
+            static cast(value) {
+                for (const Scheme of Schemas)
+                    value = Scheme.cast(value);
+                return value;
+            }
+            static default = Schemas.find(Scheme => this.check(Scheme.default));
+        };
+    });
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_schema_range = $mol_memo_key.func(function $mol_schema_range(Range) {
+        return class $mol_schema_range_ extends $mol_schema_any {
+            static Range = Range;
+            static toString() {
+                if (this !== $mol_schema_range_)
+                    return super.toString();
+                return '$mol_schema_range<' + $mol_key(Range) + '>';
+            }
+            static guard(value) {
+                if (typeof value !== 'number' && typeof value !== 'bigint')
+                    return $mol_fail(new TypeError('Uncomparable type', { cause: { value, schema: this } }));
+                if (!(value <= Range[1]))
+                    return $mol_fail(new TypeError('Too large', { cause: { value, schema: this } }));
+                if (!(value >= Range[0]))
+                    return $mol_fail(new TypeError('Too small', { cause: { value, schema: this } }));
+                return value;
+            }
+            static cast(value) {
+                if (value > Range[1])
+                    return Range[1];
+                if (value >= Range[0])
+                    return value;
+                return Range[0];
+            }
+            static default = Range[0];
+        };
+    });
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_schema_positive extends $mol_schema_range([0, Number.POSITIVE_INFINITY]) {
+    }
+    $.$mol_schema_positive = $mol_schema_positive;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_schema_natural extends $mol_schema_every([
+        $mol_schema_integer,
+        $mol_schema_positive,
+    ]) {
+    }
+    $.$mol_schema_natural = $mol_schema_natural;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_schema_negative extends $mol_schema_range([Number.NEGATIVE_INFINITY, 0]) {
+    }
+    $.$mol_schema_negative = $mol_schema_negative;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_schema_maybe = $mol_memo_key.func(function $mol_schema_maybe(Some) {
+        return class $mol_schema_maybe_ extends $mol_schema_any {
+            static Some = Some;
+            static toString() {
+                if (this !== $mol_schema_maybe_)
+                    return super.toString();
+                return '$mol_schema_maybe<' + $mol_key(Some) + '>';
+            }
+            static guard(value) {
+                if (value == null)
+                    return value;
+                return Some.guard(value);
+            }
+            static default = null;
+        };
+    });
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_schema_record = $mol_memo_key.func(function $mol_schema_record(Fields) {
+        return class $mol_schema_record_ extends $mol_schema_any {
+            static Fields = Fields;
+            static toString() {
+                if (this !== $mol_schema_record_)
+                    return super.toString();
+                return '$mol_schema_record<' + $mol_key(Fields) + '>';
+            }
+            static guard(value) {
+                if (Object.getPrototypeOf(Object.getPrototypeOf(value))) {
+                    return $mol_fail(new TypeError('Non record', { cause: { value, schema: this } }));
+                }
+                for (const field in Fields) {
+                    try {
+                        Fields[field].guard(value[field]);
+                    }
+                    catch (error) {
+                        return $mol_fail(new TypeError('Wrong field', { cause: { field, error, value, schema: this } }));
+                    }
+                }
+                return value;
+            }
+            static cast(value) {
+                if (Object.getPrototypeOf(Object.getPrototypeOf(value)))
+                    return this.default;
+                const res = {};
+                for (const field in Fields)
+                    res[field] = Fields[field].cast(value[field]);
+                return res;
+            }
+            static default = Object.fromEntries(Object.entries(Fields).map(([field, Field]) => [field, Field.default]));
+        };
+    });
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_schema_partial(Fields) {
+        const partial = {};
+        for (const field in Fields)
+            partial[field] = $mol_schema_maybe(Fields[field]);
+        return class $mol_schema_partial_ extends $mol_schema_record(partial) {
+            static Fields = Fields;
+            static toString() {
+                if (this !== $mol_schema_partial_)
+                    return super.toString();
+                return '$mol_schema_partial<' + $mol_key(Fields) + '>';
+            }
+        };
+    }
+    $.$mol_schema_partial = $mol_schema_partial;
+})($ || ($ = {}));
+
+;
 	($.$mol_button_major) = class $mol_button_major extends ($.$mol_button_minor) {
 		theme(){
 			return "$mol_theme_base";
@@ -9917,9 +10487,6 @@ var $;
 	($mol_mem_key(($.$mol_dimmer.prototype), "Low"));
 	($mol_mem_key(($.$mol_dimmer.prototype), "High"));
 
-
-;
-"use strict";
 
 ;
 "use strict";
@@ -13850,6 +14417,7 @@ var $;
                 'introduction': {
                     slug: 'introduction',
                     title: "Introduction",
+                    summary: "What $mol is, who it is for, and a taste of reactive views.",
                     file: 'content/en/docs/introduction.md',
                     md: "# Introduction\n\n## What is \u0024mol?\n\n\u0024mol is a reactive UI framework where you describe **what** the interface is, and the framework figures out **how** and **when** to update it. No virtual DOM, no manual subscriptions, no `useEffect`. You write components as a tree; \u0024mol renders only what is visible and recomputes only what actually changed.\n\nA component has three files:\n\n- `name.view.tree` — the declarative layout (a compact tree language)\n- `name.view.ts` — the behaviour (plain TypeScript classes)\n- `name.view.css.ts` — typed styles (checked by the compiler)\n\nThat separation is the whole idea: layout stays readable, logic stays testable, styles stay type-safe.\n\n## Who is it for?\n\n- You want a **small** app that stays small as it grows — the runtime is compact and rendering is virtualized by default.\n- You like **types everywhere** — even styles are checked by TypeScript.\n- You are tired of wiring reactivity by hand — state in \u0024mol is automatically reactive, like a spreadsheet.\n\n## A taste\n\nA counter, in full:\n\n```tree\n\u0024my_counter \u0024mol_view\n\tsub /\n\t\t<= Count \u0024mol_view\n\t\t\tsub / <= count \\\n\t\t<= Increment \u0024mol_button\n\t\t\tclick? <=> increment?\n\t\t\tsub / <= label \\+\n```\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_counter extends \u0024.\u0024my_counter {\n\t\t@ \u0024mol_mem count() { return 0 }\n\t\t@ \u0024mol_action increment() { this.count( this.count() + 1 ) }\n\t}\n}\n```\n\n`count` is reactive: anything that reads it re-renders automatically when it changes. There is no `setState`, no dependency array, no store to register.\n\n## Where to next?\n\nReady to run something on your own machine? Head to [Getting Started](#!section=docs/page=getting-started) and build a working app in under fifteen minutes.\n",
                     tr: {
@@ -13914,6 +14482,7 @@ var $;
                 'getting-started': {
                     slug: 'getting-started',
                     title: "Getting Started",
+                    summary: "From an empty folder to a running, reactive $mol app in under 15 minutes.",
                     file: 'content/en/docs/getting-started.md',
                     md: "# Getting Started\n\nThis page takes you from an empty folder to a running, reactive \u0024mol app. It should take about fifteen minutes. Every snippet below is real, working code — copy it as-is.\n\n## What you need\n\n- **Node.js 18+** and **git**. That is the whole list.\n\nYou do not install a global CLI or generate boilerplate you have to understand later. \u0024mol apps live inside the MAM workspace, which already knows how to build and serve them.\n\n## 1. Get the workspace\n\nMAM is the build tool and module registry for \u0024mol. Clone it and install once:\n\n```bash\ngit clone https://github.com/hyoo-ru/mam.git ./mam\ncd mam\nnpm install\nnpm start\n```\n\n`npm start` launches the dev server on `http://localhost:9080/`. It watches your files and rebuilds automatically — leave it running in its own terminal.\n\n## 2. Create a module\n\nA \u0024mol app is just a folder. Pick a namespace (yours, e.g. `my`) and a name (`hello`):\n\n```bash\nmkdir -p my/hello\n```\n\n> **One rule to remember:** underscores in a component name are folder separators. `\u0024my_hello` lives in `my/hello/`, `\u0024my_hello_form` would live in `my/hello/form/`. Module folder names never contain an underscore.\n\nNow add three files inside `my/hello/`.\n\n### index.html — the entry point\n\n```html\n<!doctype html>\n<html mol_view_root>\n\t<head>\n\t\t<meta charset=\"utf-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n\t</head>\n\t<body mol_view_root>\n\t\t<div mol_view_root=\"\u0024my_hello\"></div>\n\t\t<script src=\"web.js\"></script>\n\t</body>\n</html>\n```\n\nThe `mol_view_root=\"\u0024my_hello\"` attribute mounts your component when the page loads.\n\n### hello.view.tree — the layout\n\n```tree\n\u0024my_hello \u0024mol_page\n\ttitle @ \\Greeting\n\tbody /\n\t\t<= Name \u0024mol_string\n\t\t\thint @ \\Enter your name\n\t\t\tvalue? <=> name? \\\n\t\t<= Message \u0024mol_view\n\t\t\tsub / <= greeting \\\n```\n\nA few things worth naming:\n\n- `\u0024mol_page` and `\u0024mol_string` are built-in components — a page shell and a text input.\n- `<=` binds a property one way; `<=>` binds two ways. So `value? <=> name?` keeps the input and your `name` state in sync.\n- `@` marks a localizable string; `\\` starts a raw string.\n\n### hello.view.ts — the behaviour\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_hello extends \u0024.\u0024my_hello {\n\t\t@ \u0024mol_mem\n\t\tgreeting() {\n\t\t\tconst name = this.name()\n\t\t\treturn name ? `Hello, \u0024{name}!` : 'Please enter your name'\n\t\t}\n\t}\n}\n```\n\n`@ \u0024mol_mem` makes `greeting` a reactive, cached property. It reads `name()`, so the moment `name` changes, `greeting` recomputes and the message on screen updates. You never wrote a subscription, an effect, or a re-render call.\n\n## 3. Run it\n\nThe dev server from step 1 is already watching. Just open:\n\n```\nhttp://localhost:9080/my/hello/\n```\n\nType your name — the greeting updates as you type. That is \u0024mol reactivity: state flows to the view on its own.\n\n## 4. Add a second reactive value\n\nReactivity composes. Add a length counter that depends on the same `name`, with no extra wiring.\n\nIn `hello.view.tree`, add a line under `Message`:\n\n```tree\n\t\t<= Counter \u0024mol_view\n\t\t\tsub / <= counter \\\n```\n\nIn `hello.view.ts`, add the method:\n\n```typescript\n\t\t@ \u0024mol_mem\n\t\tcounter() {\n\t\t\treturn `\u0024{this.name().length} characters`\n\t\t}\n}\n```\n\nBoth `greeting` and `counter` read `name`; both update together. Add a third, add a tenth — the pattern does not change. This is why \u0024mol code stays flat as features pile up.\n\n## 5. Check your build\n\nMAM writes a diagnostics file next to every app. After a build, open:\n\n```\nhttp://localhost:9080/my/hello/-/web.audit.js\n```\n\nA clean audit means no unused deps, no type problems, nothing to fix. Make a habit of glancing at it — it catches mistakes before they reach a browser.\n\n## You built a \u0024mol app\n\nYou have a reactive component, two-way binding, and derived state — with three small files and zero configuration.\n\nKeep going: the **[Guide](#!section=docs/page=installation)** covers installation, views, state, routing, and data in depth — and turns this Hello World into something real.\n",
                     tr: {
@@ -13978,6 +14547,7 @@ var $;
                 'tooling': {
                     slug: 'tooling',
                     title: "Tooling",
+                    summary: "Project scaffolder, view.tree language server, and editor support for Zed and VS Code.",
                     file: 'content/en/docs/tooling.md',
                     md: "# Tooling\n\n\u0024mol works in any editor, but a small set of tools makes `.view.tree` and typed styles far more comfortable: a project scaffolder, a language server, and editor integrations for Zed and VS Code.\n\n## Scaffold a project\n\n`create-view-tree-lsp` generates a ready-to-run \u0024mol module so you do not assemble the boilerplate by hand:\n\n```bash\nnpx create-view-tree-lsp bog/myapp\n```\n\nThe argument is the module path (`namespace/name`, or the equivalent `bog_myapp`). It writes the `view.tree`, `view.ts`, `view.css.ts`, and `index.html` for a working app, plus the GitHub Actions to deploy it. By default it also includes a **Giper Baza** local-first store, a **Docker** setup, and a **Tauri** desktop shell. Turn any of them off with a flag:\n\n```bash\nnpx create-view-tree-lsp bog/myapp --no-baza --no-docker --no-tauri\n```\n\nA few pieces are opt-in instead:\n\n- `--backend` adds a `\u0024mol_server` REST backend with `node:sqlite` storage and a shared TypeScript item type\n- `--prerender` and `--seo` add search-engine visibility, described under [Continuous integration](#!section=docs/page=tooling/Docs.Body=Continuous%20integration) below\n\nThe scaffolder is a thin wrapper over the CLI in the language server, so `npx view-tree-lsp create bog/myapp` does the same thing directly.\n\n## Continuous integration\n\nThe scaffolder writes GitHub Actions to `.github/workflows/`, so a new project deploys and releases without extra setup.\n\n`deploy.yml` runs on every push. It builds the app with `hyoo-ru/mam_build`, publishes `app/-` to **GitHub Pages** from `main`, and gives each `feature/*` branch its own preview folder — removed automatically when the branch is deleted.\n\n### SEO\n\nTwo independent options, both triggered on `v*` tags:\n\n- **`--prerender`** renders the screens you list (such as `home`) to static HTML with `b-on-g/mol-prerender-action`, so crawlers and link previews see real content.\n- **`--seo`** adds the `\u0024bog_seo` runtime: a pathname router with a sitemap, `robots.txt`, `llms.txt`, and per-page meta injection. The job serves the build, dumps canonical prerendered HTML, and folds it back into the deploy.\n\nReach for the prerender action when a handful of public screens need to be crawlable, and for `\u0024bog_seo` when you need sitemaps and per-page metadata.\n\n### Tauri desktop\n\nWith the Tauri option, `tauri.yml` builds desktop binaries on `v*` tags (or on demand) through the reusable `b-on-g/tauri-mol-workflow-template` workflow, from the same module you deploy to the web.\n\n## Language server\n\n`view-tree-lsp` is a Language Server Protocol implementation for the `view.tree` format. Run it on demand with npx, no global install required:\n\n```bash\nnpx view-tree-lsp@latest\n```\n\nIt scans your workspace and gives any LSP-capable editor:\n\n- completion for `\u0024mol_*` components and the components and properties defined in your own project\n- property suggestions scoped to the component under the cursor\n- an outline of component declarations for navigation\n- live updates as files change\n\nBecause it speaks LSP, you can point any editor's language-client at `npx view-tree-lsp`. The two integrations below wire it up for you.\n\n## Zed\n\nThe **View Tree Syntax Highlighting for \u0024mol** extension bundles the tree-sitter grammar, the language server, and an optional icon theme. Install it from Zed's extension manager:\n\n1. Open the command palette (`Cmd+Shift+P` / `Ctrl+Shift+P`)\n2. Run **zed: extensions**\n3. Search for `view.tree` or `mol` and install the extension\n\nYou get syntax highlighting, completion, and outline for `.view.tree` files. The [source](https://github.com/Dev-cmyser/zed-view.tree-mol-support) and a matching [icon theme](https://github.com/Dev-cmyser/zed-viewtree-icon-theme) are on GitHub.\n\n## VS Code\n\nThe MAM workspace already carries its VS Code setup. When you open the cloned `mam` folder, VS Code offers to install the recommended extensions from `.vscode/extensions.json`:\n\n- `nin-jin.vscode-language-tree` — `view.tree` language support\n- `stan-donarise.view-tree-language` — syntax and grammar\n- `editorconfig.editorconfig` — consistent formatting\n\nThe same folder ships `mol.code-snippets`, so component and binding snippets are available without any extra setup. Accept the prompt and `.view.tree` and TypeScript files are highlighted out of the box.\n\n## Links\n\n- Scaffolder — [create-view-tree-lsp](https://github.com/Dev-cmyser/create-view-tree-lsp)\n- Language server — [view-tree-lsp](https://github.com/Dev-cmyser/view.tree)\n- Zed extension — [zed-view.tree-mol-support](https://github.com/Dev-cmyser/zed-view.tree-mol-support)\n",
                     tr: {
@@ -14042,6 +14612,7 @@ var $;
                 'installation': {
                     slug: 'installation',
                     title: "Installation",
+                    summary: "The MAM workspace, module layout, dev server, and production build.",
                     file: 'content/en/docs/installation.md',
                     md: "# Installation\n\n[Getting Started](#!section=docs/page=getting-started) walks you through your first app step by step. This page is the reference: how a \u0024mol project is laid out and how the build works.\n\n## Requirements\n\n- **Node.js 18+** and **git**. Nothing else is installed globally.\n\n## The MAM workspace\n\n\u0024mol apps live inside **MAM** — the build tool and module registry. You clone it once and develop your modules inside it:\n\n```bash\ngit clone https://github.com/hyoo-ru/mam.git ./mam\ncd mam\nnpm install\nnpm start\n```\n\n`npm start` runs a watching dev server on `http://localhost:9080/`. It rebuilds on save and resolves dependencies automatically — you never maintain a bundler config.\n\n## How modules are named\n\nEvery component name maps to a folder path, and **each underscore is a folder separator**:\n\n```\n\u0024my_app          →  my/app/\n\u0024my_app_header   →  my/app/header/\n```\n\nModule folder names never contain an underscore — use nested folders for multi-word names. If a component you use never shows up in the bundle, the folder path almost always doesn't match the class name.\n\n## Anatomy of a module\n\nA component is a folder with up to four files:\n\n| File | Purpose |\n|------|---------|\n| `name.view.tree` | Declarative layout |\n| `name.view.ts` | Behaviour (TypeScript) |\n| `name.view.css.ts` | Typed styles |\n| `name.view.tree`, `index.html` | Entry point for an app module |\n\nThe `index.html` of an app mounts the root component:\n\n```html\n<body mol_view_root>\n\t<div mol_view_root=\"\u0024my_app\"></div>\n\t<script src=\"web.js\"></script>\n</body>\n```\n\n## Building for production\n\nThe dev server builds on the fly, but you can build any module explicitly from the workspace root:\n\n```bash\nnpm run start my/app\n```\n\nThe output lands in `my/app/-/` — including `web.js`, `web.css`, and `web.audit.js`. **Always check the audit:** a clean `web.audit.js` means no unused dependencies and no type errors.\n\n## Adding npm packages\n\nReference a package with `require` and MAM installs it on the next build:\n\n```typescript\nconst dayjs = require\u0028 'dayjs' ) as typeof import\u0028 'dayjs' )\n```\n\n## Next\n\nWith the workspace in place, learn how the UI itself is described — continue to [Views](#!section=docs/page=views).\n",
                     tr: {
@@ -14106,6 +14677,7 @@ var $;
                 'views': {
                     slug: 'views',
                     title: "Views",
+                    summary: "Declaring and composing components with the view.tree language.",
                     file: 'content/en/docs/views.md',
                     md: "# Views\n\nA view is a component: a node in the UI tree with its own layout, behaviour, and styles. This chapter covers how views are declared, wired to logic, composed, and reused.\n\n## Three files, one component\n\nA component `\u0024my_card` lives in `my/card/` and is described by up to three files, each with a clear job:\n\n- `card.view.tree` — **what** the component is: its structure and default bindings.\n- `card.view.ts` — **how** it behaves: TypeScript methods, reactive state.\n- `card.view.css.ts` — how it looks: typed styles checked by the compiler.\n\nKeeping structure, behaviour, and style apart is deliberate — each file stays small and readable, and the layout is never tangled with logic.\n\n## The view.tree language\n\n`view.tree` describes structure declaratively. Indentation is nesting; there are no closing tags.\n\n```tree\n\u0024my_card \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\\n\t\t<= Body \u0024mol_view\n\t\t\tsub / <= text \\\n```\n\n- `\u0024my_card \u0024mol_view` — your component extends the base `\u0024mol_view`.\n- `sub /` — the list of children.\n- `<= Title \u0024mol_view` — a named sub-view, addressable as `this.Title()` in TypeScript.\n- `<= title \\` — a bindable property with a default raw-string value (`\\` starts a raw string).\n\nEvery capitalized name (`Title`, `Body`) becomes a real property you can reach, override, or style. Every lowercase binding (`title`, `text`) becomes a value you can compute in `.view.ts`.\n\n## Binding properties\n\nTwo operators connect a property to its source:\n\n- `<=` **one-way**: the child reads a value from the owner.\n- `<=>` **two-way**: the value flows both directions — used for inputs.\n\n```tree\n\u0024my_form \u0024mol_view\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> text? \\\n```\n\nHere the input's `value` and the owner's `text` stay in sync automatically: type in the field and `text` updates; set `text` in code and the field reflects it.\n\n## Wiring to behaviour\n\nA binding with no default is implemented in `.view.ts`. The class extends the generated base of the same name:\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_card extends \u0024.\u0024my_card {\n\t\t@ \u0024mol_mem\n\t\ttitle() {\n\t\t\treturn 'Untitled'\n\t\t}\n\t}\n}\n```\n\nAnything the template binds — `title`, `text`, a sub-view's property — can be given logic here. Reactivity ([State](#!section=docs/page=state)) makes those values live.\n\n## Attributes and element type\n\nChange the underlying HTML element with `dom_name`, and set attributes through `attr`:\n\n```tree\n\u0024my_banner \u0024mol_view\n\tdom_name \\section\n\tattr *\n\t\t^\n\t\trole \\note\n```\n\nThe `^` inherits the parent's attributes so you don't drop the ones `\u0024mol_view` already sets.\n\n## Lists and keyed views\n\nA trailing `*` turns a sub-view into a family — one instance per key. Use it for rows:\n\n```tree\n\u0024my_list \u0024mol_list\n\trows /\n\t\t<= Row* \u0024mol_view\n\t\t\tsub / <= row_title* \\\n```\n\nThe framework creates a `Row` for each key you supply and, thanks to [virtualized rendering](#!section=docs/page=rendering), builds only the ones on screen.\n\n> When a keyed view itself contains keyed children, key the outer one with `Name*`, not `Name*0` — the indexed form leaves nested children unrendered.\n\n## Conditional views\n\nAssigning `null` removes a view from rendering. Subclass and null out what a variant doesn't need:\n\n```tree\n\u0024my_page_readonly \u0024my_page\n\tEdit_button null\n```\n\n## Composition and reuse\n\nViews compose by nesting, and specialize by extension. A card used inside a list:\n\n```tree\n\u0024my_user_card \u0024mol_view\n\tsub /\n\t\t<= Name \u0024mol_view\n\t\t\tsub / <= name \\\n\t\t<= Email \u0024mol_view\n\t\t\tsub / <= email \\\n\n\u0024my_users_list \u0024mol_list\n\trows /\n\t\t<= User* \u0024my_user_card\n\t\t\tname <= user_name* \\\n\t\t\temail <= user_email* \\\n```\n\n`\u0024my_users_list` never redefines what a card looks like — it reuses `\u0024my_user_card` and feeds each instance its data. This is the whole composition model: small views, wired together, specialized by `extends` when a variant is needed.\n\n## Next\n\nViews describe structure; what makes them come alive is reactive data. Continue to [State & Reactivity](#!section=docs/page=state).\n",
                     tr: {
@@ -14170,6 +14742,7 @@ var $;
                 'state': {
                     slug: 'state',
                     title: "State & Reactivity",
+                    summary: "Reactive properties, actions vs. computations, keyed and async state.",
                     file: 'content/en/docs/state.md',
                     md: "# State & Reactivity\n\n\u0024mol state behaves like a spreadsheet: you declare how a value is computed, and everything that depends on it updates by itself. No stores, no dispatch, no effect hooks — the dependency graph tracks what to recompute.\n\n## Reactive properties\n\nA method decorated with `@ \u0024mol_mem` is a cached, reactive cell. It runs once, remembers its result, and recomputes only when something it read has changed.\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_counter extends \u0024.\u0024my_counter {\n\t\t@ \u0024mol_mem count() { return 0 }\n\n\t\t@ \u0024mol_mem doubled() {\n\t\t\treturn this.count() * 2\n\t\t}\n\t}\n}\n```\n\n`doubled` reads `count`, so it subscribes to `count` automatically. Change `count` and every view showing `doubled` refreshes — there is nothing to subscribe to by hand.\n\n## Reading and writing\n\nA property is both getter and setter: call it with no argument to read, with an argument to write.\n\n```typescript\n@ \u0024mol_action\nincrement() {\n\tthis.count( this.count() + 1 )\n}\n```\n\n## Actions vs. computations\n\nThis one distinction keeps reactive code predictable:\n\n- `@ \u0024mol_mem` is a **pure computation** — only read other cells and return a value.\n- `@ \u0024mol_action` is an **effect** — writes to state, network calls, and timers belong here.\n\nWriting to a cell from inside a `@ \u0024mol_mem` creates a feedback loop (the write invalidates a dependency, which recomputes, which writes again). \u0024mol reports this as a *circular subscription*. The fix is always the same: keep side effects in actions, keep computations pure.\n\n| In `@ \u0024mol_mem` you may | but not |\n|---|---|\n| read other cells | write other cells |\n| `new SomeClass()` | `fetch()`, `await` |\n| return a value | `setTimeout`, DOM writes |\n\nButton handlers are generated as `@ \u0024mol_mem` on the base class; override them with `@ \u0024mol_action` so they can write safely:\n\n```typescript\n@ \u0024mol_action\nsubmit() {\n\tthis.saved( true )\n}\n```\n\n## Derived state composes\n\nBecause dependencies are tracked automatically, derived values chain without any wiring. Each reads the one before it; a change at the root ripples out exactly as far as it needs to:\n\n```typescript\n@ \u0024mol_mem full_name() {\n\treturn `\u0024{ this.first() } \u0024{ this.last() }`.trim()\n}\n\n@ \u0024mol_mem greeting() {\n\treturn this.full_name() ? `Hello, \u0024{ this.full_name() }!` : 'Hello!'\n}\n```\n\n## Keyed state\n\n`@ \u0024mol_mem_key` is a computation parameterized by a key — one cached cell per key. Ideal for per-row values:\n\n```typescript\n@ \u0024mol_mem_key\ntask_done( id: string, next?: boolean ) {\n\tconst task = this.task( id )\n\tif ( next !== undefined ) task.Done( null )!.val( next )\n\treturn task.Done()?.val() ?? false\n}\n```\n\n## Async is just a value\n\nReturn a promise from a `@ \u0024mol_mem` and the view shows a loading state until it resolves — no explicit loading flag:\n\n```typescript\n@ \u0024mol_mem\nasync data() {\n\tconst res = await fetch( '/api/data' )\n\treturn await res.json()\n}\n```\n\n[Data Fetching](#!section=docs/page=data) builds on this pattern.\n\n## Transient state between events\n\nState declared in `view.tree` resets between separate event handlers (drag/pan/gesture sequences), because \u0024mol wraps each handler in its own fiber. For values that must survive from one event to the next, use a plain TypeScript field instead of a reactive property:\n\n```typescript\nexport class \u0024my_canvas extends \u0024.\u0024my_canvas {\n\t// plain field — survives across events, not reactive\n\tdrag_id = ''\n\n\t@ \u0024mol_action pan_start() { this.drag_id = 'node_42' }\n\t@ \u0024mol_action pan_move() { if ( this.drag_id ) { /* ... */ } }\n}\n```\n\nUse a reactive cell when the view must react to the value; use a plain field for transient state only the handlers read.\n\n## Next\n\nReactive state is most useful when it's addressable — connect it to the URL in [Routing](#!section=docs/page=routing).\n",
                     tr: {
@@ -14234,6 +14807,7 @@ var $;
                 'routing': {
                     slug: 'routing',
                     title: "Routing",
+                    summary: "The URL as reactive state: screens, links, and multiple parameters.",
                     file: 'content/en/docs/routing.md',
                     md: "# Routing\n\nRouting in \u0024mol is not a separate library — the URL is just another piece of reactive state. Read it, write it, and views react the same way they react to any cell. The back button, deep links, and shareable URLs all come for free.\n\n## The URL as state\n\n`\u0024mol_state_arg` exposes URL parameters as reactive values. Bind one to a property and the address bar becomes your source of truth:\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_app extends \u0024.\u0024my_app {\n\t\t@ \u0024mol_mem\n\t\tpage( next?: string ) {\n\t\t\treturn \u0024mol_state_arg.value( 'page', next ) ?? 'home'\n\t\t}\n\t}\n}\n```\n\nReading `page()` returns the current value; calling `page('about')` navigates. Anything that reads `page()` re-renders on change — including the browser's back button, which updates the cell for you.\n\n## Switching screens\n\nCombine a routed value with a plain `switch` to choose what renders. Because views are [lazy](#!section=docs/page=rendering), the screens you don't show are never built:\n\n```typescript\n@ \u0024mol_mem\nbody_content() {\n\tswitch ( this.page() ) {\n\t\tcase 'about': return [ this.About() ]\n\t\tcase 'docs': return [ this.Docs() ]\n\t\tdefault: return [ this.Home() ]\n\t}\n}\n```\n\n## Links that set arguments\n\nIn `view.tree`, a link can set URL arguments declaratively — clicking it navigates with no handler:\n\n```tree\n<= About_link \u0024mol_link\n\targ *\n\t\tpage \\about\n\tsub / <= about_label \\About\n```\n\n`\u0024mol_link` also marks itself active (`mol_link_current`) when its arguments match the current URL, so highlighting the current page needs no extra state.\n\n## Multiple parameters\n\nArguments are independent, so a screen can route on several at once. This very docs site routes on both `section` and `page`:\n\n```tree\n<= Guide_link \u0024mol_link\n\targ *\n\t\tsection \\docs\n\t\tpage \\views\n```\n\nEach key round-trips through the URL, so any view is shareable and bookmarkable by construction. Setting one argument leaves the others untouched, which makes a deep link (a specific section, page, and anchor) just a matter of setting the keys you care about.\n\n## State that shouldn't be in the URL\n\nNot every piece of state belongs in the address bar. For values that should persist locally but not pollute links — a collapsed sidebar, a draft — use `\u0024mol_state_local`, which stores to `localStorage` with the same getter/setter shape:\n\n```typescript\n@ \u0024mol_mem\nsidebar_open( next?: boolean ) {\n\treturn \u0024mol_state_local.value( 'sidebar_open', next ) ?? false\n}\n```\n\nReach for `\u0024mol_state_arg` when the state should be shareable; `\u0024mol_state_local` when it should merely be remembered.\n\n## Next\n\nYou've covered how \u0024mol turns state into UI and URLs. See how it all reaches the screen efficiently in [Rendering](#!section=docs/page=rendering).\n",
                     tr: {
@@ -14298,6 +14872,7 @@ var $;
                 'rendering': {
                     slug: 'rendering',
                     title: "Rendering",
+                    summary: "No virtual DOM, lazy components, and virtualized rendering — plus reproducible benchmarks.",
                     file: 'content/en/docs/rendering.md',
                     md: "# Rendering\n\nThis chapter is about what happens between your reactive state changing and pixels updating on screen. You rarely have to think about it — but understanding the model explains why \u0024mol code stays fast without special effort.\n\n## No virtual DOM\n\n\u0024mol does not diff a virtual tree. Each view property is bound directly to the DOM node or attribute it controls, through the same reactive cells you already met in [State](#!section=docs/page=state). When a cell changes, only the exact bindings that read it re-run — not a subtree, not a component function, just the affected properties.\n\nThat means there is no reconciliation pass to optimize, no keys to hand-tune for a list diff, and no `memo`/`shouldComponentUpdate` to reach for. The dependency graph already knows the minimal set of updates.\n\n## Components are lazy\n\nA view is only constructed when something asks for it. A screen you never navigate to is never built; a tab you never open costs nothing. Because construction is on-demand and cached, composing large trees of components is cheap — the parts that aren't needed simply don't exist yet.\n\n## Rendering is virtualized\n\n\u0024mol renders only what is inside the viewport. Components scrolled out of view are not kept as hidden DOM — they are not created at all, and are built the moment they scroll into range. This is an architectural property of the framework, not an opt-in feature or a special list component: any layout is virtualized, so a list of ten items and a list of ten thousand cost about the same to display.\n\nThe practical effect is that you write ordinary component trees and long lists without reaching for windowing libraries.\n\n## Reproducible numbers\n\nPerformance claims are only useful if you can reproduce them. Rather than quote figures here, \u0024mol participates in the community **js-framework-benchmark**; you can read its results and re-run the suite yourself:\n\n[js-framework-benchmark results](https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html)\n\nTreat that as the source of truth for comparisons — measured, versioned, and independent of this page.\n\n## Next\n\nThat completes the core model of how \u0024mol runs. Next, put it to work loading real data in [Data Fetching](#!section=docs/page=data).\n",
                     tr: {
@@ -14362,6 +14937,7 @@ var $;
                 'data': {
                     slug: 'data',
                     title: "Data Fetching",
+                    summary: "Loading remote data with reactive async properties and loading states.",
                     file: 'content/en/docs/data.md',
                     md: "# Data Fetching\n\nLoading remote data in \u0024mol is not a special API — an async value is just a reactive property that happens to return a promise. The view waits for it, shows a loading state, and re-renders when it resolves.\n\n## An async property\n\nReturn a promise from a `@ \u0024mol_mem` and read it like any other value:\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_users extends \u0024.\u0024my_users {\n\t\t@ \u0024mol_mem\n\t\tusers() {\n\t\t\treturn \u0024mol_fetch.json( 'https://api.example.com/users' ) as {\n\t\t\t\tid: number\n\t\t\t\tname: string\n\t\t\t}[]\n\t\t}\n\t}\n}\n```\n\n`\u0024mol_fetch` suspends the fiber until the response arrives. While it is pending, any view that reads `users()` automatically shows the built-in loading state — you write no `isLoading` flag.\n\n## Rendering the result\n\nBind the resolved data straight into a list:\n\n```typescript\n\t\t@ \u0024mol_mem\n\t\tuser_names() {\n\t\t\treturn this.users().map( user => user.name )\n\t\t}\n```\n\nWhen the promise resolves, `users()` updates, `user_names()` recomputes, and the list renders. No callbacks, no `useEffect`.\n\n## Reloading\n\nBecause it is just a reactive cell, you refetch by invalidating it. Depend on a token you can bump:\n\n```typescript\n\t\t@ \u0024mol_mem\n\t\treload_token( next?: number ) {\n\t\t\treturn next ?? 0\n\t\t}\n\n\t\t@ \u0024mol_mem\n\t\tusers() {\n\t\t\tthis.reload_token() // subscribe\n\t\t\treturn \u0024mol_fetch.json( 'https://api.example.com/users' ) as unknown[]\n\t\t}\n\n\t\t@ \u0024mol_action\n\t\treload() {\n\t\t\tthis.reload_token( this.reload_token() + 1 )\n\t\t}\n```\n\nCalling `reload()` changes the token, which invalidates `users()`, which refetches.\n\n## Errors\n\nA throw inside a reactive property propagates to the nearest view, which renders an error state instead of the content. To handle it yourself, catch and return a fallback:\n\n```typescript\n\t\t@ \u0024mol_mem\n\t\tusers_safe() {\n\t\t\ttry {\n\t\t\t\treturn this.users()\n\t\t\t} catch( error ) {\n\t\t\t\tif( error instanceof Promise ) throw error // still loading\n\t\t\t\treturn []\n\t\t\t}\n\t\t}\n```\n\nRe-throwing a `Promise` is how you let the loading state keep flowing while catching only real errors.\n\n## Next\n\nFor data that persists and syncs across clients without a backend, continue to [Giper Baza](#!section=docs/page=giper-baza).\n",
                     tr: {
@@ -14426,6 +15002,7 @@ var $;
                 'data-schema': {
                     slug: 'data-schema',
                     title: "Data Schemas",
+                    summary: "Runtime typing and validation of backend data with $mol_data and $mol_schema.",
                     file: 'content/en/docs/data-schema.md',
                     md: "# Data Schemas\n\nData that comes back from a network request is `any` — TypeScript trusts your cast, but the server might send something else. \u0024mol ships two small runtime-schema libraries that turn untrusted JSON into a typed, validated value and fail loudly, with a readable path, when the shape is wrong. Use them right where data enters the app, most often on a [fetch](#!section=docs/page=data) response.\n\n## Two libraries\n\n- **`\u0024mol_data`** — concise, functional parsers (zod-like). You compose small parser functions and call the result on a value.\n- **`\u0024mol_schema`** — class-based schemas with defaults. You extend a record class and get `.guard()`, `.cast()`, `.check()`, and a `.default`.\n\nBoth validate at runtime and infer the static type for you. Reach for `\u0024mol_data` for quick DTOs and (de)serialization; reach for `\u0024mol_schema` when you want named, reusable schema classes with default values and relaxed casting.\n\n## \u0024mol_data\n\nDescribe the shape as a record of field parsers:\n\n```typescript\nconst UserDTO = \u0024mol_data_record({\n\tname: \u0024mol_data_string,\n\tage: \u0024mol_data_optional( \u0024mol_data_integer ),\n\tmail: \u0024mol_data_email,\n})\n```\n\nCall it on the raw value. Valid data passes through, fully typed; bad data throws a `\u0024mol_data_error` naming the exact path that failed:\n\n```typescript\nconst user = UserDTO( json )\n// user: { readonly name: string; readonly age?: number; readonly mail: string }\n\n// If json.mail is \"</script>\", it throws:\n// [\"mail\"] </script> is not a /.+@.+/\n```\n\nReuse the inferred type anywhere with `typeof UserDTO.Value`:\n\n```typescript\nfunction greet( user: typeof UserDTO.Value ) {\n\treturn `Hello, \u0024{ user.name }`\n}\n```\n\nThe building blocks include `\u0024mol_data_string`, `\u0024mol_data_number`, `\u0024mol_data_integer`, `\u0024mol_data_boolean`, `\u0024mol_data_email`, `\u0024mol_data_optional`, `\u0024mol_data_nullable`, `\u0024mol_data_variant` (one of several types), `\u0024mol_data_array`, `\u0024mol_data_dict`, and `\u0024mol_data_record`. `\u0024mol_data_pipe` feeds a parsed value into a transform, for example an ISO string into a `\u0024mol_time_moment`, which doubles as (de)serialization.\n\n## \u0024mol_schema\n\nDefine a schema as a class that extends a record:\n\n```typescript\nexport class \u0024my_user extends \u0024mol_schema_record({\n\tname: \u0024mol_schema_string,\n\tage: \u0024mol_schema_natural,\n}) {}\n```\n\nYou then have three ways to apply it, plus a ready-made default:\n\n```typescript\nconst safe = \u0024my_user.guard( input )   // strict: throws on wrong data\nconst relaxed = \u0024my_user.cast( input ) // fills defaults instead of throwing\nif ( \u0024my_user.check( input ) ) { /* input is \u0024my_user in here */ }\nconst blank = \u0024my_user.default         // { name: '', age: 0 }\n```\n\nLeaf schemas include `\u0024mol_schema_string`, `\u0024mol_schema_integer`, `\u0024mol_schema_natural`, `\u0024mol_schema_float`, `\u0024mol_schema_boolean`, `\u0024mol_schema_enum([ ... ])`, and `\u0024mol_schema_pattern( /re/ )`. Compose them with `\u0024mol_schema_list( Item )`, `\u0024mol_schema_dict([ Key, Val ])`, `\u0024mol_schema_maybe( S )` (value, `null`, or `undefined`), `\u0024mol_schema_some([ ... ])` (a union), and `\u0024mol_schema_partial({ ... })`. Spread another record's fields with `...Base.Fields`:\n\n```typescript\nexport class \u0024my_account extends \u0024mol_schema_record({\n\t... \u0024my_user.Fields,\n\tbio: \u0024mol_schema_string,\n}) {}\n```\n\n## Validating a fetch response\n\nParse right where the data lands, inside the reactive property that fetches it:\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_page extends \u0024.\u0024my_page {\n\t\t@ \u0024mol_mem\n\t\tuser() {\n\t\t\tconst json = \u0024mol_fetch.json( 'https://api.example.com/me' )\n\t\t\treturn \u0024my_user.guard( json ) // typed \u0024my_user, or throws on bad data\n\t\t}\n\t}\n}\n```\n\nIf the server sends the wrong shape, `guard` throws and the failure surfaces in the view as an error state — exactly like any other [fetch error](#!section=docs/page=data), so you never render half-broken data. Prefer `cast` instead of `guard` when a sensible default is better than an error.\n\n## Next\n\nTo store and sync typed data across clients with no backend to run, continue to [Giper Baza](#!section=docs/page=giper-baza) — its entities are built on the same schema idea.\n",
                     tr: {
@@ -14490,6 +15067,7 @@ var $;
                 'giper-baza': {
                     slug: 'giper-baza',
                     title: "Giper Baza",
+                    summary: "Local-first data with automatic sync: entities, atoms, and CRUD.",
                     file: 'content/en/docs/giper-baza.md',
                     md: "# Giper Baza\n\nGiper Baza is \u0024mol's local-first data layer: a CRDT store that persists locally and syncs between clients automatically. You model data as entities; reads and writes look like ordinary reactive properties, and replication just happens.\n\n> This page introduces the shape of the API. Giper Baza is a large topic — treat this as a map, not the full territory.\n\n## Define an entity\n\nAn entity is a **pure schema** — a set of typed fields. Keep behaviour out of it; do the reading and writing in your views.\n\n```typescript\nnamespace \u0024 {\n\texport class \u0024my_task extends \u0024giper_baza_entity.with( {\n\t\tTitle: \u0024giper_baza_atom_text,\n\t\tDone: \u0024giper_baza_atom_bool,\n\t\tCreatedAt: \u0024giper_baza_atom_time,\n\t} ) {}\n}\n```\n\nEach field is an **atom** — a synced cell with a typed value.\n\n## Read and write\n\nGet the store, reach a list of entities, and map over them reactively:\n\n```typescript\n\t\t@ \u0024mol_mem\n\t\ttasks() {\n\t\t\treturn this.tasks_list().remote_list()\n\t\t}\n\n\t\t@ \u0024mol_mem_key\n\t\ttask_done( id: string, next?: boolean ) {\n\t\t\tconst task = this.task( id )\n\t\t\tif( next !== undefined ) task.Done( null )!.val( next )\n\t\t\treturn task.Done()?.val() ?? false\n\t\t}\n```\n\nReading `Done()?.val()` gives the current value; writing `Done(null)!.val(next)` sets it. Any view reading the atom re-renders when it — or a remote peer — changes it.\n\n## Create and remove\n\n```typescript\n\t\t@ \u0024mol_action\n\t\ttask_add( title: string ) {\n\t\t\tconst task = this.tasks_list().make( [ [ null, \u0024giper_baza_rank_read ] ] )!\n\t\t\ttask.Title( null )!.val( title )\n\t\t\ttask.Done( null )!.val( false )\n\t\t}\n\n\t\t@ \u0024mol_action\n\t\ttask_remove( id: string ) {\n\t\t\tthis.tasks_list().cut( this.task( id ).link() )\n\t\t}\n```\n\n## Sync is automatic\n\nThere is nothing to configure. Changes replicate to other clients in real time, and the same data is available offline — the store reconciles when a connection returns. Because writes are CRDT merges, concurrent edits from different devices combine without conflicts.\n\n## Where to next?\n\nYou now have the full arc: [Views](#!section=docs/page=views), [State](#!section=docs/page=state), [Routing](#!section=docs/page=routing), [Data Fetching](#!section=docs/page=data), and local-first storage. Try it all in the [Playground](#!section=playground).\n",
                     tr: {
@@ -14554,6 +15132,7 @@ var $;
                 'showcase': {
                     slug: 'showcase',
                     title: "Showcase",
+                    summary: "Real apps and tools built with $mol, from community platforms to devtools.",
                     file: 'content/en/docs/showcase.md',
                     md: "# Showcase\n\nReal things built with \u0024mol — community apps, commercial products, and developer tools. Each one is a working app, not a demo.\n\n## Apps\n\n- **[Bog Music](https://b-on-g.github.io/music/)** — a music player that runs both as a Chrome extension and a web app, with background playback and offline caching. \u0024mol drives the UI and the local-first state.\n- **[Blitz Quiz](https://b-on-g.github.io/blitz/)** — a Kahoot-style live quiz built on \u0024mol and Giper Baza. Rooms sync in real time through the CRDT layer, so there is no game server to run.\n- **[VDO Rebalance](https://b-on-g.github.io/invest/)** — a local-first investing tool: drop in an `.xlsx` portfolio and get the trades that rebalance it. State lives in the browser over Giper Baza.\n- **[\u0024hyoo_budget](https://budget.hyoo.ru)** — a collaborative, local-first personal-budget app. It took first place at the Beautiful Code hackathon.\n- **[\u0024hyoo_talks](https://talks.hyoo.ru)** — an embeddable messenger. A prototype built for Sberbank took second place at Moscow City Hack.\n- **[Virtual avatar](https://avatar.ocas.ai)** — a 3D character you can talk to, play chess with, or ask to present slides. A commercial product with \u0024mol driving the interface over third-party libraries.\n\n## Design system & tools\n\n- **[BuilderUI](https://b-on-g.github.io/builderui/)** — a shadcn-style design system for \u0024mol: typed components (buttons, dialogs, selects, cards, charts, and more) plus a Studio for live theming (base color, accent, chart palette, radius, fonts, light/dark). This documentation site is built on it.\n- **This site** — the documentation you are reading, including the [Playground](#!section=playground) and [course](#!section=course), is a \u0024mol app. The search, live code editor, and in-browser TypeScript are all built with the framework they document.\n- **MAM** — the build tool and module registry that every \u0024mol app lives in, and itself a \u0024mol project. It is developer tooling rather than a hosted app; the source is on GitHub.\n- **view.tree LSP** — language tooling and an `npm create view-tree-lsp` scaffolder that starts new \u0024mol apps. Editor tooling, so there is no running app to open.\n\n## Hackathons and commercial use\n\n\u0024mol has won repeatedly at hackathons: first place at Beautiful Code ([\u0024hyoo_budget](https://budget.hyoo.ru)), first place at AC-VO-PPR-Hackathon (gesture-and-voice control of a street display), and prize-winning prototypes at More Tech, Moscow City Hack, and Dev Hack. It also ships in commercial and industrial systems — from an online-store back office to drone-defense control panels. The \u0024mol [success-stories page](https://mol.hyoo.ru/#!section=docs/=xanlom_yimh6x) has the details.\n\n## More\n\nThe [\u0024mol component catalog](https://mol.hyoo.ru/#!section=demos) has dozens of live components and demos you can open and inspect.\n\nBuilding something with \u0024mol? The best next step is the [Playground](#!section=playground) — try an idea in seconds, then share the URL.\n",
                     tr: {
@@ -14618,6 +15197,7 @@ var $;
                 'rosetta': {
                     slug: 'rosetta',
                     title: "From React, Vue & Svelte",
+                    summary: "A concept translation table for developers coming from other frameworks.",
                     file: 'content/en/docs/rosetta.md',
                     md: "# From React, Vue & Svelte\n\nIf you have built UIs with React, Vue, or Svelte, you already understand most of what \u0024mol does — the names are just different. Those frameworks are excellent and popular for good reason; this page is a translation table, not a competition, to help you feel at home quickly.\n\n## Concept map\n\n| Idea | React | Vue | Svelte | \u0024mol |\n|------|-------|-----|--------|------|\n| Component | function / class | SFC (`.vue`) | `.svelte` file | `.view.tree` + `.view.ts` |\n| Local state | `useState` | `ref` / `reactive` | `let x` | `@ \u0024mol_mem` |\n| Derived value | `useMemo` | `computed` | `\u0024: y = …` | `@ \u0024mol_mem` (reads other cells) |\n| Side effect | `useEffect` | `watchEffect` | `\u0024: { … }` | `@ \u0024mol_action` (explicit, never automatic) |\n| Props | props | props | `export let` | bindings in `view.tree` |\n| Event | `onClick` | `@click` | `on:click` | `click? <=> handler?` |\n| Two-way input | controlled input | `v-model` | `bind:value` | `value? <=> field?` |\n| List | `items.map()` | `v-for` | `{#each}` | keyed `Row*` |\n| Conditional | `cond && …` | `v-if` | `{#if}` | assign `null` to remove |\n| Shared state | Redux / Context | Pinia / provide | stores | any object with `@ \u0024mol_mem` |\n| Routing | React Router | Vue Router | SvelteKit | `\u0024mol_state_arg` |\n| Styling | CSS-in-JS | scoped `<style>` | `<style>` | typed `.view.css.ts` |\n\n## What tends to feel new\n\n- **Reactivity is automatic and non-optional.** Like Vue's `ref` or Svelte's `\u0024:`, a `@ \u0024mol_mem` value updates its readers by itself — but there is no dependency array to maintain and no manual subscription anywhere.\n- **Effects are separated from computations.** React folds derivation and effects into hooks; \u0024mol keeps them apart: `@ \u0024mol_mem` only computes, `@ \u0024mol_action` performs effects. That split is what removes most \"why did this run twice?\" puzzles.\n- **State is just objects.** There is no dedicated store library to adopt — a shared value is a reactive property on any object, so global state and component state work the same way.\n\n## Try the translation\n\nThe fastest way to internalize the mapping is to write a little of both: open the [Playground](#!section=playground), port a small component you know, and see how it lands. Or start from [Getting Started](#!section=docs/page=getting-started).\n",
                     tr: {
@@ -14682,6 +15262,7 @@ var $;
                 'plugins': {
                     slug: 'plugins',
                     title: "Plugins",
+                    summary: "Element-less components that attach behaviour (hotkeys, theme, navigation) to a host view.",
                     file: 'content/en/docs/plugins.md',
                     md: "# Plugins\n\nA **plugin** is a component with no DOM element of its own. Instead of rendering into the page, it attaches behaviour to the element of the component that hosts it — much like a directive. You list plugins under `plugins /` in a view.tree; they run alongside the view but never show up in its `sub`.\n\n```tree\n\u0024my_app \u0024mol_view\n\tplugins /\n\t\t<= Theme \u0024mol_theme_auto\n\t\t<= Search_key \u0024mol_hotkey\n\t\t\tkey *\n\t\t\t\tK? <=> open_search?\n\tsub /\n\t\t<= Content \u0024my_content\n```\n\nBecause a plugin shares its host's element, it can add event listeners, attributes, or reactive side-effects to that element without wrapping it in extra markup.\n\n## Plugins you'll use often\n\n- **`\u0024mol_hotkey`** — bind keyboard shortcuts. `key * escape? <=> close?` runs `close` on Escape; set `mod_ctrl true` to require Ctrl/⌘.\n- **`\u0024mol_theme_auto`** — apply a light/dark theme to the host subtree.\n- **`\u0024mol_nav`** — arrow-key navigation across a list of components (`keys_y`, `current_y`).\n- **`\u0024mol_speech`** — speech recognition input.\n\n## Writing one\n\nA plugin extends `\u0024mol_plugin` (which is itself element-less) and typically wires an `event` to a handler:\n\n```tree\n\u0024my_autosave \u0024mol_plugin\n\tevent *\n\t\t^\n\t\tinput? <=> save? null\n```\n\nAttach it to any view via that view's `plugins /` list, and it augments that view's element.\n",
                     tr: {
@@ -14746,6 +15327,7 @@ var $;
                 'meta': {
                     slug: 'meta',
                     title: "Module metadata",
+                    summary: "The meta.tree file: include, deploy, and pack directives for a module.",
                     file: 'content/en/docs/meta.md',
                     md: "# Module metadata\n\nAlongside a module's components, a `name.meta.tree` file declares **build and deploy metadata** — things that are about the module as a whole rather than any single view. The app module is the usual place for it.\n\nHere is this site's `app.meta.tree`:\n\n```tree\ninclude \\/mol/offline/install\ninclude \\/bog/builderui/theme.css\ndeploy \\/bog/smalljs/assets\n```\n\n## Directives\n\n- **`deploy \\/path`** — copy the named file or folder into the production build output. Use it for static assets that the deploy should carry but that no code imports — images, fonts, icons. Here `\\/bog/smalljs/assets` ships the logo and other files under `assets/`.\n- **`require \\/path`** — force a module into the bundle even when no code references it, for the case where that module's code must run **before** the code of the module holding this `meta.tree`. It is pulled in as a normal, high-priority dependency. A module path (`\\/mol/wire/patch`) or a single file both work.\n- **`include \\/path`** — the same forced include, but for when load order does not matter. The module is pulled in but deprioritized, so it loads after the code that depends on it. Examples: `include \\/mol/offline/install` (registers a service worker as a side effect) and `include \\/bog/builderui/theme.css` (a raw stylesheet).\n- **`pack <name> git \\<url>`** — maps a namespace to the git repository MAM fetches it from, e.g. `pack mol git \\https://github.com/hyoo-ru/mam_mol.git`. This is how `\u0024mol_*`, `\u0024hyoo_*`, and your own packages resolve to real code.\n\nWhy force an include at all? The builder works out dependencies automatically and bundles only what your code actually uses. Occasionally you need a module your code does *not* reference — for example an app that bundles a whole catalog of components so they exist at runtime. `require` and `include` cover exactly that case; they differ only in load order.\n\n## Where it lives\n\n`pack` declarations belong in the **workspace-root** `.meta.tree` — that is the registry of every package the workspace can pull. Keep them there, not in submodules; a submodule's own `meta.tree` should only carry the `require`/`include`/`deploy` that are specific to it.\n",
                     tr: {
@@ -14810,6 +15392,7 @@ var $;
                 'ghost': {
                     slug: 'ghost',
                     title: "Ghost views",
+                    summary: "Node-less views that borrow another component's DOM element to mix in behaviour.",
                     file: 'content/en/docs/ghost.md',
                     md: "# Ghost views\n\n`\u0024mol_ghost` is a **node-less** view. Instead of creating its own DOM element, it borrows the element of its `Sub()` and mixes its own attributes, styles, and behaviour onto it. In one line from the source: *\"mixin view logic to DOM node of another component.\"*\n\n```tree\n\u0024mol_ghost \u0024mol_view\n\tSub \u0024mol_view\n```\n\nA normal `\u0024mol_view` renders its own element. A ghost renders **none** — it reuses the child's element, so nothing extra is added to the DOM tree.\n\n## When to reach for it\n\nUse a ghost when you want to attach behaviour to an existing component *without* wrapping it in another element — dragging, dropping, follow-on-scroll, transitions. Several framework components are built on it:\n\n- **`\u0024mol_drag`** / **`\u0024mol_drop`** — pointer drag-and-drop\n- **`\u0024mol_transit`** — enter/leave transitions\n- **`\u0024mol_follower`** — keep an element aligned to another as it scrolls\n- **`\u0024mol_book_page`** — a page inside `\u0024mol_book2` navigation\n\n## Relation to plugins\n\n`\u0024mol_plugin`, the base every [plugin](#!section=docs/page=plugins) extends, is element-less for the same reason: it augments the host's element rather than adding one. A ghost is the general form (wrap one child and take over its node); a plugin is the specialised form you list under `plugins /`.\n",
                     tr: {
@@ -14874,6 +15457,7 @@ var $;
                 'faq': {
                     slug: 'faq',
                     title: "FAQ",
+                    summary: "Common questions about $mol and smalljs: readiness, size, learning curve, and getting help.",
                     file: 'content/en/docs/faq.md',
                     md: "# FAQ\n\n## What is smalljs?\n\nsmalljs is the documentation site for **\u0024mol** — a reactive UI framework with typed views, automatic reactivity, and no virtual DOM. The framework itself is developed in the open by the hyoo-ru community; this site gathers a guide, an interactive course, a live playground, and an API reference in one place.\n\n## Is \u0024mol production-ready?\n\nYes. \u0024mol powers real apps and internal tools — see the [Showcase](#!section=docs/page=showcase). It ships from a single monorepo (MAM) and is used daily by its authors and community.\n\n## How big is the runtime?\n\nSmall. A typical \u0024mol app ships around 100 KB of framework code, and rendering is virtualized by default — components outside the viewport are never created. See [Rendering](#!section=docs/page=rendering) for the details and benchmarks.\n\n## Do I have to learn a new template language?\n\nYou learn `view.tree`, a compact tree syntax for declaring component layout. It is intentionally small — the [Views](#!section=docs/page=views) chapter covers everything you need in one sitting. Logic stays in plain TypeScript, and styles are typed too.\n\n## How is it different from React, Vue or Svelte?\n\nReactivity is automatic — there is no `useState`, `useEffect`, or manual subscription. You describe *what* the UI is; \u0024mol decides *how* and *when* to update it. The [concept translation table](#!section=docs/page=rosetta) maps ideas from other frameworks onto \u0024mol.\n\n## Where do I get help?\n\n- Ask in the [DEV community](https://dev.to/t/mol)\n- Browse the [\u0024mol source and issues on GitHub](https://github.com/hyoo-ru/mam_mol)\n- Read the reference docs at [mol.hyoo.ru](https://mol.hyoo.ru/)\n\n## What license is it under?\n\nMIT. You can use \u0024mol in commercial and open-source projects freely.\n",
                     tr: {
@@ -14938,6 +15522,7 @@ var $;
                 'team': {
                     slug: 'team',
                     title: "Team",
+                    summary: "Who builds $mol and how to contribute to the open monorepo.",
                     file: 'content/en/docs/team.md',
                     md: "# Team\n\n\u0024mol is built in the open by **[hyoo-ru](https://github.com/hyoo-ru)** — the community around its author, Dmitry Karlovsky ([nin-jin](https://github.com/nin-jin)). Development happens in a single monorepo, [mam_mol](https://github.com/hyoo-ru/mam_mol), where the framework, its components, and the tooling all live together.\n\nThe ecosystem is a group effort: the core framework, the [\u0024hyoo_crowd](https://github.com/hyoo-ru/crowd.hyoo.ru) CRDT library, [Giper Baza](https://github.com/giper-dev/baza), and dozens of published components all come from contributors working in the same workspace.\n\n## Contributing\n\n- The whole ecosystem is MIT-licensed and open to pull requests.\n- Every module lives in the [mam_mol](https://github.com/hyoo-ru/mam_mol) monorepo — fork, add a folder, open a PR.\n- Discuss ideas and share what you build in the [DEV community](https://dev.to/t/mol).\n\nThis documentation site is maintained separately at [b-on-g/smalljs](https://github.com/b-on-g/smalljs); every page has an *Edit on GitHub* link if you spot something to improve.\n",
                     tr: {
@@ -15002,6 +15587,7 @@ var $;
                 'releases': {
                     slug: 'releases',
                     title: "Releases",
+                    summary: "How $mol is delivered continuously from the mam_mol monorepo, and how to follow changes.",
                     file: 'content/en/docs/releases.md',
                     md: "# Releases\n\n\u0024mol is delivered **continuously**. Instead of cutting numbered versions, the framework ships straight from the [mam_mol](https://github.com/hyoo-ru/mam_mol) monorepo — every merged change is immediately available to anyone building against it. The MAM build tool always pulls the current sources, so there is no upgrade step and no version matrix to reconcile.\n\n## Following changes\n\n- **Commit history** — the [mam_mol commits](https://github.com/hyoo-ru/mam_mol/commits/master) are the canonical changelog.\n- **Per-module history** — each component folder on GitHub carries its own commit log, so you can watch just the parts you use.\n- **DEV community** — notable additions and write-ups are shared under the [#mol tag](https://dev.to/t/mol).\n\n## What this means in practice\n\nBecause there are no breaking release boundaries, the framework favours backward-compatible evolution: components gain features without renaming, and the typed `view.tree` interfaces make incompatibilities surface at compile time rather than at runtime. If a build stops compiling after an update, the TypeScript errors point you straight at what changed.\n",
                     tr: {
@@ -15066,6 +15652,7 @@ var $;
                 'api-mol-button-major': {
                     slug: 'api-mol-button-major',
                     title: "$mol_button_major",
+                    summary: "API reference for $mol_button_major.",
                     file: 'content/en/docs/api-mol-button-major.md',
                     md: "# \u0024mol_button_major\n\nExtends `\u0024mol_button_minor`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/button/major)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `theme` | read | `string` |\n",
                     tr: {
@@ -15130,6 +15717,7 @@ var $;
                 'api-mol-button-minor': {
                     slug: 'api-mol-button-minor',
                     title: "$mol_button_minor",
+                    summary: "API reference for $mol_button_minor.",
                     file: 'content/en/docs/api-mol-button-minor.md',
                     md: "# \u0024mol_button_minor\n\nExtends `\u0024mol_button_typed`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/button/minor)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n\u0024mol_button_minor adds no new bindable properties of its own — see `\u0024mol_button_typed`.\n",
                     tr: {
@@ -15194,6 +15782,7 @@ var $;
                 'api-mol-string': {
                     slug: 'api-mol-string',
                     title: "$mol_string",
+                    summary: "API reference for $mol_string.",
                     file: 'content/en/docs/api-mol-string.md',
                     md: "# \u0024mol_string\n\nExtends `\u0024mol_view`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/string)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `disabled` | read | `boolean` |\n| `value` | read / write | `string` |\n| `value_changed` | read / write | `as 'value'` |\n| `hint` | read | `string` |\n| `hint_visible` | read | `as 'hint'` |\n| `spellcheck` | read | `boolean` |\n| `autocomplete_native` | read | `string` |\n| `selection_end` | read | `number` |\n| `selection_start` | read | `number` |\n| `keyboard` | read | `string` |\n| `enter` | read | `string` |\n| `length_max` | read | `number` |\n| `type` | read / write | `string` |\n| `submit_with_ctrl` | read | `boolean` |\n| `Submit` | read | `\u0024mol_hotkey` |\n| `dom_name` | read | `string` |\n| `enabled` | read | `boolean` |\n| `minimal_height` | read | `number` |\n| `autocomplete` | read | `boolean` |\n| `auto` | read | `readonly(any)[]` |\n| `field` | read | `({` |\n| `attr` | read | `({` |\n| `event` | read | `({` |\n| `plugins` | read | `readonly(any)[]` |\n",
                     tr: {
@@ -15258,6 +15847,7 @@ var $;
                 'api-mol-number': {
                     slug: 'api-mol-number',
                     title: "$mol_number",
+                    summary: "API reference for $mol_number.",
                     file: 'content/en/docs/api-mol-number.md',
                     md: "# \u0024mol_number\n\nExtends `\u0024mol_view`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/number)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `precision` | read | `number` |\n| `Hotkey` | read | `\u0024mol_hotkey` |\n| `dec_enabled` | read | `as 'enabled'` |\n| `dec_icon` | read | `\u0024mol_icon_chevron_left` |\n| `Dec` | read | `\u0024mol_button_minor` |\n| `type` | read | `string` |\n| `value_string` | read / write | `string` |\n| `hint` | read | `string` |\n| `string_enabled` | read | `as 'enabled'` |\n| `String` | read | `\u0024mol_string` |\n| `inc_enabled` | read | `as 'enabled'` |\n| `inc_icon` | read | `\u0024mol_icon_chevron_right` |\n| `Inc` | read | `\u0024mol_button_minor` |\n| `precision_view` | read | `as 'precision'` |\n| `precision_change` | read | `as 'precision'` |\n| `boost` | read | `number` |\n| `value_min` | read | `number` |\n| `value_max` | read | `number` |\n| `value` | read / write | `number` |\n| `enabled` | read | `boolean` |\n| `plugins` | read | `readonly(any)[]` |\n| `sub` | read | `readonly(any)[]` |\n",
                     tr: {
@@ -15322,6 +15912,7 @@ var $;
                 'api-mol-text': {
                     slug: 'api-mol-text',
                     title: "$mol_text",
+                    summary: "API reference for $mol_text.",
                     file: 'content/en/docs/api-mol-text.md',
                     md: "# \u0024mol_text\n\nExtends `\u0024mol_list`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/text/text)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `highlight` | read | `string` |\n| `code_sidebar_showed` | read | `boolean` |\n| `pre_sidebar_showed` | read | `as 'code_sidebar_showed'` |\n| `uri_base` | read | `string` |\n| `text` | read | `string` |\n| `param` | read | `string` |\n| `flow_tokens` | read | `readonly(any)[]` |\n| `auto` | read | `readonly(any)[]` |\n",
                     tr: {
@@ -15386,6 +15977,7 @@ var $;
                 'api-mol-paragraph': {
                     slug: 'api-mol-paragraph',
                     title: "$mol_paragraph",
+                    summary: "API reference for $mol_paragraph.",
                     file: 'content/en/docs/api-mol-paragraph.md',
                     md: "# \u0024mol_paragraph\n\nExtends `\u0024mol_view`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/paragraph)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `line_height` | read | `number` |\n| `letter_width` | read | `number` |\n| `width_limit` | read | `number` |\n| `row_width` | read | `number` |\n| `sub` | read | `readonly(any)[]` |\n",
                     tr: {
@@ -15450,6 +16042,7 @@ var $;
                 'api-mol-list': {
                     slug: 'api-mol-list',
                     title: "$mol_list",
+                    summary: "API reference for $mol_list.",
                     file: 'content/en/docs/api-mol-list.md',
                     md: "# \u0024mol_list\n\nExtends `\u0024mol_view`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/list)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `gap_before` | read | `number` |\n| `Gap_before` | read | `\u0024mol_view` |\n| `Empty` | read | `\u0024mol_view` |\n| `gap_after` | read | `number` |\n| `Gap_after` | read | `\u0024mol_view` |\n| `rows` | read | `readonly(\u0024mol_view)[]` |\n| `render_visible_only` | read | `boolean` |\n| `render_over` | read | `number` |\n| `sub` | read | `as 'rows'` |\n| `view_window_shift` | read / write | `number` |\n| `view_window` | read | `readonly(any)[]` |\n",
                     tr: {
@@ -15514,6 +16107,7 @@ var $;
                 'api-mol-row': {
                     slug: 'api-mol-row',
                     title: "$mol_row",
+                    summary: "API reference for $mol_row.",
                     file: 'content/en/docs/api-mol-row.md',
                     md: "# \u0024mol_row\n\nExtends `\u0024mol_view`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/row)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n\u0024mol_row adds no new bindable properties of its own — see `\u0024mol_view`.\n",
                     tr: {
@@ -15578,6 +16172,7 @@ var $;
                 'api-mol-link': {
                     slug: 'api-mol-link',
                     title: "$mol_link",
+                    summary: "API reference for $mol_link.",
                     file: 'content/en/docs/api-mol-link.md',
                     md: "# \u0024mol_link\n\nExtends `\u0024mol_view`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/link)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `uri_toggle` | read | `string` |\n| `hint` | read | `string` |\n| `hint_safe` | read | `as 'hint'` |\n| `target` | read | `string` |\n| `file_name` | read | `string` |\n| `current` | read | `boolean` |\n| `relation` | read | `string` |\n| `click` | read / write | `as 'event_click'` |\n| `uri` | read | `string` |\n| `dom_name` | read | `string` |\n| `uri_off` | read | `string` |\n| `external` | read | `boolean` |\n| `attr` | read | `({` |\n| `sub` | read | `readonly(\u0024mol_view_content)[]` |\n| `arg` | read | `Record<string, any>` |\n| `event` | read | `({` |\n",
                     tr: {
@@ -15642,6 +16237,7 @@ var $;
                 'api-mol-check': {
                     slug: 'api-mol-check',
                     title: "$mol_check",
+                    summary: "API reference for $mol_check.",
                     file: 'content/en/docs/api-mol-check.md',
                     md: "# \u0024mol_check\n\nExtends `\u0024mol_button_minor`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/check)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `checked` | read / write | `boolean` |\n| `aria_checked` | read | `string` |\n| `aria_role` | read | `string` |\n| `title` | read | `string` |\n| `Title` | read | `\u0024mol_view` |\n| `label` | read | `readonly(any)[]` |\n| `attr` | read | `({` |\n| `sub` | read | `readonly(\u0024mol_view_content)[]` |\n",
                     tr: {
@@ -15706,6 +16302,7 @@ var $;
                 'api-mol-switch': {
                     slug: 'api-mol-switch',
                     title: "$mol_switch",
+                    summary: "API reference for $mol_switch.",
                     file: 'content/en/docs/api-mol-switch.md',
                     md: "# \u0024mol_switch\n\nExtends `\u0024mol_check_list`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/switch)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `value` | read / write | `string` |\n",
                     tr: {
@@ -15770,6 +16367,7 @@ var $;
                 'api-mol-select': {
                     slug: 'api-mol-select',
                     title: "$mol_select",
+                    summary: "API reference for $mol_select.",
                     file: 'content/en/docs/api-mol-select.md',
                     md: "# \u0024mol_select\n\nExtends `\u0024mol_pick`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/select)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `enabled` | read | `boolean` |\n| `filter_pattern` | read / write | `string` |\n| `no_options_message` | read | `string` |\n| `nav_components` | read | `readonly(\u0024mol_view)[]` |\n| `nav_cycle` | read / write | `boolean` |\n| `Nav` | read | `\u0024mol_nav` |\n| `menu_content` | read | `readonly(\u0024mol_view)[]` |\n| `Menu` | read | `\u0024mol_list` |\n| `Bubble_pane` | read | `\u0024mol_scroll` |\n| `filter_hint` | read | `string` |\n| `dictionary` | read / write | `Record<string, any>` |\n| `options` | read | `readonly(string)[]` |\n| `value` | read / write | `string` |\n| `option_label_default` | read | `string` |\n| `No_options` | read | `\u0024mol_view` |\n| `plugins` | read | `readonly(any)[]` |\n| `hint` | read | `string` |\n| `bubble_content` | read | `readonly(any)[]` |\n| `Filter` | read | `\u0024mol_search` |\n| `Trigger_icon` | read | `\u0024mol_icon_dots_vertical` |\n| `trigger_enabled` | read | `as 'enabled'` |\n",
                     tr: {
@@ -15834,6 +16432,7 @@ var $;
                 'api-mol-scroll': {
                     slug: 'api-mol-scroll',
                     title: "$mol_scroll",
+                    summary: "API reference for $mol_scroll.",
                     file: 'content/en/docs/api-mol-scroll.md',
                     md: "# \u0024mol_scroll\n\nExtends `\u0024mol_view`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/scroll)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `tabindex` | read | `number` |\n| `scroll_top` | read / write | `number` |\n| `scroll_left` | read / write | `number` |\n| `attr` | read | `({` |\n| `event` | read | `({` |\n",
                     tr: {
@@ -15898,6 +16497,7 @@ var $;
                 'api-mol-page': {
                     slug: 'api-mol-page',
                     title: "$mol_page",
+                    summary: "API reference for $mol_page.",
                     file: 'content/en/docs/api-mol-page.md',
                     md: "# \u0024mol_page\n\nExtends `\u0024mol_view`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/page)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `tabindex` | read | `number` |\n| `title_content` | read | `readonly(any)[]` |\n| `Title` | read | `\u0024mol_view` |\n| `tools` | read | `readonly(\u0024mol_view_content)[]` |\n| `Tools` | read | `\u0024mol_view` |\n| `head` | read | `readonly(any)[]` |\n| `Head` | read | `\u0024mol_view` |\n| `body_scroll_top` | read / write | `ReturnType< as 'Body'['scroll_top'] >` |\n| `body` | read | `readonly(\u0024mol_view)[]` |\n| `Body_content` | read | `\u0024mol_view` |\n| `body_content` | read | `readonly(any)[]` |\n| `Body` | read | `\u0024mol_scroll` |\n| `foot` | read | `readonly(\u0024mol_view)[]` |\n| `Foot` | read | `\u0024mol_view` |\n| `dom_name` | read | `string` |\n| `attr` | read | `({` |\n| `sub` | read | `readonly(any)[]` |\n",
                     tr: {
@@ -15962,6 +16562,7 @@ var $;
                 'api-mol-pick': {
                     slug: 'api-mol-pick',
                     title: "$mol_pick",
+                    summary: "API reference for $mol_pick.",
                     file: 'content/en/docs/api-mol-pick.md',
                     md: "# \u0024mol_pick\n\nExtends `\u0024mol_pop`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/pick)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `trigger_enabled` | read | `boolean` |\n| `trigger_content` | read | `readonly(\u0024mol_view_content)[]` |\n| `hint` | read | `string` |\n| `Trigger` | read | `\u0024mol_check` |\n| `event` | read | `({` |\n| `Anchor` | read | `as 'Trigger'` |\n",
                     tr: {
@@ -16048,6 +16649,13 @@ var $;
             if (!page)
                 return null;
             return page.tr?.[lang]?.title ?? page.title;
+        }
+        /** One-line summary for a page (language-neutral, from the manifest). */
+        static page_summary(slug) {
+            const page = this.pages()[slug];
+            if (!page)
+                return null;
+            return page.summary || null;
         }
         static default_slug() {
             return 'introduction';
@@ -22119,6 +22727,9 @@ var $;
 		hotkeys(){
 			return null;
 		}
+		locale_sync(){
+			return null;
+		}
 		Theme(){
 			const obj = new this.$.$bog_theme_auto();
 			(obj.theme_light) = () => ("$mol_theme_calm_light");
@@ -22174,7 +22785,7 @@ var $;
 			};
 		}
 		auto(){
-			return [(this.hotkeys())];
+			return [(this.hotkeys()), (this.locale_sync())];
 		}
 		sub(){
 			return [
@@ -22220,6 +22831,806 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    $.$bog_meta_attr_name = 'data-bog-meta';
+    function $bog_meta_compact(data) {
+        if (!data)
+            return null;
+        const out = {};
+        let any = false;
+        for (const k of Object.keys(data)) {
+            const v = data[k];
+            if (v == null)
+                continue;
+            if (typeof v === 'string' && v.length === 0)
+                continue;
+            if (Array.isArray(v) && v.length === 0)
+                continue;
+            out[k] = v;
+            any = true;
+        }
+        return any ? out : null;
+    }
+    $.$bog_meta_compact = $bog_meta_compact;
+    function $bog_meta_attr(view) {
+        if (typeof view.meta !== 'function')
+            return {};
+        const compact = $bog_meta_compact(view.meta());
+        if (!compact)
+            return {};
+        return { [$.$bog_meta_attr_name]: JSON.stringify(compact) };
+    }
+    $.$bog_meta_attr = $bog_meta_attr;
+    function $bog_meta_merge(base, override) {
+        return { ...base, ...override };
+    }
+    $.$bog_meta_merge = $bog_meta_merge;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_server extends $mol_object {
+        express() {
+            var express = $node['express']();
+            this.expressHandlers().forEach(plugin => express.use(plugin));
+            return express;
+        }
+        internal_ip() {
+            const nets = $node.os.networkInterfaces();
+            const results = Object.create(null);
+            for (const name of Object.keys(nets)) {
+                for (const net of nets[name]) {
+                    // Skip over non-IPv4 and internal (i.e. 127.0.0.1) addresses
+                    // 'IPv4' is in Node <= 17, from 18 it's a number 4 or 6
+                    const familyV4Value = typeof net.family === 'string' ? 'IPv4' : 4;
+                    if (net.family === familyV4Value && !net.internal) {
+                        if (!results[name]) {
+                            results[name] = [];
+                        }
+                        results[name].push(net.address);
+                    }
+                }
+            }
+            const internal = Object.values(results).at(-1);
+            return internal?.[0] ?? '0.0.0.0';
+        }
+        http() {
+            const server = $node.http.createServer(this.express());
+            server.listen(this.port());
+            this.$.$mol_log3_done({
+                place: `${this}.http`,
+                message: `Started`,
+                network: `http://${this.internal_ip()}:${this.port()}/`,
+                loopback: `http://localhost:${this.port()}/`,
+            });
+            return server;
+        }
+        connections = new Set();
+        socket() {
+            const socket = new $node.ws.WebSocketServer({
+                server: this.http(),
+                // perMessageDeflate: {
+                // 	zlibDeflateOptions: {
+                // 		chunkSize: 1024,
+                // 		memLevel: 7,
+                // 		level: 3
+                // 	},
+                // 	zlibInflateOptions: {
+                // 		chunkSize: 10 * 1024
+                // 	},
+                // }
+            });
+            socket.on('connection', line => {
+                this.connections.add(line);
+                line.on('message', (message, isBinary) => {
+                    for (const other of this.connections) {
+                        if (line === other)
+                            continue;
+                        other.send(message, { binary: isBinary });
+                    }
+                });
+            });
+            return socket;
+        }
+        expressHandlers() {
+            return [
+                this.expressCors(),
+                this.expressCompressor(),
+                this.expressBodier(),
+                this.expressGenerator(),
+                this.expressIndex(),
+                this.expressFiler(),
+                this.expressDirector(),
+            ];
+        }
+        expressCompressor() {
+            return $node['compression']();
+        }
+        expressCors() {
+            return $node.cors();
+        }
+        expressBodier() {
+            return $node['body-parser'].json({
+                limit: this.bodyLimit()
+            });
+        }
+        expressFiler() {
+            return $node.express.static($node.path.resolve(this.rootPublic()), {
+                maxAge: this.cacheTime(),
+                dotfiles: 'allow'
+            });
+        }
+        expressDirector() {
+            return $node['serve-index'](this.rootPublic(), { icons: true });
+        }
+        expressIndex() {
+            return (req, res, next) => next();
+        }
+        expressGenerator() {
+            return (req, res, next) => next();
+        }
+        bodyLimit() {
+            return '1mb';
+        }
+        cacheTime() {
+            return 1000 * 60 * 60 * 24 * 365 * 1000;
+        }
+        port() {
+            return 80;
+        }
+        rootPublic() {
+            return '.';
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $mol_server.prototype, "express", null);
+    __decorate([
+        $mol_mem
+    ], $mol_server.prototype, "http", null);
+    __decorate([
+        $mol_mem
+    ], $mol_server.prototype, "socket", null);
+    $.$mol_server = $mol_server;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $bog_browser extends $mol_object2 {
+        static window() {
+            $mol_wire_solid();
+            const window = $mol_wire_sync($node.puppeteer).launch({
+                headless: true,
+                acceptInsecureCerts: true,
+                waitForInitialPage: false,
+                defaultViewport: {
+                    width: 1024,
+                    height: 1e5,
+                }
+            });
+            return $mol_wire_sync(window);
+        }
+        static async strip_scripts(page) {
+            const scripts = await page.$$('script');
+            return Promise.all(scripts.map(script => script.evaluate(node => node.remove())));
+        }
+        static html(uri) {
+            const page = $mol_wire_sync(this.window().newPage());
+            try {
+                page.goto(uri, { waitUntil: "networkidle0" });
+                this.strip_scripts(page.valueOf());
+                const html = page.content();
+                page.close();
+                return html;
+            }
+            catch (error) {
+                if (!(error instanceof Promise))
+                    page.close();
+                $mol_fail_hidden(error);
+            }
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $bog_browser, "window", null);
+    __decorate([
+        $mol_action
+    ], $bog_browser, "strip_scripts", null);
+    __decorate([
+        $mol_wire_method
+    ], $bog_browser, "html", null);
+    $.$bog_browser = $bog_browser;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    const meta_attr_re = /\sdata-bog-meta\s*=\s*"([^"]*)"/gi;
+    function $bog_meta_collect(html) {
+        let merged = {};
+        meta_attr_re.lastIndex = 0;
+        let match;
+        while ((match = meta_attr_re.exec(html)) !== null) {
+            const raw = match[1];
+            if (!raw)
+                continue;
+            let parsed;
+            try {
+                parsed = JSON.parse(decode_entities(raw));
+            }
+            catch {
+                continue;
+            }
+            merged = $bog_meta_merge(merged, parsed);
+        }
+        return merged;
+    }
+    $.$bog_meta_collect = $bog_meta_collect;
+    function $bog_meta_inject(html, canonical_url) {
+        const meta = $bog_meta_collect(html);
+        const final = canonical_url
+            ? { canonical: canonical_url, ...meta }
+            : meta;
+        const compact = $bog_meta_compact(final);
+        if (!compact)
+            return html;
+        const tags = build_tags(compact);
+        if (!tags)
+            return html;
+        const stripped = strip_existing(html, compact);
+        const head_close = stripped.indexOf('</head>');
+        if (head_close < 0)
+            return stripped;
+        return stripped.slice(0, head_close) + tags + stripped.slice(head_close);
+    }
+    $.$bog_meta_inject = $bog_meta_inject;
+    // Remove tags for exactly the keys we are about to inject, so the injected
+    // values are authoritative and never duplicated. Pre-existing tags for keys
+    // we do NOT emit (e.g. og:site_name, twitter:card) are left untouched. Applied
+    // only within <head> to avoid touching page content.
+    function strip_existing(html, data) {
+        const head_close = html.indexOf('</head>');
+        if (head_close < 0)
+            return html;
+        let head = html.slice(0, head_close);
+        const rest = html.slice(head_close);
+        const drop_meta = (kind, key) => {
+            const re = new RegExp(`[ \\t]*<meta\\b[^>]*\\b${kind}\\s*=\\s*["']${key.replace(/[:]/g, '\\$&')}["'][^>]*>\\s*\\n?`, 'gi');
+            head = head.replace(re, '');
+        };
+        if (data.title) {
+            head = head.replace(/[ \t]*<title[^>]*>[\s\S]*?<\/title>\s*\n?/gi, '');
+            drop_meta('name', 'twitter:title');
+        }
+        if (data.description)
+            drop_meta('name', 'description');
+        if (data.canonical) {
+            head = head.replace(/[ \t]*<link\b[^>]*\brel\s*=\s*["']canonical["'][^>]*>\s*\n?/gi, '');
+            drop_meta('property', 'og:url');
+        }
+        if (data.og_title)
+            drop_meta('property', 'og:title');
+        if (data.og_description)
+            drop_meta('property', 'og:description');
+        if (data.og_image) {
+            drop_meta('property', 'og:image');
+            drop_meta('name', 'twitter:image');
+        }
+        if (data.og_type)
+            drop_meta('property', 'og:type');
+        if (data.alternates && data.alternates.length) {
+            head = head.replace(/[ \t]*<link\b[^>]*\brel\s*=\s*["']alternate["'][^>]*\bhreflang\s*=[^>]*>\s*\n?/gi, '');
+        }
+        return head + rest;
+    }
+    function build_tags(data) {
+        const out = [];
+        if (data.title) {
+            out.push(`<title>${escape_html(data.title)}</title>`);
+            out.push(meta_tag('name', 'twitter:title', data.title));
+        }
+        if (data.description) {
+            out.push(meta_tag('name', 'description', data.description));
+        }
+        if (data.canonical) {
+            out.push(`<link rel="canonical" href="${escape_attr(data.canonical)}">`);
+        }
+        if (data.og_title)
+            out.push(meta_tag('property', 'og:title', data.og_title));
+        if (data.og_description)
+            out.push(meta_tag('property', 'og:description', data.og_description));
+        if (data.og_image) {
+            out.push(meta_tag('property', 'og:image', data.og_image));
+            out.push(meta_tag('name', 'twitter:image', data.og_image));
+        }
+        if (data.og_type)
+            out.push(meta_tag('property', 'og:type', data.og_type));
+        if (data.canonical)
+            out.push(meta_tag('property', 'og:url', data.canonical));
+        if (data.alternates) {
+            for (const alt of data.alternates) {
+                if (!alt || !alt.lang || !alt.href)
+                    continue;
+                out.push(`<link rel="alternate" hreflang="${escape_attr(alt.lang)}" href="${escape_attr(alt.href)}">`);
+            }
+        }
+        return out.length ? '\n\t' + out.join('\n\t') + '\n' : '';
+    }
+    function meta_tag(kind, key, value) {
+        return `<meta ${kind}="${escape_attr(key)}" content="${escape_attr(value)}">`;
+    }
+    function escape_attr(s) {
+        return s
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+    }
+    function escape_html(s) {
+        return s
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+    }
+    function decode_entities(s) {
+        return s
+            .replace(/&quot;/g, '"')
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&amp;/g, '&');
+    }
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    const crawler_ua = /Googlebot|bingbot|yandex|baiduspider|Facebot|facebookexternalhit|Twitterbot|twitterbot|rogerbot|linkedinbot|embedly|quora link preview|showyoubot|outbrain|pinterest|slackbot|vkShare|Telegram|TelegramBot|Discord|Discordbot|WhatsApp|Applebot|DuckDuckBot|Sogou|ia_archiver|Semrush|AhrefsBot|MJ12bot|DotBot|PetalBot/i;
+    const href_re = /<a\s[^>]*href\s*=\s*["']([^"']+)["']/gi;
+    const title_re = /<title[^>]*>([^<]*)<\/title>/i;
+    const meta_desc_re = /<meta[^>]+name\s*=\s*["']description["'][^>]+content\s*=\s*["']([^"']*)["']/i;
+    function extract_links(html, base_url, root_origin) {
+        const out = [];
+        href_re.lastIndex = 0;
+        let match;
+        while ((match = href_re.exec(html)) !== null) {
+            const raw = match[1];
+            if (!raw)
+                continue;
+            if (raw.startsWith('#'))
+                continue;
+            if (raw.startsWith('mailto:'))
+                continue;
+            if (raw.startsWith('tel:'))
+                continue;
+            if (raw.startsWith('javascript:'))
+                continue;
+            let absolute;
+            try {
+                absolute = new URL(raw, base_url).toString();
+            }
+            catch {
+                continue;
+            }
+            const parsed = new URL(absolute);
+            if (parsed.origin !== root_origin)
+                continue;
+            parsed.hash = '';
+            out.push(parsed.toString());
+        }
+        return out;
+    }
+    function crawl_bfs(config) {
+        const { root, render, max_depth, max_pages } = config;
+        const root_origin = new URL(root).origin;
+        const queue = [{ url: root, depth: 0 }];
+        const seen = new Set();
+        while (queue.length && seen.size < max_pages) {
+            const { url, depth } = queue.shift();
+            if (seen.has(url))
+                continue;
+            seen.add(url);
+            let html;
+            try {
+                html = render(url);
+            }
+            catch (error) {
+                if ($mol_promise_like(error))
+                    $mol_fail_hidden(error);
+                continue;
+            }
+            if (depth >= max_depth)
+                continue;
+            for (const link of extract_links(html, url, root_origin)) {
+                if (!seen.has(link))
+                    queue.push({ url: link, depth: depth + 1 });
+            }
+        }
+        return [...seen];
+    }
+    function rewrite_to_base(raw, upstream, base) {
+        try {
+            const url = new URL(raw);
+            const up = new URL(upstream);
+            if (url.origin !== up.origin)
+                return null;
+            return base + url.pathname + url.search;
+        }
+        catch {
+            return null;
+        }
+    }
+    function escape_xml(s) {
+        return s
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&apos;');
+    }
+    function build_sitemap(config) {
+        const { base, urls, upstream } = config;
+        const lastmod = new Date().toISOString().slice(0, 10);
+        const items = urls
+            .map(raw => rewrite_to_base(raw, upstream, base))
+            .filter((v) => !!v);
+        const unique = [...new Set(items)];
+        const body = unique.map(loc => (`\t<url>\n` +
+            `\t\t<loc>${escape_xml(loc)}</loc>\n` +
+            `\t\t<lastmod>${lastmod}</lastmod>\n` +
+            `\t</url>`)).join('\n');
+        return (`<?xml version="1.0" encoding="UTF-8"?>\n` +
+            `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+            body + '\n' +
+            `</urlset>\n`);
+    }
+    function build_robots(base) {
+        return (`User-agent: *\n` +
+            `Allow: /\n` +
+            `\n` +
+            `Sitemap: ${base}/sitemap.xml\n`);
+    }
+    function extract_title(html) {
+        const m = title_re.exec(html);
+        return m?.[1]?.trim() ?? '';
+    }
+    function extract_description(html) {
+        const m = meta_desc_re.exec(html);
+        return m?.[1]?.trim() ?? '';
+    }
+    function build_llms(config) {
+        const { base, upstream, entries } = config;
+        const items = [];
+        for (const e of entries) {
+            let url, up;
+            try {
+                url = new URL(e.url);
+                up = new URL(upstream);
+            }
+            catch {
+                continue;
+            }
+            if (url.origin !== up.origin)
+                continue;
+            items.push({
+                url: base + url.pathname + url.search,
+                title: extract_title(e.html) || url.pathname,
+                description: extract_description(e.html),
+            });
+        }
+        items.sort((a, b) => a.url.localeCompare(b.url));
+        const root = items.find(i => new URL(i.url).pathname === '/');
+        const site_title = root?.title || 'Site';
+        const site_description = root?.description || 'Site index';
+        const lines = items.map(i => `- [${i.title}](${i.url})${i.description ? `: ${i.description}` : ''}`);
+        return (`# ${site_title}\n\n` +
+            `> ${site_description}\n\n` +
+            `## Pages\n\n` +
+            lines.join('\n') + '\n');
+    }
+    class $bog_seo extends $mol_server {
+        port() {
+            return Number(process.env.BOG_SEO_PORT ?? 3334);
+        }
+        upstream() {
+            return process.env.BOG_SEO_UPSTREAM ?? 'http://localhost:9080';
+        }
+        cache_enabled() {
+            return (process.env.BOG_SEO_CACHE ?? 'true') === 'true';
+        }
+        cache_ttl() {
+            return Number(process.env.BOG_SEO_CACHE_TTL ?? 3600000);
+        }
+        warmup_enabled() {
+            return (process.env.BOG_SEO_WARMUP ?? 'false') === 'true';
+        }
+        max_depth() {
+            return Number(process.env.BOG_SEO_MAX_DEPTH ?? 10);
+        }
+        max_pages() {
+            return Number(process.env.BOG_SEO_MAX_PAGES ?? 1000);
+        }
+        cache = new Map();
+        discovered = new Set();
+        warmup_done = false;
+        is_crawler(ua) {
+            return crawler_ua.test(ua);
+        }
+        render(url) {
+            const html = $bog_browser.html(url);
+            return $bog_meta_inject(html, this.canonical_for(url));
+        }
+        canonical_for(url) {
+            try {
+                const u = new URL(url);
+                const up = new URL(this.upstream());
+                if (u.origin !== up.origin)
+                    return undefined;
+                const canonical_base = process.env.BOG_SEO_CANONICAL_BASE;
+                if (!canonical_base)
+                    return undefined;
+                return canonical_base.replace(/\/$/, '') + u.pathname + u.search;
+            }
+            catch {
+                return undefined;
+            }
+        }
+        cached_render(url) {
+            if (this.cache_enabled()) {
+                const entry = this.cache.get(url);
+                if (entry && (Date.now() - entry.timestamp) < this.cache_ttl()) {
+                    this.discovered.add(url);
+                    return { html: entry.html, from_cache: true };
+                }
+            }
+            const html = this.render(url);
+            if (this.cache_enabled()) {
+                this.cache.set(url, { html, timestamp: Date.now() });
+            }
+            this.discovered.add(url);
+            return { html, from_cache: false };
+        }
+        ensure_warmup() {
+            if (this.warmup_done)
+                return;
+            this.warmup_done = true;
+            $mol_wire_async(this).crawl_all();
+        }
+        crawl_all() {
+            const root = this.upstream();
+            const found = crawl_bfs({
+                root,
+                render: (url) => this.cached_render(url).html,
+                max_depth: this.max_depth(),
+                max_pages: this.max_pages(),
+            });
+            for (const url of found)
+                this.discovered.add(url);
+            this.$.$mol_log3_done({
+                place: this,
+                message: 'crawl complete',
+                pages: this.discovered.size,
+            });
+        }
+        sync_middleware(mdl) {
+            const wrapped = $mol_wire_async(mdl);
+            return $mol_func_name_from(async (req, res, next) => {
+                try {
+                    const stopped = await wrapped(req, res);
+                    if (!stopped)
+                        Promise.resolve().then(next);
+                }
+                catch (err) {
+                    const error = err instanceof Error ? err : new Error(String(err), { cause: err });
+                    res.status(500).send(error.message).end();
+                    this.$.$mol_log3_fail({
+                        place: `${this}.${mdl.name}()`,
+                        uri: req.path,
+                        message: error.message,
+                    });
+                }
+            }, mdl);
+        }
+        expressHandlers() {
+            return [
+                this.expressCors(),
+                this.expressCompressor(),
+                this.expressSitemap(),
+                this.expressRobots(),
+                this.expressLlms(),
+                this.expressGenerator(),
+                this.expressProxy(),
+            ];
+        }
+        expressSitemap() {
+            return this.sync_middleware((req, res) => {
+                if (req.path !== '/sitemap.xml')
+                    return false;
+                if (!this.warmup_done && this.discovered.size === 0)
+                    this.crawl_all();
+                const base = `${req.protocol}://${req.get('host')}`;
+                res.set('Content-Type', 'application/xml');
+                res.send(build_sitemap({
+                    base,
+                    urls: [...this.discovered],
+                    upstream: this.upstream(),
+                })).end();
+                return true;
+            });
+        }
+        expressRobots() {
+            return this.sync_middleware((req, res) => {
+                if (req.path !== '/robots.txt')
+                    return false;
+                const base = `${req.protocol}://${req.get('host')}`;
+                res.set('Content-Type', 'text/plain');
+                res.send(build_robots(base)).end();
+                return true;
+            });
+        }
+        expressLlms() {
+            return this.sync_middleware((req, res) => {
+                if (req.path !== '/llms.txt')
+                    return false;
+                if (!this.warmup_done && this.discovered.size === 0)
+                    this.crawl_all();
+                const base = `${req.protocol}://${req.get('host')}`;
+                const entries = [...this.discovered].map(url => ({
+                    url,
+                    html: this.cache.get(url)?.html ?? '',
+                }));
+                res.set('Content-Type', 'text/markdown; charset=utf-8');
+                res.send(build_llms({
+                    base,
+                    upstream: this.upstream(),
+                    entries,
+                })).end();
+                return true;
+            });
+        }
+        expressGenerator() {
+            return this.sync_middleware((req, res) => {
+                this.ensure_warmup();
+                return this.handle_request(req, res);
+            });
+        }
+        handle_request(req, res) {
+            const explicit_url = req.query?.url;
+            if (explicit_url) {
+                const { html, from_cache } = this.cached_render(explicit_url);
+                res.set('Content-Type', 'text/html');
+                res.set('X-Prerender', from_cache ? 'cached' : 'rendered');
+                res.send(html).end();
+                return true;
+            }
+            const ua = req.headers['user-agent'] ?? '';
+            if (!this.is_crawler(ua))
+                return false;
+            const target = this.upstream() + req.originalUrl;
+            const { html, from_cache } = this.cached_render(target);
+            res.set('Content-Type', 'text/html');
+            res.set('X-Prerender', from_cache ? 'cached' : 'rendered');
+            res.send(html).end();
+            return true;
+        }
+        dump_to(output_dir) {
+            this.crawl_all();
+            const base_origin = new URL(this.upstream()).origin;
+            const out = $node.path.resolve(output_dir);
+            $node.fs.mkdirSync(out, { recursive: true });
+            for (const url of this.discovered) {
+                const u = new URL(url);
+                if (u.origin !== base_origin)
+                    continue;
+                const entry = this.cache.get(url);
+                if (!entry)
+                    continue;
+                const rel = u.pathname.endsWith('/') || u.pathname === ''
+                    ? (u.pathname || '/') + 'index.html'
+                    : u.pathname;
+                const file = $node.path.join(out, decodeURIComponent(rel));
+                $node.fs.mkdirSync($node.path.dirname(file), { recursive: true });
+                $node.fs.writeFileSync(file, entry.html);
+                this.$.$mol_log3_done({
+                    place: this,
+                    message: 'dump',
+                    url,
+                    file,
+                });
+            }
+            const canonical_base = process.env.BOG_SEO_CANONICAL_BASE
+                ?? this.upstream().replace(/\/$/, '');
+            const sitemap_xml = (() => {
+                const entries = [...this.discovered];
+                const lastmod = new Date().toISOString().slice(0, 10);
+                const items = [];
+                for (const raw of entries) {
+                    try {
+                        const u = new URL(raw);
+                        if (u.origin !== base_origin)
+                            continue;
+                        items.push(canonical_base + u.pathname + u.search);
+                    }
+                    catch { }
+                }
+                const unique = [...new Set(items)];
+                const body = unique.map(loc => (`\t<url>\n\t\t<loc>${loc}</loc>\n\t\t<lastmod>${lastmod}</lastmod>\n\t</url>`)).join('\n');
+                return (`<?xml version="1.0" encoding="UTF-8"?>\n` +
+                    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+                    body + '\n' +
+                    `</urlset>\n`);
+            })();
+            $node.fs.writeFileSync($node.path.join(out, 'sitemap.xml'), sitemap_xml);
+            $node.fs.writeFileSync($node.path.join(out, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${canonical_base}/sitemap.xml\n`);
+            this.$.$mol_log3_done({
+                place: this,
+                message: 'dump complete',
+                pages: this.discovered.size,
+                output_dir: out,
+            });
+        }
+        expressProxy() {
+            return (req, res) => {
+                const target = new URL(this.upstream());
+                const options = {
+                    hostname: target.hostname,
+                    port: target.port || (target.protocol === 'https:' ? 443 : 80),
+                    path: req.originalUrl,
+                    method: req.method,
+                    headers: {
+                        ...req.headers,
+                        host: target.host,
+                    },
+                };
+                const proxy_req = $node.http.request(options, proxy_res => {
+                    res.writeHead(proxy_res.statusCode, proxy_res.headers);
+                    proxy_res.pipe(res, { end: true });
+                });
+                proxy_req.on('error', err => {
+                    this.$.$mol_log3_fail({
+                        place: `${this}.expressProxy()`,
+                        uri: req.path,
+                        message: err.message,
+                    });
+                    if (!res.headersSent) {
+                        res.status(502).send('Bad Gateway').end();
+                    }
+                });
+                req.pipe(proxy_req, { end: true });
+            };
+        }
+    }
+    $.$bog_seo = $bog_seo;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    setTimeout(() => {
+        const server = new $bog_seo();
+        const dump_dir = process.env.BOG_SEO_DUMP_DIR;
+        if (dump_dir) {
+            // One-shot dump: exit once written, otherwise the headless browser keeps
+            // the event loop alive forever and the (CI) process would hang.
+            Promise.resolve($mol_wire_async(server).dump_to(dump_dir)).then(() => process.exit(0), (error) => { console.error(error); process.exit(1); });
+            return;
+        }
+        server.http();
+        if (server.warmup_enabled()) {
+            $mol_wire_async(server).crawl_all();
+        }
+    });
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
     function $mol_offline() { }
     $.$mol_offline = $mol_offline;
 })($ || ($ = {}));
@@ -22246,9 +23657,94 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
+        /** Production origin the site is deployed to (canonical / OG URLs). */
+        const prod_base = 'https://b-on-g.github.io/smalljs/';
+        const site_name = 'smalljs';
+        const default_description = 'Documentation, playground, and interactive course for $mol — a reactive web framework with typed views, automatic reactivity, and no virtual DOM.';
+        /** UI languages, in nav order. The `_` variants are app locale codes; the
+         *  hreflang attribute uses the BCP-47 form (zh_hk → zh-HK). */
+        const meta_langs = ['en', 'ru', 'zh', 'zh_hk', 'ja', 'ko', 'fr', 'de', 'pt', 'it', 'uk', 'pl', 'cs', 'fa', 'bn'];
+        function hreflang_code(lang) {
+            return lang === 'zh_hk' ? 'zh-HK' : lang;
+        }
         class $bog_smalljs_app extends $.$bog_smalljs_app {
             section(next) {
                 return $mol_state_arg.value('section', next) ?? 'home';
+            }
+            /** Ordered arg pairs describing the current screen ($mol hash-router state). */
+            route_args() {
+                switch (this.section()) {
+                    case 'docs': {
+                        const slug = this.$.$mol_state_arg.value('page') || $bog_smalljs_content.default_slug();
+                        return [['section', 'docs'], ['page', slug]];
+                    }
+                    case 'playground': return [['section', 'playground']];
+                    case 'course': return [['section', 'course']];
+                    default: return [];
+                }
+            }
+            /** Serialize arg pairs into a $mol `#!a=b/c=d` hash (empty when no args). */
+            route_hash(extra = []) {
+                const pairs = [...extra, ...this.route_args()];
+                return pairs.length ? '#!' + pairs.map(([k, v]) => `${k}=${v}`).join('/') : '';
+            }
+            /** Per-page, per-language SEO/social metadata. Read by $bog_meta_attr →
+             *  `data-bog-meta` on the root, which the $bog_seo prerenderer injects into
+             *  <head> as <title>/<meta>/<link> for bots and social unfurls. */
+            meta() {
+                const lang = this.$.$mol_locale.lang();
+                const hash = this.route_hash();
+                const canonical = prod_base + hash;
+                let title = `${site_name} — the $mol reactive framework`;
+                let description = default_description;
+                switch (this.section()) {
+                    case 'docs': {
+                        const slug = this.$.$mol_state_arg.value('page') || $bog_smalljs_content.default_slug();
+                        const page_title = $bog_smalljs_content.page_title(slug, lang) ?? slug;
+                        title = `${page_title} — ${site_name}`;
+                        description = $bog_smalljs_content.page_summary(slug) ?? default_description;
+                        break;
+                    }
+                    case 'playground':
+                        title = `Playground — ${site_name}`;
+                        description = 'Write $mol view.tree and TypeScript in the browser and see it render live — no install required.';
+                        break;
+                    case 'course':
+                        title = `Interactive Course — ${site_name}`;
+                        description = 'Learn $mol step by step: reactive views, state, events, and routing, each in a live editor.';
+                        break;
+                }
+                const alternates = meta_langs.map(code => ({
+                    lang: hreflang_code(code),
+                    href: prod_base + this.route_hash([['mol_locale', code]]),
+                }));
+                alternates.push({ lang: 'x-default', href: canonical });
+                return {
+                    title,
+                    description,
+                    canonical,
+                    og_title: title,
+                    og_description: description,
+                    og_type: 'website',
+                    og_image: `${prod_base}bog/smalljs/assets/og.png`,
+                    alternates,
+                };
+            }
+            attr() {
+                return { ...super.attr(), ...$bog_meta_attr(this) };
+            }
+            /** Honor a `?mol_locale=<code>` URL param once on load, so shared
+             *  localized links (and hreflang alternates) select the right language. */
+            locale_synced = false;
+            locale_sync() {
+                if (this.locale_synced)
+                    return null;
+                const want = this.$.$mol_state_arg.value('mol_locale');
+                if (!want)
+                    return null;
+                this.locale_synced = true;
+                $mol_wire_async(this.$.$mol_locale).lang(want);
+                return null;
             }
             open_search() {
                 this.search_open(true);
@@ -22297,6 +23793,9 @@ var $;
                 }
             }
         }
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_app.prototype, "locale_sync", null);
         __decorate([
             $mol_action
         ], $bog_smalljs_app.prototype, "open_search", null);
