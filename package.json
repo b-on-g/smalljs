@@ -284,6 +284,8 @@
     "$mol_icon_open",
     "$bog_smalljs_docs",
     "$mol_icon_menu",
+    "$bog_smalljs_text",
+    "$mol_icon_launch",
     "$mol_icon_pencil",
     "$bog_smalljs_playground",
     "$mol_textarea",

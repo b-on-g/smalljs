@@ -7402,6 +7402,122 @@ declare namespace $ {
 //# sourceMappingURL=menu.view.tree.d.ts.map
 declare namespace $ {
 
+	export class $mol_icon_launch extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=launch.view.tree.d.ts.map
+declare namespace $ {
+
+	type $bog_smalljs_text_code__text_bog_smalljs_text_1 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_text['pre_text'] >
+		,
+		ReturnType< $bog_smalljs_text_code['text'] >
+	>
+	type $bog_smalljs_text_code__row_themes_bog_smalljs_text_2 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_text['pre_themes'] >
+		,
+		ReturnType< $bog_smalljs_text_code['row_themes'] >
+	>
+	type $bog_smalljs_text_code__highlight_bog_smalljs_text_3 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_text['highlight'] >
+		,
+		ReturnType< $bog_smalljs_text_code['highlight'] >
+	>
+	type $bog_smalljs_text_code__uri_resolve_bog_smalljs_text_4 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_text['uri_resolve'] >
+		,
+		ReturnType< $bog_smalljs_text_code['uri_resolve'] >
+	>
+	type $bog_smalljs_text_code__sidebar_showed_bog_smalljs_text_5 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_text['pre_sidebar_showed'] >
+		,
+		ReturnType< $bog_smalljs_text_code['sidebar_showed'] >
+	>
+	type $bog_smalljs_text_code__lang_bog_smalljs_text_6 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_text['pre_lang'] >
+		,
+		ReturnType< $bog_smalljs_text_code['lang'] >
+	>
+	type $bog_smalljs_text_code__playground_arg_bog_smalljs_text_7 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_text['pre_playground_arg'] >
+		,
+		ReturnType< $bog_smalljs_text_code['playground_arg'] >
+	>
+	type $bog_smalljs_text_code__playground_showed_bog_smalljs_text_8 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_text['pre_playground_showed'] >
+		,
+		ReturnType< $bog_smalljs_text_code['playground_showed'] >
+	>
+	export class $bog_smalljs_text extends $mol_text {
+		pre_text( id: any): string
+		pre_themes( id: any): readonly(string)[]
+		highlight( ): string
+		uri_resolve( id: any): string
+		code_sidebar_showed( ): boolean
+		pre_sidebar_showed( ): ReturnType< $bog_smalljs_text['code_sidebar_showed'] >
+		pre_lang( id: any): string
+		pre_playground_arg( id: any): Record<string, any>
+		pre_playground_showed( id: any): boolean
+		Pre( id: any): $bog_smalljs_text_code
+	}
+	
+	type $mol_link__arg_bog_smalljs_text_code_1 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_text_code['playground_arg'] >
+		,
+		ReturnType< $mol_link['arg'] >
+	>
+	type $mol_link__hint_bog_smalljs_text_code_2 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['hint'] >
+	>
+	type $mol_link__sub_bog_smalljs_text_code_3 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	export class $bog_smalljs_text_code extends $mol_text_code {
+		Playground_icon( ): $mol_icon_launch
+		lang( ): string
+		playground_arg( ): Record<string, any>
+		playground_showed( ): boolean
+		Playground( ): $mol_link
+	}
+	
+}
+
+//# sourceMappingURL=text.view.tree.d.ts.map
+declare namespace $.$$ {
+    /**
+     * $mol_text with language-aware code blocks: view.tree gets its own highlighter,
+     * and executable snippets (view.tree) grow an "Open in Playground" button.
+     */
+    class $bog_smalljs_text extends $.$bog_smalljs_text {
+        pre_text(index: number): string;
+        pre_themes(index: number): string[];
+        /** Fence info-string of a code block (chunk 1 of the flow token), e.g. `tree`, `typescript`. */
+        pre_lang(index: number): any;
+        /** Normalized language family used for grammar selection and playground gating. */
+        lang_kind(index: number): any;
+        pre_playground_showed(index: number): boolean;
+        pre_playground_arg(index: number): Record<string, string | null>;
+    }
+    /** Code block that picks a grammar by language and can offer an "Open in Playground" link. */
+    class $bog_smalljs_text_code extends $.$bog_smalljs_text_code {
+        render_visible_only(): boolean;
+        syntax(): any;
+        sub(): ($.$mol_link | $.$mol_list | $.$mol_button_copy)[];
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+
 	export class $mol_icon_pencil extends $mol_icon {
 		path( ): string
 	}
@@ -7431,10 +7547,10 @@ declare namespace $ {
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_text__text_bog_smalljs_docs_5 = $mol_type_enforce<
+	type $bog_smalljs_text__text_bog_smalljs_docs_5 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_docs['page_md'] >
 		,
-		ReturnType< $mol_text['text'] >
+		ReturnType< $bog_smalljs_text['text'] >
 	>
 	type $mol_link__uri_bog_smalljs_docs_6 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_docs['edit_uri'] >
@@ -7553,7 +7669,7 @@ declare namespace $ {
 		Menu_toggle( ): $mol_button_minor
 		sidebar_groups( ): readonly(any)[]
 		Sidebar( ): $mol_view
-		Body( ): $mol_text
+		Body( ): $bog_smalljs_text
 		Edit_icon( ): $mol_icon_pencil
 		Edit_label( ): string
 		Edit( ): $mol_link

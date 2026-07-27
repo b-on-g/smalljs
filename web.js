@@ -16840,6 +16840,231 @@ var $;
 
 
 ;
+	($.$mol_icon_launch) = class $mol_icon_launch extends ($.$mol_icon) {
+		path(){
+			return "M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z";
+		}
+	};
+
+
+;
+"use strict";
+
+
+;
+	($.$bog_smalljs_text) = class $bog_smalljs_text extends ($.$mol_text) {
+		pre_text(id){
+			return "";
+		}
+		pre_themes(id){
+			return [];
+		}
+		highlight(){
+			return "";
+		}
+		uri_resolve(id){
+			return "";
+		}
+		code_sidebar_showed(){
+			return true;
+		}
+		pre_sidebar_showed(){
+			return (this.code_sidebar_showed());
+		}
+		pre_lang(id){
+			return "";
+		}
+		pre_playground_arg(id){
+			return {};
+		}
+		pre_playground_showed(id){
+			return false;
+		}
+		Pre(id){
+			const obj = new this.$.$bog_smalljs_text_code();
+			(obj.text) = () => ((this.pre_text(id)));
+			(obj.row_themes) = () => ((this.pre_themes(id)));
+			(obj.highlight) = () => ((this.highlight()));
+			(obj.uri_resolve) = (id) => ((this.uri_resolve(id)));
+			(obj.sidebar_showed) = () => ((this.pre_sidebar_showed()));
+			(obj.lang) = () => ((this.pre_lang(id)));
+			(obj.playground_arg) = () => ((this.pre_playground_arg(id)));
+			(obj.playground_showed) = () => ((this.pre_playground_showed(id)));
+			return obj;
+		}
+	};
+	($mol_mem_key(($.$bog_smalljs_text.prototype), "Pre"));
+	($.$bog_smalljs_text_code) = class $bog_smalljs_text_code extends ($.$mol_text_code) {
+		Playground_icon(){
+			const obj = new this.$.$mol_icon_launch();
+			return obj;
+		}
+		lang(){
+			return "";
+		}
+		playground_arg(){
+			return {};
+		}
+		playground_showed(){
+			return false;
+		}
+		Playground(){
+			const obj = new this.$.$mol_link();
+			(obj.arg) = () => ((this.playground_arg()));
+			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_smalljs_text_code_Playground_hint")));
+			(obj.sub) = () => ([(this.Playground_icon())]);
+			return obj;
+		}
+	};
+	($mol_mem(($.$bog_smalljs_text_code.prototype), "Playground_icon"));
+	($mol_mem(($.$bog_smalljs_text_code.prototype), "Playground"));
+
+
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        /**
+         * Syntax grammar for view.tree, layered on top of $mol_syntax2 (the same tiny
+         * regex tokenizer $mol uses for its own code blocks). Token names are unique to
+         * this grammar, so their colors (see text.view.css.ts) never leak onto other code.
+         * Highlights, in priority order: line comments (`- \…`), string literals (`\…` and
+         * localized `@ \…`), components (`$…`), binding/super operators, structure markers
+         * (`/ * ?`), and primitives (numbers, null/true/false).
+         */
+        const tree_syntax = new $.$mol_syntax2({
+            'tree-comment': /- \\.*/,
+            'tree-string': /@ \\.*|\\.*/,
+            'tree-comp': /\$[\w$]*/,
+            'tree-oper': /<=>|<=|=>|\^/,
+            'tree-mark': /[\/*?]/,
+            'tree-prim': /\b(?:null|true|false|NaN)\b|[+-]?\d[\w.]*/,
+        });
+        /**
+         * $mol_text with language-aware code blocks: view.tree gets its own highlighter,
+         * and executable snippets (view.tree) grow an "Open in Playground" button.
+         */
+        class $bog_smalljs_text extends $.$bog_smalljs_text {
+            // Re-typing Pre* to our subclass regenerates the parent-side binding stubs, and
+            // the `text <= pre_text* \` re-listing emits an empty `pre_text` stub that shadows
+            // $mol_text's real implementation (which slices the code out of the flow token) —
+            // leaving every block empty (one blank line). Delegate back to the base method so
+            // blocks keep their multi-line source. Same story for per-line theme markers.
+            pre_text(index) {
+                return $mol_text.prototype.pre_text.call(this, index);
+            }
+            pre_themes(index) {
+                return $mol_text.prototype.pre_themes.call(this, index);
+            }
+            /** Fence info-string of a code block (chunk 1 of the flow token), e.g. `tree`, `typescript`. */
+            pre_lang(index) {
+                return this.flow_tokens()[index].chunks[1] ?? '';
+            }
+            /** Normalized language family used for grammar selection and playground gating. */
+            lang_kind(index) {
+                const lang = this.pre_lang(index).toLowerCase();
+                if (lang === 'tree' || lang === 'view.tree')
+                    return 'tree';
+                if (lang === 'ts' || lang === 'typescript')
+                    return 'ts';
+                return lang;
+            }
+            // Only view.tree snippets are self-contained enough to render in the playground
+            // (a bare view.ts has no root component to mount), so the button is tree-only.
+            pre_playground_showed(index) {
+                return this.lang_kind(index) === 'tree';
+            }
+            // $mol_link merges this dict into the URL args on click (null removes a key),
+            // so the reader lands on the playground seeded with exactly this snippet.
+            pre_playground_arg(index) {
+                return {
+                    section: 'playground',
+                    page: null,
+                    tab: 'tree',
+                    code: this.pre_text(index) + '\n',
+                    ts: null,
+                    css: null,
+                };
+            }
+        }
+        $$.$bog_smalljs_text = $bog_smalljs_text;
+        /** Code block that picks a grammar by language and can offer an "Open in Playground" link. */
+        class $bog_smalljs_text_code extends $.$bog_smalljs_text_code {
+            // Doc snippets are short, so the base's virtual-scroll windowing buys nothing.
+            // Render every line eagerly: it keeps measurement simple and the whole snippet
+            // present in the DOM (so in-page text search and "Copy" see the full source).
+            render_visible_only() {
+                return false;
+            }
+            syntax() {
+                const lang = this.lang().toLowerCase();
+                if (lang === 'tree' || lang === 'view.tree')
+                    return tree_syntax;
+                return super.syntax();
+            }
+            sub() {
+                return [
+                    this.Rows(),
+                    ...this.sidebar_showed() ? [this.Copy()] : [],
+                    ...this.playground_showed() ? [this.Playground()] : [],
+                ];
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_text_code.prototype, "sub", null);
+        $$.$bog_smalljs_text_code = $bog_smalljs_text_code;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    const { rem } = $mol_style_unit;
+    $mol_style_define($bog_smalljs_text_code, {
+        // The base component is a $mol_stack that overlaps its children in one cell;
+        // Copy sits top-left, so the playground link takes the top-right corner.
+        Playground: {
+            alignSelf: 'flex-start',
+            justifySelf: 'flex-end',
+            padding: rem(0.25),
+            color: $bog_builderui_tokens.shade,
+            background: { color: $bog_builderui_tokens.card },
+            border: { radius: rem(0.375) },
+            opacity: 0.65,
+            ':hover': {
+                opacity: 1,
+                color: $bog_builderui_tokens.control,
+            },
+        },
+        Playground_icon: {
+            width: rem(1.05),
+            height: rem(1.05),
+        },
+    });
+    // Colors for the view.tree grammar (see text.view.ts). These token-type names are
+    // produced only by $bog_smalljs_text_code, so plain attribute selectors are safe and
+    // cannot bleed onto other code blocks. Mid-lightness HSLA reads well in both themes,
+    // matching how base $mol tints its own tokens; structure/comments use the theme's
+    // muted `shade` var so they recede.
+    $mol_style_attach('$bog_smalljs_text_code.tree_syntax', `
+		[mol_text_code_token_type="tree-comp"] { color: hsl( 28, 80%, 52% ) }
+		[mol_text_code_token_type="tree-string"] { color: hsl( 96, 42%, 42% ) }
+		[mol_text_code_token_type="tree-oper"] { color: hsl( 210, 62%, 56% ) }
+		[mol_text_code_token_type="tree-prim"] { color: hsl( 45, 72%, 44% ) }
+		[mol_text_code_token_type="tree-mark"] { color: var( --bog_builderui_shade ) }
+		[mol_text_code_token_type="tree-comment"] { color: var( --bog_builderui_shade ); font-style: italic }
+	`);
+})($ || ($ = {}));
+
+;
 	($.$mol_icon_pencil) = class $mol_icon_pencil extends ($.$mol_icon) {
 		path(){
 			return "M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z";
@@ -16881,7 +17106,7 @@ var $;
 			return obj;
 		}
 		Body(){
-			const obj = new this.$.$mol_text();
+			const obj = new this.$.$bog_smalljs_text();
 			(obj.text) = () => ((this.page_md()));
 			return obj;
 		}
