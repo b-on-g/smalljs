@@ -7,13 +7,13 @@ $mol works in any editor, but a small set of tools makes `.view.tree` and typed 
 `create-view-tree-lsp` generates a ready-to-run $mol module so you do not assemble the boilerplate by hand:
 
 ```bash
-npm create view-tree-lsp bog/myapp
+npx create-view-tree-lsp bog/myapp
 ```
 
-The argument is the module path (`namespace/name`, or the equivalent `bog_myapp`). It writes the `view.tree`, `view.ts`, `view.css.ts`, and `index.html` for a working app, plus the GitHub Actions to deploy it. By default it also includes a **Giper Baza** local-first store, a **Docker** setup, and a **Tauri** desktop shell. Turn any of them off with a flag (npm forwards flags after the `--`):
+The argument is the module path (`namespace/name`, or the equivalent `bog_myapp`). It writes the `view.tree`, `view.ts`, `view.css.ts`, and `index.html` for a working app, plus the GitHub Actions to deploy it. By default it also includes a **Giper Baza** local-first store, a **Docker** setup, and a **Tauri** desktop shell. Turn any of them off with a flag:
 
 ```bash
-npm create view-tree-lsp bog/myapp -- --no-baza --no-docker --no-tauri
+npx create-view-tree-lsp bog/myapp --no-baza --no-docker --no-tauri
 ```
 
 A few pieces are opt-in instead:
@@ -21,7 +21,7 @@ A few pieces are opt-in instead:
 - `--backend` adds a `$mol_server` REST backend with `node:sqlite` storage and a shared TypeScript item type
 - `--prerender` and `--seo` add search-engine visibility, described under [Continuous integration](#!section=docs/page=tooling/Docs.Body=Continuous%20integration) below
 
-The scaffolder is a thin wrapper over the CLI in the language server, so `view-tree-lsp create bog/myapp` does the same thing once the server is installed.
+The scaffolder is a thin wrapper over the CLI in the language server, so `npx view-tree-lsp create bog/myapp` does the same thing directly.
 
 ## Continuous integration
 
@@ -44,10 +44,10 @@ With the Tauri option, `tauri.yml` builds desktop binaries on `v*` tags (or on d
 
 ## Language server
 
-`view-tree-lsp` is a Language Server Protocol implementation for the `view.tree` format. Install it globally:
+`view-tree-lsp` is a Language Server Protocol implementation for the `view.tree` format. Run it on demand with npx, no global install required:
 
 ```bash
-npm install -g view-tree-lsp@latest
+npx view-tree-lsp@latest
 ```
 
 It scans your workspace and gives any LSP-capable editor:
@@ -57,7 +57,7 @@ It scans your workspace and gives any LSP-capable editor:
 - an outline of component declarations for navigation
 - live updates as files change
 
-Because it speaks LSP, you can point any editor's language-client at the `view-tree-lsp` binary. The two integrations below wire it up for you.
+Because it speaks LSP, you can point any editor's language-client at `npx view-tree-lsp`. The two integrations below wire it up for you.
 
 ## Zed
 
