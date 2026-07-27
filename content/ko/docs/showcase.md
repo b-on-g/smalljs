@@ -1,0 +1,29 @@
+# 쇼케이스
+
+$mol로 만든 진짜 것들——커뮤니티 앱, 상업 제품, 개발자 도구. 하나같이 데모가 아니라 동작하는 앱입니다.
+
+## 앱
+
+- **[Bog Music](https://b-on-g.github.io/music/)**——Chrome 확장으로도 웹 앱으로도 동작하는 음악 플레이어. 백그라운드 재생과 오프라인 캐싱을 갖췄습니다. $mol이 UI와 로컬 우선 상태를 구동합니다.
+- **[Blitz Quiz](https://b-on-g.github.io/blitz/)**——$mol과 Giper Baza로 만든 Kahoot 스타일 라이브 퀴즈. 방은 CRDT 계층을 통해 실시간으로 동기화되므로, 돌릴 게임 서버가 없습니다.
+- **[VDO Rebalance](https://b-on-g.github.io/invest/)**——로컬 우선 투자 도구: `.xlsx` 포트폴리오를 넣으면 그것을 리밸런싱하는 거래가 나옵니다. 상태는 Giper Baza 위에서 브라우저 안에 존속합니다.
+- **[$hyoo_budget](https://budget.hyoo.ru)**——협업형, 로컬 우선 개인 예산 앱. Beautiful Code 해커톤에서 1위를 차지했습니다.
+- **[$hyoo_talks](https://talks.hyoo.ru)**——임베드 가능한 메신저. Sberbank를 위해 만든 프로토타입이 Moscow City Hack에서 2위를 차지했습니다.
+- **[가상 아바타](https://avatar.ocas.ai)**——대화하고, 체스를 두고, 슬라이드 발표를 부탁할 수 있는 3D 캐릭터. $mol이 서드파티 라이브러리 위에서 인터페이스를 구동하는 상업 제품입니다.
+
+## 디자인 시스템과 도구
+
+- **[BuilderUI](https://b-on-g.github.io/builderui/)**——$mol을 위한 shadcn 스타일 디자인 시스템: 타입이 있는 컴포넌트——버튼, 다이얼로그, 셀렉트, 카드, 차트 등——에 더해 라이브 테마 설정을 위한 Studio(기본 색, 강조 색, 차트 팔레트, 반경, 폰트, 밝게/어둡게). 이 문서 사이트가 바로 그 위에 세워져 있습니다.
+- **이 사이트**——여러분이 읽고 있는 문서는, [플레이그라운드](#!section=playground)와 [코스](#!section=course)를 포함해, $mol 앱입니다. 검색, 라이브 코드 편집기, 브라우저 내 TypeScript는 모두 그것들이 문서화하는 바로 그 프레임워크로 만들어졌습니다.
+- **MAM**——모든 $mol 앱이 깃드는 빌드 도구이자 모듈 레지스트리이며, 그 자체가 $mol 프로젝트입니다. 호스팅된 앱이라기보다 개발자 도구이며, 소스는 GitHub에 있습니다.
+- **view.tree LSP**——언어 도구와 새 $mol 앱을 시작하는 `npm create view-tree-lsp` 스캐폴더. 편집기 도구라서 열어 볼 실행 중인 앱은 없습니다.
+
+## 해커톤과 상업적 활용
+
+$mol은 해커톤에서 거듭 우승했습니다: Beautiful Code 1위([$hyoo_budget](https://budget.hyoo.ru)), AC-VO-PPR-Hackathon 1위(거리 디스플레이를 제스처와 음성으로 제어), 그리고 More Tech, Moscow City Hack, Dev Hack에서의 수상 프로토타입. 온라인 상점 백오피스에서 드론 방어 제어 패널까지 상업·산업 시스템에서도 쓰입니다. $mol의 [성공 사례 페이지](https://mol.hyoo.ru/#!section=docs/=xanlom_yimh6x)에 자세한 내용이 있습니다.
+
+## 더 보기
+
+[$mol 컴포넌트 카탈로그](https://mol.hyoo.ru/#!section=demos)에는 열어서 살펴볼 수 있는 라이브 컴포넌트와 데모가 수십 개 있습니다.
+
+$mol로 무언가 만들고 있나요? 다음 단계로 가장 좋은 것은 [플레이그라운드](#!section=playground)입니다——몇 초 만에 아이디어를 시도하고 URL을 공유하세요.
