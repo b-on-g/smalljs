@@ -220,6 +220,7 @@ const page_entries = slugs.map( slug => {
 		`\t\t\t\t'${ slug }': {\n` +
 		`\t\t\t\t\tslug: '${ slug }',\n` +
 		`\t\t\t\t\ttitle: ${ JSON.stringify( titles[ slug ] ) },\n` +
+		`\t\t\t\t\tsummary: ${ JSON.stringify( ( meta[ slug ] && meta[ slug ].summary ) || '' ) },\n` +
 		`\t\t\t\t\tfile: '${ file }',\n` +
 		`\t\t\t\t\tmd: ${ embed( md ) },\n` +
 		( tr_keys.length ? `\t\t\t\t\ttr: {\n${ tr_entries }\n\t\t\t\t\t},\n` : '' ) +
@@ -244,6 +245,8 @@ const out = `namespace $ {
 	export type $bog_smalljs_content_page = {
 		slug: string
 		title: string
+		/** One-line description, used for meta/OG descriptions and llms.txt. */
+		summary: string
 		/** GitHub-relative path, for the Edit-on-GitHub link. */
 		file: string
 		md: string
@@ -299,6 +302,13 @@ ${ page_entries }
 			return page.tr?.[ lang ]?.title ?? page.title
 		}
 
+		/** One-line summary for a page (language-neutral, from the manifest). */
+		static page_summary( slug: string ): string | null {
+			const page = this.pages()[ slug ]
+			if( !page ) return null
+			return page.summary || null
+		}
+
 		static default_slug(): string {
 			return '${ default_slug }'
 		}
@@ -323,6 +333,25 @@ for ( const sec of sections ) {
 	}
 }
 fs.writeFileSync( path.join( root, 'llms.txt' ), llms )
+
+// --- sitemap.xml + robots.txt ------------------------------------------------
+// The app is a hash-routed SPA, so `#!section=…` deep links are not distinct URLs
+// to crawlers. The genuinely crawlable URLs are the site root and the raw Markdown
+// endpoints (/docs/<slug>.md) that the deploy publishes. Enumerate those here
+// deterministically instead of relying on a link crawl (which only ever sees root).
+const lastmod = new Date().toISOString().slice( 0, 10 )
+const sitemap_urls = [ prod_base + '/' ]
+	.concat( slugs.map( slug => `${ prod_base }/docs/${ slug }.md` ) )
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n`
+	+ `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`
+	+ sitemap_urls.map( loc =>
+		`\t<url>\n\t\t<loc>${ loc }</loc>\n\t\t<lastmod>${ lastmod }</lastmod>\n\t</url>`
+	).join( '\n' )
+	+ `\n</urlset>\n`
+fs.writeFileSync( path.join( root, 'sitemap.xml' ), sitemap )
+
+const robots = `User-agent: *\nAllow: /\n\nSitemap: ${ prod_base }/sitemap.xml\n`
+fs.writeFileSync( path.join( root, 'robots.txt' ), robots )
 
 // --- Interactive course lessons ----------------------------------------------
 // Authored inline (this file is .cjs, not scanned by MAM, so real $mol_* is fine);
