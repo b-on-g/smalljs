@@ -42,7 +42,18 @@
 
 ✅ **DESLOP ЗАВЕРШЁН** (HEAD 3b1f590). Вердикт: контент уже был написан на настоящем doc-голосе (Vue/MDN-уровень) — grep по всему хайп-списку (powerful/seamless/robust/blazing/leverage/moreover/"in the world of"/"let's dive in" и т.д.) = 0 совпадений, ни эмодзи, ни восклицаний в прозе. Единственный реальный слоп — перебор тире: поправлено 5 абзацев (пары тире → скобки/запятые) в routing/data-schema/showcase/ghost. Технических неточностей не найдено.
 
-🏁 **ПРОЕКТ smalljs — ВСЕ ЭТАПЫ ЗАКРЫТЫ.** Сайт собран (все спринты 0b→6), пост-ревью полиш, 33 стр × 13 языков (+ru, +en = 15 локалей селектора; API через генераторный i18n), deslop. Осталось на усмотрение юзера: (1) ревью машинных переводов носителями (особ. fa RTL, bn); (2) опциональный ресинк переводов под desloped-EN (дифф минимальный — 5 абзацев). Self-heal при обрыве. Флаг: переводы LLM (машинные), нужно ревью носителей (особенно fa RTL, bn).
+🌙 **НОЧНОЙ ПРОГОН улучшений (2026-07-28), автономно WS3→WS4→WS5:**
+- WS1 ✅ Код: подсветка view.tree/TS + Copy + Open-in-Playground (`71a402b`)
+- WS2 ✅ SEO/соц: per-page meta + hreflang×15 + sitemap/robots/llms + og:image + $bog_seo (`12a8368`; shared bog `6aab751`)
+- WS2b ✅ Path-routing: `$bog_builderui_router.activate('/smalljs/')` + 404.html + pathname canonical/sitemap (`61a68d2`). NB: нашли баг — no-arg `activate()` без dev-guard (задевает studio), обошли явным mount; рекомендация владельцу починить централизованно.
+- WS3 ✅ Zed-редизайн (`3655396`). Сигнатура «hero = view.tree» (живое демо $bog_smalljs_demo + подсвеченный код → результат), EB Garamond weight 500 + трекинг −0.02em, mono-eyebrow'ы, акцент=цвета подсветки (blue/orange, per-lights AA), крисп-кнопки, hero-rise анимация + focus-visible + reduced-motion, docs active accent-bar. Обе темы проверены скриншотами. Moler-design упал до коммита — подобрал и закоммитил сам.
+- WS4 🔧 Живые примеры + контент (Moler-live). Приоритет: inline-live-примеры в доке (view.tree→результат, переиспользуя demo/playground+подсветку) → feedback-виджет → self-host шрифтов → Lighthouse → (стретч) cookbook/enrich API.
+- WS5 ⏳ Истории успеха (источник: mol.hyoo.ru «Истории успеха» xanlom_yimh6x)
+
+Дизайн-скил: официальный **frontend-design** из `anthropics/skills` (`/plugin marketplace add anthropics/skills`), установлен юзером.
+
+---
+(архив) 🏁 **Ранее: перевод-паритет + deslop закрыты.** Сайт собран (все спринты 0b→6), пост-ревью полиш, 33 стр × 13 языков (+ru, +en = 15 локалей селектора; API через генераторный i18n), deslop. Осталось на усмотрение юзера: (1) ревью машинных переводов носителями (особ. fa RTL, bn); (2) опциональный ресинк переводов под desloped-EN (дифф минимальный — 5 абзацев). Self-heal при обрыве. Флаг: переводы LLM (машинные), нужно ревью носителей (особенно fa RTL, bn).
 4. **Deslop-молер (ПОСЛЕДНИМ, после ВСЕХ переводов — явное указание юзера)**: убрать слоп-обороты, позаимствовать стиль реальной документации.
 
 _Заметка: `landing.view.tree` hero пересобран в pre/accent/post-спаны (intentional) — не откатывать._
