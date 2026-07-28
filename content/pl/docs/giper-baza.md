@@ -1,6 +1,10 @@
 # Giper Baza
 
-Giper Baza to warstwa danych local-first w $mol: magazyn CRDT, który utrwala się lokalnie i automatycznie synchronizuje między klientami. Modelujesz dane jako encje; odczyty i zapisy wyglądają jak zwykłe właściwości reaktywne, a replikacja po prostu się dzieje.
+[Giper Baza](https://github.com/giper-dev/baza) to **osobny, opcjonalny projekt** — nie jest wbudowaną częścią $mol. Jego autorzy opisują go jako *zdecentralizowaną, wysokodostępną bazę danych z bezkonfliktową synchronizacją w czasie rzeczywistym*: magazyn CRDT, który utrwala się lokalnie i replikuje między klientami bez centralnego serwera, z podpisami cyfrowymi i szyfrowaniem end-to-end. Do zbudowania aplikacji $mol nigdy go nie potrzebujesz; sięgaj po niego tylko wtedy, gdy wielu klientów lub urządzeń musi współdzielić te same dane na żywo.
+
+> Chcesz tylko, aby aplikacja działała dalej bez sieci? To zwykły tryb offline, a $mol obsługuje go za pomocą service workera — zobacz [Offline](#!section=docs/page=offline). Giper Baza idzie o krok dalej: synchronizuje dane *między* klientami, zamiast buforować zasoby jednego klienta.
+
+Gdy faktycznie modelujesz nim dane, encje wyglądają jak zwykłe właściwości reaktywne, a replikacja po prostu się dzieje.
 
 > Ta strona przedstawia kształt API. Giper Baza to obszerny temat — potraktuj to jako mapę, a nie całe terytorium.
 

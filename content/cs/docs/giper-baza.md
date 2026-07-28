@@ -1,6 +1,10 @@
 # Giper Baza
 
-Giper Baza je local-first datová vrstva $mol: CRDT úložiště, které přetrvává lokálně a automaticky se synchronizuje mezi klienty. Data modelujete jako entity; čtení a zápisy vypadají jako běžné reaktivní vlastnosti a replikace se prostě děje.
+[Giper Baza](https://github.com/giper-dev/baza) je **samostatný, volitelný projekt** — není vestavěnou součástí $mol. Jeho autoři jej popisují jako *decentralizovanou, vysoce dostupnou databázi s bezkonfliktní synchronizací v reálném čase*: CRDT úložiště, které přetrvává lokálně a replikuje se mezi klienty bez centrálního serveru, s digitálními podpisy a end-to-end šifrováním. K sestavení aplikace v $mol jej nikdy nepotřebujete; sáhněte po něm jen tehdy, když více klientů nebo zařízení musí sdílet stejná živá data.
+
+> Chcete jen, aby vaše aplikace fungovala i bez sítě? To je prostý offline a $mol jej zajišťuje pomocí service workeru — viz [Offline](#!section=docs/page=offline). Giper Baza jde o krok dál: synchronizuje data *mezi* klienty, místo aby ukládala do mezipaměti prostředky jednoho klienta.
+
+Když s ním data skutečně modelujete, entity vypadají jako běžné reaktivní vlastnosti a replikace se prostě děje.
 
 > Tato stránka představuje podobu API. Giper Baza je rozsáhlé téma — berte to jako mapu, ne celé území.
 

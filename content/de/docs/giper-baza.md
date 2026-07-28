@@ -1,6 +1,10 @@
 # Giper Baza
 
-Giper Baza ist die local-first Datenschicht von $mol: ein CRDT-Speicher, der lokal persistiert und automatisch zwischen Clients synchronisiert. Sie modellieren Daten als Entitäten; Lese- und Schreibvorgänge sehen aus wie gewöhnliche reaktive Eigenschaften, und die Replikation geschieht einfach.
+[Giper Baza](https://github.com/giper-dev/baza) ist ein **eigenständiges, optionales Projekt** — kein fester Bestandteil von $mol. Seine Autoren beschreiben es als *dezentrale, hochverfügbare Datenbank mit konfliktfreier Echtzeit-Synchronisation*: ein CRDT-Speicher, der lokal persistiert und ohne zentralen Server zwischen Clients repliziert, mit digitalen Signaturen und Ende-zu-Ende-Verschlüsselung. Für den Bau einer $mol-App brauchen Sie es nie; greifen Sie nur dann darauf zurück, wenn mehrere Clients oder Geräte dieselben Live-Daten teilen müssen.
+
+> Sie möchten nur, dass Ihre App ohne Netzwerk weiterläuft? Das ist einfaches Offline, und $mol erledigt es mit einem Service Worker — siehe [Offline](#!section=docs/page=offline). Giper Baza geht einen Schritt weiter: Daten *zwischen* Clients synchronisieren, statt die Assets eines einzelnen Clients zwischenzuspeichern.
+
+Wenn Sie damit tatsächlich Daten modellieren, sehen Entitäten aus wie gewöhnliche reaktive Eigenschaften, und die Replikation geschieht einfach.
 
 > Diese Seite stellt die Form der API vor. Giper Baza ist ein großes Thema — betrachten Sie dies als Karte, nicht als das gesamte Gebiet.
 
