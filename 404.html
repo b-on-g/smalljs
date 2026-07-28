@@ -6,6 +6,26 @@
 <meta name="color-scheme" content="light dark" />
 <meta name="robots" content="noindex" />
 <title>Page not found — smalljs</title>
+<script>
+	// SPA fallback for GitHub Pages (rafgraph/spa-github-pages). Runs in <head> so a
+	// deep-link redirect happens BEFORE the body paints — no visible "404" flash.
+	// project-pages layout is `b-on-g.github.io/smalljs/…`, so keep 1 path segment.
+	;( function () {
+		var keep = 1
+		var l = window.location
+		var segments = l.pathname.slice( 1 ).split( '/' )
+		var root = l.pathname.split( '/' ).slice( 0, 1 + keep ).join( '/' ) + '/'
+		var rest = segments.slice( keep ).filter( Boolean ).join( '/' ).replace( /&/g, '~and~' )
+		if( rest ) {
+			l.replace(
+				l.protocol + '//' + l.hostname + ( l.port ? ':' + l.port : '' ) +
+				root + '?/' + rest +
+				( l.search ? '&' + l.search.slice( 1 ).replace( /&/g, '~and~' ) : '' ) +
+				l.hash
+			)
+		}
+	} )()
+</script>
 <style>
 	:root {
 		color-scheme: light dark;
@@ -98,34 +118,15 @@
 		<div class="code">404</div>
 		<p class="title">This page could not be found.</p>
 		<div class="actions">
-			<button class="btn" type="button" id="spa">← Back</button>
-			<a class="btn primary" id="home" href="spa">Go home</a>
+			<a class="btn primary" id="home" href="./">Go home</a>
 		</div>
 	</div>
 <script>
-	// SPA fallback for GitHub Pages, per rafgraph/spa-github-pages.
-	// project-pages layout is `b-on-g.github.io/smalljs/…`, so keep 1 path segment.
+	// Only reached when there was nothing to redirect (a genuine 404 under the mount).
+	// Point "Go home" at the app root regardless of how deep the missing path was.
 	;( function () {
-		var keep = 1
-		var l = window.location
-		var segments = l.pathname.slice( 1 ).split( '/' )
-		var root = l.pathname.split( '/' ).slice( 0, 1 + keep ).join( '/' ) + '/'
-		var rest = segments.slice( keep ).filter( Boolean ).join( '/' ).replace( /&/g, '~and~' )
-
-		function spaFallback( e ) {
-			if( e ) e.preventDefault()
-			l.replace(
-				l.protocol + '//' + l.hostname + ( l.port ? ':' + l.port : '' ) +
-				root + '?/' + rest +
-				( l.search ? '&' + l.search.slice( 1 ).replace( /&/g, '~and~' ) : '' ) +
-				l.hash
-			)
-		}
-
-		document.getElementById( 'spa' ).addEventListener( 'click', spaFallback )
-		document.getElementById( 'home' ).addEventListener( 'click', spaFallback )
-
-		if( rest ) spaFallback()
+		var root = window.location.pathname.split( '/' ).slice( 0, 2 ).join( '/' ) + '/'
+		document.getElementById( 'home' ).setAttribute( 'href', root )
 	} )()
 </script>
 </body>
