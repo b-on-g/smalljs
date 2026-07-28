@@ -52,7 +52,11 @@
 - WS5 ✅ Истории успеха (`2119615`): секция `## In production` на showcase (EN) — 6 коммерческих проектов (drone-defense без ссылки/NDA, avatar → avatar.ocas.ai, промпт-админка, счётчики, бэк-офис, научный виджет), сдержанным тоном, без домыслов. Старая «Hackathons and commercial use» → «Hackathons».
   - 🔑 Moler-trust нашёл НАСТОЯЩУЮ причину «Bad link» (site-wide регрессия WS4-live): кастомный `$bog_smalljs_text` через `uri_resolve* <= uri_resolve*` генерил keyed-стаб, ШАДОВИВШИЙ `$mol_text.uri_resolve` → "" → «Bad link» на КАЖДОЙ инлайн-ссылке (team=8, faq=7, releases=3, showcase, …). Фикс — делегирование `uri_resolve` в `$mol_text.prototype` (тот же класс, что pre_text/pre_themes). Проверено: team/faq/releases/showcase = 0 битых, все ссылки с href. Мой ранний диагноз (дубль page=state) БЫЛ НЕВЕРЕН — дубли на data-schema/routing работают нормально. Баг записан в память [[mol_uri_resolve_shadow_bad_link]].
 
-🏁 **НОЧНОЙ ПРОГОН ЗАКРЫТ: WS1–WS5 все в проде + критичный uri_resolve-фикс.** Follow-ups (не блокеры): (1) перевод showcase отстаёт (EN добавил In production + переименовал Hackathons; 13+ru — старая структура); (2) fonts self-host — Google @import в shared theme.css; (3) shared-router `activate()` без dev-guard.
+🚨 **КРИТИЧНО (2026-07-28 утро): деплой падал с вечера → прод был на СТАРОМ билде** (потому и «Bad link» + старый дизайн у юзера; локально web-бандл зелёный, но CI собирает и node-бандл — он валился). Причины: (1) JSDoc `$bog_seo` в app.view.ts тащил bog/seo→puppeteer в node-граф → TS4050; (2) `router.node.ts` `activate()` без арг ≠ web `activate(mount?)` → TS2554. Фиксы: убрал токен из комментария (smalljs `94ade2e`); сигнатурный паритет + **dev-guard** в роутере (builderui `8c98563`, репо b-on-g/builderui, ветка main). **Деплой теперь success, прод обновился (новый герой живой).** node.audit+web.audit passed. → задача #3 (router dev-guard) ЗАКРЫТА.
+
+Осталось по запросу юзера: (A) перевод showcase (In production + rename Hackathons) на 13+ru — 🔧 Moler-showcase-i18n; (B) self-host шрифтов на уровне app (не в shared theme.css) — Inter/EB Garamond/JetBrains Mono.
+
+(архив) 🏁 Ночной прогон WS1–WS5 + uri_resolve-фикс — сделаны, но задеплоились только сейчас (см. выше).
 - WS5 ⏳ Истории успеха (источник: mol.hyoo.ru «Истории успеха» xanlom_yimh6x)
 
 Дизайн-скил: официальный **frontend-design** из `anthropics/skills` (`/plugin marketplace add anthropics/skills`), установлен юзером.
