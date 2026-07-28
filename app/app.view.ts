@@ -36,6 +36,13 @@ namespace $.$$ {
 			return $mol_state_arg.value( 'section', next ) ?? 'home'
 		}
 
+		/** Browser tab title. $mol_view writes the root's title() to document.title;
+		 *  the default was the class name ("Root"). Mirror the per-page, per-language
+		 *  meta title instead ("Views — smalljs", "smalljs — the $mol reactive …"). */
+		title() {
+			return this.meta().title ?? super.title()
+		}
+
 		/** Ordered arg pairs describing the current screen ($mol hash-router state). */
 		route_args(): [ string, string ][] {
 			switch( this.section() ) {
