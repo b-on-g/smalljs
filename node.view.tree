@@ -1175,56 +1175,243 @@ $mol_text_list_item $mol_paragraph
 		^
 		mol_text_list_item_index <= index 0
 
-$mol_icon_play $mol_icon path \M8,5.14V19.14L19,12.14L8,5.14Z
-
 $mol_icon_arrow_right $mol_icon path \M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z
 
 $mol_icon_open_in_new $mol_icon path \M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z
+
+$mol_icon_play $mol_icon path \M8,5.14V19.14L19,12.14L8,5.14Z
+
+$mol_icon_launch $mol_icon path \M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z
+
+$bog_smalljs_text $mol_text
+	Pre* $bog_smalljs_text_code
+		text <= pre_text* \
+		row_themes <= pre_themes* /string
+		highlight <= highlight \
+		uri_resolve* <= uri_resolve* \
+		sidebar_showed <= pre_sidebar_showed <= code_sidebar_showed true
+		lang <= pre_lang* \
+		playground_arg <= pre_playground_arg* *
+		playground_showed <= pre_playground_showed* false
+
+$bog_smalljs_text_code $mol_text_code
+	lang \
+	playground_arg *
+	playground_showed false
+	run? false
+	attr *
+		^
+		bog_smalljs_run_active <= run
+	Run $mol_button_minor
+		click? <=> run_click? null
+		hint @ \Toggle live result
+		sub /
+			<= Run_icon $mol_icon_play
+	Live $bog_smalljs_text_live
+		tree <= text
+	Playground $mol_link
+		arg <= playground_arg
+		hint @ \Open in Playground
+		sub /
+			<= Playground_icon $mol_icon_launch
+
+$bog_smalljs_text_live $mol_view
+	tree \
+	sub /
+		<= Label $mol_view
+			sub / <= label_text @ \Live result
+		<= Output $mol_view
+			sub <= live_content /
+
+$mol_textarea $mol_stack
+	attr *
+		^
+		mol_textarea_clickable <= clickable? false
+		mol_textarea_sidebar_showed <= sidebar_showed false
+	event *
+		keydown? <=> press? null
+		pointermove? <=> hover? null
+	sub /
+		<= Edit $mol_textarea_edit
+			value? <=> value? \
+			hint <= hint \ 
+			enabled <= enabled true
+			spellcheck <= spellcheck true
+			length_max <= length_max +Infinity
+			selection? <=> selection? /number
+			bring => bring
+			submit? <=> submit? null
+			submit_with_ctrl <= submit_with_ctrl true
+		<= View $mol_text_code
+			text <= value
+			render_visible_only false
+			row_numb* <= row_numb* 0
+			sidebar_showed <= sidebar_showed
+			highlight <= highlight \
+			syntax <= syntax $mol_syntax2
+	symbols_alt *string
+		comma \<
+		period \>
+		dash \−
+		equals \≈
+		graveAccent \́
+		forwardSlash \÷
+		E \€
+		V \✔
+		X \×
+		C \©
+		P \§
+		H \₽
+		key0 \°
+		key8 \•
+		key2 \@
+		key3 \#
+		key4 \$
+		key6 \^
+		key7 \&
+		bracketOpen \[
+		bracketClose \]
+		slashBack \|
+	symbols_alt_ctrl *string
+		space \ 
+	symbols_alt_shift *string
+		V \✅
+		X \❌
+		O \⭕
+		key1 \❗
+		key4 \💲
+		key7 \❓
+		comma \«
+		period \»
+		semicolon \“
+		quoteSingle \”
+		dash \—
+		equals \≠
+		graveAccent \̱
+		bracketOpen \{
+		bracketClose \}
+
+$mol_textarea_edit $mol_string
+	dom_name \textarea
+	enter \enter
+	field *
+		^
+		scrollTop 0
+
+$bog_smalljs_playground $mol_view
+	tab \tree
+	draft? \
+	editor_hint \
+	seed_tree \
+	seed_ts \
+	seed_css \
+	store_scope \
+	attr *
+		bog_smalljs_pg_tab <= tab
+	sub /
+		<= Editor_pane $mol_view
+			sub /
+				<= Tabs $mol_view
+					sub /
+						<= Tree_tab $mol_button_minor
+							click? <=> show_tree? null
+							sub / <= tree_tab_label @ \view.tree
+						<= Ts_tab $mol_button_minor
+							click? <=> show_ts? null
+							sub / <= ts_tab_label @ \view.ts
+						<= Css_tab $mol_button_minor
+							click? <=> show_css? null
+							sub / <= css_tab_label @ \view.css.ts
+				<= Editor $mol_textarea
+					value? <=> draft?
+					hint <= editor_hint
+		<= Preview_pane $mol_view
+			sub /
+				<= Preview_label $mol_view
+					sub / <= preview_label_text @ \Preview
+				<= Preview $mol_view
+					sub <= preview_content /
+
+$bog_smalljs_demo $mol_view
+	name? \mol
+	sub /
+		<= Name $mol_string
+			hint @ \Type a name
+			value? <=> name?
+		<= Greeting $mol_view
+			sub /
+				<= greeting \Hello, mol!
 
 $bog_smalljs_landing $mol_view
 	sub /
 		<= Hero $mol_view
 			sub /
-				<= Hero_title $mol_view
-					dom_name \h1
+				<= Hero_head $mol_view
 					sub /
-						<= Hero_title_pre @ \$mol — the reactive
-						<= Hero_title_accent $mol_view
-							dom_name \span
+						<= Hero_eyebrow $mol_view
 							sub /
-								<= Hero_title_accent_text @ \micromodule
-						<= Hero_title_post @ \ framework
-				<= Hero_subtitle $mol_view
+								<= Hero_eyebrow_text @ \Reactive micromodules
+						<= Hero_title $mol_view
+							dom_name \h1
+							sub /
+								<= Hero_title_pre @ \$mol — the reactive
+								<= Hero_title_accent $mol_view
+									dom_name \span
+									sub /
+										<= Hero_title_accent_text @ \micromodule
+								<= Hero_title_post @ \ framework
+						<= Hero_subtitle $mol_view
+							sub /
+								<= Hero_subtitle_text @ \A progressive web app framework. Extremely simple, deeply capable. Innovations and batteries included.
+						<= Hero_actions $mol_view
+							sub /
+								<= Hero_cta_start $mol_link
+									arg *
+										section \docs
+										page \getting-started
+									sub /
+										<= Hero_cta_start_label @ \Get Started
+										<= Hero_cta_start_icon $mol_icon_arrow_right
+								<= Hero_cta_play $mol_link
+									arg *
+										section \playground
+										page \
+									sub /
+										<= Hero_cta_play_label @ \Try Playground
+										<= Hero_cta_play_icon $mol_icon_open_in_new
+								<= Hero_cta_why $mol_link
+									arg *
+										section \docs
+										page \introduction
+									sub /
+										<= Hero_cta_why_label @ \Why $mol
+										<= Hero_cta_why_icon $mol_icon_arrow_right
+				<= Signature $mol_view
 					sub /
-						<= Hero_subtitle_text @ \A progressive web app framework. Extremely simple, deeply capable. Innovations and batteries included.
-				<= Hero_actions $mol_view
-					sub /
-						<= Hero_cta_why $mol_link
-							arg *
-								section \docs
-								page \introduction
+						<= Sign_panel $mol_view
 							sub /
-								<= Hero_cta_why_icon $mol_icon_play
-								<= Hero_cta_why_label @ \Why $mol
-						<= Hero_cta_start $mol_link
-							arg *
-								section \docs
-								page \getting-started
+								<= Sign_code $mol_view
+									sub /
+										<= Sign_code_label $mol_view
+											sub /
+												<= Sign_code_label_text @ \view.tree
+										<= Sign_code_view $bog_smalljs_text_code
+											text <= code \
+											lang \tree
+											sidebar_showed false
+											playground_showed false
+								<= Sign_arrow $mol_view
+									sub /
+										<= Sign_arrow_text \→
+								<= Sign_live $mol_view
+									sub /
+										<= Sign_live_label $mol_view
+											sub /
+												<= Sign_live_label_text @ \live
+										<= Sign_demo $bog_smalljs_demo
+						<= Sign_caption $mol_view
 							sub /
-								<= Hero_cta_start_label @ \Get Started
-								<= Hero_cta_start_icon $mol_icon_arrow_right
-						<= Hero_cta_install $mol_link
-							title @ \Install
-							arg *
-								section \docs
-								page \getting-started
-						<= Hero_cta_play $mol_link
-							arg *
-								section \playground
-								page \
-							sub /
-								<= Hero_cta_play_label @ \Try Playground
-								<= Hero_cta_play_icon $mol_icon_open_in_new
+								<= Sign_caption_text @ \This is the whole component.
 		<= Features $mol_view
 			sub /
 				<= Feature1 $mol_view
@@ -1377,30 +1564,11 @@ $bog_smalljs_landing $mol_view
 
 $mol_icon_menu $mol_icon path \M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z
 
-$mol_icon_launch $mol_icon path \M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z
-
-$bog_smalljs_text $mol_text
-	Pre* $bog_smalljs_text_code
-		text <= pre_text* \
-		row_themes <= pre_themes* /string
-		highlight <= highlight \
-		uri_resolve* <= uri_resolve* \
-		sidebar_showed <= pre_sidebar_showed <= code_sidebar_showed true
-		lang <= pre_lang* \
-		playground_arg <= pre_playground_arg* *
-		playground_showed <= pre_playground_showed* false
-
-$bog_smalljs_text_code $mol_text_code
-	lang \
-	playground_arg *
-	playground_showed false
-	Playground $mol_link
-		arg <= playground_arg
-		hint @ \Open in Playground
-		sub /
-			<= Playground_icon $mol_icon_launch
-
 $mol_icon_pencil $mol_icon path \M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z
+
+$mol_icon_thumb_up $mol_icon path \M23,10C23,8.89 22.1,8 21,8H14.68L15.64,3.43C15.66,3.33 15.67,3.22 15.67,3.11C15.67,2.7 15.5,2.32 15.23,2.05L14.17,1L7.59,7.58C7.22,7.95 7,8.45 7,9V19A2,2 0 0,0 9,21H18C18.83,21 19.54,20.5 19.84,19.78L22.86,12.73C22.95,12.5 23,12.26 23,12V10M1,21H5V9H1V21Z
+
+$mol_icon_thumb_down $mol_icon path \M19,15H23V3H19M15,3H6C5.17,3 4.46,3.5 4.16,4.22L1.14,11.27C1.05,11.5 1,11.74 1,12V14A2,2 0 0,0 3,16H9.31L8.36,20.57C8.34,20.67 8.33,20.77 8.33,20.88C8.33,21.3 8.5,21.67 8.77,21.94L9.83,23L16.41,16.41C16.78,16.05 17,15.55 17,15V5C17,3.89 16.1,3 15,3Z
 
 $bog_smalljs_docs $mol_view
 	page \introduction
@@ -1428,6 +1596,8 @@ $bog_smalljs_docs $mol_view
 					sub /
 						<= Edit_icon $mol_icon_pencil
 						<= Edit_label @ \Edit this page on GitHub
+				<= Feedback $mol_view
+					sub <= feedback_content /
 				<= Nav $mol_view
 					sub <= nav_links /
 		<= Toc $mol_view
@@ -1447,6 +1617,20 @@ $bog_smalljs_docs $mol_view
 	Toc_link* $mol_link
 		arg <= toc_arg* *
 		sub / <= toc_text* \
+	Feedback_prompt $mol_view
+		sub / <= feedback_prompt_text @ \Was this helpful?
+	Feedback_yes $mol_button_minor
+		click? <=> feedback_yes? null
+		sub /
+			<= Feedback_yes_icon $mol_icon_thumb_up
+			<= feedback_yes_label @ \Yes
+	Feedback_no $mol_button_minor
+		click? <=> feedback_no? null
+		sub /
+			<= Feedback_no_icon $mol_icon_thumb_down
+			<= feedback_no_label @ \No
+	Feedback_thanks $mol_view
+		sub / <= feedback_thanks_text @ \Thanks for the feedback!
 	Prev $mol_link
 		arg <= prev_arg *
 		sub /
@@ -1461,115 +1645,6 @@ $bog_smalljs_docs $mol_view
 				sub / <= next_hint_text @ \Next
 			<= Next_title $mol_view
 				sub / <= next_title \
-
-$mol_textarea $mol_stack
-	attr *
-		^
-		mol_textarea_clickable <= clickable? false
-		mol_textarea_sidebar_showed <= sidebar_showed false
-	event *
-		keydown? <=> press? null
-		pointermove? <=> hover? null
-	sub /
-		<= Edit $mol_textarea_edit
-			value? <=> value? \
-			hint <= hint \ 
-			enabled <= enabled true
-			spellcheck <= spellcheck true
-			length_max <= length_max +Infinity
-			selection? <=> selection? /number
-			bring => bring
-			submit? <=> submit? null
-			submit_with_ctrl <= submit_with_ctrl true
-		<= View $mol_text_code
-			text <= value
-			render_visible_only false
-			row_numb* <= row_numb* 0
-			sidebar_showed <= sidebar_showed
-			highlight <= highlight \
-			syntax <= syntax $mol_syntax2
-	symbols_alt *string
-		comma \<
-		period \>
-		dash \−
-		equals \≈
-		graveAccent \́
-		forwardSlash \÷
-		E \€
-		V \✔
-		X \×
-		C \©
-		P \§
-		H \₽
-		key0 \°
-		key8 \•
-		key2 \@
-		key3 \#
-		key4 \$
-		key6 \^
-		key7 \&
-		bracketOpen \[
-		bracketClose \]
-		slashBack \|
-	symbols_alt_ctrl *string
-		space \ 
-	symbols_alt_shift *string
-		V \✅
-		X \❌
-		O \⭕
-		key1 \❗
-		key4 \💲
-		key7 \❓
-		comma \«
-		period \»
-		semicolon \“
-		quoteSingle \”
-		dash \—
-		equals \≠
-		graveAccent \̱
-		bracketOpen \{
-		bracketClose \}
-
-$mol_textarea_edit $mol_string
-	dom_name \textarea
-	enter \enter
-	field *
-		^
-		scrollTop 0
-
-$bog_smalljs_playground $mol_view
-	tab \tree
-	draft? \
-	editor_hint \
-	seed_tree \
-	seed_ts \
-	seed_css \
-	store_scope \
-	attr *
-		bog_smalljs_pg_tab <= tab
-	sub /
-		<= Editor_pane $mol_view
-			sub /
-				<= Tabs $mol_view
-					sub /
-						<= Tree_tab $mol_button_minor
-							click? <=> show_tree? null
-							sub / <= tree_tab_label @ \view.tree
-						<= Ts_tab $mol_button_minor
-							click? <=> show_ts? null
-							sub / <= ts_tab_label @ \view.ts
-						<= Css_tab $mol_button_minor
-							click? <=> show_css? null
-							sub / <= css_tab_label @ \view.css.ts
-				<= Editor $mol_textarea
-					value? <=> draft?
-					hint <= editor_hint
-		<= Preview_pane $mol_view
-			sub /
-				<= Preview_label $mol_view
-					sub / <= preview_label_text @ \Preview
-				<= Preview $mol_view
-					sub <= preview_content /
 
 $bog_smalljs_course $mol_view
 	lesson \hello
@@ -1927,6 +2002,7 @@ $bog_smalljs_app $bog_builderui_div
 	auto /
 		<= hotkeys null
 		<= locale_sync null
+		<= lang_sync null
 	sub /
 		<= Top $bog_smalljs_top
 			search_click? <=> search_toggle?

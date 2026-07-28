@@ -14266,63 +14266,63 @@ var $;
                     title: "Views",
                     summary: "Declaring and composing components with the view.tree language.",
                     file: 'content/en/docs/views.md',
-                    md: "# Views\n\nA view is a component: a node in the UI tree with its own layout, behaviour, and styles. This chapter covers how views are declared, wired to logic, composed, and reused.\n\n## Three files, one component\n\nA component `\u0024my_card` lives in `my/card/` and is described by up to three files, each with a clear job:\n\n- `card.view.tree` — **what** the component is: its structure and default bindings.\n- `card.view.ts` — **how** it behaves: TypeScript methods, reactive state.\n- `card.view.css.ts` — how it looks: typed styles checked by the compiler.\n\nKeeping structure, behaviour, and style apart is deliberate — each file stays small and readable, and the layout is never tangled with logic.\n\n## The view.tree language\n\n`view.tree` describes structure declaratively. Indentation is nesting; there are no closing tags.\n\n```tree\n\u0024my_card \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\\n\t\t<= Body \u0024mol_view\n\t\t\tsub / <= text \\\n```\n\n- `\u0024my_card \u0024mol_view` — your component extends the base `\u0024mol_view`.\n- `sub /` — the list of children.\n- `<= Title \u0024mol_view` — a named sub-view, addressable as `this.Title()` in TypeScript.\n- `<= title \\` — a bindable property with a default raw-string value (`\\` starts a raw string).\n\nEvery capitalized name (`Title`, `Body`) becomes a real property you can reach, override, or style. Every lowercase binding (`title`, `text`) becomes a value you can compute in `.view.ts`.\n\n## Binding properties\n\nTwo operators connect a property to its source:\n\n- `<=` **one-way**: the child reads a value from the owner.\n- `<=>` **two-way**: the value flows both directions — used for inputs.\n\n```tree\n\u0024my_form \u0024mol_view\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> text? \\\n```\n\nHere the input's `value` and the owner's `text` stay in sync automatically: type in the field and `text` updates; set `text` in code and the field reflects it.\n\n## Wiring to behaviour\n\nA binding with no default is implemented in `.view.ts`. The class extends the generated base of the same name:\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_card extends \u0024.\u0024my_card {\n\t\t@ \u0024mol_mem\n\t\ttitle() {\n\t\t\treturn 'Untitled'\n\t\t}\n\t}\n}\n```\n\nAnything the template binds — `title`, `text`, a sub-view's property — can be given logic here. Reactivity ([State](#!section=docs/page=state)) makes those values live.\n\n## Attributes and element type\n\nChange the underlying HTML element with `dom_name`, and set attributes through `attr`:\n\n```tree\n\u0024my_banner \u0024mol_view\n\tdom_name \\section\n\tattr *\n\t\t^\n\t\trole \\note\n```\n\nThe `^` inherits the parent's attributes so you don't drop the ones `\u0024mol_view` already sets.\n\n## Lists and keyed views\n\nA trailing `*` turns a sub-view into a family — one instance per key. Use it for rows:\n\n```tree\n\u0024my_list \u0024mol_list\n\trows /\n\t\t<= Row* \u0024mol_view\n\t\t\tsub / <= row_title* \\\n```\n\nThe framework creates a `Row` for each key you supply and, thanks to [virtualized rendering](#!section=docs/page=rendering), builds only the ones on screen.\n\n> When a keyed view itself contains keyed children, key the outer one with `Name*`, not `Name*0` — the indexed form leaves nested children unrendered.\n\n## Conditional views\n\nAssigning `null` removes a view from rendering. Subclass and null out what a variant doesn't need:\n\n```tree\n\u0024my_page_readonly \u0024my_page\n\tEdit_button null\n```\n\n## Composition and reuse\n\nViews compose by nesting, and specialize by extension. A card used inside a list:\n\n```tree\n\u0024my_user_card \u0024mol_view\n\tsub /\n\t\t<= Name \u0024mol_view\n\t\t\tsub / <= name \\\n\t\t<= Email \u0024mol_view\n\t\t\tsub / <= email \\\n\n\u0024my_users_list \u0024mol_list\n\trows /\n\t\t<= User* \u0024my_user_card\n\t\t\tname <= user_name* \\\n\t\t\temail <= user_email* \\\n```\n\n`\u0024my_users_list` never redefines what a card looks like — it reuses `\u0024my_user_card` and feeds each instance its data. This is the whole composition model: small views, wired together, specialized by `extends` when a variant is needed.\n\n## Next\n\nViews describe structure; what makes them come alive is reactive data. Continue to [State & Reactivity](#!section=docs/page=state).\n",
+                    md: "# Views\n\nA view is a component: a node in the UI tree with its own layout, behaviour, and styles. This chapter covers how views are declared, wired to logic, composed, and reused.\n\n## Three files, one component\n\nA component `\u0024my_card` lives in `my/card/` and is described by up to three files, each with a clear job:\n\n- `card.view.tree` — **what** the component is: its structure and default bindings.\n- `card.view.ts` — **how** it behaves: TypeScript methods, reactive state.\n- `card.view.css.ts` — how it looks: typed styles checked by the compiler.\n\nKeeping structure, behaviour, and style apart is deliberate — each file stays small and readable, and the layout is never tangled with logic.\n\n## The view.tree language\n\n`view.tree` describes structure declaratively. Indentation is nesting; there are no closing tags.\n\n```tree\n\u0024my_card \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\\n\t\t<= Body \u0024mol_view\n\t\t\tsub / <= text \\\n```\n\n- `\u0024my_card \u0024mol_view` — your component extends the base `\u0024mol_view`.\n- `sub /` — the list of children.\n- `<= Title \u0024mol_view` — a named sub-view, addressable as `this.Title()` in TypeScript.\n- `<= title \\` — a bindable property with a default raw-string value (`\\` starts a raw string).\n\nEvery capitalized name (`Title`, `Body`) becomes a real property you can reach, override, or style. Every lowercase binding (`title`, `text`) becomes a value you can compute in `.view.ts`.\n\n## Binding properties\n\nTwo operators connect a property to its source:\n\n- `<=` **one-way**: the child reads a value from the owner.\n- `<=>` **two-way**: the value flows both directions — used for inputs.\n\n```tree\n\u0024my_form \u0024mol_view\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> text? \\\n```\n\nHere the input's `value` and the owner's `text` stay in sync automatically: type in the field and `text` updates; set `text` in code and the field reflects it.\n\n## Wiring to behaviour\n\nA binding with no default is implemented in `.view.ts`. The class extends the generated base of the same name:\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_card extends \u0024.\u0024my_card {\n\t\t@ \u0024mol_mem\n\t\ttitle() {\n\t\t\treturn 'Untitled'\n\t\t}\n\t}\n}\n```\n\nAnything the template binds — `title`, `text`, a sub-view's property — can be given logic here, and reactivity keeps those values live.\n\n## Attributes and element type\n\nChange the underlying HTML element with `dom_name`, and set attributes through `attr`:\n\n```tree\n\u0024my_banner \u0024mol_view\n\tdom_name \\section\n\tattr *\n\t\t^\n\t\trole \\note\n```\n\nThe `^` inherits the parent's attributes so you don't drop the ones `\u0024mol_view` already sets.\n\n## Lists and keyed views\n\nA trailing `*` turns a sub-view into a family — one instance per key. Use it for rows:\n\n```tree\n\u0024my_list \u0024mol_list\n\trows /\n\t\t<= Row* \u0024mol_view\n\t\t\tsub / <= row_title* \\\n```\n\nThe framework creates a `Row` for each key you supply and, thanks to [virtualized rendering](#!section=docs/page=rendering), builds only the ones on screen.\n\n> When a keyed view itself contains keyed children, key the outer one with `Name*`, not `Name*0` — the indexed form leaves nested children unrendered.\n\n## Conditional views\n\nAssigning `null` removes a view from rendering. Subclass and null out what a variant doesn't need:\n\n```tree\n\u0024my_page_readonly \u0024my_page\n\tEdit_button null\n```\n\n## Composition and reuse\n\nViews compose by nesting, and specialize by extension. A card used inside a list:\n\n```tree\n\u0024my_user_card \u0024mol_view\n\tsub /\n\t\t<= Name \u0024mol_view\n\t\t\tsub / <= name \\\n\t\t<= Email \u0024mol_view\n\t\t\tsub / <= email \\\n\n\u0024my_users_list \u0024mol_list\n\trows /\n\t\t<= User* \u0024my_user_card\n\t\t\tname <= user_name* \\\n\t\t\temail <= user_email* \\\n```\n\n`\u0024my_users_list` never redefines what a card looks like — it reuses `\u0024my_user_card` and feeds each instance its data. This is the whole composition model: small views, wired together, specialized by `extends` when a variant is needed.\n\n## Next\n\nViews describe structure; what makes them come alive is reactive data. Continue to [State & Reactivity](#!section=docs/page=state).\n",
                     tr: {
                         zh: {
                             title: "视图",
-                            md: "# 视图\n\n视图就是一个组件：UI 树中的一个节点，拥有自己的布局、行为和样式。本章介绍视图如何声明、如何与逻辑连接、如何组合与复用。\n\n## 三个文件，一个组件\n\n组件 `\u0024my_card` 位于 `my/card/`，由最多三个文件描述，每个文件职责清晰：\n\n- `card.view.tree` —— 组件**是什么**：它的结构和默认绑定。\n- `card.view.ts` —— 它**如何**运作：TypeScript 方法、响应式状态。\n- `card.view.css.ts` —— 它长什么样：由编译器检查的带类型样式。\n\n把结构、行为和样式分开是刻意为之——每个文件都保持短小易读，布局永远不会和逻辑纠缠在一起。\n\n## view.tree 语言\n\n`view.tree` 以声明式描述结构。缩进即嵌套；没有闭合标签。\n\n```tree\n\u0024my_card \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\\n\t\t<= Body \u0024mol_view\n\t\t\tsub / <= text \\\n```\n\n- `\u0024my_card \u0024mol_view` —— 你的组件继承自基类 `\u0024mol_view`。\n- `sub /` —— 子节点列表。\n- `<= Title \u0024mol_view` —— 一个命名子视图，在 TypeScript 中可通过 `this.Title()` 访问。\n- `<= title \\` —— 一个可绑定属性，带一个默认的原始字符串值（`\\` 开始一个原始字符串）。\n\n每个大写名称（`Title`、`Body`）都会成为一个真实属性，你可以访问、覆盖或为它设置样式。每个小写绑定（`title`、`text`）都会成为一个你可以在 `.view.ts` 中计算的值。\n\n## 绑定属性\n\n两个运算符把属性连接到它的来源：\n\n- `<=` **单向**：子节点从所有者读取一个值。\n- `<=>` **双向**：值在两个方向上流动——用于输入控件。\n\n```tree\n\u0024my_form \u0024mol_view\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> text? \\\n```\n\n这里输入控件的 `value` 和所有者的 `text` 会自动保持同步：在字段中输入，`text` 就更新；在代码中设置 `text`，字段就反映出来。\n\n## 连接到行为\n\n没有默认值的绑定在 `.view.ts` 中实现。类继承自同名的生成基类：\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_card extends \u0024.\u0024my_card {\n\t\t@ \u0024mol_mem\n\t\ttitle() {\n\t\t\treturn 'Untitled'\n\t\t}\n\t}\n}\n```\n\n模板绑定的任何东西——`title`、`text`、某个子视图的属性——都可以在这里赋予逻辑。响应式（[状态](#!section=docs/page=state)）让这些值变得鲜活。\n\n## 属性与元素类型\n\n用 `dom_name` 更改底层 HTML 元素，用 `attr` 设置属性：\n\n```tree\n\u0024my_banner \u0024mol_view\n\tdom_name \\section\n\tattr *\n\t\t^\n\t\trole \\note\n```\n\n`^` 会继承父级的属性，这样你就不会丢掉 `\u0024mol_view` 已经设置的那些。\n\n## 列表与带键视图\n\n结尾的 `*` 把一个子视图变成一个族——每个键对应一个实例。用它来做行：\n\n```tree\n\u0024my_list \u0024mol_list\n\trows /\n\t\t<= Row* \u0024mol_view\n\t\t\tsub / <= row_title* \\\n```\n\n框架会为你提供的每个键创建一个 `Row`，并且借助[虚拟化渲染](#!section=docs/page=rendering)，只构建屏幕上可见的那些。\n\n> 当一个带键视图本身包含带键的子节点时，用 `Name*` 而不是 `Name*0` 给外层加键——带索引的形式会导致嵌套子节点不被渲染。\n\n## 条件视图\n\n赋值 `null` 会把一个视图从渲染中移除。派生子类并把某个变体不需要的东西置空：\n\n```tree\n\u0024my_page_readonly \u0024my_page\n\tEdit_button null\n```\n\n## 组合与复用\n\n视图通过嵌套来组合，通过扩展来特化。一个用在列表里的卡片：\n\n```tree\n\u0024my_user_card \u0024mol_view\n\tsub /\n\t\t<= Name \u0024mol_view\n\t\t\tsub / <= name \\\n\t\t<= Email \u0024mol_view\n\t\t\tsub / <= email \\\n\n\u0024my_users_list \u0024mol_list\n\trows /\n\t\t<= User* \u0024my_user_card\n\t\t\tname <= user_name* \\\n\t\t\temail <= user_email* \\\n```\n\n`\u0024my_users_list` 从不重新定义卡片长什么样——它复用 `\u0024my_user_card` 并给每个实例喂入数据。这就是整个组合模型：小视图，连接在一起，需要变体时用 `extends` 特化。\n\n## 下一步\n\n视图描述结构；让它们活起来的是响应式数据。继续阅读 [状态与响应式](#!section=docs/page=state)。\n",
+                            md: "# 视图\n\n视图就是一个组件：UI 树中的一个节点，拥有自己的布局、行为和样式。本章介绍视图如何声明、如何与逻辑连接、如何组合与复用。\n\n## 三个文件，一个组件\n\n组件 `\u0024my_card` 位于 `my/card/`，由最多三个文件描述，每个文件职责清晰：\n\n- `card.view.tree` —— 组件**是什么**：它的结构和默认绑定。\n- `card.view.ts` —— 它**如何**运作：TypeScript 方法、响应式状态。\n- `card.view.css.ts` —— 它长什么样：由编译器检查的带类型样式。\n\n把结构、行为和样式分开是刻意为之——每个文件都保持短小易读，布局永远不会和逻辑纠缠在一起。\n\n## view.tree 语言\n\n`view.tree` 以声明式描述结构。缩进即嵌套；没有闭合标签。\n\n```tree\n\u0024my_card \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\\n\t\t<= Body \u0024mol_view\n\t\t\tsub / <= text \\\n```\n\n- `\u0024my_card \u0024mol_view` —— 你的组件继承自基类 `\u0024mol_view`。\n- `sub /` —— 子节点列表。\n- `<= Title \u0024mol_view` —— 一个命名子视图，在 TypeScript 中可通过 `this.Title()` 访问。\n- `<= title \\` —— 一个可绑定属性，带一个默认的原始字符串值（`\\` 开始一个原始字符串）。\n\n每个大写名称（`Title`、`Body`）都会成为一个真实属性，你可以访问、覆盖或为它设置样式。每个小写绑定（`title`、`text`）都会成为一个你可以在 `.view.ts` 中计算的值。\n\n## 绑定属性\n\n两个运算符把属性连接到它的来源：\n\n- `<=` **单向**：子节点从所有者读取一个值。\n- `<=>` **双向**：值在两个方向上流动——用于输入控件。\n\n```tree\n\u0024my_form \u0024mol_view\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> text? \\\n```\n\n这里输入控件的 `value` 和所有者的 `text` 会自动保持同步：在字段中输入，`text` 就更新；在代码中设置 `text`，字段就反映出来。\n\n## 连接到行为\n\n没有默认值的绑定在 `.view.ts` 中实现。类继承自同名的生成基类：\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_card extends \u0024.\u0024my_card {\n\t\t@ \u0024mol_mem\n\t\ttitle() {\n\t\t\treturn 'Untitled'\n\t\t}\n\t}\n}\n```\n\n模板绑定的任何东西——`title`、`text`、某个子视图的属性——都可以在这里赋予逻辑。响应式让这些值变得鲜活。\n\n## 属性与元素类型\n\n用 `dom_name` 更改底层 HTML 元素，用 `attr` 设置属性：\n\n```tree\n\u0024my_banner \u0024mol_view\n\tdom_name \\section\n\tattr *\n\t\t^\n\t\trole \\note\n```\n\n`^` 会继承父级的属性，这样你就不会丢掉 `\u0024mol_view` 已经设置的那些。\n\n## 列表与带键视图\n\n结尾的 `*` 把一个子视图变成一个族——每个键对应一个实例。用它来做行：\n\n```tree\n\u0024my_list \u0024mol_list\n\trows /\n\t\t<= Row* \u0024mol_view\n\t\t\tsub / <= row_title* \\\n```\n\n框架会为你提供的每个键创建一个 `Row`，并且借助[虚拟化渲染](#!section=docs/page=rendering)，只构建屏幕上可见的那些。\n\n> 当一个带键视图本身包含带键的子节点时，用 `Name*` 而不是 `Name*0` 给外层加键——带索引的形式会导致嵌套子节点不被渲染。\n\n## 条件视图\n\n赋值 `null` 会把一个视图从渲染中移除。派生子类并把某个变体不需要的东西置空：\n\n```tree\n\u0024my_page_readonly \u0024my_page\n\tEdit_button null\n```\n\n## 组合与复用\n\n视图通过嵌套来组合，通过扩展来特化。一个用在列表里的卡片：\n\n```tree\n\u0024my_user_card \u0024mol_view\n\tsub /\n\t\t<= Name \u0024mol_view\n\t\t\tsub / <= name \\\n\t\t<= Email \u0024mol_view\n\t\t\tsub / <= email \\\n\n\u0024my_users_list \u0024mol_list\n\trows /\n\t\t<= User* \u0024my_user_card\n\t\t\tname <= user_name* \\\n\t\t\temail <= user_email* \\\n```\n\n`\u0024my_users_list` 从不重新定义卡片长什么样——它复用 `\u0024my_user_card` 并给每个实例喂入数据。这就是整个组合模型：小视图，连接在一起，需要变体时用 `extends` 特化。\n\n## 下一步\n\n视图描述结构；让它们活起来的是响应式数据。继续阅读 [状态与响应式](#!section=docs/page=state)。\n",
                         },
                         zh_hk: {
                             title: "視圖",
-                            md: "# 視圖\n\n視圖就是一個元件：UI 樹中的一個節點，擁有自己的版面、行為和樣式。本章介紹視圖如何宣告、如何與邏輯連接、如何組合與重用。\n\n## 三個檔案，一個元件\n\n元件 `\u0024my_card` 位於 `my/card/`，由最多三個檔案描述，每個檔案職責清晰：\n\n- `card.view.tree` —— 元件**是甚麼**：它的結構和預設繫結。\n- `card.view.ts` —— 它**如何**運作：TypeScript 方法、響應式狀態。\n- `card.view.css.ts` —— 它長甚麼樣：由編譯器檢查的帶型別樣式。\n\n把結構、行為和樣式分開是刻意為之——每個檔案都保持短小易讀，版面永遠不會和邏輯糾纏在一起。\n\n## view.tree 語言\n\n`view.tree` 以宣告式描述結構。縮排即巢狀；沒有閉合標籤。\n\n```tree\n\u0024my_card \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\\n\t\t<= Body \u0024mol_view\n\t\t\tsub / <= text \\\n```\n\n- `\u0024my_card \u0024mol_view` —— 你的元件繼承自基底類別 `\u0024mol_view`。\n- `sub /` —— 子節點清單。\n- `<= Title \u0024mol_view` —— 一個具名子視圖，在 TypeScript 中可透過 `this.Title()` 存取。\n- `<= title \\` —— 一個可繫結屬性，帶一個預設的原始字串值（`\\` 開始一個原始字串）。\n\n每個大寫名稱（`Title`、`Body`）都會成為一個真實屬性，你可以存取、覆寫或為它設定樣式。每個小寫繫結（`title`、`text`）都會成為一個你可以在 `.view.ts` 中計算的值。\n\n## 繫結屬性\n\n兩個運算子把屬性連接到它的來源：\n\n- `<=` **單向**：子節點從擁有者讀取一個值。\n- `<=>` **雙向**：值在兩個方向上流動——用於輸入控制項。\n\n```tree\n\u0024my_form \u0024mol_view\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> text? \\\n```\n\n這裡輸入控制項的 `value` 和擁有者的 `text` 會自動保持同步：在欄位中輸入，`text` 就更新；在程式碼中設定 `text`，欄位就反映出來。\n\n## 連接到行為\n\n沒有預設值的繫結在 `.view.ts` 中實作。類別繼承自同名的產生基底類別：\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_card extends \u0024.\u0024my_card {\n\t\t@ \u0024mol_mem\n\t\ttitle() {\n\t\t\treturn 'Untitled'\n\t\t}\n\t}\n}\n```\n\n範本繫結的任何東西——`title`、`text`、某個子視圖的屬性——都可以在這裡賦予邏輯。響應式（[狀態](#!section=docs/page=state)）讓這些值變得鮮活。\n\n## 屬性與元素型別\n\n用 `dom_name` 更改底層 HTML 元素，用 `attr` 設定屬性：\n\n```tree\n\u0024my_banner \u0024mol_view\n\tdom_name \\section\n\tattr *\n\t\t^\n\t\trole \\note\n```\n\n`^` 會繼承父級的屬性，這樣你就不會丟掉 `\u0024mol_view` 已經設定的那些。\n\n## 清單與帶鍵視圖\n\n結尾的 `*` 把一個子視圖變成一個族——每個鍵對應一個實例。用它來做列：\n\n```tree\n\u0024my_list \u0024mol_list\n\trows /\n\t\t<= Row* \u0024mol_view\n\t\t\tsub / <= row_title* \\\n```\n\n框架會為你提供的每個鍵建立一個 `Row`，並且藉由[虛擬化算繪](#!section=docs/page=rendering)，只建置螢幕上可見的那些。\n\n> 當一個帶鍵視圖本身包含帶鍵的子節點時，用 `Name*` 而不是 `Name*0` 給外層加鍵——帶索引的形式會導致巢狀子節點不被算繪。\n\n## 條件視圖\n\n指派 `null` 會把一個視圖從算繪中移除。衍生子類別並把某個變體不需要的東西置空：\n\n```tree\n\u0024my_page_readonly \u0024my_page\n\tEdit_button null\n```\n\n## 組合與重用\n\n視圖透過巢狀來組合，透過擴充來特化。一個用在清單裡的卡片：\n\n```tree\n\u0024my_user_card \u0024mol_view\n\tsub /\n\t\t<= Name \u0024mol_view\n\t\t\tsub / <= name \\\n\t\t<= Email \u0024mol_view\n\t\t\tsub / <= email \\\n\n\u0024my_users_list \u0024mol_list\n\trows /\n\t\t<= User* \u0024my_user_card\n\t\t\tname <= user_name* \\\n\t\t\temail <= user_email* \\\n```\n\n`\u0024my_users_list` 從不重新定義卡片長甚麼樣——它重用 `\u0024my_user_card` 並給每個實例餵入資料。這就是整個組合模型：小視圖，連接在一起，需要變體時用 `extends` 特化。\n\n## 下一步\n\n視圖描述結構；讓它們活起來的是響應式資料。繼續閱讀 [狀態與響應式](#!section=docs/page=state)。\n",
+                            md: "# 視圖\n\n視圖就是一個元件：UI 樹中的一個節點，擁有自己的版面、行為和樣式。本章介紹視圖如何宣告、如何與邏輯連接、如何組合與重用。\n\n## 三個檔案，一個元件\n\n元件 `\u0024my_card` 位於 `my/card/`，由最多三個檔案描述，每個檔案職責清晰：\n\n- `card.view.tree` —— 元件**是甚麼**：它的結構和預設繫結。\n- `card.view.ts` —— 它**如何**運作：TypeScript 方法、響應式狀態。\n- `card.view.css.ts` —— 它長甚麼樣：由編譯器檢查的帶型別樣式。\n\n把結構、行為和樣式分開是刻意為之——每個檔案都保持短小易讀，版面永遠不會和邏輯糾纏在一起。\n\n## view.tree 語言\n\n`view.tree` 以宣告式描述結構。縮排即巢狀；沒有閉合標籤。\n\n```tree\n\u0024my_card \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\\n\t\t<= Body \u0024mol_view\n\t\t\tsub / <= text \\\n```\n\n- `\u0024my_card \u0024mol_view` —— 你的元件繼承自基底類別 `\u0024mol_view`。\n- `sub /` —— 子節點清單。\n- `<= Title \u0024mol_view` —— 一個具名子視圖，在 TypeScript 中可透過 `this.Title()` 存取。\n- `<= title \\` —— 一個可繫結屬性，帶一個預設的原始字串值（`\\` 開始一個原始字串）。\n\n每個大寫名稱（`Title`、`Body`）都會成為一個真實屬性，你可以存取、覆寫或為它設定樣式。每個小寫繫結（`title`、`text`）都會成為一個你可以在 `.view.ts` 中計算的值。\n\n## 繫結屬性\n\n兩個運算子把屬性連接到它的來源：\n\n- `<=` **單向**：子節點從擁有者讀取一個值。\n- `<=>` **雙向**：值在兩個方向上流動——用於輸入控制項。\n\n```tree\n\u0024my_form \u0024mol_view\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> text? \\\n```\n\n這裡輸入控制項的 `value` 和擁有者的 `text` 會自動保持同步：在欄位中輸入，`text` 就更新；在程式碼中設定 `text`，欄位就反映出來。\n\n## 連接到行為\n\n沒有預設值的繫結在 `.view.ts` 中實作。類別繼承自同名的產生基底類別：\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_card extends \u0024.\u0024my_card {\n\t\t@ \u0024mol_mem\n\t\ttitle() {\n\t\t\treturn 'Untitled'\n\t\t}\n\t}\n}\n```\n\n範本繫結的任何東西——`title`、`text`、某個子視圖的屬性——都可以在這裡賦予邏輯。響應式讓這些值變得鮮活。\n\n## 屬性與元素型別\n\n用 `dom_name` 更改底層 HTML 元素，用 `attr` 設定屬性：\n\n```tree\n\u0024my_banner \u0024mol_view\n\tdom_name \\section\n\tattr *\n\t\t^\n\t\trole \\note\n```\n\n`^` 會繼承父級的屬性，這樣你就不會丟掉 `\u0024mol_view` 已經設定的那些。\n\n## 清單與帶鍵視圖\n\n結尾的 `*` 把一個子視圖變成一個族——每個鍵對應一個實例。用它來做列：\n\n```tree\n\u0024my_list \u0024mol_list\n\trows /\n\t\t<= Row* \u0024mol_view\n\t\t\tsub / <= row_title* \\\n```\n\n框架會為你提供的每個鍵建立一個 `Row`，並且藉由[虛擬化算繪](#!section=docs/page=rendering)，只建置螢幕上可見的那些。\n\n> 當一個帶鍵視圖本身包含帶鍵的子節點時，用 `Name*` 而不是 `Name*0` 給外層加鍵——帶索引的形式會導致巢狀子節點不被算繪。\n\n## 條件視圖\n\n指派 `null` 會把一個視圖從算繪中移除。衍生子類別並把某個變體不需要的東西置空：\n\n```tree\n\u0024my_page_readonly \u0024my_page\n\tEdit_button null\n```\n\n## 組合與重用\n\n視圖透過巢狀來組合，透過擴充來特化。一個用在清單裡的卡片：\n\n```tree\n\u0024my_user_card \u0024mol_view\n\tsub /\n\t\t<= Name \u0024mol_view\n\t\t\tsub / <= name \\\n\t\t<= Email \u0024mol_view\n\t\t\tsub / <= email \\\n\n\u0024my_users_list \u0024mol_list\n\trows /\n\t\t<= User* \u0024my_user_card\n\t\t\tname <= user_name* \\\n\t\t\temail <= user_email* \\\n```\n\n`\u0024my_users_list` 從不重新定義卡片長甚麼樣——它重用 `\u0024my_user_card` 並給每個實例餵入資料。這就是整個組合模型：小視圖，連接在一起，需要變體時用 `extends` 特化。\n\n## 下一步\n\n視圖描述結構；讓它們活起來的是響應式資料。繼續閱讀 [狀態與響應式](#!section=docs/page=state)。\n",
                         },
                         ja: {
                             title: "ビュー",
-                            md: "# ビュー\n\nビューはコンポーネントです。UI ツリー内のノードであり、独自のレイアウト、振る舞い、スタイルを持ちます。この章では、ビューをどう宣言し、ロジックへどう配線し、どう組み合わせて再利用するかを扱います。\n\n## 3 つのファイル、1 つのコンポーネント\n\nコンポーネント `\u0024my_card` は `my/card/` にあり、最大 3 つのファイルで記述されます。それぞれに明確な役割があります。\n\n- `card.view.tree` — コンポーネントが**何**であるか。構造とデフォルトのバインディング。\n- `card.view.ts` — **どう**振る舞うか。TypeScript のメソッド、リアクティブな状態。\n- `card.view.css.ts` — どう見えるか。コンパイラが検査する型付きスタイル。\n\n構造・振る舞い・スタイルを分けるのは意図的です。各ファイルは小さく読みやすいまま保たれ、レイアウトがロジックと絡み合うことはありません。\n\n## view.tree 言語\n\n`view.tree` は構造を宣言的に記述します。インデントが入れ子を表し、閉じタグはありません。\n\n```tree\n\u0024my_card \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\\n\t\t<= Body \u0024mol_view\n\t\t\tsub / <= text \\\n```\n\n- `\u0024my_card \u0024mol_view` — あなたのコンポーネントは基底の `\u0024mol_view` を継承します。\n- `sub /` — 子の一覧。\n- `<= Title \u0024mol_view` — 名前付きのサブビュー。TypeScript では `this.Title()` としてアクセスできます。\n- `<= title \\` — デフォルトの生文字列値を持つバインド可能なプロパティ（`\\` は生文字列の開始）。\n\n大文字で始まる名前（`Title`、`Body`）はすべて、アクセス・オーバーライド・スタイル付けが可能な実際のプロパティになります。小文字のバインディング（`title`、`text`）はすべて、`.view.ts` で計算できる値になります。\n\n## プロパティのバインディング\n\n2 つの演算子がプロパティをその供給元に接続します。\n\n- `<=` **一方向**：子が所有者から値を読み取ります。\n- `<=>` **双方向**：値が両方向に流れます。入力に使います。\n\n```tree\n\u0024my_form \u0024mol_view\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> text? \\\n```\n\nここでは入力の `value` と所有者の `text` が自動的に同期します。フィールドに入力すれば `text` が更新され、コードで `text` を設定すればフィールドに反映されます。\n\n## 振る舞いへの配線\n\nデフォルトのないバインディングは `.view.ts` で実装します。クラスは同名の生成された基底クラスを継承します。\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_card extends \u0024.\u0024my_card {\n\t\t@ \u0024mol_mem\n\t\ttitle() {\n\t\t\treturn 'Untitled'\n\t\t}\n\t}\n}\n```\n\nテンプレートがバインドするもの（`title`、`text`、サブビューのプロパティ）には、ここでロジックを与えられます。リアクティビティ（[状態](#!section=docs/page=state)）がこれらの値を生きたものにします。\n\n## 属性と要素の種類\n\n`dom_name` で下地となる HTML 要素を変え、`attr` で属性を設定します。\n\n```tree\n\u0024my_banner \u0024mol_view\n\tdom_name \\section\n\tattr *\n\t\t^\n\t\trole \\note\n```\n\n`^` は親の属性を継承するので、`\u0024mol_view` がすでに設定しているものを取りこぼしません。\n\n## リストとキー付きビュー\n\n末尾の `*` はサブビューをファミリーに変えます。キーごとに 1 インスタンスです。行に使います。\n\n```tree\n\u0024my_list \u0024mol_list\n\trows /\n\t\t<= Row* \u0024mol_view\n\t\t\tsub / <= row_title* \\\n```\n\nフレームワークはあなたが渡す各キーに対して `Row` を作成し、[仮想化レンダリング](#!section=docs/page=rendering)のおかげで画面上のものだけを構築します。\n\n> キー付きビュー自体がキー付きの子を含む場合、外側は `Name*0` ではなく `Name*` でキー付けしてください。インデックス付きの形式では入れ子の子がレンダリングされません。\n\n## 条件付きビュー\n\n`null` を代入すると、そのビューはレンダリングから外れます。サブクラス化して、あるバリアントに不要なものを null にします。\n\n```tree\n\u0024my_page_readonly \u0024my_page\n\tEdit_button null\n```\n\n## 合成と再利用\n\nビューは入れ子で合成し、継承で特化します。リスト内で使うカード。\n\n```tree\n\u0024my_user_card \u0024mol_view\n\tsub /\n\t\t<= Name \u0024mol_view\n\t\t\tsub / <= name \\\n\t\t<= Email \u0024mol_view\n\t\t\tsub / <= email \\\n\n\u0024my_users_list \u0024mol_list\n\trows /\n\t\t<= User* \u0024my_user_card\n\t\t\tname <= user_name* \\\n\t\t\temail <= user_email* \\\n```\n\n`\u0024my_users_list` はカードの見た目を再定義しません。`\u0024my_user_card` を再利用し、各インスタンスにデータを与えるだけです。これが合成モデルのすべてです。小さなビューを配線してつなぎ、バリアントが必要なら `extends` で特化します。\n\n## 次へ\n\nビューは構造を記述します。それらを生き生きとさせるのはリアクティブなデータです。[状態とリアクティビティ](#!section=docs/page=state) へ進んでください。\n",
+                            md: "# ビュー\n\nビューはコンポーネントです。UI ツリー内のノードであり、独自のレイアウト、振る舞い、スタイルを持ちます。この章では、ビューをどう宣言し、ロジックへどう配線し、どう組み合わせて再利用するかを扱います。\n\n## 3 つのファイル、1 つのコンポーネント\n\nコンポーネント `\u0024my_card` は `my/card/` にあり、最大 3 つのファイルで記述されます。それぞれに明確な役割があります。\n\n- `card.view.tree` — コンポーネントが**何**であるか。構造とデフォルトのバインディング。\n- `card.view.ts` — **どう**振る舞うか。TypeScript のメソッド、リアクティブな状態。\n- `card.view.css.ts` — どう見えるか。コンパイラが検査する型付きスタイル。\n\n構造・振る舞い・スタイルを分けるのは意図的です。各ファイルは小さく読みやすいまま保たれ、レイアウトがロジックと絡み合うことはありません。\n\n## view.tree 言語\n\n`view.tree` は構造を宣言的に記述します。インデントが入れ子を表し、閉じタグはありません。\n\n```tree\n\u0024my_card \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\\n\t\t<= Body \u0024mol_view\n\t\t\tsub / <= text \\\n```\n\n- `\u0024my_card \u0024mol_view` — あなたのコンポーネントは基底の `\u0024mol_view` を継承します。\n- `sub /` — 子の一覧。\n- `<= Title \u0024mol_view` — 名前付きのサブビュー。TypeScript では `this.Title()` としてアクセスできます。\n- `<= title \\` — デフォルトの生文字列値を持つバインド可能なプロパティ（`\\` は生文字列の開始）。\n\n大文字で始まる名前（`Title`、`Body`）はすべて、アクセス・オーバーライド・スタイル付けが可能な実際のプロパティになります。小文字のバインディング（`title`、`text`）はすべて、`.view.ts` で計算できる値になります。\n\n## プロパティのバインディング\n\n2 つの演算子がプロパティをその供給元に接続します。\n\n- `<=` **一方向**：子が所有者から値を読み取ります。\n- `<=>` **双方向**：値が両方向に流れます。入力に使います。\n\n```tree\n\u0024my_form \u0024mol_view\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> text? \\\n```\n\nここでは入力の `value` と所有者の `text` が自動的に同期します。フィールドに入力すれば `text` が更新され、コードで `text` を設定すればフィールドに反映されます。\n\n## 振る舞いへの配線\n\nデフォルトのないバインディングは `.view.ts` で実装します。クラスは同名の生成された基底クラスを継承します。\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_card extends \u0024.\u0024my_card {\n\t\t@ \u0024mol_mem\n\t\ttitle() {\n\t\t\treturn 'Untitled'\n\t\t}\n\t}\n}\n```\n\nテンプレートがバインドするもの（`title`、`text`、サブビューのプロパティ）には、ここでロジックを与えられます。リアクティビティがこれらの値を生きたものにします。\n\n## 属性と要素の種類\n\n`dom_name` で下地となる HTML 要素を変え、`attr` で属性を設定します。\n\n```tree\n\u0024my_banner \u0024mol_view\n\tdom_name \\section\n\tattr *\n\t\t^\n\t\trole \\note\n```\n\n`^` は親の属性を継承するので、`\u0024mol_view` がすでに設定しているものを取りこぼしません。\n\n## リストとキー付きビュー\n\n末尾の `*` はサブビューをファミリーに変えます。キーごとに 1 インスタンスです。行に使います。\n\n```tree\n\u0024my_list \u0024mol_list\n\trows /\n\t\t<= Row* \u0024mol_view\n\t\t\tsub / <= row_title* \\\n```\n\nフレームワークはあなたが渡す各キーに対して `Row` を作成し、[仮想化レンダリング](#!section=docs/page=rendering)のおかげで画面上のものだけを構築します。\n\n> キー付きビュー自体がキー付きの子を含む場合、外側は `Name*0` ではなく `Name*` でキー付けしてください。インデックス付きの形式では入れ子の子がレンダリングされません。\n\n## 条件付きビュー\n\n`null` を代入すると、そのビューはレンダリングから外れます。サブクラス化して、あるバリアントに不要なものを null にします。\n\n```tree\n\u0024my_page_readonly \u0024my_page\n\tEdit_button null\n```\n\n## 合成と再利用\n\nビューは入れ子で合成し、継承で特化します。リスト内で使うカード。\n\n```tree\n\u0024my_user_card \u0024mol_view\n\tsub /\n\t\t<= Name \u0024mol_view\n\t\t\tsub / <= name \\\n\t\t<= Email \u0024mol_view\n\t\t\tsub / <= email \\\n\n\u0024my_users_list \u0024mol_list\n\trows /\n\t\t<= User* \u0024my_user_card\n\t\t\tname <= user_name* \\\n\t\t\temail <= user_email* \\\n```\n\n`\u0024my_users_list` はカードの見た目を再定義しません。`\u0024my_user_card` を再利用し、各インスタンスにデータを与えるだけです。これが合成モデルのすべてです。小さなビューを配線してつなぎ、バリアントが必要なら `extends` で特化します。\n\n## 次へ\n\nビューは構造を記述します。それらを生き生きとさせるのはリアクティブなデータです。[状態とリアクティビティ](#!section=docs/page=state) へ進んでください。\n",
                         },
                         ko: {
                             title: "뷰",
-                            md: "# 뷰\n\n뷰는 컴포넌트입니다. UI 트리의 노드로서 자체 레이아웃, 동작, 스타일을 가집니다. 이 장에서는 뷰를 어떻게 선언하고, 로직에 연결하고, 조합하고, 재사용하는지 다룹니다.\n\n## 세 개의 파일, 하나의 컴포넌트\n\n컴포넌트 `\u0024my_card` 는 `my/card/` 에 있으며 최대 세 개의 파일로 기술되고, 각 파일은 명확한 역할을 가집니다.\n\n- `card.view.tree` — 컴포넌트가 **무엇**인지: 구조와 기본 바인딩.\n- `card.view.ts` — **어떻게** 동작하는지: TypeScript 메서드, 반응형 상태.\n- `card.view.css.ts` — 어떻게 보이는지: 컴파일러가 검사하는 타입 붙은 스타일.\n\n구조, 동작, 스타일을 분리한 것은 의도적입니다. 각 파일은 작고 읽기 쉬운 상태로 유지되며, 레이아웃이 로직과 뒤엉키지 않습니다.\n\n## view.tree 언어\n\n`view.tree` 는 구조를 선언적으로 기술합니다. 들여쓰기가 곧 중첩이며, 닫는 태그가 없습니다.\n\n```tree\n\u0024my_card \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\\n\t\t<= Body \u0024mol_view\n\t\t\tsub / <= text \\\n```\n\n- `\u0024my_card \u0024mol_view` — 당신의 컴포넌트는 기반 클래스 `\u0024mol_view` 를 상속합니다.\n- `sub /` — 자식 목록.\n- `<= Title \u0024mol_view` — 이름 붙은 서브뷰로, TypeScript 에서 `this.Title()` 로 접근할 수 있습니다.\n- `<= title \\` — 기본 원시 문자열 값을 가진 바인딩 가능한 프로퍼티 (`\\` 는 원시 문자열의 시작).\n\n대문자로 시작하는 이름(`Title`, `Body`)은 모두 접근, 오버라이드, 스타일링할 수 있는 실제 프로퍼티가 됩니다. 소문자 바인딩(`title`, `text`)은 모두 `.view.ts` 에서 계산할 수 있는 값이 됩니다.\n\n## 프로퍼티 바인딩\n\n두 연산자가 프로퍼티를 그 출처에 연결합니다.\n\n- `<=` **단방향**: 자식이 소유자로부터 값을 읽습니다.\n- `<=>` **양방향**: 값이 양쪽 방향으로 흐릅니다. 입력에 사용합니다.\n\n```tree\n\u0024my_form \u0024mol_view\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> text? \\\n```\n\n여기서 입력의 `value` 와 소유자의 `text` 는 자동으로 동기화됩니다. 필드에 입력하면 `text` 가 갱신되고, 코드에서 `text` 를 설정하면 필드가 이를 반영합니다.\n\n## 동작에 연결하기\n\n기본값이 없는 바인딩은 `.view.ts` 에서 구현합니다. 클래스는 같은 이름의 생성된 기반 클래스를 상속합니다.\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_card extends \u0024.\u0024my_card {\n\t\t@ \u0024mol_mem\n\t\ttitle() {\n\t\t\treturn 'Untitled'\n\t\t}\n\t}\n}\n```\n\n템플릿이 바인딩하는 무엇이든(`title`, `text`, 서브뷰의 프로퍼티)에 여기서 로직을 부여할 수 있습니다. 반응성([상태](#!section=docs/page=state))이 이 값들을 살아 있게 만듭니다.\n\n## 속성과 요소 타입\n\n`dom_name` 으로 밑바탕 HTML 요소를 바꾸고, `attr` 로 속성을 설정합니다.\n\n```tree\n\u0024my_banner \u0024mol_view\n\tdom_name \\section\n\tattr *\n\t\t^\n\t\trole \\note\n```\n\n`^` 는 부모의 속성을 상속하므로 `\u0024mol_view` 가 이미 설정한 것들을 잃지 않습니다.\n\n## 목록과 키가 있는 뷰\n\n끝의 `*` 는 서브뷰를 패밀리로 바꿉니다. 키마다 인스턴스 하나입니다. 행에 사용하세요.\n\n```tree\n\u0024my_list \u0024mol_list\n\trows /\n\t\t<= Row* \u0024mol_view\n\t\t\tsub / <= row_title* \\\n```\n\n프레임워크는 당신이 제공하는 각 키에 대해 `Row` 를 만들고, [가상화 렌더링](#!section=docs/page=rendering) 덕분에 화면에 있는 것만 구축합니다.\n\n> 키가 있는 뷰 자체가 키가 있는 자식을 포함하면, 바깥쪽은 `Name*0` 이 아니라 `Name*` 로 키를 붙이세요. 인덱스가 붙은 형태는 중첩된 자식을 렌더링되지 않은 채로 둡니다.\n\n## 조건부 뷰\n\n`null` 을 할당하면 뷰가 렌더링에서 제거됩니다. 서브클래싱하여 어떤 변형에 필요 없는 것을 null 로 지우세요.\n\n```tree\n\u0024my_page_readonly \u0024my_page\n\tEdit_button null\n```\n\n## 조합과 재사용\n\n뷰는 중첩으로 조합하고 확장으로 특수화합니다. 목록 안에서 사용되는 카드.\n\n```tree\n\u0024my_user_card \u0024mol_view\n\tsub /\n\t\t<= Name \u0024mol_view\n\t\t\tsub / <= name \\\n\t\t<= Email \u0024mol_view\n\t\t\tsub / <= email \\\n\n\u0024my_users_list \u0024mol_list\n\trows /\n\t\t<= User* \u0024my_user_card\n\t\t\tname <= user_name* \\\n\t\t\temail <= user_email* \\\n```\n\n`\u0024my_users_list` 는 카드의 모습을 다시 정의하지 않습니다. `\u0024my_user_card` 를 재사용하고 각 인스턴스에 데이터를 먹입니다. 이것이 조합 모델의 전부입니다. 작은 뷰들을 서로 연결하고, 변형이 필요할 때 `extends` 로 특수화합니다.\n\n## 다음\n\n뷰는 구조를 기술합니다. 그것들을 살아 움직이게 하는 것은 반응형 데이터입니다. [상태와 반응성](#!section=docs/page=state) 으로 이어집니다.\n",
+                            md: "# 뷰\n\n뷰는 컴포넌트입니다. UI 트리의 노드로서 자체 레이아웃, 동작, 스타일을 가집니다. 이 장에서는 뷰를 어떻게 선언하고, 로직에 연결하고, 조합하고, 재사용하는지 다룹니다.\n\n## 세 개의 파일, 하나의 컴포넌트\n\n컴포넌트 `\u0024my_card` 는 `my/card/` 에 있으며 최대 세 개의 파일로 기술되고, 각 파일은 명확한 역할을 가집니다.\n\n- `card.view.tree` — 컴포넌트가 **무엇**인지: 구조와 기본 바인딩.\n- `card.view.ts` — **어떻게** 동작하는지: TypeScript 메서드, 반응형 상태.\n- `card.view.css.ts` — 어떻게 보이는지: 컴파일러가 검사하는 타입 붙은 스타일.\n\n구조, 동작, 스타일을 분리한 것은 의도적입니다. 각 파일은 작고 읽기 쉬운 상태로 유지되며, 레이아웃이 로직과 뒤엉키지 않습니다.\n\n## view.tree 언어\n\n`view.tree` 는 구조를 선언적으로 기술합니다. 들여쓰기가 곧 중첩이며, 닫는 태그가 없습니다.\n\n```tree\n\u0024my_card \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\\n\t\t<= Body \u0024mol_view\n\t\t\tsub / <= text \\\n```\n\n- `\u0024my_card \u0024mol_view` — 당신의 컴포넌트는 기반 클래스 `\u0024mol_view` 를 상속합니다.\n- `sub /` — 자식 목록.\n- `<= Title \u0024mol_view` — 이름 붙은 서브뷰로, TypeScript 에서 `this.Title()` 로 접근할 수 있습니다.\n- `<= title \\` — 기본 원시 문자열 값을 가진 바인딩 가능한 프로퍼티 (`\\` 는 원시 문자열의 시작).\n\n대문자로 시작하는 이름(`Title`, `Body`)은 모두 접근, 오버라이드, 스타일링할 수 있는 실제 프로퍼티가 됩니다. 소문자 바인딩(`title`, `text`)은 모두 `.view.ts` 에서 계산할 수 있는 값이 됩니다.\n\n## 프로퍼티 바인딩\n\n두 연산자가 프로퍼티를 그 출처에 연결합니다.\n\n- `<=` **단방향**: 자식이 소유자로부터 값을 읽습니다.\n- `<=>` **양방향**: 값이 양쪽 방향으로 흐릅니다. 입력에 사용합니다.\n\n```tree\n\u0024my_form \u0024mol_view\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> text? \\\n```\n\n여기서 입력의 `value` 와 소유자의 `text` 는 자동으로 동기화됩니다. 필드에 입력하면 `text` 가 갱신되고, 코드에서 `text` 를 설정하면 필드가 이를 반영합니다.\n\n## 동작에 연결하기\n\n기본값이 없는 바인딩은 `.view.ts` 에서 구현합니다. 클래스는 같은 이름의 생성된 기반 클래스를 상속합니다.\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_card extends \u0024.\u0024my_card {\n\t\t@ \u0024mol_mem\n\t\ttitle() {\n\t\t\treturn 'Untitled'\n\t\t}\n\t}\n}\n```\n\n템플릿이 바인딩하는 무엇이든(`title`, `text`, 서브뷰의 프로퍼티)에 여기서 로직을 부여할 수 있습니다. 반응성이 이 값들을 살아 있게 만듭니다.\n\n## 속성과 요소 타입\n\n`dom_name` 으로 밑바탕 HTML 요소를 바꾸고, `attr` 로 속성을 설정합니다.\n\n```tree\n\u0024my_banner \u0024mol_view\n\tdom_name \\section\n\tattr *\n\t\t^\n\t\trole \\note\n```\n\n`^` 는 부모의 속성을 상속하므로 `\u0024mol_view` 가 이미 설정한 것들을 잃지 않습니다.\n\n## 목록과 키가 있는 뷰\n\n끝의 `*` 는 서브뷰를 패밀리로 바꿉니다. 키마다 인스턴스 하나입니다. 행에 사용하세요.\n\n```tree\n\u0024my_list \u0024mol_list\n\trows /\n\t\t<= Row* \u0024mol_view\n\t\t\tsub / <= row_title* \\\n```\n\n프레임워크는 당신이 제공하는 각 키에 대해 `Row` 를 만들고, [가상화 렌더링](#!section=docs/page=rendering) 덕분에 화면에 있는 것만 구축합니다.\n\n> 키가 있는 뷰 자체가 키가 있는 자식을 포함하면, 바깥쪽은 `Name*0` 이 아니라 `Name*` 로 키를 붙이세요. 인덱스가 붙은 형태는 중첩된 자식을 렌더링되지 않은 채로 둡니다.\n\n## 조건부 뷰\n\n`null` 을 할당하면 뷰가 렌더링에서 제거됩니다. 서브클래싱하여 어떤 변형에 필요 없는 것을 null 로 지우세요.\n\n```tree\n\u0024my_page_readonly \u0024my_page\n\tEdit_button null\n```\n\n## 조합과 재사용\n\n뷰는 중첩으로 조합하고 확장으로 특수화합니다. 목록 안에서 사용되는 카드.\n\n```tree\n\u0024my_user_card \u0024mol_view\n\tsub /\n\t\t<= Name \u0024mol_view\n\t\t\tsub / <= name \\\n\t\t<= Email \u0024mol_view\n\t\t\tsub / <= email \\\n\n\u0024my_users_list \u0024mol_list\n\trows /\n\t\t<= User* \u0024my_user_card\n\t\t\tname <= user_name* \\\n\t\t\temail <= user_email* \\\n```\n\n`\u0024my_users_list` 는 카드의 모습을 다시 정의하지 않습니다. `\u0024my_user_card` 를 재사용하고 각 인스턴스에 데이터를 먹입니다. 이것이 조합 모델의 전부입니다. 작은 뷰들을 서로 연결하고, 변형이 필요할 때 `extends` 로 특수화합니다.\n\n## 다음\n\n뷰는 구조를 기술합니다. 그것들을 살아 움직이게 하는 것은 반응형 데이터입니다. [상태와 반응성](#!section=docs/page=state) 으로 이어집니다.\n",
                         },
                         fr: {
                             title: "Vues",
-                            md: "# Vues\n\nUne vue est un composant : un nœud de l'arbre d'interface avec sa propre mise en page, son comportement et ses styles. Ce chapitre explique comment les vues sont déclarées, reliées à la logique, composées et réutilisées.\n\n## Trois fichiers, un composant\n\nUn composant `\u0024my_card` vit dans `my/card/` et est décrit par un maximum de trois fichiers, chacun avec un rôle clair :\n\n- `card.view.tree` — **ce qu'est** le composant : sa structure et ses liaisons par défaut.\n- `card.view.ts` — **comment** il se comporte : méthodes TypeScript, état réactif.\n- `card.view.css.ts` — à quoi il ressemble : styles typés vérifiés par le compilateur.\n\nSéparer structure, comportement et style est délibéré — chaque fichier reste petit et lisible, et la mise en page n'est jamais mêlée à la logique.\n\n## Le langage view.tree\n\n`view.tree` décrit la structure de façon déclarative. L'indentation, c'est l'imbrication ; il n'y a pas de balises fermantes.\n\n```tree\n\u0024my_card \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\\n\t\t<= Body \u0024mol_view\n\t\t\tsub / <= text \\\n```\n\n- `\u0024my_card \u0024mol_view` — votre composant étend la base `\u0024mol_view`.\n- `sub /` — la liste des enfants.\n- `<= Title \u0024mol_view` — une sous-vue nommée, accessible via `this.Title()` en TypeScript.\n- `<= title \\` — une propriété liable avec une valeur chaîne brute par défaut (`\\` démarre une chaîne brute).\n\nChaque nom capitalisé (`Title`, `Body`) devient une vraie propriété que vous pouvez atteindre, redéfinir ou styliser. Chaque liaison en minuscules (`title`, `text`) devient une valeur que vous pouvez calculer dans `.view.ts`.\n\n## Lier des propriétés\n\nDeux opérateurs relient une propriété à sa source :\n\n- `<=` **unidirectionnel** : l'enfant lit une valeur depuis le propriétaire.\n- `<=>` **bidirectionnel** : la valeur circule dans les deux sens — utilisé pour les champs de saisie.\n\n```tree\n\u0024my_form \u0024mol_view\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> text? \\\n```\n\nIci, le `value` du champ et le `text` du propriétaire restent synchronisés automatiquement : saisissez dans le champ et `text` se met à jour ; définissez `text` dans le code et le champ le reflète.\n\n## Câblage au comportement\n\nUne liaison sans valeur par défaut est implémentée dans `.view.ts`. La classe étend la base générée du même nom :\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_card extends \u0024.\u0024my_card {\n\t\t@ \u0024mol_mem\n\t\ttitle() {\n\t\t\treturn 'Untitled'\n\t\t}\n\t}\n}\n```\n\nTout ce que le gabarit lie — `title`, `text`, la propriété d'une sous-vue — peut recevoir de la logique ici. La réactivité ([État](#!section=docs/page=state)) rend ces valeurs vivantes.\n\n## Attributs et type d'élément\n\nChangez l'élément HTML sous-jacent avec `dom_name`, et définissez les attributs via `attr` :\n\n```tree\n\u0024my_banner \u0024mol_view\n\tdom_name \\section\n\tattr *\n\t\t^\n\t\trole \\note\n```\n\nLe `^` hérite des attributs du parent, pour ne pas perdre ceux que `\u0024mol_view` définit déjà.\n\n## Listes et vues à clé\n\nUn `*` final transforme une sous-vue en famille — une instance par clé. À utiliser pour les lignes :\n\n```tree\n\u0024my_list \u0024mol_list\n\trows /\n\t\t<= Row* \u0024mol_view\n\t\t\tsub / <= row_title* \\\n```\n\nLe framework crée un `Row` pour chaque clé que vous fournissez et, grâce au [rendu virtualisé](#!section=docs/page=rendering), ne construit que ceux à l'écran.\n\n> Quand une vue à clé contient elle-même des enfants à clé, mettez la clé de l'externe avec `Name*`, pas `Name*0` — la forme indexée laisse les enfants imbriqués non rendus.\n\n## Vues conditionnelles\n\nAffecter `null` retire une vue du rendu. Sous-classez et annulez ce dont une variante n'a pas besoin :\n\n```tree\n\u0024my_page_readonly \u0024my_page\n\tEdit_button null\n```\n\n## Composition et réutilisation\n\nLes vues se composent par imbrication et se spécialisent par extension. Une carte utilisée dans une liste :\n\n```tree\n\u0024my_user_card \u0024mol_view\n\tsub /\n\t\t<= Name \u0024mol_view\n\t\t\tsub / <= name \\\n\t\t<= Email \u0024mol_view\n\t\t\tsub / <= email \\\n\n\u0024my_users_list \u0024mol_list\n\trows /\n\t\t<= User* \u0024my_user_card\n\t\t\tname <= user_name* \\\n\t\t\temail <= user_email* \\\n```\n\n`\u0024my_users_list` ne redéfinit jamais l'apparence d'une carte — il réutilise `\u0024my_user_card` et alimente chaque instance avec ses données. C'est tout le modèle de composition : de petites vues, câblées ensemble, spécialisées par `extends` quand une variante est nécessaire.\n\n## Suite\n\nLes vues décrivent la structure ; ce qui les fait vivre, ce sont les données réactives. Continuez vers [État et réactivité](#!section=docs/page=state).\n",
+                            md: "# Vues\n\nUne vue est un composant : un nœud de l'arbre d'interface avec sa propre mise en page, son comportement et ses styles. Ce chapitre explique comment les vues sont déclarées, reliées à la logique, composées et réutilisées.\n\n## Trois fichiers, un composant\n\nUn composant `\u0024my_card` vit dans `my/card/` et est décrit par un maximum de trois fichiers, chacun avec un rôle clair :\n\n- `card.view.tree` — **ce qu'est** le composant : sa structure et ses liaisons par défaut.\n- `card.view.ts` — **comment** il se comporte : méthodes TypeScript, état réactif.\n- `card.view.css.ts` — à quoi il ressemble : styles typés vérifiés par le compilateur.\n\nSéparer structure, comportement et style est délibéré — chaque fichier reste petit et lisible, et la mise en page n'est jamais mêlée à la logique.\n\n## Le langage view.tree\n\n`view.tree` décrit la structure de façon déclarative. L'indentation, c'est l'imbrication ; il n'y a pas de balises fermantes.\n\n```tree\n\u0024my_card \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\\n\t\t<= Body \u0024mol_view\n\t\t\tsub / <= text \\\n```\n\n- `\u0024my_card \u0024mol_view` — votre composant étend la base `\u0024mol_view`.\n- `sub /` — la liste des enfants.\n- `<= Title \u0024mol_view` — une sous-vue nommée, accessible via `this.Title()` en TypeScript.\n- `<= title \\` — une propriété liable avec une valeur chaîne brute par défaut (`\\` démarre une chaîne brute).\n\nChaque nom capitalisé (`Title`, `Body`) devient une vraie propriété que vous pouvez atteindre, redéfinir ou styliser. Chaque liaison en minuscules (`title`, `text`) devient une valeur que vous pouvez calculer dans `.view.ts`.\n\n## Lier des propriétés\n\nDeux opérateurs relient une propriété à sa source :\n\n- `<=` **unidirectionnel** : l'enfant lit une valeur depuis le propriétaire.\n- `<=>` **bidirectionnel** : la valeur circule dans les deux sens — utilisé pour les champs de saisie.\n\n```tree\n\u0024my_form \u0024mol_view\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> text? \\\n```\n\nIci, le `value` du champ et le `text` du propriétaire restent synchronisés automatiquement : saisissez dans le champ et `text` se met à jour ; définissez `text` dans le code et le champ le reflète.\n\n## Câblage au comportement\n\nUne liaison sans valeur par défaut est implémentée dans `.view.ts`. La classe étend la base générée du même nom :\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_card extends \u0024.\u0024my_card {\n\t\t@ \u0024mol_mem\n\t\ttitle() {\n\t\t\treturn 'Untitled'\n\t\t}\n\t}\n}\n```\n\nTout ce que le gabarit lie — `title`, `text`, la propriété d'une sous-vue — peut recevoir de la logique ici. La réactivité rend ces valeurs vivantes.\n\n## Attributs et type d'élément\n\nChangez l'élément HTML sous-jacent avec `dom_name`, et définissez les attributs via `attr` :\n\n```tree\n\u0024my_banner \u0024mol_view\n\tdom_name \\section\n\tattr *\n\t\t^\n\t\trole \\note\n```\n\nLe `^` hérite des attributs du parent, pour ne pas perdre ceux que `\u0024mol_view` définit déjà.\n\n## Listes et vues à clé\n\nUn `*` final transforme une sous-vue en famille — une instance par clé. À utiliser pour les lignes :\n\n```tree\n\u0024my_list \u0024mol_list\n\trows /\n\t\t<= Row* \u0024mol_view\n\t\t\tsub / <= row_title* \\\n```\n\nLe framework crée un `Row` pour chaque clé que vous fournissez et, grâce au [rendu virtualisé](#!section=docs/page=rendering), ne construit que ceux à l'écran.\n\n> Quand une vue à clé contient elle-même des enfants à clé, mettez la clé de l'externe avec `Name*`, pas `Name*0` — la forme indexée laisse les enfants imbriqués non rendus.\n\n## Vues conditionnelles\n\nAffecter `null` retire une vue du rendu. Sous-classez et annulez ce dont une variante n'a pas besoin :\n\n```tree\n\u0024my_page_readonly \u0024my_page\n\tEdit_button null\n```\n\n## Composition et réutilisation\n\nLes vues se composent par imbrication et se spécialisent par extension. Une carte utilisée dans une liste :\n\n```tree\n\u0024my_user_card \u0024mol_view\n\tsub /\n\t\t<= Name \u0024mol_view\n\t\t\tsub / <= name \\\n\t\t<= Email \u0024mol_view\n\t\t\tsub / <= email \\\n\n\u0024my_users_list \u0024mol_list\n\trows /\n\t\t<= User* \u0024my_user_card\n\t\t\tname <= user_name* \\\n\t\t\temail <= user_email* \\\n```\n\n`\u0024my_users_list` ne redéfinit jamais l'apparence d'une carte — il réutilise `\u0024my_user_card` et alimente chaque instance avec ses données. C'est tout le modèle de composition : de petites vues, câblées ensemble, spécialisées par `extends` quand une variante est nécessaire.\n\n## Suite\n\nLes vues décrivent la structure ; ce qui les fait vivre, ce sont les données réactives. Continuez vers [État et réactivité](#!section=docs/page=state).\n",
                         },
                         de: {
                             title: "Views",
-                            md: "# Views\n\nEine View ist eine Komponente: ein Knoten im UI-Baum mit eigenem Layout, Verhalten und Styles. Dieses Kapitel behandelt, wie Views deklariert, mit Logik verdrahtet, zusammengesetzt und wiederverwendet werden.\n\n## Drei Dateien, eine Komponente\n\nEine Komponente `\u0024my_card` lebt in `my/card/` und wird durch bis zu drei Dateien beschrieben, jede mit einer klaren Aufgabe:\n\n- `card.view.tree` — **was** die Komponente ist: ihre Struktur und Standard-Bindungen.\n- `card.view.ts` — **wie** sie sich verhält: TypeScript-Methoden, reaktiver Zustand.\n- `card.view.css.ts` — wie sie aussieht: typisierte, vom Compiler geprüfte Styles.\n\nStruktur, Verhalten und Style getrennt zu halten ist Absicht — jede Datei bleibt klein und lesbar, und das Layout ist nie mit Logik verstrickt.\n\n## Die view.tree-Sprache\n\n`view.tree` beschreibt Struktur deklarativ. Einrückung ist Verschachtelung; es gibt keine schließenden Tags.\n\n```tree\n\u0024my_card \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\\n\t\t<= Body \u0024mol_view\n\t\t\tsub / <= text \\\n```\n\n- `\u0024my_card \u0024mol_view` — deine Komponente erweitert die Basis `\u0024mol_view`.\n- `sub /` — die Liste der Kinder.\n- `<= Title \u0024mol_view` — eine benannte Sub-View, in TypeScript über `this.Title()` erreichbar.\n- `<= title \\` — eine bindbare Eigenschaft mit einem Roh-String als Standardwert (`\\` beginnt einen Roh-String).\n\nJeder großgeschriebene Name (`Title`, `Body`) wird zu einer echten Eigenschaft, die du erreichen, überschreiben oder stylen kannst. Jede kleingeschriebene Bindung (`title`, `text`) wird zu einem Wert, den du in `.view.ts` berechnen kannst.\n\n## Eigenschaften binden\n\nZwei Operatoren verbinden eine Eigenschaft mit ihrer Quelle:\n\n- `<=` **einweg**: das Kind liest einen Wert vom Besitzer.\n- `<=>` **zweiweg**: der Wert fließt in beide Richtungen — für Eingaben.\n\n```tree\n\u0024my_form \u0024mol_view\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> text? \\\n```\n\nHier bleiben `value` der Eingabe und `text` des Besitzers automatisch synchron: Tippe ins Feld und `text` aktualisiert sich; setze `text` im Code und das Feld spiegelt es wider.\n\n## Verdrahtung mit dem Verhalten\n\nEine Bindung ohne Standardwert wird in `.view.ts` implementiert. Die Klasse erweitert die generierte Basis gleichen Namens:\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_card extends \u0024.\u0024my_card {\n\t\t@ \u0024mol_mem\n\t\ttitle() {\n\t\t\treturn 'Untitled'\n\t\t}\n\t}\n}\n```\n\nAlles, was die Vorlage bindet — `title`, `text`, die Eigenschaft einer Sub-View — kann hier Logik erhalten. Reaktivität ([Zustand](#!section=docs/page=state)) macht diese Werte lebendig.\n\n## Attribute und Elementtyp\n\nÄndere das zugrunde liegende HTML-Element mit `dom_name` und setze Attribute über `attr`:\n\n```tree\n\u0024my_banner \u0024mol_view\n\tdom_name \\section\n\tattr *\n\t\t^\n\t\trole \\note\n```\n\nDas `^` erbt die Attribute des Elternteils, damit du die von `\u0024mol_view` bereits gesetzten nicht verlierst.\n\n## Listen und View-Familien mit Schlüssel\n\nEin abschließendes `*` macht aus einer Sub-View eine Familie — eine Instanz pro Schlüssel. Für Zeilen:\n\n```tree\n\u0024my_list \u0024mol_list\n\trows /\n\t\t<= Row* \u0024mol_view\n\t\t\tsub / <= row_title* \\\n```\n\nDas Framework erzeugt für jeden von dir gelieferten Schlüssel ein `Row` und baut dank [virtualisiertem Rendering](#!section=docs/page=rendering) nur die auf dem Bildschirm sichtbaren.\n\n> Wenn eine View mit Schlüssel selbst Kinder mit Schlüssel enthält, versieh die äußere mit `Name*`, nicht `Name*0` — die indizierte Form lässt verschachtelte Kinder ungerendert.\n\n## Bedingte Views\n\n`null` zuzuweisen entfernt eine View aus dem Rendering. Leite ab und setze auf null, was eine Variante nicht braucht:\n\n```tree\n\u0024my_page_readonly \u0024my_page\n\tEdit_button null\n```\n\n## Komposition und Wiederverwendung\n\nViews werden durch Verschachtelung zusammengesetzt und durch Erweiterung spezialisiert. Eine Karte, in einer Liste verwendet:\n\n```tree\n\u0024my_user_card \u0024mol_view\n\tsub /\n\t\t<= Name \u0024mol_view\n\t\t\tsub / <= name \\\n\t\t<= Email \u0024mol_view\n\t\t\tsub / <= email \\\n\n\u0024my_users_list \u0024mol_list\n\trows /\n\t\t<= User* \u0024my_user_card\n\t\t\tname <= user_name* \\\n\t\t\temail <= user_email* \\\n```\n\n`\u0024my_users_list` definiert nie neu, wie eine Karte aussieht — es verwendet `\u0024my_user_card` wieder und speist jede Instanz mit ihren Daten. Das ist das ganze Kompositionsmodell: kleine Views, zusammengesteckt, mit `extends` spezialisiert, wenn eine Variante nötig ist.\n\n## Weiter\n\nViews beschreiben Struktur; was sie zum Leben erweckt, sind reaktive Daten. Weiter zu [Zustand & Reaktivität](#!section=docs/page=state).\n",
+                            md: "# Views\n\nEine View ist eine Komponente: ein Knoten im UI-Baum mit eigenem Layout, Verhalten und Styles. Dieses Kapitel behandelt, wie Views deklariert, mit Logik verdrahtet, zusammengesetzt und wiederverwendet werden.\n\n## Drei Dateien, eine Komponente\n\nEine Komponente `\u0024my_card` lebt in `my/card/` und wird durch bis zu drei Dateien beschrieben, jede mit einer klaren Aufgabe:\n\n- `card.view.tree` — **was** die Komponente ist: ihre Struktur und Standard-Bindungen.\n- `card.view.ts` — **wie** sie sich verhält: TypeScript-Methoden, reaktiver Zustand.\n- `card.view.css.ts` — wie sie aussieht: typisierte, vom Compiler geprüfte Styles.\n\nStruktur, Verhalten und Style getrennt zu halten ist Absicht — jede Datei bleibt klein und lesbar, und das Layout ist nie mit Logik verstrickt.\n\n## Die view.tree-Sprache\n\n`view.tree` beschreibt Struktur deklarativ. Einrückung ist Verschachtelung; es gibt keine schließenden Tags.\n\n```tree\n\u0024my_card \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\\n\t\t<= Body \u0024mol_view\n\t\t\tsub / <= text \\\n```\n\n- `\u0024my_card \u0024mol_view` — deine Komponente erweitert die Basis `\u0024mol_view`.\n- `sub /` — die Liste der Kinder.\n- `<= Title \u0024mol_view` — eine benannte Sub-View, in TypeScript über `this.Title()` erreichbar.\n- `<= title \\` — eine bindbare Eigenschaft mit einem Roh-String als Standardwert (`\\` beginnt einen Roh-String).\n\nJeder großgeschriebene Name (`Title`, `Body`) wird zu einer echten Eigenschaft, die du erreichen, überschreiben oder stylen kannst. Jede kleingeschriebene Bindung (`title`, `text`) wird zu einem Wert, den du in `.view.ts` berechnen kannst.\n\n## Eigenschaften binden\n\nZwei Operatoren verbinden eine Eigenschaft mit ihrer Quelle:\n\n- `<=` **einweg**: das Kind liest einen Wert vom Besitzer.\n- `<=>` **zweiweg**: der Wert fließt in beide Richtungen — für Eingaben.\n\n```tree\n\u0024my_form \u0024mol_view\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> text? \\\n```\n\nHier bleiben `value` der Eingabe und `text` des Besitzers automatisch synchron: Tippe ins Feld und `text` aktualisiert sich; setze `text` im Code und das Feld spiegelt es wider.\n\n## Verdrahtung mit dem Verhalten\n\nEine Bindung ohne Standardwert wird in `.view.ts` implementiert. Die Klasse erweitert die generierte Basis gleichen Namens:\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_card extends \u0024.\u0024my_card {\n\t\t@ \u0024mol_mem\n\t\ttitle() {\n\t\t\treturn 'Untitled'\n\t\t}\n\t}\n}\n```\n\nAlles, was die Vorlage bindet — `title`, `text`, die Eigenschaft einer Sub-View — kann hier Logik erhalten. Reaktivität macht diese Werte lebendig.\n\n## Attribute und Elementtyp\n\nÄndere das zugrunde liegende HTML-Element mit `dom_name` und setze Attribute über `attr`:\n\n```tree\n\u0024my_banner \u0024mol_view\n\tdom_name \\section\n\tattr *\n\t\t^\n\t\trole \\note\n```\n\nDas `^` erbt die Attribute des Elternteils, damit du die von `\u0024mol_view` bereits gesetzten nicht verlierst.\n\n## Listen und View-Familien mit Schlüssel\n\nEin abschließendes `*` macht aus einer Sub-View eine Familie — eine Instanz pro Schlüssel. Für Zeilen:\n\n```tree\n\u0024my_list \u0024mol_list\n\trows /\n\t\t<= Row* \u0024mol_view\n\t\t\tsub / <= row_title* \\\n```\n\nDas Framework erzeugt für jeden von dir gelieferten Schlüssel ein `Row` und baut dank [virtualisiertem Rendering](#!section=docs/page=rendering) nur die auf dem Bildschirm sichtbaren.\n\n> Wenn eine View mit Schlüssel selbst Kinder mit Schlüssel enthält, versieh die äußere mit `Name*`, nicht `Name*0` — die indizierte Form lässt verschachtelte Kinder ungerendert.\n\n## Bedingte Views\n\n`null` zuzuweisen entfernt eine View aus dem Rendering. Leite ab und setze auf null, was eine Variante nicht braucht:\n\n```tree\n\u0024my_page_readonly \u0024my_page\n\tEdit_button null\n```\n\n## Komposition und Wiederverwendung\n\nViews werden durch Verschachtelung zusammengesetzt und durch Erweiterung spezialisiert. Eine Karte, in einer Liste verwendet:\n\n```tree\n\u0024my_user_card \u0024mol_view\n\tsub /\n\t\t<= Name \u0024mol_view\n\t\t\tsub / <= name \\\n\t\t<= Email \u0024mol_view\n\t\t\tsub / <= email \\\n\n\u0024my_users_list \u0024mol_list\n\trows /\n\t\t<= User* \u0024my_user_card\n\t\t\tname <= user_name* \\\n\t\t\temail <= user_email* \\\n```\n\n`\u0024my_users_list` definiert nie neu, wie eine Karte aussieht — es verwendet `\u0024my_user_card` wieder und speist jede Instanz mit ihren Daten. Das ist das ganze Kompositionsmodell: kleine Views, zusammengesteckt, mit `extends` spezialisiert, wenn eine Variante nötig ist.\n\n## Weiter\n\nViews beschreiben Struktur; was sie zum Leben erweckt, sind reaktive Daten. Weiter zu [Zustand & Reaktivität](#!section=docs/page=state).\n",
                         },
                         pt: {
                             title: "Views",
-                            md: "# Views\n\nUma view é um componente: um nó na árvore de UI com seu próprio layout, comportamento e estilos. Este capítulo cobre como as views são declaradas, ligadas à lógica, compostas e reutilizadas.\n\n## Três arquivos, um componente\n\nUm componente `\u0024my_card` vive em `my/card/` e é descrito por até três arquivos, cada um com uma função clara:\n\n- `card.view.tree` — **o que** o componente é: sua estrutura e ligações padrão.\n- `card.view.ts` — **como** ele se comporta: métodos TypeScript, estado reativo.\n- `card.view.css.ts` — como ele se parece: estilos tipados verificados pelo compilador.\n\nManter estrutura, comportamento e estilo separados é proposital — cada arquivo permanece pequeno e legível, e o layout nunca se emaranha com a lógica.\n\n## A linguagem view.tree\n\n`view.tree` descreve a estrutura de forma declarativa. A indentação é o aninhamento; não há tags de fechamento.\n\n```tree\n\u0024my_card \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\\n\t\t<= Body \u0024mol_view\n\t\t\tsub / <= text \\\n```\n\n- `\u0024my_card \u0024mol_view` — seu componente estende a base `\u0024mol_view`.\n- `sub /` — a lista de filhos.\n- `<= Title \u0024mol_view` — uma subview nomeada, acessível como `this.Title()` em TypeScript.\n- `<= title \\` — uma propriedade ligável com um valor string bruta padrão (`\\` inicia uma string bruta).\n\nTodo nome capitalizado (`Title`, `Body`) torna-se uma propriedade real que você pode acessar, sobrescrever ou estilizar. Toda ligação em minúsculas (`title`, `text`) torna-se um valor que você pode calcular em `.view.ts`.\n\n## Ligando propriedades\n\nDois operadores conectam uma propriedade à sua fonte:\n\n- `<=` **unidirecional**: o filho lê um valor do proprietário.\n- `<=>` **bidirecional**: o valor flui em ambas as direções — usado para entradas.\n\n```tree\n\u0024my_form \u0024mol_view\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> text? \\\n```\n\nAqui o `value` da entrada e o `text` do proprietário permanecem sincronizados automaticamente: digite no campo e `text` se atualiza; defina `text` no código e o campo reflete isso.\n\n## Ligando ao comportamento\n\nUma ligação sem valor padrão é implementada em `.view.ts`. A classe estende a base gerada de mesmo nome:\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_card extends \u0024.\u0024my_card {\n\t\t@ \u0024mol_mem\n\t\ttitle() {\n\t\t\treturn 'Untitled'\n\t\t}\n\t}\n}\n```\n\nTudo o que o template liga — `title`, `text`, a propriedade de uma subview — pode receber lógica aqui. A reatividade ([Estado](#!section=docs/page=state)) torna esses valores vivos.\n\n## Atributos e tipo de elemento\n\nMude o elemento HTML subjacente com `dom_name` e defina atributos por meio de `attr`:\n\n```tree\n\u0024my_banner \u0024mol_view\n\tdom_name \\section\n\tattr *\n\t\t^\n\t\trole \\note\n```\n\nO `^` herda os atributos do pai, para você não perder os que `\u0024mol_view` já define.\n\n## Listas e views com chave\n\nUm `*` no final transforma uma subview em uma família — uma instância por chave. Use para linhas:\n\n```tree\n\u0024my_list \u0024mol_list\n\trows /\n\t\t<= Row* \u0024mol_view\n\t\t\tsub / <= row_title* \\\n```\n\nO framework cria um `Row` para cada chave que você fornece e, graças à [renderização virtualizada](#!section=docs/page=rendering), constrói apenas as que estão na tela.\n\n> Quando uma view com chave contém, ela mesma, filhos com chave, dê a chave à externa com `Name*`, não `Name*0` — a forma indexada deixa os filhos aninhados sem renderizar.\n\n## Views condicionais\n\nAtribuir `null` remove uma view da renderização. Faça uma subclasse e anule o que uma variante não precisa:\n\n```tree\n\u0024my_page_readonly \u0024my_page\n\tEdit_button null\n```\n\n## Composição e reutilização\n\nAs views se compõem por aninhamento e se especializam por extensão. Um cartão usado dentro de uma lista:\n\n```tree\n\u0024my_user_card \u0024mol_view\n\tsub /\n\t\t<= Name \u0024mol_view\n\t\t\tsub / <= name \\\n\t\t<= Email \u0024mol_view\n\t\t\tsub / <= email \\\n\n\u0024my_users_list \u0024mol_list\n\trows /\n\t\t<= User* \u0024my_user_card\n\t\t\tname <= user_name* \\\n\t\t\temail <= user_email* \\\n```\n\n`\u0024my_users_list` nunca redefine a aparência de um cartão — ele reutiliza `\u0024my_user_card` e alimenta cada instância com seus dados. Este é todo o modelo de composição: views pequenas, ligadas entre si, especializadas por `extends` quando uma variante é necessária.\n\n## Próximo\n\nAs views descrevem a estrutura; o que as faz ganhar vida são os dados reativos. Continue para [Estado e reatividade](#!section=docs/page=state).\n",
+                            md: "# Views\n\nUma view é um componente: um nó na árvore de UI com seu próprio layout, comportamento e estilos. Este capítulo cobre como as views são declaradas, ligadas à lógica, compostas e reutilizadas.\n\n## Três arquivos, um componente\n\nUm componente `\u0024my_card` vive em `my/card/` e é descrito por até três arquivos, cada um com uma função clara:\n\n- `card.view.tree` — **o que** o componente é: sua estrutura e ligações padrão.\n- `card.view.ts` — **como** ele se comporta: métodos TypeScript, estado reativo.\n- `card.view.css.ts` — como ele se parece: estilos tipados verificados pelo compilador.\n\nManter estrutura, comportamento e estilo separados é proposital — cada arquivo permanece pequeno e legível, e o layout nunca se emaranha com a lógica.\n\n## A linguagem view.tree\n\n`view.tree` descreve a estrutura de forma declarativa. A indentação é o aninhamento; não há tags de fechamento.\n\n```tree\n\u0024my_card \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\\n\t\t<= Body \u0024mol_view\n\t\t\tsub / <= text \\\n```\n\n- `\u0024my_card \u0024mol_view` — seu componente estende a base `\u0024mol_view`.\n- `sub /` — a lista de filhos.\n- `<= Title \u0024mol_view` — uma subview nomeada, acessível como `this.Title()` em TypeScript.\n- `<= title \\` — uma propriedade ligável com um valor string bruta padrão (`\\` inicia uma string bruta).\n\nTodo nome capitalizado (`Title`, `Body`) torna-se uma propriedade real que você pode acessar, sobrescrever ou estilizar. Toda ligação em minúsculas (`title`, `text`) torna-se um valor que você pode calcular em `.view.ts`.\n\n## Ligando propriedades\n\nDois operadores conectam uma propriedade à sua fonte:\n\n- `<=` **unidirecional**: o filho lê um valor do proprietário.\n- `<=>` **bidirecional**: o valor flui em ambas as direções — usado para entradas.\n\n```tree\n\u0024my_form \u0024mol_view\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> text? \\\n```\n\nAqui o `value` da entrada e o `text` do proprietário permanecem sincronizados automaticamente: digite no campo e `text` se atualiza; defina `text` no código e o campo reflete isso.\n\n## Ligando ao comportamento\n\nUma ligação sem valor padrão é implementada em `.view.ts`. A classe estende a base gerada de mesmo nome:\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_card extends \u0024.\u0024my_card {\n\t\t@ \u0024mol_mem\n\t\ttitle() {\n\t\t\treturn 'Untitled'\n\t\t}\n\t}\n}\n```\n\nTudo o que o template liga — `title`, `text`, a propriedade de uma subview — pode receber lógica aqui. A reatividade torna esses valores vivos.\n\n## Atributos e tipo de elemento\n\nMude o elemento HTML subjacente com `dom_name` e defina atributos por meio de `attr`:\n\n```tree\n\u0024my_banner \u0024mol_view\n\tdom_name \\section\n\tattr *\n\t\t^\n\t\trole \\note\n```\n\nO `^` herda os atributos do pai, para você não perder os que `\u0024mol_view` já define.\n\n## Listas e views com chave\n\nUm `*` no final transforma uma subview em uma família — uma instância por chave. Use para linhas:\n\n```tree\n\u0024my_list \u0024mol_list\n\trows /\n\t\t<= Row* \u0024mol_view\n\t\t\tsub / <= row_title* \\\n```\n\nO framework cria um `Row` para cada chave que você fornece e, graças à [renderização virtualizada](#!section=docs/page=rendering), constrói apenas as que estão na tela.\n\n> Quando uma view com chave contém, ela mesma, filhos com chave, dê a chave à externa com `Name*`, não `Name*0` — a forma indexada deixa os filhos aninhados sem renderizar.\n\n## Views condicionais\n\nAtribuir `null` remove uma view da renderização. Faça uma subclasse e anule o que uma variante não precisa:\n\n```tree\n\u0024my_page_readonly \u0024my_page\n\tEdit_button null\n```\n\n## Composição e reutilização\n\nAs views se compõem por aninhamento e se especializam por extensão. Um cartão usado dentro de uma lista:\n\n```tree\n\u0024my_user_card \u0024mol_view\n\tsub /\n\t\t<= Name \u0024mol_view\n\t\t\tsub / <= name \\\n\t\t<= Email \u0024mol_view\n\t\t\tsub / <= email \\\n\n\u0024my_users_list \u0024mol_list\n\trows /\n\t\t<= User* \u0024my_user_card\n\t\t\tname <= user_name* \\\n\t\t\temail <= user_email* \\\n```\n\n`\u0024my_users_list` nunca redefine a aparência de um cartão — ele reutiliza `\u0024my_user_card` e alimenta cada instância com seus dados. Este é todo o modelo de composição: views pequenas, ligadas entre si, especializadas por `extends` quando uma variante é necessária.\n\n## Próximo\n\nAs views descrevem a estrutura; o que as faz ganhar vida são os dados reativos. Continue para [Estado e reatividade](#!section=docs/page=state).\n",
                         },
                         it: {
                             title: "Viste",
-                            md: "# Viste\n\nUna vista è un componente: un nodo nell'albero dell'interfaccia con il proprio layout, comportamento e stili. Questo capitolo tratta come le viste vengono dichiarate, collegate alla logica, composte e riutilizzate.\n\n## Tre file, un componente\n\nUn componente `\u0024my_card` vive in `my/card/` ed è descritto da un massimo di tre file, ciascuno con un compito chiaro:\n\n- `card.view.tree` — **cosa** è il componente: la sua struttura e i binding predefiniti.\n- `card.view.ts` — **come** si comporta: metodi TypeScript, stato reattivo.\n- `card.view.css.ts` — come appare: stili tipizzati verificati dal compilatore.\n\nTenere separati struttura, comportamento e stile è voluto — ogni file rimane piccolo e leggibile, e il layout non si aggroviglia mai con la logica.\n\n## Il linguaggio view.tree\n\n`view.tree` descrive la struttura in modo dichiarativo. L'indentazione è annidamento; non ci sono tag di chiusura.\n\n```tree\n\u0024my_card \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\\n\t\t<= Body \u0024mol_view\n\t\t\tsub / <= text \\\n```\n\n- `\u0024my_card \u0024mol_view` — il tuo componente estende la base `\u0024mol_view`.\n- `sub /` — l'elenco dei figli.\n- `<= Title \u0024mol_view` — una sotto-vista con nome, accessibile come `this.Title()` in TypeScript.\n- `<= title \\` — una proprietà associabile con un valore stringa grezza predefinito (`\\` inizia una stringa grezza).\n\nOgni nome con l'iniziale maiuscola (`Title`, `Body`) diventa una proprietà reale che puoi raggiungere, sovrascrivere o stilizzare. Ogni binding in minuscolo (`title`, `text`) diventa un valore che puoi calcolare in `.view.ts`.\n\n## Associare proprietà\n\nDue operatori collegano una proprietà alla sua sorgente:\n\n- `<=` **unidirezionale**: il figlio legge un valore dal proprietario.\n- `<=>` **bidirezionale**: il valore scorre in entrambe le direzioni — usato per gli input.\n\n```tree\n\u0024my_form \u0024mol_view\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> text? \\\n```\n\nQui il `value` dell'input e il `text` del proprietario restano sincronizzati automaticamente: digita nel campo e `text` si aggiorna; imposta `text` nel codice e il campo lo riflette.\n\n## Collegamento al comportamento\n\nUn binding senza valore predefinito viene implementato in `.view.ts`. La classe estende la base generata con lo stesso nome:\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_card extends \u0024.\u0024my_card {\n\t\t@ \u0024mol_mem\n\t\ttitle() {\n\t\t\treturn 'Untitled'\n\t\t}\n\t}\n}\n```\n\nTutto ciò che il template associa — `title`, `text`, la proprietà di una sotto-vista — può ricevere logica qui. La reattività ([Stato](#!section=docs/page=state)) rende vivi questi valori.\n\n## Attributi e tipo di elemento\n\nCambia l'elemento HTML sottostante con `dom_name` e imposta gli attributi tramite `attr`:\n\n```tree\n\u0024my_banner \u0024mol_view\n\tdom_name \\section\n\tattr *\n\t\t^\n\t\trole \\note\n```\n\nIl `^` eredita gli attributi del genitore, così non perdi quelli che `\u0024mol_view` imposta già.\n\n## Elenchi e viste con chiave\n\nUn `*` finale trasforma una sotto-vista in una famiglia — un'istanza per chiave. Usalo per le righe:\n\n```tree\n\u0024my_list \u0024mol_list\n\trows /\n\t\t<= Row* \u0024mol_view\n\t\t\tsub / <= row_title* \\\n```\n\nIl framework crea un `Row` per ogni chiave che fornisci e, grazie al [rendering virtualizzato](#!section=docs/page=rendering), costruisce solo quelli sullo schermo.\n\n> Quando una vista con chiave contiene a sua volta figli con chiave, assegna la chiave a quella esterna con `Name*`, non `Name*0` — la forma indicizzata lascia i figli annidati non renderizzati.\n\n## Viste condizionali\n\nAssegnare `null` rimuove una vista dal rendering. Crea una sottoclasse e annulla ciò di cui una variante non ha bisogno:\n\n```tree\n\u0024my_page_readonly \u0024my_page\n\tEdit_button null\n```\n\n## Composizione e riuso\n\nLe viste si compongono per annidamento e si specializzano per estensione. Una scheda usata dentro un elenco:\n\n```tree\n\u0024my_user_card \u0024mol_view\n\tsub /\n\t\t<= Name \u0024mol_view\n\t\t\tsub / <= name \\\n\t\t<= Email \u0024mol_view\n\t\t\tsub / <= email \\\n\n\u0024my_users_list \u0024mol_list\n\trows /\n\t\t<= User* \u0024my_user_card\n\t\t\tname <= user_name* \\\n\t\t\temail <= user_email* \\\n```\n\n`\u0024my_users_list` non ridefinisce mai l'aspetto di una scheda — riutilizza `\u0024my_user_card` e alimenta ogni istanza con i suoi dati. Questo è l'intero modello di composizione: viste piccole, collegate insieme, specializzate con `extends` quando serve una variante.\n\n## Avanti\n\nLe viste descrivono la struttura; ciò che le rende vive sono i dati reattivi. Continua con [Stato e reattività](#!section=docs/page=state).\n",
+                            md: "# Viste\n\nUna vista è un componente: un nodo nell'albero dell'interfaccia con il proprio layout, comportamento e stili. Questo capitolo tratta come le viste vengono dichiarate, collegate alla logica, composte e riutilizzate.\n\n## Tre file, un componente\n\nUn componente `\u0024my_card` vive in `my/card/` ed è descritto da un massimo di tre file, ciascuno con un compito chiaro:\n\n- `card.view.tree` — **cosa** è il componente: la sua struttura e i binding predefiniti.\n- `card.view.ts` — **come** si comporta: metodi TypeScript, stato reattivo.\n- `card.view.css.ts` — come appare: stili tipizzati verificati dal compilatore.\n\nTenere separati struttura, comportamento e stile è voluto — ogni file rimane piccolo e leggibile, e il layout non si aggroviglia mai con la logica.\n\n## Il linguaggio view.tree\n\n`view.tree` descrive la struttura in modo dichiarativo. L'indentazione è annidamento; non ci sono tag di chiusura.\n\n```tree\n\u0024my_card \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\\n\t\t<= Body \u0024mol_view\n\t\t\tsub / <= text \\\n```\n\n- `\u0024my_card \u0024mol_view` — il tuo componente estende la base `\u0024mol_view`.\n- `sub /` — l'elenco dei figli.\n- `<= Title \u0024mol_view` — una sotto-vista con nome, accessibile come `this.Title()` in TypeScript.\n- `<= title \\` — una proprietà associabile con un valore stringa grezza predefinito (`\\` inizia una stringa grezza).\n\nOgni nome con l'iniziale maiuscola (`Title`, `Body`) diventa una proprietà reale che puoi raggiungere, sovrascrivere o stilizzare. Ogni binding in minuscolo (`title`, `text`) diventa un valore che puoi calcolare in `.view.ts`.\n\n## Associare proprietà\n\nDue operatori collegano una proprietà alla sua sorgente:\n\n- `<=` **unidirezionale**: il figlio legge un valore dal proprietario.\n- `<=>` **bidirezionale**: il valore scorre in entrambe le direzioni — usato per gli input.\n\n```tree\n\u0024my_form \u0024mol_view\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> text? \\\n```\n\nQui il `value` dell'input e il `text` del proprietario restano sincronizzati automaticamente: digita nel campo e `text` si aggiorna; imposta `text` nel codice e il campo lo riflette.\n\n## Collegamento al comportamento\n\nUn binding senza valore predefinito viene implementato in `.view.ts`. La classe estende la base generata con lo stesso nome:\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_card extends \u0024.\u0024my_card {\n\t\t@ \u0024mol_mem\n\t\ttitle() {\n\t\t\treturn 'Untitled'\n\t\t}\n\t}\n}\n```\n\nTutto ciò che il template associa — `title`, `text`, la proprietà di una sotto-vista — può ricevere logica qui. La reattività rende vivi questi valori.\n\n## Attributi e tipo di elemento\n\nCambia l'elemento HTML sottostante con `dom_name` e imposta gli attributi tramite `attr`:\n\n```tree\n\u0024my_banner \u0024mol_view\n\tdom_name \\section\n\tattr *\n\t\t^\n\t\trole \\note\n```\n\nIl `^` eredita gli attributi del genitore, così non perdi quelli che `\u0024mol_view` imposta già.\n\n## Elenchi e viste con chiave\n\nUn `*` finale trasforma una sotto-vista in una famiglia — un'istanza per chiave. Usalo per le righe:\n\n```tree\n\u0024my_list \u0024mol_list\n\trows /\n\t\t<= Row* \u0024mol_view\n\t\t\tsub / <= row_title* \\\n```\n\nIl framework crea un `Row` per ogni chiave che fornisci e, grazie al [rendering virtualizzato](#!section=docs/page=rendering), costruisce solo quelli sullo schermo.\n\n> Quando una vista con chiave contiene a sua volta figli con chiave, assegna la chiave a quella esterna con `Name*`, non `Name*0` — la forma indicizzata lascia i figli annidati non renderizzati.\n\n## Viste condizionali\n\nAssegnare `null` rimuove una vista dal rendering. Crea una sottoclasse e annulla ciò di cui una variante non ha bisogno:\n\n```tree\n\u0024my_page_readonly \u0024my_page\n\tEdit_button null\n```\n\n## Composizione e riuso\n\nLe viste si compongono per annidamento e si specializzano per estensione. Una scheda usata dentro un elenco:\n\n```tree\n\u0024my_user_card \u0024mol_view\n\tsub /\n\t\t<= Name \u0024mol_view\n\t\t\tsub / <= name \\\n\t\t<= Email \u0024mol_view\n\t\t\tsub / <= email \\\n\n\u0024my_users_list \u0024mol_list\n\trows /\n\t\t<= User* \u0024my_user_card\n\t\t\tname <= user_name* \\\n\t\t\temail <= user_email* \\\n```\n\n`\u0024my_users_list` non ridefinisce mai l'aspetto di una scheda — riutilizza `\u0024my_user_card` e alimenta ogni istanza con i suoi dati. Questo è l'intero modello di composizione: viste piccole, collegate insieme, specializzate con `extends` quando serve una variante.\n\n## Avanti\n\nLe viste descrivono la struttura; ciò che le rende vive sono i dati reattivi. Continua con [Stato e reattività](#!section=docs/page=state).\n",
                         },
                         ru: {
                             title: "Вью",
-                            md: "# Вью\n\nВью — это компонент: узел в дереве интерфейса со своей разметкой, поведением и стилями. Эта глава о том, как вью объявляются, связываются с логикой, композируются и переиспользуются.\n\n## Три файла, один компонент\n\nКомпонент `\u0024my_card` живёт в `my/card/` и описывается максимум тремя файлами, у каждого — своя роль:\n\n- `card.view.tree` — **что** представляет собой компонент: его структура и связывания по умолчанию.\n- `card.view.ts` — **как** он ведёт себя: методы TypeScript, реактивное состояние.\n- `card.view.css.ts` — как он выглядит: типизированные стили, проверяемые компилятором.\n\nРазделение структуры, поведения и стиля сделано намеренно — каждый файл остаётся маленьким и читаемым, а разметка никогда не переплетается с логикой.\n\n## Язык view.tree\n\n`view.tree` описывает структуру декларативно. Отступ — это вложенность; закрывающих тегов нет.\n\n```tree\n\u0024my_card \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\\n\t\t<= Body \u0024mol_view\n\t\t\tsub / <= text \\\n```\n\n- `\u0024my_card \u0024mol_view` — ваш компонент наследует базовый `\u0024mol_view`.\n- `sub /` — список дочерних элементов.\n- `<= Title \u0024mol_view` — именованное под-вью, доступное как `this.Title()` в TypeScript.\n- `<= title \\` — связываемое свойство со значением-строкой по умолчанию (`\\` начинает сырую строку).\n\nКаждое имя с большой буквы (`Title`, `Body`) становится настоящим свойством, к которому можно обратиться, переопределить или стилизовать. Каждое связывание с маленькой буквы (`title`, `text`) становится значением, которое можно вычислить в `.view.ts`.\n\n## Связывание свойств\n\nДва оператора соединяют свойство с его источником:\n\n- `<=` **в одну сторону**: ребёнок читает значение у владельца.\n- `<=>` **в обе стороны**: значение течёт в обоих направлениях — используется для полей ввода.\n\n```tree\n\u0024my_form \u0024mol_view\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> text? \\\n```\n\nЗдесь `value` поля ввода и `text` владельца остаются синхронными автоматически: пишете в поле — обновляется `text`; задаёте `text` в коде — поле это отражает.\n\n## Связь с поведением\n\nСвязывание без значения по умолчанию реализуется в `.view.ts`. Класс наследует сгенерированную базу с тем же именем:\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_card extends \u0024.\u0024my_card {\n\t\t@ \u0024mol_mem\n\t\ttitle() {\n\t\t\treturn 'Untitled'\n\t\t}\n\t}\n}\n```\n\nВсему, что связывает шаблон — `title`, `text`, свойство под-вью — можно задать логику здесь. Реактивность ([Состояние](#!section=docs/page=state)) делает эти значения живыми.\n\n## Атрибуты и тип элемента\n\nСмените нижележащий HTML-элемент через `dom_name`, а атрибуты задайте через `attr`:\n\n```tree\n\u0024my_banner \u0024mol_view\n\tdom_name \\section\n\tattr *\n\t\t^\n\t\trole \\note\n```\n\n`^` наследует атрибуты родителя, чтобы не потерять те, что `\u0024mol_view` уже проставляет.\n\n## Списки и ключевые вью\n\nХвостовая `*` превращает под-вью в семейство — по одному экземпляру на ключ. Используйте для строк:\n\n```tree\n\u0024my_list \u0024mol_list\n\trows /\n\t\t<= Row* \u0024mol_view\n\t\t\tsub / <= row_title* \\\n```\n\nФреймворк создаёт `Row` для каждого переданного ключа и, благодаря [виртуализированному рендерингу](#!section=docs/page=rendering), строит только те, что на экране.\n\n> Когда ключевое вью само содержит ключевых детей, ключуйте внешнее как `Name*`, а не `Name*0` — индексированная форма оставляет вложенных детей неотрендеренными.\n\n## Условные вью\n\nПрисваивание `null` убирает вью из рендеринга. Наследуйтесь и обнуляйте то, что варианту не нужно:\n\n```tree\n\u0024my_page_readonly \u0024my_page\n\tEdit_button null\n```\n\n## Композиция и переиспользование\n\nВью композируются вложением и специализируются наследованием. Карточка, используемая внутри списка:\n\n```tree\n\u0024my_user_card \u0024mol_view\n\tsub /\n\t\t<= Name \u0024mol_view\n\t\t\tsub / <= name \\\n\t\t<= Email \u0024mol_view\n\t\t\tsub / <= email \\\n\n\u0024my_users_list \u0024mol_list\n\trows /\n\t\t<= User* \u0024my_user_card\n\t\t\tname <= user_name* \\\n\t\t\temail <= user_email* \\\n```\n\n`\u0024my_users_list` не переопределяет, как выглядит карточка — он переиспользует `\u0024my_user_card` и кормит каждый экземпляр его данными. В этом и вся модель композиции: маленькие вью, связанные вместе, специализированные через `extends`, когда нужен вариант.\n\n## Дальше\n\nВью описывают структуру; оживляют их реактивные данные. Переходите к [Состоянию и реактивности](#!section=docs/page=state).\n",
+                            md: "# Вью\n\nВью — это компонент: узел в дереве интерфейса со своей разметкой, поведением и стилями. Эта глава о том, как вью объявляются, связываются с логикой, композируются и переиспользуются.\n\n## Три файла, один компонент\n\nКомпонент `\u0024my_card` живёт в `my/card/` и описывается максимум тремя файлами, у каждого — своя роль:\n\n- `card.view.tree` — **что** представляет собой компонент: его структура и связывания по умолчанию.\n- `card.view.ts` — **как** он ведёт себя: методы TypeScript, реактивное состояние.\n- `card.view.css.ts` — как он выглядит: типизированные стили, проверяемые компилятором.\n\nРазделение структуры, поведения и стиля сделано намеренно — каждый файл остаётся маленьким и читаемым, а разметка никогда не переплетается с логикой.\n\n## Язык view.tree\n\n`view.tree` описывает структуру декларативно. Отступ — это вложенность; закрывающих тегов нет.\n\n```tree\n\u0024my_card \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\\n\t\t<= Body \u0024mol_view\n\t\t\tsub / <= text \\\n```\n\n- `\u0024my_card \u0024mol_view` — ваш компонент наследует базовый `\u0024mol_view`.\n- `sub /` — список дочерних элементов.\n- `<= Title \u0024mol_view` — именованное под-вью, доступное как `this.Title()` в TypeScript.\n- `<= title \\` — связываемое свойство со значением-строкой по умолчанию (`\\` начинает сырую строку).\n\nКаждое имя с большой буквы (`Title`, `Body`) становится настоящим свойством, к которому можно обратиться, переопределить или стилизовать. Каждое связывание с маленькой буквы (`title`, `text`) становится значением, которое можно вычислить в `.view.ts`.\n\n## Связывание свойств\n\nДва оператора соединяют свойство с его источником:\n\n- `<=` **в одну сторону**: ребёнок читает значение у владельца.\n- `<=>` **в обе стороны**: значение течёт в обоих направлениях — используется для полей ввода.\n\n```tree\n\u0024my_form \u0024mol_view\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> text? \\\n```\n\nЗдесь `value` поля ввода и `text` владельца остаются синхронными автоматически: пишете в поле — обновляется `text`; задаёте `text` в коде — поле это отражает.\n\n## Связь с поведением\n\nСвязывание без значения по умолчанию реализуется в `.view.ts`. Класс наследует сгенерированную базу с тем же именем:\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_card extends \u0024.\u0024my_card {\n\t\t@ \u0024mol_mem\n\t\ttitle() {\n\t\t\treturn 'Untitled'\n\t\t}\n\t}\n}\n```\n\nВсему, что связывает шаблон — `title`, `text`, свойство под-вью — можно задать логику здесь. Реактивность делает эти значения живыми.\n\n## Атрибуты и тип элемента\n\nСмените нижележащий HTML-элемент через `dom_name`, а атрибуты задайте через `attr`:\n\n```tree\n\u0024my_banner \u0024mol_view\n\tdom_name \\section\n\tattr *\n\t\t^\n\t\trole \\note\n```\n\n`^` наследует атрибуты родителя, чтобы не потерять те, что `\u0024mol_view` уже проставляет.\n\n## Списки и ключевые вью\n\nХвостовая `*` превращает под-вью в семейство — по одному экземпляру на ключ. Используйте для строк:\n\n```tree\n\u0024my_list \u0024mol_list\n\trows /\n\t\t<= Row* \u0024mol_view\n\t\t\tsub / <= row_title* \\\n```\n\nФреймворк создаёт `Row` для каждого переданного ключа и, благодаря [виртуализированному рендерингу](#!section=docs/page=rendering), строит только те, что на экране.\n\n> Когда ключевое вью само содержит ключевых детей, ключуйте внешнее как `Name*`, а не `Name*0` — индексированная форма оставляет вложенных детей неотрендеренными.\n\n## Условные вью\n\nПрисваивание `null` убирает вью из рендеринга. Наследуйтесь и обнуляйте то, что варианту не нужно:\n\n```tree\n\u0024my_page_readonly \u0024my_page\n\tEdit_button null\n```\n\n## Композиция и переиспользование\n\nВью композируются вложением и специализируются наследованием. Карточка, используемая внутри списка:\n\n```tree\n\u0024my_user_card \u0024mol_view\n\tsub /\n\t\t<= Name \u0024mol_view\n\t\t\tsub / <= name \\\n\t\t<= Email \u0024mol_view\n\t\t\tsub / <= email \\\n\n\u0024my_users_list \u0024mol_list\n\trows /\n\t\t<= User* \u0024my_user_card\n\t\t\tname <= user_name* \\\n\t\t\temail <= user_email* \\\n```\n\n`\u0024my_users_list` не переопределяет, как выглядит карточка — он переиспользует `\u0024my_user_card` и кормит каждый экземпляр его данными. В этом и вся модель композиции: маленькие вью, связанные вместе, специализированные через `extends`, когда нужен вариант.\n\n## Дальше\n\nВью описывают структуру; оживляют их реактивные данные. Переходите к [Состоянию и реактивности](#!section=docs/page=state).\n",
                         },
                         uk: {
                             title: "Види",
-                            md: "# Види\n\nВид — це компонент: вузол у дереві інтерфейсу з власною розміткою, поведінкою та стилями. Цей розділ описує, як види оголошуються, зв'язуються з логікою, компонуються та повторно використовуються.\n\n## Три файли, один компонент\n\nКомпонент `\u0024my_card` живе в `my/card/` й описується щонайбільше трьома файлами, кожен із чіткою роллю:\n\n- `card.view.tree` — **чим** є компонент: його структура та типові прив'язки.\n- `card.view.ts` — **як** він поводиться: методи TypeScript, реактивний стан.\n- `card.view.css.ts` — як він виглядає: типізовані стилі, які перевіряє компілятор.\n\nТримати структуру, поведінку та стиль окремо — це навмисно: кожен файл лишається малим і читабельним, а розмітка ніколи не переплітається з логікою.\n\n## Мова view.tree\n\n`view.tree` описує структуру декларативно. Відступ — це вкладення; закривальних тегів немає.\n\n```tree\n\u0024my_card \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\\n\t\t<= Body \u0024mol_view\n\t\t\tsub / <= text \\\n```\n\n- `\u0024my_card \u0024mol_view` — ваш компонент розширює базовий `\u0024mol_view`.\n- `sub /` — список дочірніх елементів.\n- `<= Title \u0024mol_view` — іменований підвид, доступний як `this.Title()` у TypeScript.\n- `<= title \\` — прив'язувана властивість зі значенням-сирим рядком за замовчуванням (`\\` починає сирий рядок).\n\nКожне ім'я з великої літери (`Title`, `Body`) стає справжньою властивістю, до якої можна звернутися, яку можна перевизначити чи стилізувати. Кожна прив'язка з малої літери (`title`, `text`) стає значенням, яке можна обчислити в `.view.ts`.\n\n## Прив'язування властивостей\n\nДва оператори з'єднують властивість із її джерелом:\n\n- `<=` **односторонньо**: дочірній елемент читає значення від власника.\n- `<=>` **двосторонньо**: значення тече в обидва боки — використовується для полів вводу.\n\n```tree\n\u0024my_form \u0024mol_view\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> text? \\\n```\n\nТут `value` поля вводу та `text` власника автоматично лишаються синхронізованими: набираєте в полі — `text` оновлюється; задаєте `text` у коді — поле це відображає.\n\n## Зв'язування з поведінкою\n\nПрив'язка без значення за замовчуванням реалізується в `.view.ts`. Клас розширює згенерований базовий клас із тим самим ім'ям:\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_card extends \u0024.\u0024my_card {\n\t\t@ \u0024mol_mem\n\t\ttitle() {\n\t\t\treturn 'Untitled'\n\t\t}\n\t}\n}\n```\n\nБудь-чому, що прив'язує шаблон — `title`, `text`, властивості підвиду — тут можна надати логіку. Реактивність ([Стан](#!section=docs/page=state)) робить ці значення живими.\n\n## Атрибути та тип елемента\n\nЗмініть базовий HTML-елемент за допомогою `dom_name`, а атрибути задайте через `attr`:\n\n```tree\n\u0024my_banner \u0024mol_view\n\tdom_name \\section\n\tattr *\n\t\t^\n\t\trole \\note\n```\n\n`^` успадковує атрибути батька, щоб ви не втратили ті, які `\u0024mol_view` уже задає.\n\n## Списки та види з ключами\n\nКінцева `*` перетворює підвид на родину — по одному екземпляру на ключ. Використовуйте для рядків:\n\n```tree\n\u0024my_list \u0024mol_list\n\trows /\n\t\t<= Row* \u0024mol_view\n\t\t\tsub / <= row_title* \\\n```\n\nФреймворк створює `Row` для кожного ключа, який ви надаєте, і завдяки [віртуалізованому рендерингу](#!section=docs/page=rendering) будує лише ті, що на екрані.\n\n> Коли вид із ключем сам містить дочірні елементи з ключами, задавайте ключ зовнішньому через `Name*`, а не `Name*0` — індексована форма лишає вкладені дочірні елементи нерендереними.\n\n## Умовні види\n\nПрисвоєння `null` прибирає вид із рендерингу. Створіть підклас і обнуліть те, що варіантові не потрібне:\n\n```tree\n\u0024my_page_readonly \u0024my_page\n\tEdit_button null\n```\n\n## Композиція та повторне використання\n\nВиди компонуються вкладенням і спеціалізуються розширенням. Картка, що використовується всередині списку:\n\n```tree\n\u0024my_user_card \u0024mol_view\n\tsub /\n\t\t<= Name \u0024mol_view\n\t\t\tsub / <= name \\\n\t\t<= Email \u0024mol_view\n\t\t\tsub / <= email \\\n\n\u0024my_users_list \u0024mol_list\n\trows /\n\t\t<= User* \u0024my_user_card\n\t\t\tname <= user_name* \\\n\t\t\temail <= user_email* \\\n```\n\n`\u0024my_users_list` ніколи не перевизначає, як виглядає картка — він повторно використовує `\u0024my_user_card` і подає кожному екземпляру його дані. Це і є вся модель композиції: малі види, з'єднані разом, спеціалізовані через `extends`, коли потрібен варіант.\n\n## Далі\n\nВиди описують структуру; живими їх робить реактивність даних. Продовжуйте до [Стан і реактивність](#!section=docs/page=state).\n",
+                            md: "# Види\n\nВид — це компонент: вузол у дереві інтерфейсу з власною розміткою, поведінкою та стилями. Цей розділ описує, як види оголошуються, зв'язуються з логікою, компонуються та повторно використовуються.\n\n## Три файли, один компонент\n\nКомпонент `\u0024my_card` живе в `my/card/` й описується щонайбільше трьома файлами, кожен із чіткою роллю:\n\n- `card.view.tree` — **чим** є компонент: його структура та типові прив'язки.\n- `card.view.ts` — **як** він поводиться: методи TypeScript, реактивний стан.\n- `card.view.css.ts` — як він виглядає: типізовані стилі, які перевіряє компілятор.\n\nТримати структуру, поведінку та стиль окремо — це навмисно: кожен файл лишається малим і читабельним, а розмітка ніколи не переплітається з логікою.\n\n## Мова view.tree\n\n`view.tree` описує структуру декларативно. Відступ — це вкладення; закривальних тегів немає.\n\n```tree\n\u0024my_card \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\\n\t\t<= Body \u0024mol_view\n\t\t\tsub / <= text \\\n```\n\n- `\u0024my_card \u0024mol_view` — ваш компонент розширює базовий `\u0024mol_view`.\n- `sub /` — список дочірніх елементів.\n- `<= Title \u0024mol_view` — іменований підвид, доступний як `this.Title()` у TypeScript.\n- `<= title \\` — прив'язувана властивість зі значенням-сирим рядком за замовчуванням (`\\` починає сирий рядок).\n\nКожне ім'я з великої літери (`Title`, `Body`) стає справжньою властивістю, до якої можна звернутися, яку можна перевизначити чи стилізувати. Кожна прив'язка з малої літери (`title`, `text`) стає значенням, яке можна обчислити в `.view.ts`.\n\n## Прив'язування властивостей\n\nДва оператори з'єднують властивість із її джерелом:\n\n- `<=` **односторонньо**: дочірній елемент читає значення від власника.\n- `<=>` **двосторонньо**: значення тече в обидва боки — використовується для полів вводу.\n\n```tree\n\u0024my_form \u0024mol_view\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> text? \\\n```\n\nТут `value` поля вводу та `text` власника автоматично лишаються синхронізованими: набираєте в полі — `text` оновлюється; задаєте `text` у коді — поле це відображає.\n\n## Зв'язування з поведінкою\n\nПрив'язка без значення за замовчуванням реалізується в `.view.ts`. Клас розширює згенерований базовий клас із тим самим ім'ям:\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_card extends \u0024.\u0024my_card {\n\t\t@ \u0024mol_mem\n\t\ttitle() {\n\t\t\treturn 'Untitled'\n\t\t}\n\t}\n}\n```\n\nБудь-чому, що прив'язує шаблон — `title`, `text`, властивості підвиду — тут можна надати логіку. Реактивність робить ці значення живими.\n\n## Атрибути та тип елемента\n\nЗмініть базовий HTML-елемент за допомогою `dom_name`, а атрибути задайте через `attr`:\n\n```tree\n\u0024my_banner \u0024mol_view\n\tdom_name \\section\n\tattr *\n\t\t^\n\t\trole \\note\n```\n\n`^` успадковує атрибути батька, щоб ви не втратили ті, які `\u0024mol_view` уже задає.\n\n## Списки та види з ключами\n\nКінцева `*` перетворює підвид на родину — по одному екземпляру на ключ. Використовуйте для рядків:\n\n```tree\n\u0024my_list \u0024mol_list\n\trows /\n\t\t<= Row* \u0024mol_view\n\t\t\tsub / <= row_title* \\\n```\n\nФреймворк створює `Row` для кожного ключа, який ви надаєте, і завдяки [віртуалізованому рендерингу](#!section=docs/page=rendering) будує лише ті, що на екрані.\n\n> Коли вид із ключем сам містить дочірні елементи з ключами, задавайте ключ зовнішньому через `Name*`, а не `Name*0` — індексована форма лишає вкладені дочірні елементи нерендереними.\n\n## Умовні види\n\nПрисвоєння `null` прибирає вид із рендерингу. Створіть підклас і обнуліть те, що варіантові не потрібне:\n\n```tree\n\u0024my_page_readonly \u0024my_page\n\tEdit_button null\n```\n\n## Композиція та повторне використання\n\nВиди компонуються вкладенням і спеціалізуються розширенням. Картка, що використовується всередині списку:\n\n```tree\n\u0024my_user_card \u0024mol_view\n\tsub /\n\t\t<= Name \u0024mol_view\n\t\t\tsub / <= name \\\n\t\t<= Email \u0024mol_view\n\t\t\tsub / <= email \\\n\n\u0024my_users_list \u0024mol_list\n\trows /\n\t\t<= User* \u0024my_user_card\n\t\t\tname <= user_name* \\\n\t\t\temail <= user_email* \\\n```\n\n`\u0024my_users_list` ніколи не перевизначає, як виглядає картка — він повторно використовує `\u0024my_user_card` і подає кожному екземпляру його дані. Це і є вся модель композиції: малі види, з'єднані разом, спеціалізовані через `extends`, коли потрібен варіант.\n\n## Далі\n\nВиди описують структуру; живими їх робить реактивність даних. Продовжуйте до [Стан і реактивність](#!section=docs/page=state).\n",
                         },
                         pl: {
                             title: "Widoki",
-                            md: "# Widoki\n\nWidok to komponent: węzeł w drzewie interfejsu z własnym układem, zachowaniem i stylami. Ten rozdział omawia, jak widoki są deklarowane, łączone z logiką, komponowane i ponownie używane.\n\n## Trzy pliki, jeden komponent\n\nKomponent `\u0024my_card` żyje w `my/card/` i jest opisany przez maksymalnie trzy pliki, każdy z jasnym zadaniem:\n\n- `card.view.tree` — **czym** komponent jest: jego struktura i domyślne powiązania.\n- `card.view.ts` — **jak** się zachowuje: metody TypeScript, stan reaktywny.\n- `card.view.css.ts` — jak wygląda: typowane style sprawdzane przez kompilator.\n\nTrzymanie struktury, zachowania i stylu osobno jest zamierzone — każdy plik pozostaje mały i czytelny, a układ nigdy nie splata się z logiką.\n\n## Język view.tree\n\n`view.tree` opisuje strukturę deklaratywnie. Wcięcie to zagnieżdżenie; nie ma znaczników zamykających.\n\n```tree\n\u0024my_card \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\\n\t\t<= Body \u0024mol_view\n\t\t\tsub / <= text \\\n```\n\n- `\u0024my_card \u0024mol_view` — twój komponent rozszerza bazę `\u0024mol_view`.\n- `sub /` — lista dzieci.\n- `<= Title \u0024mol_view` — nazwany podwidok, dostępny jako `this.Title()` w TypeScript.\n- `<= title \\` — powiązywalna właściwość z domyślną wartością surowego ciągu znaków (`\\` rozpoczyna surowy ciąg).\n\nKażda nazwa z wielkiej litery (`Title`, `Body`) staje się prawdziwą właściwością, do której możesz sięgnąć, którą możesz nadpisać lub ostylować. Każde powiązanie z małej litery (`title`, `text`) staje się wartością, którą możesz obliczyć w `.view.ts`.\n\n## Powiązywanie właściwości\n\nDwa operatory łączą właściwość z jej źródłem:\n\n- `<=` **jednokierunkowy**: dziecko czyta wartość od właściciela.\n- `<=>` **dwukierunkowy**: wartość płynie w obie strony — używany do pól wejściowych.\n\n```tree\n\u0024my_form \u0024mol_view\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> text? \\\n```\n\nTutaj `value` pola i `text` właściciela pozostają automatycznie zsynchronizowane: wpisz w pole, a `text` się zaktualizuje; ustaw `text` w kodzie, a pole to odzwierciedli.\n\n## Podłączanie do zachowania\n\nPowiązanie bez wartości domyślnej jest implementowane w `.view.ts`. Klasa rozszerza wygenerowaną bazę o tej samej nazwie:\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_card extends \u0024.\u0024my_card {\n\t\t@ \u0024mol_mem\n\t\ttitle() {\n\t\t\treturn 'Untitled'\n\t\t}\n\t}\n}\n```\n\nWszystko, co szablon powiązuje — `title`, `text`, właściwość podwidoku — może otrzymać tutaj logikę. Reaktywność ([Stan](#!section=docs/page=state)) ożywia te wartości.\n\n## Atrybuty i typ elementu\n\nZmień bazowy element HTML za pomocą `dom_name`, a atrybuty ustaw przez `attr`:\n\n```tree\n\u0024my_banner \u0024mol_view\n\tdom_name \\section\n\tattr *\n\t\t^\n\t\trole \\note\n```\n\n`^` dziedziczy atrybuty rodzica, byś nie zgubił tych, które `\u0024mol_view` już ustawia.\n\n## Listy i widoki z kluczami\n\nKońcowa `*` zamienia podwidok w rodzinę — jedna instancja na klucz. Użyj do wierszy:\n\n```tree\n\u0024my_list \u0024mol_list\n\trows /\n\t\t<= Row* \u0024mol_view\n\t\t\tsub / <= row_title* \\\n```\n\nFramework tworzy `Row` dla każdego dostarczonego klucza i, dzięki [wirtualizowanemu renderowaniu](#!section=docs/page=rendering), buduje tylko te na ekranie.\n\n> Gdy widok z kluczem sam zawiera dzieci z kluczami, nadaj klucz zewnętrznemu przez `Name*`, a nie `Name*0` — forma indeksowana pozostawia zagnieżdżone dzieci niewyrenderowane.\n\n## Widoki warunkowe\n\nPrzypisanie `null` usuwa widok z renderowania. Utwórz podklasę i wyzeruj to, czego wariant nie potrzebuje:\n\n```tree\n\u0024my_page_readonly \u0024my_page\n\tEdit_button null\n```\n\n## Kompozycja i ponowne użycie\n\nWidoki komponują się przez zagnieżdżanie i specjalizują przez rozszerzanie. Karta użyta wewnątrz listy:\n\n```tree\n\u0024my_user_card \u0024mol_view\n\tsub /\n\t\t<= Name \u0024mol_view\n\t\t\tsub / <= name \\\n\t\t<= Email \u0024mol_view\n\t\t\tsub / <= email \\\n\n\u0024my_users_list \u0024mol_list\n\trows /\n\t\t<= User* \u0024my_user_card\n\t\t\tname <= user_name* \\\n\t\t\temail <= user_email* \\\n```\n\n`\u0024my_users_list` nigdy nie definiuje na nowo wyglądu karty — używa ponownie `\u0024my_user_card` i zasila każdą instancję jej danymi. To cały model kompozycji: małe widoki, połączone razem, specjalizowane przez `extends`, gdy potrzebny jest wariant.\n\n## Dalej\n\nWidoki opisują strukturę; tym, co je ożywia, są dane reaktywne. Przejdź do [Stan i reaktywność](#!section=docs/page=state).\n",
+                            md: "# Widoki\n\nWidok to komponent: węzeł w drzewie interfejsu z własnym układem, zachowaniem i stylami. Ten rozdział omawia, jak widoki są deklarowane, łączone z logiką, komponowane i ponownie używane.\n\n## Trzy pliki, jeden komponent\n\nKomponent `\u0024my_card` żyje w `my/card/` i jest opisany przez maksymalnie trzy pliki, każdy z jasnym zadaniem:\n\n- `card.view.tree` — **czym** komponent jest: jego struktura i domyślne powiązania.\n- `card.view.ts` — **jak** się zachowuje: metody TypeScript, stan reaktywny.\n- `card.view.css.ts` — jak wygląda: typowane style sprawdzane przez kompilator.\n\nTrzymanie struktury, zachowania i stylu osobno jest zamierzone — każdy plik pozostaje mały i czytelny, a układ nigdy nie splata się z logiką.\n\n## Język view.tree\n\n`view.tree` opisuje strukturę deklaratywnie. Wcięcie to zagnieżdżenie; nie ma znaczników zamykających.\n\n```tree\n\u0024my_card \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\\n\t\t<= Body \u0024mol_view\n\t\t\tsub / <= text \\\n```\n\n- `\u0024my_card \u0024mol_view` — twój komponent rozszerza bazę `\u0024mol_view`.\n- `sub /` — lista dzieci.\n- `<= Title \u0024mol_view` — nazwany podwidok, dostępny jako `this.Title()` w TypeScript.\n- `<= title \\` — powiązywalna właściwość z domyślną wartością surowego ciągu znaków (`\\` rozpoczyna surowy ciąg).\n\nKażda nazwa z wielkiej litery (`Title`, `Body`) staje się prawdziwą właściwością, do której możesz sięgnąć, którą możesz nadpisać lub ostylować. Każde powiązanie z małej litery (`title`, `text`) staje się wartością, którą możesz obliczyć w `.view.ts`.\n\n## Powiązywanie właściwości\n\nDwa operatory łączą właściwość z jej źródłem:\n\n- `<=` **jednokierunkowy**: dziecko czyta wartość od właściciela.\n- `<=>` **dwukierunkowy**: wartość płynie w obie strony — używany do pól wejściowych.\n\n```tree\n\u0024my_form \u0024mol_view\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> text? \\\n```\n\nTutaj `value` pola i `text` właściciela pozostają automatycznie zsynchronizowane: wpisz w pole, a `text` się zaktualizuje; ustaw `text` w kodzie, a pole to odzwierciedli.\n\n## Podłączanie do zachowania\n\nPowiązanie bez wartości domyślnej jest implementowane w `.view.ts`. Klasa rozszerza wygenerowaną bazę o tej samej nazwie:\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_card extends \u0024.\u0024my_card {\n\t\t@ \u0024mol_mem\n\t\ttitle() {\n\t\t\treturn 'Untitled'\n\t\t}\n\t}\n}\n```\n\nWszystko, co szablon powiązuje — `title`, `text`, właściwość podwidoku — może otrzymać tutaj logikę. Reaktywność ożywia te wartości.\n\n## Atrybuty i typ elementu\n\nZmień bazowy element HTML za pomocą `dom_name`, a atrybuty ustaw przez `attr`:\n\n```tree\n\u0024my_banner \u0024mol_view\n\tdom_name \\section\n\tattr *\n\t\t^\n\t\trole \\note\n```\n\n`^` dziedziczy atrybuty rodzica, byś nie zgubił tych, które `\u0024mol_view` już ustawia.\n\n## Listy i widoki z kluczami\n\nKońcowa `*` zamienia podwidok w rodzinę — jedna instancja na klucz. Użyj do wierszy:\n\n```tree\n\u0024my_list \u0024mol_list\n\trows /\n\t\t<= Row* \u0024mol_view\n\t\t\tsub / <= row_title* \\\n```\n\nFramework tworzy `Row` dla każdego dostarczonego klucza i, dzięki [wirtualizowanemu renderowaniu](#!section=docs/page=rendering), buduje tylko te na ekranie.\n\n> Gdy widok z kluczem sam zawiera dzieci z kluczami, nadaj klucz zewnętrznemu przez `Name*`, a nie `Name*0` — forma indeksowana pozostawia zagnieżdżone dzieci niewyrenderowane.\n\n## Widoki warunkowe\n\nPrzypisanie `null` usuwa widok z renderowania. Utwórz podklasę i wyzeruj to, czego wariant nie potrzebuje:\n\n```tree\n\u0024my_page_readonly \u0024my_page\n\tEdit_button null\n```\n\n## Kompozycja i ponowne użycie\n\nWidoki komponują się przez zagnieżdżanie i specjalizują przez rozszerzanie. Karta użyta wewnątrz listy:\n\n```tree\n\u0024my_user_card \u0024mol_view\n\tsub /\n\t\t<= Name \u0024mol_view\n\t\t\tsub / <= name \\\n\t\t<= Email \u0024mol_view\n\t\t\tsub / <= email \\\n\n\u0024my_users_list \u0024mol_list\n\trows /\n\t\t<= User* \u0024my_user_card\n\t\t\tname <= user_name* \\\n\t\t\temail <= user_email* \\\n```\n\n`\u0024my_users_list` nigdy nie definiuje na nowo wyglądu karty — używa ponownie `\u0024my_user_card` i zasila każdą instancję jej danymi. To cały model kompozycji: małe widoki, połączone razem, specjalizowane przez `extends`, gdy potrzebny jest wariant.\n\n## Dalej\n\nWidoki opisują strukturę; tym, co je ożywia, są dane reaktywne. Przejdź do [Stan i reaktywność](#!section=docs/page=state).\n",
                         },
                         cs: {
                             title: "Pohledy",
-                            md: "# Pohledy\n\nPohled je komponenta: uzel ve stromu UI s vlastním rozvržením, chováním a styly. Tato kapitola popisuje, jak se pohledy deklarují, propojují s logikou, skládají a znovu používají.\n\n## Tři soubory, jedna komponenta\n\nKomponenta `\u0024my_card` žije v `my/card/` a je popsána až třemi soubory, každý s jasným úkolem:\n\n- `card.view.tree` — **co** komponenta je: její struktura a výchozí vazby.\n- `card.view.ts` — **jak** se chová: metody v TypeScriptu, reaktivní stav.\n- `card.view.css.ts` — jak vypadá: typované styly kontrolované překladačem.\n\nOddělení struktury, chování a stylu je záměrné — každý soubor zůstává malý a čitelný a rozvržení se nikdy neproplétá s logikou.\n\n## Jazyk view.tree\n\n`view.tree` popisuje strukturu deklarativně. Odsazení znamená vnoření; nejsou žádné uzavírací značky.\n\n```tree\n\u0024my_card \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\\n\t\t<= Body \u0024mol_view\n\t\t\tsub / <= text \\\n```\n\n- `\u0024my_card \u0024mol_view` — vaše komponenta rozšiřuje základní `\u0024mol_view`.\n- `sub /` — seznam potomků.\n- `<= Title \u0024mol_view` — pojmenovaný podpohled, dostupný jako `this.Title()` v TypeScriptu.\n- `<= title \\` — navazatelná vlastnost s výchozí hodnotou syrového řetězce (`\\` zahajuje syrový řetězec).\n\nKaždý název s velkým počátečním písmenem (`Title`, `Body`) se stává skutečnou vlastností, ke které se můžete dostat, přepsat ji nebo ostylovat. Každá vazba s malým písmenem (`title`, `text`) se stává hodnotou, kterou můžete vypočítat v `.view.ts`.\n\n## Navazování vlastností\n\nDva operátory spojují vlastnost s jejím zdrojem:\n\n- `<=` **jednosměrný**: potomek čte hodnotu od vlastníka.\n- `<=>` **obousměrný**: hodnota teče oběma směry — používá se pro vstupy.\n\n```tree\n\u0024my_form \u0024mol_view\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> text? \\\n```\n\nZde zůstávají `value` vstupu a `text` vlastníka automaticky synchronizované: napište do pole a `text` se aktualizuje; nastavte `text` v kódu a pole to odrazí.\n\n## Propojení s chováním\n\nVazba bez výchozí hodnoty se implementuje v `.view.ts`. Třída rozšiřuje vygenerovaný základ stejného názvu:\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_card extends \u0024.\u0024my_card {\n\t\t@ \u0024mol_mem\n\t\ttitle() {\n\t\t\treturn 'Untitled'\n\t\t}\n\t}\n}\n```\n\nCokoli, co šablona naváže — `title`, `text`, vlastnost podpohledu — může zde dostat logiku. Reaktivita ([Stav](#!section=docs/page=state)) tyto hodnoty oživuje.\n\n## Atributy a typ elementu\n\nZměňte podkladový HTML element pomocí `dom_name` a atributy nastavte přes `attr`:\n\n```tree\n\u0024my_banner \u0024mol_view\n\tdom_name \\section\n\tattr *\n\t\t^\n\t\trole \\note\n```\n\n`^` zdědí atributy rodiče, abyste nepřišli o ty, které `\u0024mol_view` už nastavuje.\n\n## Seznamy a klíčované pohledy\n\nKoncová `*` promění podpohled v rodinu — jedna instance na klíč. Použijte ji pro řádky:\n\n```tree\n\u0024my_list \u0024mol_list\n\trows /\n\t\t<= Row* \u0024mol_view\n\t\t\tsub / <= row_title* \\\n```\n\nFramework vytvoří `Row` pro každý klíč, který dodáte, a díky [virtualizovanému vykreslování](#!section=docs/page=rendering) sestaví jen ty na obrazovce.\n\n> Když klíčovaný pohled sám obsahuje klíčované potomky, oklíčujte vnější přes `Name*`, ne `Name*0` — indexovaná forma nechá vnořené potomky nevykreslené.\n\n## Podmíněné pohledy\n\nPřiřazení `null` odebere pohled z vykreslování. Vytvořte podtřídu a vynulujte to, co varianta nepotřebuje:\n\n```tree\n\u0024my_page_readonly \u0024my_page\n\tEdit_button null\n```\n\n## Skládání a znovupoužití\n\nPohledy se skládají vnořováním a specializují rozšiřováním. Karta použitá uvnitř seznamu:\n\n```tree\n\u0024my_user_card \u0024mol_view\n\tsub /\n\t\t<= Name \u0024mol_view\n\t\t\tsub / <= name \\\n\t\t<= Email \u0024mol_view\n\t\t\tsub / <= email \\\n\n\u0024my_users_list \u0024mol_list\n\trows /\n\t\t<= User* \u0024my_user_card\n\t\t\tname <= user_name* \\\n\t\t\temail <= user_email* \\\n```\n\n`\u0024my_users_list` nikdy znovu nedefinuje, jak karta vypadá — znovu použije `\u0024my_user_card` a každé instanci předá její data. To je celý model skládání: malé pohledy, propojené dohromady, specializované přes `extends`, když je potřeba varianta.\n\n## Dále\n\nPohledy popisují strukturu; tím, co je oživuje, jsou reaktivní data. Pokračujte na [Stav a reaktivita](#!section=docs/page=state).\n",
+                            md: "# Pohledy\n\nPohled je komponenta: uzel ve stromu UI s vlastním rozvržením, chováním a styly. Tato kapitola popisuje, jak se pohledy deklarují, propojují s logikou, skládají a znovu používají.\n\n## Tři soubory, jedna komponenta\n\nKomponenta `\u0024my_card` žije v `my/card/` a je popsána až třemi soubory, každý s jasným úkolem:\n\n- `card.view.tree` — **co** komponenta je: její struktura a výchozí vazby.\n- `card.view.ts` — **jak** se chová: metody v TypeScriptu, reaktivní stav.\n- `card.view.css.ts` — jak vypadá: typované styly kontrolované překladačem.\n\nOddělení struktury, chování a stylu je záměrné — každý soubor zůstává malý a čitelný a rozvržení se nikdy neproplétá s logikou.\n\n## Jazyk view.tree\n\n`view.tree` popisuje strukturu deklarativně. Odsazení znamená vnoření; nejsou žádné uzavírací značky.\n\n```tree\n\u0024my_card \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\\n\t\t<= Body \u0024mol_view\n\t\t\tsub / <= text \\\n```\n\n- `\u0024my_card \u0024mol_view` — vaše komponenta rozšiřuje základní `\u0024mol_view`.\n- `sub /` — seznam potomků.\n- `<= Title \u0024mol_view` — pojmenovaný podpohled, dostupný jako `this.Title()` v TypeScriptu.\n- `<= title \\` — navazatelná vlastnost s výchozí hodnotou syrového řetězce (`\\` zahajuje syrový řetězec).\n\nKaždý název s velkým počátečním písmenem (`Title`, `Body`) se stává skutečnou vlastností, ke které se můžete dostat, přepsat ji nebo ostylovat. Každá vazba s malým písmenem (`title`, `text`) se stává hodnotou, kterou můžete vypočítat v `.view.ts`.\n\n## Navazování vlastností\n\nDva operátory spojují vlastnost s jejím zdrojem:\n\n- `<=` **jednosměrný**: potomek čte hodnotu od vlastníka.\n- `<=>` **obousměrný**: hodnota teče oběma směry — používá se pro vstupy.\n\n```tree\n\u0024my_form \u0024mol_view\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> text? \\\n```\n\nZde zůstávají `value` vstupu a `text` vlastníka automaticky synchronizované: napište do pole a `text` se aktualizuje; nastavte `text` v kódu a pole to odrazí.\n\n## Propojení s chováním\n\nVazba bez výchozí hodnoty se implementuje v `.view.ts`. Třída rozšiřuje vygenerovaný základ stejného názvu:\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_card extends \u0024.\u0024my_card {\n\t\t@ \u0024mol_mem\n\t\ttitle() {\n\t\t\treturn 'Untitled'\n\t\t}\n\t}\n}\n```\n\nCokoli, co šablona naváže — `title`, `text`, vlastnost podpohledu — může zde dostat logiku. Reaktivita tyto hodnoty oživuje.\n\n## Atributy a typ elementu\n\nZměňte podkladový HTML element pomocí `dom_name` a atributy nastavte přes `attr`:\n\n```tree\n\u0024my_banner \u0024mol_view\n\tdom_name \\section\n\tattr *\n\t\t^\n\t\trole \\note\n```\n\n`^` zdědí atributy rodiče, abyste nepřišli o ty, které `\u0024mol_view` už nastavuje.\n\n## Seznamy a klíčované pohledy\n\nKoncová `*` promění podpohled v rodinu — jedna instance na klíč. Použijte ji pro řádky:\n\n```tree\n\u0024my_list \u0024mol_list\n\trows /\n\t\t<= Row* \u0024mol_view\n\t\t\tsub / <= row_title* \\\n```\n\nFramework vytvoří `Row` pro každý klíč, který dodáte, a díky [virtualizovanému vykreslování](#!section=docs/page=rendering) sestaví jen ty na obrazovce.\n\n> Když klíčovaný pohled sám obsahuje klíčované potomky, oklíčujte vnější přes `Name*`, ne `Name*0` — indexovaná forma nechá vnořené potomky nevykreslené.\n\n## Podmíněné pohledy\n\nPřiřazení `null` odebere pohled z vykreslování. Vytvořte podtřídu a vynulujte to, co varianta nepotřebuje:\n\n```tree\n\u0024my_page_readonly \u0024my_page\n\tEdit_button null\n```\n\n## Skládání a znovupoužití\n\nPohledy se skládají vnořováním a specializují rozšiřováním. Karta použitá uvnitř seznamu:\n\n```tree\n\u0024my_user_card \u0024mol_view\n\tsub /\n\t\t<= Name \u0024mol_view\n\t\t\tsub / <= name \\\n\t\t<= Email \u0024mol_view\n\t\t\tsub / <= email \\\n\n\u0024my_users_list \u0024mol_list\n\trows /\n\t\t<= User* \u0024my_user_card\n\t\t\tname <= user_name* \\\n\t\t\temail <= user_email* \\\n```\n\n`\u0024my_users_list` nikdy znovu nedefinuje, jak karta vypadá — znovu použije `\u0024my_user_card` a každé instanci předá její data. To je celý model skládání: malé pohledy, propojené dohromady, specializované přes `extends`, když je potřeba varianta.\n\n## Dále\n\nPohledy popisují strukturu; tím, co je oživuje, jsou reaktivní data. Pokračujte na [Stav a reaktivita](#!section=docs/page=state).\n",
                         },
                         fa: {
                             title: "نماها",
-                            md: "# نماها\n\nنما یک کامپوننت است: گره‌ای در درخت رابط کاربری با چیدمان، رفتار و استایل‌های خاص خود. این فصل به این می‌پردازد که نماها چگونه تعریف، به منطق متصل، ترکیب و بازاستفاده می‌شوند.\n\n## سه فایل، یک کامپوننت\n\nکامپوننت `\u0024my_card` در `my/card/` قرار دارد و با حداکثر سه فایل توصیف می‌شود که هرکدام وظیفه‌ای روشن دارند:\n\n- `card.view.tree` — کامپوننت **چیست**: ساختار و اتصال‌های پیش‌فرض آن.\n- `card.view.ts` — **چگونه** رفتار می‌کند: متدهای TypeScript، وضعیت واکنش‌گرا.\n- `card.view.css.ts` — چه ظاهری دارد: استایل‌های نوع‌دار که توسط کامپایلر بررسی می‌شوند.\n\nجدا نگه‌داشتن ساختار، رفتار و استایل عمدی است — هر فایل کوچک و خوانا می‌ماند و چیدمان هرگز با منطق درهم‌تنیده نمی‌شود.\n\n## زبان view.tree\n\n`view.tree` ساختار را به‌صورت اعلانی توصیف می‌کند. تورفتگی به‌معنای تودرتویی است؛ هیچ برچسب بسته‌شدنی وجود ندارد.\n\n```tree\n\u0024my_card \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\\n\t\t<= Body \u0024mol_view\n\t\t\tsub / <= text \\\n```\n\n- `\u0024my_card \u0024mol_view` — کامپوننت شما پایهٔ `\u0024mol_view` را گسترش می‌دهد.\n- `sub /` — فهرست فرزندان.\n- `<= Title \u0024mol_view` — یک زیرنمای نام‌دار که در TypeScript با `this.Title()` قابل دسترسی است.\n- `<= title \\` — یک ویژگیِ قابل‌اتصال با مقدار پیش‌فرض رشتهٔ خام (`\\` آغازگر رشتهٔ خام است).\n\nهر نام با حرف بزرگ (`Title`، `Body`) به یک ویژگیِ واقعی تبدیل می‌شود که می‌توانید به آن دسترسی داشته باشید، آن را بازنویسی یا استایل‌دهی کنید. هر اتصال با حرف کوچک (`title`، `text`) به مقداری تبدیل می‌شود که می‌توانید در `.view.ts` محاسبه کنید.\n\n## اتصال ویژگی‌ها\n\nدو عملگر یک ویژگی را به منبعش متصل می‌کنند:\n\n- `<=` **یک‌طرفه**: فرزند مقداری را از مالک می‌خواند.\n- `<=>` **دوطرفه**: مقدار در هر دو جهت جریان می‌یابد — برای ورودی‌ها استفاده می‌شود.\n\n```tree\n\u0024my_form \u0024mol_view\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> text? \\\n```\n\nاینجا `value` ورودی و `text` مالک به‌طور خودکار همگام می‌مانند: در فیلد تایپ کنید تا `text` به‌روز شود؛ `text` را در کد تنظیم کنید تا فیلد آن را بازتاب دهد.\n\n## اتصال به رفتار\n\nاتصالی بدون مقدار پیش‌فرض در `.view.ts` پیاده‌سازی می‌شود. کلاس، پایهٔ تولیدشده با همان نام را گسترش می‌دهد:\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_card extends \u0024.\u0024my_card {\n\t\t@ \u0024mol_mem\n\t\ttitle() {\n\t\t\treturn 'Untitled'\n\t\t}\n\t}\n}\n```\n\nهر چیزی که قالب متصل می‌کند — `title`، `text`، ویژگیِ یک زیرنما — می‌تواند اینجا منطق بگیرد. واکنش‌گرایی ([وضعیت](#!section=docs/page=state)) این مقادیر را زنده می‌کند.\n\n## ویژگی‌ها و نوع المان\n\nالمان زیرینِ HTML را با `dom_name` تغییر دهید و ویژگی‌ها را از طریق `attr` تنظیم کنید:\n\n```tree\n\u0024my_banner \u0024mol_view\n\tdom_name \\section\n\tattr *\n\t\t^\n\t\trole \\note\n```\n\n`^` ویژگی‌های والد را به ارث می‌برد تا آن‌هایی که `\u0024mol_view` از پیش تنظیم کرده را از دست ندهید.\n\n## فهرست‌ها و نماهای کلیددار\n\nیک `*` پایانی یک زیرنما را به یک خانواده تبدیل می‌کند — یک نمونه به‌ازای هر کلید. برای ردیف‌ها از آن استفاده کنید:\n\n```tree\n\u0024my_list \u0024mol_list\n\trows /\n\t\t<= Row* \u0024mol_view\n\t\t\tsub / <= row_title* \\\n```\n\nفریم‌ورک برای هر کلیدی که فراهم می‌کنید یک `Row` می‌سازد و به‌لطف [رندرِ مجازی‌سازی‌شده](#!section=docs/page=rendering) فقط آن‌هایی را که روی صفحه‌اند می‌سازد.\n\n> وقتی یک نمای کلیددار خودش فرزندان کلیددار دارد، نمای بیرونی را با `Name*` کلید بزنید، نه `Name*0` — شکل اندیس‌دار فرزندان تودرتو را رندرنشده رها می‌کند.\n\n## نماهای شرطی\n\nانتساب `null` یک نما را از رندر حذف می‌کند. زیرکلاس بسازید و آنچه را که یک گونه لازم ندارد `null` کنید:\n\n```tree\n\u0024my_page_readonly \u0024my_page\n\tEdit_button null\n```\n\n## ترکیب و بازاستفاده\n\nنماها با تودرتوسازی ترکیب می‌شوند و با گسترش تخصصی می‌شوند. یک کارت که درون یک فهرست استفاده شده:\n\n```tree\n\u0024my_user_card \u0024mol_view\n\tsub /\n\t\t<= Name \u0024mol_view\n\t\t\tsub / <= name \\\n\t\t<= Email \u0024mol_view\n\t\t\tsub / <= email \\\n\n\u0024my_users_list \u0024mol_list\n\trows /\n\t\t<= User* \u0024my_user_card\n\t\t\tname <= user_name* \\\n\t\t\temail <= user_email* \\\n```\n\n`\u0024my_users_list` هرگز ظاهر کارت را از نو تعریف نمی‌کند — `\u0024my_user_card` را بازاستفاده می‌کند و به هر نمونه داده‌هایش را می‌دهد. این کل مدل ترکیب است: نماهای کوچک، به‌هم‌متصل، که هنگام نیاز به یک گونه با `extends` تخصصی می‌شوند.\n\n## بعدی\n\nنماها ساختار را توصیف می‌کنند؛ آنچه آن‌ها را زنده می‌کند دادهٔ واکنش‌گراست. به [وضعیت و واکنش‌گرایی](#!section=docs/page=state) ادامه دهید.\n",
+                            md: "# نماها\n\nنما یک کامپوننت است: گره‌ای در درخت رابط کاربری با چیدمان، رفتار و استایل‌های خاص خود. این فصل به این می‌پردازد که نماها چگونه تعریف، به منطق متصل، ترکیب و بازاستفاده می‌شوند.\n\n## سه فایل، یک کامپوننت\n\nکامپوننت `\u0024my_card` در `my/card/` قرار دارد و با حداکثر سه فایل توصیف می‌شود که هرکدام وظیفه‌ای روشن دارند:\n\n- `card.view.tree` — کامپوننت **چیست**: ساختار و اتصال‌های پیش‌فرض آن.\n- `card.view.ts` — **چگونه** رفتار می‌کند: متدهای TypeScript، وضعیت واکنش‌گرا.\n- `card.view.css.ts` — چه ظاهری دارد: استایل‌های نوع‌دار که توسط کامپایلر بررسی می‌شوند.\n\nجدا نگه‌داشتن ساختار، رفتار و استایل عمدی است — هر فایل کوچک و خوانا می‌ماند و چیدمان هرگز با منطق درهم‌تنیده نمی‌شود.\n\n## زبان view.tree\n\n`view.tree` ساختار را به‌صورت اعلانی توصیف می‌کند. تورفتگی به‌معنای تودرتویی است؛ هیچ برچسب بسته‌شدنی وجود ندارد.\n\n```tree\n\u0024my_card \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\\n\t\t<= Body \u0024mol_view\n\t\t\tsub / <= text \\\n```\n\n- `\u0024my_card \u0024mol_view` — کامپوننت شما پایهٔ `\u0024mol_view` را گسترش می‌دهد.\n- `sub /` — فهرست فرزندان.\n- `<= Title \u0024mol_view` — یک زیرنمای نام‌دار که در TypeScript با `this.Title()` قابل دسترسی است.\n- `<= title \\` — یک ویژگیِ قابل‌اتصال با مقدار پیش‌فرض رشتهٔ خام (`\\` آغازگر رشتهٔ خام است).\n\nهر نام با حرف بزرگ (`Title`، `Body`) به یک ویژگیِ واقعی تبدیل می‌شود که می‌توانید به آن دسترسی داشته باشید، آن را بازنویسی یا استایل‌دهی کنید. هر اتصال با حرف کوچک (`title`، `text`) به مقداری تبدیل می‌شود که می‌توانید در `.view.ts` محاسبه کنید.\n\n## اتصال ویژگی‌ها\n\nدو عملگر یک ویژگی را به منبعش متصل می‌کنند:\n\n- `<=` **یک‌طرفه**: فرزند مقداری را از مالک می‌خواند.\n- `<=>` **دوطرفه**: مقدار در هر دو جهت جریان می‌یابد — برای ورودی‌ها استفاده می‌شود.\n\n```tree\n\u0024my_form \u0024mol_view\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> text? \\\n```\n\nاینجا `value` ورودی و `text` مالک به‌طور خودکار همگام می‌مانند: در فیلد تایپ کنید تا `text` به‌روز شود؛ `text` را در کد تنظیم کنید تا فیلد آن را بازتاب دهد.\n\n## اتصال به رفتار\n\nاتصالی بدون مقدار پیش‌فرض در `.view.ts` پیاده‌سازی می‌شود. کلاس، پایهٔ تولیدشده با همان نام را گسترش می‌دهد:\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_card extends \u0024.\u0024my_card {\n\t\t@ \u0024mol_mem\n\t\ttitle() {\n\t\t\treturn 'Untitled'\n\t\t}\n\t}\n}\n```\n\nهر چیزی که قالب متصل می‌کند — `title`، `text`، ویژگیِ یک زیرنما — می‌تواند اینجا منطق بگیرد. واکنش‌گرایی این مقادیر را زنده می‌کند.\n\n## ویژگی‌ها و نوع المان\n\nالمان زیرینِ HTML را با `dom_name` تغییر دهید و ویژگی‌ها را از طریق `attr` تنظیم کنید:\n\n```tree\n\u0024my_banner \u0024mol_view\n\tdom_name \\section\n\tattr *\n\t\t^\n\t\trole \\note\n```\n\n`^` ویژگی‌های والد را به ارث می‌برد تا آن‌هایی که `\u0024mol_view` از پیش تنظیم کرده را از دست ندهید.\n\n## فهرست‌ها و نماهای کلیددار\n\nیک `*` پایانی یک زیرنما را به یک خانواده تبدیل می‌کند — یک نمونه به‌ازای هر کلید. برای ردیف‌ها از آن استفاده کنید:\n\n```tree\n\u0024my_list \u0024mol_list\n\trows /\n\t\t<= Row* \u0024mol_view\n\t\t\tsub / <= row_title* \\\n```\n\nفریم‌ورک برای هر کلیدی که فراهم می‌کنید یک `Row` می‌سازد و به‌لطف [رندرِ مجازی‌سازی‌شده](#!section=docs/page=rendering) فقط آن‌هایی را که روی صفحه‌اند می‌سازد.\n\n> وقتی یک نمای کلیددار خودش فرزندان کلیددار دارد، نمای بیرونی را با `Name*` کلید بزنید، نه `Name*0` — شکل اندیس‌دار فرزندان تودرتو را رندرنشده رها می‌کند.\n\n## نماهای شرطی\n\nانتساب `null` یک نما را از رندر حذف می‌کند. زیرکلاس بسازید و آنچه را که یک گونه لازم ندارد `null` کنید:\n\n```tree\n\u0024my_page_readonly \u0024my_page\n\tEdit_button null\n```\n\n## ترکیب و بازاستفاده\n\nنماها با تودرتوسازی ترکیب می‌شوند و با گسترش تخصصی می‌شوند. یک کارت که درون یک فهرست استفاده شده:\n\n```tree\n\u0024my_user_card \u0024mol_view\n\tsub /\n\t\t<= Name \u0024mol_view\n\t\t\tsub / <= name \\\n\t\t<= Email \u0024mol_view\n\t\t\tsub / <= email \\\n\n\u0024my_users_list \u0024mol_list\n\trows /\n\t\t<= User* \u0024my_user_card\n\t\t\tname <= user_name* \\\n\t\t\temail <= user_email* \\\n```\n\n`\u0024my_users_list` هرگز ظاهر کارت را از نو تعریف نمی‌کند — `\u0024my_user_card` را بازاستفاده می‌کند و به هر نمونه داده‌هایش را می‌دهد. این کل مدل ترکیب است: نماهای کوچک، به‌هم‌متصل، که هنگام نیاز به یک گونه با `extends` تخصصی می‌شوند.\n\n## بعدی\n\nنماها ساختار را توصیف می‌کنند؛ آنچه آن‌ها را زنده می‌کند دادهٔ واکنش‌گراست. به [وضعیت و واکنش‌گرایی](#!section=docs/page=state) ادامه دهید.\n",
                         },
                         bn: {
                             title: "ভিউ",
-                            md: "# ভিউ\n\nভিউ হলো একটি কম্পোনেন্ট: UI ট্রি-এর একটি নোড, যার নিজস্ব লেআউট, আচরণ ও স্টাইল থাকে। এই অধ্যায়ে দেখানো হয়েছে ভিউ কীভাবে ঘোষণা করা হয়, লজিকের সঙ্গে যুক্ত করা হয়, গঠন করা হয় ও পুনর্ব্যবহার করা হয়।\n\n## তিনটি ফাইল, একটি কম্পোনেন্ট\n\nএকটি কম্পোনেন্ট `\u0024my_card` থাকে `my/card/`-এ এবং সর্বোচ্চ তিনটি ফাইল দিয়ে বর্ণিত হয়, প্রতিটির একটি স্পষ্ট কাজ আছে:\n\n- `card.view.tree` — কম্পোনেন্টটি **কী**: এর গঠন ও ডিফল্ট বাইন্ডিং।\n- `card.view.ts` — এটি **কীভাবে** আচরণ করে: TypeScript মেথড, রিয়্যাক্টিভ স্টেট।\n- `card.view.css.ts` — এটি দেখতে কেমন: কম্পাইলার-যাচাইকৃত টাইপড স্টাইল।\n\nগঠন, আচরণ ও স্টাইল আলাদা রাখা ইচ্ছাকৃত — প্রতিটি ফাইল ছোট ও পঠনযোগ্য থাকে, আর লেআউট কখনো লজিকের সঙ্গে জড়িয়ে যায় না।\n\n## view.tree ভাষা\n\n`view.tree` গঠনকে ঘোষণামূলকভাবে বর্ণনা করে। ইনডেন্টেশন মানে নেস্টিং; কোনো ক্লোজিং ট্যাগ নেই।\n\n```tree\n\u0024my_card \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\\n\t\t<= Body \u0024mol_view\n\t\t\tsub / <= text \\\n```\n\n- `\u0024my_card \u0024mol_view` — আপনার কম্পোনেন্ট বেস `\u0024mol_view` কে এক্সটেন্ড করে।\n- `sub /` — সন্তানদের তালিকা।\n- `<= Title \u0024mol_view` — একটি নামযুক্ত সাব-ভিউ, TypeScript-এ `this.Title()` হিসেবে অ্যাক্সেসযোগ্য।\n- `<= title \\` — একটি বাইন্ডযোগ্য প্রপার্টি, যার ডিফল্ট র-স্ট্রিং মান আছে (`\\` একটি র-স্ট্রিং শুরু করে)।\n\nপ্রতিটি বড় হাতের অক্ষরের নাম (`Title`, `Body`) একটি প্রকৃত প্রপার্টিতে পরিণত হয়, যেটিতে আপনি পৌঁছাতে, ওভাররাইড করতে বা স্টাইল করতে পারেন। প্রতিটি ছোট হাতের বাইন্ডিং (`title`, `text`) একটি মানে পরিণত হয়, যা আপনি `.view.ts`-এ গণনা করতে পারেন।\n\n## প্রপার্টি বাইন্ড করা\n\nদুটি অপারেটর একটি প্রপার্টিকে তার উৎসের সঙ্গে যুক্ত করে:\n\n- `<=` **একমুখী**: সন্তান মালিকের কাছ থেকে একটি মান পড়ে।\n- `<=>` **দ্বিমুখী**: মান উভয় দিকে প্রবাহিত হয় — ইনপুটের জন্য ব্যবহৃত।\n\n```tree\n\u0024my_form \u0024mol_view\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> text? \\\n```\n\nএখানে ইনপুটের `value` ও মালিকের `text` স্বয়ংক্রিয়ভাবে সমন্বিত থাকে: ফিল্ডে টাইপ করুন, `text` আপডেট হবে; কোডে `text` সেট করুন, ফিল্ড তা প্রতিফলিত করবে।\n\n## আচরণের সঙ্গে সংযোগ\n\nডিফল্ট মান ছাড়া একটি বাইন্ডিং `.view.ts`-এ বাস্তবায়িত হয়। ক্লাসটি একই নামের জেনারেটেড বেসকে এক্সটেন্ড করে:\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_card extends \u0024.\u0024my_card {\n\t\t@ \u0024mol_mem\n\t\ttitle() {\n\t\t\treturn 'Untitled'\n\t\t}\n\t}\n}\n```\n\nটেমপ্লেট যা কিছু বাইন্ড করে — `title`, `text`, একটি সাব-ভিউয়ের প্রপার্টি — এখানে তাকে লজিক দেওয়া যায়। রিয়্যাক্টিভিটি ([স্টেট](#!section=docs/page=state)) এই মানগুলোকে জীবন্ত করে তোলে।\n\n## অ্যাট্রিবিউট ও এলিমেন্টের ধরন\n\n`dom_name` দিয়ে অন্তর্নিহিত HTML এলিমেন্ট পরিবর্তন করুন, আর `attr` দিয়ে অ্যাট্রিবিউট সেট করুন:\n\n```tree\n\u0024my_banner \u0024mol_view\n\tdom_name \\section\n\tattr *\n\t\t^\n\t\trole \\note\n```\n\n`^` প্যারেন্টের অ্যাট্রিবিউটগুলো উত্তরাধিকারসূত্রে নেয়, যাতে `\u0024mol_view` যেগুলো ইতিমধ্যে সেট করে সেগুলো হারিয়ে না যায়।\n\n## তালিকা ও কী-যুক্ত ভিউ\n\nশেষে একটি `*` একটি সাব-ভিউকে একটি পরিবারে পরিণত করে — প্রতি কী-তে একটি ইনস্ট্যান্স। সারির জন্য এটি ব্যবহার করুন:\n\n```tree\n\u0024my_list \u0024mol_list\n\trows /\n\t\t<= Row* \u0024mol_view\n\t\t\tsub / <= row_title* \\\n```\n\nআপনি যত কী সরবরাহ করবেন ফ্রেমওয়ার্ক প্রতিটির জন্য একটি `Row` তৈরি করে, এবং [ভার্চুয়ালাইজড রেন্ডারিং](#!section=docs/page=rendering)-এর কল্যাণে শুধু স্ক্রিনে থাকা গুলোই তৈরি করে।\n\n> যখন একটি কী-যুক্ত ভিউ নিজেই কী-যুক্ত সন্তান ধারণ করে, বাইরেরটিকে `Name*` দিয়ে কী দিন, `Name*0` নয় — ইনডেক্সড ফর্ম নেস্টেড সন্তানদের রেন্ডার-না-হওয়া অবস্থায় রেখে দেয়।\n\n## শর্তসাপেক্ষ ভিউ\n\n`null` অ্যাসাইন করলে ভিউটি রেন্ডারিং থেকে সরে যায়। সাবক্লাস করুন এবং একটি ভেরিয়েন্টের যা প্রয়োজন নেই তা null করে দিন:\n\n```tree\n\u0024my_page_readonly \u0024my_page\n\tEdit_button null\n```\n\n## গঠন ও পুনর্ব্যবহার\n\nভিউ নেস্টিংয়ের মাধ্যমে গঠিত হয় এবং এক্সটেনশনের মাধ্যমে বিশেষায়িত হয়। একটি তালিকার ভেতরে ব্যবহৃত একটি কার্ড:\n\n```tree\n\u0024my_user_card \u0024mol_view\n\tsub /\n\t\t<= Name \u0024mol_view\n\t\t\tsub / <= name \\\n\t\t<= Email \u0024mol_view\n\t\t\tsub / <= email \\\n\n\u0024my_users_list \u0024mol_list\n\trows /\n\t\t<= User* \u0024my_user_card\n\t\t\tname <= user_name* \\\n\t\t\temail <= user_email* \\\n```\n\n`\u0024my_users_list` কখনো কার্ড দেখতে কেমন তা পুনরায় সংজ্ঞায়িত করে না — এটি `\u0024my_user_card` পুনর্ব্যবহার করে এবং প্রতিটি ইনস্ট্যান্সকে তার ডেটা সরবরাহ করে। এটাই সম্পূর্ণ কম্পোজিশন মডেল: ছোট ভিউ, একসঙ্গে যুক্ত, প্রয়োজন হলে `extends` দিয়ে বিশেষায়িত।\n\n## পরবর্তী\n\nভিউ গঠন বর্ণনা করে; যা তাদের জীবন্ত করে তা হলো রিয়্যাক্টিভ ডেটা। [স্টেট ও রিয়্যাক্টিভিটি](#!section=docs/page=state)-তে এগিয়ে যান।\n",
+                            md: "# ভিউ\n\nভিউ হলো একটি কম্পোনেন্ট: UI ট্রি-এর একটি নোড, যার নিজস্ব লেআউট, আচরণ ও স্টাইল থাকে। এই অধ্যায়ে দেখানো হয়েছে ভিউ কীভাবে ঘোষণা করা হয়, লজিকের সঙ্গে যুক্ত করা হয়, গঠন করা হয় ও পুনর্ব্যবহার করা হয়।\n\n## তিনটি ফাইল, একটি কম্পোনেন্ট\n\nএকটি কম্পোনেন্ট `\u0024my_card` থাকে `my/card/`-এ এবং সর্বোচ্চ তিনটি ফাইল দিয়ে বর্ণিত হয়, প্রতিটির একটি স্পষ্ট কাজ আছে:\n\n- `card.view.tree` — কম্পোনেন্টটি **কী**: এর গঠন ও ডিফল্ট বাইন্ডিং।\n- `card.view.ts` — এটি **কীভাবে** আচরণ করে: TypeScript মেথড, রিয়্যাক্টিভ স্টেট।\n- `card.view.css.ts` — এটি দেখতে কেমন: কম্পাইলার-যাচাইকৃত টাইপড স্টাইল।\n\nগঠন, আচরণ ও স্টাইল আলাদা রাখা ইচ্ছাকৃত — প্রতিটি ফাইল ছোট ও পঠনযোগ্য থাকে, আর লেআউট কখনো লজিকের সঙ্গে জড়িয়ে যায় না।\n\n## view.tree ভাষা\n\n`view.tree` গঠনকে ঘোষণামূলকভাবে বর্ণনা করে। ইনডেন্টেশন মানে নেস্টিং; কোনো ক্লোজিং ট্যাগ নেই।\n\n```tree\n\u0024my_card \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\\n\t\t<= Body \u0024mol_view\n\t\t\tsub / <= text \\\n```\n\n- `\u0024my_card \u0024mol_view` — আপনার কম্পোনেন্ট বেস `\u0024mol_view` কে এক্সটেন্ড করে।\n- `sub /` — সন্তানদের তালিকা।\n- `<= Title \u0024mol_view` — একটি নামযুক্ত সাব-ভিউ, TypeScript-এ `this.Title()` হিসেবে অ্যাক্সেসযোগ্য।\n- `<= title \\` — একটি বাইন্ডযোগ্য প্রপার্টি, যার ডিফল্ট র-স্ট্রিং মান আছে (`\\` একটি র-স্ট্রিং শুরু করে)।\n\nপ্রতিটি বড় হাতের অক্ষরের নাম (`Title`, `Body`) একটি প্রকৃত প্রপার্টিতে পরিণত হয়, যেটিতে আপনি পৌঁছাতে, ওভাররাইড করতে বা স্টাইল করতে পারেন। প্রতিটি ছোট হাতের বাইন্ডিং (`title`, `text`) একটি মানে পরিণত হয়, যা আপনি `.view.ts`-এ গণনা করতে পারেন।\n\n## প্রপার্টি বাইন্ড করা\n\nদুটি অপারেটর একটি প্রপার্টিকে তার উৎসের সঙ্গে যুক্ত করে:\n\n- `<=` **একমুখী**: সন্তান মালিকের কাছ থেকে একটি মান পড়ে।\n- `<=>` **দ্বিমুখী**: মান উভয় দিকে প্রবাহিত হয় — ইনপুটের জন্য ব্যবহৃত।\n\n```tree\n\u0024my_form \u0024mol_view\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> text? \\\n```\n\nএখানে ইনপুটের `value` ও মালিকের `text` স্বয়ংক্রিয়ভাবে সমন্বিত থাকে: ফিল্ডে টাইপ করুন, `text` আপডেট হবে; কোডে `text` সেট করুন, ফিল্ড তা প্রতিফলিত করবে।\n\n## আচরণের সঙ্গে সংযোগ\n\nডিফল্ট মান ছাড়া একটি বাইন্ডিং `.view.ts`-এ বাস্তবায়িত হয়। ক্লাসটি একই নামের জেনারেটেড বেসকে এক্সটেন্ড করে:\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_card extends \u0024.\u0024my_card {\n\t\t@ \u0024mol_mem\n\t\ttitle() {\n\t\t\treturn 'Untitled'\n\t\t}\n\t}\n}\n```\n\nটেমপ্লেট যা কিছু বাইন্ড করে — `title`, `text`, একটি সাব-ভিউয়ের প্রপার্টি — এখানে তাকে লজিক দেওয়া যায়। রিয়্যাক্টিভিটি এই মানগুলোকে জীবন্ত করে তোলে।\n\n## অ্যাট্রিবিউট ও এলিমেন্টের ধরন\n\n`dom_name` দিয়ে অন্তর্নিহিত HTML এলিমেন্ট পরিবর্তন করুন, আর `attr` দিয়ে অ্যাট্রিবিউট সেট করুন:\n\n```tree\n\u0024my_banner \u0024mol_view\n\tdom_name \\section\n\tattr *\n\t\t^\n\t\trole \\note\n```\n\n`^` প্যারেন্টের অ্যাট্রিবিউটগুলো উত্তরাধিকারসূত্রে নেয়, যাতে `\u0024mol_view` যেগুলো ইতিমধ্যে সেট করে সেগুলো হারিয়ে না যায়।\n\n## তালিকা ও কী-যুক্ত ভিউ\n\nশেষে একটি `*` একটি সাব-ভিউকে একটি পরিবারে পরিণত করে — প্রতি কী-তে একটি ইনস্ট্যান্স। সারির জন্য এটি ব্যবহার করুন:\n\n```tree\n\u0024my_list \u0024mol_list\n\trows /\n\t\t<= Row* \u0024mol_view\n\t\t\tsub / <= row_title* \\\n```\n\nআপনি যত কী সরবরাহ করবেন ফ্রেমওয়ার্ক প্রতিটির জন্য একটি `Row` তৈরি করে, এবং [ভার্চুয়ালাইজড রেন্ডারিং](#!section=docs/page=rendering)-এর কল্যাণে শুধু স্ক্রিনে থাকা গুলোই তৈরি করে।\n\n> যখন একটি কী-যুক্ত ভিউ নিজেই কী-যুক্ত সন্তান ধারণ করে, বাইরেরটিকে `Name*` দিয়ে কী দিন, `Name*0` নয় — ইনডেক্সড ফর্ম নেস্টেড সন্তানদের রেন্ডার-না-হওয়া অবস্থায় রেখে দেয়।\n\n## শর্তসাপেক্ষ ভিউ\n\n`null` অ্যাসাইন করলে ভিউটি রেন্ডারিং থেকে সরে যায়। সাবক্লাস করুন এবং একটি ভেরিয়েন্টের যা প্রয়োজন নেই তা null করে দিন:\n\n```tree\n\u0024my_page_readonly \u0024my_page\n\tEdit_button null\n```\n\n## গঠন ও পুনর্ব্যবহার\n\nভিউ নেস্টিংয়ের মাধ্যমে গঠিত হয় এবং এক্সটেনশনের মাধ্যমে বিশেষায়িত হয়। একটি তালিকার ভেতরে ব্যবহৃত একটি কার্ড:\n\n```tree\n\u0024my_user_card \u0024mol_view\n\tsub /\n\t\t<= Name \u0024mol_view\n\t\t\tsub / <= name \\\n\t\t<= Email \u0024mol_view\n\t\t\tsub / <= email \\\n\n\u0024my_users_list \u0024mol_list\n\trows /\n\t\t<= User* \u0024my_user_card\n\t\t\tname <= user_name* \\\n\t\t\temail <= user_email* \\\n```\n\n`\u0024my_users_list` কখনো কার্ড দেখতে কেমন তা পুনরায় সংজ্ঞায়িত করে না — এটি `\u0024my_user_card` পুনর্ব্যবহার করে এবং প্রতিটি ইনস্ট্যান্সকে তার ডেটা সরবরাহ করে। এটাই সম্পূর্ণ কম্পোজিশন মডেল: ছোট ভিউ, একসঙ্গে যুক্ত, প্রয়োজন হলে `extends` দিয়ে বিশেষায়িত।\n\n## পরবর্তী\n\nভিউ গঠন বর্ণনা করে; যা তাদের জীবন্ত করে তা হলো রিয়্যাক্টিভ ডেটা। [স্টেট ও রিয়্যাক্টিভিটি](#!section=docs/page=state)-তে এগিয়ে যান।\n",
                         },
                     },
                 },
@@ -14721,7 +14721,7 @@ var $;
                     title: "Showcase",
                     summary: "Real apps and tools built with $mol, from community platforms to devtools.",
                     file: 'content/en/docs/showcase.md',
-                    md: "# Showcase\n\nReal things built with \u0024mol — community apps, commercial products, and developer tools. Each one is a working app, not a demo.\n\n## Apps\n\n- **[Bog Music](https://b-on-g.github.io/music/)** — a music player that runs both as a Chrome extension and a web app, with background playback and offline caching. \u0024mol drives the UI and the local-first state.\n- **[Blitz Quiz](https://b-on-g.github.io/blitz/)** — a Kahoot-style live quiz built on \u0024mol and Giper Baza. Rooms sync in real time through the CRDT layer, so there is no game server to run.\n- **[VDO Rebalance](https://b-on-g.github.io/invest/)** — a local-first investing tool: drop in an `.xlsx` portfolio and get the trades that rebalance it. State lives in the browser over Giper Baza.\n- **[\u0024hyoo_budget](https://budget.hyoo.ru)** — a collaborative, local-first personal-budget app. It took first place at the Beautiful Code hackathon.\n- **[\u0024hyoo_talks](https://talks.hyoo.ru)** — an embeddable messenger. A prototype built for Sberbank took second place at Moscow City Hack.\n- **[Virtual avatar](https://avatar.ocas.ai)** — a 3D character you can talk to, play chess with, or ask to present slides. A commercial product with \u0024mol driving the interface over third-party libraries.\n\n## Design system & tools\n\n- **[BuilderUI](https://b-on-g.github.io/builderui/)** — a shadcn-style design system for \u0024mol: typed components (buttons, dialogs, selects, cards, charts, and more) plus a Studio for live theming (base color, accent, chart palette, radius, fonts, light/dark). This documentation site is built on it.\n- **This site** — the documentation you are reading, including the [Playground](#!section=playground) and [course](#!section=course), is a \u0024mol app. The search, live code editor, and in-browser TypeScript are all built with the framework they document.\n- **MAM** — the build tool and module registry that every \u0024mol app lives in, and itself a \u0024mol project. It is developer tooling rather than a hosted app; the source is on GitHub.\n- **view.tree LSP** — language tooling and an `npm create view-tree-lsp` scaffolder that starts new \u0024mol apps. Editor tooling, so there is no running app to open.\n\n## Hackathons and commercial use\n\n\u0024mol has won repeatedly at hackathons: first place at Beautiful Code ([\u0024hyoo_budget](https://budget.hyoo.ru)), first place at AC-VO-PPR-Hackathon (gesture-and-voice control of a street display), and prize-winning prototypes at More Tech, Moscow City Hack, and Dev Hack. It also ships in commercial and industrial systems — from an online-store back office to drone-defense control panels. The \u0024mol [success-stories page](https://mol.hyoo.ru/#!section=docs/=xanlom_yimh6x) has the details.\n\n## More\n\nThe [\u0024mol component catalog](https://mol.hyoo.ru/#!section=demos) has dozens of live components and demos you can open and inspect.\n\nBuilding something with \u0024mol? The best next step is the [Playground](#!section=playground) — try an idea in seconds, then share the URL.\n",
+                    md: "# Showcase\n\nReal things built with \u0024mol — community apps, commercial products, and developer tools. Each one is a working app, not a demo.\n\n## Apps\n\n- **[Bog Music](https://b-on-g.github.io/music/)** — a music player that runs both as a Chrome extension and a web app, with background playback and offline caching. \u0024mol drives the UI and the local-first state.\n- **[Blitz Quiz](https://b-on-g.github.io/blitz/)** — a Kahoot-style live quiz built on \u0024mol and Giper Baza. Rooms sync in real time through the CRDT layer, so there is no game server to run.\n- **[VDO Rebalance](https://b-on-g.github.io/invest/)** — a local-first investing tool: drop in an `.xlsx` portfolio and get the trades that rebalance it. State lives in the browser over Giper Baza.\n- **[\u0024hyoo_budget](https://budget.hyoo.ru)** — a collaborative, local-first personal-budget app. It took first place at the Beautiful Code hackathon.\n- **[\u0024hyoo_talks](https://talks.hyoo.ru)** — an embeddable messenger. A prototype built for Sberbank took second place at Moscow City Hack.\n\n## Design system & tools\n\n- **[BuilderUI](https://b-on-g.github.io/builderui/)** — a shadcn-style design system for \u0024mol: typed components (buttons, dialogs, selects, cards, charts, and more) plus a Studio for live theming (base color, accent, chart palette, radius, fonts, light/dark). This documentation site is built on it.\n- **This site** — the documentation you are reading, including the [Playground](#!section=playground) and [course](#!section=course), is a \u0024mol app. The search, live code editor, and in-browser TypeScript are all built with the framework they document.\n- **MAM** — the build tool and module registry that every \u0024mol app lives in, and itself a \u0024mol project. It is developer tooling rather than a hosted app; the source is on GitHub.\n- **view.tree LSP** — language tooling and an `npm create view-tree-lsp` scaffolder that starts new \u0024mol apps. Editor tooling, so there is no running app to open.\n\n## In production\n\nBeyond open-source and hackathon projects, \u0024mol ships in commercial systems that earn revenue. A few of them (some run under NDA, so no links or logos):\n\n- **Drone-defense control** — the \"Tamerlan\" complex runs a \u0024mol microservice on each device controller (radar, jammer, camera), joining them into a shared decentralized network. A web UI, local or centralized, shows the sky situation in real time: what is flying where, what is being jammed, where the cameras are pointed.\n- **[Virtual avatar](https://avatar.ocas.ai)** — a 3D character you can talk to, play chess with, or ask to present slides. A commercial product with \u0024mol driving the interface over third-party libraries.\n- **Prompt-testing admin panel** — lets a company pick and test neural-network prompts for bulk processing of catalog rows: rewriting titles, descriptions, and SEO fields. It also cleans up text files for safe export into other CMSs.\n- **Metering admin panel** — meters upload readings to FTP; operators create users, grant them view rights to specific meters, and run email campaigns, while ordinary consumers see only their objects and a read-only view page.\n- **E-commerce back office** — product-catalog and order-list management for an online store.\n- **Scientific-data widget** — visualizes microelements and their compounds. The graph rendering stays on D3; everything else was refactored from vanilla JS to \u0024mol and packed into a Web Component.\n\n## Hackathons\n\n\u0024mol has won repeatedly at hackathons: first place at Beautiful Code ([\u0024hyoo_budget](https://budget.hyoo.ru)), first place at AC-VO-PPR-Hackathon (gesture-and-voice control of a street display), and prize-winning prototypes at More Tech, Moscow City Hack, and Dev Hack. The \u0024mol [success-stories page](https://mol.hyoo.ru/#!section=docs/=xanlom_yimh6x) has more.\n\n## More\n\nThe [\u0024mol component catalog](https://mol.hyoo.ru/#!section=demos) has dozens of live components and demos you can open and inspect.\n\nBuilding something with \u0024mol? The best next step is the [Playground](#!section=playground) — try an idea in seconds, then share the URL.\n",
                     tr: {
                         zh: {
                             title: "展示",
@@ -16724,18 +16724,6 @@ var $;
 })($ || ($ = {}));
 
 ;
-	($.$mol_icon_play) = class $mol_icon_play extends ($.$mol_icon) {
-		path(){
-			return "M8,5.14V19.14L19,12.14L8,5.14Z";
-		}
-	};
-
-
-;
-"use strict";
-
-
-;
 	($.$mol_icon_arrow_right) = class $mol_icon_arrow_right extends ($.$mol_icon) {
 		path(){
 			return "M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z";
@@ -16760,685 +16748,9 @@ var $;
 
 
 ;
-	($.$bog_smalljs_landing) = class $bog_smalljs_landing extends ($.$mol_view) {
-		Hero_title_pre(){
-			return (this.$.$mol_locale.text("$bog_smalljs_landing_Hero_title_pre"));
-		}
-		Hero_title_accent_text(){
-			return (this.$.$mol_locale.text("$bog_smalljs_landing_Hero_title_accent_text"));
-		}
-		Hero_title_accent(){
-			const obj = new this.$.$mol_view();
-			(obj.dom_name) = () => ("span");
-			(obj.sub) = () => ([(this.Hero_title_accent_text())]);
-			return obj;
-		}
-		Hero_title_post(){
-			return (this.$.$mol_locale.text("$bog_smalljs_landing_Hero_title_post"));
-		}
-		Hero_title(){
-			const obj = new this.$.$mol_view();
-			(obj.dom_name) = () => ("h1");
-			(obj.sub) = () => ([
-				(this.Hero_title_pre()), 
-				(this.Hero_title_accent()), 
-				(this.Hero_title_post())
-			]);
-			return obj;
-		}
-		Hero_subtitle_text(){
-			return (this.$.$mol_locale.text("$bog_smalljs_landing_Hero_subtitle_text"));
-		}
-		Hero_subtitle(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Hero_subtitle_text())]);
-			return obj;
-		}
-		Hero_cta_why_icon(){
-			const obj = new this.$.$mol_icon_play();
-			return obj;
-		}
-		Hero_cta_why_label(){
-			return (this.$.$mol_locale.text("$bog_smalljs_landing_Hero_cta_why_label"));
-		}
-		Hero_cta_why(){
-			const obj = new this.$.$mol_link();
-			(obj.arg) = () => ({"section": "docs", "page": "introduction"});
-			(obj.sub) = () => ([(this.Hero_cta_why_icon()), (this.Hero_cta_why_label())]);
-			return obj;
-		}
-		Hero_cta_start_label(){
-			return (this.$.$mol_locale.text("$bog_smalljs_landing_Hero_cta_start_label"));
-		}
-		Hero_cta_start_icon(){
-			const obj = new this.$.$mol_icon_arrow_right();
-			return obj;
-		}
-		Hero_cta_start(){
-			const obj = new this.$.$mol_link();
-			(obj.arg) = () => ({"section": "docs", "page": "getting-started"});
-			(obj.sub) = () => ([(this.Hero_cta_start_label()), (this.Hero_cta_start_icon())]);
-			return obj;
-		}
-		Hero_cta_install(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Hero_cta_install_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "getting-started"});
-			return obj;
-		}
-		Hero_cta_play_label(){
-			return (this.$.$mol_locale.text("$bog_smalljs_landing_Hero_cta_play_label"));
-		}
-		Hero_cta_play_icon(){
-			const obj = new this.$.$mol_icon_open_in_new();
-			return obj;
-		}
-		Hero_cta_play(){
-			const obj = new this.$.$mol_link();
-			(obj.arg) = () => ({"section": "playground", "page": ""});
-			(obj.sub) = () => ([(this.Hero_cta_play_label()), (this.Hero_cta_play_icon())]);
-			return obj;
-		}
-		Hero_actions(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([
-				(this.Hero_cta_why()), 
-				(this.Hero_cta_start()), 
-				(this.Hero_cta_install()), 
-				(this.Hero_cta_play())
-			]);
-			return obj;
-		}
-		Hero(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([
-				(this.Hero_title()), 
-				(this.Hero_subtitle()), 
-				(this.Hero_actions())
-			]);
-			return obj;
-		}
-		Feature1_title_text(){
-			return (this.$.$mol_locale.text("$bog_smalljs_landing_Feature1_title_text"));
-		}
-		Feature1_title(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Feature1_title_text())]);
-			return obj;
-		}
-		Feature1_text(){
-			const obj = new this.$.$mol_text();
-			(obj.text) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Feature1_text_text")));
-			return obj;
-		}
-		Feature1(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Feature1_title()), (this.Feature1_text())]);
-			return obj;
-		}
-		Feature2_title_text(){
-			return (this.$.$mol_locale.text("$bog_smalljs_landing_Feature2_title_text"));
-		}
-		Feature2_title(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Feature2_title_text())]);
-			return obj;
-		}
-		Feature2_text(){
-			const obj = new this.$.$mol_text();
-			(obj.text) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Feature2_text_text")));
-			return obj;
-		}
-		Feature2(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Feature2_title()), (this.Feature2_text())]);
-			return obj;
-		}
-		Feature3_title_text(){
-			return (this.$.$mol_locale.text("$bog_smalljs_landing_Feature3_title_text"));
-		}
-		Feature3_title(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Feature3_title_text())]);
-			return obj;
-		}
-		Feature3_text(){
-			const obj = new this.$.$mol_text();
-			(obj.text) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Feature3_text_text")));
-			return obj;
-		}
-		Feature3(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Feature3_title()), (this.Feature3_text())]);
-			return obj;
-		}
-		Features(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([
-				(this.Feature1()), 
-				(this.Feature2()), 
-				(this.Feature3())
-			]);
-			return obj;
-		}
-		Footer_sect_docs_title_text(){
-			return (this.$.$mol_locale.text("$bog_smalljs_landing_Footer_sect_docs_title_text"));
-		}
-		Footer_sect_docs_title(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Footer_sect_docs_title_text())]);
-			return obj;
-		}
-		Footer_link_quickstart(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_quickstart_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "getting-started"});
-			return obj;
-		}
-		Footer_link_guide(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_guide_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "views"});
-			return obj;
-		}
-		Footer_link_tutorial(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_tutorial_title")));
-			(obj.arg) = () => ({"section": "course", "page": ""});
-			return obj;
-		}
-		Footer_link_examples(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_examples_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "showcase"});
-			return obj;
-		}
-		Footer_link_api(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_api_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "api-mol-string"});
-			return obj;
-		}
-		Footer_sect_docs(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([
-				(this.Footer_sect_docs_title()), 
-				(this.Footer_link_quickstart()), 
-				(this.Footer_link_guide()), 
-				(this.Footer_link_tutorial()), 
-				(this.Footer_link_examples()), 
-				(this.Footer_link_api())
-			]);
-			return obj;
-		}
-		Footer_col1(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Footer_sect_docs())]);
-			return obj;
-		}
-		Footer_sect_about_title_text(){
-			return (this.$.$mol_locale.text("$bog_smalljs_landing_Footer_sect_about_title_text"));
-		}
-		Footer_sect_about_title(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Footer_sect_about_title_text())]);
-			return obj;
-		}
-		Footer_link_faq(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_faq_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "faq"});
-			return obj;
-		}
-		Footer_link_team(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_team_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "team"});
-			return obj;
-		}
-		Footer_link_releases(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_releases_title")));
-			(obj.arg) = () => ({"section": "docs", "page": "releases"});
-			return obj;
-		}
-		Footer_sect_about(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([
-				(this.Footer_sect_about_title()), 
-				(this.Footer_link_faq()), 
-				(this.Footer_link_team()), 
-				(this.Footer_link_releases())
-			]);
-			return obj;
-		}
-		Footer_col2(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Footer_sect_about())]);
-			return obj;
-		}
-		Footer_sect_resources_title_text(){
-			return (this.$.$mol_locale.text("$bog_smalljs_landing_Footer_sect_resources_title_text"));
-		}
-		Footer_sect_resources_title(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Footer_sect_resources_title_text())]);
-			return obj;
-		}
-		Footer_link_playground(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_playground_title")));
-			(obj.arg) = () => ({"section": "playground", "page": ""});
-			return obj;
-		}
-		Footer_link_course(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_course_title")));
-			(obj.arg) = () => ({"section": "course", "page": ""});
-			return obj;
-		}
-		Footer_link_ui(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_ui_title")));
-			(obj.uri) = () => ("https://mol.hyoo.ru/#!section=demos");
-			(obj.target) = () => ("_blank");
-			return obj;
-		}
-		Footer_link_telegram(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_telegram_title")));
-			(obj.uri) = () => ("https://t.me/giper_dev");
-			(obj.target) = () => ("_blank");
-			return obj;
-		}
-		Footer_link_dev(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_dev_title")));
-			(obj.uri) = () => ("https://dev.to/t/mol");
-			(obj.target) = () => ("_blank");
-			return obj;
-		}
-		Footer_sect_resources(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([
-				(this.Footer_sect_resources_title()), 
-				(this.Footer_link_playground()), 
-				(this.Footer_link_course()), 
-				(this.Footer_link_ui()), 
-				(this.Footer_link_telegram()), 
-				(this.Footer_link_dev())
-			]);
-			return obj;
-		}
-		Footer_col3(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Footer_sect_resources())]);
-			return obj;
-		}
-		Footer_sect_libs_title_text(){
-			return (this.$.$mol_locale.text("$bog_smalljs_landing_Footer_sect_libs_title_text"));
-		}
-		Footer_sect_libs_title(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Footer_sect_libs_title_text())]);
-			return obj;
-		}
-		Footer_link_wire(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_wire_title")));
-			(obj.uri) = () => ("https://github.com/hyoo-ru/mam_mol/tree/master/wire");
-			(obj.target) = () => ("_blank");
-			return obj;
-		}
-		Footer_link_fetch(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_fetch_title")));
-			(obj.uri) = () => ("https://github.com/hyoo-ru/mam_mol/tree/master/fetch");
-			(obj.target) = () => ("_blank");
-			return obj;
-		}
-		Footer_link_compare(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_compare_title")));
-			(obj.uri) = () => ("https://github.com/hyoo-ru/mam_mol/tree/master/compare/deep");
-			(obj.target) = () => ("_blank");
-			return obj;
-		}
-		Footer_link_router(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_router_title")));
-			(obj.uri) = () => ("https://github.com/hyoo-ru/mam_mol/tree/master/state/arg");
-			(obj.target) = () => ("_blank");
-			return obj;
-		}
-		Footer_link_crowd(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_crowd_title")));
-			(obj.uri) = () => ("https://github.com/hyoo-ru/crowd.hyoo.ru");
-			(obj.target) = () => ("_blank");
-			return obj;
-		}
-		Footer_link_baza(){
-			const obj = new this.$.$mol_link();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_baza_title")));
-			(obj.uri) = () => ("https://github.com/giper-dev/baza");
-			(obj.target) = () => ("_blank");
-			return obj;
-		}
-		Footer_sect_libs(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([
-				(this.Footer_sect_libs_title()), 
-				(this.Footer_link_wire()), 
-				(this.Footer_link_fetch()), 
-				(this.Footer_link_compare()), 
-				(this.Footer_link_router()), 
-				(this.Footer_link_crowd()), 
-				(this.Footer_link_baza())
-			]);
-			return obj;
-		}
-		Footer_col4(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Footer_sect_libs())]);
-			return obj;
-		}
-		Footer_cols(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([
-				(this.Footer_col1()), 
-				(this.Footer_col2()), 
-				(this.Footer_col3()), 
-				(this.Footer_col4())
-			]);
-			return obj;
-		}
-		Footer_copy_line1_text(){
-			return (this.$.$mol_locale.text("$bog_smalljs_landing_Footer_copy_line1_text"));
-		}
-		Footer_copy_line1(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Footer_copy_line1_text())]);
-			return obj;
-		}
-		Footer_copy_line2_text(){
-			return (this.$.$mol_locale.text("$bog_smalljs_landing_Footer_copy_line2_text"));
-		}
-		Footer_copy_line2(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Footer_copy_line2_text())]);
-			return obj;
-		}
-		Footer_copy(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Footer_copy_line1()), (this.Footer_copy_line2())]);
-			return obj;
-		}
-		Footer(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Footer_cols()), (this.Footer_copy())]);
-			return obj;
-		}
-		sub(){
-			return [
-				(this.Hero()), 
-				(this.Features()), 
-				(this.Footer())
-			];
-		}
-	};
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Hero_title_accent"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Hero_title"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Hero_subtitle"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Hero_cta_why_icon"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Hero_cta_why"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Hero_cta_start_icon"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Hero_cta_start"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Hero_cta_install"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Hero_cta_play_icon"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Hero_cta_play"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Hero_actions"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Hero"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Feature1_title"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Feature1_text"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Feature1"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Feature2_title"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Feature2_text"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Feature2"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Feature3_title"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Feature3_text"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Feature3"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Features"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_docs_title"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_quickstart"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_guide"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_tutorial"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_examples"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_api"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_docs"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_col1"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_about_title"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_faq"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_team"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_releases"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_about"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_col2"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_resources_title"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_playground"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_course"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_ui"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_telegram"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_dev"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_resources"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_col3"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_libs_title"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_wire"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_fetch"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_compare"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_router"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_crowd"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_baza"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_libs"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_col4"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_cols"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_copy_line1"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_copy_line2"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_copy"));
-	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer"));
-
-
-;
-"use strict";
-
-
-;
-"use strict";
-var $;
-(function ($) {
-    var $$;
-    (function ($$) {
-        class $bog_smalljs_landing extends $.$bog_smalljs_landing {
-        }
-        $$.$bog_smalljs_landing = $bog_smalljs_landing;
-    })($$ = $.$$ || ($.$$ = {}));
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    const { rem } = $mol_style_unit;
-    $mol_style_define($bog_smalljs_landing, {
-        flex: { direction: 'column' },
-        Hero: {
-            flex: { direction: 'column' },
-            align: { items: 'center' },
-            gap: $mol_gap.block,
-            padding: { top: rem(4), bottom: 0, left: $mol_gap.block, right: $mol_gap.block },
-        },
-        Hero_title: {
-            display: 'block',
-            font: { family: $bog_builderui_tokens.font_head, size: rem(4.75), weight: 900 },
-            lineHeight: '1.25',
-            textAlign: 'center',
-            maxWidth: rem(60),
-            // long words ("micromodule" / "микромодульный") must break, not overflow on phones
-            overflowWrap: 'break-word',
-        },
-        Hero_title_accent: {
-            display: 'inline',
-            color: $bog_builderui_tokens.special,
-            margin: { left: '0.25em', right: '0.15em' },
-        },
-        Hero_subtitle: {
-            font: { size: rem(1.25) },
-            textAlign: 'center',
-            maxWidth: rem(45),
-            color: $bog_builderui_tokens.text,
-        },
-        Hero_actions: {
-            flex: { direction: 'row', wrap: 'wrap' },
-            gap: $mol_gap.block,
-            justify: { content: 'center' },
-            align: { items: 'center' },
-        },
-        Hero_cta_why: {
-            flex: { direction: 'row' },
-            align: { items: 'center' },
-            gap: rem(0.4),
-            background: { color: $bog_builderui_tokens.current },
-            color: $bog_builderui_tokens.back,
-            padding: { left: rem(1.25), right: rem(1.25), top: rem(0.625), bottom: rem(0.625) },
-            border: { radius: rem(1.25) },
-            font: { weight: 600 },
-        },
-        Hero_cta_why_icon: { width: rem(1), height: rem(1) },
-        Hero_cta_start: {
-            flex: { direction: 'row' },
-            align: { items: 'center' },
-            gap: rem(0.4),
-            background: { color: $bog_builderui_tokens.card },
-            padding: { left: rem(1.25), right: rem(1.25), top: rem(0.625), bottom: rem(0.625) },
-            border: { radius: rem(1.25) },
-            font: { weight: 600 },
-        },
-        Hero_cta_start_icon: { width: rem(0.875), height: rem(0.875) },
-        Hero_cta_install: {
-            background: { color: $bog_builderui_tokens.card },
-            padding: { left: rem(1.25), right: rem(1.25), top: rem(0.625), bottom: rem(0.625) },
-            border: { radius: rem(1.25) },
-            font: { weight: 600 },
-        },
-        Hero_cta_play: {
-            flex: { direction: 'row' },
-            align: { items: 'center' },
-            gap: rem(0.4),
-            background: { color: $bog_builderui_tokens.back },
-            padding: { left: rem(1.25), right: rem(1.25), top: rem(0.5), bottom: rem(0.5) },
-            border: { radius: rem(1.25), width: '1px', style: 'solid', color: $bog_builderui_tokens.current },
-            color: $bog_builderui_tokens.current,
-            font: { weight: 600 },
-        },
-        Hero_cta_play_icon: { width: rem(0.875), height: rem(0.875) },
-        Features: {
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: $mol_gap.block,
-            padding: { top: rem(4), bottom: rem(4), left: $mol_gap.block, right: $mol_gap.block },
-            maxWidth: rem(75),
-            margin: { left: 'auto', right: 'auto' },
-        },
-        Feature1: { flex: { direction: 'column' }, gap: $mol_gap.text },
-        Feature2: { flex: { direction: 'column' }, gap: $mol_gap.text },
-        Feature3: { flex: { direction: 'column' }, gap: $mol_gap.text },
-        Feature1_title: {
-            display: 'block',
-            font: { size: rem(1.25), weight: 600 },
-            '::first-letter': { color: $bog_builderui_tokens.special },
-        },
-        Feature2_title: {
-            display: 'block',
-            font: { size: rem(1.25), weight: 600 },
-            '::first-letter': { color: $bog_builderui_tokens.special },
-        },
-        Feature3_title: {
-            display: 'block',
-            font: { size: rem(1.25), weight: 600 },
-            '::first-letter': { color: $bog_builderui_tokens.special },
-        },
-        Footer: {
-            flex: { direction: 'column' },
-            gap: rem(2),
-            padding: { top: rem(4), bottom: rem(3), left: rem(4), right: rem(4) },
-            border: { top: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
-            // center the 75rem footer on wide screens like the hero/features (it only
-            // had margin-top:auto, so it hugged the left while the rest was centered)
-            margin: { top: 'auto', left: 'auto', right: 'auto' },
-            maxWidth: rem(75),
-            width: '100%',
-        },
-        Footer_cols: {
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: rem(2),
-            margin: { left: 'auto', right: 'auto' },
-            width: '100%',
-        },
-        Footer_col1: { flex: { direction: 'column' }, gap: rem(2) },
-        Footer_col2: { flex: { direction: 'column' }, gap: rem(2) },
-        Footer_col3: { flex: { direction: 'column' }, gap: rem(2) },
-        Footer_col4: { flex: { direction: 'column' }, gap: rem(2) },
-        Footer_sect_docs: { flex: { direction: 'column' }, gap: rem(0.75) },
-        Footer_sect_about: { flex: { direction: 'column' }, gap: rem(0.75) },
-        Footer_sect_resources: { flex: { direction: 'column' }, gap: rem(0.75) },
-        Footer_sect_libs: { flex: { direction: 'column' }, gap: rem(0.75) },
-        Footer_sect_docs_title: { font: { size: rem(1), weight: 700 }, padding: { bottom: rem(0.25) } },
-        Footer_sect_about_title: { font: { size: rem(1), weight: 700 }, padding: { bottom: rem(0.25) } },
-        Footer_sect_resources_title: { font: { size: rem(1), weight: 700 }, padding: { bottom: rem(0.25) } },
-        Footer_sect_libs_title: { font: { size: rem(1), weight: 700 }, padding: { bottom: rem(0.25) } },
-        Footer_copy: {
-            flex: { direction: 'column' },
-            align: { items: 'center' },
-            gap: rem(0.25),
-            font: { size: rem(0.875) },
-            color: $bog_builderui_tokens.shade,
-            textAlign: 'center',
-            padding: { top: rem(2) },
-        },
-        '@media': {
-            // Phone: shrink the oversized hero, stack features and footer so
-            // nothing overflows the viewport width.
-            '(max-width: 47.9375rem)': {
-                Hero: {
-                    padding: { top: rem(2.5), bottom: 0, left: rem(1.25), right: rem(1.25) },
-                },
-                Hero_title: {
-                    font: { size: rem(2) },
-                },
-                Hero_subtitle: {
-                    font: { size: rem(1.0625) },
-                },
-                Features: {
-                    gridTemplateColumns: '1fr',
-                    gap: rem(1.5),
-                    padding: { top: rem(2.5), bottom: rem(2.5), left: rem(1.25), right: rem(1.25) },
-                },
-                Footer: {
-                    padding: { top: rem(2.5), bottom: rem(2), left: rem(1.25), right: rem(1.25) },
-                },
-                Footer_cols: {
-                    gridTemplateColumns: '1fr 1fr',
-                    gap: rem(1.5),
-                },
-            },
-        },
-    });
-})($ || ($ = {}));
-
-;
-	($.$mol_icon_menu) = class $mol_icon_menu extends ($.$mol_icon) {
+	($.$mol_icon_play) = class $mol_icon_play extends ($.$mol_icon) {
 		path(){
-			return "M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z";
+			return "M8,5.14V19.14L19,12.14L8,5.14Z";
 		}
 	};
 
@@ -17503,6 +16815,14 @@ var $;
 	};
 	($mol_mem_key(($.$bog_smalljs_text.prototype), "Pre"));
 	($.$bog_smalljs_text_code) = class $bog_smalljs_text_code extends ($.$mol_text_code) {
+		run_click(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Run_icon(){
+			const obj = new this.$.$mol_icon_play();
+			return obj;
+		}
 		Playground_icon(){
 			const obj = new this.$.$mol_icon_launch();
 			return obj;
@@ -17516,6 +16836,25 @@ var $;
 		playground_showed(){
 			return false;
 		}
+		run(next){
+			if(next !== undefined) return next;
+			return false;
+		}
+		attr(){
+			return {...(super.attr()), "bog_smalljs_run_active": (this.run())};
+		}
+		Run(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.click) = (next) => ((this.run_click(next)));
+			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_smalljs_text_code_Run_hint")));
+			(obj.sub) = () => ([(this.Run_icon())]);
+			return obj;
+		}
+		Live(){
+			const obj = new this.$.$bog_smalljs_text_live();
+			(obj.tree) = () => ((this.text()));
+			return obj;
+		}
 		Playground(){
 			const obj = new this.$.$mol_link();
 			(obj.arg) = () => ((this.playground_arg()));
@@ -17524,784 +16863,40 @@ var $;
 			return obj;
 		}
 	};
+	($mol_mem(($.$bog_smalljs_text_code.prototype), "run_click"));
+	($mol_mem(($.$bog_smalljs_text_code.prototype), "Run_icon"));
 	($mol_mem(($.$bog_smalljs_text_code.prototype), "Playground_icon"));
+	($mol_mem(($.$bog_smalljs_text_code.prototype), "run"));
+	($mol_mem(($.$bog_smalljs_text_code.prototype), "Run"));
+	($mol_mem(($.$bog_smalljs_text_code.prototype), "Live"));
 	($mol_mem(($.$bog_smalljs_text_code.prototype), "Playground"));
-
-
-;
-"use strict";
-
-
-;
-"use strict";
-var $;
-(function ($) {
-    var $$;
-    (function ($$) {
-        /**
-         * Syntax grammar for view.tree, layered on top of $mol_syntax2 (the same tiny
-         * regex tokenizer $mol uses for its own code blocks). Token names are unique to
-         * this grammar, so their colors (see text.view.css.ts) never leak onto other code.
-         * Highlights, in priority order: line comments (`- \…`), string literals (`\…` and
-         * localized `@ \…`), components (`$…`), binding/super operators, structure markers
-         * (`/ * ?`), and primitives (numbers, null/true/false).
-         */
-        const tree_syntax = new $.$mol_syntax2({
-            'tree-comment': /- \\.*/,
-            'tree-string': /@ \\.*|\\.*/,
-            'tree-comp': /\$[\w$]*/,
-            'tree-oper': /<=>|<=|=>|\^/,
-            'tree-mark': /[\/*?]/,
-            'tree-prim': /\b(?:null|true|false|NaN)\b|[+-]?\d[\w.]*/,
-        });
-        /**
-         * $mol_text with language-aware code blocks: view.tree gets its own highlighter,
-         * and executable snippets (view.tree) grow an "Open in Playground" button.
-         */
-        class $bog_smalljs_text extends $.$bog_smalljs_text {
-            // Re-typing Pre* to our subclass regenerates the parent-side binding stubs, and
-            // the `text <= pre_text* \` re-listing emits an empty `pre_text` stub that shadows
-            // $mol_text's real implementation (which slices the code out of the flow token) —
-            // leaving every block empty (one blank line). Delegate back to the base method so
-            // blocks keep their multi-line source. Same story for per-line theme markers.
-            pre_text(index) {
-                return $mol_text.prototype.pre_text.call(this, index);
-            }
-            pre_themes(index) {
-                return $mol_text.prototype.pre_themes.call(this, index);
-            }
-            /** Fence info-string of a code block (chunk 1 of the flow token), e.g. `tree`, `typescript`. */
-            pre_lang(index) {
-                return this.flow_tokens()[index].chunks[1] ?? '';
-            }
-            /** Normalized language family used for grammar selection and playground gating. */
-            lang_kind(index) {
-                const lang = this.pre_lang(index).toLowerCase();
-                if (lang === 'tree' || lang === 'view.tree')
-                    return 'tree';
-                if (lang === 'ts' || lang === 'typescript')
-                    return 'ts';
-                return lang;
-            }
-            // Only view.tree snippets are self-contained enough to render in the playground
-            // (a bare view.ts has no root component to mount), so the button is tree-only.
-            pre_playground_showed(index) {
-                return this.lang_kind(index) === 'tree';
-            }
-            // $mol_link merges this dict into the URL args on click (null removes a key),
-            // so the reader lands on the playground seeded with exactly this snippet.
-            pre_playground_arg(index) {
-                return {
-                    section: 'playground',
-                    page: null,
-                    tab: 'tree',
-                    code: this.pre_text(index) + '\n',
-                    ts: null,
-                    css: null,
-                };
-            }
-        }
-        $$.$bog_smalljs_text = $bog_smalljs_text;
-        /** Code block that picks a grammar by language and can offer an "Open in Playground" link. */
-        class $bog_smalljs_text_code extends $.$bog_smalljs_text_code {
-            // Doc snippets are short, so the base's virtual-scroll windowing buys nothing.
-            // Render every line eagerly: it keeps measurement simple and the whole snippet
-            // present in the DOM (so in-page text search and "Copy" see the full source).
-            render_visible_only() {
-                return false;
-            }
-            syntax() {
-                const lang = this.lang().toLowerCase();
-                if (lang === 'tree' || lang === 'view.tree')
-                    return tree_syntax;
-                return super.syntax();
-            }
-            sub() {
-                return [
-                    this.Rows(),
-                    ...this.sidebar_showed() ? [this.Copy()] : [],
-                    ...this.playground_showed() ? [this.Playground()] : [],
-                ];
-            }
-        }
-        __decorate([
-            $mol_mem
-        ], $bog_smalljs_text_code.prototype, "sub", null);
-        $$.$bog_smalljs_text_code = $bog_smalljs_text_code;
-    })($$ = $.$$ || ($.$$ = {}));
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    const { rem } = $mol_style_unit;
-    $mol_style_define($bog_smalljs_text_code, {
-        // The base component is a $mol_stack that overlaps its children in one cell;
-        // Copy sits top-left, so the playground link takes the top-right corner.
-        Playground: {
-            alignSelf: 'flex-start',
-            justifySelf: 'flex-end',
-            padding: rem(0.25),
-            color: $bog_builderui_tokens.shade,
-            background: { color: $bog_builderui_tokens.card },
-            border: { radius: rem(0.375) },
-            opacity: 0.65,
-            ':hover': {
-                opacity: 1,
-                color: $bog_builderui_tokens.control,
-            },
-        },
-        Playground_icon: {
-            width: rem(1.05),
-            height: rem(1.05),
-        },
-    });
-    // Colors for the view.tree grammar (see text.view.ts). These token-type names are
-    // produced only by $bog_smalljs_text_code, so plain attribute selectors are safe and
-    // cannot bleed onto other code blocks. Mid-lightness HSLA reads well in both themes,
-    // matching how base $mol tints its own tokens; structure/comments use the theme's
-    // muted `shade` var so they recede.
-    $mol_style_attach('$bog_smalljs_text_code.tree_syntax', `
-		[mol_text_code_token_type="tree-comp"] { color: hsl( 28, 80%, 52% ) }
-		[mol_text_code_token_type="tree-string"] { color: hsl( 96, 42%, 42% ) }
-		[mol_text_code_token_type="tree-oper"] { color: hsl( 210, 62%, 56% ) }
-		[mol_text_code_token_type="tree-prim"] { color: hsl( 45, 72%, 44% ) }
-		[mol_text_code_token_type="tree-mark"] { color: var( --bog_builderui_shade ) }
-		[mol_text_code_token_type="tree-comment"] { color: var( --bog_builderui_shade ); font-style: italic }
-	`);
-})($ || ($ = {}));
-
-;
-	($.$mol_icon_pencil) = class $mol_icon_pencil extends ($.$mol_icon) {
-		path(){
-			return "M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z";
+	($.$bog_smalljs_text_live) = class $bog_smalljs_text_live extends ($.$mol_view) {
+		label_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_text_live_label_text"));
 		}
-	};
-
-
-;
-"use strict";
-
-
-;
-	($.$bog_smalljs_docs) = class $bog_smalljs_docs extends ($.$mol_view) {
-		menu_toggle(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		Menu_icon(){
-			const obj = new this.$.$mol_icon_menu();
-			return obj;
-		}
-		Menu_label(){
+		Label(){
 			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.title_text())]);
+			(obj.sub) = () => ([(this.label_text())]);
 			return obj;
 		}
-		Menu_toggle(){
-			const obj = new this.$.$mol_button_minor();
-			(obj.click) = (next) => ((this.menu_toggle(next)));
-			(obj.sub) = () => ([(this.Menu_icon()), (this.Menu_label())]);
-			return obj;
-		}
-		sidebar_groups(){
+		live_content(){
 			return [];
 		}
-		Sidebar(){
+		Output(){
 			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ((this.sidebar_groups()));
+			(obj.sub) = () => ((this.live_content()));
 			return obj;
 		}
-		Body(){
-			const obj = new this.$.$bog_smalljs_text();
-			(obj.text) = () => ((this.page_md()));
-			return obj;
-		}
-		Edit_icon(){
-			const obj = new this.$.$mol_icon_pencil();
-			return obj;
-		}
-		Edit_label(){
-			return (this.$.$mol_locale.text("$bog_smalljs_docs_Edit_label"));
-		}
-		Edit(){
-			const obj = new this.$.$mol_link();
-			(obj.uri) = () => ((this.edit_uri()));
-			(obj.sub) = () => ([(this.Edit_icon()), (this.Edit_label())]);
-			return obj;
-		}
-		nav_links(){
-			return [];
-		}
-		Nav(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ((this.nav_links()));
-			return obj;
-		}
-		Main(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([
-				(this.Body()), 
-				(this.Edit()), 
-				(this.Nav())
-			]);
-			return obj;
-		}
-		toc_title_text(){
-			return (this.$.$mol_locale.text("$bog_smalljs_docs_toc_title_text"));
-		}
-		Toc_title(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.toc_title_text())]);
-			return obj;
-		}
-		toc_links(){
-			return [];
-		}
-		Toc_list(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ((this.toc_links()));
-			return obj;
-		}
-		Toc(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Toc_title()), (this.Toc_list())]);
-			return obj;
-		}
-		group_content(id){
-			return [];
-		}
-		group_title_text(id){
+		tree(){
 			return "";
-		}
-		link_arg(id){
-			return {};
-		}
-		nav_click(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		link_title(id){
-			return "";
-		}
-		toc_arg(id){
-			return {};
-		}
-		toc_text(id){
-			return "";
-		}
-		prev_arg(){
-			return {};
-		}
-		prev_hint_text(){
-			return (this.$.$mol_locale.text("$bog_smalljs_docs_prev_hint_text"));
-		}
-		Prev_hint(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.prev_hint_text())]);
-			return obj;
-		}
-		prev_title(){
-			return "";
-		}
-		Prev_title(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.prev_title())]);
-			return obj;
-		}
-		next_arg(){
-			return {};
-		}
-		next_hint_text(){
-			return (this.$.$mol_locale.text("$bog_smalljs_docs_next_hint_text"));
-		}
-		Next_hint(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.next_hint_text())]);
-			return obj;
-		}
-		next_title(){
-			return "";
-		}
-		Next_title(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.next_title())]);
-			return obj;
-		}
-		page(){
-			return "introduction";
-		}
-		page_md(){
-			return "";
-		}
-		title_text(){
-			return "";
-		}
-		edit_uri(){
-			return "";
-		}
-		sidebar_open(next){
-			if(next !== undefined) return next;
-			return false;
-		}
-		attr(){
-			return {"bog_smalljs_sidebar_open": (this.sidebar_open())};
 		}
 		sub(){
-			return [
-				(this.Menu_toggle()), 
-				(this.Sidebar()), 
-				(this.Main()), 
-				(this.Toc())
-			];
-		}
-		Group(id){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ((this.group_content(id)));
-			return obj;
-		}
-		Group_title(id){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.group_title_text(id))]);
-			return obj;
-		}
-		Link(id){
-			const obj = new this.$.$mol_link();
-			(obj.arg) = () => ((this.link_arg(id)));
-			(obj.event_click) = (next) => ((this.nav_click(next)));
-			(obj.sub) = () => ([(this.link_title(id))]);
-			return obj;
-		}
-		Toc_link(id){
-			const obj = new this.$.$mol_link();
-			(obj.arg) = () => ((this.toc_arg(id)));
-			(obj.sub) = () => ([(this.toc_text(id))]);
-			return obj;
-		}
-		Prev(){
-			const obj = new this.$.$mol_link();
-			(obj.arg) = () => ((this.prev_arg()));
-			(obj.sub) = () => ([(this.Prev_hint()), (this.Prev_title())]);
-			return obj;
-		}
-		Next(){
-			const obj = new this.$.$mol_link();
-			(obj.arg) = () => ((this.next_arg()));
-			(obj.sub) = () => ([(this.Next_hint()), (this.Next_title())]);
-			return obj;
+			return [(this.Label()), (this.Output())];
 		}
 	};
-	($mol_mem(($.$bog_smalljs_docs.prototype), "menu_toggle"));
-	($mol_mem(($.$bog_smalljs_docs.prototype), "Menu_icon"));
-	($mol_mem(($.$bog_smalljs_docs.prototype), "Menu_label"));
-	($mol_mem(($.$bog_smalljs_docs.prototype), "Menu_toggle"));
-	($mol_mem(($.$bog_smalljs_docs.prototype), "Sidebar"));
-	($mol_mem(($.$bog_smalljs_docs.prototype), "Body"));
-	($mol_mem(($.$bog_smalljs_docs.prototype), "Edit_icon"));
-	($mol_mem(($.$bog_smalljs_docs.prototype), "Edit"));
-	($mol_mem(($.$bog_smalljs_docs.prototype), "Nav"));
-	($mol_mem(($.$bog_smalljs_docs.prototype), "Main"));
-	($mol_mem(($.$bog_smalljs_docs.prototype), "Toc_title"));
-	($mol_mem(($.$bog_smalljs_docs.prototype), "Toc_list"));
-	($mol_mem(($.$bog_smalljs_docs.prototype), "Toc"));
-	($mol_mem(($.$bog_smalljs_docs.prototype), "nav_click"));
-	($mol_mem(($.$bog_smalljs_docs.prototype), "Prev_hint"));
-	($mol_mem(($.$bog_smalljs_docs.prototype), "Prev_title"));
-	($mol_mem(($.$bog_smalljs_docs.prototype), "Next_hint"));
-	($mol_mem(($.$bog_smalljs_docs.prototype), "Next_title"));
-	($mol_mem(($.$bog_smalljs_docs.prototype), "sidebar_open"));
-	($mol_mem_key(($.$bog_smalljs_docs.prototype), "Group"));
-	($mol_mem_key(($.$bog_smalljs_docs.prototype), "Group_title"));
-	($mol_mem_key(($.$bog_smalljs_docs.prototype), "Link"));
-	($mol_mem_key(($.$bog_smalljs_docs.prototype), "Toc_link"));
-	($mol_mem(($.$bog_smalljs_docs.prototype), "Prev"));
-	($mol_mem(($.$bog_smalljs_docs.prototype), "Next"));
+	($mol_mem(($.$bog_smalljs_text_live.prototype), "Label"));
+	($mol_mem(($.$bog_smalljs_text_live.prototype), "Output"));
 
-
-;
-"use strict";
-
-
-;
-"use strict";
-var $;
-(function ($) {
-    var $$;
-    (function ($$) {
-        const section = 'docs';
-        class $bog_smalljs_docs extends $.$bog_smalljs_docs {
-            /** Current page slug, mirrored to the `page` URL argument. */
-            page(next) {
-                return this.$.$mol_state_arg.value('page', next) ?? $bog_smalljs_content.default_slug();
-            }
-            current() {
-                return $bog_smalljs_content.page(this.page());
-            }
-            /** Active UI language; reading it makes the page reactive to switches. */
-            lang() {
-                return this.$.$mol_locale.lang();
-            }
-            page_md() {
-                const md = $bog_smalljs_content.page_md(this.page(), this.lang());
-                if (md)
-                    return md;
-                // Unbuilt page — degrade gracefully instead of a bare error.
-                return [
-                    `# Coming soon`,
-                    ``,
-                    `This page hasn't been written yet — the docs are a work in progress.`,
-                    ``,
-                    `In the meantime, start with **[Getting Started](#!section=docs/page=getting-started)**`,
-                    `or read the [Introduction](#!section=docs/page=introduction).`,
-                ].join('\n');
-            }
-            title_text() {
-                return $bog_smalljs_content.page_title(this.page(), this.lang()) ?? 'Coming soon';
-            }
-            edit_uri() {
-                const page = this.current();
-                if (!page)
-                    return 'https://github.com/b-on-g/smalljs';
-                return `https://github.com/b-on-g/smalljs/edit/main/${page.file}`;
-            }
-            // --- Mobile drawer ------------------------------------------------
-            menu_toggle() {
-                this.sidebar_open(!this.sidebar_open());
-            }
-            nav_click() {
-                this.sidebar_open(false);
-                return null;
-            }
-            // --- Sidebar ------------------------------------------------------
-            groups_data() {
-                return $bog_smalljs_content.sections().find(s => s.id === section)?.groups ?? [];
-            }
-            sidebar_groups() {
-                return this.groups_data().map((_, index) => this.Group(index));
-            }
-            group_title_text(index) {
-                return this.groups_data()[index].title;
-            }
-            group_content(index) {
-                const group = this.groups_data()[index];
-                return [
-                    this.Group_title(index),
-                    ...group.pages.map(slug => this.Link(slug)),
-                ];
-            }
-            link_title(slug) {
-                return $bog_smalljs_content.page_title(slug, this.lang()) ?? slug;
-            }
-            link_arg(slug) {
-                return { section, page: slug };
-            }
-            // --- Table of contents (headings of the current page) -------------
-            toc_data() {
-                const items = [];
-                let in_code = false;
-                for (const line of this.page_md().split('\n')) {
-                    if (/^```/.test(line)) {
-                        in_code = !in_code;
-                        continue;
-                    }
-                    if (in_code)
-                        continue;
-                    const match = /^(#{2,3})\s+(.+?)\s*$/.exec(line);
-                    if (match)
-                        items.push({ level: match[1].length, text: match[2] });
-                }
-                return items;
-            }
-            toc_links() {
-                return this.toc_data().map((_, index) => this.Toc_link(index));
-            }
-            toc_text(index) {
-                return this.toc_data()[index].text;
-            }
-            /**
-             * Reuse $mol_text's own anchor mechanism: each heading renders a link
-             * whose arg key is the text component's `param`. Setting that arg makes
-             * the matching header `current`, and $mol_text auto-scrolls to it.
-             */
-            toc_arg(index) {
-                return { [this.Body().param()]: this.toc_data()[index].text };
-            }
-            // --- Prev / next --------------------------------------------------
-            order() {
-                return $bog_smalljs_content.order(section);
-            }
-            nav_index() {
-                return this.order().indexOf(this.page());
-            }
-            prev_slug() {
-                const index = this.nav_index();
-                return index > 0 ? this.order()[index - 1] : '';
-            }
-            next_slug() {
-                const index = this.nav_index();
-                const order = this.order();
-                return index >= 0 && index < order.length - 1 ? order[index + 1] : '';
-            }
-            prev_arg() {
-                return { section, page: this.prev_slug() };
-            }
-            next_arg() {
-                return { section, page: this.next_slug() };
-            }
-            prev_title() {
-                return $bog_smalljs_content.page_title(this.prev_slug(), this.lang()) ?? '';
-            }
-            next_title() {
-                return $bog_smalljs_content.page_title(this.next_slug(), this.lang()) ?? '';
-            }
-            nav_links() {
-                const links = [];
-                if (this.prev_slug())
-                    links.push(this.Prev());
-                if (this.next_slug())
-                    links.push(this.Next());
-                return links;
-            }
-        }
-        __decorate([
-            $mol_action
-        ], $bog_smalljs_docs.prototype, "menu_toggle", null);
-        __decorate([
-            $mol_action
-        ], $bog_smalljs_docs.prototype, "nav_click", null);
-        $$.$bog_smalljs_docs = $bog_smalljs_docs;
-    })($$ = $.$$ || ($.$$ = {}));
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    const { rem } = $mol_style_unit;
-    const topbar = rem(4);
-    // One sidebar navigation link (also used for prev/next captions).
-    const sidebar_link = {
-        flex: { direction: 'row' },
-        justify: { content: 'flex-start' },
-        padding: { top: rem(0.3), bottom: rem(0.3), left: rem(0.625), right: rem(0.625) },
-        border: { radius: rem(0.375) },
-        color: $bog_builderui_tokens.shade,
-        font: { size: rem(0.875), weight: 500 },
-        ':hover': {
-            background: { color: $bog_builderui_tokens.hover },
-            color: $bog_builderui_tokens.text,
-        },
-        // active page — $mol_link sets mol_link_current="true"
-        '@': {
-            mol_link_current: {
-                true: {
-                    color: $bog_builderui_tokens.special,
-                    background: { color: $bog_builderui_tokens.hover },
-                    font: { weight: 600 },
-                },
-            },
-        },
-    };
-    $mol_style_define($bog_smalljs_docs, {
-        display: 'grid',
-        gridTemplateColumns: `16rem minmax(0, 1fr) 15rem`,
-        flex: { grow: 1 },
-        align: { items: 'start' },
-        minHeight: 0,
-        Menu_toggle: {
-            display: 'none',
-            flex: { direction: 'row', grow: 0 },
-            align: { items: 'center' },
-            gap: $mol_gap.text,
-            gridColumn: '1 / -1',
-            position: 'sticky',
-            top: topbar,
-            zIndex: 80,
-            padding: { top: rem(0.5), bottom: rem(0.5), left: $mol_gap.block, right: $mol_gap.block },
-            background: { color: $bog_builderui_tokens.back },
-            border: { bottom: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
-            font: { weight: 600 },
-            color: $bog_builderui_tokens.text,
-        },
-        Menu_icon: {
-            width: rem(1.25),
-            height: rem(1.25),
-            flex: { shrink: 0 },
-        },
-        Sidebar: {
-            flex: { direction: 'column' },
-            position: 'sticky',
-            top: topbar,
-            maxHeight: $mol_style_func.calc('100vh - 4rem'),
-            overflow: { y: 'auto', x: 'hidden' },
-            padding: { top: $mol_gap.block, bottom: $mol_gap.block, left: rem(0.75), right: rem(0.75) },
-            border: { right: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
-            background: { color: $bog_builderui_tokens.back },
-        },
-        Group: {
-            flex: { direction: 'column' },
-            gap: rem(0.0625),
-            margin: { bottom: $mol_gap.block },
-        },
-        Group_title: {
-            padding: { top: rem(0.5), bottom: rem(0.25), left: rem(0.625), right: rem(0.625) },
-            font: { size: rem(0.6875), weight: 700 },
-            color: $bog_builderui_tokens.shade,
-            textTransform: 'uppercase',
-            letterSpacing: rem(0.03),
-        },
-        Link: sidebar_link,
-        Main: {
-            flex: { direction: 'column' },
-            minWidth: 0,
-            padding: { top: rem(2), bottom: rem(3), left: rem(3), right: rem(3) },
-        },
-        Body: {
-            flex: { direction: 'column' },
-            maxWidth: rem(48),
-            width: '100%',
-        },
-        Edit: {
-            flex: { direction: 'row' },
-            align: { items: 'center' },
-            gap: $mol_gap.text,
-            margin: { top: rem(2) },
-            color: $bog_builderui_tokens.control,
-            font: { size: rem(0.875), weight: 500 },
-            ':hover': { color: $bog_builderui_tokens.focus },
-        },
-        Edit_icon: {
-            width: rem(1),
-            height: rem(1),
-        },
-        Nav: {
-            flex: { direction: 'row', wrap: 'wrap' },
-            justify: { content: 'space-between' },
-            gap: $mol_gap.block,
-            maxWidth: rem(48),
-            padding: { top: $mol_gap.block, bottom: $mol_gap.block },
-            border: { top: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
-            margin: { top: rem(2) },
-        },
-        Prev: {
-            flex: { direction: 'column', grow: 1, basis: rem(12) },
-            align: { items: 'flex-start' },
-            gap: rem(0.125),
-            padding: $mol_gap.block,
-            border: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line, radius: rem(0.5) },
-            ':hover': { border: { color: $bog_builderui_tokens.focus } },
-        },
-        Next: {
-            flex: { direction: 'column', grow: 1, basis: rem(12) },
-            align: { items: 'flex-end' },
-            gap: rem(0.125),
-            padding: $mol_gap.block,
-            border: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line, radius: rem(0.5) },
-            ':hover': { border: { color: $bog_builderui_tokens.focus } },
-        },
-        Prev_hint: {
-            font: { size: rem(0.75) },
-            color: $bog_builderui_tokens.shade,
-        },
-        Next_hint: {
-            font: { size: rem(0.75) },
-            color: $bog_builderui_tokens.shade,
-        },
-        Prev_title: {
-            color: $bog_builderui_tokens.control,
-            font: { weight: 600 },
-        },
-        Next_title: {
-            color: $bog_builderui_tokens.control,
-            font: { weight: 600 },
-        },
-        Toc: {
-            flex: { direction: 'column' },
-            position: 'sticky',
-            top: topbar,
-            maxHeight: $mol_style_func.calc('100vh - 4rem'),
-            overflow: { y: 'auto', x: 'hidden' },
-            padding: { top: rem(2), bottom: $mol_gap.block, left: rem(1), right: rem(1) },
-            border: { left: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
-        },
-        Toc_title: {
-            padding: { bottom: rem(0.5) },
-            font: { size: rem(0.75), weight: 700 },
-            color: $bog_builderui_tokens.shade,
-            textTransform: 'uppercase',
-            letterSpacing: rem(0.03),
-        },
-        Toc_list: {
-            flex: { direction: 'column' },
-            gap: rem(0.0625),
-        },
-        Toc_link: {
-            padding: { top: rem(0.25), bottom: rem(0.25), left: rem(0.5), right: rem(0.5) },
-            border: { radius: rem(0.25) },
-            color: $bog_builderui_tokens.shade,
-            font: { size: rem(0.8125) },
-            ':hover': { color: $bog_builderui_tokens.text },
-            '@': {
-                mol_link_current: {
-                    true: { color: $bog_builderui_tokens.special },
-                },
-            },
-        },
-        '@media': {
-            // Tablet: drop the right-hand table of contents.
-            '(max-width: 63.9375rem)': {
-                gridTemplateColumns: `16rem minmax(0, 1fr)`,
-                Toc: { display: 'none' },
-            },
-            // Phone: sidebar becomes a slide-in drawer, content full width.
-            '(max-width: 47.9375rem)': {
-                gridTemplateColumns: `minmax(0, 1fr)`,
-                Menu_toggle: { display: 'flex' },
-                Main: {
-                    padding: { top: rem(1.25), bottom: rem(2), left: rem(1.25), right: rem(1.25) },
-                },
-                Sidebar: {
-                    position: 'fixed',
-                    top: topbar,
-                    bottom: 0,
-                    left: 0,
-                    zIndex: 90,
-                    width: rem(17),
-                    maxWidth: '85vw',
-                    transform: 'translateX(-100%)',
-                    transition: 'transform 0.2s',
-                    boxShadow: '0 0 24px -6px #00000055',
-                },
-                // drawer open state
-                '@': {
-                    bog_smalljs_sidebar_open: {
-                        true: {
-                            Sidebar: { transform: 'translateX(0)' },
-                        },
-                    },
-                },
-            },
-        },
-    });
-    // $mol_text renders a list bullet/number via [mol_text_list_item]::before with
-    // position:absolute + margin-left:-1.75rem (sits in the left gutter). Without a
-    // positioning context the marker anchors to the scroll container and drifts on
-    // scroll. Anchoring it to the item (position:relative) fixed the drift but the
-    // item has overflow:auto, which clips the marker poking out to the left. So put
-    // the positioning context on the LIST (overflow:visible) instead: the marker
-    // stays glued to its line AND isn't clipped. Raw CSS (attributes belong to $mol_text).
-    $mol_style_attach('$bog_smalljs_docs.list_marker', `
-		[bog_smalljs_docs_body] [mol_text_list] { position: relative }
-	`);
-    // Deep-linking to a heading (TOC click / shared URL with Docs.Body=<heading>)
-    // scrolls it to the very top of the scroll container, where the 64px sticky top
-    // bar hides it — the page looks like it jumped past the heading. scroll-margin-top
-    // leaves room so the anchored heading lands just below the bar. $mol_text honors it.
-    $mol_style_attach('$bog_smalljs_docs.header_anchor', `
-		[bog_smalljs_docs_body] [mol_text_header] { scroll-margin-top: 5rem }
-	`);
-})($ || ($ = {}));
 
 ;
 	($.$mol_textarea) = class $mol_textarea extends ($.$mol_stack) {
@@ -20289,21 +18884,30 @@ var $;
                     throw new Error('TypeScript compiler is unavailable.');
                 return ts;
             }
-            compile() {
-                const $ = this.$;
-                const tree_src = this.tree_committed();
-                const ts_src = this.ts_committed();
+            // view.tree -> base class, evaluated into the real namespace so child
+            // components and cross-references resolve at render time. Extracted as a
+            // static so the render-only live embeds ($bog_smalljs_text_live) can reuse
+            // the exact same $mol toolchain without dragging in the editor.
+            static build_base($, tree_src) {
                 const root = /(\$[\w$]+)/.exec(tree_src)?.[1];
                 if (!root)
                     throw new Error('No component found — the first line must declare one (a name and a base view).');
                 if (/^\$(mol|hyoo|bog|node)_/.test(root)) {
                     throw new Error(`Choose another name — ${root} is reserved by the framework.`);
                 }
-                // view.tree -> base class, evaluated into the real namespace so child
-                // components and cross-references resolve at render time.
                 const tree = $.$mol_tree2_from_string(tree_src, 'playground.view.tree');
                 const tree_js = $.$mol_tree2_text_to_string_mapped_js($.$mol_tree2_js_to_text($.$mol_view_tree2_to_js(tree)));
                 new Function('$', '$mol_mem', '$mol_mem_key', tree_js)($, $.$mol_mem, $.$mol_mem_key);
+                const Base = $[root];
+                if (typeof Base !== 'function')
+                    throw new Error(`Component ${root} could not be built.`);
+                return { root, Base };
+            }
+            compile() {
+                const $ = this.$;
+                const tree_src = this.tree_committed();
+                const ts_src = this.ts_committed();
+                const { root, Base } = $bog_smalljs_playground.build_base($, tree_src);
                 // optional view.css.ts -> styles registered via $mol_style_define. The generated
                 // CSS targets the component by attribute selector (keyed by its name), so it applies
                 // to the rendered element regardless of order. $mol_style_attach is idempotent, so
@@ -20331,9 +18935,6 @@ var $;
                     if (typeof Sub === 'function')
                         return new Sub();
                 }
-                const Base = $[root];
-                if (typeof Base !== 'function')
-                    throw new Error(`Component ${root} could not be built.`);
                 return new Base();
             }
             error_box(message) {
@@ -20484,6 +19085,2154 @@ var $;
             },
         },
     });
+})($ || ($ = {}));
+
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($_1) {
+    var $$;
+    (function ($$) {
+        /**
+         * Syntax grammar for view.tree, layered on top of $mol_syntax2 (the same tiny
+         * regex tokenizer $mol uses for its own code blocks). Token names are unique to
+         * this grammar, so their colors (see text.view.css.ts) never leak onto other code.
+         * Highlights, in priority order: line comments (`- \…`), string literals (`\…` and
+         * localized `@ \…`), components (`$…`), binding/super operators, structure markers
+         * (`/ * ?`), and primitives (numbers, null/true/false).
+         */
+        const tree_syntax = new $.$mol_syntax2({
+            'tree-comment': /- \\.*/,
+            'tree-string': /@ \\.*|\\.*/,
+            'tree-comp': /\$[\w$]*/,
+            'tree-oper': /<=>|<=|=>|\^/,
+            'tree-mark': /[\/*?]/,
+            'tree-prim': /\b(?:null|true|false|NaN)\b|[+-]?\d[\w.]*/,
+        });
+        /**
+         * $mol_text with language-aware code blocks: view.tree gets its own highlighter,
+         * and executable snippets (view.tree) grow an "Open in Playground" button.
+         */
+        class $bog_smalljs_text extends $.$bog_smalljs_text {
+            // Re-typing Pre* to our subclass regenerates the parent-side binding stubs, and
+            // the `text <= pre_text* \` re-listing emits an empty `pre_text` stub that shadows
+            // $mol_text's real implementation (which slices the code out of the flow token) —
+            // leaving every block empty (one blank line). Delegate back to the base method so
+            // blocks keep their multi-line source. Same story for per-line theme markers.
+            pre_text(index) {
+                return $mol_text.prototype.pre_text.call(this, index);
+            }
+            pre_themes(index) {
+                return $mol_text.prototype.pre_themes.call(this, index);
+            }
+            // The `uri_resolve* <= uri_resolve*` binding that feeds code blocks also regenerates
+            // a parent-side `uri_resolve` stub that returns the empty default, shadowing
+            // $mol_text's real resolver. That makes every inline link resolve to "" and render
+            // as "Bad link". Delegate to the base so links (in prose and list items) resolve.
+            uri_resolve(uri) {
+                return $mol_text.prototype.uri_resolve.call(this, uri);
+            }
+            /** Fence info-string of a code block (chunk 1 of the flow token), e.g. `tree`, `typescript`. */
+            pre_lang(index) {
+                return this.flow_tokens()[index].chunks[1] ?? '';
+            }
+            /** Normalized language family used for grammar selection and playground gating. */
+            lang_kind(index) {
+                const lang = this.pre_lang(index).toLowerCase();
+                if (lang === 'tree' || lang === 'view.tree')
+                    return 'tree';
+                if (lang === 'ts' || lang === 'typescript')
+                    return 'ts';
+                return lang;
+            }
+            // Only view.tree snippets are self-contained enough to render in the playground
+            // (a bare view.ts has no root component to mount), so the button is tree-only.
+            pre_playground_showed(index) {
+                return this.lang_kind(index) === 'tree';
+            }
+            // $mol_link merges this dict into the URL args on click (null removes a key),
+            // so the reader lands on the playground seeded with exactly this snippet.
+            pre_playground_arg(index) {
+                return {
+                    section: 'playground',
+                    page: null,
+                    tab: 'tree',
+                    code: this.pre_text(index) + '\n',
+                    ts: null,
+                    css: null,
+                };
+            }
+        }
+        $$.$bog_smalljs_text = $bog_smalljs_text;
+        /** Code block that picks a grammar by language and can offer an "Open in Playground" link. */
+        class $bog_smalljs_text_code extends $.$bog_smalljs_text_code {
+            // Doc snippets are short, so the base's virtual-scroll windowing buys nothing.
+            // Render every line eagerly: it keeps measurement simple and the whole snippet
+            // present in the DOM (so in-page text search and "Copy" see the full source).
+            render_visible_only() {
+                return false;
+            }
+            syntax() {
+                const lang = this.lang().toLowerCase();
+                if (lang === 'tree' || lang === 'view.tree')
+                    return tree_syntax;
+                return super.syntax();
+            }
+            // A snippet is runnable only when it declares a mountable root component of its
+            // own — first token is a `$name` that isn't a framework-reserved prefix. Fragments
+            // (starting with a property, or with a bare `$mol_*`) get no Run button and just
+            // keep the "Open in Playground" escape hatch (WS1).
+            run_showed() {
+                if (this.syntax() !== tree_syntax)
+                    return false;
+                const root = /(\$[\w$]+)/.exec(this.text())?.[1];
+                return !!root && !/^\$(mol|hyoo|bog|node)_/.test(root);
+            }
+            run_click() {
+                this.run(!this.run());
+                return null;
+            }
+            sub() {
+                return [
+                    this.Rows(),
+                    ...this.sidebar_showed() ? [this.Copy()] : [],
+                    ...this.run_showed() ? [this.Run()] : [],
+                    ...this.playground_showed() ? [this.Playground()] : [],
+                    // Lazily mounted: the live component is only instantiated (and the snippet
+                    // only compiled) once the reader flips Run on — doc pages stay light by default.
+                    ...this.run() && this.run_showed() ? [this.Live()] : [],
+                ];
+            }
+        }
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_text_code.prototype, "run_click", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_text_code.prototype, "sub", null);
+        $$.$bog_smalljs_text_code = $bog_smalljs_text_code;
+        /**
+         * Render-only live embed for a doc snippet: compiles the view.tree in the browser
+         * with the playground's own $mol toolchain ($bog_smalljs_playground.build_base) and
+         * mounts the resulting component — no editor, no persistence. Compilation errors are
+         * caught and shown inline so a bad snippet never takes down the page.
+         */
+        class $bog_smalljs_text_live extends $.$bog_smalljs_text_live {
+            live_content() {
+                const $ = this.$;
+                try {
+                    // $mol_tree2 requires a trailing LF; doc block text is captured without one.
+                    // Localized `@ \text` has no runtime locale dictionary here (that lives in a
+                    // generated .locale=en.json), so it would render as the raw key. Downgrade it
+                    // to a plain `\text` literal so the preview shows the human-readable default.
+                    const src = this.tree().replace(/\n*$/, '\n').replace(/@ \\/g, '\\');
+                    const { Base } = $bog_smalljs_playground.build_base($, src);
+                    return [new Base()];
+                }
+                catch (error) {
+                    if (error instanceof Promise)
+                        throw error;
+                    const box = new this.$.$mol_view();
+                    box.dom_name = () => 'pre';
+                    box.sub = () => ['⚠ ' + (error instanceof Error ? error.message : String(error))];
+                    return [box];
+                }
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_text_live.prototype, "live_content", null);
+        $$.$bog_smalljs_text_live = $bog_smalljs_text_live;
+    })($$ = $_1.$$ || ($_1.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    const { rem, px } = $mol_style_unit;
+    // Mono label voice, mirroring the landing eyebrow (self-hosted JetBrains Mono).
+    const mono = "'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace";
+    $mol_style_define($bog_smalljs_text_code, {
+        // The base component is a $mol_stack that overlaps its children in one cell;
+        // Copy sits top-left, so the playground link takes the top-right corner.
+        Playground: {
+            alignSelf: 'flex-start',
+            justifySelf: 'flex-end',
+            padding: rem(0.25),
+            color: $bog_builderui_tokens.shade,
+            background: { color: $bog_builderui_tokens.card },
+            border: { radius: rem(0.375) },
+            opacity: 0.65,
+            ':hover': {
+                opacity: 1,
+                color: $bog_builderui_tokens.control,
+            },
+        },
+        Playground_icon: {
+            width: rem(1.05),
+            height: rem(1.05),
+        },
+        // Sits in the same top-right corner as the playground link, shifted left so the
+        // two icon buttons read as a small toolbar over the code.
+        Run: {
+            alignSelf: 'flex-start',
+            justifySelf: 'flex-end',
+            margin: { right: rem(2) },
+            padding: rem(0.25),
+            color: $bog_builderui_tokens.shade,
+            background: { color: $bog_builderui_tokens.card },
+            border: { radius: rem(0.375) },
+            opacity: 0.65,
+            ':hover': {
+                opacity: 1,
+                color: $bog_builderui_tokens.control,
+            },
+        },
+        '@': {
+            // Active (result showing): tint the toggle with the brand accent so its state is
+            // obvious, and keep it fully opaque.
+            'bog_smalljs_run_active': {
+                'true': {
+                    Run: {
+                        opacity: 1,
+                        color: $bog_builderui_tokens.control,
+                    },
+                },
+            },
+        },
+        // Live result panel — a second grid row under the code (the base is a $mol_stack
+        // that overlaps children in cell 1/1; placing this at row 2 flows it below).
+        Live: {
+            gridRow: '2',
+            gridColumn: '1',
+            justifySelf: 'stretch',
+            width: '100%',
+            margin: { top: rem(0.5) },
+            padding: rem(1),
+            background: { color: $bog_builderui_tokens.card },
+            border: {
+                width: px(1),
+                style: 'solid',
+                color: $bog_builderui_tokens.line,
+                radius: rem(0.375),
+            },
+            font: { family: $bog_builderui_tokens.font_body },
+            whiteSpace: 'normal',
+        },
+    });
+    $mol_style_define($bog_smalljs_text_live, {
+        flex: { direction: 'column' },
+        gap: rem(0.75),
+        // mono eyebrow, matching the site's section labels (see landing) — makes the panel
+        // read as "rendered output" even when a structural snippet mounts to nothing visible.
+        Label: {
+            display: 'block',
+            font: { family: mono, size: rem(0.7), weight: 500 },
+            letterSpacing: rem(0.12),
+            textTransform: 'uppercase',
+            color: $bog_builderui_tokens.shade,
+        },
+        Output: {
+            display: 'block',
+            whiteSpace: 'normal',
+        },
+    });
+    // Colors for the view.tree grammar (see text.view.ts). These token-type names are
+    // produced only by $bog_smalljs_text_code, so plain attribute selectors are safe and
+    // cannot bleed onto other code blocks. Mid-lightness HSLA reads well in both themes,
+    // matching how base $mol tints its own tokens; structure/comments use the theme's
+    // muted `shade` var so they recede.
+    $mol_style_attach('$bog_smalljs_text_code.tree_syntax', `
+		[mol_text_code_token_type="tree-comp"] { color: hsl( 28, 80%, 52% ) }
+		[mol_text_code_token_type="tree-string"] { color: hsl( 96, 42%, 42% ) }
+		[mol_text_code_token_type="tree-oper"] { color: hsl( 210, 62%, 56% ) }
+		[mol_text_code_token_type="tree-prim"] { color: hsl( 45, 72%, 44% ) }
+		[mol_text_code_token_type="tree-mark"] { color: var( --bog_builderui_shade ) }
+		[mol_text_code_token_type="tree-comment"] { color: var( --bog_builderui_shade ); font-style: italic }
+	`);
+})($ || ($ = {}));
+
+;
+	($.$bog_smalljs_demo) = class $bog_smalljs_demo extends ($.$mol_view) {
+		Name(){
+			const obj = new this.$.$mol_string();
+			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_smalljs_demo_Name_hint")));
+			(obj.value) = (next) => ((this.name(next)));
+			return obj;
+		}
+		greeting(){
+			return "Hello, mol!";
+		}
+		Greeting(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.greeting())]);
+			return obj;
+		}
+		name(next){
+			if(next !== undefined) return next;
+			return "mol";
+		}
+		sub(){
+			return [(this.Name()), (this.Greeting())];
+		}
+	};
+	($mol_mem(($.$bog_smalljs_demo.prototype), "Name"));
+	($mol_mem(($.$bog_smalljs_demo.prototype), "Greeting"));
+	($mol_mem(($.$bog_smalljs_demo.prototype), "name"));
+
+
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        /**
+         * The tiny reactive component mounted live in the landing hero, right next to
+         * its own view.tree source. Typing in the field re-derives the greeting with no
+         * wiring — that automatic reactivity is the one thing the hero has to prove.
+         */
+        class $bog_smalljs_demo extends $.$bog_smalljs_demo {
+            greeting() {
+                const name = this.name().trim();
+                return `Hello, ${name || 'stranger'}!`;
+            }
+        }
+        $$.$bog_smalljs_demo = $bog_smalljs_demo;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    const { rem } = $mol_style_unit;
+    $mol_style_define($bog_smalljs_demo, {
+        flex: { direction: 'column' },
+        justify: { content: 'center' },
+        gap: rem(1.25),
+        padding: rem(1.75),
+        Name: {
+            flex: { grow: 0 },
+            padding: { top: rem(0.625), bottom: rem(0.625), left: rem(0.875), right: rem(0.875) },
+            background: { color: $bog_builderui_tokens.field },
+            border: {
+                width: '1px',
+                style: 'solid',
+                color: $bog_builderui_tokens.line,
+                radius: rem(0.375),
+            },
+            color: $bog_builderui_tokens.text,
+            font: { family: $bog_builderui_tokens.font_body, size: rem(1) },
+            ':focus-within': {
+                border: { color: $bog_builderui_tokens.control },
+            },
+        },
+        Greeting: {
+            display: 'block',
+            font: {
+                family: $bog_builderui_tokens.font_head,
+                size: rem(1.75),
+                weight: 500,
+            },
+            letterSpacing: '-0.01em',
+            color: $bog_builderui_tokens.text,
+            // the live output is the payoff — keep it from wrapping oddly on narrow cards
+            overflowWrap: 'break-word',
+        },
+    });
+})($ || ($ = {}));
+
+;
+	($.$bog_smalljs_landing) = class $bog_smalljs_landing extends ($.$mol_view) {
+		Hero_eyebrow_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_landing_Hero_eyebrow_text"));
+		}
+		Hero_eyebrow(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Hero_eyebrow_text())]);
+			return obj;
+		}
+		Hero_title_pre(){
+			return (this.$.$mol_locale.text("$bog_smalljs_landing_Hero_title_pre"));
+		}
+		Hero_title_accent_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_landing_Hero_title_accent_text"));
+		}
+		Hero_title_accent(){
+			const obj = new this.$.$mol_view();
+			(obj.dom_name) = () => ("span");
+			(obj.sub) = () => ([(this.Hero_title_accent_text())]);
+			return obj;
+		}
+		Hero_title_post(){
+			return (this.$.$mol_locale.text("$bog_smalljs_landing_Hero_title_post"));
+		}
+		Hero_title(){
+			const obj = new this.$.$mol_view();
+			(obj.dom_name) = () => ("h1");
+			(obj.sub) = () => ([
+				(this.Hero_title_pre()), 
+				(this.Hero_title_accent()), 
+				(this.Hero_title_post())
+			]);
+			return obj;
+		}
+		Hero_subtitle_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_landing_Hero_subtitle_text"));
+		}
+		Hero_subtitle(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Hero_subtitle_text())]);
+			return obj;
+		}
+		Hero_cta_start_label(){
+			return (this.$.$mol_locale.text("$bog_smalljs_landing_Hero_cta_start_label"));
+		}
+		Hero_cta_start_icon(){
+			const obj = new this.$.$mol_icon_arrow_right();
+			return obj;
+		}
+		Hero_cta_start(){
+			const obj = new this.$.$mol_link();
+			(obj.arg) = () => ({"section": "docs", "page": "getting-started"});
+			(obj.sub) = () => ([(this.Hero_cta_start_label()), (this.Hero_cta_start_icon())]);
+			return obj;
+		}
+		Hero_cta_play_label(){
+			return (this.$.$mol_locale.text("$bog_smalljs_landing_Hero_cta_play_label"));
+		}
+		Hero_cta_play_icon(){
+			const obj = new this.$.$mol_icon_open_in_new();
+			return obj;
+		}
+		Hero_cta_play(){
+			const obj = new this.$.$mol_link();
+			(obj.arg) = () => ({"section": "playground", "page": ""});
+			(obj.sub) = () => ([(this.Hero_cta_play_label()), (this.Hero_cta_play_icon())]);
+			return obj;
+		}
+		Hero_cta_why_label(){
+			return (this.$.$mol_locale.text("$bog_smalljs_landing_Hero_cta_why_label"));
+		}
+		Hero_cta_why_icon(){
+			const obj = new this.$.$mol_icon_arrow_right();
+			return obj;
+		}
+		Hero_cta_why(){
+			const obj = new this.$.$mol_link();
+			(obj.arg) = () => ({"section": "docs", "page": "introduction"});
+			(obj.sub) = () => ([(this.Hero_cta_why_label()), (this.Hero_cta_why_icon())]);
+			return obj;
+		}
+		Hero_actions(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([
+				(this.Hero_cta_start()), 
+				(this.Hero_cta_play()), 
+				(this.Hero_cta_why())
+			]);
+			return obj;
+		}
+		Hero_head(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([
+				(this.Hero_eyebrow()), 
+				(this.Hero_title()), 
+				(this.Hero_subtitle()), 
+				(this.Hero_actions())
+			]);
+			return obj;
+		}
+		Sign_code_label_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_landing_Sign_code_label_text"));
+		}
+		Sign_code_label(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Sign_code_label_text())]);
+			return obj;
+		}
+		code(){
+			return "";
+		}
+		Sign_code_view(){
+			const obj = new this.$.$bog_smalljs_text_code();
+			(obj.text) = () => ((this.code()));
+			(obj.lang) = () => ("tree");
+			(obj.sidebar_showed) = () => (false);
+			(obj.playground_showed) = () => (false);
+			return obj;
+		}
+		Sign_code(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Sign_code_label()), (this.Sign_code_view())]);
+			return obj;
+		}
+		Sign_arrow_text(){
+			return "→";
+		}
+		Sign_arrow(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Sign_arrow_text())]);
+			return obj;
+		}
+		Sign_live_label_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_landing_Sign_live_label_text"));
+		}
+		Sign_live_label(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Sign_live_label_text())]);
+			return obj;
+		}
+		Sign_demo(){
+			const obj = new this.$.$bog_smalljs_demo();
+			return obj;
+		}
+		Sign_live(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Sign_live_label()), (this.Sign_demo())]);
+			return obj;
+		}
+		Sign_panel(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([
+				(this.Sign_code()), 
+				(this.Sign_arrow()), 
+				(this.Sign_live())
+			]);
+			return obj;
+		}
+		Sign_caption_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_landing_Sign_caption_text"));
+		}
+		Sign_caption(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Sign_caption_text())]);
+			return obj;
+		}
+		Signature(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Sign_panel()), (this.Sign_caption())]);
+			return obj;
+		}
+		Hero(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Hero_head()), (this.Signature())]);
+			return obj;
+		}
+		Feature1_title_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_landing_Feature1_title_text"));
+		}
+		Feature1_title(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Feature1_title_text())]);
+			return obj;
+		}
+		Feature1_text(){
+			const obj = new this.$.$mol_text();
+			(obj.text) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Feature1_text_text")));
+			return obj;
+		}
+		Feature1(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Feature1_title()), (this.Feature1_text())]);
+			return obj;
+		}
+		Feature2_title_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_landing_Feature2_title_text"));
+		}
+		Feature2_title(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Feature2_title_text())]);
+			return obj;
+		}
+		Feature2_text(){
+			const obj = new this.$.$mol_text();
+			(obj.text) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Feature2_text_text")));
+			return obj;
+		}
+		Feature2(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Feature2_title()), (this.Feature2_text())]);
+			return obj;
+		}
+		Feature3_title_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_landing_Feature3_title_text"));
+		}
+		Feature3_title(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Feature3_title_text())]);
+			return obj;
+		}
+		Feature3_text(){
+			const obj = new this.$.$mol_text();
+			(obj.text) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Feature3_text_text")));
+			return obj;
+		}
+		Feature3(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Feature3_title()), (this.Feature3_text())]);
+			return obj;
+		}
+		Features(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([
+				(this.Feature1()), 
+				(this.Feature2()), 
+				(this.Feature3())
+			]);
+			return obj;
+		}
+		Footer_sect_docs_title_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_landing_Footer_sect_docs_title_text"));
+		}
+		Footer_sect_docs_title(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Footer_sect_docs_title_text())]);
+			return obj;
+		}
+		Footer_link_quickstart(){
+			const obj = new this.$.$mol_link();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_quickstart_title")));
+			(obj.arg) = () => ({"section": "docs", "page": "getting-started"});
+			return obj;
+		}
+		Footer_link_guide(){
+			const obj = new this.$.$mol_link();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_guide_title")));
+			(obj.arg) = () => ({"section": "docs", "page": "views"});
+			return obj;
+		}
+		Footer_link_tutorial(){
+			const obj = new this.$.$mol_link();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_tutorial_title")));
+			(obj.arg) = () => ({"section": "course", "page": ""});
+			return obj;
+		}
+		Footer_link_examples(){
+			const obj = new this.$.$mol_link();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_examples_title")));
+			(obj.arg) = () => ({"section": "docs", "page": "showcase"});
+			return obj;
+		}
+		Footer_link_api(){
+			const obj = new this.$.$mol_link();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_api_title")));
+			(obj.arg) = () => ({"section": "docs", "page": "api-mol-string"});
+			return obj;
+		}
+		Footer_sect_docs(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([
+				(this.Footer_sect_docs_title()), 
+				(this.Footer_link_quickstart()), 
+				(this.Footer_link_guide()), 
+				(this.Footer_link_tutorial()), 
+				(this.Footer_link_examples()), 
+				(this.Footer_link_api())
+			]);
+			return obj;
+		}
+		Footer_col1(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Footer_sect_docs())]);
+			return obj;
+		}
+		Footer_sect_about_title_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_landing_Footer_sect_about_title_text"));
+		}
+		Footer_sect_about_title(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Footer_sect_about_title_text())]);
+			return obj;
+		}
+		Footer_link_faq(){
+			const obj = new this.$.$mol_link();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_faq_title")));
+			(obj.arg) = () => ({"section": "docs", "page": "faq"});
+			return obj;
+		}
+		Footer_link_team(){
+			const obj = new this.$.$mol_link();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_team_title")));
+			(obj.arg) = () => ({"section": "docs", "page": "team"});
+			return obj;
+		}
+		Footer_link_releases(){
+			const obj = new this.$.$mol_link();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_releases_title")));
+			(obj.arg) = () => ({"section": "docs", "page": "releases"});
+			return obj;
+		}
+		Footer_sect_about(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([
+				(this.Footer_sect_about_title()), 
+				(this.Footer_link_faq()), 
+				(this.Footer_link_team()), 
+				(this.Footer_link_releases())
+			]);
+			return obj;
+		}
+		Footer_col2(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Footer_sect_about())]);
+			return obj;
+		}
+		Footer_sect_resources_title_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_landing_Footer_sect_resources_title_text"));
+		}
+		Footer_sect_resources_title(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Footer_sect_resources_title_text())]);
+			return obj;
+		}
+		Footer_link_playground(){
+			const obj = new this.$.$mol_link();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_playground_title")));
+			(obj.arg) = () => ({"section": "playground", "page": ""});
+			return obj;
+		}
+		Footer_link_course(){
+			const obj = new this.$.$mol_link();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_course_title")));
+			(obj.arg) = () => ({"section": "course", "page": ""});
+			return obj;
+		}
+		Footer_link_ui(){
+			const obj = new this.$.$mol_link();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_ui_title")));
+			(obj.uri) = () => ("https://mol.hyoo.ru/#!section=demos");
+			(obj.target) = () => ("_blank");
+			return obj;
+		}
+		Footer_link_telegram(){
+			const obj = new this.$.$mol_link();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_telegram_title")));
+			(obj.uri) = () => ("https://t.me/giper_dev");
+			(obj.target) = () => ("_blank");
+			return obj;
+		}
+		Footer_link_dev(){
+			const obj = new this.$.$mol_link();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_dev_title")));
+			(obj.uri) = () => ("https://dev.to/t/mol");
+			(obj.target) = () => ("_blank");
+			return obj;
+		}
+		Footer_sect_resources(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([
+				(this.Footer_sect_resources_title()), 
+				(this.Footer_link_playground()), 
+				(this.Footer_link_course()), 
+				(this.Footer_link_ui()), 
+				(this.Footer_link_telegram()), 
+				(this.Footer_link_dev())
+			]);
+			return obj;
+		}
+		Footer_col3(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Footer_sect_resources())]);
+			return obj;
+		}
+		Footer_sect_libs_title_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_landing_Footer_sect_libs_title_text"));
+		}
+		Footer_sect_libs_title(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Footer_sect_libs_title_text())]);
+			return obj;
+		}
+		Footer_link_wire(){
+			const obj = new this.$.$mol_link();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_wire_title")));
+			(obj.uri) = () => ("https://github.com/hyoo-ru/mam_mol/tree/master/wire");
+			(obj.target) = () => ("_blank");
+			return obj;
+		}
+		Footer_link_fetch(){
+			const obj = new this.$.$mol_link();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_fetch_title")));
+			(obj.uri) = () => ("https://github.com/hyoo-ru/mam_mol/tree/master/fetch");
+			(obj.target) = () => ("_blank");
+			return obj;
+		}
+		Footer_link_compare(){
+			const obj = new this.$.$mol_link();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_compare_title")));
+			(obj.uri) = () => ("https://github.com/hyoo-ru/mam_mol/tree/master/compare/deep");
+			(obj.target) = () => ("_blank");
+			return obj;
+		}
+		Footer_link_router(){
+			const obj = new this.$.$mol_link();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_router_title")));
+			(obj.uri) = () => ("https://github.com/hyoo-ru/mam_mol/tree/master/state/arg");
+			(obj.target) = () => ("_blank");
+			return obj;
+		}
+		Footer_link_crowd(){
+			const obj = new this.$.$mol_link();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_crowd_title")));
+			(obj.uri) = () => ("https://github.com/hyoo-ru/crowd.hyoo.ru");
+			(obj.target) = () => ("_blank");
+			return obj;
+		}
+		Footer_link_baza(){
+			const obj = new this.$.$mol_link();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_landing_Footer_link_baza_title")));
+			(obj.uri) = () => ("https://github.com/giper-dev/baza");
+			(obj.target) = () => ("_blank");
+			return obj;
+		}
+		Footer_sect_libs(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([
+				(this.Footer_sect_libs_title()), 
+				(this.Footer_link_wire()), 
+				(this.Footer_link_fetch()), 
+				(this.Footer_link_compare()), 
+				(this.Footer_link_router()), 
+				(this.Footer_link_crowd()), 
+				(this.Footer_link_baza())
+			]);
+			return obj;
+		}
+		Footer_col4(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Footer_sect_libs())]);
+			return obj;
+		}
+		Footer_cols(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([
+				(this.Footer_col1()), 
+				(this.Footer_col2()), 
+				(this.Footer_col3()), 
+				(this.Footer_col4())
+			]);
+			return obj;
+		}
+		Footer_copy_line1_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_landing_Footer_copy_line1_text"));
+		}
+		Footer_copy_line1(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Footer_copy_line1_text())]);
+			return obj;
+		}
+		Footer_copy_line2_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_landing_Footer_copy_line2_text"));
+		}
+		Footer_copy_line2(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Footer_copy_line2_text())]);
+			return obj;
+		}
+		Footer_copy(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Footer_copy_line1()), (this.Footer_copy_line2())]);
+			return obj;
+		}
+		Footer(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Footer_cols()), (this.Footer_copy())]);
+			return obj;
+		}
+		sub(){
+			return [
+				(this.Hero()), 
+				(this.Features()), 
+				(this.Footer())
+			];
+		}
+	};
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Hero_eyebrow"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Hero_title_accent"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Hero_title"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Hero_subtitle"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Hero_cta_start_icon"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Hero_cta_start"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Hero_cta_play_icon"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Hero_cta_play"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Hero_cta_why_icon"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Hero_cta_why"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Hero_actions"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Hero_head"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Sign_code_label"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Sign_code_view"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Sign_code"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Sign_arrow"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Sign_live_label"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Sign_demo"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Sign_live"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Sign_panel"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Sign_caption"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Signature"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Hero"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Feature1_title"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Feature1_text"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Feature1"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Feature2_title"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Feature2_text"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Feature2"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Feature3_title"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Feature3_text"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Feature3"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Features"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_docs_title"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_quickstart"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_guide"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_tutorial"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_examples"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_api"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_docs"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_col1"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_about_title"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_faq"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_team"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_releases"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_about"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_col2"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_resources_title"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_playground"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_course"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_ui"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_telegram"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_dev"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_resources"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_col3"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_libs_title"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_wire"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_fetch"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_compare"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_router"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_crowd"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_baza"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_libs"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_col4"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_cols"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_copy_line1"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_copy_line2"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_copy"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer"));
+
+
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $bog_smalljs_landing extends $.$bog_smalljs_landing {
+            /**
+             * Source shown in the hero, left panel. It is the same shape as the live
+             * component mounted to the right ($bog_smalljs_demo): a two-way-bound field
+             * and a derived greeting — the whole thing, no wiring.
+             *
+             * The leading dollar of each token is spliced in from `d` so MAM's dependency
+             * -graph regex doesn't read the display-only component name as a (non-existent)
+             * module. Tabs, because view.tree is tab-indented and the grammar highlighter
+             * expects it.
+             */
+            code() {
+                const d = String.fromCharCode(36);
+                return [
+                    `${d}my_hello ${d}mol_view`,
+                    '\tname? \\mol',
+                    '\tsub /',
+                    `\t\t<= Name ${d}mol_string`,
+                    '\t\t\tvalue? <=> name?',
+                    `\t\t<= Greeting ${d}mol_view`,
+                    '\t\t\tsub /',
+                    '\t\t\t\t<= greeting \\Hello, mol!',
+                ].join('\n');
+            }
+        }
+        $$.$bog_smalljs_landing = $bog_smalljs_landing;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    const { rem } = $mol_style_unit;
+    // Utility / label voice. The subject is a code DSL, so its captions speak the
+    // DSL's native register: monospace, uppercase, widely tracked, small.
+    const mono = "'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace";
+    const eyebrow = {
+        font: { family: mono, size: rem(0.75), weight: 500 },
+        letterSpacing: rem(0.12),
+        textTransform: 'uppercase',
+        color: $bog_builderui_tokens.shade,
+    };
+    $mol_style_define($bog_smalljs_landing, {
+        flex: { direction: 'column' },
+        Hero: {
+            flex: { direction: 'column' },
+            align: { items: 'center' },
+            gap: rem(3),
+            padding: { top: rem(5), bottom: rem(4), left: $mol_gap.block, right: $mol_gap.block },
+        },
+        Hero_head: {
+            flex: { direction: 'column' },
+            align: { items: 'center' },
+            gap: rem(1.5),
+            maxWidth: rem(52),
+        },
+        Hero_eyebrow: {
+            display: 'block',
+            ...eyebrow,
+            textAlign: 'center',
+        },
+        Hero_title: {
+            display: 'block',
+            font: { family: $bog_builderui_tokens.font_head, size: rem(3.5), weight: 500 },
+            lineHeight: '1.12',
+            letterSpacing: '-0.02em',
+            textAlign: 'center',
+            color: $bog_builderui_tokens.text,
+            // long words ("micromodule" / "микромодульный") must break, not overflow on phones
+            overflowWrap: 'break-word',
+        },
+        Hero_title_accent: {
+            display: 'inline',
+            color: $bog_builderui_tokens.special,
+            // the pre/post text nodes carry no surrounding spaces, so the accent adds its own
+            margin: { left: '0.22em', right: '0.1em' },
+        },
+        Hero_subtitle: {
+            display: 'block',
+            font: { size: rem(1.1875) },
+            lineHeight: '1.55',
+            textAlign: 'center',
+            maxWidth: rem(40),
+            color: $bog_builderui_tokens.shade,
+        },
+        Hero_actions: {
+            flex: { direction: 'row', wrap: 'wrap' },
+            gap: rem(0.75),
+            justify: { content: 'center' },
+            align: { items: 'center' },
+            margin: { top: rem(0.5) },
+        },
+        // Primary — filled operator-blue, confident and tight (small radius, not a pill).
+        // Hover-lift / focus-ring / transition live in the raw attach block below.
+        Hero_cta_start: {
+            flex: { direction: 'row' },
+            align: { items: 'center' },
+            gap: rem(0.4),
+            background: { color: $bog_builderui_tokens.current },
+            color: $bog_builderui_tokens.back,
+            padding: { left: rem(1.125), right: rem(1.125), top: rem(0.625), bottom: rem(0.625) },
+            border: { radius: rem(0.375) },
+            font: { weight: 600 },
+        },
+        Hero_cta_start_icon: { width: rem(0.9), height: rem(0.9) },
+        // Secondary — outline, quieter.
+        Hero_cta_play: {
+            flex: { direction: 'row' },
+            align: { items: 'center' },
+            gap: rem(0.4),
+            color: $bog_builderui_tokens.control,
+            padding: { left: rem(1.125), right: rem(1.125), top: rem(0.5625), bottom: rem(0.5625) },
+            border: { radius: rem(0.375), width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
+            font: { weight: 600 },
+        },
+        Hero_cta_play_icon: { width: rem(0.85), height: rem(0.85) },
+        // Tertiary — a plain text link, no chrome.
+        Hero_cta_why: {
+            flex: { direction: 'row' },
+            align: { items: 'center' },
+            gap: rem(0.3),
+            padding: { left: rem(0.625), right: rem(0.625), top: rem(0.5625), bottom: rem(0.5625) },
+            color: $bog_builderui_tokens.control,
+            font: { weight: 600 },
+            border: { radius: rem(0.375) },
+        },
+        Hero_cta_why_icon: { width: rem(0.85), height: rem(0.85) },
+        // ── Signature: the source (left) and its live result (right) side by side ──
+        Signature: {
+            flex: { direction: 'column' },
+            align: { items: 'center' },
+            gap: rem(1),
+            width: '100%',
+            maxWidth: rem(58),
+            margin: { left: 'auto', right: 'auto' },
+        },
+        Sign_panel: {
+            display: 'flex',
+            flex: { direction: 'row' },
+            align: { items: 'stretch' },
+            width: '100%',
+            background: { color: $bog_builderui_tokens.card },
+            border: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line, radius: rem(0.75) },
+            overflow: { x: 'hidden', y: 'hidden' },
+        },
+        Sign_code: {
+            flex: { direction: 'column', grow: 1, shrink: 1, basis: 0 },
+            minWidth: 0,
+            background: { color: $bog_builderui_tokens.back },
+            border: { right: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+        },
+        Sign_code_label: {
+            display: 'block',
+            ...eyebrow,
+            padding: { top: rem(0.625), bottom: rem(0.625), left: rem(1), right: rem(1) },
+            border: { bottom: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+            background: { color: $bog_builderui_tokens.card },
+        },
+        Sign_code_view: {
+            flex: { grow: 1 },
+            padding: { top: rem(0.75), bottom: rem(1), left: rem(1), right: rem(1) },
+            overflow: { x: 'auto', y: 'hidden' },
+            font: { family: mono, size: rem(0.8125) },
+            lineHeight: '1.7',
+        },
+        Sign_arrow: {
+            flex: { direction: 'column', grow: 0, shrink: 0 },
+            justify: { content: 'center' },
+            align: { items: 'center' },
+            width: rem(2.5),
+            background: { color: $bog_builderui_tokens.card },
+            border: { right: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+            color: $bog_builderui_tokens.shade,
+            font: { size: rem(1.25) },
+        },
+        Sign_live: {
+            flex: { direction: 'column', grow: 1, shrink: 1, basis: 0 },
+            minWidth: 0,
+            background: { color: $bog_builderui_tokens.card },
+        },
+        Sign_live_label: {
+            display: 'flex',
+            flex: { direction: 'row' },
+            align: { items: 'center' },
+            gap: rem(0.4),
+            ...eyebrow,
+            padding: { top: rem(0.625), bottom: rem(0.625), left: rem(1), right: rem(1) },
+            border: { bottom: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+            // a small live-green dot — the same green the code highlighter paints strings
+            '::before': {
+                content: '""',
+                width: rem(0.4),
+                height: rem(0.4),
+                border: { radius: rem(0.5) },
+                // the same green the code highlighter paints strings (hsl 96 42% 42%)
+                background: { color: '#62983e' },
+            },
+        },
+        Sign_demo: {
+            flex: { grow: 1 },
+        },
+        Sign_caption: {
+            display: 'block',
+            font: { family: $bog_builderui_tokens.font_head, size: rem(1.0625), style: 'italic' },
+            color: $bog_builderui_tokens.shade,
+            textAlign: 'center',
+        },
+        // ── Features ──
+        Features: {
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: rem(2.5),
+            padding: { top: rem(2), bottom: rem(5), left: $mol_gap.block, right: $mol_gap.block },
+            maxWidth: rem(62),
+            margin: { left: 'auto', right: 'auto' },
+        },
+        Feature1: { flex: { direction: 'column' }, gap: rem(0.5) },
+        Feature2: { flex: { direction: 'column' }, gap: rem(0.5) },
+        Feature3: { flex: { direction: 'column' }, gap: rem(0.5) },
+        // Titles carry the display voice; the initial letter is tinted so the three
+        // initials read down the row as M · O · L — the word the framework is named for.
+        Feature1_title: {
+            display: 'block',
+            font: { family: $bog_builderui_tokens.font_head, size: rem(1.375), weight: 500 },
+            letterSpacing: '-0.01em',
+            '::first-letter': { color: $bog_builderui_tokens.special },
+        },
+        Feature2_title: {
+            display: 'block',
+            font: { family: $bog_builderui_tokens.font_head, size: rem(1.375), weight: 500 },
+            letterSpacing: '-0.01em',
+            '::first-letter': { color: $bog_builderui_tokens.special },
+        },
+        Feature3_title: {
+            display: 'block',
+            font: { family: $bog_builderui_tokens.font_head, size: rem(1.375), weight: 500 },
+            letterSpacing: '-0.01em',
+            '::first-letter': { color: $bog_builderui_tokens.special },
+        },
+        Feature1_text: { color: $bog_builderui_tokens.shade, lineHeight: '1.6' },
+        Feature2_text: { color: $bog_builderui_tokens.shade, lineHeight: '1.6' },
+        Feature3_text: { color: $bog_builderui_tokens.shade, lineHeight: '1.6' },
+        // ── Footer ──
+        Footer: {
+            flex: { direction: 'column' },
+            gap: rem(2),
+            padding: { top: rem(4), bottom: rem(3), left: rem(4), right: rem(4) },
+            border: { top: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+            margin: { top: 'auto', left: 'auto', right: 'auto' },
+            maxWidth: rem(75),
+            width: '100%',
+        },
+        Footer_cols: {
+            display: 'grid',
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            gap: rem(2),
+            margin: { left: 'auto', right: 'auto' },
+            width: '100%',
+        },
+        Footer_col1: { flex: { direction: 'column' }, gap: rem(2) },
+        Footer_col2: { flex: { direction: 'column' }, gap: rem(2) },
+        Footer_col3: { flex: { direction: 'column' }, gap: rem(2) },
+        Footer_col4: { flex: { direction: 'column' }, gap: rem(2) },
+        Footer_sect_docs: { flex: { direction: 'column' }, gap: rem(0.75) },
+        Footer_sect_about: { flex: { direction: 'column' }, gap: rem(0.75) },
+        Footer_sect_resources: { flex: { direction: 'column' }, gap: rem(0.75) },
+        Footer_sect_libs: { flex: { direction: 'column' }, gap: rem(0.75) },
+        // Footer headings speak the utility voice, matching the sidebar/eyebrow labels.
+        Footer_sect_docs_title: { ...eyebrow, padding: { bottom: rem(0.25) } },
+        Footer_sect_about_title: { ...eyebrow, padding: { bottom: rem(0.25) } },
+        Footer_sect_resources_title: { ...eyebrow, padding: { bottom: rem(0.25) } },
+        Footer_sect_libs_title: { ...eyebrow, padding: { bottom: rem(0.25) } },
+        Footer_copy: {
+            flex: { direction: 'column' },
+            align: { items: 'center' },
+            gap: rem(0.25),
+            font: { size: rem(0.875) },
+            color: $bog_builderui_tokens.shade,
+            textAlign: 'center',
+            padding: { top: rem(2) },
+        },
+        '@media': {
+            // Tablet: signature stacks a touch earlier than the phone breakpoint so the
+            // two panels never get too cramped side by side.
+            '(max-width: 55rem)': {
+                Sign_panel: { flex: { direction: 'column' } },
+                Sign_code: {
+                    border: {
+                        right: { width: 0 },
+                        bottom: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
+                    },
+                },
+                Sign_arrow: {
+                    flex: { direction: 'row' },
+                    width: 'auto',
+                    height: rem(2.25),
+                    border: {
+                        right: { width: 0 },
+                        bottom: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
+                    },
+                },
+            },
+            // Phone: shrink the oversized hero, single-column features and footer so
+            // nothing overflows the viewport width.
+            '(max-width: 47.9375rem)': {
+                Hero: {
+                    gap: rem(2.25),
+                    padding: { top: rem(3), bottom: rem(2.5), left: rem(1.25), right: rem(1.25) },
+                },
+                Hero_title: { font: { size: rem(2.125) } },
+                Hero_subtitle: { font: { size: rem(1.0625) } },
+                Features: {
+                    gridTemplateColumns: '1fr',
+                    gap: rem(1.75),
+                    padding: { top: rem(1), bottom: rem(3), left: rem(1.25), right: rem(1.25) },
+                },
+                Footer: {
+                    padding: { top: rem(2.5), bottom: rem(2), left: rem(1.25), right: rem(1.25) },
+                },
+                Footer_cols: {
+                    gridTemplateColumns: '1fr 1fr',
+                    gap: rem(1.5),
+                },
+            },
+        },
+    });
+    // Motion, elevation and focus states. Kept in raw CSS because $mol_style_define's
+    // typed schema has no transition / transform / outline / plain box-shadow, and the
+    // hero entrance needs @keyframes. Selectors target the per-sub attributes $mol
+    // emits (lowercased owner_subname), scoped under the landing root.
+    $mol_style_attach('$bog_smalljs_landing.craft', `
+		[bog_smalljs_landing_sign_panel] {
+			box-shadow: 0 20px 48px -28px rgba( 0, 0, 0, 0.25 );
+		}
+
+		[bog_smalljs_landing_hero_head],
+		[bog_smalljs_landing_signature] {
+			animation: bog_smalljs_rise 0.7s cubic-bezier( 0.22, 1, 0.36, 1 ) both;
+		}
+		[bog_smalljs_landing_signature] { animation-delay: 0.12s }
+
+		[bog_smalljs_landing_hero_cta_start],
+		[bog_smalljs_landing_hero_cta_play],
+		[bog_smalljs_landing_hero_cta_why] {
+			transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease, background-color .12s ease, filter .12s ease;
+		}
+		[bog_smalljs_landing_hero_cta_start]:hover {
+			transform: translateY( -1px );
+			filter: brightness( 1.06 );
+			box-shadow: 0 6px 16px -8px var( --bog_builderui_current );
+		}
+		[bog_smalljs_landing_hero_cta_play]:hover {
+			transform: translateY( -1px );
+			border-color: var( --bog_builderui_control );
+			background: var( --bog_builderui_hover );
+		}
+		[bog_smalljs_landing_hero_cta_why]:hover { text-decoration: underline }
+
+		[bog_smalljs_landing_hero_cta_start]:focus-visible,
+		[bog_smalljs_landing_hero_cta_play]:focus-visible,
+		[bog_smalljs_landing_hero_cta_why]:focus-visible {
+			outline: 2px solid var( --bog_builderui_focus );
+			outline-offset: 2px;
+		}
+
+		@media ( max-width: 55rem ) {
+			[bog_smalljs_landing_sign_arrow] { transform: rotate( 90deg ) }
+		}
+
+		@keyframes bog_smalljs_rise {
+			from { opacity: 0; transform: translateY( 10px ) }
+			to { opacity: 1; transform: none }
+		}
+		@media ( prefers-reduced-motion: reduce ) {
+			[bog_smalljs_landing_hero_head],
+			[bog_smalljs_landing_signature] { animation: none }
+		}
+	`);
+})($ || ($ = {}));
+
+;
+	($.$mol_icon_menu) = class $mol_icon_menu extends ($.$mol_icon) {
+		path(){
+			return "M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z";
+		}
+	};
+
+
+;
+"use strict";
+
+
+;
+	($.$mol_icon_pencil) = class $mol_icon_pencil extends ($.$mol_icon) {
+		path(){
+			return "M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z";
+		}
+	};
+
+
+;
+"use strict";
+
+
+;
+	($.$mol_icon_thumb_up) = class $mol_icon_thumb_up extends ($.$mol_icon) {
+		path(){
+			return "M23,10C23,8.89 22.1,8 21,8H14.68L15.64,3.43C15.66,3.33 15.67,3.22 15.67,3.11C15.67,2.7 15.5,2.32 15.23,2.05L14.17,1L7.59,7.58C7.22,7.95 7,8.45 7,9V19A2,2 0 0,0 9,21H18C18.83,21 19.54,20.5 19.84,19.78L22.86,12.73C22.95,12.5 23,12.26 23,12V10M1,21H5V9H1V21Z";
+		}
+	};
+
+
+;
+"use strict";
+
+
+;
+	($.$mol_icon_thumb_down) = class $mol_icon_thumb_down extends ($.$mol_icon) {
+		path(){
+			return "M19,15H23V3H19M15,3H6C5.17,3 4.46,3.5 4.16,4.22L1.14,11.27C1.05,11.5 1,11.74 1,12V14A2,2 0 0,0 3,16H9.31L8.36,20.57C8.34,20.67 8.33,20.77 8.33,20.88C8.33,21.3 8.5,21.67 8.77,21.94L9.83,23L16.41,16.41C16.78,16.05 17,15.55 17,15V5C17,3.89 16.1,3 15,3Z";
+		}
+	};
+
+
+;
+"use strict";
+
+
+;
+	($.$bog_smalljs_docs) = class $bog_smalljs_docs extends ($.$mol_view) {
+		menu_toggle(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Menu_icon(){
+			const obj = new this.$.$mol_icon_menu();
+			return obj;
+		}
+		Menu_label(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.title_text())]);
+			return obj;
+		}
+		Menu_toggle(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.click) = (next) => ((this.menu_toggle(next)));
+			(obj.sub) = () => ([(this.Menu_icon()), (this.Menu_label())]);
+			return obj;
+		}
+		sidebar_groups(){
+			return [];
+		}
+		Sidebar(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.sidebar_groups()));
+			return obj;
+		}
+		Body(){
+			const obj = new this.$.$bog_smalljs_text();
+			(obj.text) = () => ((this.page_md()));
+			return obj;
+		}
+		Edit_icon(){
+			const obj = new this.$.$mol_icon_pencil();
+			return obj;
+		}
+		Edit_label(){
+			return (this.$.$mol_locale.text("$bog_smalljs_docs_Edit_label"));
+		}
+		Edit(){
+			const obj = new this.$.$mol_link();
+			(obj.uri) = () => ((this.edit_uri()));
+			(obj.sub) = () => ([(this.Edit_icon()), (this.Edit_label())]);
+			return obj;
+		}
+		feedback_content(){
+			return [];
+		}
+		Feedback(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.feedback_content()));
+			return obj;
+		}
+		nav_links(){
+			return [];
+		}
+		Nav(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.nav_links()));
+			return obj;
+		}
+		Main(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([
+				(this.Body()), 
+				(this.Edit()), 
+				(this.Feedback()), 
+				(this.Nav())
+			]);
+			return obj;
+		}
+		toc_title_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_docs_toc_title_text"));
+		}
+		Toc_title(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.toc_title_text())]);
+			return obj;
+		}
+		toc_links(){
+			return [];
+		}
+		Toc_list(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.toc_links()));
+			return obj;
+		}
+		Toc(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Toc_title()), (this.Toc_list())]);
+			return obj;
+		}
+		group_content(id){
+			return [];
+		}
+		group_title_text(id){
+			return "";
+		}
+		link_arg(id){
+			return {};
+		}
+		nav_click(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		link_title(id){
+			return "";
+		}
+		toc_arg(id){
+			return {};
+		}
+		toc_text(id){
+			return "";
+		}
+		feedback_prompt_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_docs_feedback_prompt_text"));
+		}
+		feedback_yes(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Feedback_yes_icon(){
+			const obj = new this.$.$mol_icon_thumb_up();
+			return obj;
+		}
+		feedback_yes_label(){
+			return (this.$.$mol_locale.text("$bog_smalljs_docs_feedback_yes_label"));
+		}
+		feedback_no(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Feedback_no_icon(){
+			const obj = new this.$.$mol_icon_thumb_down();
+			return obj;
+		}
+		feedback_no_label(){
+			return (this.$.$mol_locale.text("$bog_smalljs_docs_feedback_no_label"));
+		}
+		feedback_thanks_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_docs_feedback_thanks_text"));
+		}
+		prev_arg(){
+			return {};
+		}
+		prev_hint_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_docs_prev_hint_text"));
+		}
+		Prev_hint(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.prev_hint_text())]);
+			return obj;
+		}
+		prev_title(){
+			return "";
+		}
+		Prev_title(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.prev_title())]);
+			return obj;
+		}
+		next_arg(){
+			return {};
+		}
+		next_hint_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_docs_next_hint_text"));
+		}
+		Next_hint(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.next_hint_text())]);
+			return obj;
+		}
+		next_title(){
+			return "";
+		}
+		Next_title(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.next_title())]);
+			return obj;
+		}
+		page(){
+			return "introduction";
+		}
+		page_md(){
+			return "";
+		}
+		title_text(){
+			return "";
+		}
+		edit_uri(){
+			return "";
+		}
+		sidebar_open(next){
+			if(next !== undefined) return next;
+			return false;
+		}
+		attr(){
+			return {"bog_smalljs_sidebar_open": (this.sidebar_open())};
+		}
+		sub(){
+			return [
+				(this.Menu_toggle()), 
+				(this.Sidebar()), 
+				(this.Main()), 
+				(this.Toc())
+			];
+		}
+		Group(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.group_content(id)));
+			return obj;
+		}
+		Group_title(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.group_title_text(id))]);
+			return obj;
+		}
+		Link(id){
+			const obj = new this.$.$mol_link();
+			(obj.arg) = () => ((this.link_arg(id)));
+			(obj.event_click) = (next) => ((this.nav_click(next)));
+			(obj.sub) = () => ([(this.link_title(id))]);
+			return obj;
+		}
+		Toc_link(id){
+			const obj = new this.$.$mol_link();
+			(obj.arg) = () => ((this.toc_arg(id)));
+			(obj.sub) = () => ([(this.toc_text(id))]);
+			return obj;
+		}
+		Feedback_prompt(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.feedback_prompt_text())]);
+			return obj;
+		}
+		Feedback_yes(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.click) = (next) => ((this.feedback_yes(next)));
+			(obj.sub) = () => ([(this.Feedback_yes_icon()), (this.feedback_yes_label())]);
+			return obj;
+		}
+		Feedback_no(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.click) = (next) => ((this.feedback_no(next)));
+			(obj.sub) = () => ([(this.Feedback_no_icon()), (this.feedback_no_label())]);
+			return obj;
+		}
+		Feedback_thanks(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.feedback_thanks_text())]);
+			return obj;
+		}
+		Prev(){
+			const obj = new this.$.$mol_link();
+			(obj.arg) = () => ((this.prev_arg()));
+			(obj.sub) = () => ([(this.Prev_hint()), (this.Prev_title())]);
+			return obj;
+		}
+		Next(){
+			const obj = new this.$.$mol_link();
+			(obj.arg) = () => ((this.next_arg()));
+			(obj.sub) = () => ([(this.Next_hint()), (this.Next_title())]);
+			return obj;
+		}
+	};
+	($mol_mem(($.$bog_smalljs_docs.prototype), "menu_toggle"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Menu_icon"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Menu_label"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Menu_toggle"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Sidebar"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Body"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Edit_icon"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Edit"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Feedback"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Nav"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Main"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Toc_title"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Toc_list"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Toc"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "nav_click"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "feedback_yes"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Feedback_yes_icon"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "feedback_no"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Feedback_no_icon"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Prev_hint"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Prev_title"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Next_hint"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Next_title"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "sidebar_open"));
+	($mol_mem_key(($.$bog_smalljs_docs.prototype), "Group"));
+	($mol_mem_key(($.$bog_smalljs_docs.prototype), "Group_title"));
+	($mol_mem_key(($.$bog_smalljs_docs.prototype), "Link"));
+	($mol_mem_key(($.$bog_smalljs_docs.prototype), "Toc_link"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Feedback_prompt"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Feedback_yes"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Feedback_no"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Feedback_thanks"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Prev"));
+	($mol_mem(($.$bog_smalljs_docs.prototype), "Next"));
+
+
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        const section = 'docs';
+        class $bog_smalljs_docs extends $.$bog_smalljs_docs {
+            /** Current page slug, mirrored to the `page` URL argument. */
+            page(next) {
+                return this.$.$mol_state_arg.value('page', next) ?? $bog_smalljs_content.default_slug();
+            }
+            current() {
+                return $bog_smalljs_content.page(this.page());
+            }
+            /** Active UI language; reading it makes the page reactive to switches. */
+            lang() {
+                return this.$.$mol_locale.lang();
+            }
+            page_md() {
+                const md = $bog_smalljs_content.page_md(this.page(), this.lang());
+                if (md)
+                    return md;
+                // Unbuilt page — degrade gracefully instead of a bare error.
+                return [
+                    `# Coming soon`,
+                    ``,
+                    `This page hasn't been written yet — the docs are a work in progress.`,
+                    ``,
+                    `In the meantime, start with **[Getting Started](#!section=docs/page=getting-started)**`,
+                    `or read the [Introduction](#!section=docs/page=introduction).`,
+                ].join('\n');
+            }
+            title_text() {
+                return $bog_smalljs_content.page_title(this.page(), this.lang()) ?? 'Coming soon';
+            }
+            edit_uri() {
+                const page = this.current();
+                if (!page)
+                    return 'https://github.com/b-on-g/smalljs';
+                return `https://github.com/b-on-g/smalljs/edit/main/${page.file}`;
+            }
+            // --- Mobile drawer ------------------------------------------------
+            menu_toggle() {
+                this.sidebar_open(!this.sidebar_open());
+            }
+            nav_click() {
+                this.sidebar_open(false);
+                return null;
+            }
+            // --- "Was this helpful?" ------------------------------------------
+            // Local-only UX affordance: the choice is remembered per page in
+            // localStorage (so we don't re-ask), but nothing is sent anywhere — this is
+            // a placeholder hook for a future feedback backend.
+            feedback_value(next) {
+                return this.$.$mol_state_local.value(`smalljs/feedback/${this.page()}`, next) ?? '';
+            }
+            feedback_yes() { this.feedback_value('yes'); return null; }
+            feedback_no() { this.feedback_value('no'); return null; }
+            feedback_content() {
+                if (this.feedback_value())
+                    return [this.Feedback_thanks()];
+                return [this.Feedback_prompt(), this.Feedback_yes(), this.Feedback_no()];
+            }
+            // --- Sidebar ------------------------------------------------------
+            groups_data() {
+                return $bog_smalljs_content.sections().find(s => s.id === section)?.groups ?? [];
+            }
+            sidebar_groups() {
+                return this.groups_data().map((_, index) => this.Group(index));
+            }
+            group_title_text(index) {
+                return this.groups_data()[index].title;
+            }
+            group_content(index) {
+                const group = this.groups_data()[index];
+                return [
+                    this.Group_title(index),
+                    ...group.pages.map(slug => this.Link(slug)),
+                ];
+            }
+            link_title(slug) {
+                return $bog_smalljs_content.page_title(slug, this.lang()) ?? slug;
+            }
+            link_arg(slug) {
+                return { section, page: slug };
+            }
+            // --- Table of contents (headings of the current page) -------------
+            toc_data() {
+                const items = [];
+                let in_code = false;
+                for (const line of this.page_md().split('\n')) {
+                    if (/^```/.test(line)) {
+                        in_code = !in_code;
+                        continue;
+                    }
+                    if (in_code)
+                        continue;
+                    const match = /^(#{2,3})\s+(.+?)\s*$/.exec(line);
+                    if (match)
+                        items.push({ level: match[1].length, text: match[2] });
+                }
+                return items;
+            }
+            toc_links() {
+                return this.toc_data().map((_, index) => this.Toc_link(index));
+            }
+            toc_text(index) {
+                return this.toc_data()[index].text;
+            }
+            /**
+             * Reuse $mol_text's own anchor mechanism: each heading renders a link
+             * whose arg key is the text component's `param`. Setting that arg makes
+             * the matching header `current`, and $mol_text auto-scrolls to it.
+             */
+            toc_arg(index) {
+                return { [this.Body().param()]: this.toc_data()[index].text };
+            }
+            // --- Prev / next --------------------------------------------------
+            order() {
+                return $bog_smalljs_content.order(section);
+            }
+            nav_index() {
+                return this.order().indexOf(this.page());
+            }
+            prev_slug() {
+                const index = this.nav_index();
+                return index > 0 ? this.order()[index - 1] : '';
+            }
+            next_slug() {
+                const index = this.nav_index();
+                const order = this.order();
+                return index >= 0 && index < order.length - 1 ? order[index + 1] : '';
+            }
+            prev_arg() {
+                return { section, page: this.prev_slug() };
+            }
+            next_arg() {
+                return { section, page: this.next_slug() };
+            }
+            prev_title() {
+                return $bog_smalljs_content.page_title(this.prev_slug(), this.lang()) ?? '';
+            }
+            next_title() {
+                return $bog_smalljs_content.page_title(this.next_slug(), this.lang()) ?? '';
+            }
+            nav_links() {
+                const links = [];
+                if (this.prev_slug())
+                    links.push(this.Prev());
+                if (this.next_slug())
+                    links.push(this.Next());
+                return links;
+            }
+        }
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_docs.prototype, "menu_toggle", null);
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_docs.prototype, "nav_click", null);
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_docs.prototype, "feedback_yes", null);
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_docs.prototype, "feedback_no", null);
+        $$.$bog_smalljs_docs = $bog_smalljs_docs;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    const { rem } = $mol_style_unit;
+    const topbar = rem(4);
+    // One sidebar navigation link (also used for prev/next captions).
+    const sidebar_link = {
+        flex: { direction: 'row' },
+        justify: { content: 'flex-start' },
+        padding: { top: rem(0.3), bottom: rem(0.3), left: rem(0.625), right: rem(0.625) },
+        border: { radius: rem(0.375) },
+        color: $bog_builderui_tokens.shade,
+        font: { size: rem(0.875), weight: 500 },
+        ':hover': {
+            background: { color: $bog_builderui_tokens.hover },
+            color: $bog_builderui_tokens.text,
+        },
+        // active page — $mol_link sets mol_link_current="true". A warm accent-bar on
+        // the left (added in the raw attach block below) carries the signal, while the
+        // label stays at full text contrast rather than tinting small text orange.
+        '@': {
+            mol_link_current: {
+                true: {
+                    color: $bog_builderui_tokens.text,
+                    background: { color: $bog_builderui_tokens.hover },
+                    font: { weight: 600 },
+                },
+            },
+        },
+    };
+    $mol_style_define($bog_smalljs_docs, {
+        display: 'grid',
+        gridTemplateColumns: `16rem minmax(0, 1fr) 15rem`,
+        flex: { grow: 1 },
+        align: { items: 'start' },
+        minHeight: 0,
+        Menu_toggle: {
+            display: 'none',
+            flex: { direction: 'row', grow: 0 },
+            align: { items: 'center' },
+            gap: $mol_gap.text,
+            gridColumn: '1 / -1',
+            position: 'sticky',
+            top: topbar,
+            zIndex: 80,
+            padding: { top: rem(0.5), bottom: rem(0.5), left: $mol_gap.block, right: $mol_gap.block },
+            background: { color: $bog_builderui_tokens.back },
+            border: { bottom: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+            font: { weight: 600 },
+            color: $bog_builderui_tokens.text,
+        },
+        Menu_icon: {
+            width: rem(1.25),
+            height: rem(1.25),
+            flex: { shrink: 0 },
+        },
+        Sidebar: {
+            flex: { direction: 'column' },
+            position: 'sticky',
+            top: topbar,
+            maxHeight: $mol_style_func.calc('100vh - 4rem'),
+            overflow: { y: 'auto', x: 'hidden' },
+            padding: { top: $mol_gap.block, bottom: $mol_gap.block, left: rem(0.75), right: rem(0.75) },
+            border: { right: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+            background: { color: $bog_builderui_tokens.back },
+        },
+        Group: {
+            flex: { direction: 'column' },
+            gap: rem(0.0625),
+            margin: { bottom: $mol_gap.block },
+        },
+        Group_title: {
+            padding: { top: rem(0.5), bottom: rem(0.25), left: rem(0.625), right: rem(0.625) },
+            font: { size: rem(0.6875), weight: 700 },
+            color: $bog_builderui_tokens.shade,
+            textTransform: 'uppercase',
+            letterSpacing: rem(0.03),
+        },
+        Link: sidebar_link,
+        Main: {
+            flex: { direction: 'column' },
+            minWidth: 0,
+            padding: { top: rem(2), bottom: rem(3), left: rem(3), right: rem(3) },
+        },
+        Body: {
+            flex: { direction: 'column' },
+            maxWidth: rem(48),
+            width: '100%',
+        },
+        Edit: {
+            flex: { direction: 'row' },
+            align: { items: 'center' },
+            gap: $mol_gap.text,
+            margin: { top: rem(2) },
+            color: $bog_builderui_tokens.control,
+            font: { size: rem(0.875), weight: 500 },
+            ':hover': { color: $bog_builderui_tokens.focus },
+        },
+        Edit_icon: {
+            width: rem(1),
+            height: rem(1),
+        },
+        Feedback: {
+            flex: { direction: 'row', wrap: 'wrap' },
+            align: { items: 'center' },
+            gap: rem(0.5),
+            maxWidth: rem(48),
+            margin: { top: rem(1.5) },
+            padding: { top: $mol_gap.block },
+            border: { top: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+        },
+        Feedback_prompt: {
+            font: { size: rem(0.75), weight: 600 },
+            letterSpacing: rem(0.03),
+            textTransform: 'uppercase',
+            color: $bog_builderui_tokens.shade,
+            margin: { right: rem(0.25) },
+        },
+        Feedback_yes: {
+            flex: { direction: 'row', grow: 0 },
+            align: { items: 'center' },
+            gap: rem(0.375),
+            padding: { top: rem(0.3), bottom: rem(0.3), left: rem(0.75), right: rem(0.75) },
+            border: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line, radius: rem(0.375) },
+            color: $bog_builderui_tokens.shade,
+            font: { size: rem(0.8125), weight: 500 },
+            ':hover': {
+                border: { color: $bog_builderui_tokens.focus },
+                color: $bog_builderui_tokens.text,
+            },
+        },
+        Feedback_no: {
+            flex: { direction: 'row', grow: 0 },
+            align: { items: 'center' },
+            gap: rem(0.375),
+            padding: { top: rem(0.3), bottom: rem(0.3), left: rem(0.75), right: rem(0.75) },
+            border: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line, radius: rem(0.375) },
+            color: $bog_builderui_tokens.shade,
+            font: { size: rem(0.8125), weight: 500 },
+            ':hover': {
+                border: { color: $bog_builderui_tokens.focus },
+                color: $bog_builderui_tokens.text,
+            },
+        },
+        Feedback_yes_icon: { width: rem(1), height: rem(1) },
+        Feedback_no_icon: { width: rem(1), height: rem(1) },
+        Feedback_thanks: {
+            font: { size: rem(0.8125), weight: 500 },
+            color: $bog_builderui_tokens.control,
+        },
+        Nav: {
+            flex: { direction: 'row', wrap: 'wrap' },
+            justify: { content: 'space-between' },
+            gap: $mol_gap.block,
+            maxWidth: rem(48),
+            padding: { top: $mol_gap.block, bottom: $mol_gap.block },
+            border: { top: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+            margin: { top: rem(2) },
+        },
+        Prev: {
+            flex: { direction: 'column', grow: 1, basis: rem(12) },
+            align: { items: 'flex-start' },
+            gap: rem(0.125),
+            padding: $mol_gap.block,
+            border: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line, radius: rem(0.5) },
+            ':hover': { border: { color: $bog_builderui_tokens.focus } },
+        },
+        Next: {
+            flex: { direction: 'column', grow: 1, basis: rem(12) },
+            align: { items: 'flex-end' },
+            gap: rem(0.125),
+            padding: $mol_gap.block,
+            border: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line, radius: rem(0.5) },
+            ':hover': { border: { color: $bog_builderui_tokens.focus } },
+        },
+        Prev_hint: {
+            font: { size: rem(0.75) },
+            color: $bog_builderui_tokens.shade,
+        },
+        Next_hint: {
+            font: { size: rem(0.75) },
+            color: $bog_builderui_tokens.shade,
+        },
+        Prev_title: {
+            color: $bog_builderui_tokens.control,
+            font: { weight: 600 },
+        },
+        Next_title: {
+            color: $bog_builderui_tokens.control,
+            font: { weight: 600 },
+        },
+        Toc: {
+            flex: { direction: 'column' },
+            position: 'sticky',
+            top: topbar,
+            maxHeight: $mol_style_func.calc('100vh - 4rem'),
+            overflow: { y: 'auto', x: 'hidden' },
+            padding: { top: rem(2), bottom: $mol_gap.block, left: rem(1), right: rem(1) },
+            border: { left: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+        },
+        Toc_title: {
+            padding: { bottom: rem(0.5) },
+            font: { size: rem(0.75), weight: 700 },
+            color: $bog_builderui_tokens.shade,
+            textTransform: 'uppercase',
+            letterSpacing: rem(0.03),
+        },
+        Toc_list: {
+            flex: { direction: 'column' },
+            gap: rem(0.0625),
+        },
+        Toc_link: {
+            padding: { top: rem(0.25), bottom: rem(0.25), left: rem(0.5), right: rem(0.5) },
+            border: { radius: rem(0.25) },
+            color: $bog_builderui_tokens.shade,
+            font: { size: rem(0.8125) },
+            ':hover': { color: $bog_builderui_tokens.text },
+            '@': {
+                mol_link_current: {
+                    true: {
+                        color: $bog_builderui_tokens.text,
+                        font: { weight: 600 },
+                    },
+                },
+            },
+        },
+        '@media': {
+            // Tablet: drop the right-hand table of contents.
+            '(max-width: 63.9375rem)': {
+                gridTemplateColumns: `16rem minmax(0, 1fr)`,
+                Toc: { display: 'none' },
+            },
+            // Phone: sidebar becomes a slide-in drawer, content full width.
+            '(max-width: 47.9375rem)': {
+                gridTemplateColumns: `minmax(0, 1fr)`,
+                Menu_toggle: { display: 'flex' },
+                Main: {
+                    padding: { top: rem(1.25), bottom: rem(2), left: rem(1.25), right: rem(1.25) },
+                },
+                Sidebar: {
+                    position: 'fixed',
+                    top: topbar,
+                    bottom: 0,
+                    left: 0,
+                    zIndex: 90,
+                    width: rem(17),
+                    maxWidth: '85vw',
+                    transform: 'translateX(-100%)',
+                    transition: 'transform 0.2s',
+                    boxShadow: '0 0 24px -6px #00000055',
+                },
+                // drawer open state
+                '@': {
+                    bog_smalljs_sidebar_open: {
+                        true: {
+                            Sidebar: { transform: 'translateX(0)' },
+                        },
+                    },
+                },
+            },
+        },
+    });
+    // $mol_text renders a list bullet/number via [mol_text_list_item]::before with
+    // position:absolute + margin-left:-1.75rem (sits in the left gutter). Without a
+    // positioning context the marker anchors to the scroll container and drifts on
+    // scroll. Anchoring it to the item (position:relative) fixed the drift but the
+    // item has overflow:auto, which clips the marker poking out to the left. So put
+    // the positioning context on the LIST (overflow:visible) instead: the marker
+    // stays glued to its line AND isn't clipped. Raw CSS (attributes belong to $mol_text).
+    $mol_style_attach('$bog_smalljs_docs.list_marker', `
+		[bog_smalljs_docs_body] [mol_text_list] { position: relative }
+	`);
+    // Deep-linking to a heading (TOC click / shared URL with Docs.Body=<heading>)
+    // scrolls it to the very top of the scroll container, where the 64px sticky top
+    // bar hides it — the page looks like it jumped past the heading. scroll-margin-top
+    // leaves room so the anchored heading lands just below the bar. $mol_text honors it.
+    $mol_style_attach('$bog_smalljs_docs.header_anchor', `
+		[bog_smalljs_docs_body] [mol_text_header] { scroll-margin-top: 5rem }
+	`);
+    // Warm inset accent-bar on the active sidebar/TOC link. Raw CSS: $mol_style_define
+    // has no plain box-shadow, and an inset bar adds the accent without a layout shift.
+    $mol_style_attach('$bog_smalljs_docs.active_bar', `
+		[bog_smalljs_docs] [mol_link_current="true"] {
+			box-shadow: inset 2px 0 0 var( --bog_builderui_special );
+		}
+	`);
 })($ || ($ = {}));
 
 ;
@@ -22745,6 +23494,9 @@ var $;
 		locale_sync(){
 			return null;
 		}
+		lang_sync(){
+			return null;
+		}
 		Theme(){
 			const obj = new this.$.$bog_theme_auto();
 			(obj.theme_light) = () => ("$mol_theme_calm_light");
@@ -22800,7 +23552,11 @@ var $;
 			};
 		}
 		auto(){
-			return [(this.hotkeys()), (this.locale_sync())];
+			return [
+				(this.hotkeys()), 
+				(this.locale_sync()), 
+				(this.lang_sync())
+			];
 		}
 		sub(){
 			return [
@@ -22841,6 +23597,218 @@ var $;
 	($mol_mem(($.$bog_smalljs_app.prototype), "Playground"));
 	($mol_mem(($.$bog_smalljs_app.prototype), "Course"));
 
+
+;
+"use strict";
+var $;
+(function ($) {
+    /**
+     * Path-based router for BuilderUI apps.
+     *
+     * URL shape: `<origin><mount>k=v/k=v?search` — segments live directly in
+     * `pathname`, no `#!` fallback. Drop-in for `$mol_state_arg` once installed
+     * via `.activate()`. Subclass per mount with `.at('/admin/')` to host
+     * several routers in one bundle (nested mounts, preview frames).
+     *
+     * Server contract: any unknown path under `mount` must fall back to the
+     * app's `index.html` (Caddy `try_files`, nginx fallback, GH Pages 404.html,
+     * etc). Without that, deep-links 404 on first hit.
+     */
+    class $bog_builderui_router extends $mol_state_arg {
+        /** Mount prefix. Must start AND end with `/`. Override per subclass via `.at()`. */
+        static mount = '/';
+        /** Factory: subclass anchored at the given pathname mount. */
+        static at(mount) {
+            if (!mount.startsWith('/'))
+                mount = '/' + mount;
+            if (!mount.endsWith('/'))
+                mount = mount + '/';
+            const base = this;
+            const sub = class extends base {
+                static mount = mount;
+            };
+            Object.defineProperty(sub, 'name', {
+                value: `${base.name}_${mount.replace(/\W+/g, '_').replace(/^_|_$/g, '') || 'root'}`,
+            });
+            return sub;
+        }
+        static href(next) {
+            if (next === undefined)
+                return $mol_dom.location.href;
+            if (!/^about:srcdoc/.test(next)) {
+                new $mol_after_frame(() => {
+                    const target = this.href();
+                    const current = $mol_dom.location.href;
+                    if (target === current)
+                        return;
+                    const h = $mol_dom.history;
+                    h.replaceState(h.state, $mol_dom.document.title, target);
+                });
+            }
+            return next;
+        }
+        static dict(next) {
+            const href = this.href(next && this.make_link(next));
+            const url = new URL(href);
+            const path = decodeURIComponent(url.pathname);
+            const segment = path.startsWith(this.mount) ? path.slice(this.mount.length) : '';
+            const params = {};
+            for (const chunk of segment.split(this.separator)) {
+                if (!chunk)
+                    continue;
+                const vals = chunk.split('=').map(decodeURIComponent);
+                params[vals.shift()] = vals.join('=');
+            }
+            return params;
+        }
+        static make_link(next) {
+            const chunks = [];
+            for (const key in next) {
+                if (null == next[key])
+                    continue;
+                const val = next[key];
+                chunks.push([key].concat(val ? [val] : []).map(this.encode).join('='));
+            }
+            const segment = chunks.join(this.separator);
+            return $mol_dom.location.origin + this.mount + segment + $mol_dom.location.search;
+        }
+        static go(next) {
+            const link = this.link(next);
+            if (typeof window === 'undefined')
+                return;
+            $mol_dom.history.pushState(null, '', link);
+            this.href(link);
+        }
+        /**
+         * Install as the global `$mol_state_arg`, mount `<base>`, intercept
+         * in-app clicks and `popstate`.
+         *
+         * With no arg — auto-detects `mount` from the `web.js` script src,
+         * which works both for mam dev (`/.../-/web.js` → contains `/-/` →
+         * guard skips activation) and for prod deploys (`/myapp/web.js` →
+         * mount = `/myapp/`).
+         *
+         * With explicit `mount` arg — equivalent to `.at(mount).activate()`.
+         *
+         * No-op when: no `window`/`document`, current pathname doesn't start
+         * with `mount`, pathname looks like a $mol dev artifact (`.html` or
+         * `/-/`), or already installed. Idempotent.
+         */
+        static activate(mount) {
+            if (typeof window === 'undefined')
+                return this;
+            if (typeof document === 'undefined')
+                return this;
+            // Dev-server guard: $mol dev artifacts (`/-/…/test.html`) are served by a
+            // plain file server with no SPA fallback, so pathname routing would 404 on
+            // navigation. Stay on the hash router there — no-op regardless of `mount`.
+            const here = decodeURIComponent($mol_dom.location.pathname);
+            if (/\/-\/|\.html$/.test(here))
+                return this;
+            if (mount)
+                return this.at(mount).activate();
+            if (this.mount === '/') {
+                const script = $mol_dom.document.querySelector('script[src$="web.js"]');
+                const detected = script && script.src
+                    ? new URL(script.src).pathname.replace(/web\.js$/, '')
+                    : decodeURIComponent($mol_dom.location.pathname).replace(/[^/]*$/, '');
+                if (detected !== '/')
+                    return this.at(detected).activate();
+            }
+            const path = decodeURIComponent($mol_dom.location.pathname);
+            if (!path.startsWith(this.mount))
+                return this;
+            if ($.$mol_state_arg === this)
+                return this;
+            $.$mol_state_arg = this;
+            const doc = $mol_dom.document;
+            let base_el = doc.querySelector('base');
+            if (!base_el) {
+                base_el = doc.createElement('base');
+                doc.head.insertBefore(base_el, doc.head.firstChild);
+            }
+            base_el.setAttribute('href', this.mount);
+            // GH Pages SPA fallback: 404.html redirects `/mount/k=v/foo` →
+            // `/mount/?/k=v/foo`. Convert back to the real path on cold load.
+            const s = $mol_dom.location.search;
+            if (s.length > 1 && s.charAt(1) === '/') {
+                const decoded = s.slice(2).split('&').map(p => p.replace(/~and~/g, '&')).join('?');
+                const parts = decoded.split('?');
+                const segment = parts[0] || '';
+                const query = parts[1] ? '?' + parts[1] : '';
+                $mol_dom.history.replaceState(null, '', this.mount + segment + query + $mol_dom.location.hash);
+                this.href($mol_dom.location.href);
+            }
+            // Migrate legacy `#!k=v/k=v` bookmarks to clean pathname.
+            const hash = $mol_dom.location.hash;
+            if (hash.startsWith('#!')) {
+                $mol_dom.history.replaceState(null, '', this.mount + hash.slice(2) + $mol_dom.location.search);
+                this.href($mol_dom.location.href);
+            }
+            self.addEventListener('popstate', () => {
+                this.href($mol_dom.location.href);
+            });
+            self.addEventListener('click', this.on_click.bind(this), true);
+            return this;
+        }
+        static on_click(e) {
+            if (e.defaultPrevented)
+                return;
+            if (e.button !== 0)
+                return;
+            if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey)
+                return;
+            let el = e.target;
+            while (el && el.tagName !== 'A')
+                el = el.parentElement;
+            if (!el)
+                return;
+            const a = el;
+            if (a.hasAttribute('download'))
+                return;
+            if (a.target && a.target !== '' && a.target !== '_self')
+                return;
+            if (a.origin !== $mol_dom.location.origin)
+                return;
+            if (!decodeURIComponent(a.pathname).startsWith(this.mount))
+                return;
+            // Anchor segments: positional (no '=') replace current positional,
+            // k=v override matching current keys; unmatched current k=v preserved.
+            const a_segments = decodeURIComponent(a.pathname).slice(this.mount.length).split('/').filter(Boolean);
+            const a_positional = a_segments.filter(s => !s.includes('='));
+            const a_kv = a_segments.filter(s => s.includes('='));
+            const cur_path = decodeURIComponent($mol_dom.location.pathname).slice(this.mount.length);
+            const cur_segments = cur_path.split('/').filter(Boolean);
+            const cur_positional = cur_segments.filter(s => !s.includes('='));
+            const cur_kv = cur_segments.filter(s => s.includes('='));
+            const a_kv_keys = new Set(a_kv.map(s => s.split('=')[0]));
+            const kept_kv = cur_kv.filter(s => !a_kv_keys.has(s.split('=')[0]));
+            const new_positional = a_positional.length > 0 ? a_positional : cur_positional;
+            const new_segments = [...new_positional, ...kept_kv, ...a_kv];
+            const new_path = new_segments.join('/');
+            const target = $mol_dom.location.origin + this.mount + new_path + (a.search || $mol_dom.location.search);
+            const current = $mol_dom.location.href;
+            if (target === current)
+                return;
+            e.preventDefault();
+            $mol_dom.history.pushState(null, '', target);
+            this.href(target);
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $bog_builderui_router, "href", null);
+    __decorate([
+        $mol_mem
+    ], $bog_builderui_router, "dict", null);
+    __decorate([
+        $mol_mem_key
+    ], $bog_builderui_router, "make_link", null);
+    __decorate([
+        $mol_action
+    ], $bog_builderui_router, "go", null);
+    $.$bog_builderui_router = $bog_builderui_router;
+})($ || ($ = {}));
 
 ;
 "use strict";
@@ -23035,6 +24003,19 @@ var $;
             return lang === 'zh_hk' ? 'zh-HK' : lang;
         }
         class $bog_smalljs_app extends $.$bog_smalljs_app {
+            /** Path-based routing: clean `/smalljs/section=docs/page=views` URLs on the
+             *  deployed site, so every page is a distinct, crawlable URL for bots and
+             *  social unfurls. $bog_builderui_router is a drop-in $mol_state_arg.
+             *
+             *  We pass the explicit production mount `/smalljs/` rather than relying on
+             *  no-arg auto-detection: activate() then installs only when the current
+             *  pathname already starts with `/smalljs/` (its own guard). On the mam dev
+             *  server the path is `/bog/smalljs/app/-/test.html`, which does not — so this
+             *  is a clean no-op there and the standard hash router stays active, keeping
+             *  local dev (and its non-SPA file server) working unchanged. */
+            static {
+                $bog_builderui_router.activate('/smalljs/');
+            }
             section(next) {
                 return $mol_state_arg.value('section', next) ?? 'home';
             }
@@ -23050,18 +24031,20 @@ var $;
                     default: return [];
                 }
             }
-            /** Serialize arg pairs into a $mol `#!a=b/c=d` hash (empty when no args). */
-            route_hash(extra = []) {
+            /** Serialize arg pairs into a router pathname segment (`section=docs/page=views`),
+             *  matching exactly what $bog_builderui_router.make_link writes to the URL on
+             *  the deploy. Empty (home) → '', so `prod_base + route_path()` stays the bare
+             *  site root. */
+            route_path(extra = []) {
                 const pairs = [...extra, ...this.route_args()];
-                return pairs.length ? '#!' + pairs.map(([k, v]) => `${k}=${v}`).join('/') : '';
+                return pairs.map(([k, v]) => `${k}=${v}`).join('/');
             }
             /** Per-page, per-language SEO/social metadata. Read by $bog_meta_attr →
-             *  `data-bog-meta` on the root, which the $bog_seo prerenderer injects into
+             *  `data-bog-meta` on the root, which the SEO prerenderer injects into
              *  <head> as <title>/<meta>/<link> for bots and social unfurls. */
             meta() {
                 const lang = this.$.$mol_locale.lang();
-                const hash = this.route_hash();
-                const canonical = prod_base + hash;
+                const canonical = prod_base + this.route_path();
                 let title = `${site_name} — the $mol reactive framework`;
                 let description = default_description;
                 switch (this.section()) {
@@ -23083,7 +24066,7 @@ var $;
                 }
                 const alternates = meta_langs.map(code => ({
                     lang: hreflang_code(code),
-                    href: prod_base + this.route_hash([['mol_locale', code]]),
+                    href: prod_base + this.route_path([['mol_locale', code]]),
                 }));
                 alternates.push({ lang: 'x-default', href: canonical });
                 return {
@@ -23111,6 +24094,13 @@ var $;
                     return null;
                 this.locale_synced = true;
                 $mol_wire_async(this.$.$mol_locale).lang(want);
+                return null;
+            }
+            /** Keep <html lang> in step with the active UI language (a11y: screen readers
+             *  announce the right language; SEO: the shell no longer hard-codes one locale).
+             *  The static shell ships lang="en"; this reactively corrects it on switch. */
+            lang_sync() {
+                document.documentElement.lang = hreflang_code(this.$.$mol_locale.lang());
                 return null;
             }
             open_search() {
@@ -23164,6 +24154,9 @@ var $;
             $mol_mem
         ], $bog_smalljs_app.prototype, "locale_sync", null);
         __decorate([
+            $mol_mem
+        ], $bog_smalljs_app.prototype, "lang_sync", null);
+        __decorate([
             $mol_action
         ], $bog_smalljs_app.prototype, "open_search", null);
         __decorate([
@@ -23190,19 +24183,37 @@ var $;
             flex: { direction: 'column', grow: 1 },
         },
     });
-    // App-wide dark-theme palette tweaks. Only under the dark theme; light stays as-is.
-    // Third attribute selector outranks theme.css's [base][lights] pair, so it wins
-    // regardless of stylesheet order. Raw CSS: these target CSS vars on a foreign
-    // attribute, which $mol_style_define can't express.
+    // App-wide palette tuning layered over the shared builderui tokens. A third
+    // attribute selector ([app][base][lights]) outranks theme.css's [base][lights]
+    // pair, so these win regardless of stylesheet order. Raw CSS: these set CSS vars
+    // on a foreign attribute, which $mol_style_define can't express.
     //
-    //  - text: the shared builderui palette paints dark text pure #fafafa, which glares
-    //    against near-black surfaces; soften it (also bridges to --mol_theme_text).
-    //  - back/card SWAPPED: the page surface becomes the lighter shade and cards/topbar/
-    //    sidebar the darker one (inverted elevation). Values are hardcoded from the zinc
-    //    base (the app is pinned to bog_builderui_base="zinc"); a var() swap can't be used
-    //    because back↔card would reference each other and CSS voids the circular vars.
-    $mol_style_attach('$bog_smalljs_app.dark_theme', `
+    // The accent is deliberately re-pointed at the code-highlighter palette so the
+    // site and the code samples read as one system (see text.view.css.ts):
+    //  - control/focus/current -> operator-blue  (matches tree-oper) for links & CTAs
+    //  - special               -> component-orange (matches tree-comp) as the one warm
+    //    signature accent (hero keyword, feature initials, active-bar)
+    // Values are split per-lights so small-text links clear AA on both surfaces
+    // (a darker blue on the cream light bg, a brighter blue on near-black dark).
+    //
+    // Light: a warm off-white page (cream) with pure-white cards for editorial
+    // elevation. Dark: the tuned zinc — softened text (#fafafa glares on near-black),
+    // and back/card SWAPPED so the page is the lighter shade and cards/topbar/sidebar
+    // the darker one (inverted elevation), hardcoded from the zinc base the app pins to.
+    $mol_style_attach('$bog_smalljs_app.palette', `
+		[bog_smalljs_app][bog_builderui_base][bog_builderui_lights="light"] {
+			--bog_builderui_control: hsl( 210, 68%, 42% );
+			--bog_builderui_focus: hsl( 210, 72%, 36% );
+			--bog_builderui_current: hsl( 210, 68%, 42% );
+			--bog_builderui_special: hsl( 26, 82%, 44% );
+			--bog_builderui_back: #faf9f7;
+			--bog_builderui_card: #ffffff;
+		}
 		[bog_smalljs_app][bog_builderui_base][bog_builderui_lights="dark"] {
+			--bog_builderui_control: hsl( 210, 72%, 64% );
+			--bog_builderui_focus: hsl( 210, 76%, 72% );
+			--bog_builderui_current: hsl( 210, 72%, 64% );
+			--bog_builderui_special: hsl( 30, 85%, 60% );
 			--bog_builderui_text: #d4d4d8;
 			--bog_builderui_back: #18181b;
 			--bog_builderui_card: #09090b;

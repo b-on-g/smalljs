@@ -63,7 +63,7 @@ namespace $.$$ {
 }
 ```
 
-Anything the template binds — `title`, `text`, a sub-view's property — can be given logic here. Reactivity ([State](#!section=docs/page=state)) makes those values live.
+Anything the template binds — `title`, `text`, a sub-view's property — can be given logic here, and reactivity keeps those values live.
 
 ## Attributes and element type
 

@@ -78,10 +78,6 @@
 	include \/mol/schema/partial
 \/mol/view/tree2/to/js
 	include \/mol/view/tree2/to/js/test
-\/bog/seo
-	pack mol/server
-	pack bog/browser
-	pack bog/meta
 \/bog/smalljs/app
 	include \/mol/offline/install
 	include \/bog/builderui/theme.css

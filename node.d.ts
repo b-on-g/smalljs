@@ -7942,15 +7942,6 @@ declare namespace $ {
 
 declare namespace $ {
 
-	export class $mol_icon_play extends $mol_icon {
-		path( ): string
-	}
-	
-}
-
-//# sourceMappingURL=play.view.tree.d.ts.map
-declare namespace $ {
-
 	export class $mol_icon_arrow_right extends $mol_icon {
 		path( ): string
 	}
@@ -7969,591 +7960,13 @@ declare namespace $ {
 //# sourceMappingURL=new.view.tree.d.ts.map
 declare namespace $ {
 
-	type $mol_view__dom_name_bog_smalljs_landing_1 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_view['dom_name'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_2 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__dom_name_bog_smalljs_landing_3 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_view['dom_name'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_4 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_5 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_link__arg_bog_smalljs_landing_6 = $mol_type_enforce<
-		({ 
-			'section': string,
-			'page': string,
-		}) 
-		,
-		ReturnType< $mol_link['arg'] >
-	>
-	type $mol_link__sub_bog_smalljs_landing_7 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_link['sub'] >
-	>
-	type $mol_link__arg_bog_smalljs_landing_8 = $mol_type_enforce<
-		({ 
-			'section': string,
-			'page': string,
-		}) 
-		,
-		ReturnType< $mol_link['arg'] >
-	>
-	type $mol_link__sub_bog_smalljs_landing_9 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_link['sub'] >
-	>
-	type $mol_link__title_bog_smalljs_landing_10 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['title'] >
-	>
-	type $mol_link__arg_bog_smalljs_landing_11 = $mol_type_enforce<
-		({ 
-			'section': string,
-			'page': string,
-		}) 
-		,
-		ReturnType< $mol_link['arg'] >
-	>
-	type $mol_link__arg_bog_smalljs_landing_12 = $mol_type_enforce<
-		({ 
-			'section': string,
-			'page': string,
-		}) 
-		,
-		ReturnType< $mol_link['arg'] >
-	>
-	type $mol_link__sub_bog_smalljs_landing_13 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_link['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_14 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_15 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_16 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_text__text_bog_smalljs_landing_17 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_text['text'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_18 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_19 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_text__text_bog_smalljs_landing_20 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_text['text'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_21 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_22 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_text__text_bog_smalljs_landing_23 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_text['text'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_24 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_25 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_26 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_link__title_bog_smalljs_landing_27 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['title'] >
-	>
-	type $mol_link__arg_bog_smalljs_landing_28 = $mol_type_enforce<
-		({ 
-			'section': string,
-			'page': string,
-		}) 
-		,
-		ReturnType< $mol_link['arg'] >
-	>
-	type $mol_link__title_bog_smalljs_landing_29 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['title'] >
-	>
-	type $mol_link__arg_bog_smalljs_landing_30 = $mol_type_enforce<
-		({ 
-			'section': string,
-			'page': string,
-		}) 
-		,
-		ReturnType< $mol_link['arg'] >
-	>
-	type $mol_link__title_bog_smalljs_landing_31 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['title'] >
-	>
-	type $mol_link__arg_bog_smalljs_landing_32 = $mol_type_enforce<
-		({ 
-			'section': string,
-			'page': string,
-		}) 
-		,
-		ReturnType< $mol_link['arg'] >
-	>
-	type $mol_link__title_bog_smalljs_landing_33 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['title'] >
-	>
-	type $mol_link__arg_bog_smalljs_landing_34 = $mol_type_enforce<
-		({ 
-			'section': string,
-			'page': string,
-		}) 
-		,
-		ReturnType< $mol_link['arg'] >
-	>
-	type $mol_link__title_bog_smalljs_landing_35 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['title'] >
-	>
-	type $mol_link__arg_bog_smalljs_landing_36 = $mol_type_enforce<
-		({ 
-			'section': string,
-			'page': string,
-		}) 
-		,
-		ReturnType< $mol_link['arg'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_37 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_38 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_39 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_link__title_bog_smalljs_landing_40 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['title'] >
-	>
-	type $mol_link__arg_bog_smalljs_landing_41 = $mol_type_enforce<
-		({ 
-			'section': string,
-			'page': string,
-		}) 
-		,
-		ReturnType< $mol_link['arg'] >
-	>
-	type $mol_link__title_bog_smalljs_landing_42 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['title'] >
-	>
-	type $mol_link__arg_bog_smalljs_landing_43 = $mol_type_enforce<
-		({ 
-			'section': string,
-			'page': string,
-		}) 
-		,
-		ReturnType< $mol_link['arg'] >
-	>
-	type $mol_link__title_bog_smalljs_landing_44 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['title'] >
-	>
-	type $mol_link__arg_bog_smalljs_landing_45 = $mol_type_enforce<
-		({ 
-			'section': string,
-			'page': string,
-		}) 
-		,
-		ReturnType< $mol_link['arg'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_46 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_47 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_48 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_link__title_bog_smalljs_landing_49 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['title'] >
-	>
-	type $mol_link__arg_bog_smalljs_landing_50 = $mol_type_enforce<
-		({ 
-			'section': string,
-			'page': string,
-		}) 
-		,
-		ReturnType< $mol_link['arg'] >
-	>
-	type $mol_link__title_bog_smalljs_landing_51 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['title'] >
-	>
-	type $mol_link__arg_bog_smalljs_landing_52 = $mol_type_enforce<
-		({ 
-			'section': string,
-			'page': string,
-		}) 
-		,
-		ReturnType< $mol_link['arg'] >
-	>
-	type $mol_link__title_bog_smalljs_landing_53 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['title'] >
-	>
-	type $mol_link__uri_bog_smalljs_landing_54 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['uri'] >
-	>
-	type $mol_link__target_bog_smalljs_landing_55 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['target'] >
-	>
-	type $mol_link__title_bog_smalljs_landing_56 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['title'] >
-	>
-	type $mol_link__uri_bog_smalljs_landing_57 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['uri'] >
-	>
-	type $mol_link__target_bog_smalljs_landing_58 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['target'] >
-	>
-	type $mol_link__title_bog_smalljs_landing_59 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['title'] >
-	>
-	type $mol_link__uri_bog_smalljs_landing_60 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['uri'] >
-	>
-	type $mol_link__target_bog_smalljs_landing_61 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['target'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_62 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_63 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_64 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_link__title_bog_smalljs_landing_65 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['title'] >
-	>
-	type $mol_link__uri_bog_smalljs_landing_66 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['uri'] >
-	>
-	type $mol_link__target_bog_smalljs_landing_67 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['target'] >
-	>
-	type $mol_link__title_bog_smalljs_landing_68 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['title'] >
-	>
-	type $mol_link__uri_bog_smalljs_landing_69 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['uri'] >
-	>
-	type $mol_link__target_bog_smalljs_landing_70 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['target'] >
-	>
-	type $mol_link__title_bog_smalljs_landing_71 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['title'] >
-	>
-	type $mol_link__uri_bog_smalljs_landing_72 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['uri'] >
-	>
-	type $mol_link__target_bog_smalljs_landing_73 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['target'] >
-	>
-	type $mol_link__title_bog_smalljs_landing_74 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['title'] >
-	>
-	type $mol_link__uri_bog_smalljs_landing_75 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['uri'] >
-	>
-	type $mol_link__target_bog_smalljs_landing_76 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['target'] >
-	>
-	type $mol_link__title_bog_smalljs_landing_77 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['title'] >
-	>
-	type $mol_link__uri_bog_smalljs_landing_78 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['uri'] >
-	>
-	type $mol_link__target_bog_smalljs_landing_79 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['target'] >
-	>
-	type $mol_link__title_bog_smalljs_landing_80 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['title'] >
-	>
-	type $mol_link__uri_bog_smalljs_landing_81 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['uri'] >
-	>
-	type $mol_link__target_bog_smalljs_landing_82 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['target'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_83 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_84 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_85 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_86 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_87 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_88 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_89 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	export class $bog_smalljs_landing extends $mol_view {
-		Hero_title_pre( ): string
-		Hero_title_accent_text( ): string
-		Hero_title_accent( ): $mol_view
-		Hero_title_post( ): string
-		Hero_title( ): $mol_view
-		Hero_subtitle_text( ): string
-		Hero_subtitle( ): $mol_view
-		Hero_cta_why_icon( ): $mol_icon_play
-		Hero_cta_why_label( ): string
-		Hero_cta_why( ): $mol_link
-		Hero_cta_start_label( ): string
-		Hero_cta_start_icon( ): $mol_icon_arrow_right
-		Hero_cta_start( ): $mol_link
-		Hero_cta_install( ): $mol_link
-		Hero_cta_play_label( ): string
-		Hero_cta_play_icon( ): $mol_icon_open_in_new
-		Hero_cta_play( ): $mol_link
-		Hero_actions( ): $mol_view
-		Hero( ): $mol_view
-		Feature1_title_text( ): string
-		Feature1_title( ): $mol_view
-		Feature1_text( ): $mol_text
-		Feature1( ): $mol_view
-		Feature2_title_text( ): string
-		Feature2_title( ): $mol_view
-		Feature2_text( ): $mol_text
-		Feature2( ): $mol_view
-		Feature3_title_text( ): string
-		Feature3_title( ): $mol_view
-		Feature3_text( ): $mol_text
-		Feature3( ): $mol_view
-		Features( ): $mol_view
-		Footer_sect_docs_title_text( ): string
-		Footer_sect_docs_title( ): $mol_view
-		Footer_link_quickstart( ): $mol_link
-		Footer_link_guide( ): $mol_link
-		Footer_link_tutorial( ): $mol_link
-		Footer_link_examples( ): $mol_link
-		Footer_link_api( ): $mol_link
-		Footer_sect_docs( ): $mol_view
-		Footer_col1( ): $mol_view
-		Footer_sect_about_title_text( ): string
-		Footer_sect_about_title( ): $mol_view
-		Footer_link_faq( ): $mol_link
-		Footer_link_team( ): $mol_link
-		Footer_link_releases( ): $mol_link
-		Footer_sect_about( ): $mol_view
-		Footer_col2( ): $mol_view
-		Footer_sect_resources_title_text( ): string
-		Footer_sect_resources_title( ): $mol_view
-		Footer_link_playground( ): $mol_link
-		Footer_link_course( ): $mol_link
-		Footer_link_ui( ): $mol_link
-		Footer_link_telegram( ): $mol_link
-		Footer_link_dev( ): $mol_link
-		Footer_sect_resources( ): $mol_view
-		Footer_col3( ): $mol_view
-		Footer_sect_libs_title_text( ): string
-		Footer_sect_libs_title( ): $mol_view
-		Footer_link_wire( ): $mol_link
-		Footer_link_fetch( ): $mol_link
-		Footer_link_compare( ): $mol_link
-		Footer_link_router( ): $mol_link
-		Footer_link_crowd( ): $mol_link
-		Footer_link_baza( ): $mol_link
-		Footer_sect_libs( ): $mol_view
-		Footer_col4( ): $mol_view
-		Footer_cols( ): $mol_view
-		Footer_copy_line1_text( ): string
-		Footer_copy_line1( ): $mol_view
-		Footer_copy_line2_text( ): string
-		Footer_copy_line2( ): $mol_view
-		Footer_copy( ): $mol_view
-		Footer( ): $mol_view
-		sub( ): readonly(any)[]
-	}
-	
-}
-
-//# sourceMappingURL=landing.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $bog_smalljs_landing extends $.$bog_smalljs_landing {
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-
-	export class $mol_icon_menu extends $mol_icon {
+	export class $mol_icon_play extends $mol_icon {
 		path( ): string
 	}
 	
 }
 
-//# sourceMappingURL=menu.view.tree.d.ts.map
+//# sourceMappingURL=play.view.tree.d.ts.map
 declare namespace $ {
 
 	export class $mol_icon_launch extends $mol_icon {
@@ -8563,371 +7976,6 @@ declare namespace $ {
 }
 
 //# sourceMappingURL=launch.view.tree.d.ts.map
-declare namespace $ {
-
-	type $bog_smalljs_text_code__text_bog_smalljs_text_1 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_text['pre_text'] >
-		,
-		ReturnType< $bog_smalljs_text_code['text'] >
-	>
-	type $bog_smalljs_text_code__row_themes_bog_smalljs_text_2 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_text['pre_themes'] >
-		,
-		ReturnType< $bog_smalljs_text_code['row_themes'] >
-	>
-	type $bog_smalljs_text_code__highlight_bog_smalljs_text_3 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_text['highlight'] >
-		,
-		ReturnType< $bog_smalljs_text_code['highlight'] >
-	>
-	type $bog_smalljs_text_code__uri_resolve_bog_smalljs_text_4 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_text['uri_resolve'] >
-		,
-		ReturnType< $bog_smalljs_text_code['uri_resolve'] >
-	>
-	type $bog_smalljs_text_code__sidebar_showed_bog_smalljs_text_5 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_text['pre_sidebar_showed'] >
-		,
-		ReturnType< $bog_smalljs_text_code['sidebar_showed'] >
-	>
-	type $bog_smalljs_text_code__lang_bog_smalljs_text_6 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_text['pre_lang'] >
-		,
-		ReturnType< $bog_smalljs_text_code['lang'] >
-	>
-	type $bog_smalljs_text_code__playground_arg_bog_smalljs_text_7 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_text['pre_playground_arg'] >
-		,
-		ReturnType< $bog_smalljs_text_code['playground_arg'] >
-	>
-	type $bog_smalljs_text_code__playground_showed_bog_smalljs_text_8 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_text['pre_playground_showed'] >
-		,
-		ReturnType< $bog_smalljs_text_code['playground_showed'] >
-	>
-	export class $bog_smalljs_text extends $mol_text {
-		pre_text( id: any): string
-		pre_themes( id: any): readonly(string)[]
-		highlight( ): string
-		uri_resolve( id: any): string
-		code_sidebar_showed( ): boolean
-		pre_sidebar_showed( ): ReturnType< $bog_smalljs_text['code_sidebar_showed'] >
-		pre_lang( id: any): string
-		pre_playground_arg( id: any): Record<string, any>
-		pre_playground_showed( id: any): boolean
-		Pre( id: any): $bog_smalljs_text_code
-	}
-	
-	type $mol_link__arg_bog_smalljs_text_code_1 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_text_code['playground_arg'] >
-		,
-		ReturnType< $mol_link['arg'] >
-	>
-	type $mol_link__hint_bog_smalljs_text_code_2 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['hint'] >
-	>
-	type $mol_link__sub_bog_smalljs_text_code_3 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_link['sub'] >
-	>
-	export class $bog_smalljs_text_code extends $mol_text_code {
-		Playground_icon( ): $mol_icon_launch
-		lang( ): string
-		playground_arg( ): Record<string, any>
-		playground_showed( ): boolean
-		Playground( ): $mol_link
-	}
-	
-}
-
-//# sourceMappingURL=text.view.tree.d.ts.map
-declare namespace $.$$ {
-    /**
-     * $mol_text with language-aware code blocks: view.tree gets its own highlighter,
-     * and executable snippets (view.tree) grow an "Open in Playground" button.
-     */
-    class $bog_smalljs_text extends $.$bog_smalljs_text {
-        pre_text(index: number): string;
-        pre_themes(index: number): string[];
-        /** Fence info-string of a code block (chunk 1 of the flow token), e.g. `tree`, `typescript`. */
-        pre_lang(index: number): any;
-        /** Normalized language family used for grammar selection and playground gating. */
-        lang_kind(index: number): any;
-        pre_playground_showed(index: number): boolean;
-        pre_playground_arg(index: number): Record<string, string | null>;
-    }
-    /** Code block that picks a grammar by language and can offer an "Open in Playground" link. */
-    class $bog_smalljs_text_code extends $.$bog_smalljs_text_code {
-        render_visible_only(): boolean;
-        syntax(): any;
-        sub(): ($.$mol_link | $.$mol_list | $.$mol_button_copy)[];
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-
-	export class $mol_icon_pencil extends $mol_icon {
-		path( ): string
-	}
-	
-}
-
-//# sourceMappingURL=pencil.view.tree.d.ts.map
-declare namespace $ {
-
-	type $mol_view__sub_bog_smalljs_docs_1 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_button_minor__click_bog_smalljs_docs_2 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_docs['menu_toggle'] >
-		,
-		ReturnType< $mol_button_minor['click'] >
-	>
-	type $mol_button_minor__sub_bog_smalljs_docs_3 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_button_minor['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_docs_4 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_docs['sidebar_groups'] >
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $bog_smalljs_text__text_bog_smalljs_docs_5 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_docs['page_md'] >
-		,
-		ReturnType< $bog_smalljs_text['text'] >
-	>
-	type $mol_link__uri_bog_smalljs_docs_6 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_docs['edit_uri'] >
-		,
-		ReturnType< $mol_link['uri'] >
-	>
-	type $mol_link__sub_bog_smalljs_docs_7 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_link['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_docs_8 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_docs['nav_links'] >
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_docs_9 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_docs_10 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_docs_11 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_docs['toc_links'] >
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_docs_12 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_docs_13 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_docs_14 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_docs_15 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_docs_16 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_docs_17 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_docs['group_content'] >
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_docs_18 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_link__arg_bog_smalljs_docs_19 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_docs['link_arg'] >
-		,
-		ReturnType< $mol_link['arg'] >
-	>
-	type $mol_link__event_click_bog_smalljs_docs_20 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_docs['nav_click'] >
-		,
-		ReturnType< $mol_link['event_click'] >
-	>
-	type $mol_link__sub_bog_smalljs_docs_21 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_link['sub'] >
-	>
-	type $mol_link__arg_bog_smalljs_docs_22 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_docs['toc_arg'] >
-		,
-		ReturnType< $mol_link['arg'] >
-	>
-	type $mol_link__sub_bog_smalljs_docs_23 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_link['sub'] >
-	>
-	type $mol_link__arg_bog_smalljs_docs_24 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_docs['prev_arg'] >
-		,
-		ReturnType< $mol_link['arg'] >
-	>
-	type $mol_link__sub_bog_smalljs_docs_25 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_link['sub'] >
-	>
-	type $mol_link__arg_bog_smalljs_docs_26 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_docs['next_arg'] >
-		,
-		ReturnType< $mol_link['arg'] >
-	>
-	type $mol_link__sub_bog_smalljs_docs_27 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_link['sub'] >
-	>
-	export class $bog_smalljs_docs extends $mol_view {
-		menu_toggle( next?: any ): any
-		Menu_icon( ): $mol_icon_menu
-		Menu_label( ): $mol_view
-		Menu_toggle( ): $mol_button_minor
-		sidebar_groups( ): readonly(any)[]
-		Sidebar( ): $mol_view
-		Body( ): $bog_smalljs_text
-		Edit_icon( ): $mol_icon_pencil
-		Edit_label( ): string
-		Edit( ): $mol_link
-		nav_links( ): readonly(any)[]
-		Nav( ): $mol_view
-		Main( ): $mol_view
-		toc_title_text( ): string
-		Toc_title( ): $mol_view
-		toc_links( ): readonly(any)[]
-		Toc_list( ): $mol_view
-		Toc( ): $mol_view
-		group_content( id: any): readonly(any)[]
-		group_title_text( id: any): string
-		link_arg( id: any): Record<string, any>
-		nav_click( next?: any ): any
-		link_title( id: any): string
-		toc_arg( id: any): Record<string, any>
-		toc_text( id: any): string
-		prev_arg( ): Record<string, any>
-		prev_hint_text( ): string
-		Prev_hint( ): $mol_view
-		prev_title( ): string
-		Prev_title( ): $mol_view
-		next_arg( ): Record<string, any>
-		next_hint_text( ): string
-		Next_hint( ): $mol_view
-		next_title( ): string
-		Next_title( ): $mol_view
-		page( ): string
-		page_md( ): string
-		title_text( ): string
-		edit_uri( ): string
-		sidebar_open( next?: boolean ): boolean
-		attr( ): ({ 
-			'bog_smalljs_sidebar_open': ReturnType< $bog_smalljs_docs['sidebar_open'] >,
-		}) 
-		sub( ): readonly(any)[]
-		Group( id: any): $mol_view
-		Group_title( id: any): $mol_view
-		Link( id: any): $mol_link
-		Toc_link( id: any): $mol_link
-		Prev( ): $mol_link
-		Next( ): $mol_link
-	}
-	
-}
-
-//# sourceMappingURL=docs.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $bog_smalljs_docs extends $.$bog_smalljs_docs {
-        /** Current page slug, mirrored to the `page` URL argument. */
-        page(next?: string): string;
-        current(): $bog_smalljs_content_page | null;
-        /** Active UI language; reading it makes the page reactive to switches. */
-        lang(): string;
-        page_md(): string;
-        title_text(): string;
-        edit_uri(): string;
-        menu_toggle(): void;
-        nav_click(): null;
-        groups_data(): readonly $bog_smalljs_content_group[];
-        sidebar_groups(): $mol_view[];
-        group_title_text(index: number): string;
-        group_content(index: number): readonly $mol_view[];
-        link_title(slug: string): string;
-        link_arg(slug: string): {
-            section: string;
-            page: string;
-        };
-        toc_data(): {
-            level: number;
-            text: string;
-        }[];
-        toc_links(): $.$mol_link[];
-        toc_text(index: number): string;
-        /**
-         * Reuse $mol_text's own anchor mechanism: each heading renders a link
-         * whose arg key is the text component's `param`. Setting that arg makes
-         * the matching header `current`, and $mol_text auto-scrolls to it.
-         */
-        toc_arg(index: number): {
-            [x: string]: string;
-        };
-        order(): readonly string[];
-        nav_index(): number;
-        prev_slug(): string;
-        next_slug(): string;
-        prev_arg(): {
-            section: string;
-            page: string;
-        };
-        next_arg(): {
-            section: string;
-            page: string;
-        };
-        prev_title(): string;
-        next_title(): string;
-        nav_links(): $mol_view[];
-    }
-}
-
-declare namespace $ {
-}
-
 declare namespace $ {
 
 	type $mol_textarea_edit__value_mol_textarea_1 = $mol_type_enforce<
@@ -9331,9 +8379,1222 @@ declare namespace $.$$ {
         schedule(key: string, value: string): void;
         commit(key: string, value: string): void;
         ts_lib(): any;
+        static build_base($: any, tree_src: string): {
+            root: string;
+            Base: any;
+        };
         compile(): $mol_view;
         error_box(message: string): $mol_view;
         preview_content(): readonly ($mol_view | string)[];
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+
+	type $bog_smalljs_text_code__text_bog_smalljs_text_1 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_text['pre_text'] >
+		,
+		ReturnType< $bog_smalljs_text_code['text'] >
+	>
+	type $bog_smalljs_text_code__row_themes_bog_smalljs_text_2 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_text['pre_themes'] >
+		,
+		ReturnType< $bog_smalljs_text_code['row_themes'] >
+	>
+	type $bog_smalljs_text_code__highlight_bog_smalljs_text_3 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_text['highlight'] >
+		,
+		ReturnType< $bog_smalljs_text_code['highlight'] >
+	>
+	type $bog_smalljs_text_code__uri_resolve_bog_smalljs_text_4 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_text['uri_resolve'] >
+		,
+		ReturnType< $bog_smalljs_text_code['uri_resolve'] >
+	>
+	type $bog_smalljs_text_code__sidebar_showed_bog_smalljs_text_5 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_text['pre_sidebar_showed'] >
+		,
+		ReturnType< $bog_smalljs_text_code['sidebar_showed'] >
+	>
+	type $bog_smalljs_text_code__lang_bog_smalljs_text_6 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_text['pre_lang'] >
+		,
+		ReturnType< $bog_smalljs_text_code['lang'] >
+	>
+	type $bog_smalljs_text_code__playground_arg_bog_smalljs_text_7 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_text['pre_playground_arg'] >
+		,
+		ReturnType< $bog_smalljs_text_code['playground_arg'] >
+	>
+	type $bog_smalljs_text_code__playground_showed_bog_smalljs_text_8 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_text['pre_playground_showed'] >
+		,
+		ReturnType< $bog_smalljs_text_code['playground_showed'] >
+	>
+	export class $bog_smalljs_text extends $mol_text {
+		pre_text( id: any): string
+		pre_themes( id: any): readonly(string)[]
+		highlight( ): string
+		uri_resolve( id: any): string
+		code_sidebar_showed( ): boolean
+		pre_sidebar_showed( ): ReturnType< $bog_smalljs_text['code_sidebar_showed'] >
+		pre_lang( id: any): string
+		pre_playground_arg( id: any): Record<string, any>
+		pre_playground_showed( id: any): boolean
+		Pre( id: any): $bog_smalljs_text_code
+	}
+	
+	type $mol_button_minor__click_bog_smalljs_text_code_1 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_text_code['run_click'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_button_minor__hint_bog_smalljs_text_code_2 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_button_minor['hint'] >
+	>
+	type $mol_button_minor__sub_bog_smalljs_text_code_3 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_button_minor['sub'] >
+	>
+	type $bog_smalljs_text_live__tree_bog_smalljs_text_code_4 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_text_code['text'] >
+		,
+		ReturnType< $bog_smalljs_text_live['tree'] >
+	>
+	type $mol_link__arg_bog_smalljs_text_code_5 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_text_code['playground_arg'] >
+		,
+		ReturnType< $mol_link['arg'] >
+	>
+	type $mol_link__hint_bog_smalljs_text_code_6 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['hint'] >
+	>
+	type $mol_link__sub_bog_smalljs_text_code_7 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	export class $bog_smalljs_text_code extends $mol_text_code {
+		run_click( next?: any ): any
+		Run_icon( ): $mol_icon_play
+		Playground_icon( ): $mol_icon_launch
+		lang( ): string
+		playground_arg( ): Record<string, any>
+		playground_showed( ): boolean
+		run( next?: boolean ): boolean
+		attr( ): ({ 
+			'bog_smalljs_run_active': ReturnType< $bog_smalljs_text_code['run'] >,
+		})  & ReturnType< $mol_text_code['attr'] >
+		Run( ): $mol_button_minor
+		Live( ): $bog_smalljs_text_live
+		Playground( ): $mol_link
+	}
+	
+	type $mol_view__sub_bog_smalljs_text_live_1 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_text_live_2 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_text_live['live_content'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	export class $bog_smalljs_text_live extends $mol_view {
+		label_text( ): string
+		Label( ): $mol_view
+		live_content( ): readonly(any)[]
+		Output( ): $mol_view
+		tree( ): string
+		sub( ): readonly(any)[]
+	}
+	
+}
+
+//# sourceMappingURL=text.view.tree.d.ts.map
+declare namespace $.$$ {
+    /**
+     * $mol_text with language-aware code blocks: view.tree gets its own highlighter,
+     * and executable snippets (view.tree) grow an "Open in Playground" button.
+     */
+    class $bog_smalljs_text extends $.$bog_smalljs_text {
+        pre_text(index: number): string;
+        pre_themes(index: number): string[];
+        uri_resolve(uri: string): string;
+        /** Fence info-string of a code block (chunk 1 of the flow token), e.g. `tree`, `typescript`. */
+        pre_lang(index: number): any;
+        /** Normalized language family used for grammar selection and playground gating. */
+        lang_kind(index: number): any;
+        pre_playground_showed(index: number): boolean;
+        pre_playground_arg(index: number): Record<string, string | null>;
+    }
+    /** Code block that picks a grammar by language and can offer an "Open in Playground" link. */
+    class $bog_smalljs_text_code extends $.$bog_smalljs_text_code {
+        render_visible_only(): boolean;
+        syntax(): any;
+        run_showed(): boolean;
+        run_click(): null;
+        sub(): ($.$mol_link | $mol_button_minor | $.$mol_list | $.$mol_button_copy | $.$bog_smalljs_text_live)[];
+    }
+    /**
+     * Render-only live embed for a doc snippet: compiles the view.tree in the browser
+     * with the playground's own $mol toolchain ($bog_smalljs_playground.build_base) and
+     * mounts the resulting component — no editor, no persistence. Compilation errors are
+     * caught and shown inline so a bad snippet never takes down the page.
+     */
+    class $bog_smalljs_text_live extends $.$bog_smalljs_text_live {
+        live_content(): readonly ($mol_view | string)[];
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+
+	type $mol_string__hint_bog_smalljs_demo_1 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_string['hint'] >
+	>
+	type $mol_string__value_bog_smalljs_demo_2 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_demo['name'] >
+		,
+		ReturnType< $mol_string['value'] >
+	>
+	type $mol_view__sub_bog_smalljs_demo_3 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	export class $bog_smalljs_demo extends $mol_view {
+		Name( ): $mol_string
+		greeting( ): string
+		Greeting( ): $mol_view
+		name( next?: string ): string
+		sub( ): readonly(any)[]
+	}
+	
+}
+
+//# sourceMappingURL=demo.view.tree.d.ts.map
+declare namespace $.$$ {
+    /**
+     * The tiny reactive component mounted live in the landing hero, right next to
+     * its own view.tree source. Typing in the field re-derives the greeting with no
+     * wiring — that automatic reactivity is the one thing the hero has to prove.
+     */
+    class $bog_smalljs_demo extends $.$bog_smalljs_demo {
+        greeting(): string;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+
+	type $mol_view__sub_bog_smalljs_landing_1 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__dom_name_bog_smalljs_landing_2 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_view['dom_name'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_3 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__dom_name_bog_smalljs_landing_4 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_view['dom_name'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_5 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_6 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_link__arg_bog_smalljs_landing_7 = $mol_type_enforce<
+		({ 
+			'section': string,
+			'page': string,
+		}) 
+		,
+		ReturnType< $mol_link['arg'] >
+	>
+	type $mol_link__sub_bog_smalljs_landing_8 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	type $mol_link__arg_bog_smalljs_landing_9 = $mol_type_enforce<
+		({ 
+			'section': string,
+			'page': string,
+		}) 
+		,
+		ReturnType< $mol_link['arg'] >
+	>
+	type $mol_link__sub_bog_smalljs_landing_10 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	type $mol_link__arg_bog_smalljs_landing_11 = $mol_type_enforce<
+		({ 
+			'section': string,
+			'page': string,
+		}) 
+		,
+		ReturnType< $mol_link['arg'] >
+	>
+	type $mol_link__sub_bog_smalljs_landing_12 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_13 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_14 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_15 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $bog_smalljs_text_code__text_bog_smalljs_landing_16 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_landing['code'] >
+		,
+		ReturnType< $bog_smalljs_text_code['text'] >
+	>
+	type $bog_smalljs_text_code__lang_bog_smalljs_landing_17 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $bog_smalljs_text_code['lang'] >
+	>
+	type $bog_smalljs_text_code__sidebar_showed_bog_smalljs_landing_18 = $mol_type_enforce<
+		boolean
+		,
+		ReturnType< $bog_smalljs_text_code['sidebar_showed'] >
+	>
+	type $bog_smalljs_text_code__playground_showed_bog_smalljs_landing_19 = $mol_type_enforce<
+		boolean
+		,
+		ReturnType< $bog_smalljs_text_code['playground_showed'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_20 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_21 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_22 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_23 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_24 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_25 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_26 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_27 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_28 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_text__text_bog_smalljs_landing_29 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_text['text'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_30 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_31 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_text__text_bog_smalljs_landing_32 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_text['text'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_33 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_34 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_text__text_bog_smalljs_landing_35 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_text['text'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_36 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_37 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_38 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_link__title_bog_smalljs_landing_39 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_link__arg_bog_smalljs_landing_40 = $mol_type_enforce<
+		({ 
+			'section': string,
+			'page': string,
+		}) 
+		,
+		ReturnType< $mol_link['arg'] >
+	>
+	type $mol_link__title_bog_smalljs_landing_41 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_link__arg_bog_smalljs_landing_42 = $mol_type_enforce<
+		({ 
+			'section': string,
+			'page': string,
+		}) 
+		,
+		ReturnType< $mol_link['arg'] >
+	>
+	type $mol_link__title_bog_smalljs_landing_43 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_link__arg_bog_smalljs_landing_44 = $mol_type_enforce<
+		({ 
+			'section': string,
+			'page': string,
+		}) 
+		,
+		ReturnType< $mol_link['arg'] >
+	>
+	type $mol_link__title_bog_smalljs_landing_45 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_link__arg_bog_smalljs_landing_46 = $mol_type_enforce<
+		({ 
+			'section': string,
+			'page': string,
+		}) 
+		,
+		ReturnType< $mol_link['arg'] >
+	>
+	type $mol_link__title_bog_smalljs_landing_47 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_link__arg_bog_smalljs_landing_48 = $mol_type_enforce<
+		({ 
+			'section': string,
+			'page': string,
+		}) 
+		,
+		ReturnType< $mol_link['arg'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_49 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_50 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_51 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_link__title_bog_smalljs_landing_52 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_link__arg_bog_smalljs_landing_53 = $mol_type_enforce<
+		({ 
+			'section': string,
+			'page': string,
+		}) 
+		,
+		ReturnType< $mol_link['arg'] >
+	>
+	type $mol_link__title_bog_smalljs_landing_54 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_link__arg_bog_smalljs_landing_55 = $mol_type_enforce<
+		({ 
+			'section': string,
+			'page': string,
+		}) 
+		,
+		ReturnType< $mol_link['arg'] >
+	>
+	type $mol_link__title_bog_smalljs_landing_56 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_link__arg_bog_smalljs_landing_57 = $mol_type_enforce<
+		({ 
+			'section': string,
+			'page': string,
+		}) 
+		,
+		ReturnType< $mol_link['arg'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_58 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_59 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_60 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_link__title_bog_smalljs_landing_61 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_link__arg_bog_smalljs_landing_62 = $mol_type_enforce<
+		({ 
+			'section': string,
+			'page': string,
+		}) 
+		,
+		ReturnType< $mol_link['arg'] >
+	>
+	type $mol_link__title_bog_smalljs_landing_63 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_link__arg_bog_smalljs_landing_64 = $mol_type_enforce<
+		({ 
+			'section': string,
+			'page': string,
+		}) 
+		,
+		ReturnType< $mol_link['arg'] >
+	>
+	type $mol_link__title_bog_smalljs_landing_65 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_link__uri_bog_smalljs_landing_66 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__target_bog_smalljs_landing_67 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['target'] >
+	>
+	type $mol_link__title_bog_smalljs_landing_68 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_link__uri_bog_smalljs_landing_69 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__target_bog_smalljs_landing_70 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['target'] >
+	>
+	type $mol_link__title_bog_smalljs_landing_71 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_link__uri_bog_smalljs_landing_72 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__target_bog_smalljs_landing_73 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['target'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_74 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_75 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_76 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_link__title_bog_smalljs_landing_77 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_link__uri_bog_smalljs_landing_78 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__target_bog_smalljs_landing_79 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['target'] >
+	>
+	type $mol_link__title_bog_smalljs_landing_80 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_link__uri_bog_smalljs_landing_81 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__target_bog_smalljs_landing_82 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['target'] >
+	>
+	type $mol_link__title_bog_smalljs_landing_83 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_link__uri_bog_smalljs_landing_84 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__target_bog_smalljs_landing_85 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['target'] >
+	>
+	type $mol_link__title_bog_smalljs_landing_86 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_link__uri_bog_smalljs_landing_87 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__target_bog_smalljs_landing_88 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['target'] >
+	>
+	type $mol_link__title_bog_smalljs_landing_89 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_link__uri_bog_smalljs_landing_90 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__target_bog_smalljs_landing_91 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['target'] >
+	>
+	type $mol_link__title_bog_smalljs_landing_92 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_link__uri_bog_smalljs_landing_93 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__target_bog_smalljs_landing_94 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['target'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_95 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_96 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_97 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_98 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_99 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_100 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_101 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	export class $bog_smalljs_landing extends $mol_view {
+		Hero_eyebrow_text( ): string
+		Hero_eyebrow( ): $mol_view
+		Hero_title_pre( ): string
+		Hero_title_accent_text( ): string
+		Hero_title_accent( ): $mol_view
+		Hero_title_post( ): string
+		Hero_title( ): $mol_view
+		Hero_subtitle_text( ): string
+		Hero_subtitle( ): $mol_view
+		Hero_cta_start_label( ): string
+		Hero_cta_start_icon( ): $mol_icon_arrow_right
+		Hero_cta_start( ): $mol_link
+		Hero_cta_play_label( ): string
+		Hero_cta_play_icon( ): $mol_icon_open_in_new
+		Hero_cta_play( ): $mol_link
+		Hero_cta_why_label( ): string
+		Hero_cta_why_icon( ): $mol_icon_arrow_right
+		Hero_cta_why( ): $mol_link
+		Hero_actions( ): $mol_view
+		Hero_head( ): $mol_view
+		Sign_code_label_text( ): string
+		Sign_code_label( ): $mol_view
+		code( ): string
+		Sign_code_view( ): $bog_smalljs_text_code
+		Sign_code( ): $mol_view
+		Sign_arrow_text( ): string
+		Sign_arrow( ): $mol_view
+		Sign_live_label_text( ): string
+		Sign_live_label( ): $mol_view
+		Sign_demo( ): $bog_smalljs_demo
+		Sign_live( ): $mol_view
+		Sign_panel( ): $mol_view
+		Sign_caption_text( ): string
+		Sign_caption( ): $mol_view
+		Signature( ): $mol_view
+		Hero( ): $mol_view
+		Feature1_title_text( ): string
+		Feature1_title( ): $mol_view
+		Feature1_text( ): $mol_text
+		Feature1( ): $mol_view
+		Feature2_title_text( ): string
+		Feature2_title( ): $mol_view
+		Feature2_text( ): $mol_text
+		Feature2( ): $mol_view
+		Feature3_title_text( ): string
+		Feature3_title( ): $mol_view
+		Feature3_text( ): $mol_text
+		Feature3( ): $mol_view
+		Features( ): $mol_view
+		Footer_sect_docs_title_text( ): string
+		Footer_sect_docs_title( ): $mol_view
+		Footer_link_quickstart( ): $mol_link
+		Footer_link_guide( ): $mol_link
+		Footer_link_tutorial( ): $mol_link
+		Footer_link_examples( ): $mol_link
+		Footer_link_api( ): $mol_link
+		Footer_sect_docs( ): $mol_view
+		Footer_col1( ): $mol_view
+		Footer_sect_about_title_text( ): string
+		Footer_sect_about_title( ): $mol_view
+		Footer_link_faq( ): $mol_link
+		Footer_link_team( ): $mol_link
+		Footer_link_releases( ): $mol_link
+		Footer_sect_about( ): $mol_view
+		Footer_col2( ): $mol_view
+		Footer_sect_resources_title_text( ): string
+		Footer_sect_resources_title( ): $mol_view
+		Footer_link_playground( ): $mol_link
+		Footer_link_course( ): $mol_link
+		Footer_link_ui( ): $mol_link
+		Footer_link_telegram( ): $mol_link
+		Footer_link_dev( ): $mol_link
+		Footer_sect_resources( ): $mol_view
+		Footer_col3( ): $mol_view
+		Footer_sect_libs_title_text( ): string
+		Footer_sect_libs_title( ): $mol_view
+		Footer_link_wire( ): $mol_link
+		Footer_link_fetch( ): $mol_link
+		Footer_link_compare( ): $mol_link
+		Footer_link_router( ): $mol_link
+		Footer_link_crowd( ): $mol_link
+		Footer_link_baza( ): $mol_link
+		Footer_sect_libs( ): $mol_view
+		Footer_col4( ): $mol_view
+		Footer_cols( ): $mol_view
+		Footer_copy_line1_text( ): string
+		Footer_copy_line1( ): $mol_view
+		Footer_copy_line2_text( ): string
+		Footer_copy_line2( ): $mol_view
+		Footer_copy( ): $mol_view
+		Footer( ): $mol_view
+		sub( ): readonly(any)[]
+	}
+	
+}
+
+//# sourceMappingURL=landing.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $bog_smalljs_landing extends $.$bog_smalljs_landing {
+        /**
+         * Source shown in the hero, left panel. It is the same shape as the live
+         * component mounted to the right ($bog_smalljs_demo): a two-way-bound field
+         * and a derived greeting — the whole thing, no wiring.
+         *
+         * The leading dollar of each token is spliced in from `d` so MAM's dependency
+         * -graph regex doesn't read the display-only component name as a (non-existent)
+         * module. Tabs, because view.tree is tab-indented and the grammar highlighter
+         * expects it.
+         */
+        code(): string;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+
+	export class $mol_icon_menu extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=menu.view.tree.d.ts.map
+declare namespace $ {
+
+	export class $mol_icon_pencil extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=pencil.view.tree.d.ts.map
+declare namespace $ {
+
+	export class $mol_icon_thumb_up extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=up.view.tree.d.ts.map
+declare namespace $ {
+
+	export class $mol_icon_thumb_down extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=down.view.tree.d.ts.map
+declare namespace $ {
+
+	type $mol_view__sub_bog_smalljs_docs_1 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_button_minor__click_bog_smalljs_docs_2 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_docs['menu_toggle'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_button_minor__sub_bog_smalljs_docs_3 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_button_minor['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_docs_4 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_docs['sidebar_groups'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $bog_smalljs_text__text_bog_smalljs_docs_5 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_docs['page_md'] >
+		,
+		ReturnType< $bog_smalljs_text['text'] >
+	>
+	type $mol_link__uri_bog_smalljs_docs_6 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_docs['edit_uri'] >
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__sub_bog_smalljs_docs_7 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_docs_8 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_docs['feedback_content'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_docs_9 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_docs['nav_links'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_docs_10 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_docs_11 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_docs_12 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_docs['toc_links'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_docs_13 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_docs_14 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_docs_15 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_docs_16 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_docs_17 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_docs_18 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_docs['group_content'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_docs_19 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_link__arg_bog_smalljs_docs_20 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_docs['link_arg'] >
+		,
+		ReturnType< $mol_link['arg'] >
+	>
+	type $mol_link__event_click_bog_smalljs_docs_21 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_docs['nav_click'] >
+		,
+		ReturnType< $mol_link['event_click'] >
+	>
+	type $mol_link__sub_bog_smalljs_docs_22 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	type $mol_link__arg_bog_smalljs_docs_23 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_docs['toc_arg'] >
+		,
+		ReturnType< $mol_link['arg'] >
+	>
+	type $mol_link__sub_bog_smalljs_docs_24 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_docs_25 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_button_minor__click_bog_smalljs_docs_26 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_docs['feedback_yes'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_button_minor__sub_bog_smalljs_docs_27 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_button_minor['sub'] >
+	>
+	type $mol_button_minor__click_bog_smalljs_docs_28 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_docs['feedback_no'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_button_minor__sub_bog_smalljs_docs_29 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_button_minor['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_docs_30 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_link__arg_bog_smalljs_docs_31 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_docs['prev_arg'] >
+		,
+		ReturnType< $mol_link['arg'] >
+	>
+	type $mol_link__sub_bog_smalljs_docs_32 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	type $mol_link__arg_bog_smalljs_docs_33 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_docs['next_arg'] >
+		,
+		ReturnType< $mol_link['arg'] >
+	>
+	type $mol_link__sub_bog_smalljs_docs_34 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	export class $bog_smalljs_docs extends $mol_view {
+		menu_toggle( next?: any ): any
+		Menu_icon( ): $mol_icon_menu
+		Menu_label( ): $mol_view
+		Menu_toggle( ): $mol_button_minor
+		sidebar_groups( ): readonly(any)[]
+		Sidebar( ): $mol_view
+		Body( ): $bog_smalljs_text
+		Edit_icon( ): $mol_icon_pencil
+		Edit_label( ): string
+		Edit( ): $mol_link
+		feedback_content( ): readonly(any)[]
+		Feedback( ): $mol_view
+		nav_links( ): readonly(any)[]
+		Nav( ): $mol_view
+		Main( ): $mol_view
+		toc_title_text( ): string
+		Toc_title( ): $mol_view
+		toc_links( ): readonly(any)[]
+		Toc_list( ): $mol_view
+		Toc( ): $mol_view
+		group_content( id: any): readonly(any)[]
+		group_title_text( id: any): string
+		link_arg( id: any): Record<string, any>
+		nav_click( next?: any ): any
+		link_title( id: any): string
+		toc_arg( id: any): Record<string, any>
+		toc_text( id: any): string
+		feedback_prompt_text( ): string
+		feedback_yes( next?: any ): any
+		Feedback_yes_icon( ): $mol_icon_thumb_up
+		feedback_yes_label( ): string
+		feedback_no( next?: any ): any
+		Feedback_no_icon( ): $mol_icon_thumb_down
+		feedback_no_label( ): string
+		feedback_thanks_text( ): string
+		prev_arg( ): Record<string, any>
+		prev_hint_text( ): string
+		Prev_hint( ): $mol_view
+		prev_title( ): string
+		Prev_title( ): $mol_view
+		next_arg( ): Record<string, any>
+		next_hint_text( ): string
+		Next_hint( ): $mol_view
+		next_title( ): string
+		Next_title( ): $mol_view
+		page( ): string
+		page_md( ): string
+		title_text( ): string
+		edit_uri( ): string
+		sidebar_open( next?: boolean ): boolean
+		attr( ): ({ 
+			'bog_smalljs_sidebar_open': ReturnType< $bog_smalljs_docs['sidebar_open'] >,
+		}) 
+		sub( ): readonly(any)[]
+		Group( id: any): $mol_view
+		Group_title( id: any): $mol_view
+		Link( id: any): $mol_link
+		Toc_link( id: any): $mol_link
+		Feedback_prompt( ): $mol_view
+		Feedback_yes( ): $mol_button_minor
+		Feedback_no( ): $mol_button_minor
+		Feedback_thanks( ): $mol_view
+		Prev( ): $mol_link
+		Next( ): $mol_link
+	}
+	
+}
+
+//# sourceMappingURL=docs.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $bog_smalljs_docs extends $.$bog_smalljs_docs {
+        /** Current page slug, mirrored to the `page` URL argument. */
+        page(next?: string): string;
+        current(): $bog_smalljs_content_page | null;
+        /** Active UI language; reading it makes the page reactive to switches. */
+        lang(): string;
+        page_md(): string;
+        title_text(): string;
+        edit_uri(): string;
+        menu_toggle(): void;
+        nav_click(): null;
+        feedback_value(next?: string): string;
+        feedback_yes(): null;
+        feedback_no(): null;
+        feedback_content(): readonly $mol_view[];
+        groups_data(): readonly $bog_smalljs_content_group[];
+        sidebar_groups(): $mol_view[];
+        group_title_text(index: number): string;
+        group_content(index: number): readonly $mol_view[];
+        link_title(slug: string): string;
+        link_arg(slug: string): {
+            section: string;
+            page: string;
+        };
+        toc_data(): {
+            level: number;
+            text: string;
+        }[];
+        toc_links(): $.$mol_link[];
+        toc_text(index: number): string;
+        /**
+         * Reuse $mol_text's own anchor mechanism: each heading renders a link
+         * whose arg key is the text component's `param`. Setting that arg makes
+         * the matching header `current`, and $mol_text auto-scrolls to it.
+         */
+        toc_arg(index: number): {
+            [x: string]: string;
+        };
+        order(): readonly string[];
+        nav_index(): number;
+        prev_slug(): string;
+        next_slug(): string;
+        prev_arg(): {
+            section: string;
+            page: string;
+        };
+        next_arg(): {
+            section: string;
+            page: string;
+        };
+        prev_title(): string;
+        next_title(): string;
+        nav_links(): $mol_view[];
     }
 }
 
@@ -10369,6 +10630,15 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    /** Node-side stub. Real impl in `router.web.ts`. */
+    class $bog_builderui_router extends $mol_state_arg {
+        static mount: string;
+        static at(mount: string): typeof $bog_builderui_router;
+        static activate(mount?: string): typeof $bog_builderui_router;
+    }
+}
+
+declare namespace $ {
     interface $bog_meta_alternate {
         /** BCP-47-ish language code, or 'x-default'. */
         lang: string;
@@ -10392,120 +10662,6 @@ declare namespace $ {
         meta?(): $bog_meta_data;
     }): Record<string, any>;
     function $bog_meta_merge(base: $bog_meta_data, override: $bog_meta_data): $bog_meta_data;
-}
-
-declare namespace $ {
-    type $mol_server_middleware = (req: typeof $node.express.request, res: typeof $node.express.response, next: (error?: unknown) => void) => void | Promise<void>;
-    class $mol_server extends $mol_object {
-        express(): import("express-serve-static-core").Express;
-        internal_ip(): string;
-        http(): import("node:http").Server<typeof import("node:http").IncomingMessage, typeof import("node:http").ServerResponse>;
-        connections: Set<import("ws").default>;
-        socket(): import("ws").Server<typeof import("ws").default, typeof import("node:http").IncomingMessage>;
-        expressHandlers(): readonly $mol_server_middleware[];
-        expressCompressor(): $mol_server_middleware;
-        expressCors(): $mol_server_middleware;
-        expressBodier(): import("connect").NextHandleFunction;
-        expressFiler(): import("serve-static").RequestHandler<import("express").Response<any, Record<string, any>>>;
-        expressDirector(): import("express").Handler;
-        expressIndex(): (req: typeof $node.express.request, res: typeof $node.express.response, next: () => void) => void;
-        expressGenerator(): (req: typeof $node.express.request, res: typeof $node.express.response, next: () => void) => void;
-        bodyLimit(): string;
-        cacheTime(): number;
-        port(): number;
-        rootPublic(): string;
-    }
-}
-
-declare namespace $ {
-    class $bog_browser extends $mol_object2 {
-        static window(): {
-            process: () => import("node:child_process").ChildProcess | null;
-            createBrowserContext: (options?: import("puppeteer-core").BrowserContextOptions | undefined) => import("puppeteer-core").BrowserContext;
-            browserContexts: () => import("puppeteer-core").BrowserContext[];
-            defaultBrowserContext: () => import("puppeteer-core").BrowserContext;
-            wsEndpoint: () => string;
-            newPage: (options?: import("puppeteer-core").CreatePageOptions | undefined) => import("puppeteer-core").Page;
-            getWindowBounds: (windowId: string) => import("puppeteer-core").WindowBounds;
-            setWindowBounds: (windowId: string, windowBounds: import("puppeteer-core").WindowBounds) => void;
-            targets: () => import("puppeteer-core").Target[];
-            target: () => import("puppeteer-core").Target;
-            waitForTarget: (predicate: (x: import("puppeteer-core").Target) => boolean | Promise<boolean>, options?: import("puppeteer-core").WaitForTargetOptions | undefined) => import("puppeteer-core").Target;
-            pages: (includeAll?: boolean | undefined) => import("puppeteer-core").Page[];
-            version: () => string;
-            userAgent: () => string;
-            close: () => void;
-            disconnect: () => void;
-            cookies: () => import("puppeteer-core").Cookie[];
-            setCookie: (...args: import("puppeteer-core").CookieData[]) => void;
-            deleteCookie: (...args: import("puppeteer-core").Cookie[]) => void;
-            deleteMatchingCookies: (...args: import("puppeteer-core").DeleteCookiesRequest[]) => void;
-            setPermission: (origin: string, ...permissions: {
-                permission: import("puppeteer-core").PermissionDescriptor;
-                state: import("puppeteer-core").PermissionState;
-            }[]) => void;
-            installExtension: (path: string, options?: import("puppeteer-core").ExtensionInstallOptions | undefined) => string;
-            uninstallExtension: (id: string) => void;
-            screens: () => import("puppeteer-core").ScreenInfo[];
-            addScreen: (params: import("puppeteer-core").AddScreenParams) => import("puppeteer-core").ScreenInfo;
-            removeScreen: (screenId: string) => void;
-            readonly connected: boolean;
-            readonly debugInfo: import("puppeteer-core").DebugInfo;
-            extensions: () => Map<string, import("puppeteer-core").Extension>;
-            on: (type: keyof import("puppeteer-core").BrowserEvents, handler: import("puppeteer-core").Handler<unknown>) => import("puppeteer-core").Browser;
-            off: (type: keyof import("puppeteer-core").BrowserEvents, handler?: import("puppeteer-core").Handler<unknown> | undefined) => import("puppeteer-core").Browser;
-            emit: (type: keyof import("puppeteer-core").BrowserEvents, event: unknown) => boolean;
-            once: (type: keyof import("puppeteer-core").BrowserEvents, handler: import("puppeteer-core").Handler<unknown>) => import("puppeteer-core").Browser;
-            listenerCount: (type: keyof import("puppeteer-core").BrowserEvents) => number;
-            removeAllListeners: (type?: keyof import("puppeteer-core").BrowserEvents | undefined) => import("puppeteer-core").Browser;
-        };
-        static strip_scripts(page: InstanceType<typeof $node.puppeteer.Page>): Promise<void[]>;
-        static html(uri: string): string;
-    }
-}
-
-declare namespace $ {
-    function $bog_meta_collect(html: string): $bog_meta_data;
-    function $bog_meta_inject(html: string, canonical_url?: string): string;
-}
-
-declare namespace $ {
-    class $bog_seo extends $mol_server {
-        port(): number;
-        upstream(): string;
-        cache_enabled(): boolean;
-        cache_ttl(): number;
-        warmup_enabled(): boolean;
-        max_depth(): number;
-        max_pages(): number;
-        cache: Map<string, {
-            html: string;
-            timestamp: number;
-        }>;
-        discovered: Set<string>;
-        warmup_done: boolean;
-        is_crawler(ua: string): boolean;
-        render(url: string): string;
-        canonical_for(url: string): string | undefined;
-        cached_render(url: string): {
-            html: string;
-            from_cache: boolean;
-        };
-        ensure_warmup(): void;
-        crawl_all(): void;
-        sync_middleware(mdl: (req: typeof $node.express.request, res: typeof $node.express.response) => void | boolean): (req: typeof $node.express.request, res: typeof $node.express.response, next: (err?: unknown) => any) => Promise<void>;
-        expressHandlers(): readonly $mol_server_middleware[];
-        expressSitemap(): $mol_server_middleware;
-        expressRobots(): $mol_server_middleware;
-        expressLlms(): $mol_server_middleware;
-        expressGenerator(): (req: typeof $node.express.request, res: typeof $node.express.response, next: (err?: unknown) => any) => Promise<void>;
-        handle_request(req: typeof $node.express.request, res: typeof $node.express.response): boolean;
-        dump_to(output_dir: string): void;
-        expressProxy(): $mol_server_middleware;
-    }
-}
-
-declare namespace $ {
 }
 
 declare namespace $ {
@@ -10556,6 +10712,7 @@ declare namespace $ {
 		dir( ): string
 		hotkeys( ): any
 		locale_sync( ): any
+		lang_sync( ): any
 		Theme( ): $bog_theme_auto
 		Top( ): $bog_smalljs_top
 		body_content( ): readonly(any)[]
@@ -10592,10 +10749,13 @@ declare namespace $.$$ {
         section(next?: string): string;
         /** Ordered arg pairs describing the current screen ($mol hash-router state). */
         route_args(): [string, string][];
-        /** Serialize arg pairs into a $mol `#!a=b/c=d` hash (empty when no args). */
-        route_hash(extra?: [string, string][]): string;
+        /** Serialize arg pairs into a router pathname segment (`section=docs/page=views`),
+         *  matching exactly what $bog_builderui_router.make_link writes to the URL on
+         *  the deploy. Empty (home) → '', so `prod_base + route_path()` stays the bare
+         *  site root. */
+        route_path(extra?: [string, string][]): string;
         /** Per-page, per-language SEO/social metadata. Read by $bog_meta_attr →
-         *  `data-bog-meta` on the root, which the $bog_seo prerenderer injects into
+         *  `data-bog-meta` on the root, which the SEO prerenderer injects into
          *  <head> as <title>/<meta>/<link> for bots and social unfurls. */
         meta(): $bog_meta_data;
         attr(): {
@@ -10612,6 +10772,10 @@ declare namespace $.$$ {
          *  localized links (and hreflang alternates) select the right language. */
         locale_synced: boolean;
         locale_sync(): null;
+        /** Keep <html lang> in step with the active UI language (a11y: screen readers
+         *  announce the right language; SEO: the shell no longer hard-codes one locale).
+         *  The static shell ships lang="en"; this reactively corrects it on switch. */
+        lang_sync(): null;
         open_search(): null;
         search_toggle(): null;
         hotkeys(): null;
