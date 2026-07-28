@@ -122,6 +122,15 @@ namespace $.$$ {
 			return null
 		}
 
+		/** Keep <html lang> in step with the active UI language (a11y: screen readers
+		 *  announce the right language; SEO: the shell no longer hard-codes one locale).
+		 *  The static shell ships lang="en"; this reactively corrects it on switch. */
+		@ $mol_mem
+		lang_sync() {
+			document.documentElement.lang = hreflang_code( this.$.$mol_locale.lang() )
+			return null
+		}
+
 		@ $mol_action
 		open_search() {
 			this.search_open( true )

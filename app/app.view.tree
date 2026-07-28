@@ -16,6 +16,7 @@ $bog_smalljs_app $bog_builderui_div
 	auto /
 		<= hotkeys null
 		<= locale_sync null
+		<= lang_sync null
 	sub /
 		<= Top $bog_smalljs_top
 			search_click? <=> search_toggle?
