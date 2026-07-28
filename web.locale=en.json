@@ -1,6 +1,10 @@
 {
 	"$bog_smalljs_course_next_label": "Next →",
 	"$bog_smalljs_course_prev_label": "← Prev",
+	"$bog_smalljs_course_solution_hide": "Hide solution",
+	"$bog_smalljs_course_solution_show": "Show solution",
+	"$bog_smalljs_course_status_ok": "✓ Looks good — move on when you are ready.",
+	"$bog_smalljs_course_status_todo": "Edit the code on the right to complete this step.",
 	"$bog_smalljs_demo_Name_hint": "Type a name",
 	"$bog_smalljs_docs_Edit_label": "Edit this page on GitHub",
 	"$bog_smalljs_docs_feedback_no_label": "No",

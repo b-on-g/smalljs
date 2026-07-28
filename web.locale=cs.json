@@ -1,6 +1,10 @@
 {
 	"$bog_smalljs_course_next_label": "Další →",
 	"$bog_smalljs_course_prev_label": "← Předchozí",
+	"$bog_smalljs_course_solution_hide": "Skrýt řešení",
+	"$bog_smalljs_course_solution_show": "Zobrazit řešení",
+	"$bog_smalljs_course_status_ok": "✓ Výborně — pokračujte, až budete připraveni.",
+	"$bog_smalljs_course_status_todo": "Upravte kód vpravo a dokončete tento krok.",
 	"$bog_smalljs_docs_Edit_label": "Upravit tuto stránku na GitHubu",
 	"$bog_smalljs_docs_next_hint_text": "Další",
 	"$bog_smalljs_docs_prev_hint_text": "Předchozí",

@@ -1,6 +1,10 @@
 {
 	"$bog_smalljs_course_next_label": "Далі →",
 	"$bog_smalljs_course_prev_label": "← Назад",
+	"$bog_smalljs_course_solution_hide": "Сховати розв'язок",
+	"$bog_smalljs_course_solution_show": "Показати розв'язок",
+	"$bog_smalljs_course_status_ok": "✓ Чудово — рухайтесь далі, коли будете готові.",
+	"$bog_smalljs_course_status_todo": "Відредагуйте код праворуч, щоб пройти цей крок.",
 	"$bog_smalljs_docs_Edit_label": "Редагувати цю сторінку на GitHub",
 	"$bog_smalljs_docs_next_hint_text": "Далі",
 	"$bog_smalljs_docs_prev_hint_text": "Назад",

@@ -7599,6 +7599,8 @@ declare namespace $ {
      */
     type $bog_smalljs_content_translation = {
         title: string;
+        /** First prose paragraph of the translated page, for meta/OG descriptions. */
+        summary?: string;
         md: string;
     };
     type $bog_smalljs_content_page = {
@@ -7631,8 +7633,9 @@ declare namespace $ {
         static page_md(slug: string, lang?: string): string | null;
         /** Localized title for a page, falling back to EN. */
         static page_title(slug: string, lang?: string): string | null;
-        /** One-line summary for a page (language-neutral, from the manifest). */
-        static page_summary(slug: string): string | null;
+        /** Summary for a page in the given language: the translated first
+         *  paragraph when present, else the EN manifest one-liner. */
+        static page_summary(slug: string, lang?: string): string | null;
         static default_slug(): string;
     }
 }
@@ -9805,7 +9808,11 @@ declare namespace $ {
 		editor_store_key( id: any): string
 		lesson_md( ): string
 		status_text( ): string
+		status_ok( ): string
+		status_todo( ): string
 		solution_label( ): string
+		solution_show( ): string
+		solution_hide( ): string
 		solution_md( ): string
 		sub( ): readonly(any)[]
 		Lesson_link( id: any): $mol_link
@@ -9835,12 +9842,12 @@ declare namespace $.$$ {
         editor_seed_ts(id: string): string;
         editor_store_key(id: string): string;
         toggle_solution(): null;
-        solution_label(): "Hide solution" | "Show solution";
+        solution_label(): string;
         solution_md(): string;
         lesson_source(lesson: $bog_smalljs_lesson): string;
         passed(lesson: $bog_smalljs_lesson): boolean;
         done(id: string): boolean;
-        status_text(): "" | "✓ Looks good — move on when you are ready." | "Edit the code on the right to complete this step.";
+        status_text(): string;
         nav_index(): number;
         prev_arg(): {
             section: string;

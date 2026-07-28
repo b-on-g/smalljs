@@ -1658,7 +1658,11 @@ $bog_smalljs_course $mol_view
 	editor_store_key* \
 	lesson_md \
 	status_text \
+	status_ok @ \✓ Looks good — move on when you are ready.
+	status_todo @ \Edit the code on the right to complete this step.
 	solution_label \
+	solution_show @ \Show solution
+	solution_hide @ \Hide solution
 	solution_md \
 	editor_host /
 	lesson_links /
