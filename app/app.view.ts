@@ -80,7 +80,7 @@ namespace $.$$ {
 					const slug = this.$.$mol_state_arg.value( 'page' ) || $bog_smalljs_content.default_slug()
 					const page_title = $bog_smalljs_content.page_title( slug, lang ) ?? slug
 					title = `${ page_title } — ${ site_name }`
-					description = $bog_smalljs_content.page_summary( slug ) ?? default_description
+					description = $bog_smalljs_content.page_summary( slug, lang ) ?? default_description
 					break
 				}
 				case 'playground':

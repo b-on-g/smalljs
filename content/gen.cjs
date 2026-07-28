@@ -184,6 +184,42 @@ function first_heading( md ) {
 	return m ? m[ 1 ] : null
 }
 
+// First prose paragraph of a markdown doc, stripped of markup and truncated —
+// used as a per-language meta/OG description. Skips headings, code fences,
+// blockquotes, lists, tables, images and HTML to land on real sentences.
+function first_paragraph( md, max = 160 ) {
+	const lines = md.split( /\r?\n/ )
+	let fence = false
+	const buf = []
+	for ( const raw of lines ) {
+		const line = raw.trim()
+		if ( /^(```|~~~)/.test( line ) ) { fence = !fence; continue }
+		if ( fence ) continue
+		if ( !line ) { if ( buf.length ) break; else continue }
+		if ( /^(#|>|\||<|!|-|\*|\+|\d+\.)\s?/.test( line ) ) {
+			if ( buf.length ) break; else continue
+		}
+		buf.push( line )
+	}
+	let text = buf.join( ' ' )
+	text = text
+		.replace( /!\[[^\]]*\]\([^)]*\)/g, '' )               // images
+		.replace( /\[([^\]]+)\]\([^)]*\)/g, '$1' )            // links -> text
+		.replace( /`([^`]+)`/g, '$1' )                        // inline code
+		.replace( /\*\*([^*]+)\*\*/g, '$1' )                  // bold
+		.replace( /__([^_]+)__/g, '$1' )                      // bold (underscore)
+		.replace( /\*([^*]+)\*/g, '$1' )                      // italic
+		.replace( /~~([^~]+)~~/g, '$1' )                      // strikethrough
+		// italic `_x_` only at word boundaries — keeps identifiers like $mol_view
+		.replace( /(^|[\s(])_([^_]+)_(?=[\s).,;:!?]|$)/g, '$1$2' )
+		.replace( /\s+/g, ' ' )
+		.trim()
+	if ( text.length <= max ) return text
+	const cut = text.slice( 0, max )
+	const at = cut.lastIndexOf( ' ' )
+	return ( at > max * 0.6 ? cut.slice( 0, at ) : cut ).trimEnd() + '…'
+}
+
 function translations( slug ) {
 	const tr = {}
 	for ( const lang of langs ) {
@@ -192,13 +228,13 @@ function translations( slug ) {
 		if ( api_meta[ slug ] ) {
 			const a = api_meta[ slug ]
 			const md = api_markdown( a.klass, a.src, a.parsed, lang )
-			tr[ lang ] = { title: first_heading( md ) ?? titles[ slug ], md }
+			tr[ lang ] = { title: first_heading( md ) ?? titles[ slug ], summary: first_paragraph( md ), md }
 			continue
 		}
 		const file = path.join( root, lang, 'docs', `${ slug }.md` )
 		if ( !fs.existsSync( file ) ) continue
 		const md = fs.readFileSync( file, 'utf8' )
-		tr[ lang ] = { title: first_heading( md ) ?? titles[ slug ], md }
+		tr[ lang ] = { title: first_heading( md ) ?? titles[ slug ], summary: first_paragraph( md ), md }
 	}
 	return tr
 }
@@ -214,6 +250,7 @@ const page_entries = slugs.map( slug => {
 	const tr_entries = tr_keys.map( lang => (
 		`\t\t\t\t\t\t${ lang }: {\n` +
 		`\t\t\t\t\t\t\ttitle: ${ JSON.stringify( tr[ lang ].title ) },\n` +
+		( tr[ lang ].summary ? `\t\t\t\t\t\t\tsummary: ${ JSON.stringify( tr[ lang ].summary ) },\n` : '' ) +
 		`\t\t\t\t\t\t\tmd: ${ embed( tr[ lang ].md ) },\n` +
 		`\t\t\t\t\t\t},`
 	) ).join( '\n' )
@@ -240,6 +277,8 @@ const out = `namespace $ {
 
 	export type $bog_smalljs_content_translation = {
 		title: string
+		/** First prose paragraph of the translated page, for meta/OG descriptions. */
+		summary?: string
 		md: string
 	}
 
@@ -303,11 +342,12 @@ ${ page_entries }
 			return page.tr?.[ lang ]?.title ?? page.title
 		}
 
-		/** One-line summary for a page (language-neutral, from the manifest). */
-		static page_summary( slug: string ): string | null {
+		/** Summary for a page in the given language: the translated first
+		 *  paragraph when present, else the EN manifest one-liner. */
+		static page_summary( slug: string, lang = 'en' ): string | null {
 			const page = this.pages()[ slug ]
 			if( !page ) return null
-			return page.summary || null
+			return page.tr?.[ lang ]?.summary ?? page.summary ?? null
 		}
 
 		static default_slug(): string {
