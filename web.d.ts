@@ -9645,6 +9645,10 @@ declare namespace $ {
      * array there and re-run the generator. Code snippets are embedded escaped so
      * their $mol_* examples are not mistaken for module dependencies.
      */
+    type $bog_smalljs_lesson_translation = {
+        title: string;
+        md: string;
+    };
     type $bog_smalljs_lesson = {
         id: string;
         title: string;
@@ -9656,12 +9660,18 @@ declare namespace $ {
         start_ts: string;
         solution_tree: string;
         solution_ts: string;
+        /** Per-language prose overrides (title + md), keyed by lang. EN is above. */
+        tr?: Readonly<Record<string, $bog_smalljs_lesson_translation>>;
     };
     class $bog_smalljs_lessons extends $mol_object2 {
         static all(): readonly $bog_smalljs_lesson[];
         static ids(): readonly string[];
         static map(): Readonly<Record<string, $bog_smalljs_lesson>>;
         static lesson(id: string): $bog_smalljs_lesson | null;
+        /** Localized title for a lesson, falling back to EN. */
+        static lesson_title(id: string, lang?: string): string | null;
+        /** Localized instruction markdown for a lesson, falling back to EN. */
+        static lesson_md(id: string, lang?: string): string | null;
         static first(): string;
     }
 }
@@ -9799,6 +9809,8 @@ declare namespace $.$$ {
     class $bog_smalljs_course extends $.$bog_smalljs_course {
         lesson(next?: string): string;
         current(): $bog_smalljs_lesson | null;
+        /** Active UI language; reading it makes the course reactive to switches. */
+        lang(): string;
         lesson_md(): string;
         ids(): readonly string[];
         lesson_links(): $.$mol_link[];

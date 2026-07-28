@@ -21399,6 +21399,64 @@ var $;
                     start_ts: "",
                     solution_tree: "\u0024my_demo \u0024mol_view\n\tsub /\n\t\t<= Greeting \u0024mol_view\n\t\t\tsub / <= greeting \\Hello, \u0024mol!\n",
                     solution_ts: "",
+                    tr: {
+                        zh: {
+                            title: "你好，世界",
+                            md: "# 你好，世界\n\n欢迎！左侧是一个实时的 \u0024mol 编辑器——**view.tree** 描述结构，结果渲染在右侧。\n\n现在这个组件显示的是占位文本。修改 `\\` 后面的文字，看预览即时更新。\n\n**目标：** 让问候语向 \u0024mol 打招呼。\n",
+                        },
+                        zh_hk: {
+                            title: "你好，世界",
+                            md: "# 你好，世界\n\n歡迎！左邊是一個即時的 \u0024mol 編輯器——**view.tree** 描述結構，結果會渲染在右邊。\n\n現在這個元件顯示的是佔位文字。修改 `\\` 後面的文字，看預覽即時更新。\n\n**目標：** 讓問候語向 \u0024mol 打招呼。\n",
+                        },
+                        ja: {
+                            title: "ハローワールド",
+                            md: "# ハローワールド\n\nようこそ！左側はライブの \u0024mol エディタです——**view.tree** が構造を記述し、結果が右側にレンダリングされます。\n\nいまコンポーネントはプレースホルダを表示しています。`\\` の後ろのテキストを変えて、プレビューが即座に更新されるのを見てください。\n\n**ゴール:** あいさつが \u0024mol に hello と言うようにしましょう。\n",
+                        },
+                        ko: {
+                            title: "헬로 월드",
+                            md: "# 헬로 월드\n\n환영합니다! 왼쪽은 실시간 \u0024mol 에디터입니다——**view.tree** 가 구조를 기술하고 결과가 오른쪽에 렌더링됩니다.\n\n지금 컴포넌트는 자리표시 텍스트를 보여 줍니다. `\\` 뒤의 텍스트를 바꾸고 미리보기가 즉시 갱신되는 것을 확인하세요.\n\n**목표:** 인사말이 \u0024mol 에게 인사하도록 만드세요.\n",
+                        },
+                        fr: {
+                            title: "Hello World",
+                            md: "# Hello World\n\nBienvenue ! À gauche se trouve un éditeur \u0024mol en direct — **view.tree** décrit la structure et le résultat s'affiche à droite.\n\nPour l'instant, le composant affiche un texte provisoire. Modifiez le texte après le `\\` et regardez l'aperçu se mettre à jour instantanément.\n\n**Objectif :** faire dire bonjour à \u0024mol par le message d'accueil.\n",
+                        },
+                        de: {
+                            title: "Hallo Welt",
+                            md: "# Hallo Welt\n\nWillkommen! Links ist ein Live-\u0024mol-Editor — **view.tree** beschreibt die Struktur, und das Ergebnis wird rechts gerendert.\n\nIm Moment zeigt die Komponente einen Platzhalter. Ändere den Text nach dem `\\` und sieh zu, wie sich die Vorschau sofort aktualisiert.\n\n**Ziel:** Lass die Begrüßung \u0024mol Hallo sagen.\n",
+                        },
+                        pt: {
+                            title: "Olá, Mundo",
+                            md: "# Olá, Mundo\n\nBem-vindo! À esquerda há um editor \u0024mol ao vivo — **view.tree** descreve a estrutura e o resultado é renderizado à direita.\n\nNo momento, o componente mostra um texto provisório. Altere o texto depois do `\\` e veja a prévia se atualizar instantaneamente.\n\n**Objetivo:** fazer a saudação dizer olá para o \u0024mol.\n",
+                        },
+                        it: {
+                            title: "Ciao Mondo",
+                            md: "# Ciao Mondo\n\nBenvenuto! A sinistra c'è un editor \u0024mol dal vivo — **view.tree** descrive la struttura e il risultato viene reso a destra.\n\nIn questo momento il componente mostra un segnaposto. Cambia il testo dopo il `\\` e guarda l'anteprima aggiornarsi all'istante.\n\n**Obiettivo:** far sì che il saluto dica ciao a \u0024mol.\n",
+                        },
+                        ru: {
+                            title: "Привет, мир",
+                            md: "# Привет, мир\n\nДобро пожаловать! Слева — живой редактор \u0024mol: **view.tree** описывает структуру, а результат отрисовывается справа.\n\nСейчас компонент показывает заглушку. Измените текст после `\\` и посмотрите, как предпросмотр обновляется мгновенно.\n\n**Цель:** сделать так, чтобы приветствие здоровалось с \u0024mol.\n",
+                        },
+                        uk: {
+                            title: "Привіт, світе",
+                            md: "# Привіт, світе\n\nЛаскаво просимо! Ліворуч — живий редактор \u0024mol: **view.tree** описує структуру, а результат відображається праворуч.\n\nЗараз компонент показує заглушку. Змініть текст після `\\` і подивіться, як передперегляд оновлюється миттєво.\n\n**Мета:** зробити так, щоб привітання віталося з \u0024mol.\n",
+                        },
+                        pl: {
+                            title: "Witaj świecie",
+                            md: "# Witaj świecie\n\nWitaj! Po lewej jest żywy edytor \u0024mol — **view.tree** opisuje strukturę, a wynik renderuje się po prawej.\n\nW tej chwili komponent pokazuje tekst zastępczy. Zmień tekst po `\\` i patrz, jak podgląd aktualizuje się natychmiast.\n\n**Cel:** spraw, by powitanie przywitało się z \u0024mol.\n",
+                        },
+                        cs: {
+                            title: "Ahoj světe",
+                            md: "# Ahoj světe\n\nVítej! Vlevo je živý editor \u0024mol — **view.tree** popisuje strukturu a výsledek se vykresluje vpravo.\n\nPrávě teď komponenta zobrazuje zástupný text. Změň text za `\\` a sleduj, jak se náhled okamžitě aktualizuje.\n\n**Cíl:** ať pozdrav pozdraví \u0024mol.\n",
+                        },
+                        fa: {
+                            title: "سلام دنیا",
+                            md: "# سلام دنیا\n\nخوش آمدید! سمت چپ یک ویرایشگر زندهٔ \u0024mol است — **view.tree** ساختار را توصیف می‌کند و نتیجه در سمت راست رندر می‌شود.\n\nهم‌اکنون کامپوننت یک متنِ جانگهدار نشان می‌دهد. متنِ پس از `\\` را تغییر دهید و ببینید که پیش‌نمایش بی‌درنگ به‌روز می‌شود.\n\n**هدف:** کاری کنید که پیامِ خوش‌آمد به \u0024mol سلام بگوید.\n",
+                        },
+                        bn: {
+                            title: "হ্যালো ওয়ার্ল্ড",
+                            md: "# হ্যালো ওয়ার্ল্ড\n\nস্বাগতম! বাঁ দিকে একটি লাইভ \u0024mol এডিটর — **view.tree** গঠন বর্ণনা করে এবং ফলাফল ডান দিকে রেন্ডার হয়।\n\nএই মুহূর্তে কম্পোনেন্টটি একটি প্লেসহোল্ডার দেখাচ্ছে। `\\` এর পরের লেখাটি বদলান এবং দেখুন প্রিভিউ সঙ্গে সঙ্গে হালনাগাদ হচ্ছে।\n\n**লক্ষ্য:** অভিবাদনটিকে \u0024mol কে হ্যালো বলাতে বলুন।\n",
+                        },
+                    },
                 },
                 'views': {
                     id: 'views',
@@ -21410,6 +21468,64 @@ var $;
                     start_ts: "",
                     solution_tree: "\u0024my_demo \u0024mol_view\n\tsub /\n\t\t<= Title \u0024mol_view\n\t\t\tsub / <= title \\My component\n\t\t<= Subtitle \u0024mol_view\n\t\t\tsub / <= subtitle \\Built from views\n",
                     solution_ts: "",
+                    tr: {
+                        zh: {
+                            title: "视图",
+                            md: "# 视图\n\n一个视图由其他视图构成。这里 `\u0024my_demo` 只有一个子视图；再加一个，让卡片同时显示标题*和*副标题。\n\n**目标：** 在 `sub /` 下添加一个 `Subtitle` 子视图，并给它自己的文字。\n",
+                        },
+                        zh_hk: {
+                            title: "視圖",
+                            md: "# 視圖\n\n一個視圖由其他視圖組成。這裡 `\u0024my_demo` 只有一個子視圖；再加一個，讓卡片同時顯示標題*和*副標題。\n\n**目標：** 在 `sub /` 下加入一個 `Subtitle` 子視圖，並給它自己的文字。\n",
+                        },
+                        ja: {
+                            title: "ビュー",
+                            md: "# ビュー\n\nビューは他のビューから組み立てられます。ここでは `\u0024my_demo` に子が1つあります。もう1つ追加して、カードにタイトル*と*サブタイトルを表示させましょう。\n\n**ゴール:** `sub /` の下に、独自のテキストを持つ `Subtitle` サブビューを追加します。\n",
+                        },
+                        ko: {
+                            title: "뷰",
+                            md: "# 뷰\n\n뷰는 다른 뷰들로 조립됩니다. 여기서 `\u0024my_demo` 에는 자식이 하나 있습니다. 하나 더 추가해서 카드가 제목*과* 부제목을 함께 보여 주도록 하세요.\n\n**목표:** `sub /` 아래에 자체 텍스트를 가진 `Subtitle` 하위 뷰를 추가하세요.\n",
+                        },
+                        fr: {
+                            title: "Vues",
+                            md: "# Vues\n\nUne vue est construite à partir d'autres vues. Ici `\u0024my_demo` a un seul enfant ; ajoutez-en un second pour que la carte affiche un titre *et* un sous-titre.\n\n**Objectif :** ajoutez une sous-vue `Subtitle` sous `sub /`, avec son propre texte.\n",
+                        },
+                        de: {
+                            title: "Ansichten",
+                            md: "# Ansichten\n\nEine Ansicht wird aus anderen Ansichten aufgebaut. Hier hat `\u0024my_demo` ein Kind; füge ein zweites hinzu, damit die Karte einen Titel *und* einen Untertitel zeigt.\n\n**Ziel:** Füge unter `sub /` eine `Subtitle`-Unteransicht mit eigenem Text hinzu.\n",
+                        },
+                        pt: {
+                            title: "Views",
+                            md: "# Views\n\nUma view é construída a partir de outras views. Aqui `\u0024my_demo` tem um filho; adicione um segundo para que o cartão mostre um título *e* um subtítulo.\n\n**Objetivo:** adicione uma subview `Subtitle` sob `sub /`, com seu próprio texto.\n",
+                        },
+                        it: {
+                            title: "Viste",
+                            md: "# Viste\n\nUna vista è costruita a partire da altre viste. Qui `\u0024my_demo` ha un figlio; aggiungine un secondo così la card mostra un titolo *e* un sottotitolo.\n\n**Obiettivo:** aggiungi una sotto-vista `Subtitle` sotto `sub /`, con il suo testo.\n",
+                        },
+                        ru: {
+                            title: "Представления",
+                            md: "# Представления\n\nПредставление собирается из других представлений. Здесь у `\u0024my_demo` один потомок; добавьте второй, чтобы карточка показывала заголовок *и* подзаголовок.\n\n**Цель:** добавьте под `sub /` под-представление `Subtitle` со своим текстом.\n",
+                        },
+                        uk: {
+                            title: "Подання",
+                            md: "# Подання\n\nПодання будується з інших подань. Тут у `\u0024my_demo` один нащадок; додайте другий, щоб картка показувала заголовок *і* підзаголовок.\n\n**Мета:** додайте під `sub /` під-подання `Subtitle` з власним текстом.\n",
+                        },
+                        pl: {
+                            title: "Widoki",
+                            md: "# Widoki\n\nWidok buduje się z innych widoków. Tutaj `\u0024my_demo` ma jedno dziecko; dodaj drugie, aby karta pokazywała tytuł *i* podtytuł.\n\n**Cel:** dodaj pod `sub /` podwidok `Subtitle` z własnym tekstem.\n",
+                        },
+                        cs: {
+                            title: "Pohledy",
+                            md: "# Pohledy\n\nPohled se skládá z jiných pohledů. Zde má `\u0024my_demo` jednoho potomka; přidej druhého, aby karta ukazovala nadpis *i* podnadpis.\n\n**Cíl:** přidej pod `sub /` podpohled `Subtitle` s vlastním textem.\n",
+                        },
+                        fa: {
+                            title: "نماها",
+                            md: "# نماها\n\nیک نما از نماهای دیگر ساخته می‌شود. اینجا `\u0024my_demo` یک فرزند دارد؛ یکی دیگر بیفزایید تا کارت یک عنوان *و* یک زیرعنوان نشان دهد.\n\n**هدف:** زیرِ `sub /` یک زیرنمای `Subtitle` با متنِ خودش بیفزایید.\n",
+                        },
+                        bn: {
+                            title: "ভিউ",
+                            md: "# ভিউ\n\nএকটি ভিউ অন্য ভিউ থেকে তৈরি হয়। এখানে `\u0024my_demo` এর একটি সন্তান আছে; আরেকটি যোগ করুন যাতে কার্ডটি একটি শিরোনাম *এবং* একটি উপশিরোনাম দেখায়।\n\n**লক্ষ্য:** `sub /` এর নিচে নিজস্ব লেখাসহ একটি `Subtitle` সাব-ভিউ যোগ করুন।\n",
+                        },
+                    },
                 },
                 'state': {
                     id: 'state',
@@ -21421,6 +21537,64 @@ var $;
                     start_ts: "",
                     solution_tree: "\u0024my_demo \u0024mol_view\n\tcount_text \\?\n\tsub /\n\t\t<= Value \u0024mol_view\n\t\t\tsub / <= count_text\n",
                     solution_ts: "class \u0024my_demo extends \u0024.\u0024my_demo {\n\t@ \u0024mol_mem count( next?: number ) { return next ?? 5 }\n\tcount_text() { return String( this.count() ) }\n}\n",
+                    tr: {
+                        zh: {
+                            title: "状态",
+                            md: "# 状态\n\n逻辑写在 **view.ts** 里——切换到那个标签页。`@ \u0024mol_mem` 让一个值变为响应式：所有读取它的地方都会自动更新。\n\n**目标：** 在 view.ts 中，给组件一个响应式的 `count()` 和一个把它转成字符串返回的 `count_text()`，让预览显示一个数字。\n\n卡住了？点 **Solution**。\n",
+                        },
+                        zh_hk: {
+                            title: "狀態",
+                            md: "# 狀態\n\n邏輯寫在 **view.ts** 裡——切換到那個分頁。`@ \u0024mol_mem` 讓一個值變成響應式：所有讀取它的地方都會自動更新。\n\n**目標：** 在 view.ts 中，給元件一個響應式的 `count()`，以及一個把它轉成字串回傳的 `count_text()`，讓預覽顯示一個數字。\n\n卡住了？按 **Solution**。\n",
+                        },
+                        ja: {
+                            title: "状態",
+                            md: "# 状態\n\nロジックは **view.ts** に置きます——そのタブに切り替えてください。`@ \u0024mol_mem` は値をリアクティブにします。それを読むものはすべて自動的に更新されます。\n\n**ゴール:** view.ts で、コンポーネントにリアクティブな `count()` と、それを文字列で返す `count_text()` を与え、プレビューに数字が表示されるようにします。\n\n行き詰まったら？ **Solution** を押してください。\n",
+                        },
+                        ko: {
+                            title: "상태",
+                            md: "# 상태\n\n로직은 **view.ts** 에 있습니다——그 탭으로 전환하세요. `@ \u0024mol_mem` 은 값을 반응형으로 만듭니다. 그 값을 읽는 모든 것이 스스로 갱신됩니다.\n\n**목표:** view.ts 에서 컴포넌트에 반응형 `count()` 와, 그것을 문자열로 반환하는 `count_text()` 를 주어 미리보기에 숫자가 표시되게 하세요.\n\n막혔나요? **Solution** 을 누르세요.\n",
+                        },
+                        fr: {
+                            title: "État",
+                            md: "# État\n\nLa logique vit dans **view.ts** — passez à cet onglet. `@ \u0024mol_mem` rend une valeur réactive : tout ce qui la lit se met à jour tout seul.\n\n**Objectif :** dans view.ts, donnez au composant un `count()` réactif et un `count_text()` qui le renvoie sous forme de chaîne, pour que l'aperçu affiche un nombre.\n\nBloqué ? Appuyez sur **Solution**.\n",
+                        },
+                        de: {
+                            title: "Zustand",
+                            md: "# Zustand\n\nDie Logik lebt in **view.ts** — wechsle zu diesem Tab. `@ \u0024mol_mem` macht einen Wert reaktiv: Alles, was ihn liest, aktualisiert sich von selbst.\n\n**Ziel:** Gib der Komponente in view.ts ein reaktives `count()` und ein `count_text()`, das es als String zurückgibt, damit die Vorschau eine Zahl zeigt.\n\nSteckst du fest? Drück **Solution**.\n",
+                        },
+                        pt: {
+                            title: "Estado",
+                            md: "# Estado\n\nA lógica vive em **view.ts** — mude para essa aba. `@ \u0024mol_mem` torna um valor reativo: tudo o que o lê se atualiza sozinho.\n\n**Objetivo:** em view.ts, dê ao componente um `count()` reativo e um `count_text()` que o retorne como string, para que a prévia mostre um número.\n\nTravou? Aperte **Solution**.\n",
+                        },
+                        it: {
+                            title: "Stato",
+                            md: "# Stato\n\nLa logica vive in **view.ts** — passa a quella scheda. `@ \u0024mol_mem` rende un valore reattivo: tutto ciò che lo legge si aggiorna da solo.\n\n**Obiettivo:** in view.ts, dai al componente un `count()` reattivo e un `count_text()` che lo restituisce come stringa, così l'anteprima mostra un numero.\n\nBloccato? Premi **Solution**.\n",
+                        },
+                        ru: {
+                            title: "Состояние",
+                            md: "# Состояние\n\nЛогика живёт в **view.ts** — переключитесь на эту вкладку. `@ \u0024mol_mem` делает значение реактивным: всё, что его читает, обновляется само.\n\n**Цель:** в view.ts дайте компоненту реактивный `count()` и `count_text()`, который возвращает его строкой, чтобы предпросмотр показывал число.\n\nЗастряли? Нажмите **Solution**.\n",
+                        },
+                        uk: {
+                            title: "Стан",
+                            md: "# Стан\n\nЛогіка живе у **view.ts** — перемкніться на цю вкладку. `@ \u0024mol_mem` робить значення реактивним: усе, що його читає, оновлюється саме.\n\n**Мета:** у view.ts дайте компоненту реактивний `count()` і `count_text()`, який повертає його рядком, щоб передперегляд показував число.\n\nЗастрягли? Натисніть **Solution**.\n",
+                        },
+                        pl: {
+                            title: "Stan",
+                            md: "# Stan\n\nLogika mieszka w **view.ts** — przełącz się na tę kartę. `@ \u0024mol_mem` czyni wartość reaktywną: wszystko, co ją czyta, aktualizuje się samo.\n\n**Cel:** w view.ts nadaj komponentowi reaktywne `count()` oraz `count_text()`, które zwraca je jako łańcuch znaków, tak aby podgląd pokazywał liczbę.\n\nUtknąłeś? Naciśnij **Solution**.\n",
+                        },
+                        cs: {
+                            title: "Stav",
+                            md: "# Stav\n\nLogika žije ve **view.ts** — přepni na tuto záložku. `@ \u0024mol_mem` udělá hodnotu reaktivní: vše, co ji čte, se aktualizuje samo.\n\n**Cíl:** ve view.ts dej komponentě reaktivní `count()` a `count_text()`, který ho vrátí jako řetězec, aby náhled ukazoval číslo.\n\nZasekl ses? Stiskni **Solution**.\n",
+                        },
+                        fa: {
+                            title: "وضعیت",
+                            md: "# وضعیت\n\nمنطق در **view.ts** زندگی می‌کند — به آن زبانه بروید. `@ \u0024mol_mem` یک مقدار را واکنشی می‌کند: هر چیزی که آن را می‌خواند، خودبه‌خود به‌روز می‌شود.\n\n**هدف:** در view.ts به کامپوننت یک `count()` واکنشی و یک `count_text()` بدهید که آن را به‌صورت رشته برمی‌گرداند، تا پیش‌نمایش یک عدد نشان دهد.\n\nگیر کردید؟ **Solution** را بزنید.\n",
+                        },
+                        bn: {
+                            title: "স্টেট",
+                            md: "# স্টেট\n\nলজিক থাকে **view.ts** এ — সেই ট্যাবে যান। `@ \u0024mol_mem` একটি মানকে রিঅ্যাকটিভ করে: যা কিছু এটি পড়ে, তা নিজে থেকেই হালনাগাদ হয়।\n\n**লক্ষ্য:** view.ts এ কম্পোনেন্টটিকে একটি রিঅ্যাকটিভ `count()` এবং একটি `count_text()` দিন যা এটিকে স্ট্রিং হিসেবে ফেরত দেয়, যাতে প্রিভিউ একটি সংখ্যা দেখায়।\n\nআটকে গেছেন? **Solution** চাপুন।\n",
+                        },
+                    },
                 },
                 'events': {
                     id: 'events',
@@ -21432,6 +21606,64 @@ var $;
                     start_ts: "",
                     solution_tree: "\u0024my_demo \u0024mol_view\n\tcount_text \\0\n\tinc? null\n\tsub /\n\t\t<= Value \u0024mol_view\n\t\t\tsub / <= count_text\n\t\t<= Button \u0024mol_button_major\n\t\t\tclick? <=> inc?\n\t\t\tsub / <= button_label \\+1\n",
                     solution_ts: "class \u0024my_demo extends \u0024.\u0024my_demo {\n\t@ \u0024mol_mem count( next?: number ) { return next ?? 0 }\n\t@ \u0024mol_action inc() { this.count( this.count() + 1 ) }\n\tcount_text() { return String( this.count() ) }\n}\n",
+                    tr: {
+                        zh: {
+                            title: "事件",
+                            md: "# 事件\n\n交互来自事件处理器。view.tree 已经把按钮的 `click` 连到了 `inc?` 动作——你在 view.ts 中把 `inc` 实现为一个改变状态的 `@ \u0024mol_action`。\n\n**目标：** 让按钮在每次点击时增加计数。\n",
+                        },
+                        zh_hk: {
+                            title: "事件",
+                            md: "# 事件\n\n互動來自事件處理器。view.tree 已經把按鈕的 `click` 接到 `inc?` 動作——你在 view.ts 中把 `inc` 實作成一個會改變狀態的 `@ \u0024mol_action`。\n\n**目標：** 讓按鈕在每次點擊時增加計數。\n",
+                        },
+                        ja: {
+                            title: "イベント",
+                            md: "# イベント\n\nインタラクティブ性はイベントハンドラから生まれます。view.tree はすでにボタンの `click` を `inc?` アクションに繋いでいます——あなたは view.ts で `inc` を、状態を変える `@ \u0024mol_action` として実装します。\n\n**ゴール:** クリックのたびにボタンがカウントを増やすようにします。\n",
+                        },
+                        ko: {
+                            title: "이벤트",
+                            md: "# 이벤트\n\n상호작용은 이벤트 핸들러에서 나옵니다. view.tree 는 이미 버튼의 `click` 을 `inc?` 액션에 연결해 두었습니다——당신은 view.ts 에서 `inc` 를 상태를 바꾸는 `@ \u0024mol_action` 으로 구현합니다.\n\n**목표:** 버튼이 클릭할 때마다 카운트를 늘리도록 만드세요.\n",
+                        },
+                        fr: {
+                            title: "Événements",
+                            md: "# Événements\n\nL'interactivité vient des gestionnaires d'événements. Le view.tree relie déjà le `click` du bouton à une action `inc?` — vous implémentez `inc` dans view.ts sous la forme d'un `@ \u0024mol_action` qui modifie l'état.\n\n**Objectif :** faire en sorte que le bouton augmente le compteur à chaque clic.\n",
+                        },
+                        de: {
+                            title: "Ereignisse",
+                            md: "# Ereignisse\n\nInteraktivität kommt von Ereignis-Handlern. Das view.tree verbindet den `click` des Buttons bereits mit einer `inc?`-Aktion — du implementierst `inc` in view.ts als ein `@ \u0024mol_action`, das den Zustand ändert.\n\n**Ziel:** Sorge dafür, dass der Button den Zähler bei jedem Klick erhöht.\n",
+                        },
+                        pt: {
+                            title: "Eventos",
+                            md: "# Eventos\n\nA interatividade vem dos manipuladores de eventos. O view.tree já liga o `click` do botão a uma ação `inc?` — você implementa `inc` em view.ts como um `@ \u0024mol_action` que altera o estado.\n\n**Objetivo:** fazer o botão aumentar a contagem a cada clique.\n",
+                        },
+                        it: {
+                            title: "Eventi",
+                            md: "# Eventi\n\nL'interattività nasce dai gestori di eventi. Il view.tree collega già il `click` del pulsante a un'azione `inc?` — tu implementi `inc` in view.ts come un `@ \u0024mol_action` che cambia lo stato.\n\n**Obiettivo:** fai in modo che il pulsante aumenti il conteggio a ogni clic.\n",
+                        },
+                        ru: {
+                            title: "События",
+                            md: "# События\n\nИнтерактивность даёт обработчики событий. view.tree уже связывает `click` кнопки с действием `inc?` — вы реализуете `inc` в view.ts как `@ \u0024mol_action`, меняющий состояние.\n\n**Цель:** сделать так, чтобы кнопка увеличивала счётчик при каждом клике.\n",
+                        },
+                        uk: {
+                            title: "Події",
+                            md: "# Події\n\nІнтерактивність дають обробники подій. view.tree вже пов'язує `click` кнопки з дією `inc?` — ви реалізуєте `inc` у view.ts як `@ \u0024mol_action`, що змінює стан.\n\n**Мета:** зробити так, щоб кнопка збільшувала лічильник за кожним кліком.\n",
+                        },
+                        pl: {
+                            title: "Zdarzenia",
+                            md: "# Zdarzenia\n\nInteraktywność bierze się z obsługi zdarzeń. view.tree już łączy `click` przycisku z akcją `inc?` — ty implementujesz `inc` w view.ts jako `@ \u0024mol_action`, które zmienia stan.\n\n**Cel:** spraw, by przycisk zwiększał licznik przy każdym kliknięciu.\n",
+                        },
+                        cs: {
+                            title: "Události",
+                            md: "# Události\n\nInteraktivita pochází z obslužných rutin událostí. view.tree už propojuje `click` tlačítka s akcí `inc?` — ty implementuješ `inc` ve view.ts jako `@ \u0024mol_action`, které mění stav.\n\n**Cíl:** ať tlačítko při každém kliknutí zvýší počítadlo.\n",
+                        },
+                        fa: {
+                            title: "رویدادها",
+                            md: "# رویدادها\n\nتعامل از دست‌گردانندگانِ رویداد می‌آید. view.tree همین حالا `click` دکمه را به کنشِ `inc?` وصل کرده است — شما `inc` را در view.ts به‌صورت یک `@ \u0024mol_action` که وضعیت را تغییر می‌دهد پیاده‌سازی می‌کنید.\n\n**هدف:** کاری کنید که دکمه در هر کلیک شمارنده را افزایش دهد.\n",
+                        },
+                        bn: {
+                            title: "ইভেন্ট",
+                            md: "# ইভেন্ট\n\nইন্টার‌্যাকটিভিটি আসে ইভেন্ট হ্যান্ডলার থেকে। view.tree ইতিমধ্যে বাটনের `click` কে একটি `inc?` অ্যাকশনের সঙ্গে যুক্ত করেছে — আপনি view.ts এ `inc` কে স্টেট বদলায় এমন একটি `@ \u0024mol_action` হিসেবে বাস্তবায়ন করেন।\n\n**লক্ষ্য:** প্রতিটি ক্লিকে বাটনটিকে গণনা বাড়াতে বলুন।\n",
+                        },
+                    },
                 },
                 'routing': {
                     id: 'routing',
@@ -21443,11 +21675,83 @@ var $;
                     start_ts: "",
                     solution_tree: "\u0024my_demo \u0024mol_view\n\tname? \\\n\techo \\\n\tsub /\n\t\t<= Field \u0024mol_string\n\t\t\tvalue? <=> name?\n\t\t\thint \\Type your name\n\t\t<= Echo \u0024mol_view\n\t\t\tsub / <= echo\n",
                     solution_ts: "class \u0024my_demo extends \u0024.\u0024my_demo {\n\t@ \u0024mol_mem name( next?: string ) { return \u0024.\u0024mol_state_arg.value( 'name', next ) ?? '' }\n\techo() { return this.name() ? 'Hello, ' + this.name() + '!' : '' }\n}\n",
+                    tr: {
+                        zh: {
+                            title: "路由",
+                            md: "# 路由\n\nURL 就是响应式状态。`\u0024mol_state_arg` 读写一个查询参数，因此一个值能在刷新后保留，也能被分享。\n\n**目标：** 在 view.ts 中用一个名为 `name` 的 URL 参数支撑输入框，并在下方回显它。\n",
+                        },
+                        zh_hk: {
+                            title: "路由",
+                            md: "# 路由\n\nURL 就是響應式狀態。`\u0024mol_state_arg` 讀寫一個查詢參數，所以一個值能在重新載入後保留，也能被分享。\n\n**目標：** 在 view.ts 中用一個名為 `name` 的 URL 參數支撐輸入框，並在下方回顯它。\n",
+                        },
+                        ja: {
+                            title: "ルーティング",
+                            md: "# ルーティング\n\nURL は単なるリアクティブな状態です。`\u0024mol_state_arg` はクエリパラメータを読み書きするので、値はリロードしても残り、共有できます。\n\n**ゴール:** view.ts で入力を `name` という名前の URL 引数に紐づけ、その下にエコー表示します。\n",
+                        },
+                        ko: {
+                            title: "라우팅",
+                            md: "# 라우팅\n\nURL 은 그저 반응형 상태입니다. `\u0024mol_state_arg` 는 쿼리 파라미터를 읽고 쓰므로, 값이 새로고침 후에도 남고 공유할 수 있습니다.\n\n**목표:** view.ts 에서 입력을 `name` 이라는 URL 인자에 연결하고, 그 아래에 그대로 표시하세요.\n",
+                        },
+                        fr: {
+                            title: "Routage",
+                            md: "# Routage\n\nL'URL n'est que de l'état réactif. `\u0024mol_state_arg` lit et écrit un paramètre de requête, si bien qu'une valeur survit aux rechargements et se partage.\n\n**Objectif :** adossez le champ à un argument d'URL nommé `name` dans view.ts, et affichez-le en écho en dessous.\n",
+                        },
+                        de: {
+                            title: "Routing",
+                            md: "# Routing\n\nDie URL ist einfach reaktiver Zustand. `\u0024mol_state_arg` liest und schreibt einen Query-Parameter, sodass ein Wert Neuladen übersteht und teilbar ist.\n\n**Ziel:** Hinterlege die Eingabe in view.ts mit einem URL-Argument namens `name` und gib es darunter als Echo aus.\n",
+                        },
+                        pt: {
+                            title: "Roteamento",
+                            md: "# Roteamento\n\nA URL é apenas estado reativo. `\u0024mol_state_arg` lê e escreve um parâmetro de consulta, então um valor sobrevive a recarregamentos e pode ser compartilhado.\n\n**Objetivo:** apoie o campo em um argumento de URL chamado `name` em view.ts, e ecoe-o abaixo.\n",
+                        },
+                        it: {
+                            title: "Routing",
+                            md: "# Routing\n\nL'URL è semplicemente stato reattivo. `\u0024mol_state_arg` legge e scrive un parametro di query, così un valore sopravvive ai ricaricamenti ed è condivisibile.\n\n**Obiettivo:** appoggia il campo a un argomento URL chiamato `name` in view.ts, e riecheggialo sotto.\n",
+                        },
+                        ru: {
+                            title: "Роутинг",
+                            md: "# Роутинг\n\nURL — это просто реактивное состояние. `\u0024mol_state_arg` читает и пишет параметр запроса, поэтому значение переживает перезагрузку и им можно поделиться.\n\n**Цель:** привяжите поле ввода к URL-аргументу с именем `name` в view.ts и выведите его эхом ниже.\n",
+                        },
+                        uk: {
+                            title: "Роутинг",
+                            md: "# Роутинг\n\nURL — це просто реактивний стан. `\u0024mol_state_arg` читає й записує параметр запиту, тож значення переживає перезавантаження і ним можна поділитися.\n\n**Мета:** прив'яжіть поле вводу до URL-аргументу з іменем `name` у view.ts і виведіть його відлунням нижче.\n",
+                        },
+                        pl: {
+                            title: "Routing",
+                            md: "# Routing\n\nURL to po prostu reaktywny stan. `\u0024mol_state_arg` odczytuje i zapisuje parametr zapytania, więc wartość przetrwa przeładowania i da się nią dzielić.\n\n**Cel:** oprzyj pole na argumencie URL o nazwie `name` w view.ts i wypisz je echem poniżej.\n",
+                        },
+                        cs: {
+                            title: "Směrování",
+                            md: "# Směrování\n\nURL je jen reaktivní stav. `\u0024mol_state_arg` čte a zapisuje parametr dotazu, takže hodnota přežije načtení a lze ji sdílet.\n\n**Cíl:** podepři vstup argumentem URL s názvem `name` ve view.ts a vypiš ho ozvěnou níže.\n",
+                        },
+                        fa: {
+                            title: "مسیریابی",
+                            md: "# مسیریابی\n\nURL فقط وضعیتِ واکنشی است. `\u0024mol_state_arg` یک پارامترِ پرس‌وجو را می‌خواند و می‌نویسد، پس یک مقدار پس از بارگذاریِ دوباره باقی می‌ماند و قابلِ‌هم‌رسانی است.\n\n**هدف:** در view.ts ورودی را به یک آرگومانِ URL به نامِ `name` پشتیبانی کنید و آن را در پایین بازتاب دهید.\n",
+                        },
+                        bn: {
+                            title: "রাউটিং",
+                            md: "# রাউটিং\n\nURL কেবল রিঅ্যাকটিভ স্টেট। `\u0024mol_state_arg` একটি কোয়েরি প্যারামিটার পড়ে ও লেখে, তাই একটি মান রিলোডের পরেও টিকে থাকে এবং শেয়ার করা যায়।\n\n**লক্ষ্য:** view.ts এ ইনপুটটিকে `name` নামের একটি URL আর্গুমেন্ট দিয়ে সমর্থন করুন এবং নিচে সেটি প্রতিধ্বনিত করুন।\n",
+                        },
+                    },
                 },
             };
         }
         static lesson(id) {
             return this.map()[id] ?? null;
+        }
+        /** Localized title for a lesson, falling back to EN. */
+        static lesson_title(id, lang = 'en') {
+            const lesson = this.map()[id];
+            if (!lesson)
+                return null;
+            return lesson.tr?.[lang]?.title ?? lesson.title;
+        }
+        /** Localized instruction markdown for a lesson, falling back to EN. */
+        static lesson_md(id, lang = 'en') {
+            const lesson = this.map()[id];
+            if (!lesson)
+                return null;
+            return lesson.tr?.[lang]?.md ?? lesson.md;
         }
         static first() { return this.ids()[0]; }
     }
@@ -21472,8 +21776,12 @@ var $;
             current() {
                 return Lessons.lesson(this.lesson());
             }
+            /** Active UI language; reading it makes the course reactive to switches. */
+            lang() {
+                return this.$.$mol_locale.lang();
+            }
             lesson_md() {
-                return this.current()?.md ?? '# Not found';
+                return Lessons.lesson_md(this.lesson(), this.lang()) ?? '# Not found';
             }
             ids() {
                 return Lessons.ids();
@@ -21487,7 +21795,7 @@ var $;
             }
             lesson_link_label(id) {
                 const num = this.ids().indexOf(id) + 1;
-                const title = Lessons.lesson(id)?.title ?? id;
+                const title = Lessons.lesson_title(id, this.lang()) ?? id;
                 return `${this.done(id) ? '✓ ' : ''}${num}. ${title}`;
             }
             // --- embedded editor (one per lesson, seeded + scoped) ------------
