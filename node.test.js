@@ -17240,6 +17240,9 @@ var $;
 		playground_showed(){
 			return false;
 		}
+		run_enabled(){
+			return true;
+		}
 		run(next){
 			if(next !== undefined) return next;
 			return false;
@@ -18729,10 +18732,24 @@ var $;
                     `\t\t\tsub / <= button_label \\Count up`,
                 ].join('\n') + '\n';
             }
+            // The standalone defaults (counter logic + styling) target the $my_demo component, so
+            // they only make sense while that default tree is loaded. When a different tree is in
+            // the editor — most notably a doc snippet opened via "Open in Playground", which seeds
+            // `code` but clears `ts`/`css` — attaching the $my_demo class/styles would compile a
+            // reference to an undefined component and blow up the preview ("$my_demo is not
+            // defined"). In that case the defaults must be empty.
+            tree_is_default() {
+                const S = String.fromCharCode(36); // "$" — kept out of MAM's dep scan
+                const tree = this.stored('code') || this.default_tree();
+                return /(\$[\w$]+)/.exec(tree)?.[1] === S + 'my_demo';
+            }
             default_css() {
                 // An embedder controls the css via seed_css, mirroring default_ts's seed gate.
                 if (this.seed_tree())
                     return this.seed_css();
+                // A non-default tree (e.g. a doc snippet) has no $my_demo to style.
+                if (!this.tree_is_default())
+                    return '';
                 // Standalone: a working view.css.ts sample that styles the default counter,
                 // so opening the css.ts tab shows real, applied styling.
                 const S = String.fromCharCode(36); // "$" — kept out of MAM's dep scan
@@ -18754,6 +18771,9 @@ var $;
                 // even when empty — mirror default_tree's seed gate.
                 if (this.seed_tree())
                     return this.seed_ts();
+                // A non-default tree (e.g. a doc snippet) has no $my_demo class to extend.
+                if (!this.tree_is_default())
+                    return '';
                 // Standalone playground: ship a working counter so the default
                 // example is live on open (the tree alone has no logic, so inc()
                 // would be dead). This does fetch the TS compiler on first render.
@@ -18865,6 +18885,11 @@ var $;
             // static so the render-only live embeds ($bog_smalljs_text_live) can reuse
             // the exact same $mol toolchain without dragging in the editor.
             static build_base($, tree_src) {
+                // $mol_tree2 needs a trailing LF; a localized `@ \text` has no runtime dictionary
+                // here, so it would render as its raw key — downgrade it to a plain `\text` literal
+                // so the preview shows the human-readable default instead. Both the editor preview
+                // and the render-only doc embeds go through here, so they stay consistent.
+                tree_src = tree_src.replace(/\n*$/, '\n').replace(/@ \\/g, '\\');
                 const root = /(\$[\w$]+)/.exec(tree_src)?.[1];
                 if (!root)
                     throw new Error('No component found — the first line must declare one (a name and a base view).');
@@ -19090,6 +19115,67 @@ var $;
             'tree-prim': /\b(?:null|true|false|NaN)\b|[+-]?\d[\w.]*/,
         });
         /**
+         * Structural gate shared by the Run button and the "Open in Playground" link: a
+         * snippet is offered only when it is a single, self-contained, mountable component.
+         *
+         * The playground/live runtime compiles the tree with the app's own $mol toolchain and
+         * mounts `$[ first_token ]`, so a snippet that references a component the app doesn't
+         * bundle, extends a non-view base, or spreads across several top-level components would
+         * render as an error (⚠) instead of a live result. We reject those up front rather than
+         * hand the reader a button that only leads to a crash.
+         *
+         * Requirements:
+         *  - exactly one top-level (column-0) declaration — the mount root;
+         *  - it declares its own non-reserved name and a base view (name + base);
+         *  - the base resolves to a mol_view (or subclass) in the live namespace;
+         *  - every other component it references is either defined in the snippet itself
+         *    or actually bundled into the app ($ has it) — so nothing is missing at render.
+         */
+        function snippet_root(src) {
+            const lines = src.split('\n').filter(line => line.trim() !== '');
+            if (lines.length === 0)
+                return null;
+            // A fragment (starts with a property/binding) or a multi-component snippet has no
+            // single mountable root — only column-0 `$…` lines count as top-level declarations.
+            const tops = lines.filter(line => /^\$/.test(line));
+            if (tops.length !== 1)
+                return null;
+            const match = /^(\$[\w$]+)\s+(\$[\w$]+)/.exec(lines[0]);
+            if (!match)
+                return null;
+            const [, name, base] = match;
+            // A reserved root name is rejected by the compiler itself, so never offer it.
+            if (/^\$(mol|hyoo|bog|node)_/.test(name))
+                return null;
+            return { name, base };
+        }
+        function snippet_runnable($, src) {
+            const root = snippet_root(src);
+            if (!root)
+                return false;
+            const Base = $[root.base];
+            if (typeof Base !== 'function')
+                return false;
+            // Only view subclasses mount into the preview; a non-view base (e.g. mol_theme_auto)
+            // has no DOM and would throw when the embed tries to render it.
+            if (Base !== $.$mol_view && !(Base.prototype instanceof $.$mol_view))
+                return false;
+            // Plugins subclass mol_view but are not standalone-mountable — mounting one with no
+            // host throws ("reading 'host'"). Reject the whole plugin family.
+            const Plugin = $.$mol_plugin;
+            if (Plugin && (Base === Plugin || Base.prototype instanceof Plugin))
+                return false;
+            const defined = new Set([root.name]);
+            for (const ref of src.match(/\$[\w$]+/g) ?? []) {
+                if (defined.has(ref))
+                    continue;
+                if (typeof $[ref] === 'function')
+                    continue;
+                return false;
+            }
+            return true;
+        }
+        /**
          * $mol_text with language-aware code blocks: view.tree gets its own highlighter,
          * and executable snippets (view.tree) grow an "Open in Playground" button.
          */
@@ -19126,9 +19212,13 @@ var $;
                 return lang;
             }
             // Only view.tree snippets are self-contained enough to render in the playground
-            // (a bare view.ts has no root component to mount), so the button is tree-only.
+            // (a bare view.ts has no root component to mount), and only when the snippet is a
+            // single mountable root whose deps are all bundled — otherwise the playground opens
+            // straight into a compile/render error. Same gate as the inline Run button.
             pre_playground_showed(index) {
-                return this.lang_kind(index) === 'tree';
+                if (this.lang_kind(index) !== 'tree')
+                    return false;
+                return snippet_runnable(this.$, this.pre_text(index));
             }
             // $mol_link merges this dict into the URL args on click (null removes a key),
             // so the reader lands on the playground seeded with exactly this snippet.
@@ -19158,15 +19248,16 @@ var $;
                     return tree_syntax;
                 return super.syntax();
             }
-            // A snippet is runnable only when it declares a mountable root component of its
-            // own — first token is a `$name` that isn't a framework-reserved prefix. Fragments
-            // (starting with a property, or with a bare `$mol_*`) get no Run button and just
-            // keep the "Open in Playground" escape hatch (WS1).
+            // A snippet is runnable only when it is a single, self-contained, mountable root
+            // component whose every dependency is bundled (see snippet_runnable). Fragments,
+            // multi-component snippets, non-view bases and unbundled deps get no Run button —
+            // they'd only render an error. The same gate drives "Open in Playground".
             run_showed() {
+                if (!this.run_enabled())
+                    return false;
                 if (this.syntax() !== tree_syntax)
                     return false;
-                const root = /(\$[\w$]+)/.exec(this.text())?.[1];
-                return !!root && !/^\$(mol|hyoo|bog|node)_/.test(root);
+                return snippet_runnable(this.$, this.text());
             }
             run_click() {
                 this.run(!this.run());
@@ -19201,12 +19292,9 @@ var $;
             live_content() {
                 const $ = this.$;
                 try {
-                    // $mol_tree2 requires a trailing LF; doc block text is captured without one.
-                    // Localized `@ \text` has no runtime locale dictionary here (that lives in a
-                    // generated .locale=en.json), so it would render as the raw key. Downgrade it
-                    // to a plain `\text` literal so the preview shows the human-readable default.
-                    const src = this.tree().replace(/\n*$/, '\n').replace(/@ \\/g, '\\');
-                    const { Base } = $bog_smalljs_playground.build_base($, src);
+                    // build_base normalizes the trailing LF and downgrades localized `@ \text`
+                    // (no runtime dictionary here) to a plain literal, so the raw block text is fine.
+                    const { Base } = $bog_smalljs_playground.build_base($, this.tree());
                     return [new Base()];
                 }
                 catch (error) {
@@ -19546,6 +19634,7 @@ var $;
 			(obj.lang) = () => ("tree");
 			(obj.sidebar_showed) = () => (false);
 			(obj.playground_showed) = () => (false);
+			(obj.run_enabled) = () => (false);
 			return obj;
 		}
 		Sign_code(){
