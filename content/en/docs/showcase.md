@@ -9,7 +9,6 @@ Real things built with $mol — community apps, commercial products, and develop
 - **[VDO Rebalance](https://b-on-g.github.io/invest/)** — a local-first investing tool: drop in an `.xlsx` portfolio and get the trades that rebalance it. State lives in the browser over Giper Baza.
 - **[$hyoo_budget](https://budget.hyoo.ru)** — a collaborative, local-first personal-budget app. It took first place at the Beautiful Code hackathon.
 - **[$hyoo_talks](https://talks.hyoo.ru)** — an embeddable messenger. A prototype built for Sberbank took second place at Moscow City Hack.
-- **[Virtual avatar](https://avatar.ocas.ai)** — a 3D character you can talk to, play chess with, or ask to present slides. A commercial product with $mol driving the interface over third-party libraries.
 
 ## Design system & tools
 
@@ -18,9 +17,20 @@ Real things built with $mol — community apps, commercial products, and develop
 - **MAM** — the build tool and module registry that every $mol app lives in, and itself a $mol project. It is developer tooling rather than a hosted app; the source is on GitHub.
 - **view.tree LSP** — language tooling and an `npm create view-tree-lsp` scaffolder that starts new $mol apps. Editor tooling, so there is no running app to open.
 
-## Hackathons and commercial use
+## In production
 
-$mol has won repeatedly at hackathons: first place at Beautiful Code ([$hyoo_budget](https://budget.hyoo.ru)), first place at AC-VO-PPR-Hackathon (gesture-and-voice control of a street display), and prize-winning prototypes at More Tech, Moscow City Hack, and Dev Hack. It also ships in commercial and industrial systems — from an online-store back office to drone-defense control panels. The $mol [success-stories page](https://mol.hyoo.ru/#!section=docs/=xanlom_yimh6x) has the details.
+Beyond open-source and hackathon projects, $mol ships in commercial systems that earn revenue. A few of them (some run under NDA, so no links or logos):
+
+- **Drone-defense control** — the "Tamerlan" complex runs a $mol microservice on each device controller (radar, jammer, camera), joining them into a shared decentralized network. A web UI, local or centralized, shows the sky situation in real time: what is flying where, what is being jammed, where the cameras are pointed.
+- **[Virtual avatar](https://avatar.ocas.ai)** — a 3D character you can talk to, play chess with, or ask to present slides. A commercial product with $mol driving the interface over third-party libraries.
+- **Prompt-testing admin panel** — lets a company pick and test neural-network prompts for bulk processing of catalog rows: rewriting titles, descriptions, and SEO fields. It also cleans up text files for safe export into other CMSs.
+- **Metering admin panel** — meters upload readings to FTP; operators create users, grant them view rights to specific meters, and run email campaigns, while ordinary consumers see only their objects and a read-only view page.
+- **E-commerce back office** — product-catalog and order-list management for an online store.
+- **Scientific-data widget** — visualizes microelements and their compounds. The graph rendering stays on D3; everything else was refactored from vanilla JS to $mol and packed into a Web Component.
+
+## Hackathons
+
+$mol has won repeatedly at hackathons: first place at Beautiful Code ([$hyoo_budget](https://budget.hyoo.ru)), first place at AC-VO-PPR-Hackathon (gesture-and-voice control of a street display), and prize-winning prototypes at More Tech, Moscow City Hack, and Dev Hack. The $mol [success-stories page](https://mol.hyoo.ru/#!section=docs/=xanlom_yimh6x) has more.
 
 ## More
 

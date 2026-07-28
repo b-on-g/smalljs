@@ -36,6 +36,14 @@ namespace $.$$ {
 			return $mol_text.prototype.pre_themes.call( this, index )
 		}
 
+		// The `uri_resolve* <= uri_resolve*` binding that feeds code blocks also regenerates
+		// a parent-side `uri_resolve` stub that returns the empty default, shadowing
+		// $mol_text's real resolver. That makes every inline link resolve to "" and render
+		// as "Bad link". Delegate to the base so links (in prose and list items) resolve.
+		uri_resolve( uri: string ) {
+			return $mol_text.prototype.uri_resolve.call( this, uri )
+		}
+
 		/** Fence info-string of a code block (chunk 1 of the flow token), e.g. `tree`, `typescript`. */
 		pre_lang( index: number ) {
 			return this.flow_tokens()[ index ].chunks[ 1 ] ?? ''
