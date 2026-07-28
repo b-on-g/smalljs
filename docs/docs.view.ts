@@ -55,6 +55,26 @@ namespace $.$$ {
 			return null
 		}
 
+		// --- "Was this helpful?" ------------------------------------------
+		// Local-only UX affordance: the choice is remembered per page in
+		// localStorage (so we don't re-ask), but nothing is sent anywhere — this is
+		// a placeholder hook for a future feedback backend.
+
+		feedback_value( next?: string ) {
+			return this.$.$mol_state_local.value( `smalljs/feedback/${ this.page() }`, next ) ?? ''
+		}
+
+		@ $mol_action
+		feedback_yes() { this.feedback_value( 'yes' ); return null }
+
+		@ $mol_action
+		feedback_no() { this.feedback_value( 'no' ); return null }
+
+		feedback_content() {
+			if( this.feedback_value() ) return [ this.Feedback_thanks() ] as readonly $mol_view[]
+			return [ this.Feedback_prompt(), this.Feedback_yes(), this.Feedback_no() ] as readonly $mol_view[]
+		}
+
 		// --- Sidebar ------------------------------------------------------
 
 		groups_data() {

@@ -24,6 +24,8 @@ $bog_smalljs_docs $mol_view
 					sub /
 						<= Edit_icon $mol_icon_pencil
 						<= Edit_label @ \Edit this page on GitHub
+				<= Feedback $mol_view
+					sub <= feedback_content /
 				<= Nav $mol_view
 					sub <= nav_links /
 		<= Toc $mol_view
@@ -43,6 +45,20 @@ $bog_smalljs_docs $mol_view
 	Toc_link* $mol_link
 		arg <= toc_arg* *
 		sub / <= toc_text* \
+	Feedback_prompt $mol_view
+		sub / <= feedback_prompt_text @ \Was this helpful?
+	Feedback_yes $mol_button_minor
+		click? <=> feedback_yes? null
+		sub /
+			<= Feedback_yes_icon $mol_icon_thumb_up
+			<= feedback_yes_label @ \Yes
+	Feedback_no $mol_button_minor
+		click? <=> feedback_no? null
+		sub /
+			<= Feedback_no_icon $mol_icon_thumb_down
+			<= feedback_no_label @ \No
+	Feedback_thanks $mol_view
+		sub / <= feedback_thanks_text @ \Thanks for the feedback!
 	Prev $mol_link
 		arg <= prev_arg *
 		sub /

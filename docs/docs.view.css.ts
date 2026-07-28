@@ -117,6 +117,62 @@ namespace $ {
 			height: rem( 1 ),
 		},
 
+		Feedback: {
+			flex: { direction: 'row', wrap: 'wrap' },
+			align: { items: 'center' },
+			gap: rem( 0.5 ),
+			maxWidth: rem( 48 ),
+			margin: { top: rem( 1.5 ) },
+			padding: { top: $mol_gap.block },
+			border: { top: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+		},
+
+		Feedback_prompt: {
+			font: { size: rem( 0.75 ), weight: 600 },
+			letterSpacing: rem( 0.03 ),
+			textTransform: 'uppercase',
+			color: $bog_builderui_tokens.shade,
+			margin: { right: rem( 0.25 ) },
+		},
+
+		Feedback_yes: {
+			flex: { direction: 'row', grow: 0 },
+			align: { items: 'center' },
+			gap: rem( 0.375 ),
+			padding: { top: rem( 0.3 ), bottom: rem( 0.3 ), left: rem( 0.75 ), right: rem( 0.75 ) },
+			border: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line, radius: rem( 0.375 ) },
+			color: $bog_builderui_tokens.shade,
+			font: { size: rem( 0.8125 ), weight: 500 },
+
+			':hover': {
+				border: { color: $bog_builderui_tokens.focus },
+				color: $bog_builderui_tokens.text,
+			},
+		},
+
+		Feedback_no: {
+			flex: { direction: 'row', grow: 0 },
+			align: { items: 'center' },
+			gap: rem( 0.375 ),
+			padding: { top: rem( 0.3 ), bottom: rem( 0.3 ), left: rem( 0.75 ), right: rem( 0.75 ) },
+			border: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line, radius: rem( 0.375 ) },
+			color: $bog_builderui_tokens.shade,
+			font: { size: rem( 0.8125 ), weight: 500 },
+
+			':hover': {
+				border: { color: $bog_builderui_tokens.focus },
+				color: $bog_builderui_tokens.text,
+			},
+		},
+
+		Feedback_yes_icon: { width: rem( 1 ), height: rem( 1 ) },
+		Feedback_no_icon: { width: rem( 1 ), height: rem( 1 ) },
+
+		Feedback_thanks: {
+			font: { size: rem( 0.8125 ), weight: 500 },
+			color: $bog_builderui_tokens.control,
+		},
+
 		Nav: {
 			flex: { direction: 'row', wrap: 'wrap' },
 			justify: { content: 'space-between' },
