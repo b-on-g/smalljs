@@ -18135,6 +18135,1737 @@ var $;
 })($ || ($ = {}));
 
 ;
+	($.$mol_icon_tick) = class $mol_icon_tick extends ($.$mol_icon) {
+		path(){
+			return "M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z";
+		}
+	};
+
+
+;
+"use strict";
+
+
+;
+	($.$mol_check_box) = class $mol_check_box extends ($.$mol_check) {
+		Icon(){
+			const obj = new this.$.$mol_icon_tick();
+			return obj;
+		}
+	};
+	($mol_mem(($.$mol_check_box.prototype), "Icon"));
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("mol/check/box/box.view.css", "[mol_check_box_icon] {\n\tborder-radius: var(--mol_gap_round);\n\tbox-shadow: inset 0 0 0 1px var(--mol_theme_line);\n\tcolor: var(--mol_theme_shade);\n\theight: 1rem;\n\talign-self: center;\n}\n\n[mol_check]:not([mol_check_checked]) > [mol_check_box_icon] {\n\tfill: transparent;\n}\n\n[mol_check]:not([disabled]) > [mol_check_box_icon] {\n\tbackground: var(--mol_theme_field);\n\tcolor: var(--mol_theme_text);\n}\n");
+})($ || ($ = {}));
+
+;
+"use strict";
+
+
+;
+	($.$mol_check_icon) = class $mol_check_icon extends ($.$mol_check) {};
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("mol/check/icon/icon.view.css", "[mol_check_icon]:where([mol_check_checked]) {\n\tcolor: var(--mol_theme_current);\n}\n");
+})($ || ($ = {}));
+
+;
+"use strict";
+
+
+;
+	($.$mol_icon_calendar) = class $mol_icon_calendar extends ($.$mol_icon) {
+		path(){
+			return "M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1M17,12H12V17H17V12Z";
+		}
+	};
+
+
+;
+"use strict";
+
+
+;
+	($.$mol_icon_calendar_today) = class $mol_icon_calendar_today extends ($.$mol_icon) {
+		path(){
+			return "M7,10H12V15H7M19,19H5V8H19M19,3H18V1H16V3H8V1H6V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3Z";
+		}
+	};
+
+
+;
+"use strict";
+
+
+;
+	($.$mol_format) = class $mol_format extends ($.$mol_string) {
+		mask(id){
+			return "";
+		}
+		allow(){
+			return "0123456789";
+		}
+		hint(){
+			return (this.mask("0"));
+		}
+		keyboard(){
+			return "numeric";
+		}
+	};
+
+
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        /**
+         * Formatted string input/output
+         * @see https://mol.hyoo.ru/#!section=demos/demo=mol_format_demo
+         */
+        class $mol_format extends $.$mol_format {
+            selection([from, to] = [0, 0]) {
+                const prev = $mol_wire_probe(() => this.selection());
+                if (!prev)
+                    return [0, 100];
+                if (from !== to)
+                    return [from, to];
+                const allow = this.allow();
+                const value = this.value_changed();
+                const filtered = [...value].filter(letter => allow.includes(letter)).join('');
+                const mask = this.mask(filtered);
+                if ((prev?.[0] ?? 0) >= from)
+                    return [from, to];
+                const lastAllow = (value.length - [...value].reverse().findIndex(letter => allow.includes(letter))) % (value.length + 1);
+                if (lastAllow < from) {
+                    from = to = lastAllow;
+                }
+                while (mask[from] && mask[from] !== '_') {
+                    ++from;
+                    ++to;
+                }
+                return [from, to];
+            }
+            value_changed(next) {
+                const allow = this.allow();
+                const normalize = (val) => {
+                    val = [...val].filter(letter => allow.includes(letter)).join('');
+                    const letters = [...val].reverse();
+                    return this.mask(val).replace(/_/gu, () => letters.pop() ?? '_') + letters.reverse().join('');
+                };
+                if (next !== undefined) {
+                    next = normalize(next);
+                    if ([...next].filter(letter => allow.includes(letter)).join('')) {
+                        if (next.includes('_'))
+                            return next;
+                    }
+                    else {
+                        next = '';
+                    }
+                }
+                return normalize(this.value(next));
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $mol_format.prototype, "selection", null);
+        __decorate([
+            $mol_mem
+        ], $mol_format.prototype, "value_changed", null);
+        $$.$mol_format = $mol_format;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("mol/format/format.view.css", "[mol_format] {\n\tfont-family: monospace;\n}\n");
+})($ || ($ = {}));
+
+;
+	($.$mol_icon_trash_can) = class $mol_icon_trash_can extends ($.$mol_icon) {
+		path(){
+			return "M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z";
+		}
+	};
+
+
+;
+"use strict";
+
+
+;
+	($.$mol_icon_trash_can_outline) = class $mol_icon_trash_can_outline extends ($.$mol_icon) {
+		path(){
+			return "M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z";
+		}
+	};
+
+
+;
+"use strict";
+
+
+;
+	($.$mol_icon_chevron_double_left) = class $mol_icon_chevron_double_left extends ($.$mol_icon) {
+		path(){
+			return "M18.41,7.41L17,6L11,12L17,18L18.41,16.59L13.83,12L18.41,7.41M12.41,7.41L11,6L5,12L11,18L12.41,16.59L7.83,12L12.41,7.41Z";
+		}
+	};
+
+
+;
+"use strict";
+
+
+;
+	($.$mol_icon_chevron_double_right) = class $mol_icon_chevron_double_right extends ($.$mol_icon) {
+		path(){
+			return "M5.59,7.41L7,6L13,12L7,18L5.59,16.59L10.17,12L5.59,7.41M11.59,7.41L13,6L19,12L13,18L11.59,16.59L16.17,12L11.59,7.41Z";
+		}
+	};
+
+
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_time_base {
+        static patterns = {};
+        static formatter(pattern) {
+            if (this.patterns[pattern])
+                return this.patterns[pattern];
+            var tokens = Object.keys(this.patterns)
+                .sort()
+                .reverse()
+                .map((token) => token.replace(/([-+*.\[\]()\^])/g, '\\$1'));
+            var lexer = RegExp('(.*?)(' + tokens.join('|') + '|$)', 'g');
+            var funcs = [];
+            pattern.replace(lexer, (str, text, token) => {
+                if (text)
+                    funcs.push(() => text);
+                if (token)
+                    funcs.push(this.patterns[token]);
+                return str;
+            });
+            return this.patterns[pattern] = (arg) => {
+                return funcs.reduce((res, func) => res + func(arg), '');
+            };
+        }
+        toString(pattern) {
+            const Base = this.constructor;
+            const formatter = Base.formatter(pattern);
+            return formatter(this);
+        }
+    }
+    $.$mol_time_base = $mol_time_base;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    /**
+     * Small, simple, powerful, and fast TypeScript/JavaScript library for proper date/time/duration/interval arithmetic.
+     *
+     * Immutable iso8601 time duration representation.
+     * @see http://localhost:9080/mol/app/docs/-/test.html#!demo=mol_time_demo
+     */
+    class $mol_time_duration extends $mol_time_base {
+        constructor(config = 0) {
+            super();
+            if (typeof config === 'number') {
+                if (!Number.isFinite(config))
+                    throw new RangeError(`Wrong ms count`);
+                this.second = config / 1000;
+                return;
+            }
+            if (typeof config === 'string') {
+                if (config === 'Z') {
+                    this.hour = 0;
+                    this.minute = 0;
+                    return;
+                }
+                duration: {
+                    const parser = /^(-?)P(?:([+-]?\d+(?:\.\d+)?)Y)?(?:([+-]?\d+(?:\.\d+)?)M)?(?:([+-]?\d+(?:\.\d+)?)D)?(?:T(?:([+-]?\d+(?:\.\d+)?)h)?(?:([+-]?\d+(?:\.\d+)?)m)?(?:([+-]?\d+(?:\.\d+)?)s)?)?$/i;
+                    const found = parser.exec(config);
+                    if (!found)
+                        break duration;
+                    const sign = found[1] ? -1 : 1;
+                    if (found[2])
+                        this.year = sign * Number(found[2]);
+                    if (found[3])
+                        this.month = sign * Number(found[3]);
+                    if (found[4])
+                        this.day = sign * Number(found[4]);
+                    if (found[5])
+                        this.hour = sign * Number(found[5]);
+                    if (found[6])
+                        this.minute = sign * Number(found[6]);
+                    if (found[7])
+                        this.second = sign * Number(found[7]);
+                    return;
+                }
+                offset: {
+                    var parser = /^[+-](\d\d)(?::?(\d\d))?$/i;
+                    var found = parser.exec(config);
+                    if (!found)
+                        break offset;
+                    if (found[1])
+                        this.hour = Number(found[1]);
+                    if (found[2])
+                        this.minute = Number(found[2]);
+                    return;
+                }
+                throw new Error(`Can not parse time duration (${config})`);
+            }
+            if (config instanceof Array) {
+                ;
+                [this.year, this.month, this.day, this.hour, this.minute, this.second] = config;
+                return;
+            }
+            this.year = config.year || 0;
+            this.month = config.month || 0;
+            this.day = config.day || 0;
+            this.hour = config.hour || 0;
+            this.minute = config.minute || 0;
+            this.second = config.second || 0;
+        }
+        year = 0;
+        month = 0;
+        day = 0;
+        hour = 0;
+        minute = 0;
+        second = 0;
+        get normal() {
+            let second = this.second ?? 0;
+            let minute = this.minute ?? 0;
+            let hour = this.hour ?? 0;
+            let day = this.day ?? 0;
+            minute += Math.trunc(second / 60);
+            second = second % 60;
+            hour += Math.trunc(minute / 60);
+            minute = minute % 60;
+            day += Math.trunc(hour / 24);
+            hour = hour % 24;
+            return new $mol_time_duration({
+                year: this.year,
+                month: this.month,
+                day: day,
+                hour: hour,
+                minute: minute,
+                second: second,
+            });
+        }
+        summ(config) {
+            const duration = new $mol_time_duration(config);
+            return new $mol_time_duration({
+                year: this.year + duration.year,
+                month: this.month + duration.month,
+                day: this.day + duration.day,
+                hour: this.hour + duration.hour,
+                minute: this.minute + duration.minute,
+                second: this.second + duration.second,
+            });
+        }
+        mult(numb) {
+            return new $mol_time_duration({
+                year: this.year && this.year * numb,
+                month: this.month && this.month * numb,
+                day: this.day && this.day * numb,
+                hour: this.hour && this.hour * numb,
+                minute: this.minute && this.minute * numb,
+                second: this.second && this.second * numb,
+            });
+        }
+        count(config) {
+            const duration = new $mol_time_duration(config);
+            return this.valueOf() / duration.valueOf();
+        }
+        valueOf() {
+            var day = this.year * 365 + this.month * 30.4 + this.day;
+            var second = ((day * 24 + this.hour) * 60 + this.minute) * 60 + this.second;
+            return second * 1000;
+        }
+        toJSON() { return this.toString(); }
+        toString(pattern = 'P#Y#M#DT#h#m#s') {
+            return super.toString(pattern);
+        }
+        toArray() {
+            return [this.year, this.month, this.day, this.hour, this.minute, this.second];
+        }
+        [Symbol.toPrimitive](mode) {
+            return mode === 'number' ? this.valueOf() : this.toString();
+        }
+        static patterns = {
+            '#Y': (duration) => {
+                if (!duration.year)
+                    return '';
+                return duration.year + 'Y';
+            },
+            '#M': (duration) => {
+                if (!duration.month)
+                    return '';
+                return duration.month + 'M';
+            },
+            '#D': (duration) => {
+                if (!duration.day)
+                    return '';
+                return duration.day + 'D';
+            },
+            '#h': (duration) => {
+                if (!duration.hour)
+                    return '';
+                return duration.hour + 'H';
+            },
+            '#m': (duration) => {
+                if (!duration.minute)
+                    return '';
+                return duration.minute + 'M';
+            },
+            '#s': (duration) => {
+                if (!duration.second)
+                    return '';
+                return duration.second + 'S';
+            },
+            'hh': (moment) => {
+                if (moment.hour == null)
+                    return '';
+                return String(100 + moment.hour).slice(1);
+            },
+            'h': (moment) => {
+                if (moment.hour == null)
+                    return '';
+                return String(moment.hour);
+            },
+            ':mm': (moment) => {
+                if (moment.minute == null)
+                    return '';
+                return ':' + $mol_time_moment.patterns['mm'](moment);
+            },
+            'mm': (moment) => {
+                if (moment.minute == null)
+                    return '';
+                return String(100 + moment.minute).slice(1);
+            },
+            'm': (moment) => {
+                if (moment.minute == null)
+                    return '';
+                return String(moment.minute);
+            },
+            ':ss': (moment) => {
+                if (moment.second == null)
+                    return '';
+                return ':' + $mol_time_moment.patterns['ss'](moment);
+            },
+            'ss': (moment) => {
+                if (moment.second == null)
+                    return '';
+                return String(100 + moment.second | 0).slice(1);
+            },
+            's': (moment) => {
+                if (moment.second == null)
+                    return '';
+                return String(moment.second | 0);
+            },
+            '.sss': (moment) => {
+                if (moment.second == null)
+                    return '';
+                // if( moment.second === ( moment.second | 0 ) ) return ''
+                return '.' + $mol_time_moment.patterns['sss'](moment);
+            },
+            'sss': (moment) => {
+                if (moment.second == null)
+                    return '';
+                const millisecond = (moment.second - Math.trunc(moment.second)).toFixed(3);
+                return millisecond.slice(2);
+            },
+        };
+    }
+    $.$mol_time_duration = $mol_time_duration;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    let $mol_time_moment_weekdays;
+    (function ($mol_time_moment_weekdays) {
+        $mol_time_moment_weekdays[$mol_time_moment_weekdays["monday"] = 0] = "monday";
+        $mol_time_moment_weekdays[$mol_time_moment_weekdays["tuesday"] = 1] = "tuesday";
+        $mol_time_moment_weekdays[$mol_time_moment_weekdays["wednesday"] = 2] = "wednesday";
+        $mol_time_moment_weekdays[$mol_time_moment_weekdays["thursday"] = 3] = "thursday";
+        $mol_time_moment_weekdays[$mol_time_moment_weekdays["friday"] = 4] = "friday";
+        $mol_time_moment_weekdays[$mol_time_moment_weekdays["saturday"] = 5] = "saturday";
+        $mol_time_moment_weekdays[$mol_time_moment_weekdays["sunday"] = 6] = "sunday";
+    })($mol_time_moment_weekdays = $.$mol_time_moment_weekdays || ($.$mol_time_moment_weekdays = {}));
+    function numb(str, max) {
+        const numb = Number(str);
+        if (numb < max)
+            return numb;
+        $mol_fail(new Error(`Wrong time component ${str}`));
+    }
+    /**
+     * Small, simple, powerful, and fast TypeScript/JavaScript library for proper date/time/duration/interval arithmetic.
+     *
+     * Immutable iso8601 time moment representation.
+     * @see http://localhost:9080/mol/app/docs/-/test.html#!demo=mol_time_demo
+     */
+    class $mol_time_moment extends $mol_time_base {
+        constructor(config = new Date) {
+            super();
+            if (typeof config === 'number') {
+                config = new Date(config);
+                if (Number.isNaN(config.valueOf()))
+                    throw new RangeError(`Wrong ms count`);
+            }
+            if (typeof config === 'string') {
+                const parsed = /^(?:(\d\d?\d?\d?)(?:-?(\d\d?)(?:-?(\d\d?))?)?)?(?:[T ](?:(\d\d?)(?::?(\d\d?)(?::?(\d\d?(?:\.\d+)?))?)?)?(Z|[\+\-]\d\d?(?::?(?:\d\d?)?)?)?)?$/.exec(config);
+                if (!parsed)
+                    throw new Error(`Can not parse time moment (${config})`);
+                if (parsed[1])
+                    this.year = numb(parsed[1], 9999);
+                if (parsed[2])
+                    this.month = numb(parsed[2], 13) - 1;
+                if (parsed[3])
+                    this.day = numb(parsed[3], 32) - 1;
+                if (parsed[4])
+                    this.hour = numb(parsed[4], 60);
+                if (parsed[5])
+                    this.minute = numb(parsed[5], 60);
+                if (parsed[6])
+                    this.second = numb(parsed[6], 60);
+                if (parsed[7])
+                    this.offset = new $mol_time_duration(parsed[7]);
+                return;
+            }
+            if (config instanceof Date) {
+                this.year = config.getFullYear();
+                this.month = config.getMonth();
+                this.day = config.getDate() - 1;
+                this.hour = config.getHours();
+                this.minute = config.getMinutes();
+                this.second = config.getSeconds() + config.getMilliseconds() / 1000;
+                this.offset = new $mol_time_duration({ minute: -config.getTimezoneOffset() });
+                return;
+            }
+            if (config instanceof Array) {
+                ;
+                [this.year, this.month, this.day, this.hour, this.minute, this.second] = config;
+                if (config[6] !== undefined)
+                    this.offset = new $mol_time_duration(config[6] * 60_000);
+                return;
+            }
+            this.year = config.year;
+            this.month = config.month;
+            this.day = config.day;
+            this.hour = config.hour;
+            this.minute = config.minute;
+            this.second = config.second;
+            this.offset = config.offset == null ? config.offset : new $mol_time_duration(config.offset);
+        }
+        year;
+        month;
+        day;
+        hour;
+        minute;
+        second;
+        offset;
+        get weekday() {
+            return (this.native.getDay() + 6) % 7;
+        }
+        _native;
+        get native() {
+            if (this._native)
+                return this._native;
+            const second = Math.floor(this.second ?? 0);
+            const current = new Date();
+            const native = new Date(this.year ?? current.getFullYear(), this.month ?? (this.year === undefined ? current.getMonth() : 0), (this.day ?? (this.year === undefined && this.month === undefined ? current.getDate() - 1 : 0)) + 1, this.hour ?? 0, this.minute ?? 0, second, Math.floor(((this.second ?? 0) - second) * 1000));
+            const offset = -native.getTimezoneOffset();
+            shift: if (this.offset) {
+                const target = this.offset.count('PT1m');
+                if (target === offset)
+                    break shift;
+                native.setMinutes(native.getMinutes() + offset - target);
+            }
+            return this._native = native;
+        }
+        _normal;
+        get normal() {
+            if (this._normal)
+                return this._normal;
+            const moment = new $mol_time_moment(this.native).toOffset(this.offset);
+            return this._normal = new $mol_time_moment({
+                year: this.year === undefined ? undefined : moment.year,
+                month: this.month === undefined ? undefined : moment.month,
+                day: this.day === undefined ? undefined : moment.day,
+                hour: this.hour === undefined ? undefined : moment.hour,
+                minute: this.minute === undefined ? undefined : moment.minute,
+                second: this.second === undefined ? undefined : moment.second,
+                offset: this.offset === undefined ? undefined : moment.offset,
+            });
+        }
+        merge(config) {
+            const moment = new $mol_time_moment(config);
+            return new $mol_time_moment({
+                year: moment.year === undefined ? this.year : moment.year,
+                month: moment.month === undefined ? this.month : moment.month,
+                day: moment.day === undefined ? this.day : moment.day,
+                hour: moment.hour === undefined ? this.hour : moment.hour,
+                minute: moment.minute === undefined ? this.minute : moment.minute,
+                second: moment.second === undefined ? this.second : moment.second,
+                offset: moment.offset === undefined ? this.offset : moment.offset,
+            });
+        }
+        shift(config) {
+            const duration = new $mol_time_duration(config);
+            const moment = new $mol_time_moment().merge({
+                year: this.year ?? 0,
+                month: this.month ?? 0,
+                day: this.day ?? 0,
+                hour: this.hour ?? 0,
+                minute: this.minute ?? 0,
+                second: this.second ?? 0,
+                offset: this.offset ?? 0
+            });
+            const second = moment.second + (duration.second ?? 0);
+            const native = new Date(moment.year + (duration.year ?? 0), moment.month + (duration.month ?? 0), moment.day + 1 + (duration.day ?? 0), moment.hour + (duration.hour ?? 0), moment.minute + (duration.minute ?? 0), Math.floor(second), (second - Math.floor(second)) * 1000);
+            if (isNaN(native.valueOf()))
+                throw new Error('Wrong time');
+            return new $mol_time_moment({
+                year: this.year === undefined ? undefined : native.getFullYear(),
+                month: this.month === undefined ? undefined : native.getMonth(),
+                day: this.day === undefined ? undefined : native.getDate() - 1,
+                hour: this.hour === undefined ? undefined : native.getHours(),
+                minute: this.minute === undefined ? undefined : native.getMinutes(),
+                second: this.second === undefined ? undefined : native.getSeconds() + native.getMilliseconds() / 1000,
+                offset: this.offset,
+            });
+        }
+        mask(config) {
+            const mask = new $mol_time_moment(config);
+            return new $mol_time_moment({
+                year: mask.year === undefined ? undefined : this.year,
+                month: mask.month === undefined ? undefined : this.month,
+                day: mask.day === undefined ? undefined : this.day,
+                hour: mask.hour === undefined ? undefined : this.hour,
+                minute: mask.minute === undefined ? undefined : this.minute,
+                second: mask.second === undefined ? undefined : this.second,
+                offset: mask.offset === undefined ? undefined : this.offset,
+            });
+        }
+        toOffset(config = new $mol_time_moment().offset) {
+            const duration = new $mol_time_duration(config);
+            const offset = this.offset || new $mol_time_moment().offset;
+            let with_time = new $mol_time_moment('0001-01-01T00:00:00').merge(this);
+            const moment = with_time.shift(duration.summ(offset.mult(-1)));
+            return moment.merge({ offset: duration });
+        }
+        valueOf() { return this.native.getTime(); }
+        toJSON() { return this.toString(); }
+        toString(pattern = 'YYYY-MM-DDThh:mm:ss.sssZ') {
+            return super.toString(pattern);
+        }
+        toArray() {
+            return [this.year, this.month, this.day, this.hour, this.minute, this.second, this.offset?.count('PT1m')];
+        }
+        [Symbol.toPrimitive](mode) {
+            return mode === 'number' ? this.valueOf() : this.toString();
+        }
+        [$mol_dev_format_head]() {
+            return $mol_dev_format_span({}, $mol_dev_format_native(this), ' ', $mol_dev_format_accent(this.toString('YYYY-MM-DD hh:mm:ss.sss Z')));
+        }
+        /// Mnemonics:
+        ///  * single letter for numbers: M - month number, D - day of month.
+        ///  * uppercase letters for dates, lowercase for times: M - month number , m - minutes number
+        ///  * repeated letters for define register count: YYYY - full year, YY - shot year, MM - padded month number
+        ///  * words for word representation: Month - month name, WeekDay - day of week name
+        ///  * shortcuts: WD - short day of week, Mon - short month name.
+        static patterns = {
+            'YYYY': (moment) => {
+                if (moment.year == null)
+                    return '';
+                return String(moment.year);
+            },
+            'AD': (moment) => {
+                if (moment.year == null)
+                    return '';
+                return String(Math.floor(moment.year / 100) + 1);
+            },
+            'YY': (moment) => {
+                if (moment.year == null)
+                    return '';
+                return String(moment.year % 100);
+            },
+            'Month': (pattern => (moment) => {
+                if (moment.month == null)
+                    return '';
+                return pattern.format(moment.native);
+            })(new Intl.DateTimeFormat(undefined, { month: 'long' })),
+            'DD Month': (pattern => (moment) => {
+                if (moment.month == null) {
+                    if (moment.day == null) {
+                        return '';
+                    }
+                    else {
+                        return $mol_time_moment.patterns['DD'](moment);
+                    }
+                }
+                else {
+                    if (moment.day == null) {
+                        return $mol_time_moment.patterns['Month'](moment);
+                    }
+                    else {
+                        return pattern.format(moment.native);
+                    }
+                }
+            })(new Intl.DateTimeFormat(undefined, { day: '2-digit', month: 'long' })),
+            'D Month': (pattern => (moment) => {
+                if (moment.month == null) {
+                    if (moment.day == null) {
+                        return '';
+                    }
+                    else {
+                        return $mol_time_moment.patterns['D'](moment);
+                    }
+                }
+                else {
+                    if (moment.day == null) {
+                        return $mol_time_moment.patterns['Month'](moment);
+                    }
+                    else {
+                        return pattern.format(moment.native);
+                    }
+                }
+            })(new Intl.DateTimeFormat(undefined, { day: 'numeric', month: 'long' })),
+            'Mon': (pattern => (moment) => {
+                if (moment.month == null)
+                    return '';
+                return pattern.format(moment.native);
+            })(new Intl.DateTimeFormat(undefined, { month: 'short' })),
+            'DD Mon': (pattern => (moment) => {
+                if (moment.month == null) {
+                    if (moment.day == null) {
+                        return '';
+                    }
+                    else {
+                        return $mol_time_moment.patterns['DD'](moment);
+                    }
+                }
+                else {
+                    if (moment.day == null) {
+                        return $mol_time_moment.patterns['Mon'](moment);
+                    }
+                    else {
+                        return pattern.format(moment.native);
+                    }
+                }
+            })(new Intl.DateTimeFormat(undefined, { day: '2-digit', month: 'short' })),
+            'D Mon': (pattern => (moment) => {
+                if (moment.month == null) {
+                    if (moment.day == null) {
+                        return '';
+                    }
+                    else {
+                        return $mol_time_moment.patterns['D'](moment);
+                    }
+                }
+                else {
+                    if (moment.day == null) {
+                        return $mol_time_moment.patterns['Mon'](moment);
+                    }
+                    else {
+                        return pattern.format(moment.native);
+                    }
+                }
+            })(new Intl.DateTimeFormat(undefined, { day: 'numeric', month: 'short' })),
+            '-MM': (moment) => {
+                if (moment.month == null)
+                    return '';
+                return '-' + $mol_time_moment.patterns['MM'](moment);
+            },
+            'MM': (moment) => {
+                if (moment.month == null)
+                    return '';
+                return String(100 + moment.month + 1).slice(1);
+            },
+            'M': (moment) => {
+                if (moment.month == null)
+                    return '';
+                return String(moment.month + 1);
+            },
+            'WeekDay': (pattern => (moment) => {
+                if (moment.day == null)
+                    return '';
+                if (moment.month == null)
+                    return '';
+                if (moment.year == null)
+                    return '';
+                return pattern.format(moment.native);
+            })(new Intl.DateTimeFormat(undefined, { weekday: 'long' })),
+            'WD': (pattern => (moment) => {
+                if (moment.day == null)
+                    return '';
+                if (moment.month == null)
+                    return '';
+                if (moment.year == null)
+                    return '';
+                return pattern.format(moment.native);
+            })(new Intl.DateTimeFormat(undefined, { weekday: 'short' })),
+            '-DD': (moment) => {
+                if (moment.day == null)
+                    return '';
+                return '-' + $mol_time_moment.patterns['DD'](moment);
+            },
+            'DD': (moment) => {
+                if (moment.day == null)
+                    return '';
+                return String(100 + moment.day + 1).slice(1);
+            },
+            'D': (moment) => {
+                if (moment.day == null)
+                    return '';
+                return String(moment.day + 1);
+            },
+            'Thh': (moment) => {
+                if (moment.hour == null)
+                    return '';
+                return 'T' + $mol_time_moment.patterns['hh'](moment);
+            },
+            'hh': (moment) => {
+                if (moment.hour == null)
+                    return '';
+                return String(100 + moment.hour).slice(1);
+            },
+            'h': (moment) => {
+                if (moment.hour == null)
+                    return '';
+                return String(moment.hour);
+            },
+            ':mm': (moment) => {
+                if (moment.minute == null)
+                    return '';
+                return ':' + $mol_time_moment.patterns['mm'](moment);
+            },
+            'mm': (moment) => {
+                if (moment.minute == null)
+                    return '';
+                return String(100 + moment.minute).slice(1);
+            },
+            'm': (moment) => {
+                if (moment.minute == null)
+                    return '';
+                return String(moment.minute);
+            },
+            ':ss': (moment) => {
+                if (moment.second == null)
+                    return '';
+                return ':' + $mol_time_moment.patterns['ss'](moment);
+            },
+            'ss': (moment) => {
+                if (moment.second == null)
+                    return '';
+                return String(100 + moment.second | 0).slice(1);
+            },
+            's': (moment) => {
+                if (moment.second == null)
+                    return '';
+                return String(moment.second | 0);
+            },
+            '.sss': (moment) => {
+                if (moment.second == null)
+                    return '';
+                if (moment.second === (moment.second | 0))
+                    return '';
+                return '.' + $mol_time_moment.patterns['sss'](moment);
+            },
+            'sss': (moment) => {
+                if (moment.second == null)
+                    return '';
+                const millisecond = (moment.second - Math.trunc(moment.second)).toFixed(3);
+                return millisecond.slice(2);
+            },
+            'Z': (moment) => {
+                const offset = moment.offset?.normal;
+                if (!offset)
+                    return '';
+                let hour = offset.hour;
+                let sign = '+';
+                if (hour < 0) {
+                    sign = '-';
+                    hour = -hour;
+                }
+                return sign + hour.toString().padStart(2, '0') + ':' + offset.minute.toString().padStart(2, '0');
+            }
+        };
+    }
+    $.$mol_time_moment = $mol_time_moment;
+})($ || ($ = {}));
+
+;
+	($.$mol_hor) = class $mol_hor extends ($.$mol_view) {};
+
+
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        /** Horizontal list of blocks. */
+        class $mol_hor extends $.$mol_hor {
+            minimal_width() {
+                let min = 0;
+                for (const view of this.sub()) {
+                    if (!(view instanceof $mol_view))
+                        continue;
+                    min += view.minimal_width();
+                }
+                return min;
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $mol_hor.prototype, "minimal_width", null);
+        $$.$mol_hor = $mol_hor;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_define($mol_hor, {
+        display: 'flex',
+        alignItems: 'flex-start',
+        alignContent: 'flex-start',
+        justifyContent: 'flex-start',
+        flex: {
+            grow: 1,
+            shrink: 0,
+            basis: 'auto',
+        },
+    });
+})($ || ($ = {}));
+
+;
+	($.$mol_calendar) = class $mol_calendar extends ($.$mol_list) {
+		title(){
+			return "";
+		}
+		Title(){
+			const obj = new this.$.$mol_view();
+			(obj.minimal_height) = () => (24);
+			(obj.sub) = () => ([(this.title())]);
+			return obj;
+		}
+		head(){
+			return [(this.Title())];
+		}
+		Head(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.head()));
+			return obj;
+		}
+		weekdays(){
+			return [];
+		}
+		Weekdays(){
+			const obj = new this.$.$mol_hor();
+			(obj.sub) = () => ((this.weekdays()));
+			return obj;
+		}
+		weekend(id){
+			return false;
+		}
+		weekday(id){
+			return "";
+		}
+		week_days(id){
+			return [];
+		}
+		day_ghost(id){
+			return false;
+		}
+		day_holiday(id){
+			return false;
+		}
+		day_selected(id){
+			return false;
+		}
+		day_today(id){
+			return false;
+		}
+		day_theme(id){
+			return null;
+		}
+		day_text(id){
+			return "";
+		}
+		day_content(id){
+			return [(this.day_text(id))];
+		}
+		sub(){
+			return [(this.Head()), (this.Weekdays())];
+		}
+		weeks(){
+			return [];
+		}
+		weeks_count(){
+			return 6;
+		}
+		Weekday(id){
+			const obj = new this.$.$mol_calendar_day();
+			(obj.holiday) = () => ((this.weekend(id)));
+			(obj.sub) = () => ([(this.weekday(id))]);
+			return obj;
+		}
+		Week(id){
+			const obj = new this.$.$mol_hor();
+			(obj.sub) = () => ((this.week_days(id)));
+			return obj;
+		}
+		Day(id){
+			const obj = new this.$.$mol_calendar_day();
+			(obj.ghost) = () => ((this.day_ghost(id)));
+			(obj.holiday) = () => ((this.day_holiday(id)));
+			(obj.selected) = () => ((this.day_selected(id)));
+			(obj.today) = () => ((this.day_today(id)));
+			(obj.theme) = () => ((this.day_theme(id)));
+			(obj.sub) = () => ((this.day_content(id)));
+			return obj;
+		}
+		month_string(){
+			return "";
+		}
+		month_moment(){
+			const obj = new this.$.$mol_time_moment();
+			return obj;
+		}
+	};
+	($mol_mem(($.$mol_calendar.prototype), "Title"));
+	($mol_mem(($.$mol_calendar.prototype), "Head"));
+	($mol_mem(($.$mol_calendar.prototype), "Weekdays"));
+	($mol_mem_key(($.$mol_calendar.prototype), "Weekday"));
+	($mol_mem_key(($.$mol_calendar.prototype), "Week"));
+	($mol_mem_key(($.$mol_calendar.prototype), "Day"));
+	($mol_mem(($.$mol_calendar.prototype), "month_moment"));
+	($.$mol_calendar_day) = class $mol_calendar_day extends ($.$mol_view) {
+		holiday(){
+			return false;
+		}
+		ghost(){
+			return false;
+		}
+		selected(){
+			return false;
+		}
+		today(){
+			return false;
+		}
+		theme(){
+			return null;
+		}
+		minimal_height(){
+			return 24;
+		}
+		minimal_width(){
+			return 36;
+		}
+		attr(){
+			return {
+				"mol_calendar_holiday": (this.holiday()), 
+				"mol_calendar_ghost": (this.ghost()), 
+				"mol_calendar_selected": (this.selected()), 
+				"mol_calendar_today": (this.today()), 
+				"mol_theme": (this.theme())
+			};
+		}
+	};
+
+
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        /**
+         * Draws all days of month as table.
+         * @see https://mol.hyoo.ru/#!section=demos/demo=mol_calendar_demo_holiday
+         */
+        class $mol_calendar extends $.$mol_calendar {
+            month_moment() {
+                const moment = new $mol_time_moment(this.month_string() || undefined);
+                return new $mol_time_moment({ year: moment.year, month: moment.month });
+            }
+            title() {
+                return this.month_moment().toString('Month YYYY');
+            }
+            day_first() {
+                return this.month_moment().merge({ day: 0 });
+            }
+            day_last() {
+                return this.day_first().shift('P1M');
+            }
+            day_draw_from() {
+                let weekday = this.day_first().weekday;
+                return this.day_first().shift({ day: -weekday });
+            }
+            weekdays() {
+                const next = [];
+                for (let index = 0; index < 7; ++index) {
+                    next.push(this.Weekday(index));
+                }
+                return next;
+            }
+            weekday(index) {
+                return this.day_draw_from().shift({ day: index }).toString('WD');
+            }
+            weekend(index) {
+                return [5, 6].indexOf(index) >= 0;
+            }
+            sub() {
+                return [
+                    ...super.sub(),
+                    ...this.weeks(),
+                ];
+            }
+            weeks() {
+                const weeks = [];
+                let count = this.weeks_count();
+                for (let i = 0; i < count; ++i) {
+                    weeks.push(this.Week(i));
+                }
+                return weeks;
+            }
+            week_days(index) {
+                const days = [];
+                let start = this.day_draw_from().shift({ day: index * 7 });
+                for (let i = 0; i < 7; ++i) {
+                    days.push(this.Day(start.shift({ day: i }).toString('YYYY-MM-DD')));
+                }
+                return days;
+            }
+            day_text(day) {
+                return new $mol_time_moment(day).toString("D");
+            }
+            day_holiday(day) {
+                return this.weekend(new $mol_time_moment(day).weekday);
+            }
+            today() {
+                return new $mol_time_moment();
+            }
+            day_today(day) {
+                return this.today().toString('YYYY-MM-DD') === day;
+            }
+            day_ghost(day) {
+                return new $mol_time_moment(day).toString('YYYY-MM') !== this.day_first().toString('YYYY-MM');
+            }
+            day_theme(day) {
+                return this.day_selected(day) ? '$mol_theme_current' : super.day_theme(day);
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $mol_calendar.prototype, "month_moment", null);
+        __decorate([
+            $mol_mem
+        ], $mol_calendar.prototype, "day_first", null);
+        __decorate([
+            $mol_mem
+        ], $mol_calendar.prototype, "day_last", null);
+        __decorate([
+            $mol_mem
+        ], $mol_calendar.prototype, "day_draw_from", null);
+        __decorate([
+            $mol_mem
+        ], $mol_calendar.prototype, "weekdays", null);
+        __decorate([
+            $mol_mem_key
+        ], $mol_calendar.prototype, "weekday", null);
+        __decorate([
+            $mol_mem
+        ], $mol_calendar.prototype, "sub", null);
+        __decorate([
+            $mol_mem
+        ], $mol_calendar.prototype, "weeks", null);
+        __decorate([
+            $mol_mem_key
+        ], $mol_calendar.prototype, "week_days", null);
+        __decorate([
+            $mol_mem_key
+        ], $mol_calendar.prototype, "day_text", null);
+        __decorate([
+            $mol_mem_key
+        ], $mol_calendar.prototype, "day_holiday", null);
+        __decorate([
+            $mol_mem
+        ], $mol_calendar.prototype, "today", null);
+        __decorate([
+            $mol_mem_key
+        ], $mol_calendar.prototype, "day_today", null);
+        __decorate([
+            $mol_mem_key
+        ], $mol_calendar.prototype, "day_ghost", null);
+        $$.$mol_calendar = $mol_calendar;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("mol/calendar/calendar.view.css", "[mol_calendar] {\n\tdisplay: table;\n\tfont-family: monospace;\n}\n\n[mol_calendar_head] {\n\tdisplay: table-caption;\n\tbackground: inherit;\n}\n\n[mol_calendar_title] {\n\tjustify-content: center;\n}\n\n[mol_calendar_weekdays] ,\n[mol_calendar_week] {\n\tdisplay: table-row;\n\tpadding: 0;\n}\n\n[mol_calendar_day] {\n\tdisplay: table-cell;\n\tpadding: .25rem .5rem;\n\ttext-align: center;\n\tword-break: normal;\n\tbox-shadow: none;\n\tborder-radius: var(--mol_gap_round);\n}\n\n[mol_calendar_weekday] {\n\tcolor: var(--mol_theme_shade);\n\tborder-bottom: 1px solid var(--mol_theme_line);\n}\n\n[mol_calendar_holiday] {\n\tcolor: var(--mol_theme_special);\n}\n\n[mol_calendar_today] {\n\tfont-weight: bolder;\n}\n\n[mol_calendar_ghost] {\n\topacity: .2;\n}\n");
+})($ || ($ = {}));
+
+;
+	($.$mol_date) = class $mol_date extends ($.$mol_pick) {
+		enabled(){
+			return true;
+		}
+		today_click(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Today_icon(){
+			const obj = new this.$.$mol_icon_calendar_today();
+			return obj;
+		}
+		Today(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.hint) = () => ((this.$.$mol_locale.text("$mol_date_Today_hint")));
+			(obj.enabled) = () => ((this.enabled()));
+			(obj.click) = (next) => ((this.today_click(next)));
+			(obj.sub) = () => ([(this.Today_icon())]);
+			return obj;
+		}
+		value(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		value_changed(next){
+			return (this.Input().value_changed(next));
+		}
+		input_mask(id){
+			return "";
+		}
+		Input(){
+			const obj = new this.$.$mol_format();
+			(obj.value) = (next) => ((this.value(next)));
+			(obj.mask) = (id) => ((this.input_mask(id)));
+			(obj.enabled) = () => ((this.enabled()));
+			return obj;
+		}
+		clear(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Clear_icon(){
+			const obj = new this.$.$mol_icon_trash_can_outline();
+			return obj;
+		}
+		Clear(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.hint) = () => ((this.$.$mol_locale.text("$mol_date_Clear_hint")));
+			(obj.enabled) = () => ((this.enabled()));
+			(obj.click) = (next) => ((this.clear(next)));
+			(obj.sub) = () => ([(this.Clear_icon())]);
+			return obj;
+		}
+		input_content(){
+			return [
+				(this.Today()), 
+				(this.Input()), 
+				(this.Clear())
+			];
+		}
+		Input_row(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.input_content()));
+			return obj;
+		}
+		month_moment(){
+			return (this.value_moment());
+		}
+		day_selected(id){
+			return false;
+		}
+		day_click(id, next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Calendar_title(){
+			return (this.Calendar().Title());
+		}
+		year_prev_hint(){
+			return (this.$.$mol_locale.text("$mol_date_year_prev_hint"));
+		}
+		year_prev(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Year_prev_icon(){
+			const obj = new this.$.$mol_icon_chevron_double_left();
+			return obj;
+		}
+		Year_prev(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.hint) = () => ((this.year_prev_hint()));
+			(obj.click) = (next) => ((this.year_prev(next)));
+			(obj.sub) = () => ([(this.Year_prev_icon())]);
+			return obj;
+		}
+		month_prev_hint(){
+			return (this.$.$mol_locale.text("$mol_date_month_prev_hint"));
+		}
+		prev_hint(){
+			return (this.month_prev_hint());
+		}
+		month_prev(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		prev(next){
+			return (this.month_prev(next));
+		}
+		Month_prev_icon(){
+			const obj = new this.$.$mol_icon_chevron_left();
+			return obj;
+		}
+		Prev_icon(){
+			return (this.Month_prev_icon());
+		}
+		Month_prev(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.hint) = () => ((this.prev_hint()));
+			(obj.click) = (next) => ((this.prev(next)));
+			(obj.sub) = () => ([(this.Prev_icon())]);
+			return obj;
+		}
+		Prev(){
+			return (this.Month_prev());
+		}
+		month_next_hint(){
+			return (this.$.$mol_locale.text("$mol_date_month_next_hint"));
+		}
+		next_hint(){
+			return (this.month_next_hint());
+		}
+		month_next(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		next(next){
+			return (this.month_next(next));
+		}
+		Month_next_icon(){
+			const obj = new this.$.$mol_icon_chevron_right();
+			return obj;
+		}
+		Next_icon(){
+			return (this.Month_next_icon());
+		}
+		Month_next(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.hint) = () => ((this.next_hint()));
+			(obj.click) = (next) => ((this.next(next)));
+			(obj.sub) = () => ([(this.Next_icon())]);
+			return obj;
+		}
+		Next(){
+			return (this.Month_next());
+		}
+		year_next_hint(){
+			return (this.$.$mol_locale.text("$mol_date_year_next_hint"));
+		}
+		year_next(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Year_next_icon(){
+			const obj = new this.$.$mol_icon_chevron_double_right();
+			return obj;
+		}
+		Year_next(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.hint) = () => ((this.year_next_hint()));
+			(obj.click) = (next) => ((this.year_next(next)));
+			(obj.sub) = () => ([(this.Year_next_icon())]);
+			return obj;
+		}
+		Calendar_tools(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([
+				(this.Year_prev()), 
+				(this.Prev()), 
+				(this.Calendar_title()), 
+				(this.Next()), 
+				(this.Year_next())
+			]);
+			return obj;
+		}
+		Calendar(){
+			const obj = new this.$.$mol_date_calendar();
+			(obj.enabled) = () => ((this.enabled()));
+			(obj.month_moment) = () => ((this.month_moment()));
+			(obj.day_selected) = (id) => ((this.day_selected(id)));
+			(obj.day_click) = (id, next) => ((this.day_click(id, next)));
+			(obj.head) = () => ([(this.Calendar_tools())]);
+			return obj;
+		}
+		Icon(){
+			const obj = new this.$.$mol_icon_calendar();
+			return obj;
+		}
+		bubble_content(){
+			return [(this.Input_row()), (this.Calendar())];
+		}
+		value_number(next){
+			if(next !== undefined) return next;
+			return +NaN;
+		}
+		value_moment(next){
+			if(next !== undefined) return next;
+			const obj = new this.$.$mol_time_moment();
+			return obj;
+		}
+	};
+	($mol_mem(($.$mol_date.prototype), "today_click"));
+	($mol_mem(($.$mol_date.prototype), "Today_icon"));
+	($mol_mem(($.$mol_date.prototype), "Today"));
+	($mol_mem(($.$mol_date.prototype), "value"));
+	($mol_mem(($.$mol_date.prototype), "Input"));
+	($mol_mem(($.$mol_date.prototype), "clear"));
+	($mol_mem(($.$mol_date.prototype), "Clear_icon"));
+	($mol_mem(($.$mol_date.prototype), "Clear"));
+	($mol_mem(($.$mol_date.prototype), "Input_row"));
+	($mol_mem_key(($.$mol_date.prototype), "day_click"));
+	($mol_mem(($.$mol_date.prototype), "year_prev"));
+	($mol_mem(($.$mol_date.prototype), "Year_prev_icon"));
+	($mol_mem(($.$mol_date.prototype), "Year_prev"));
+	($mol_mem(($.$mol_date.prototype), "month_prev"));
+	($mol_mem(($.$mol_date.prototype), "Month_prev_icon"));
+	($mol_mem(($.$mol_date.prototype), "Month_prev"));
+	($mol_mem(($.$mol_date.prototype), "month_next"));
+	($mol_mem(($.$mol_date.prototype), "Month_next_icon"));
+	($mol_mem(($.$mol_date.prototype), "Month_next"));
+	($mol_mem(($.$mol_date.prototype), "year_next"));
+	($mol_mem(($.$mol_date.prototype), "Year_next_icon"));
+	($mol_mem(($.$mol_date.prototype), "Year_next"));
+	($mol_mem(($.$mol_date.prototype), "Calendar_tools"));
+	($mol_mem(($.$mol_date.prototype), "Calendar"));
+	($mol_mem(($.$mol_date.prototype), "Icon"));
+	($mol_mem(($.$mol_date.prototype), "value_number"));
+	($mol_mem(($.$mol_date.prototype), "value_moment"));
+	($.$mol_date_calendar) = class $mol_date_calendar extends ($.$mol_calendar) {
+		day_click(id, next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		enabled(){
+			return true;
+		}
+		Day_button(id){
+			const obj = new this.$.$mol_button_minor();
+			(obj.title) = () => ((this.day_text(id)));
+			(obj.event_click) = (next) => ((this.day_click(id, next)));
+			(obj.minimal_height) = () => (24);
+			(obj.enabled) = () => ((this.enabled()));
+			return obj;
+		}
+		day_content(id){
+			return [(this.Day_button(id))];
+		}
+	};
+	($mol_mem_key(($.$mol_date_calendar.prototype), "day_click"));
+	($mol_mem_key(($.$mol_date_calendar.prototype), "Day_button"));
+
+
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        /**
+         * Date presenter and picker.
+         * @see https://mol.hyoo.ru/#!section=demos/demo=mol_date_demo
+         */
+        class $mol_date extends $.$mol_date {
+            trigger_content() {
+                return [this.value() || this.Icon()];
+            }
+            input_mask(val) {
+                return val.length > 8 ? '____-__-__ __:__' : '____-__-__ ';
+            }
+            input_content() {
+                return [
+                    this.Today(),
+                    this.Input(),
+                    ...this.value() ? [this.Clear()] : [],
+                ];
+            }
+            value(val) {
+                const moment = this.value_moment();
+                if (val === undefined)
+                    return moment?.toString('YYYY-MM-DD hh:mm') ?? '';
+                const moment2 = val && $mol_try(() => new $mol_time_moment(val)) || null;
+                if (moment2 instanceof Error)
+                    return val;
+                this.value_moment(moment2);
+                return val;
+            }
+            value_moment(next) {
+                const stamp = this.value_number();
+                if (next === undefined) {
+                    return isNaN(stamp) ? null : new $mol_time_moment(stamp);
+                }
+                this.value_number(next?.valueOf() ?? NaN);
+                return next;
+            }
+            value_number(next) {
+                const value = this.value();
+                if (next === undefined) {
+                    if (!value)
+                        return NaN;
+                    const moment = $mol_try(() => new $mol_time_moment(value));
+                    if (moment instanceof Error)
+                        return NaN;
+                    return moment.valueOf() ?? NaN;
+                }
+                const moment = $mol_try(() => new $mol_time_moment(next));
+                this.value(moment.toString(value.length > 12 ? 'YYYY-MM-DD hh:mm' : 'YYYY-MM-DD'));
+                return next;
+            }
+            value_moment_today() {
+                return this.value()
+                    ? new $mol_time_moment().mask(this.value())
+                    : new $mol_time_moment();
+            }
+            clear() {
+                this.value('');
+                this.Input().focused(true);
+                this.Input().selection([0, 0]);
+            }
+            month_moment(next) {
+                if (next)
+                    return next;
+                let moment = $mol_try(() => new $mol_time_moment(this.value_changed().replace(/\D+$/, '')).mask('0000-00'));
+                if (moment instanceof Error || !moment.year)
+                    return new $mol_time_moment().mask('0000-00');
+                if (moment.month === undefined) {
+                    moment = moment.merge({ month: 0 });
+                }
+                return moment;
+            }
+            day_selected(day) {
+                return this.value_moment()?.toString('YYYY-MM-DD') === day;
+            }
+            day_click(day) {
+                const moment = new $mol_time_moment(day);
+                this.value_moment(this.value_moment()?.merge(moment) ?? moment);
+                this.showed(false);
+            }
+            month_prev() {
+                this.month_moment(this.month_moment().shift({ month: -1 }));
+            }
+            month_next() {
+                this.month_moment(this.month_moment().shift({ month: +1 }));
+            }
+            year_prev() {
+                this.month_moment(this.month_moment().shift({ year: -1 }));
+            }
+            year_next() {
+                this.month_moment(this.month_moment().shift({ year: +1 }));
+            }
+            today_click() {
+                this.value_moment(this.value_moment_today());
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $mol_date.prototype, "value", null);
+        __decorate([
+            $mol_mem
+        ], $mol_date.prototype, "value_moment", null);
+        __decorate([
+            $mol_mem
+        ], $mol_date.prototype, "value_number", null);
+        __decorate([
+            $mol_mem
+        ], $mol_date.prototype, "value_moment_today", null);
+        __decorate([
+            $mol_mem
+        ], $mol_date.prototype, "month_moment", null);
+        $$.$mol_date = $mol_date;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("mol/date/date.view.css", "/* [mol_date_bubble] {\n\tpadding: .5rem;\n} */\n\n[mol_date_input] {\n\tflex-shrink: 0;\n}\n\n[mol_date_month_prev] ,\n[mol_date_month_next] {\n\tflex-grow: 1;\n}\n[mol_date_month_prev] {\n\tjustify-content: flex-end;\n}\n\n[mol_date_calendar_title] {\n\tpadding: var(--mol_gap_text);\n}\n\n[mol_date_calendar_day] {\n\tpadding: 0;\n}\n\n[mol_date_calendar_day_button] {\n\twidth: 100%;\n\t/* padding: .25rem .5rem; */\n\tjustify-content: center;\n\tcursor: pointer;\n\tcolor: inherit;\n}\n");
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_range_in(source) {
+        return new $mol_range_lazy(source);
+    }
+    $.$mol_range_in = $mol_range_in;
+    class $mol_range_common {
+        item(id) {
+            return undefined;
+        }
+        get length() {
+            return 0;
+        }
+        get '0'() {
+            throw new Error('Direct access to items not supported. Use item( id : number ) method instead.');
+        }
+        forEach(handle) {
+            const length = this.length;
+            for (let i = 0; i < length; ++i) {
+                handle(this.item(i), i);
+            }
+        }
+        valueOf() {
+            const list = [];
+            this.forEach(val => list.push(val));
+            return list;
+        }
+        concat(...args) {
+            const ranges = args.map(range => range.valueOf());
+            return this.valueOf().concat(...ranges);
+            //return new $mol_range_list( [ this ].concat( args ) )
+        }
+        slice(start = 0, end) {
+            const source = this;
+            return new $mol_range_lazy({
+                item(id) {
+                    return source.item(id + start);
+                },
+                get length() {
+                    return Math.min(end ?? source.length, source.length) - start;
+                }
+            });
+        }
+        map(proceed) {
+            const source = this;
+            return new $mol_range_lazy({
+                item(id) {
+                    return proceed(source.item(id), id);
+                },
+                get length() {
+                    return source.length;
+                }
+            });
+        }
+        join(delim = ',') {
+            const list = [];
+            this.forEach(val => list.push(val));
+            return list.join(delim);
+        }
+        every(check) {
+            let res = true;
+            this.forEach((val, id) => {
+                if (!res)
+                    return;
+                res = check(val, id);
+            });
+            return res;
+        }
+        some(check) {
+            let res = false;
+            this.forEach((val, id) => {
+                if (res)
+                    return;
+                res = check(val, id);
+            });
+            return res;
+        }
+    }
+    $.$mol_range_common = $mol_range_common;
+    class $mol_range_lazy extends $mol_range_common {
+        source;
+        constructor(source = {
+            item(id) { return undefined; },
+            length: 0
+        }) {
+            super();
+            this.source = source;
+        }
+        item(id) {
+            return this.source.item(id);
+        }
+        get length() {
+            return this.source.length;
+        }
+    }
+    $.$mol_range_lazy = $mol_range_lazy;
+    // export class $mol_range_list< Value > extends $mol_range_common< Value > {
+    //
+    // 	constructor( private list : Value[][] ) {
+    // 		super()
+    // 	}
+    //
+    // 	get( id : number ) {
+    // 		var subId = id
+    // 		for( var range of this.list ) {
+    // 			var nextId = subId - range.length
+    // 			if( nextId < 0 ) return range.get( subId )
+    // 			subId = nextId
+    // 		}
+    // 		return
+    // 	}
+    //
+    // 	get length () {
+    // 		var length = 0
+    // 		this.list.forEach( range => {
+    // 			length += range.length
+    // 		} )
+    // 		return length
+    // 	}
+    //
+    // }
+})($ || ($ = {}));
+
+;
 	($.$bog_smalljs_playground) = class $bog_smalljs_playground extends ($.$mol_view) {
 		show_tree(next){
 			if(next !== undefined) return next;
@@ -19732,6 +21463,46 @@ var $;
             }
             return true;
         }
+        // Built-in controls whose own value/checked state is user-editable with no accompanying
+        // logic — a text field you can type in, a box you can toggle. A tree-only snippet built
+        // around one of these is genuinely interactive on its own, which is exactly what makes
+        // the live preview worth a click.
+        const interactive_comps = new Set([
+            '$mol_string', '$mol_number', '$mol_search', '$mol_textarea',
+            '$mol_check', '$mol_check_box', '$mol_check_icon', '$mol_switch',
+            '$mol_select', '$mol_pick', '$mol_filter', '$mol_date',
+            '$mol_slider', '$mol_range', '$mol_color',
+        ]);
+        /**
+         * Stricter gate on top of {@link snippet_runnable}: offer Run / "Open in Playground"
+         * only when the snippet is not merely mountable but actually *does something* when you
+         * poke it — a live, interactive demo rather than a static shell.
+         *
+         * The live/playground runtimes compile the *tree only* — the paired `view.ts` (where
+         * `@ $mol_mem` state and `@ $mol_action` handlers live) is never executed. So a snippet
+         * whose behaviour comes from that TS renders as an inert husk: the counter shows a blank
+         * count and its `+` button is dead, a `$mol_view` with empty `\` literals shows nothing.
+         * Those "technically renders" cases got a button that led nowhere — the reader clicked and
+         * nothing happened.
+         *
+         * The one thing that stays fully interactive with tree alone is a two-way `<=>` binding on
+         * a built-in input control: type into the field and its state changes right there. So we
+         * require both signals — a `<=>` operator *and* a known editable control — and reject
+         * everything else (static views, event handlers that need TS, keyed lists with no data).
+         */
+        function snippet_interactive(src) {
+            if (!/<=>/.test(src))
+                return false;
+            for (const ref of src.match(/\$[\w$]+/g) ?? []) {
+                if (interactive_comps.has(ref))
+                    return true;
+            }
+            return false;
+        }
+        /** A snippet earns Run / Playground buttons only when it both mounts cleanly and is interactive. */
+        function snippet_demo($, src) {
+            return snippet_runnable($, src) && snippet_interactive(src);
+        }
         /**
          * $mol_text with language-aware code blocks: view.tree gets its own highlighter,
          * and executable snippets (view.tree) grow an "Open in Playground" button.
@@ -19770,12 +21541,13 @@ var $;
             }
             // Only view.tree snippets are self-contained enough to render in the playground
             // (a bare view.ts has no root component to mount), and only when the snippet is a
-            // single mountable root whose deps are all bundled — otherwise the playground opens
-            // straight into a compile/render error. Same gate as the inline Run button.
+            // single mountable root whose deps are all bundled *and* interactive on its own —
+            // otherwise the playground opens into a compile error or an inert husk whose logic
+            // lives in the paired view.ts. Same gate as the inline Run button.
             pre_playground_showed(index) {
                 if (this.lang_kind(index) !== 'tree')
                     return false;
-                return snippet_runnable(this.$, this.pre_text(index));
+                return snippet_demo(this.$, this.pre_text(index));
             }
             // $mol_link merges this dict into the URL args on click (null removes a key),
             // so the reader lands on the playground seeded with exactly this snippet.
@@ -19805,16 +21577,18 @@ var $;
                     return tree_syntax;
                 return super.syntax();
             }
-            // A snippet is runnable only when it is a single, self-contained, mountable root
-            // component whose every dependency is bundled (see snippet_runnable). Fragments,
-            // multi-component snippets, non-view bases and unbundled deps get no Run button —
-            // they'd only render an error. The same gate drives "Open in Playground".
+            // A snippet earns a Run button only when it is a single, self-contained, mountable
+            // root (see snippet_runnable) *and* interactive on its own — a two-way `<=>` binding
+            // on a built-in input (see snippet_interactive). Fragments, multi-component snippets,
+            // non-view bases, unbundled deps, static views and TS-driven demos (counters, event
+            // handlers) get no button: they'd render an error or an inert husk. The same gate
+            // drives "Open in Playground".
             run_showed() {
                 if (!this.run_enabled())
                     return false;
                 if (this.syntax() !== tree_syntax)
                     return false;
-                return snippet_runnable(this.$, this.text());
+                return snippet_demo(this.$, this.text());
             }
             run_click() {
                 this.run(!this.run());
@@ -28897,6 +30671,170 @@ var $;
                 ['table', '| header1 | header2\n|----|----\n| Cell11 | Cell12\n| Cell21 | Cell22\n\n', ['| header1 | header2\n|----|----\n| Cell11 | Cell12\n| Cell21 | Cell22\n', '\n'], 0],
                 ['table', '| Cell11 | Cell12\n| Cell21 | Cell22\n', ['| Cell11 | Cell12\n| Cell21 | Cell22\n', ''], 68],
             ]);
+        },
+    });
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_test({
+        'parse and serial'() {
+            $mol_assert_equal(new $mol_time_duration('P42.1Y').toString(), 'P42.1YT');
+            $mol_assert_equal(new $mol_time_duration('P42.1M').toString(), 'P42.1MT');
+            $mol_assert_equal(new $mol_time_duration('P42.1D').toString(), 'P42.1DT');
+            $mol_assert_equal(new $mol_time_duration('PT42.1h').toString(), 'PT42.1H');
+            $mol_assert_equal(new $mol_time_duration('PT42.1m').toString(), 'PT42.1M');
+            $mol_assert_equal(new $mol_time_duration('PT42.1s').toString(), 'PT42.1S');
+            $mol_assert_equal(new $mol_time_duration('P1Y2M3DT4h5m6.7s').toString(), 'P1Y2M3DT4H5M6.7S');
+        },
+        'negatives'() {
+            $mol_assert_equal(new $mol_time_duration('P-1Y-2M-3DT-4h-5m-6.7s').toString(), new $mol_time_duration('-P1Y2M3DT4h5m6.7s').toString(), 'P-1Y-2M-3DT-4H-5M-6.7S');
+            $mol_assert_equal(new $mol_time_duration('-P-1Y-2M-3DT-4h-5m-6.7s').toString(), 'P1Y2M3DT4H5M6.7S');
+        },
+        'format typed'() {
+            $mol_assert_equal(new $mol_time_duration('P1Y2M3DT4h5m6s').toString('P#Y#M#DT#h#m#s'), 'P1Y2M3DT4H5M6S');
+        },
+        'format readable'() {
+            $mol_assert_equal(new $mol_time_duration('P1Y2M3DT4h5m6s').toString('hh:mm:ss.sss'), '04:05:06.000');
+        },
+        'normalization'() {
+            $mol_assert_equal(new $mol_time_duration('P1Y2M3DT44h55m66s').normal.toString(), 'P1Y2M4DT20H56M6S');
+            $mol_assert_equal(new $mol_time_duration('P-1Y-2M-3DT-44h-55m-66s').normal.toString(), 'P-1Y-2M-4DT-20H-56M-6S');
+        },
+        'comparison'() {
+            const iso = 'P1Y1M1DT1h1m1s';
+            $mol_assert_equal(new $mol_time_duration(iso), new $mol_time_duration(iso));
+        },
+    });
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_test({
+        'parse and serial'() {
+            $mol_assert_equal(new $mol_time_moment('2014').toString(), '2014');
+            $mol_assert_equal(new $mol_time_moment('2014-01').toString(), '2014-01');
+            $mol_assert_equal(new $mol_time_moment('2014-01-02').toString(), '2014-01-02');
+            $mol_assert_equal(new $mol_time_moment('2014-01-02T03').toString(), '2014-01-02T03');
+            $mol_assert_equal(new $mol_time_moment('2014-01-02T03:04').toString(), '2014-01-02T03:04');
+            $mol_assert_equal(new $mol_time_moment('2014-01-02T03:04:05').toString(), '2014-01-02T03:04:05');
+            $mol_assert_equal(new $mol_time_moment('2014-01-02T03:04:05.006').toString(), '2014-01-02T03:04:05.006');
+            $mol_assert_equal(new $mol_time_moment('2014-01-02T03:04:05.006Z').toString(), '2014-01-02T03:04:05.006+00:00');
+            $mol_assert_equal(new $mol_time_moment('2014-01-02T03:04:05.006+07:00').toString(), '2014-01-02T03:04:05.006+07:00');
+            $mol_assert_equal(new $mol_time_moment('2014-01-02T03:04:05+07:08').toString(), '2014-01-02T03:04:05+07:08');
+            $mol_assert_equal(new $mol_time_moment('2014-01-02T03:04+07:08').toString(), '2014-01-02T03:04+07:08');
+            $mol_assert_equal(new $mol_time_moment('T03:04+07:08').toString(), 'T03:04+07:08');
+            $mol_assert_equal(new $mol_time_moment('T03:04:05').toString(), 'T03:04:05');
+            $mol_assert_equal(new $mol_time_moment('T03:04').toString(), 'T03:04');
+            $mol_assert_equal(new $mol_time_moment('T03').toString(), 'T03');
+        },
+        'format simple'() {
+            $mol_assert_equal(new $mol_time_moment('2014-01-02T01:02:03.000000').toString('AD YY-M-D h:m:s'), '21 14-1-2 1:2:3');
+        },
+        'format padded'() {
+            $mol_assert_equal(new $mol_time_moment('2014-01-02T01:02:03.000').toString('YYYY-MM-DD hh:mm:ss'), '2014-01-02 01:02:03');
+        },
+        'format time zone'() {
+            $mol_assert_equal(new $mol_time_moment('2014-01-02T01:02:03+05:00').toString('Z'), '+05:00');
+        },
+        'format names'() {
+            new $mol_time_moment('2014-01-02T01:02:03.000').toString('Month Mon | WeekDay WD');
+        },
+        'shifting'() {
+            $mol_assert_equal(new $mol_time_moment('T15:54:58.243+03:00').shift({}).toString(), 'T15:54:58.243+03:00');
+            $mol_assert_equal(new $mol_time_moment('2014-01-02').shift('P1Y').toString(), '2015-01-02');
+            $mol_assert_equal(new $mol_time_moment('2014-01-02').shift('P12M').toString(), '2015-01-02');
+            $mol_assert_equal(new $mol_time_moment('2014-01-02').shift('P365D').toString(), '2015-01-02');
+            $mol_assert_equal(new $mol_time_moment('2014-01-02').shift('PT8760h').toString(), '2015-01-02');
+            $mol_assert_equal(new $mol_time_moment('2014-01').shift('PT8760h').toString(), '2015-01');
+            $mol_assert_equal(new $mol_time_moment('2014-01').shift('PT-8760h').toString(), '2013-01');
+        },
+        'native from reduced'() {
+            $mol_assert_equal(new $mol_time_moment('T15:00').native.toISOString().slice(0, -5), new $mol_time_moment().merge('T15:00:00').toOffset('Z').toString().slice(0, -6));
+        },
+        'normalization'() {
+            $mol_assert_equal(new $mol_time_moment({ year: 2015, month: 6, day: 34 }).normal.toString(), '2015-08-04');
+            $mol_assert_equal(new $mol_time_moment('2024-09-30 19:00+03:00').normal.month, 8);
+        },
+        'renormalization'() {
+            $mol_assert_equal(new $mol_time_moment('2024-08').normal.toString(), '2024-08');
+            $mol_assert_equal(new $mol_time_moment('2024-11').normal.toString(), '2024-11');
+        },
+        'iso week day'() {
+            $mol_assert_equal(new $mol_time_moment('2017-09-17').weekday, $mol_time_moment_weekdays.sunday);
+            $mol_assert_equal(new $mol_time_moment('2017-09-18').weekday, $mol_time_moment_weekdays.monday);
+        },
+        'change offset'() {
+            $mol_assert_equal(new $mol_time_moment('2021-04-10 +03:00').toOffset('Z').toString(), '2021-04-09T21:00:00+00:00');
+        },
+        'comparison'() {
+            const iso = '2021-01-02T03:04:05.678+09:10';
+            $mol_assert_equal(new $mol_time_moment(iso), new $mol_time_moment(iso));
+        },
+        'array keeps zero offset'() {
+            const moment = new $mol_time_moment('2026-01-25T16:37:36.129+00:00');
+            const restored = new $mol_time_moment(moment.toArray());
+            $mol_assert_equal(restored.offset?.count('PT1m'), 0);
+        },
+    });
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_test({
+        'materialization'() {
+            var list = $mol_range_in({
+                item: id => id * 2,
+                get length() { return 5; },
+            });
+            var list2 = list.valueOf();
+            $mol_assert_equal(list2[2], 4);
+            $mol_assert_equal(list2[5], void 0);
+        },
+        'lazy slicing'() {
+            var list = $mol_range_in({
+                item: id => id * 2,
+                get length() { return Number.POSITIVE_INFINITY; },
+            });
+            list = list.slice(2, 5);
+            $mol_assert_equal(list.join(), '4,6,8');
+        },
+        'lazy concatenation'() {
+            var list1 = $mol_range_in({
+                item(id) { return id * 2; },
+                get length() { return 3; },
+            });
+            var list2 = $mol_range_in({
+                item(id) { return id * 3; },
+                get length() { return 3; },
+            });
+            var list3 = $mol_range_in({
+                item(id) { return id * 4; },
+                get length() { return 3; },
+            });
+            $mol_assert_equal(list1.concat(list2, list3).join(), '0,2,4,0,3,6,0,4,8');
+        },
+        'every'() {
+            var list = $mol_range_in({
+                item(id) { return id * 2; },
+                get length() { return 3; }
+            });
+            $mol_assert_equal(list.every(v => v >= 0), true);
+            $mol_assert_equal(list.every(v => v > 0), false);
+        },
+        'some'() {
+            var list = $mol_range_in({
+                item(id) { return id * 2; },
+                get length() { return 3; }
+            });
+            $mol_assert_equal(list.some(v => v > 100), false);
+            $mol_assert_equal(list.some(v => v === 0), true);
         },
     });
 })($ || ($ = {}));
