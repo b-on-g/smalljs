@@ -47,7 +47,9 @@
 - WS2 ✅ SEO/соц: per-page meta + hreflang×15 + sitemap/robots/llms + og:image + $bog_seo (`12a8368`; shared bog `6aab751`)
 - WS2b ✅ Path-routing: `$bog_builderui_router.activate('/smalljs/')` + 404.html + pathname canonical/sitemap (`61a68d2`). NB: нашли баг — no-arg `activate()` без dev-guard (задевает studio), обошли явным mount; рекомендация владельцу починить централизованно.
 - WS3 ✅ Zed-редизайн (`3655396`). Сигнатура «hero = view.tree» (живое демо $bog_smalljs_demo + подсвеченный код → результат), EB Garamond weight 500 + трекинг −0.02em, mono-eyebrow'ы, акцент=цвета подсветки (blue/orange, per-lights AA), крисп-кнопки, hero-rise анимация + focus-visible + reduced-motion, docs active accent-bar. Обе темы проверены скриншотами. Moler-design упал до коммита — подобрал и закоммитил сам.
-- WS4 🔧 Живые примеры + контент (Moler-live). Приоритет: inline-live-примеры в доке (view.tree→результат, переиспользуя demo/playground+подсветку) → feedback-виджет → self-host шрифтов → Lighthouse → (стретч) cookbook/enrich API.
+- WS4 ✅ Живые примеры + полировка (`934fe54`): inline-live-примеры (lazy-компайл, Run-тоггл, $bog_smalljs_text_live) + «Was this helpful?» (local, данные никуда не шлются) + убран мёртвый rsms.me + фикс lang=ru→en + reactive lang_sync. Fonts self-host — частично (Google @import в shared theme.css — follow-up владельцу). Стретч (cookbook/enrich API) не делали.
+  - Побочно починил «Bad link» на Views во ВСЕХ 15 языках (`a90e6b8`): на странице было ДВА in-page линка на page=state (line 66 обёрнутый + line 129 «Continue to») → сток-$mol спотыкается на дубле авто-ключа → убрал редундантный line 66. Не наша регрессия (dev на стоковом $mol_state_arg).
+- WS5 🔧 Истории успеха (Moler-trust). Источник в scratchpad ws5-success-stories-source.md (6 коммерческих проектов + хакатоны). Решение: усилить showcase-страницу секцией Commercial/Success stories, EN-first, перевод — follow-up.
 - WS5 ⏳ Истории успеха (источник: mol.hyoo.ru «Истории успеха» xanlom_yimh6x)
 
 Дизайн-скил: официальный **frontend-design** из `anthropics/skills` (`/plugin marketplace add anthropics/skills`), установлен юзером.
