@@ -20310,7 +20310,8 @@ var $;
                 },
                 Sign_arrow: {
                     flex: { direction: 'row' },
-                    width: 'auto',
+                    align: { self: 'center' },
+                    width: rem(2.25),
                     height: rem(2.25),
                     border: {
                         right: { width: 0 },
