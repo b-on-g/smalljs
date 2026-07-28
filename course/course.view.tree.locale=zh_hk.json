@@ -1,4 +1,8 @@
 {
 	"$bog_smalljs_course_prev_label": "← 上一課",
-	"$bog_smalljs_course_next_label": "下一課 →"
+	"$bog_smalljs_course_next_label": "下一課 →",
+	"$bog_smalljs_course_status_ok": "✓ 很好 — 準備好後繼續下一步。",
+	"$bog_smalljs_course_status_todo": "編輯右側的程式碼以完成此步驟。",
+	"$bog_smalljs_course_solution_show": "顯示答案",
+	"$bog_smalljs_course_solution_hide": "隱藏答案"
 }

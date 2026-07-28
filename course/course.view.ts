@@ -68,7 +68,7 @@ namespace $.$$ {
 		}
 
 		solution_label() {
-			return this.solution_shown() ? 'Hide solution' : 'Show solution'
+			return this.solution_shown() ? this.solution_hide() : this.solution_show()
 		}
 
 		solution_md() {
@@ -103,9 +103,7 @@ namespace $.$$ {
 		status_text() {
 			const lesson = this.current()
 			if( !lesson ) return ''
-			return this.passed( lesson )
-				? '✓ Looks good — move on when you are ready.'
-				: 'Edit the code on the right to complete this step.'
+			return this.passed( lesson ) ? this.status_ok() : this.status_todo()
 		}
 
 		// --- prev / next --------------------------------------------------

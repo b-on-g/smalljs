@@ -1,4 +1,8 @@
 {
 	"$bog_smalljs_course_prev_label": "← Anterior",
-	"$bog_smalljs_course_next_label": "Próximo →"
+	"$bog_smalljs_course_next_label": "Próximo →",
+	"$bog_smalljs_course_status_ok": "✓ Muito bem — avance quando estiver pronto.",
+	"$bog_smalljs_course_status_todo": "Edite o código à direita para concluir esta etapa.",
+	"$bog_smalljs_course_solution_show": "Mostrar solução",
+	"$bog_smalljs_course_solution_hide": "Ocultar solução"
 }

@@ -1,4 +1,8 @@
 {
 	"$bog_smalljs_course_prev_label": "← 上一课",
-	"$bog_smalljs_course_next_label": "下一课 →"
+	"$bog_smalljs_course_next_label": "下一课 →",
+	"$bog_smalljs_course_status_ok": "✓ 很好 — 准备好后继续下一步。",
+	"$bog_smalljs_course_status_todo": "编辑右侧的代码以完成此步骤。",
+	"$bog_smalljs_course_solution_show": "显示答案",
+	"$bog_smalljs_course_solution_hide": "隐藏答案"
 }
