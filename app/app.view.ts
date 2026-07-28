@@ -59,7 +59,7 @@ namespace $.$$ {
 		}
 
 		/** Per-page, per-language SEO/social metadata. Read by $bog_meta_attr →
-		 *  `data-bog-meta` on the root, which the $bog_seo prerenderer injects into
+		 *  `data-bog-meta` on the root, which the SEO prerenderer injects into
 		 *  <head> as <title>/<meta>/<link> for bots and social unfurls. */
 		meta(): $bog_meta_data {
 			const lang = this.$.$mol_locale.lang()
