@@ -9,7 +9,6 @@ Skutečné věci postavené na $mol — komunitní aplikace, komerční produkty
 - **[VDO Rebalance](https://b-on-g.github.io/invest/)** — local-first investiční nástroj: vložte portfolio `.xlsx` a získáte obchody, které ho vyváží. Stav žije v prohlížeči nad Giper Baza.
 - **[$hyoo_budget](https://budget.hyoo.ru)** — kolaborativní, local-first aplikace osobního rozpočtu. Získala první místo na hackathonu Beautiful Code.
 - **[$hyoo_talks](https://talks.hyoo.ru)** — vestavitelný messenger. Prototyp postavený pro Sberbank obsadil druhé místo na Moscow City Hack.
-- **[Virtuální avatar](https://avatar.ocas.ai)** — 3D postava, se kterou si můžete povídat, hrát šachy nebo ji požádat o prezentaci snímků. Komerční produkt, kde $mol pohání rozhraní nad knihovnami třetích stran.
 
 ## Design systém a nástroje
 
@@ -18,9 +17,20 @@ Skutečné věci postavené na $mol — komunitní aplikace, komerční produkty
 - **MAM** — nástroj pro sestavení a registr modulů, v němž žije každá aplikace $mol, a sám o sobě projekt $mol. Je to nástroj pro vývojáře, ne hostovaná aplikace; zdrojový kód je na GitHubu.
 - **view.tree LSP** — jazykové nástroje a generátor `npm create view-tree-lsp`, který zakládá nové aplikace $mol. Editorový nástroj, takže není žádná běžící aplikace k otevření.
 
-## Hackathony a komerční využití
+## V produkci
 
-$mol opakovaně vyhrával na hackathonech: první místo na Beautiful Code ([$hyoo_budget](https://budget.hyoo.ru)), první místo na AC-VO-PPR-Hackathonu (ovládání městské tabule gesty a hlasem) a oceněné prototypy na More Tech, Moscow City Hack a Dev Hack. Nasazuje se také v komerčních a průmyslových systémech — od back office internetového obchodu po ovládací panely protidronové obrany. [Stránka příběhů úspěchu](https://mol.hyoo.ru/#!section=docs/=xanlom_yimh6x) $mol má podrobnosti.
+Kromě open-source a hackathonových projektů $mol jede i v komerčních systémech, které vydělávají. Několik z nich (některé běží pod NDA, takže bez odkazů a log):
+
+- **Řízení protidronové obrany** — komplex „Tamerlan" provozuje na každém řadiči zařízení (radar, rušička, kamera) $mol mikroslužbu a spojuje je do sdílené decentralizované sítě. Webové rozhraní, lokální nebo centralizované, ukazuje situaci na obloze v reálném čase: co kde letí, co se ruší, kam míří kamery.
+- **[Virtuální avatar](https://avatar.ocas.ai)** — 3D postava, se kterou si můžete povídat, hrát šachy nebo ji požádat o prezentaci snímků. Komerční produkt, kde $mol pohání rozhraní nad knihovnami třetích stran.
+- **Admin panel pro testování promptů** — umožňuje firmě vybírat a testovat prompty pro neuronové sítě k hromadnému zpracování řádků katalogu: přepisování názvů, popisů a SEO polí. Také čistí textové soubory pro bezpečný export do jiných CMS.
+- **Admin panel pro odečty měřičů** — měřiče nahrávají odečty na FTP; operátoři vytvářejí uživatele, udělují jim práva ke čtení konkrétních měřičů a vedou e-mailové kampaně, zatímco běžní odběratelé vidí jen své objekty a stránku jen pro čtení.
+- **Back office e-shopu** — správa katalogu produktů a seznamu objednávek pro online obchod.
+- **Widget pro vědecká data** — vizualizuje mikroprvky a jejich sloučeniny. Vykreslování grafů zůstává na D3; vše ostatní bylo přepsáno z čistého JS na $mol a zabaleno do Web Componenty.
+
+## Hackathony
+
+$mol opakovaně vyhrával na hackathonech: první místo na Beautiful Code ([$hyoo_budget](https://budget.hyoo.ru)), první místo na AC-VO-PPR-Hackathonu (ovládání městské tabule gesty a hlasem) a oceněné prototypy na More Tech, Moscow City Hack a Dev Hack. [Stránka příběhů úspěchu](https://mol.hyoo.ru/#!section=docs/=xanlom_yimh6x) $mol má podrobnosti.
 
 ## Více
 

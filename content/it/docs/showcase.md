@@ -9,7 +9,6 @@ Cose reali costruite con $mol — app della comunità, prodotti commerciali e st
 - **[VDO Rebalance](https://b-on-g.github.io/invest/)** — uno strumento di investimento local-first: inserisci un portafoglio `.xlsx` e ottieni le operazioni che lo riequilibrano. Lo stato vive nel browser tramite Giper Baza.
 - **[$hyoo_budget](https://budget.hyoo.ru)** — un'app di budget personale collaborativa e local-first. Ha conquistato il primo posto all'hackathon Beautiful Code.
 - **[$hyoo_talks](https://talks.hyoo.ru)** — una messaggistica incorporabile. Un prototipo costruito per Sberbank ha ottenuto il secondo posto al Moscow City Hack.
-- **[Avatar virtuale](https://avatar.ocas.ai)** — un personaggio 3D con cui puoi parlare, giocare a scacchi o a cui chiedere di presentare delle slide. Un prodotto commerciale in cui $mol guida l'interfaccia sopra librerie di terze parti.
 
 ## Sistema di design e strumenti
 
@@ -18,9 +17,20 @@ Cose reali costruite con $mol — app della comunità, prodotti commerciali e st
 - **MAM** — lo strumento di build e il registro dei moduli in cui vive ogni app $mol, ed esso stesso un progetto $mol. È strumentazione per sviluppatori più che un'app ospitata; il codice sorgente è su GitHub.
 - **view.tree LSP** — strumentazione di linguaggio e un generatore `npm create view-tree-lsp` che avvia nuove app $mol. Strumentazione da editor, quindi non c'è alcuna app in esecuzione da aprire.
 
-## Hackathon e uso commerciale
+## In produzione
 
-$mol ha vinto ripetutamente agli hackathon: primo posto a Beautiful Code ([$hyoo_budget](https://budget.hyoo.ru)), primo posto all'AC-VO-PPR-Hackathon (controllo tramite gesti e voce di un display urbano) e prototipi premiati a More Tech, Moscow City Hack e Dev Hack. È anche presente in sistemi commerciali e industriali — da un back office di un negozio online a pannelli di controllo per la difesa anti-droni. La [pagina delle storie di successo](https://mol.hyoo.ru/#!section=docs/=xanlom_yimh6x) di $mol ne riporta i dettagli.
+Oltre ai progetti open source e da hackathon, $mol gira in sistemi commerciali che generano ricavi. Alcuni di essi (alcuni sotto NDA, quindi senza link né loghi):
+
+- **Controllo per la difesa anti-droni** — il complesso «Tamerlan» esegue un microservizio $mol su ogni controller di dispositivo (radar, disturbatore, telecamera), unendoli in una rete decentralizzata condivisa. Un'interfaccia web, locale o centralizzata, mostra la situazione aerea in tempo reale: cosa vola dove, cosa viene disturbato, dove sono puntate le telecamere.
+- **[Avatar virtuale](https://avatar.ocas.ai)** — un personaggio 3D con cui puoi parlare, giocare a scacchi o a cui chiedere di presentare delle slide. Un prodotto commerciale in cui $mol guida l'interfaccia sopra librerie di terze parti.
+- **Pannello di amministrazione per il test dei prompt** — consente a un'azienda di scegliere e testare prompt per reti neurali per l'elaborazione in blocco delle righe di catalogo: riscrittura di titoli, descrizioni e campi SEO. Ripulisce anche file di testo per un export sicuro verso altri CMS.
+- **Pannello di amministrazione delle letture** — i contatori caricano le letture via FTP; gli operatori creano utenti, concedono loro diritti di lettura su contatori specifici e conducono campagne email, mentre i normali consumatori vedono solo i propri oggetti e una pagina di sola lettura.
+- **Back office e-commerce** — gestione del catalogo prodotti e della lista ordini per un negozio online.
+- **Widget di dati scientifici** — visualizza microelementi e i loro composti. Il rendering dei grafici resta su D3; tutto il resto è stato riscritto da JS puro a $mol e impacchettato in un Web Component.
+
+## Hackathon
+
+$mol ha vinto ripetutamente agli hackathon: primo posto a Beautiful Code ([$hyoo_budget](https://budget.hyoo.ru)), primo posto all'AC-VO-PPR-Hackathon (controllo tramite gesti e voce di un display urbano) e prototipi premiati a More Tech, Moscow City Hack e Dev Hack. La [pagina delle storie di successo](https://mol.hyoo.ru/#!section=docs/=xanlom_yimh6x) di $mol ne riporta i dettagli.
 
 ## Altro
 
