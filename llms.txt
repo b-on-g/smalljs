@@ -26,6 +26,7 @@
 
 - [Showcase](https://b-on-g.github.io/smalljs/docs/showcase.md): Real apps and tools built with $mol, from community platforms to devtools.
 - [From React, Vue & Svelte](https://b-on-g.github.io/smalljs/docs/rosetta.md): A concept translation table for developers coming from other frameworks.
+- [Cookbook](https://b-on-g.github.io/smalljs/docs/cookbook.md): Copy-ready recipes for common tasks: inputs, lists, fetching, local state, routing, and theming.
 
 ## Advanced
 

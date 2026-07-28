@@ -10,7 +10,7 @@ Yes. $mol powers real apps and internal tools — see the [Showcase](#!section=d
 
 ## How big is the runtime?
 
-Small. A typical $mol app ships around 100 KB of framework code, and rendering is virtualized by default — components outside the viewport are never created. See [Rendering](#!section=docs/page=rendering) for the details and benchmarks.
+Small. The runtime is compact, and rendering is virtualized by default — components outside the viewport are never created. See [Rendering](#!section=docs/page=rendering) for the details and reproducible benchmarks.
 
 ## Do I have to learn a new template language?
 

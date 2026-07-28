@@ -16,7 +16,7 @@ Use a ghost when you want to attach behaviour to an existing component *without*
 - **`$mol_drag`** / **`$mol_drop`** — pointer drag-and-drop
 - **`$mol_transit`** — enter/leave transitions
 - **`$mol_follower`** — keep an element aligned to another as it scrolls
-- **`$mol_book_page`** — a page inside `$mol_book2` navigation
+- **`$mol_book_page`** — a page inside `$mol_book` navigation
 
 ## Relation to plugins
 
