@@ -453,19 +453,49 @@ const lessons = [
 	},
 ]
 
-const lesson_entries = lessons.map( l => (
-	`\t\t\t\t'${ l.id }': {\n` +
-	`\t\t\t\t\tid: '${ l.id }',\n` +
-	`\t\t\t\t\ttitle: ${ JSON.stringify( l.title ) },\n` +
-	`\t\t\t\t\texpect: ${ embed( l.expect ) },\n` +
-	`\t\t\t\t\texpect_in: '${ l.expect_in }',\n` +
-	`\t\t\t\t\tmd: ${ embed( l.md ) },\n` +
-	`\t\t\t\t\tstart_tree: ${ embed( l.start_tree ) },\n` +
-	`\t\t\t\t\tstart_ts: ${ embed( l.start_ts ) },\n` +
-	`\t\t\t\t\tsolution_tree: ${ embed( l.solution_tree ) },\n` +
-	`\t\t\t\t\tsolution_ts: ${ embed( l.solution_ts ) },\n` +
-	`\t\t\t\t},`
-) ).join( '\n' )
+// Per-language lesson overrides. EN is the source/fallback (the inline `lessons`
+// array); any content/<lang>/lessons/<id>.md that exists is bundled alongside as
+// a translation. Only the prose is translated — the first `# ` heading is the
+// localized title, the whole file is the localized md. Code (start/solution/
+// expect) is universal and never duplicated per language.
+function lesson_translations( id, en_title ) {
+	const tr = {}
+	for ( const lang of langs ) {
+		const file = path.join( root, lang, 'lessons', `${ id }.md` )
+		if ( !fs.existsSync( file ) ) continue
+		const md = fs.readFileSync( file, 'utf8' )
+		tr[ lang ] = { title: first_heading( md ) ?? en_title, md }
+	}
+	return tr
+}
+
+let lessons_translated = 0
+
+const lesson_entries = lessons.map( l => {
+	const tr = lesson_translations( l.id, l.title )
+	const tr_keys = Object.keys( tr )
+	if ( tr_keys.length ) lessons_translated++
+	const tr_entries = tr_keys.map( lang => (
+		`\t\t\t\t\t\t${ lang }: {\n` +
+		`\t\t\t\t\t\t\ttitle: ${ JSON.stringify( tr[ lang ].title ) },\n` +
+		`\t\t\t\t\t\t\tmd: ${ embed( tr[ lang ].md ) },\n` +
+		`\t\t\t\t\t\t},`
+	) ).join( '\n' )
+	return (
+		`\t\t\t\t'${ l.id }': {\n` +
+		`\t\t\t\t\tid: '${ l.id }',\n` +
+		`\t\t\t\t\ttitle: ${ JSON.stringify( l.title ) },\n` +
+		`\t\t\t\t\texpect: ${ embed( l.expect ) },\n` +
+		`\t\t\t\t\texpect_in: '${ l.expect_in }',\n` +
+		`\t\t\t\t\tmd: ${ embed( l.md ) },\n` +
+		`\t\t\t\t\tstart_tree: ${ embed( l.start_tree ) },\n` +
+		`\t\t\t\t\tstart_ts: ${ embed( l.start_ts ) },\n` +
+		`\t\t\t\t\tsolution_tree: ${ embed( l.solution_tree ) },\n` +
+		`\t\t\t\t\tsolution_ts: ${ embed( l.solution_ts ) },\n` +
+		( tr_keys.length ? `\t\t\t\t\ttr: {\n${ tr_entries }\n\t\t\t\t\t},\n` : '' ) +
+		`\t\t\t\t},`
+	)
+} ).join( '\n' )
 
 const lessons_ts = `namespace $ {
 
@@ -474,6 +504,11 @@ const lessons_ts = `namespace $ {
 	 * array there and re-run the generator. Code snippets are embedded escaped so
 	 * their $mol_* examples are not mistaken for module dependencies.
 	 */
+
+	export type $bog_smalljs_lesson_translation = {
+		title: string
+		md: string
+	}
 
 	export type $bog_smalljs_lesson = {
 		id: string
@@ -486,6 +521,8 @@ const lessons_ts = `namespace $ {
 		start_ts: string
 		solution_tree: string
 		solution_ts: string
+		/** Per-language prose overrides (title + md), keyed by lang. EN is above. */
+		tr?: Readonly< Record< string, $bog_smalljs_lesson_translation > >
 	}
 
 	export class $bog_smalljs_lessons extends $mol_object2 {
@@ -510,6 +547,20 @@ ${ lesson_entries }
 			return this.map()[ id ] ?? null
 		}
 
+		/** Localized title for a lesson, falling back to EN. */
+		static lesson_title( id: string, lang = 'en' ): string | null {
+			const lesson = this.map()[ id ]
+			if( !lesson ) return null
+			return lesson.tr?.[ lang ]?.title ?? lesson.title
+		}
+
+		/** Localized instruction markdown for a lesson, falling back to EN. */
+		static lesson_md( id: string, lang = 'en' ): string | null {
+			const lesson = this.map()[ id ]
+			if( !lesson ) return null
+			return lesson.tr?.[ lang ]?.md ?? lesson.md
+		}
+
 		static first(): string { return this.ids()[ 0 ] }
 
 	}
@@ -521,4 +572,4 @@ const lessons_dir = path.join( root, '..', 'lessons' )
 fs.mkdirSync( lessons_dir, { recursive: true } )
 fs.writeFileSync( path.join( lessons_dir, 'lessons.ts' ), lessons_ts )
 
-console.log( `generated: content.ts (${ slugs.length } pages, incl. ${ api_count } API, ${ translated_count } translated) + llms.txt + lessons.ts (${ lessons.length } lessons)` )
+console.log( `generated: content.ts (${ slugs.length } pages, incl. ${ api_count } API, ${ translated_count } translated) + llms.txt + lessons.ts (${ lessons.length } lessons, ${ lessons_translated } translated)` )

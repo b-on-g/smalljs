@@ -12,8 +12,13 @@ namespace $.$$ {
 			return Lessons.lesson( this.lesson() )
 		}
 
+		/** Active UI language; reading it makes the course reactive to switches. */
+		lang() {
+			return this.$.$mol_locale.lang()
+		}
+
 		lesson_md() {
-			return this.current()?.md ?? '# Not found'
+			return Lessons.lesson_md( this.lesson(), this.lang() ) ?? '# Not found'
 		}
 
 		ids() {
@@ -32,7 +37,7 @@ namespace $.$$ {
 
 		lesson_link_label( id: string ) {
 			const num = this.ids().indexOf( id ) + 1
-			const title = Lessons.lesson( id )?.title ?? id
+			const title = Lessons.lesson_title( id, this.lang() ) ?? id
 			return `${ this.done( id ) ? '✓ ' : '' }${ num }. ${ title }`
 		}
 
