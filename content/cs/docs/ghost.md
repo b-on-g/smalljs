@@ -16,7 +16,7 @@ Použijte ghost, když chcete připojit chování k existující komponentě *be
 - **`$mol_drag`** / **`$mol_drop`** — drag-and-drop ukazatelem
 - **`$mol_transit`** — přechody při vstupu/výstupu
 - **`$mol_follower`** — udržuje element zarovnaný s jiným během scrollování
-- **`$mol_book_page`** — stránka uvnitř navigace `$mol_book2`
+- **`$mol_book_page`** — stránka uvnitř navigace `$mol_book`
 
 ## Vztah k pluginům
 

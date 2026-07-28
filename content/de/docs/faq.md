@@ -10,7 +10,7 @@ Ja. $mol treibt echte Apps und interne Werkzeuge an — siehe das [Schaufenster]
 
 ## Wie groß ist die Laufzeit?
 
-Klein. Eine typische $mol-App liefert rund 100 KB Framework-Code, und das Rendering ist standardmäßig virtualisiert — Komponenten außerhalb des sichtbaren Bereichs werden nie erzeugt. Siehe [Rendering](#!section=docs/page=rendering) für Details und Benchmarks.
+Klein. Die Runtime ist kompakt, und das Rendering ist standardmäßig virtualisiert — Komponenten außerhalb des sichtbaren Bereichs werden nie erzeugt. Siehe [Rendering](#!section=docs/page=rendering) für Details und Benchmarks.
 
 ## Muss ich eine neue Template-Sprache lernen?
 

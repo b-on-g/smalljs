@@ -10,7 +10,7 @@ Ano. $mol pohání skutečné aplikace a interní nástroje — viz [Výkladní 
 
 ## Jak velký je runtime?
 
-Malý. Typická $mol aplikace dodá kolem 100 KB kódu frameworku a vykreslování je ve výchozím stavu virtualizované — komponenty mimo viditelnou oblast se nikdy nevytvoří. Podrobnosti a benchmarky viz [Vykreslování](#!section=docs/page=rendering).
+Malý. Runtime je kompaktní a vykreslování je ve výchozím stavu virtualizované — komponenty mimo viditelnou oblast se nikdy nevytvoří. Podrobnosti a benchmarky viz [Vykreslování](#!section=docs/page=rendering).
 
 ## Musím se učit nový šablonovací jazyk?
 

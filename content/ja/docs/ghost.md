@@ -16,7 +16,7 @@ $mol_ghost $mol_view
 - **`$mol_drag`** / **`$mol_drop`**——ポインターのドラッグ＆ドロップ
 - **`$mol_transit`**——出入りのトランジション
 - **`$mol_follower`**——スクロールしても要素を別の要素に揃え続ける
-- **`$mol_book_page`**——`$mol_book2` ナビゲーション内の 1 ページ
+- **`$mol_book_page`**——`$mol_book` ナビゲーション内の 1 ページ
 
 ## プラグインとの関係
 

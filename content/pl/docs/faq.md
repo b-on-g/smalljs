@@ -10,7 +10,7 @@ Tak. $mol napędza prawdziwe aplikacje i wewnętrzne narzędzia — zobacz [Prez
 
 ## Jak duży jest runtime?
 
-Mały. Typowa aplikacja $mol dostarcza około 100 KB kodu frameworka, a renderowanie jest domyślnie wirtualizowane — komponenty poza obszarem widocznym nigdy nie są tworzone. Zobacz [Renderowanie](#!section=docs/page=rendering), aby poznać szczegóły i benchmarki.
+Mały. Runtime jest kompaktowy, a renderowanie jest domyślnie wirtualizowane — komponenty poza obszarem widocznym nigdy nie są tworzone. Zobacz [Renderowanie](#!section=docs/page=rendering), aby poznać szczegóły i benchmarki.
 
 ## Czy muszę uczyć się nowego języka szablonów?
 

@@ -16,7 +16,7 @@ $mol_ghost $mol_view
 - **`$mol_drag`** / **`$mol_drop`**——指標拖放
 - **`$mol_transit`**——進入/離開過渡
 - **`$mol_follower`**——讓一個元素隨另一個捲動時保持對齊
-- **`$mol_book_page`**——`$mol_book2` 導覽中的一頁
+- **`$mol_book_page`**——`$mol_book` 導覽中的一頁
 
 ## 與外掛的關係
 

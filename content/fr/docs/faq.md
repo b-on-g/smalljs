@@ -10,7 +10,7 @@ Oui. $mol fait tourner de vraies applications et des outils internes — voir la
 
 ## Quelle est la taille du runtime ?
 
-Petite. Une application $mol typique embarque environ 100 Ko de code de framework, et le rendu est virtualisé par défaut — les composants hors de la zone visible ne sont jamais créés. Voir [Rendu](#!section=docs/page=rendering) pour les détails et les benchmarks.
+Petite. Le runtime est compact, et le rendu est virtualisé par défaut — les composants hors de la zone visible ne sont jamais créés. Voir [Rendu](#!section=docs/page=rendering) pour les détails et les benchmarks.
 
 ## Dois-je apprendre un nouveau langage de template ?
 

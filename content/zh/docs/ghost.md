@@ -16,7 +16,7 @@ $mol_ghost $mol_view
 - **`$mol_drag`** / **`$mol_drop`**——指针拖放
 - **`$mol_transit`**——进入/离开过渡
 - **`$mol_follower`**——让一个元素随另一个滚动时保持对齐
-- **`$mol_book_page`**——`$mol_book2` 导航中的一页
+- **`$mol_book_page`**——`$mol_book` 导航中的一页
 
 ## 与插件的关系
 

@@ -16,7 +16,7 @@ Usa una fantasma quando vuoi agganciare un comportamento a un componente esisten
 - **`$mol_drag`** / **`$mol_drop`** — drag-and-drop con il puntatore
 - **`$mol_transit`** — transizioni di entrata/uscita
 - **`$mol_follower`** — mantiene un elemento allineato a un altro mentre scorre
-- **`$mol_book_page`** — una pagina dentro la navigazione `$mol_book2`
+- **`$mol_book_page`** — una pagina dentro la navigazione `$mol_book`
 
 ## Relazione con i plugin
 

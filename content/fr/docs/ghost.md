@@ -16,7 +16,7 @@ Utilisez une fantôme quand vous voulez attacher un comportement à un composant
 - **`$mol_drag`** / **`$mol_drop`** — glisser-déposer au pointeur
 - **`$mol_transit`** — transitions d'entrée/sortie
 - **`$mol_follower`** — garder un élément aligné sur un autre lorsqu'il défile
-- **`$mol_book_page`** — une page dans la navigation `$mol_book2`
+- **`$mol_book_page`** — une page dans la navigation `$mol_book`
 
 ## Relation avec les plugins
 

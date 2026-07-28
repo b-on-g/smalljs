@@ -16,7 +16,7 @@ $mol_ghost $mol_view
 - **`$mol_drag`** / **`$mol_drop`**——포인터 드래그 앤 드롭
 - **`$mol_transit`**——진입/이탈 전환
 - **`$mol_follower`**——스크롤될 때 한 요소를 다른 요소에 정렬한 채 유지
-- **`$mol_book_page`**——`$mol_book2` 내비게이션 안의 한 페이지
+- **`$mol_book_page`**——`$mol_book` 내비게이션 안의 한 페이지
 
 ## 플러그인과의 관계
 

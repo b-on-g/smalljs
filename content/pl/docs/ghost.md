@@ -16,7 +16,7 @@ Użyj ducha, gdy chcesz dołączyć zachowanie do istniejącego komponentu *bez*
 - **`$mol_drag`** / **`$mol_drop`** — przeciąganie i upuszczanie wskaźnikiem
 - **`$mol_transit`** — przejścia wejścia/wyjścia
 - **`$mol_follower`** — utrzymuje element wyrównany do innego, gdy ten się przewija
-- **`$mol_book_page`** — strona wewnątrz nawigacji `$mol_book2`
+- **`$mol_book_page`** — strona wewnątrz nawigacji `$mol_book`
 
 ## Relacja z wtyczkami
 

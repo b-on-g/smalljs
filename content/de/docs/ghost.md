@@ -16,7 +16,7 @@ Verwenden Sie einen Ghost, wenn Sie Verhalten an eine bestehende Komponente anh�
 - **`$mol_drag`** / **`$mol_drop`** — Zeiger-Drag-and-Drop
 - **`$mol_transit`** — Ein-/Ausblende-Übergänge
 - **`$mol_follower`** — hält ein Element an einem anderen ausgerichtet, während es scrollt
-- **`$mol_book_page`** — eine Seite innerhalb der `$mol_book2`-Navigation
+- **`$mol_book_page`** — eine Seite innerhalb der `$mol_book`-Navigation
 
 ## Beziehung zu Plugins
 
