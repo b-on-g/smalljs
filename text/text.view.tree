@@ -13,8 +13,27 @@ $bog_smalljs_text_code $mol_text_code
 	lang \
 	playground_arg *
 	playground_showed false
+	run? false
+	attr *
+		^
+		bog_smalljs_run_active <= run
+	Run $mol_button_minor
+		click? <=> run_click? null
+		hint @ \Toggle live result
+		sub /
+			<= Run_icon $mol_icon_play
+	Live $bog_smalljs_text_live
+		tree <= text
 	Playground $mol_link
 		arg <= playground_arg
 		hint @ \Open in Playground
 		sub /
 			<= Playground_icon $mol_icon_launch
+
+$bog_smalljs_text_live $mol_view
+	tree \
+	sub /
+		<= Label $mol_view
+			sub / <= label_text @ \Live result
+		<= Output $mol_view
+			sub <= live_content /

@@ -178,25 +178,35 @@ namespace $.$$ {
 			return ts
 		}
 
-		compile(): $mol_view {
-
-			const $ = this.$ as any
-			const tree_src = this.tree_committed()
-			const ts_src = this.ts_committed()
-
+		// view.tree -> base class, evaluated into the real namespace so child
+		// components and cross-references resolve at render time. Extracted as a
+		// static so the render-only live embeds ($bog_smalljs_text_live) can reuse
+		// the exact same $mol toolchain without dragging in the editor.
+		static build_base( $: any, tree_src: string ): { root: string, Base: any } {
 			const root = /(\$[\w$]+)/.exec( tree_src )?.[ 1 ]
 			if ( !root ) throw new Error( 'No component found — the first line must declare one (a name and a base view).' )
 			if ( /^\$(mol|hyoo|bog|node)_/.test( root ) ) {
 				throw new Error( `Choose another name — ${ root } is reserved by the framework.` )
 			}
 
-			// view.tree -> base class, evaluated into the real namespace so child
-			// components and cross-references resolve at render time.
 			const tree = $.$mol_tree2_from_string( tree_src, 'playground.view.tree' )
 			const tree_js = $.$mol_tree2_text_to_string_mapped_js(
 				$.$mol_tree2_js_to_text( $.$mol_view_tree2_to_js( tree ) ),
 			)
 			new Function( '$', '$mol_mem', '$mol_mem_key', tree_js )( $, $.$mol_mem, $.$mol_mem_key )
+
+			const Base = $[ root ]
+			if ( typeof Base !== 'function' ) throw new Error( `Component ${ root } could not be built.` )
+			return { root, Base }
+		}
+
+		compile(): $mol_view {
+
+			const $ = this.$ as any
+			const tree_src = this.tree_committed()
+			const ts_src = this.ts_committed()
+
+			const { root, Base } = $bog_smalljs_playground.build_base( $, tree_src )
 
 			// optional view.css.ts -> styles registered via $mol_style_define. The generated
 			// CSS targets the component by attribute selector (keyed by its name), so it applies
@@ -228,8 +238,6 @@ namespace $.$$ {
 				if ( typeof Sub === 'function' ) return new Sub() as $mol_view
 			}
 
-			const Base = $[ root ]
-			if ( typeof Base !== 'function' ) throw new Error( `Component ${ root } could not be built.` )
 			return new Base() as $mol_view
 		}
 

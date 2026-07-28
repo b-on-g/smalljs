@@ -86,13 +86,63 @@ namespace $.$$ {
 			return super.syntax()
 		}
 
+		// A snippet is runnable only when it declares a mountable root component of its
+		// own — first token is a `$name` that isn't a framework-reserved prefix. Fragments
+		// (starting with a property, or with a bare `$mol_*`) get no Run button and just
+		// keep the "Open in Playground" escape hatch (WS1).
+		run_showed() {
+			if( this.syntax() !== tree_syntax ) return false
+			const root = /(\$[\w$]+)/.exec( this.text() )?.[ 1 ]
+			return !!root && !/^\$(mol|hyoo|bog|node)_/.test( root )
+		}
+
+		@ $mol_action
+		run_click() {
+			this.run( !this.run() )
+			return null
+		}
+
 		@ $mol_mem
 		sub() {
 			return [
 				this.Rows(),
 				... this.sidebar_showed() ? [ this.Copy() ] : [],
+				... this.run_showed() ? [ this.Run() ] : [],
 				... this.playground_showed() ? [ this.Playground() ] : [],
+				// Lazily mounted: the live component is only instantiated (and the snippet
+				// only compiled) once the reader flips Run on — doc pages stay light by default.
+				... this.run() && this.run_showed() ? [ this.Live() ] : [],
 			]
+		}
+
+	}
+
+	/**
+	 * Render-only live embed for a doc snippet: compiles the view.tree in the browser
+	 * with the playground's own $mol toolchain ($bog_smalljs_playground.build_base) and
+	 * mounts the resulting component — no editor, no persistence. Compilation errors are
+	 * caught and shown inline so a bad snippet never takes down the page.
+	 */
+	export class $bog_smalljs_text_live extends $.$bog_smalljs_text_live {
+
+		@ $mol_mem
+		live_content(): readonly ( $mol_view | string )[] {
+			const $ = this.$ as any
+			try {
+				// $mol_tree2 requires a trailing LF; doc block text is captured without one.
+				// Localized `@ \text` has no runtime locale dictionary here (that lives in a
+				// generated .locale=en.json), so it would render as the raw key. Downgrade it
+				// to a plain `\text` literal so the preview shows the human-readable default.
+				const src = this.tree().replace( /\n*$/, '\n' ).replace( /@ \\/g, '\\' )
+				const { Base } = $bog_smalljs_playground.build_base( $, src )
+				return [ new Base() as $mol_view ]
+			} catch( error ) {
+				if( error instanceof Promise ) throw error
+				const box = new this.$.$mol_view()
+				;( box as any ).dom_name = () => 'pre'
+				;( box as any ).sub = () => [ '⚠ ' + ( error instanceof Error ? error.message : String( error ) ) ]
+				return [ box ]
+			}
 		}
 
 	}

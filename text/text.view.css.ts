@@ -1,6 +1,9 @@
 namespace $ {
 
-	const { rem } = $mol_style_unit
+	const { rem, px } = $mol_style_unit
+
+	// Mono label voice, mirroring the landing eyebrow (self-hosted JetBrains Mono).
+	const mono = "'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace"
 
 	$mol_style_define( $bog_smalljs_text_code, {
 
@@ -24,6 +27,79 @@ namespace $ {
 		Playground_icon: {
 			width: rem( 1.05 ),
 			height: rem( 1.05 ),
+		},
+
+		// Sits in the same top-right corner as the playground link, shifted left so the
+		// two icon buttons read as a small toolbar over the code.
+		Run: {
+			alignSelf: 'flex-start',
+			justifySelf: 'flex-end',
+			margin: { right: rem( 2 ) },
+			padding: rem( 0.25 ),
+			color: $bog_builderui_tokens.shade,
+			background: { color: $bog_builderui_tokens.card },
+			border: { radius: rem( 0.375 ) },
+			opacity: 0.65,
+
+			':hover': {
+				opacity: 1,
+				color: $bog_builderui_tokens.control,
+			},
+		},
+
+		'@': {
+			// Active (result showing): tint the toggle with the brand accent so its state is
+			// obvious, and keep it fully opaque.
+			'bog_smalljs_run_active': {
+				'true': {
+					Run: {
+						opacity: 1,
+						color: $bog_builderui_tokens.control,
+					},
+				},
+			},
+		},
+
+		// Live result panel — a second grid row under the code (the base is a $mol_stack
+		// that overlaps children in cell 1/1; placing this at row 2 flows it below).
+		Live: {
+			gridRow: '2',
+			gridColumn: '1',
+			justifySelf: 'stretch',
+			width: '100%',
+			margin: { top: rem( 0.5 ) },
+			padding: rem( 1 ),
+			background: { color: $bog_builderui_tokens.card },
+			border: {
+				width: px( 1 ),
+				style: 'solid',
+				color: $bog_builderui_tokens.line,
+				radius: rem( 0.375 ),
+			},
+			font: { family: $bog_builderui_tokens.font_body },
+			whiteSpace: 'normal',
+		},
+
+	} )
+
+	$mol_style_define( $bog_smalljs_text_live, {
+
+		flex: { direction: 'column' },
+		gap: rem( 0.75 ),
+
+		// mono eyebrow, matching the site's section labels (see landing) — makes the panel
+		// read as "rendered output" even when a structural snippet mounts to nothing visible.
+		Label: {
+			display: 'block',
+			font: { family: mono, size: rem( 0.7 ), weight: 500 },
+			letterSpacing: rem( 0.12 ),
+			textTransform: 'uppercase',
+			color: $bog_builderui_tokens.shade,
+		},
+
+		Output: {
+			display: 'block',
+			whiteSpace: 'normal',
 		},
 
 	} )
