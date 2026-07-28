@@ -1578,6 +1578,8 @@ $bog_smalljs_docs $mol_view
 	sidebar_open? false
 	attr *
 		bog_smalljs_sidebar_open <= sidebar_open
+	auto /
+		<= scroll_reset null
 	sub /
 		<= Menu_toggle $mol_button_minor
 			click? <=> menu_toggle? null

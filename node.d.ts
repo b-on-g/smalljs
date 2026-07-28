@@ -9472,6 +9472,7 @@ declare namespace $ {
 		ReturnType< $mol_link['sub'] >
 	>
 	export class $bog_smalljs_docs extends $mol_view {
+		scroll_reset( ): any
 		menu_toggle( next?: any ): any
 		Menu_icon( ): $mol_icon_menu
 		Menu_label( ): $mol_view
@@ -9525,6 +9526,7 @@ declare namespace $ {
 		attr( ): ({ 
 			'bog_smalljs_sidebar_open': ReturnType< $bog_smalljs_docs['sidebar_open'] >,
 		}) 
+		auto( ): readonly(any)[]
 		sub( ): readonly(any)[]
 		Group( id: any): $mol_view
 		Group_title( id: any): $mol_view
@@ -9551,6 +9553,7 @@ declare namespace $.$$ {
         page_md(): string;
         title_text(): string;
         edit_uri(): string;
+        scroll_reset(): null;
         menu_toggle(): void;
         nav_click(): null;
         feedback_value(next?: string): string;
