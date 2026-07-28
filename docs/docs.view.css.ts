@@ -18,11 +18,13 @@ namespace $ {
 			color: $bog_builderui_tokens.text,
 		},
 
-		// active page — $mol_link sets mol_link_current="true"
+		// active page — $mol_link sets mol_link_current="true". A warm accent-bar on
+		// the left (added in the raw attach block below) carries the signal, while the
+		// label stays at full text contrast rather than tinting small text orange.
 		'@': {
 			mol_link_current: {
 				true: {
-					color: $bog_builderui_tokens.special,
+					color: $bog_builderui_tokens.text,
 					background: { color: $bog_builderui_tokens.hover },
 					font: { weight: 600 },
 				},
@@ -198,7 +200,10 @@ namespace $ {
 
 			'@': {
 				mol_link_current: {
-					true: { color: $bog_builderui_tokens.special },
+					true: {
+						color: $bog_builderui_tokens.text,
+						font: { weight: 600 },
+					},
 				},
 			},
 		},
@@ -265,6 +270,14 @@ namespace $ {
 	// leaves room so the anchored heading lands just below the bar. $mol_text honors it.
 	$mol_style_attach( '$bog_smalljs_docs.header_anchor', `
 		[bog_smalljs_docs_body] [mol_text_header] { scroll-margin-top: 5rem }
+	` )
+
+	// Warm inset accent-bar on the active sidebar/TOC link. Raw CSS: $mol_style_define
+	// has no plain box-shadow, and an inset bar adds the accent without a layout shift.
+	$mol_style_attach( '$bog_smalljs_docs.active_bar', `
+		[bog_smalljs_docs] [mol_link_current="true"] {
+			box-shadow: inset 2px 0 0 var( --bog_builderui_special );
+		}
 	` )
 
 }

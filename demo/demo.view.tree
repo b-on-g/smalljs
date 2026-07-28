@@ -1,0 +1,9 @@
+$bog_smalljs_demo $mol_view
+	name? \mol
+	sub /
+		<= Name $mol_string
+			hint @ \Type a name
+			value? <=> name?
+		<= Greeting $mol_view
+			sub /
+				<= greeting \Hello, mol!

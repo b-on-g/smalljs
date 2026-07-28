@@ -14,19 +14,37 @@ namespace $ {
 
 	} )
 
-	// App-wide dark-theme palette tweaks. Only under the dark theme; light stays as-is.
-	// Third attribute selector outranks theme.css's [base][lights] pair, so it wins
-	// regardless of stylesheet order. Raw CSS: these target CSS vars on a foreign
-	// attribute, which $mol_style_define can't express.
+	// App-wide palette tuning layered over the shared builderui tokens. A third
+	// attribute selector ([app][base][lights]) outranks theme.css's [base][lights]
+	// pair, so these win regardless of stylesheet order. Raw CSS: these set CSS vars
+	// on a foreign attribute, which $mol_style_define can't express.
 	//
-	//  - text: the shared builderui palette paints dark text pure #fafafa, which glares
-	//    against near-black surfaces; soften it (also bridges to --mol_theme_text).
-	//  - back/card SWAPPED: the page surface becomes the lighter shade and cards/topbar/
-	//    sidebar the darker one (inverted elevation). Values are hardcoded from the zinc
-	//    base (the app is pinned to bog_builderui_base="zinc"); a var() swap can't be used
-	//    because back↔card would reference each other and CSS voids the circular vars.
-	$mol_style_attach( '$bog_smalljs_app.dark_theme', `
+	// The accent is deliberately re-pointed at the code-highlighter palette so the
+	// site and the code samples read as one system (see text.view.css.ts):
+	//  - control/focus/current -> operator-blue  (matches tree-oper) for links & CTAs
+	//  - special               -> component-orange (matches tree-comp) as the one warm
+	//    signature accent (hero keyword, feature initials, active-bar)
+	// Values are split per-lights so small-text links clear AA on both surfaces
+	// (a darker blue on the cream light bg, a brighter blue on near-black dark).
+	//
+	// Light: a warm off-white page (cream) with pure-white cards for editorial
+	// elevation. Dark: the tuned zinc — softened text (#fafafa glares on near-black),
+	// and back/card SWAPPED so the page is the lighter shade and cards/topbar/sidebar
+	// the darker one (inverted elevation), hardcoded from the zinc base the app pins to.
+	$mol_style_attach( '$bog_smalljs_app.palette', `
+		[bog_smalljs_app][bog_builderui_base][bog_builderui_lights="light"] {
+			--bog_builderui_control: hsl( 210, 68%, 42% );
+			--bog_builderui_focus: hsl( 210, 72%, 36% );
+			--bog_builderui_current: hsl( 210, 68%, 42% );
+			--bog_builderui_special: hsl( 26, 82%, 44% );
+			--bog_builderui_back: #faf9f7;
+			--bog_builderui_card: #ffffff;
+		}
 		[bog_smalljs_app][bog_builderui_base][bog_builderui_lights="dark"] {
+			--bog_builderui_control: hsl( 210, 72%, 64% );
+			--bog_builderui_focus: hsl( 210, 76%, 72% );
+			--bog_builderui_current: hsl( 210, 72%, 64% );
+			--bog_builderui_special: hsl( 30, 85%, 60% );
 			--bog_builderui_text: #d4d4d8;
 			--bog_builderui_back: #18181b;
 			--bog_builderui_card: #09090b;
