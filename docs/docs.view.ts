@@ -42,6 +42,30 @@ namespace $.$$ {
 			return `https://github.com/b-on-g/smalljs/edit/main/${ page.file }`
 		}
 
+		// --- Scroll reset on page change ----------------------------------
+		// The whole app scrolls inside one container (the app root), so switching
+		// pages otherwise keeps the previous scroll offset — you'd land on the next
+		// page already halfway down. React to page() and snap the scroll container
+		// back to the top, unless the URL deep-links a specific heading (in which
+		// case $mol_text scrolls to that heading itself — don't fight it).
+		@ $mol_mem
+		scroll_reset() {
+			this.page()
+			if( this.$.$mol_state_arg.value( this.Body().param() ) ) return null
+			new this.$.$mol_after_tick( () => {
+				let node = this.dom_node() as HTMLElement | null
+				while( node ) {
+					const overflow = getComputedStyle( node ).overflowY
+					if( ( overflow === 'auto' || overflow === 'scroll' ) && node.scrollHeight > node.clientHeight ) {
+						node.scrollTop = 0
+						return
+					}
+					node = node.parentElement
+				}
+			} )
+			return null
+		}
+
 		// --- Mobile drawer ------------------------------------------------
 
 		@ $mol_action
