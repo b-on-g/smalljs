@@ -74,6 +74,8 @@ namespace $.$$ {
 
 			let title = `${ site_name } — the $mol reactive framework`
 			let description = default_description
+			// Generic brand card by default; docs pages get a per-slug card below.
+			let og_image = `${ prod_base }bog/smalljs/assets/og.png`
 
 			switch( this.section() ) {
 				case 'docs': {
@@ -81,6 +83,7 @@ namespace $.$$ {
 					const page_title = $bog_smalljs_content.page_title( slug, lang ) ?? slug
 					title = `${ page_title } — ${ site_name }`
 					description = $bog_smalljs_content.page_summary( slug, lang ) ?? default_description
+					og_image = `${ prod_base }bog/smalljs/assets/og/${ slug }.png`
 					break
 				}
 				case 'playground':
@@ -106,7 +109,7 @@ namespace $.$$ {
 				og_title: title,
 				og_description: description,
 				og_type: 'website',
-				og_image: `${ prod_base }bog/smalljs/assets/og.png`,
+				og_image,
 				alternates,
 			}
 		}
