@@ -63,7 +63,7 @@ namespace $.$$ {
 }
 ```
 
-Wszystko, co szablon powiązuje — `title`, `text`, właściwość podwidoku — może otrzymać tutaj logikę. Reaktywność ([Stan](#!section=docs/page=state)) ożywia te wartości.
+Wszystko, co szablon powiązuje — `title`, `text`, właściwość podwidoku — może otrzymać tutaj logikę. Reaktywność ożywia te wartości.
 
 ## Atrybuty i typ elementu
 

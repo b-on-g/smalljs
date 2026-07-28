@@ -63,7 +63,7 @@ namespace $.$$ {
 }
 ```
 
-Tout ce que le gabarit lie — `title`, `text`, la propriété d'une sous-vue — peut recevoir de la logique ici. La réactivité ([État](#!section=docs/page=state)) rend ces valeurs vivantes.
+Tout ce que le gabarit lie — `title`, `text`, la propriété d'une sous-vue — peut recevoir de la logique ici. La réactivité rend ces valeurs vivantes.
 
 ## Attributs et type d'élément
 

@@ -63,7 +63,7 @@ namespace $.$$ {
 }
 ```
 
-Cokoli, co šablona naváže — `title`, `text`, vlastnost podpohledu — může zde dostat logiku. Reaktivita ([Stav](#!section=docs/page=state)) tyto hodnoty oživuje.
+Cokoli, co šablona naváže — `title`, `text`, vlastnost podpohledu — může zde dostat logiku. Reaktivita tyto hodnoty oživuje.
 
 ## Atributy a typ elementu
 

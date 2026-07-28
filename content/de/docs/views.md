@@ -63,7 +63,7 @@ namespace $.$$ {
 }
 ```
 
-Alles, was die Vorlage bindet — `title`, `text`, die Eigenschaft einer Sub-View — kann hier Logik erhalten. Reaktivität ([Zustand](#!section=docs/page=state)) macht diese Werte lebendig.
+Alles, was die Vorlage bindet — `title`, `text`, die Eigenschaft einer Sub-View — kann hier Logik erhalten. Reaktivität macht diese Werte lebendig.
 
 ## Attribute und Elementtyp
 

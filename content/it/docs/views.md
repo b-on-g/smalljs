@@ -63,7 +63,7 @@ namespace $.$$ {
 }
 ```
 
-Tutto ciò che il template associa — `title`, `text`, la proprietà di una sotto-vista — può ricevere logica qui. La reattività ([Stato](#!section=docs/page=state)) rende vivi questi valori.
+Tutto ciò che il template associa — `title`, `text`, la proprietà di una sotto-vista — può ricevere logica qui. La reattività rende vivi questi valori.
 
 ## Attributi e tipo di elemento
 

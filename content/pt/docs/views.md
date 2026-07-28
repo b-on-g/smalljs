@@ -63,7 +63,7 @@ namespace $.$$ {
 }
 ```
 
-Tudo o que o template liga — `title`, `text`, a propriedade de uma subview — pode receber lógica aqui. A reatividade ([Estado](#!section=docs/page=state)) torna esses valores vivos.
+Tudo o que o template liga — `title`, `text`, a propriedade de uma subview — pode receber lógica aqui. A reatividade torna esses valores vivos.
 
 ## Atributos e tipo de elemento
 
