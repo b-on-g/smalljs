@@ -20,7 +20,7 @@
 
 - [Data Fetching](https://b-on-g.github.io/smalljs/docs/data.md): Loading remote data with reactive async properties and loading states.
 - [Data Schemas](https://b-on-g.github.io/smalljs/docs/data-schema.md): Runtime typing and validation of backend data with $mol_data and $mol_schema.
-- [Giper Baza](https://b-on-g.github.io/smalljs/docs/giper-baza.md): Local-first data with automatic sync: entities, atoms, and CRUD.
+- [Giper Baza](https://b-on-g.github.io/smalljs/docs/giper-baza.md): Optional project for local-first data synced between clients via CRDTs: entities, atoms, and CRUD.
 
 ## More
 
@@ -31,6 +31,7 @@
 
 - [Plugins](https://b-on-g.github.io/smalljs/docs/plugins.md): Element-less components that attach behaviour (hotkeys, theme, navigation) to a host view.
 - [Module metadata](https://b-on-g.github.io/smalljs/docs/meta.md): The meta.tree file: include, deploy, and pack directives for a module.
+- [Offline](https://b-on-g.github.io/smalljs/docs/offline.md): Work with no network via a caching service worker: mol/offline/install and installable PWAs.
 - [Ghost views](https://b-on-g.github.io/smalljs/docs/ghost.md): Node-less views that borrow another component's DOM element to mix in behaviour.
 
 ## About
