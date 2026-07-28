@@ -70,6 +70,47 @@ namespace $.$$ {
 		return true
 	}
 
+	// Built-in controls whose own value/checked state is user-editable with no accompanying
+	// logic — a text field you can type in, a box you can toggle. A tree-only snippet built
+	// around one of these is genuinely interactive on its own, which is exactly what makes
+	// the live preview worth a click.
+	const interactive_comps = new Set( [
+		'$mol_string', '$mol_number', '$mol_search', '$mol_textarea',
+		'$mol_check', '$mol_check_box', '$mol_check_icon', '$mol_switch',
+		'$mol_select', '$mol_pick', '$mol_filter', '$mol_date',
+		'$mol_slider', '$mol_range', '$mol_color',
+	] )
+
+	/**
+	 * Stricter gate on top of {@link snippet_runnable}: offer Run / "Open in Playground"
+	 * only when the snippet is not merely mountable but actually *does something* when you
+	 * poke it — a live, interactive demo rather than a static shell.
+	 *
+	 * The live/playground runtimes compile the *tree only* — the paired `view.ts` (where
+	 * `@ $mol_mem` state and `@ $mol_action` handlers live) is never executed. So a snippet
+	 * whose behaviour comes from that TS renders as an inert husk: the counter shows a blank
+	 * count and its `+` button is dead, a `$mol_view` with empty `\` literals shows nothing.
+	 * Those "technically renders" cases got a button that led nowhere — the reader clicked and
+	 * nothing happened.
+	 *
+	 * The one thing that stays fully interactive with tree alone is a two-way `<=>` binding on
+	 * a built-in input control: type into the field and its state changes right there. So we
+	 * require both signals — a `<=>` operator *and* a known editable control — and reject
+	 * everything else (static views, event handlers that need TS, keyed lists with no data).
+	 */
+	function snippet_interactive( src: string ) {
+		if( !/<=>/.test( src ) ) return false
+		for( const ref of src.match( /\$[\w$]+/g ) ?? [] ) {
+			if( interactive_comps.has( ref ) ) return true
+		}
+		return false
+	}
+
+	/** A snippet earns Run / Playground buttons only when it both mounts cleanly and is interactive. */
+	function snippet_demo( $: any, src: string ) {
+		return snippet_runnable( $, src ) && snippet_interactive( src )
+	}
+
 	/**
 	 * $mol_text with language-aware code blocks: view.tree gets its own highlighter,
 	 * and executable snippets (view.tree) grow an "Open in Playground" button.
@@ -112,11 +153,12 @@ namespace $.$$ {
 
 		// Only view.tree snippets are self-contained enough to render in the playground
 		// (a bare view.ts has no root component to mount), and only when the snippet is a
-		// single mountable root whose deps are all bundled — otherwise the playground opens
-		// straight into a compile/render error. Same gate as the inline Run button.
+		// single mountable root whose deps are all bundled *and* interactive on its own —
+		// otherwise the playground opens into a compile error or an inert husk whose logic
+		// lives in the paired view.ts. Same gate as the inline Run button.
 		pre_playground_showed( index: number ) {
 			if( this.lang_kind( index ) !== 'tree' ) return false
-			return snippet_runnable( this.$, this.pre_text( index ) )
+			return snippet_demo( this.$, this.pre_text( index ) )
 		}
 
 		// $mol_link merges this dict into the URL args on click (null removes a key),
@@ -150,14 +192,16 @@ namespace $.$$ {
 			return super.syntax()
 		}
 
-		// A snippet is runnable only when it is a single, self-contained, mountable root
-		// component whose every dependency is bundled (see snippet_runnable). Fragments,
-		// multi-component snippets, non-view bases and unbundled deps get no Run button —
-		// they'd only render an error. The same gate drives "Open in Playground".
+		// A snippet earns a Run button only when it is a single, self-contained, mountable
+		// root (see snippet_runnable) *and* interactive on its own — a two-way `<=>` binding
+		// on a built-in input (see snippet_interactive). Fragments, multi-component snippets,
+		// non-view bases, unbundled deps, static views and TS-driven demos (counters, event
+		// handlers) get no button: they'd render an error or an inert husk. The same gate
+		// drives "Open in Playground".
 		run_showed() {
 			if( !this.run_enabled() ) return false
 			if( this.syntax() !== tree_syntax ) return false
-			return snippet_runnable( this.$, this.text() )
+			return snippet_demo( this.$, this.text() )
 		}
 
 		@ $mol_action
