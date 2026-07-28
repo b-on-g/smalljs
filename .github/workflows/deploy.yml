@@ -22,30 +22,28 @@ jobs:
                   package: "bog/smalljs"
                   modules: 'app'
 
-            # SEO: prerender the main sections to static HTML + sitemap.xml/robots.txt.
-            # The action varies a single route key; we prerender by `section`
-            # (docs prerenders its default page, Introduction). Non-blocking so a
-            # prerender hiccup never fails the deploy.
-            - name: Prerender
+            # SEO: prerender EVERY route (from the committed sitemap) to a real static
+            # HTML file at /<route>/index.html, with per-page <title>/meta/og/canonical/
+            # hreflang injected from the app's data-bog-meta. This is what makes deep
+            # links index and unfurl on a static host (path routing → real 200s, not the
+            # 404-fallback that crawlers/social scrapers can't follow). Non-blocking: a
+            # prerender hiccup leaves the SPA + raw .md endpoints below, never fails deploy.
+            - name: Prerender all routes to static HTML (SEO)
               if: github.ref == 'refs/heads/main'
               continue-on-error: true
               uses: b-on-g/mol-prerender-action@main
               with:
+                  folder: "bog/smalljs/app/-"
                   base-url: "https://b-on-g.github.io/smalljs/"
-                  route-format: "#!"
-                  route-key: "section"
-                  screens: |
-                      docs
-                      playground
+                  route-format: "path"
+                  sitemap-file: "bog/smalljs/content/sitemap.xml"
+                  viewport: "1280x900"
 
-            # AI-/crawler-friendly static endpoints, all generated deterministically
-            # by content/gen.cjs (committed) and shipped as-is:
-            #  - raw Markdown (/docs/<slug>.md) — real crawlable/LLM-citable URLs
+            # Extra static endpoints from content/gen.cjs (committed), shipped as-is:
+            #  - raw Markdown (/docs/<slug>.md) — LLM-citable plain-text URLs
             #  - llms.txt (llmstxt.org index)
-            #  - sitemap.xml + robots.txt enumerating root + every /docs/<slug>.md
-            # These are the authoritative SEO files: the app is a hash-routed SPA, so
-            # `#!` deep links are not distinct URLs to crawlers — a link-crawl can't
-            # enumerate pages, but this manifest-driven list can.
+            #  - sitemap.xml + robots.txt (authoritative route list; also feeds the
+            #    prerender step above). Copied after prerender so the committed files win.
             - name: Copy Markdown endpoints + llms.txt + sitemap/robots
               if: github.ref == 'refs/heads/main'
               run: |
@@ -58,35 +56,6 @@ jobs:
                   # under the mount; its rafgraph redirect hands the deep-link back to
                   # index.html, which $bog_builderui_router expands into the real path.
                   cp bog/smalljs/404.html bog/smalljs/app/-/404.html
-
-            # Full $bog_seo pipeline: build the SEO server, serve the deploy folder at
-            # a root port (as gh-pages does), and dump prerendered HTML with injected
-            # <title>/<meta>/<link rel=canonical|alternate>/og:* read from the app's
-            # `data-bog-meta` (set by $bog_smalljs_app.meta()). `cp -rn` (no-clobber)
-            # so the committed index.html/sitemap.xml/robots.txt above stay authoritative
-            # — $bog_seo only *adds* prerendered routes it can discover. Non-blocking.
-            - name: Build $bog_seo
-              if: github.ref == 'refs/heads/main'
-              continue-on-error: true
-              run: npx mam bog/seo
-
-            - name: Prerender + inject meta via $bog_seo
-              if: github.ref == 'refs/heads/main'
-              continue-on-error: true
-              run: |
-                  npx --yes serve -s bog/smalljs/app/- -l 9090 > /tmp/serve.log 2>&1 &
-                  SERVE_PID=$!
-                  sleep 3
-                  BOG_SEO_UPSTREAM=http://localhost:9090 \
-                  BOG_SEO_CANONICAL_BASE="https://b-on-g.github.io/smalljs" \
-                  BOG_SEO_DUMP_DIR="bog/smalljs/app/-/_seo" \
-                  BOG_SEO_WARMUP=true \
-                  node bog/seo/-/node.js
-                  kill $SERVE_PID || true
-                  if [ -d "bog/smalljs/app/-/_seo" ]; then
-                      cp -rn bog/smalljs/app/-/_seo/* bog/smalljs/app/-/ || true
-                      rm -rf bog/smalljs/app/-/_seo
-                  fi
 
             - uses: hyoo-ru/gh-deploy@v4.4.1
               if: github.ref == 'refs/heads/main'
