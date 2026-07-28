@@ -56,6 +56,7 @@ $bog_smalljs_landing $mol_view
 											lang \tree
 											sidebar_showed false
 											playground_showed false
+											run_enabled false
 								<= Sign_arrow $mol_view
 									sub /
 										<= Sign_arrow_text \→

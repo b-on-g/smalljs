@@ -18,6 +18,59 @@ namespace $.$$ {
 	} )
 
 	/**
+	 * Structural gate shared by the Run button and the "Open in Playground" link: a
+	 * snippet is offered only when it is a single, self-contained, mountable component.
+	 *
+	 * The playground/live runtime compiles the tree with the app's own $mol toolchain and
+	 * mounts `$[ first_token ]`, so a snippet that references a component the app doesn't
+	 * bundle, extends a non-view base, or spreads across several top-level components would
+	 * render as an error (⚠) instead of a live result. We reject those up front rather than
+	 * hand the reader a button that only leads to a crash.
+	 *
+	 * Requirements:
+	 *  - exactly one top-level (column-0) declaration — the mount root;
+	 *  - it declares its own non-reserved name and a base view (name + base);
+	 *  - the base resolves to a mol_view (or subclass) in the live namespace;
+	 *  - every other component it references is either defined in the snippet itself
+	 *    or actually bundled into the app ($ has it) — so nothing is missing at render.
+	 */
+	function snippet_root( src: string ) {
+		const lines = src.split( '\n' ).filter( line => line.trim() !== '' )
+		if( lines.length === 0 ) return null
+		// A fragment (starts with a property/binding) or a multi-component snippet has no
+		// single mountable root — only column-0 `$…` lines count as top-level declarations.
+		const tops = lines.filter( line => /^\$/.test( line ) )
+		if( tops.length !== 1 ) return null
+		const match = /^(\$[\w$]+)\s+(\$[\w$]+)/.exec( lines[ 0 ] )
+		if( !match ) return null
+		const [ , name, base ] = match
+		// A reserved root name is rejected by the compiler itself, so never offer it.
+		if( /^\$(mol|hyoo|bog|node)_/.test( name ) ) return null
+		return { name, base }
+	}
+
+	function snippet_runnable( $: any, src: string ) {
+		const root = snippet_root( src )
+		if( !root ) return false
+		const Base = $[ root.base ]
+		if( typeof Base !== 'function' ) return false
+		// Only view subclasses mount into the preview; a non-view base (e.g. mol_theme_auto)
+		// has no DOM and would throw when the embed tries to render it.
+		if( Base !== $.$mol_view && !( Base.prototype instanceof $.$mol_view ) ) return false
+		// Plugins subclass mol_view but are not standalone-mountable — mounting one with no
+		// host throws ("reading 'host'"). Reject the whole plugin family.
+		const Plugin = $.$mol_plugin
+		if( Plugin && ( Base === Plugin || Base.prototype instanceof Plugin ) ) return false
+		const defined = new Set( [ root.name ] )
+		for( const ref of src.match( /\$[\w$]+/g ) ?? [] ) {
+			if( defined.has( ref ) ) continue
+			if( typeof $[ ref ] === 'function' ) continue
+			return false
+		}
+		return true
+	}
+
+	/**
 	 * $mol_text with language-aware code blocks: view.tree gets its own highlighter,
 	 * and executable snippets (view.tree) grow an "Open in Playground" button.
 	 */
@@ -58,9 +111,12 @@ namespace $.$$ {
 		}
 
 		// Only view.tree snippets are self-contained enough to render in the playground
-		// (a bare view.ts has no root component to mount), so the button is tree-only.
+		// (a bare view.ts has no root component to mount), and only when the snippet is a
+		// single mountable root whose deps are all bundled — otherwise the playground opens
+		// straight into a compile/render error. Same gate as the inline Run button.
 		pre_playground_showed( index: number ) {
-			return this.lang_kind( index ) === 'tree'
+			if( this.lang_kind( index ) !== 'tree' ) return false
+			return snippet_runnable( this.$, this.pre_text( index ) )
 		}
 
 		// $mol_link merges this dict into the URL args on click (null removes a key),
@@ -94,14 +150,14 @@ namespace $.$$ {
 			return super.syntax()
 		}
 
-		// A snippet is runnable only when it declares a mountable root component of its
-		// own — first token is a `$name` that isn't a framework-reserved prefix. Fragments
-		// (starting with a property, or with a bare `$mol_*`) get no Run button and just
-		// keep the "Open in Playground" escape hatch (WS1).
+		// A snippet is runnable only when it is a single, self-contained, mountable root
+		// component whose every dependency is bundled (see snippet_runnable). Fragments,
+		// multi-component snippets, non-view bases and unbundled deps get no Run button —
+		// they'd only render an error. The same gate drives "Open in Playground".
 		run_showed() {
+			if( !this.run_enabled() ) return false
 			if( this.syntax() !== tree_syntax ) return false
-			const root = /(\$[\w$]+)/.exec( this.text() )?.[ 1 ]
-			return !!root && !/^\$(mol|hyoo|bog|node)_/.test( root )
+			return snippet_runnable( this.$, this.text() )
 		}
 
 		@ $mol_action
@@ -137,12 +193,9 @@ namespace $.$$ {
 		live_content(): readonly ( $mol_view | string )[] {
 			const $ = this.$ as any
 			try {
-				// $mol_tree2 requires a trailing LF; doc block text is captured without one.
-				// Localized `@ \text` has no runtime locale dictionary here (that lives in a
-				// generated .locale=en.json), so it would render as the raw key. Downgrade it
-				// to a plain `\text` literal so the preview shows the human-readable default.
-				const src = this.tree().replace( /\n*$/, '\n' ).replace( /@ \\/g, '\\' )
-				const { Base } = $bog_smalljs_playground.build_base( $, src )
+				// build_base normalizes the trailing LF and downgrades localized `@ \text`
+				// (no runtime dictionary here) to a plain literal, so the raw block text is fine.
+				const { Base } = $bog_smalljs_playground.build_base( $, this.tree() )
 				return [ new Base() as $mol_view ]
 			} catch( error ) {
 				if( error instanceof Promise ) throw error
