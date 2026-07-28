@@ -34,9 +34,23 @@ namespace $.$$ {
 			].join( '\n' ) + '\n'
 		}
 
+		// The standalone defaults (counter logic + styling) target the $my_demo component, so
+		// they only make sense while that default tree is loaded. When a different tree is in
+		// the editor — most notably a doc snippet opened via "Open in Playground", which seeds
+		// `code` but clears `ts`/`css` — attaching the $my_demo class/styles would compile a
+		// reference to an undefined component and blow up the preview ("$my_demo is not
+		// defined"). In that case the defaults must be empty.
+		tree_is_default() {
+			const S = String.fromCharCode( 36 ) // "$" — kept out of MAM's dep scan
+			const tree = this.stored( 'code' ) || this.default_tree()
+			return /(\$[\w$]+)/.exec( tree )?.[ 1 ] === S + 'my_demo'
+		}
+
 		default_css() {
 			// An embedder controls the css via seed_css, mirroring default_ts's seed gate.
 			if ( this.seed_tree() ) return this.seed_css()
+			// A non-default tree (e.g. a doc snippet) has no $my_demo to style.
+			if ( !this.tree_is_default() ) return ''
 			// Standalone: a working view.css.ts sample that styles the default counter,
 			// so opening the css.ts tab shows real, applied styling.
 			const S = String.fromCharCode( 36 ) // "$" — kept out of MAM's dep scan
@@ -58,6 +72,8 @@ namespace $.$$ {
 			// An embedder (e.g. the course) fully controls the ts via seed_ts,
 			// even when empty — mirror default_tree's seed gate.
 			if ( this.seed_tree() ) return this.seed_ts()
+			// A non-default tree (e.g. a doc snippet) has no $my_demo class to extend.
+			if ( !this.tree_is_default() ) return ''
 			// Standalone playground: ship a working counter so the default
 			// example is live on open (the tree alone has no logic, so inc()
 			// would be dead). This does fetch the TS compiler on first render.
@@ -183,6 +199,11 @@ namespace $.$$ {
 		// static so the render-only live embeds ($bog_smalljs_text_live) can reuse
 		// the exact same $mol toolchain without dragging in the editor.
 		static build_base( $: any, tree_src: string ): { root: string, Base: any } {
+			// $mol_tree2 needs a trailing LF; a localized `@ \text` has no runtime dictionary
+			// here, so it would render as its raw key — downgrade it to a plain `\text` literal
+			// so the preview shows the human-readable default instead. Both the editor preview
+			// and the render-only doc embeds go through here, so they stay consistent.
+			tree_src = tree_src.replace( /\n*$/, '\n' ).replace( /@ \\/g, '\\' )
 			const root = /(\$[\w$]+)/.exec( tree_src )?.[ 1 ]
 			if ( !root ) throw new Error( 'No component found — the first line must declare one (a name and a base view).' )
 			if ( /^\$(mol|hyoo|bog|node)_/.test( root ) ) {
