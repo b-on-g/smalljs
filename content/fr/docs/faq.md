@@ -10,7 +10,7 @@ Oui. $mol fait tourner de vraies applications et des outils internes — voir la
 
 ## Quelle est la taille du runtime ?
 
-Petite. Le runtime est compact, et le rendu est virtualisé par défaut — les composants hors de la zone visible ne sont jamais créés. Voir [Rendu](#!section=docs/page=rendering) pour les détails et les benchmarks.
+Petite. Une application minimale pèse environ 123 KB de JavaScript non compressé, ou à peu près 20 KB sur le réseau une fois compressée. Le rendu est virtualisé par défaut (les composants hors de la zone visible ne sont jamais créés), et le build n'embarque que les modules que vous utilisez réellement, si bien que le bundle grandit avec votre application plutôt qu'avec le framework. Voir [Rendu](#!section=docs/page=rendering) pour les détails et des benchmarks reproductibles.
 
 ## Dois-je apprendre un nouveau langage de template ?
 

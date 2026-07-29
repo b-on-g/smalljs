@@ -10,7 +10,7 @@ Yes. $mol powers real apps and internal tools — see the [Showcase](#!section=d
 
 ## How big is the runtime?
 
-Small. The runtime is compact, and rendering is virtualized by default — components outside the viewport are never created. See [Rendering](#!section=docs/page=rendering) for the details and reproducible benchmarks.
+Small. A minimal app is about 123 KB of JavaScript uncompressed, or roughly 20 KB over the wire once compressed. Rendering is virtualized by default (components outside the viewport are never created), and the build ships only the modules you actually use, so the bundle grows with your app rather than with the framework. See [Rendering](#!section=docs/page=rendering) for the details and reproducible benchmarks.
 
 ## Do I have to learn a new template language?
 

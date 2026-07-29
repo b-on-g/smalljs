@@ -10,7 +10,7 @@ Ja. $mol treibt echte Apps und interne Werkzeuge an — siehe das [Schaufenster]
 
 ## Wie groß ist die Laufzeit?
 
-Klein. Die Runtime ist kompakt, und das Rendering ist standardmäßig virtualisiert — Komponenten außerhalb des sichtbaren Bereichs werden nie erzeugt. Siehe [Rendering](#!section=docs/page=rendering) für Details und Benchmarks.
+Klein. Eine minimale App umfasst etwa 123 KB unkomprimiertes JavaScript bzw. rund 20 KB über die Leitung nach der Komprimierung. Das Rendering ist standardmäßig virtualisiert (Komponenten außerhalb des sichtbaren Bereichs werden nie erzeugt), und der Build liefert nur die Module aus, die Sie tatsächlich verwenden, sodass das Bundle mit Ihrer App wächst und nicht mit dem Framework. Siehe [Rendering](#!section=docs/page=rendering) für Details und reproduzierbare Benchmarks.
 
 ## Muss ich eine neue Template-Sprache lernen?
 

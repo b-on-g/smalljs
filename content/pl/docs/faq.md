@@ -10,7 +10,7 @@ Tak. $mol napędza prawdziwe aplikacje i wewnętrzne narzędzia — zobacz [Prez
 
 ## Jak duży jest runtime?
 
-Mały. Runtime jest kompaktowy, a renderowanie jest domyślnie wirtualizowane — komponenty poza obszarem widocznym nigdy nie są tworzone. Zobacz [Renderowanie](#!section=docs/page=rendering), aby poznać szczegóły i benchmarki.
+Mały. Minimalna aplikacja to około 123 KB nieskompresowanego JavaScriptu, czyli mniej więcej 20 KB przesyłanych przez sieć po kompresji. Renderowanie jest domyślnie wirtualizowane (komponenty poza obszarem widocznym nigdy nie są tworzone), a build dołącza tylko te moduły, których faktycznie używasz, więc bundle rośnie wraz z twoją aplikacją, a nie z frameworkiem. Zobacz [Renderowanie](#!section=docs/page=rendering), aby poznać szczegóły i powtarzalne benchmarki.
 
 ## Czy muszę uczyć się nowego języka szablonów?
 

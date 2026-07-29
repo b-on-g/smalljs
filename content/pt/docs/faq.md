@@ -10,7 +10,7 @@ Sim. O $mol alimenta apps reais e ferramentas internas — veja a [Vitrine](#!se
 
 ## Qual é o tamanho do runtime?
 
-Pequeno. O runtime é compacto, e a renderização é virtualizada por padrão — componentes fora da área visível nunca são criados. Veja [Renderização](#!section=docs/page=rendering) para os detalhes e benchmarks.
+Pequeno. Um app mínimo tem cerca de 123 KB de JavaScript sem compressão, ou aproximadamente 20 KB pela rede depois de comprimido. A renderização é virtualizada por padrão (componentes fora da área visível nunca são criados), e o build inclui apenas os módulos que você realmente usa, então o bundle cresce com o seu app e não com o framework. Veja [Renderização](#!section=docs/page=rendering) para os detalhes e benchmarks reproduzíveis.
 
 ## Preciso aprender uma nova linguagem de template?
 
