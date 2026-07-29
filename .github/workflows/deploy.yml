@@ -53,7 +53,7 @@ jobs:
               if: github.ref == 'refs/heads/main'
               run: |
                   npx --yes esbuild bog/smalljs/app/-/web.js \
-                    --minify --charset=utf8 --allow-overwrite \
+                    --minify --charset=utf8 --allow-overwrite --sourcemap \
                     --outfile=bog/smalljs/app/-/web.js
 
             # Drop the render-blocking Google Fonts @import that the shared builderui
