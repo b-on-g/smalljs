@@ -2154,6 +2154,7 @@ $bog_smalljs_app $bog_builderui_div
 					\$mol_theme_calm_light
 					\$mol_theme_calm_dark
 		<= Body $mol_view
+			dom_name \main
 			sub <= body_content /
 		<= Search $bog_smalljs_search
 			open? <=> search_open?

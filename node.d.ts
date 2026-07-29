@@ -11438,12 +11438,17 @@ declare namespace $ {
 		,
 		ReturnType< $bog_smalljs_top['Theme'] >
 	>
-	type $mol_view__sub_bog_smalljs_app_6 = $mol_type_enforce<
+	type $mol_view__dom_name_bog_smalljs_app_6 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_view['dom_name'] >
+	>
+	type $mol_view__sub_bog_smalljs_app_7 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_app['body_content'] >
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $bog_smalljs_search__open_bog_smalljs_app_7 = $mol_type_enforce<
+	type $bog_smalljs_search__open_bog_smalljs_app_8 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_app['search_open'] >
 		,
 		ReturnType< $bog_smalljs_search['open'] >

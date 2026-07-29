@@ -21819,9 +21819,16 @@ var $;
     });
     // Colors for the view.tree grammar (see text.view.ts). These token-type names are
     // produced only by $bog_smalljs_text_code, so plain attribute selectors are safe and
-    // cannot bleed onto other code blocks. Mid-lightness HSLA reads well in both themes,
-    // matching how base $mol tints its own tokens; structure/comments use the theme's
-    // muted `shade` var so they recede.
+    // cannot bleed onto other code blocks. The base (mid-lightness) HSLA is tuned for the
+    // dark surface, matching how base $mol tints its own tokens; structure/comments use the
+    // theme's muted `shade` var so they recede.
+    //
+    // The same mid-lightness reads too pale on the light theme's near-white code surface
+    // (fails WCAG AA — ~2.7:1 for the orange keyword on the cream page). So the light theme
+    // gets a darker variant of each hue, sampled to clear 4.5:1 on the worst-case cream
+    // background (#faf9f7). The `[lights="light"]` ancestor (set on the app root) makes the
+    // override 0,2,0-specific, so it wins over the 0,1,0 base without !important; dark keeps
+    // the base values untouched. `shade` marks/comments already clear AA on both surfaces.
     $mol_style_attach('$bog_smalljs_text_code.tree_syntax', `
 		[mol_text_code_token_type="tree-comp"] { color: hsl( 28, 80%, 52% ) }
 		[mol_text_code_token_type="tree-string"] { color: hsl( 96, 42%, 42% ) }
@@ -21829,6 +21836,11 @@ var $;
 		[mol_text_code_token_type="tree-prim"] { color: hsl( 45, 72%, 44% ) }
 		[mol_text_code_token_type="tree-mark"] { color: var( --bog_builderui_shade ) }
 		[mol_text_code_token_type="tree-comment"] { color: var( --bog_builderui_shade ); font-style: italic }
+
+		[bog_builderui_lights="light"] [mol_text_code_token_type="tree-comp"] { color: hsl( 28, 80%, 38% ) }
+		[bog_builderui_lights="light"] [mol_text_code_token_type="tree-string"] { color: hsl( 96, 42%, 34.5% ) }
+		[bog_builderui_lights="light"] [mol_text_code_token_type="tree-oper"] { color: hsl( 210, 62%, 45.5% ) }
+		[bog_builderui_lights="light"] [mol_text_code_token_type="tree-prim"] { color: hsl( 45, 72%, 31.5% ) }
 	`);
 })($ || ($ = {}));
 
@@ -26342,6 +26354,7 @@ var $;
 		}
 		Body(){
 			const obj = new this.$.$mol_view();
+			(obj.dom_name) = () => ("main");
 			(obj.sub) = () => ((this.body_content()));
 			return obj;
 		}
