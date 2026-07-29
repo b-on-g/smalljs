@@ -303,7 +303,9 @@ $bog_smalljs_top $mol_view
 				<= Logo_image $mol_image
 					uri <= logo_uri
 					title @ \smalljs
-				<= Logo_text @ \smalljs
+				<= Logo_text_box $mol_view
+					sub /
+						<= Logo_text @ \smalljs
 		<= Search $mol_button_minor
 			click? <=> search_click?
 			sub /
@@ -1496,7 +1498,10 @@ $bog_smalljs_landing $mol_view
 								<= Hero_title_post @ \ framework
 						<= Hero_subtitle $mol_view
 							sub /
-								<= Hero_subtitle_text @ \A progressive web app framework. Extremely simple, deeply capable. Innovations and batteries included.
+								<= Hero_subtitle_text @ \Reactivity lives in the framework's foundation, not bolted on top.
+						<= Hero_subtitle_note $mol_view
+							sub /
+								<= Hero_subtitle_note_text @ \Dependency arrays, manual subscriptions, manual cache invalidation, effect cleanup — none of it exists here. Not made easier, made unnecessary.
 						<= Hero_actions $mol_view
 							sub /
 								<= Hero_cta_start $mol_link

@@ -25,6 +25,18 @@ If you have built UIs with React, Vue, or Svelte, you already understand most of
 - **Effects are separated from computations.** React folds derivation and effects into hooks; $mol keeps them apart: `@ $mol_mem` only computes, `@ $mol_action` performs effects. That split is what removes most "why did this run twice?" puzzles.
 - **State is just objects.** There is no dedicated store library to adopt — a shared value is a reactive property on any object, so global state and component state work the same way.
 
+## Solved by you vs. solved by the framework
+
+The deeper difference is not the vocabulary above — it is *who* solves the recurring problems. In React, Vue, or Svelte most of them are patterns you re-implement in every component and break in your own way. In $mol they are properties of one mechanism, so the whole class of work disappears rather than getting a nicer API.
+
+- **State store** — five storage subsystems in React (Redux + RTK Query + `useState` + `useReducer` + Context) collapse into one: reactive fields on the component.
+- **Reactivity** — bolted on top elsewhere (MobX, signals); in the foundation here, so nothing has to opt in.
+- **Crash isolation** — `<ErrorBoundary>` placed by hand vs. every component being its own boundary by default.
+- **Effects** — a `useEffect`/`useMemo`/deps checklist across a dozen scenarios vs. a method, or a method with an action. One fork in the tree, not twelve.
+- **Virtualization** — a third-party component per list vs. everything outside the viewport simply not existing.
+
+Where the table above renames things, this is where $mol actually removes them.
+
 ## Try the translation
 
 The fastest way to internalize the mapping is to write a little of both: open the [Playground](#!section=playground), port a small component you know, and see how it lands. Or start from [Getting Started](#!section=docs/page=getting-started).
