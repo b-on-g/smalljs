@@ -2,5 +2,9 @@
 	"$bog_smalljs_docs_Edit_label": "GitHub-এ এই পৃষ্ঠা সম্পাদনা করুন",
 	"$bog_smalljs_docs_toc_title_text": "এই পৃষ্ঠায়",
 	"$bog_smalljs_docs_prev_hint_text": "পূর্ববর্তী",
-	"$bog_smalljs_docs_next_hint_text": "পরবর্তী"
+	"$bog_smalljs_docs_next_hint_text": "পরবর্তী",
+	"$bog_smalljs_docs_feedback_prompt_text": "এটি কি সহায়ক ছিল?",
+	"$bog_smalljs_docs_feedback_yes_label": "হ্যাঁ",
+	"$bog_smalljs_docs_feedback_no_label": "না",
+	"$bog_smalljs_docs_feedback_thanks_text": "মতামতের জন্য ধন্যবাদ!"
 }

@@ -51,5 +51,7 @@
 	"$bog_smalljs_top_Lang_pick_hint": "Выбрать язык",
 	"$bog_theme_switch_dark_hint": "Тёмная тема",
 	"$bog_theme_switch_light_hint": "Светлая тема",
-	"$bog_theme_switch_system_hint": "Системная тема"
+	"$bog_theme_switch_system_hint": "Системная тема",
+	"$bog_smalljs_top_About_telegram_title": "Telegram",
+	"$bog_smalljs_top_M_about_telegram_title": "Telegram"
 }

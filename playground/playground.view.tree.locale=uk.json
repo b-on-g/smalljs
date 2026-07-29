@@ -1,3 +1,6 @@
 {
-	"$bog_smalljs_playground_preview_label_text": "Перегляд"
+	"$bog_smalljs_playground_preview_label_text": "Перегляд",
+	"$bog_smalljs_playground_tree_tab_label": "view.tree",
+	"$bog_smalljs_playground_ts_tab_label": "view.ts",
+	"$bog_smalljs_playground_css_tab_label": "view.css.ts"
 }

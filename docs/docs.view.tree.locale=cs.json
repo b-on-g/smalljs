@@ -2,5 +2,9 @@
 	"$bog_smalljs_docs_Edit_label": "Upravit tuto stránku na GitHubu",
 	"$bog_smalljs_docs_toc_title_text": "Na této stránce",
 	"$bog_smalljs_docs_prev_hint_text": "Předchozí",
-	"$bog_smalljs_docs_next_hint_text": "Další"
+	"$bog_smalljs_docs_next_hint_text": "Další",
+	"$bog_smalljs_docs_feedback_prompt_text": "Bylo to užitečné?",
+	"$bog_smalljs_docs_feedback_yes_label": "Ano",
+	"$bog_smalljs_docs_feedback_no_label": "Ne",
+	"$bog_smalljs_docs_feedback_thanks_text": "Díky za zpětnou vazbu!"
 }

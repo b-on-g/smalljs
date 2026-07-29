@@ -31,5 +31,16 @@
 	"$bog_smalljs_landing_Footer_copy_line1_text": "Випущено за ліцензією MIT.",
 	"$bog_smalljs_landing_Hero_title_pre": "$mol — реактивний",
 	"$bog_smalljs_landing_Hero_title_accent_text": "мікромодульний",
-	"$bog_smalljs_landing_Hero_title_post": "фреймворк"
+	"$bog_smalljs_landing_Hero_title_post": "фреймворк",
+	"$bog_smalljs_landing_Sign_code_label_text": "view.tree",
+	"$bog_smalljs_landing_Sign_live_label_text": "наживо",
+	"$bog_smalljs_landing_Footer_link_api_title": "API",
+	"$bog_smalljs_landing_Footer_link_telegram_title": "Telegram",
+	"$bog_smalljs_landing_Footer_link_dev_title": "DEV Community",
+	"$bog_smalljs_landing_Footer_link_wire_title": "$mol_wire",
+	"$bog_smalljs_landing_Footer_link_fetch_title": "$mol_fetch",
+	"$bog_smalljs_landing_Footer_link_compare_title": "$mol_compare_deep",
+	"$bog_smalljs_landing_Footer_link_router_title": "$mol_state_arg",
+	"$bog_smalljs_landing_Footer_link_crowd_title": "$hyoo_crowd",
+	"$bog_smalljs_landing_Footer_copy_line2_text": "Copyright © 2026 smalljs"
 }

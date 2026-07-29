@@ -2,5 +2,9 @@
 	"$bog_smalljs_docs_Edit_label": "Editar esta página no GitHub",
 	"$bog_smalljs_docs_toc_title_text": "Nesta página",
 	"$bog_smalljs_docs_prev_hint_text": "Anterior",
-	"$bog_smalljs_docs_next_hint_text": "Próximo"
+	"$bog_smalljs_docs_next_hint_text": "Próximo",
+	"$bog_smalljs_docs_feedback_prompt_text": "Isto foi útil?",
+	"$bog_smalljs_docs_feedback_yes_label": "Sim",
+	"$bog_smalljs_docs_feedback_no_label": "Não",
+	"$bog_smalljs_docs_feedback_thanks_text": "Obrigado pelo feedback!"
 }

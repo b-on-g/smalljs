@@ -39,5 +39,8 @@
 	"$bog_smalljs_landing_Footer_link_crowd_title": "$hyoo_crowd",
 	"$bog_smalljs_landing_Footer_link_baza_title": "Гипер База",
 	"$bog_smalljs_landing_Footer_copy_line1_text": "Распространяется под лицензией MIT.",
-	"$bog_smalljs_landing_Footer_copy_line2_text": "Copyright © 2026 smalljs"
+	"$bog_smalljs_landing_Footer_copy_line2_text": "Copyright © 2026 smalljs",
+	"$bog_smalljs_landing_Sign_code_label_text": "view.tree",
+	"$bog_smalljs_landing_Sign_live_label_text": "вживую",
+	"$bog_smalljs_landing_Footer_link_telegram_title": "Telegram"
 }

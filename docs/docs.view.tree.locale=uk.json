@@ -2,5 +2,9 @@
 	"$bog_smalljs_docs_Edit_label": "Редагувати цю сторінку на GitHub",
 	"$bog_smalljs_docs_toc_title_text": "На цій сторінці",
 	"$bog_smalljs_docs_prev_hint_text": "Назад",
-	"$bog_smalljs_docs_next_hint_text": "Далі"
+	"$bog_smalljs_docs_next_hint_text": "Далі",
+	"$bog_smalljs_docs_feedback_prompt_text": "Це було корисно?",
+	"$bog_smalljs_docs_feedback_yes_label": "Так",
+	"$bog_smalljs_docs_feedback_no_label": "Ні",
+	"$bog_smalljs_docs_feedback_thanks_text": "Дякуємо за відгук!"
 }

@@ -2,5 +2,9 @@
 	"$bog_smalljs_docs_Edit_label": "GitHub でこのページを編集",
 	"$bog_smalljs_docs_toc_title_text": "このページの内容",
 	"$bog_smalljs_docs_prev_hint_text": "前へ",
-	"$bog_smalljs_docs_next_hint_text": "次へ"
+	"$bog_smalljs_docs_next_hint_text": "次へ",
+	"$bog_smalljs_docs_feedback_prompt_text": "役に立ちましたか？",
+	"$bog_smalljs_docs_feedback_yes_label": "はい",
+	"$bog_smalljs_docs_feedback_no_label": "いいえ",
+	"$bog_smalljs_docs_feedback_thanks_text": "フィードバックありがとうございます！"
 }
