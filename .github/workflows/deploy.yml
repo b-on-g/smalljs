@@ -56,6 +56,23 @@ jobs:
                     --minify --charset=utf8 --allow-overwrite \
                     --outfile=bog/smalljs/app/-/web.js
 
+            # Drop the render-blocking Google Fonts @import that the shared builderui
+            # theme.css injects (it lives as a string inside the bundle, applied at
+            # runtime). smalljs self-hosts every family it uses (Inter / EB Garamond /
+            # JetBrains Mono, app.view.css.ts @font-face), so for the latin UI this
+            # @import is pure dead weight — it triggers one blocking CSS request to
+            # fonts.googleapis.com plus extra woff2 pulls from fonts.gstatic.com, on top
+            # of the local files. Stripping it here (rather than editing the shared repo)
+            # keeps it smalljs-only: other builderui consumers that do NOT self-host still
+            # get the @import. Non-latin locales (e.g. cyrillic headings), which the local
+            # subsets don't cover, fall back to the system serif/sans — already the
+            # documented intent in app.view.css.ts. Verified locally: the page renders with
+            # the self-hosted fonts and makes zero requests to fonts.googleapis/gstatic.
+            - name: Strip render-blocking Google Fonts @import
+              if: github.ref == 'refs/heads/main'
+              run: |
+                  node -e "const f='bog/smalljs/app/-/web.js';const fs=require('fs');const s=fs.readFileSync(f,'utf8');const o=s.replace(/@import url\('https:\/\/fonts\.googleapis\.com\/[^']*'\);/g,'');if(o.length===s.length){console.error('WARN: @import not found; skipping');}else{fs.writeFileSync(f,o);console.log('stripped',s.length-o.length,'bytes');}"
+
             # Extra static endpoints from content/gen.cjs (committed), shipped as-is:
             #  - raw Markdown (/docs/<slug>.md) — LLM-citable plain-text URLs
             #  - llms.txt (llmstxt.org index)
