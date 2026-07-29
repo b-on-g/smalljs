@@ -39,6 +39,23 @@ jobs:
                   sitemap-file: "bog/smalljs/content/sitemap.xml"
                   viewport: "1280x900"
 
+            # Minify the JS bundle. MAM ships web.js unminified (~2.4 MB); esbuild's
+            # whitespace + identifier minify takes it to ~1.9 MB (~10% smaller gzipped,
+            # what GitHub Pages actually transfers). Safe for $mol: classes live on the
+            # global `$.$name` and are reached by property access, which esbuild never
+            # mangles — verified locally that the minified bundle renders, and that
+            # search, the TypeScript-compiler playground, and navigation all still work.
+            # `--charset=utf8` keeps the i18n content (CJK/Cyrillic) as literal bytes
+            # instead of \uXXXX escapes, which would otherwise bloat the file. Runs after
+            # prerender (which already snapshotted the HTML from the pre-minify bundle —
+            # identical runtime output) and before the endpoint copy.
+            - name: Minify JS bundle (esbuild)
+              if: github.ref == 'refs/heads/main'
+              run: |
+                  npx --yes esbuild bog/smalljs/app/-/web.js \
+                    --minify --charset=utf8 --allow-overwrite \
+                    --outfile=bog/smalljs/app/-/web.js
+
             # Extra static endpoints from content/gen.cjs (committed), shipped as-is:
             #  - raw Markdown (/docs/<slug>.md) — LLM-citable plain-text URLs
             #  - llms.txt (llmstxt.org index)
