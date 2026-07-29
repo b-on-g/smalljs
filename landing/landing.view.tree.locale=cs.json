@@ -1,5 +1,8 @@
 {
-	"$bog_smalljs_landing_Hero_subtitle_text": "Framework pro progresivní webové aplikace. Mimořádně jednoduchý, hluboce schopný. Inovace a baterie v ceně.",
+	"$bog_smalljs_landing_Hero_eyebrow_text": "Reaktivní mikromoduly",
+	"$bog_smalljs_landing_Hero_subtitle_text": "Reaktivita leží v základech frameworku, není přišroubovaná navrch.",
+	"$bog_smalljs_landing_Hero_subtitle_note_text": "Pole závislostí, ruční odběry, ruční invalidace cache, úklid efektů — nic z toho tu neexistuje. Není to usnadněné, ale zbytečné.",
+	"$bog_smalljs_landing_Sign_caption_text": "Tohle je celá komponenta.",
 	"$bog_smalljs_landing_Hero_cta_why_label": "Proč $mol",
 	"$bog_smalljs_landing_Hero_cta_start_label": "Začít",
 	"$bog_smalljs_landing_Hero_cta_install_title": "Instalace",

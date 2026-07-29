@@ -25,6 +25,18 @@ Pokud jste stavěli rozhraní v Reactu, Vue nebo Svelte, většině toho, co $mo
 - **Efekty jsou oddělené od výpočtů.** React skládá odvození a efekty do hooků; $mol je drží zvlášť: `@ $mol_mem` jen počítá, `@ $mol_action` provádí efekty. Právě toto rozdělení odstraňuje většinu hádanek „proč se to spustilo dvakrát?".
 - **Stav jsou prostě objekty.** Není žádná vyhrazená knihovna úložiště k převzetí — sdílená hodnota je reaktivní vlastnost na libovolném objektu, takže globální stav a stav komponenty fungují stejně.
 
+## Řešíš to ty, nebo framework
+
+Hlubší rozdíl není ve slovníku výše — jde o to, *kdo* řeší opakující se problémy. V Reactu, Vue nebo Svelte jsou to většinou vzory, které v každé komponentě znovu implementuješ a po svém rozbíjíš. V $mol jsou to vlastnosti jednoho mechanismu, takže celá tahle třída práce zmizí, místo aby dostala hezčí API.
+
+- **Úložiště stavu** — pět úložných subsystémů v Reactu (Redux + RTK Query + `useState` + `useReducer` + Context) se sbalí do jednoho: reaktivní pole na komponentě.
+- **Reaktivita** — jinde přišroubovaná navrch (MobX, signals); tady v základech, takže se nic nemusí přihlašovat.
+- **Izolace pádů** — `<ErrorBoundary>` umístěný ručně proti tomu, že každá komponenta je ve výchozím stavu vlastní hranicí.
+- **Efekty** — checklist `useEffect`/`useMemo`/deps napříč tuctem scénářů proti jedné metodě, nebo metodě s akcí. Jedno větvení ve stromu, ne dvanáct.
+- **Virtualizace** — komponenta třetí strany na každý seznam proti tomu, že vše mimo viewport prostě neexistuje.
+
+Tam, kde tabulka výše věci přejmenovává, je $mol skutečně odstraňuje.
+
 ## Vyzkoušejte překlad
 
 Nejrychlejší způsob, jak si mapování osvojit, je napsat trochu obojího: otevřete [Hřiště](#!section=playground), přeneste malou komponentu, kterou znáte, a uvidíte, jak dopadne. Nebo začněte [Prvními kroky](#!section=docs/page=getting-started).

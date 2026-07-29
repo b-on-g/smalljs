@@ -1,5 +1,8 @@
 {
-	"$bog_smalljs_landing_Hero_subtitle_text": "Um framework para aplicações web progressivas. Extremamente simples, profundamente capaz. Inovações e baterias incluídas.",
+	"$bog_smalljs_landing_Hero_eyebrow_text": "Micromódulos reativos",
+	"$bog_smalljs_landing_Hero_subtitle_text": "A reatividade está na fundação do framework, não parafusada por cima.",
+	"$bog_smalljs_landing_Hero_subtitle_note_text": "Arrays de dependências, assinaturas manuais, invalidação manual de cache, limpeza de efeitos — nada disso existe aqui. Não foi facilitado, foi tornado desnecessário.",
+	"$bog_smalljs_landing_Sign_caption_text": "Este é o componente inteiro.",
 	"$bog_smalljs_landing_Hero_cta_why_label": "Por que $mol",
 	"$bog_smalljs_landing_Hero_cta_start_label": "Começar",
 	"$bog_smalljs_landing_Hero_cta_install_title": "Instalar",

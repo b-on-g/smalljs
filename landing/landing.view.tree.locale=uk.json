@@ -1,5 +1,8 @@
 {
-	"$bog_smalljs_landing_Hero_subtitle_text": "Фреймворк для прогресивних вебзастосунків. Надзвичайно простий, глибоко потужний. Інновації та батарейки в комплекті.",
+	"$bog_smalljs_landing_Hero_eyebrow_text": "Реактивні мікромодулі",
+	"$bog_smalljs_landing_Hero_subtitle_text": "Реактивність лежить в основі фреймворку, а не прикручена згори.",
+	"$bog_smalljs_landing_Hero_subtitle_note_text": "Масиви залежностей, ручні підписки, ручна інвалідація кешу, очищення ефектів — їх тут просто немає. Не спрощені, а фізично непотрібні.",
+	"$bog_smalljs_landing_Sign_caption_text": "Це весь компонент цілком.",
 	"$bog_smalljs_landing_Hero_cta_why_label": "Чому $mol",
 	"$bog_smalljs_landing_Hero_cta_start_label": "Почати",
 	"$bog_smalljs_landing_Hero_cta_install_title": "Встановлення",

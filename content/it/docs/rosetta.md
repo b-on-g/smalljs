@@ -25,6 +25,18 @@ Se hai costruito interfacce con React, Vue o Svelte, capisci già la maggior par
 - **Gli effetti sono separati dai calcoli.** React fonde derivazione ed effetti negli hook; $mol li tiene separati: `@ $mol_mem` calcola soltanto, `@ $mol_action` esegue gli effetti. È questa separazione a rimuovere la maggior parte dei rompicapi «perché è stato eseguito due volte?».
 - **Lo stato sono solo oggetti.** Non c'è alcuna libreria di store dedicata da adottare — un valore condiviso è una proprietà reattiva su un qualsiasi oggetto, così lo stato globale e lo stato del componente funzionano allo stesso modo.
 
+## Risolto da te o dal framework
+
+La differenza più profonda non è il vocabolario qui sopra — è *chi* risolve i problemi ricorrenti. In React, Vue o Svelte sono per lo più pattern che reimplementi in ogni componente e rompi a modo tuo. In $mol sono proprietà di un unico meccanismo, così l'intera categoria di lavoro scompare invece di ricevere un'API più gradevole.
+
+- **Store dello stato** — cinque sottosistemi di archiviazione in React (Redux + RTK Query + `useState` + `useReducer` + Context) si riducono a uno solo: campi reattivi sul componente.
+- **Reattività** — agganciata sopra altrove (MobX, signals); qui nelle fondamenta, così nulla deve aderirvi.
+- **Isolamento dei crash** — `<ErrorBoundary>` posizionato a mano contro ogni componente che è il proprio confine per impostazione predefinita.
+- **Effetti** — una checklist `useEffect`/`useMemo`/deps su una dozzina di scenari contro un metodo, o un metodo con una action. Una sola biforcazione nell'albero, non dodici.
+- **Virtualizzazione** — un componente di terze parti per ogni lista contro tutto ciò che è fuori dal viewport che semplicemente non esiste.
+
+Dove la tabella qui sopra rinomina le cose, è qui che $mol le rimuove davvero.
+
 ## Prova la traduzione
 
 Il modo più veloce per interiorizzare la corrispondenza è scrivere un po' di entrambi: apri il [Playground](#!section=playground), porta un piccolo componente che conosci e osserva come si comporta. Oppure parti da [Primi passi](#!section=docs/page=getting-started).

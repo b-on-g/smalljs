@@ -25,6 +25,18 @@ Jeśli budowałeś interfejsy w React, Vue lub Svelte, rozumiesz już większoś
 - **Efekty są oddzielone od obliczeń.** React łączy wyprowadzanie i efekty w hookach; $mol trzyma je osobno: `@ $mol_mem` tylko oblicza, `@ $mol_action` wykonuje efekty. To właśnie ten podział usuwa większość zagadek „dlaczego to uruchomiło się dwa razy?".
 - **Stan to po prostu obiekty.** Nie ma dedykowanej biblioteki store do przyjęcia — współdzielona wartość to reaktywna właściwość na dowolnym obiekcie, więc stan globalny i stan komponentu działają tak samo.
 
+## Rozwiązujesz ty czy rozwiązuje framework
+
+Głębsza różnica nie tkwi w słowniku powyżej — chodzi o to, *kto* rozwiązuje powracające problemy. W React, Vue czy Svelte to w większości wzorce, które przepisujesz w każdym komponencie i psujesz na swój sposób. W $mol są to właściwości jednego mechanizmu, więc cała ta klasa pracy znika, zamiast dostać przyjemniejsze API.
+
+- **Magazyn stanu** — pięć podsystemów przechowywania w React (Redux + RTK Query + `useState` + `useReducer` + Context) zwija się w jeden: reaktywne pola komponentu.
+- **Reaktywność** — gdzie indziej doczepiona z wierzchu (MobX, signals); tutaj w fundamencie, więc nic nie musi się do niej zgłaszać.
+- **Izolacja awarii** — `<ErrorBoundary>` umieszczany ręcznie kontra każdy komponent będący domyślnie własną granicą.
+- **Efekty** — lista kontrolna `useEffect`/`useMemo`/deps w kilkunastu scenariuszach kontra metoda albo metoda z akcją. Jedno rozgałęzienie w drzewie, nie dwanaście.
+- **Wirtualizacja** — komponent zewnętrzny na każdą listę kontra to, że wszystko poza viewportem po prostu nie istnieje.
+
+Tam, gdzie tabela powyżej zmienia nazwy, tutaj $mol faktycznie to usuwa.
+
 ## Wypróbuj tłumaczenie
 
 Najszybszy sposób na przyswojenie mapowania to napisanie po trochu obu: otwórz [Playground](#!section=playground), przenieś mały komponent, który znasz, i zobacz, jak wypadnie. Albo zacznij od [Pierwszych kroków](#!section=docs/page=getting-started).

@@ -18,7 +18,10 @@ $bog_smalljs_landing $mol_view
 								<= Hero_title_post @ \ framework
 						<= Hero_subtitle $mol_view
 							sub /
-								<= Hero_subtitle_text @ \A progressive web app framework. Extremely simple, deeply capable. Innovations and batteries included.
+								<= Hero_subtitle_text @ \Reactivity lives in the framework's foundation, not bolted on top.
+						<= Hero_subtitle_note $mol_view
+							sub /
+								<= Hero_subtitle_note_text @ \Dependency arrays, manual subscriptions, manual cache invalidation, effect cleanup — none of it exists here. Not made easier, made unnecessary.
 						<= Hero_actions $mol_view
 							sub /
 								<= Hero_cta_start $mol_link

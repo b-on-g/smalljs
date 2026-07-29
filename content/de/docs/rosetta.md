@@ -25,6 +25,18 @@ Wenn Sie Oberflächen mit React, Vue oder Svelte gebaut haben, verstehen Sie ber
 - **Effekte sind von Berechnungen getrennt.** React faltet Ableitung und Effekte in Hooks; $mol hält sie getrennt: `@ $mol_mem` rechnet nur, `@ $mol_action` führt Effekte aus. Diese Trennung ist es, die die meisten „Warum lief das zweimal?"-Rätsel beseitigt.
 - **Zustand sind einfach Objekte.** Es gibt keine dedizierte Store-Bibliothek zu übernehmen — ein geteilter Wert ist eine reaktive Eigenschaft auf einem beliebigen Objekt, sodass globaler Zustand und Komponentenzustand gleich funktionieren.
 
+## Von dir gelöst oder vom Framework gelöst
+
+Der tiefere Unterschied ist nicht das Vokabular oben — es ist, *wer* die wiederkehrenden Probleme löst. In React, Vue oder Svelte sind es meist Muster, die du in jeder Komponente neu implementierst und auf deine eigene Weise kaputt machst. In $mol sind sie Eigenschaften eines einzigen Mechanismus, sodass die ganze Klasse an Arbeit verschwindet, statt eine schönere API zu bekommen.
+
+- **State-Store** — fünf Speicher-Subsysteme in React (Redux + RTK Query + `useState` + `useReducer` + Context) fallen zu einem zusammen: reaktive Felder an der Komponente.
+- **Reaktivität** — anderswo obendrauf geschraubt (MobX, signals); hier im Fundament, sodass sich nichts anmelden muss.
+- **Crash-Isolation** — `<ErrorBoundary>` von Hand platziert gegenüber jeder Komponente, die standardmäßig ihre eigene Grenze ist.
+- **Effekte** — eine `useEffect`/`useMemo`/deps-Checkliste über ein Dutzend Szenarien gegenüber einer Methode, oder einer Methode mit einer Action. Eine Verzweigung im Baum, nicht zwölf.
+- **Virtualisierung** — eine Drittanbieter-Komponente pro Liste gegenüber allem außerhalb des Viewports, das schlicht nicht existiert.
+
+Wo die Tabelle oben Dinge umbenennt, entfernt $mol sie hier tatsächlich.
+
 ## Probieren Sie die Übersetzung
 
 Der schnellste Weg, die Zuordnung zu verinnerlichen, ist ein wenig von beidem zu schreiben: öffnen Sie den [Playground](#!section=playground), portieren Sie eine kleine Komponente, die Sie kennen, und sehen Sie, wie sie sich einfügt. Oder beginnen Sie mit [Erste Schritte](#!section=docs/page=getting-started).

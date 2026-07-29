@@ -233,6 +233,11 @@ namespace $ {
 				Search: { display: 'none' },
 				Nav: { display: 'none' },
 				Burger: { display: 'inline-flex' },
+				// Free horizontal room so Lang + theme switch never push off-screen:
+				// drop the wordmark (the molecule icon still brands it) and the GitHub
+				// link (still reachable from the footer).
+				Logo_text_box: { display: 'none' },
+				Github: { display: 'none' },
 				padding: { left: rem(0.75), right: rem(0.75), top: $mol_gap.text, bottom: $mol_gap.text },
 			},
 		},

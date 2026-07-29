@@ -28,6 +28,10 @@ namespace $ {
 			flex: { direction: 'column' },
 			align: { items: 'center' },
 			gap: rem( 1.5 ),
+			// width:100% (not just max-width) so the centered column never takes its
+			// max-content width and overflow a narrow viewport — it fills the available
+			// width, capped at 52rem on desktop, and the title wraps inside it on phones.
+			width: '100%',
 			maxWidth: rem( 52 ),
 		},
 
@@ -44,6 +48,9 @@ namespace $ {
 			letterSpacing: '-0.02em',
 			textAlign: 'center',
 			color: $bog_builderui_tokens.text,
+			// As a centered flex child the title otherwise takes its max-content width and
+			// spills past Hero_head; cap it to the parent so the long words wrap instead.
+			maxWidth: '100%',
 			// long words ("micromodule" / "микромодульный") must break, not overflow on phones
 			overflowWrap: 'break-word',
 		},
@@ -62,6 +69,19 @@ namespace $ {
 			textAlign: 'center',
 			maxWidth: rem( 40 ),
 			color: $bog_builderui_tokens.shade,
+		},
+
+		// Secondary line under the thesis — same muted token as the subtitle but a step
+		// smaller and dimmed, so it reads as a footnote rather than a second headline.
+		Hero_subtitle_note: {
+			display: 'block',
+			font: { size: rem( 0.9375 ) },
+			lineHeight: '1.5',
+			textAlign: 'center',
+			maxWidth: rem( 38 ),
+			color: $bog_builderui_tokens.shade,
+			opacity: 0.72,
+			margin: { top: rem( -0.75 ) },
 		},
 
 		Hero_actions: {
@@ -318,12 +338,16 @@ namespace $ {
 
 				Hero: {
 					gap: rem( 2.25 ),
-					padding: { top: rem( 3 ), bottom: rem( 2.5 ), left: rem( 1.25 ), right: rem( 1.25 ) },
+					padding: { top: rem( 3 ), bottom: rem( 2.5 ), left: rem( 1 ), right: rem( 1 ) },
 				},
 
-				Hero_title: { font: { size: rem( 2.125 ) } },
+				// 1.875rem so the longest unbroken word — RU "микромодульный" — fits whole
+				// on one line inside a 320px viewport (≈231px in ~288px of content width).
+				Hero_title: { font: { size: rem( 1.875 ) } },
 
 				Hero_subtitle: { font: { size: rem( 1.0625 ) } },
+
+				Hero_subtitle_note: { font: { size: rem( 0.875 ) }, margin: { top: rem( -0.5 ) } },
 
 				Features: {
 					gridTemplateColumns: '1fr',

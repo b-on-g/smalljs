@@ -13,7 +13,9 @@ $bog_smalljs_top $mol_view
 				<= Logo_image $mol_image
 					uri <= logo_uri
 					title @ \smalljs
-				<= Logo_text @ \smalljs
+				<= Logo_text_box $mol_view
+					sub /
+						<= Logo_text @ \smalljs
 		<= Search $mol_button_minor
 			click? <=> search_click?
 			sub /

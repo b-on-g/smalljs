@@ -1,5 +1,8 @@
 {
-	"$bog_smalljs_landing_Hero_subtitle_text": "プログレッシブな Web アプリフレームワーク。極めてシンプルで、奥深い機能。革新もバッテリーも同梱。",
+	"$bog_smalljs_landing_Hero_eyebrow_text": "リアクティブなマイクロモジュール",
+	"$bog_smalljs_landing_Hero_subtitle_text": "リアクティビティはフレームワークの土台に組み込まれていて、後付けではありません。",
+	"$bog_smalljs_landing_Hero_subtitle_note_text": "依存配列、手動の購読、手動のキャッシュ無効化、エフェクトのクリーンアップ — どれもここには存在しません。簡単になったのではなく、不要になったのです。",
+	"$bog_smalljs_landing_Sign_caption_text": "これがコンポーネントの全体です。",
 	"$bog_smalljs_landing_Hero_cta_why_label": "$mol とは",
 	"$bog_smalljs_landing_Hero_cta_start_label": "はじめる",
 	"$bog_smalljs_landing_Hero_cta_install_title": "インストール",
