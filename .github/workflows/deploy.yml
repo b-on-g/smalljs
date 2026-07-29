@@ -56,6 +56,9 @@ jobs:
                   # under the mount; its rafgraph redirect hands the deep-link back to
                   # index.html, which $bog_builderui_router expands into the real path.
                   cp bog/smalljs/404.html bog/smalljs/app/-/404.html
+                  # Google Search Console ownership verification — must be served at the
+                  # site root (https://…/smalljs/google….html), not under assets/.
+                  cp bog/smalljs/assets/google20cffe7b64d91aa2.html bog/smalljs/app/-/google20cffe7b64d91aa2.html
 
             - uses: hyoo-ru/gh-deploy@v4.4.1
               if: github.ref == 'refs/heads/main'
