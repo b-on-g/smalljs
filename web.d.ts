@@ -9183,12 +9183,17 @@ declare namespace $ {
 		,
 		ReturnType< $bog_smalljs_text_code['lang'] >
 	>
-	type $bog_smalljs_text_code__playground_arg_bog_smalljs_text_7 = $mol_type_enforce<
+	type $bog_smalljs_text_code__run_enabled_bog_smalljs_text_7 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_text['pre_run_enabled'] >
+		,
+		ReturnType< $bog_smalljs_text_code['run_enabled'] >
+	>
+	type $bog_smalljs_text_code__playground_arg_bog_smalljs_text_8 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_text['pre_playground_arg'] >
 		,
 		ReturnType< $bog_smalljs_text_code['playground_arg'] >
 	>
-	type $bog_smalljs_text_code__playground_showed_bog_smalljs_text_8 = $mol_type_enforce<
+	type $bog_smalljs_text_code__playground_showed_bog_smalljs_text_9 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_text['pre_playground_showed'] >
 		,
 		ReturnType< $bog_smalljs_text_code['playground_showed'] >
@@ -9201,6 +9206,7 @@ declare namespace $ {
 		code_sidebar_showed( ): boolean
 		pre_sidebar_showed( ): ReturnType< $bog_smalljs_text['code_sidebar_showed'] >
 		pre_lang( id: any): string
+		pre_run_enabled( id: any): boolean
 		pre_playground_arg( id: any): Record<string, any>
 		pre_playground_showed( id: any): boolean
 		Pre( id: any): $bog_smalljs_text_code
@@ -9289,10 +9295,14 @@ declare namespace $.$$ {
         pre_text(index: number): string;
         pre_themes(index: number): string[];
         uri_resolve(uri: string): string;
-        /** Fence info-string of a code block (chunk 1 of the flow token), e.g. `tree`, `typescript`. */
-        pre_lang(index: number): any;
+        /** Raw fence info-string of a code block (chunk 1 of the flow token), e.g. `tree-no-run`. */
+        pre_info(index: number): any;
+        /** Fence language with any author flag stripped, e.g. `tree`, `typescript`. */
+        pre_lang(index: number): string;
+        /** False when the fence opted out via `-no-run` (see {@link fence_no_run}). */
+        pre_run_enabled(index: number): boolean;
         /** Normalized language family used for grammar selection and playground gating. */
-        lang_kind(index: number): any;
+        lang_kind(index: number): string;
         pre_playground_showed(index: number): boolean;
         pre_playground_arg(index: number): Record<string, string | null>;
     }

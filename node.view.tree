@@ -1193,6 +1193,7 @@ $bog_smalljs_text $mol_text
 		uri_resolve* <= uri_resolve* \
 		sidebar_showed <= pre_sidebar_showed <= code_sidebar_showed true
 		lang <= pre_lang* \
+		run_enabled <= pre_run_enabled* true
 		playground_arg <= pre_playground_arg* *
 		playground_showed <= pre_playground_showed* false
 

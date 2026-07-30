@@ -39,7 +39,7 @@ Two operators connect a property to its source:
 - `<=` **one-way**: the child reads a value from the owner.
 - `<=>` **two-way**: the value flows both directions — used for inputs.
 
-```tree
+```tree-no-run
 $my_form $mol_view
 	sub /
 		<= Field $mol_string

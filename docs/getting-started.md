@@ -53,7 +53,7 @@ The `mol_view_root="$my_hello"` attribute mounts your component when the page lo
 
 ### hello.view.tree — the layout
 
-```tree
+```tree-no-run
 $my_hello $mol_page
 	title @ \Greeting
 	body /
