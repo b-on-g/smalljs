@@ -39,7 +39,7 @@ Due operatori collegano una proprietà alla sua sorgente:
 - `<=` **unidirezionale**: il figlio legge un valore dal proprietario.
 - `<=>` **bidirezionale**: il valore scorre in entrambe le direzioni — usato per gli input.
 
-```tree
+```tree-no-run
 $my_form $mol_view
 	sub /
 		<= Field $mol_string

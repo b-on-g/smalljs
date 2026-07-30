@@ -53,7 +53,7 @@ O atributo `mol_view_root="$my_hello"` monta seu componente quando a página car
 
 ### hello.view.tree — o layout
 
-```tree
+```tree-no-run
 $my_hello $mol_page
 	title @ \Greeting
 	body /

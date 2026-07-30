@@ -39,7 +39,7 @@ $my_card $mol_view
 - `<=` **單向**：子節點從擁有者讀取一個值。
 - `<=>` **雙向**：值在兩個方向上流動——用於輸入控制項。
 
-```tree
+```tree-no-run
 $my_form $mol_view
 	sub /
 		<= Field $mol_string

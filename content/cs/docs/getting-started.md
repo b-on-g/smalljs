@@ -53,7 +53,7 @@ Atribut `mol_view_root="$my_hello"` připojí vaši komponentu při načtení st
 
 ### hello.view.tree — rozvržení
 
-```tree
+```tree-no-run
 $my_hello $mol_page
 	title @ \Greeting
 	body /

@@ -39,7 +39,7 @@ $my_card $mol_view
 - `<=` **一方向**：子が所有者から値を読み取ります。
 - `<=>` **双方向**：値が両方向に流れます。入力に使います。
 
-```tree
+```tree-no-run
 $my_form $mol_view
 	sub /
 		<= Field $mol_string

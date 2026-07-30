@@ -112,6 +112,30 @@ namespace $.$$ {
 	}
 
 	/**
+	 * Author opt-out, appended to a fence's info-string: ```tree-no-run keeps the block's
+	 * syntax highlighting and Copy button but offers neither Run nor "Open in Playground".
+	 * It is the escape hatch for snippets the heuristics above accept yet a reader should
+	 * not be invited to run — a page-local excerpt, or a listing that doesn't survive the
+	 * trip through the playground URL.
+	 *
+	 * The flag rides *inside* the info-string instead of following it as a separate word
+	 * because the markdown fence grammar ($mol_syntax2_md_flow) captures only `[\w.-]*`
+	 * there: a space after the language would break the fence match outright and render
+	 * the whole block as prose.
+	 */
+	const fence_no_run = '-no-run'
+
+	/** Splits a fence info-string into its language and the {@link fence_no_run} flag. */
+	function fence_parse( info: string ) {
+		const norm = info.trim()
+		const no_run = norm.toLowerCase().endsWith( fence_no_run )
+		return {
+			lang: no_run ? norm.slice( 0, -fence_no_run.length ) : norm,
+			no_run,
+		}
+	}
+
+	/**
 	 * $mol_text with language-aware code blocks: view.tree gets its own highlighter,
 	 * and executable snippets (view.tree) grow an "Open in Playground" button.
 	 */
@@ -138,9 +162,19 @@ namespace $.$$ {
 			return $mol_text.prototype.uri_resolve.call( this, uri )
 		}
 
-		/** Fence info-string of a code block (chunk 1 of the flow token), e.g. `tree`, `typescript`. */
-		pre_lang( index: number ) {
+		/** Raw fence info-string of a code block (chunk 1 of the flow token), e.g. `tree-no-run`. */
+		pre_info( index: number ) {
 			return this.flow_tokens()[ index ].chunks[ 1 ] ?? ''
+		}
+
+		/** Fence language with any author flag stripped, e.g. `tree`, `typescript`. */
+		pre_lang( index: number ) {
+			return fence_parse( this.pre_info( index ) ).lang
+		}
+
+		/** False when the fence opted out via `-no-run` (see {@link fence_no_run}). */
+		pre_run_enabled( index: number ) {
+			return !fence_parse( this.pre_info( index ) ).no_run
 		}
 
 		/** Normalized language family used for grammar selection and playground gating. */
@@ -155,8 +189,10 @@ namespace $.$$ {
 		// (a bare view.ts has no root component to mount), and only when the snippet is a
 		// single mountable root whose deps are all bundled *and* interactive on its own —
 		// otherwise the playground opens into a compile error or an inert husk whose logic
-		// lives in the paired view.ts. Same gate as the inline Run button.
+		// lives in the paired view.ts. Same gate as the inline Run button, plus the author's
+		// own `-no-run` veto on the fence.
 		pre_playground_showed( index: number ) {
+			if( !this.pre_run_enabled( index ) ) return false
 			if( this.lang_kind( index ) !== 'tree' ) return false
 			return snippet_demo( this.$, this.pre_text( index ) )
 		}
@@ -198,6 +234,9 @@ namespace $.$$ {
 		// non-view bases, unbundled deps, static views and TS-driven demos (counters, event
 		// handlers) get no button: they'd render an error or an inert husk. The same gate
 		// drives "Open in Playground".
+		//
+		// run_enabled is the host's veto: the landing page hard-codes it off for its decorative
+		// sign, and $bog_smalljs_text feeds it the fence's own `-no-run` flag per block.
 		run_showed() {
 			if( !this.run_enabled() ) return false
 			if( this.syntax() !== tree_syntax ) return false

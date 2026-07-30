@@ -39,7 +39,7 @@ Dwa operatory łączą właściwość z jej źródłem:
 - `<=` **jednokierunkowy**: dziecko czyta wartość od właściciela.
 - `<=>` **dwukierunkowy**: wartość płynie w obie strony — używany do pól wejściowych.
 
-```tree
+```tree-no-run
 $my_form $mol_view
 	sub /
 		<= Field $mol_string

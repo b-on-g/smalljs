@@ -39,7 +39,7 @@ Deux opérateurs relient une propriété à sa source :
 - `<=` **unidirectionnel** : l'enfant lit une valeur depuis le propriétaire.
 - `<=>` **bidirectionnel** : la valeur circule dans les deux sens — utilisé pour les champs de saisie.
 
-```tree
+```tree-no-run
 $my_form $mol_view
 	sub /
 		<= Field $mol_string

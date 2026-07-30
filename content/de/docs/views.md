@@ -39,7 +39,7 @@ Zwei Operatoren verbinden eine Eigenschaft mit ihrer Quelle:
 - `<=` **einweg**: das Kind liest einen Wert vom Besitzer.
 - `<=>` **zweiweg**: der Wert fließt in beide Richtungen — für Eingaben.
 
-```tree
+```tree-no-run
 $my_form $mol_view
 	sub /
 		<= Field $mol_string

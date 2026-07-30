@@ -53,7 +53,7 @@ mkdir -p my/hello
 
 ### hello.view.tree — 布局
 
-```tree
+```tree-no-run
 $my_hello $mol_page
 	title @ \Greeting
 	body /

@@ -39,7 +39,7 @@ $my_card $mol_view
 - `<=` **단방향**: 자식이 소유자로부터 값을 읽습니다.
 - `<=>` **양방향**: 값이 양쪽 방향으로 흐릅니다. 입력에 사용합니다.
 
-```tree
+```tree-no-run
 $my_form $mol_view
 	sub /
 		<= Field $mol_string

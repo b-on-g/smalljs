@@ -53,7 +53,7 @@ Atrybut `mol_view_root="$my_hello"` montuje twój komponent podczas ładowania s
 
 ### hello.view.tree — układ
 
-```tree
+```tree-no-run
 $my_hello $mol_page
 	title @ \Greeting
 	body /

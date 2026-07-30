@@ -53,7 +53,7 @@ mkdir -p my/hello
 
 ### hello.view.tree — چیدمان
 
-```tree
+```tree-no-run
 $my_hello $mol_page
 	title @ \Greeting
 	body /

@@ -53,7 +53,7 @@ L'attributo `mol_view_root="$my_hello"` monta il tuo componente al caricamento d
 
 ### hello.view.tree — il layout
 
-```tree
+```tree-no-run
 $my_hello $mol_page
 	title @ \Greeting
 	body /

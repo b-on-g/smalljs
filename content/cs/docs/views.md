@@ -39,7 +39,7 @@ Dva operátory spojují vlastnost s jejím zdrojem:
 - `<=` **jednosměrný**: potomek čte hodnotu od vlastníka.
 - `<=>` **obousměrný**: hodnota teče oběma směry — používá se pro vstupy.
 
-```tree
+```tree-no-run
 $my_form $mol_view
 	sub /
 		<= Field $mol_string
