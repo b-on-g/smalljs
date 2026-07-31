@@ -11599,7 +11599,7 @@ declare namespace $.$$ {
         section(next?: string): string;
         /** Browser tab title. $mol_view writes the root's title() to document.title;
          *  the default was the class name ("Root"). Mirror the per-page, per-language
-         *  meta title instead ("Views — smalljs", "smalljs — the $mol reactive …"). */
+         *  meta title instead ("Views — $mol", "$mol — the reactive micromodule …"). */
         title(): string;
         /** Ordered arg pairs describing the current screen ($mol hash-router state). */
         route_args(): [string, string][];

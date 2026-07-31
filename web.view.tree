@@ -305,7 +305,7 @@ $bog_smalljs_top $mol_view
 					title @ \smalljs
 				<= Logo_text_box $mol_view
 					sub /
-						<= Logo_text @ \smalljs
+						<= Logo_text \$mol
 		<= Search $mol_button_minor
 			click? <=> search_click?
 			sub /
