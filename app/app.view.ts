@@ -3,7 +3,7 @@ namespace $.$$ {
 	/** Production origin the site is deployed to (canonical / OG URLs). */
 	const prod_base = 'https://b-on-g.github.io/smalljs/'
 
-	const site_name = 'smalljs'
+	const site_name = '$mol'
 
 	const default_description =
 		'Documentation, playground, and interactive course for $mol — a reactive web framework with typed views, automatic reactivity, and no virtual DOM.'
@@ -38,7 +38,7 @@ namespace $.$$ {
 
 		/** Browser tab title. $mol_view writes the root's title() to document.title;
 		 *  the default was the class name ("Root"). Mirror the per-page, per-language
-		 *  meta title instead ("Views — smalljs", "smalljs — the $mol reactive …"). */
+		 *  meta title instead ("Views — $mol", "$mol — the reactive micromodule …"). */
 		title() {
 			return this.meta().title ?? super.title()
 		}
@@ -72,7 +72,7 @@ namespace $.$$ {
 			const lang = this.$.$mol_locale.lang()
 			const canonical = prod_base + this.route_path()
 
-			let title = `${ site_name } — the $mol reactive framework`
+			let title = `${ site_name } — the reactive micromodule framework`
 			let description = default_description
 			// Generic brand card by default; docs pages get a per-slug card below.
 			let og_image = `${ prod_base }bog/smalljs/assets/og.png`
