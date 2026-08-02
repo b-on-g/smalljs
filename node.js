@@ -22967,10 +22967,21 @@ var $;
 		[bog_smalljs_landing_hero_cta_why] {
 			transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease, background-color .12s ease, filter .12s ease;
 		}
+		/* $mol_link paints its own translucent hover/focus background and active text
+		   color with :pseudo-class specificity that beats the plain attribute selector
+		   above — on the filled CTA that wiped the blue fill under the white label.
+		   Re-pin fill and label at the same specificity (this sheet attaches later). */
 		[bog_smalljs_landing_hero_cta_start]:hover {
 			transform: translateY( -1px );
 			filter: brightness( 1.06 );
 			box-shadow: 0 6px 16px -8px var( --bog_builderui_current );
+			background-color: var( --bog_builderui_current );
+		}
+		[bog_smalljs_landing_hero_cta_start]:focus-visible {
+			background-color: var( --bog_builderui_current );
+		}
+		[bog_smalljs_landing_hero_cta_start]:active {
+			color: var( --bog_builderui_back );
 		}
 		[bog_smalljs_landing_hero_cta_play]:hover {
 			transform: translateY( -1px );
