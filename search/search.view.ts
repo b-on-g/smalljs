@@ -6,7 +6,17 @@ namespace $.$$ {
 	// via $mol_import.module so the ~30MB model is only fetched on first use.
 	const SEMANTIC_CDN = 'https://esm.sh/@xenova/transformers@2.17.2'
 
-	type Doc = { slug: string, title: string, text: string }
+	// One searchable page. All four haystacks are pre-lowercased: the corpus is
+	// rebuilt only when the language changes, so matching stays a plain
+	// substring scan on every keystroke. `*_en` holds the English original —
+	// see corpus() for why it is kept alongside the translation.
+	type Doc = {
+		slug: string,
+		title: string,
+		text: string,
+		title_en: string,
+		text_en: string,
+	}
 
 	export class $bog_smalljs_search extends $.$bog_smalljs_search {
 
@@ -87,8 +97,20 @@ namespace $.$$ {
 			return ids[ this.active() ] === slug
 		}
 
-		// All doc pages as a flat search corpus.
+		/** Active UI language; reading it makes search reactive to switches. */
+		lang() {
+			return this.$.$mol_locale.lang()
+		}
+
+		// All doc pages as a flat search corpus, in the current UI language.
+		// Both the translation and the English original are kept, because on a
+		// non-English locale people still type English terms ("routing", "mem")
+		// and those have to keep matching. On English — or on a page with no
+		// translation — page_md/page_title return the very same strings, so the
+		// two halves share one lowercased copy and are scored once.
+		@ $mol_mem
 		corpus(): readonly Doc[] {
+			const lang = this.lang()
 			const seen = new Set< string >()
 			const docs = [] as Doc[]
 			for( const section of Content.sections() ) {
@@ -97,7 +119,18 @@ namespace $.$$ {
 						if( seen.has( slug ) ) continue
 						seen.add( slug )
 						const page = Content.page( slug )
-						if( page ) docs.push( { slug, title: page.title, text: page.md } )
+						if( !page ) continue
+						const title = Content.page_title( slug, lang ) ?? page.title
+						const md = Content.page_md( slug, lang ) ?? page.md
+						const title_low = title.toLowerCase()
+						const text_low = md.toLowerCase()
+						docs.push( {
+							slug,
+							title: title_low,
+							text: text_low,
+							title_en: title === page.title ? title_low : page.title.toLowerCase(),
+							text_en: md === page.md ? text_low : page.md.toLowerCase(),
+						} )
 					}
 				}
 			}
@@ -114,18 +147,25 @@ namespace $.$$ {
 			if( !query ) return scores
 			const terms = query.split( /\s+/ ).filter( Boolean )
 			for( const doc of this.corpus() ) {
-				const title = doc.title.toLowerCase()
-				const text = doc.text.toLowerCase()
+				// Untranslated page (or English locale): both halves are the same
+				// string, so scan it once instead of double-counting every hit.
+				const titles = doc.title === doc.title_en ? [ doc.title ] : [ doc.title, doc.title_en ]
+				const texts = doc.text === doc.text_en ? [ doc.text ] : [ doc.text, doc.text_en ]
 				let score = 0
 				for( const term of terms ) {
-					if( title.includes( term ) ) score += 10
-					let idx = text.indexOf( term ), count = 0
-					while( idx >= 0 ) { count++; idx = text.indexOf( term, idx + term.length ) }
-					score += count
+					for( const title of titles ) if( title.includes( term ) ) score += 10
+					for( const text of texts ) score += this.term_count( text, term )
 				}
 				if( score > 0 ) scores.set( doc.slug, score )
 			}
 			return scores
+		}
+
+		/** Occurrences of `term` in already-lowercased `text`. */
+		term_count( text: string, term: string ) {
+			let idx = text.indexOf( term ), count = 0
+			while( idx >= 0 ) { count++; idx = text.indexOf( term, idx + term.length ) }
+			return count
 		}
 
 		// --- Semantic (lazy, in-browser) ---------------------------------
@@ -239,11 +279,15 @@ namespace $.$$ {
 		}
 
 		result_title( slug: string ) {
-			return Content.page( slug )?.title ?? slug
+			return Content.page_title( slug, this.lang() ) ?? slug
 		}
 
+		// Snippet always comes from the page in the reader's language, matching
+		// the sidebar and the page itself. When the hit was on the English
+		// original only, the term is absent here and we fall back to the head of
+		// the translated page rather than quoting a language nobody picked.
 		result_snippet( slug: string ) {
-			const md = ( Content.page( slug )?.md ?? '' )
+			const md = ( Content.page_md( slug, this.lang() ) ?? '' )
 				.replace( /```[\s\S]*?```/g, ' ' )
 				.replace( /[#`*>]/g, ' ' )
 				.replace( /\s+/g, ' ' )
