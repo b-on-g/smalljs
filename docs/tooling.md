@@ -1,6 +1,6 @@
 # Tooling
 
-$mol works in any editor, but a small set of tools makes `.view.tree` and typed styles far more comfortable: a project scaffolder, a language server, and editor integrations for Zed and VS Code.
+$mol works in any editor, but a small set of tools makes `.view.tree` and typed styles far more comfortable: a project scaffolder, a language server, editor integrations for Zed and VS Code, and a skill that teaches LLM assistants the framework.
 
 ## Scaffold a project
 
@@ -79,8 +79,19 @@ The MAM workspace already carries its VS Code setup. When you open the cloned `m
 
 The same folder ships `mol.code-snippets`, so component and binding snippets are available without any extra setup. Accept the prompt and `.view.tree` and TypeScript files are highlighted out of the box.
 
+## LLM skill
+
+`mol_skill` gives an AI assistant the context it needs to write $mol: `view.tree` syntax, MAM module layout, the split between `view.ts` and `view.css.ts`, Giper Baza data modelling, and Tauri packaging. It ships as a plain skill folder, a `SKILL.md` workflow plus reference guides, so any LLM tool that reads the skills format can load it — Claude Code and Cursor among them. Install it with the skills CLI:
+
+```bash
+npx skills add b-on-g/mol_skill --all -g
+```
+
+Then ask in your own words ("MAM module structure", "Giper Baza CRUD and roles") and the assistant opens the matching reference before it answers, so the code it writes follows the conventions in these docs. The [source](https://github.com/b-on-g/mol_skill) is on GitHub, and the reference files read perfectly well on their own if you would rather go through them yourself.
+
 ## Links
 
 - Scaffolder — [create-view-tree-lsp](https://github.com/Dev-cmyser/create-view-tree-lsp)
 - Language server — [view-tree-lsp](https://github.com/Dev-cmyser/view.tree)
 - Zed extension — [zed-view.tree-mol-support](https://github.com/Dev-cmyser/zed-view.tree-mol-support)
+- LLM skill — [mol_skill](https://github.com/b-on-g/mol_skill)
