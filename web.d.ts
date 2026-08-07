@@ -7808,6 +7808,8 @@ declare namespace $.$$ {
         slug: string;
         title: string;
         text: string;
+        title_en: string;
+        text_en: string;
     };
     export class $bog_smalljs_search extends $.$bog_smalljs_search {
         close(): null;
@@ -7820,8 +7822,12 @@ declare namespace $.$$ {
         select_next(event?: KeyboardEvent): null;
         select_prev(event?: KeyboardEvent): null;
         result_current(slug: string): boolean;
+        /** Active UI language; reading it makes search reactive to switches. */
+        lang(): string;
         corpus(): readonly Doc[];
         full_text_scores(): Map<string, number>;
+        /** Occurrences of `term` in already-lowercased `text`. */
+        term_count(text: string, term: string): number;
         extractor(): ((text: string, opts: unknown) => Promise<{
             data: ArrayLike<number>;
         }>);

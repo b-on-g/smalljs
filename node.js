@@ -17490,8 +17490,18 @@ var $;
                 const ids = this.result_ids();
                 return ids[this.active()] === slug;
             }
-            // All doc pages as a flat search corpus.
+            /** Active UI language; reading it makes search reactive to switches. */
+            lang() {
+                return this.$.$mol_locale.lang();
+            }
+            // All doc pages as a flat search corpus, in the current UI language.
+            // Both the translation and the English original are kept, because on a
+            // non-English locale people still type English terms ("routing", "mem")
+            // and those have to keep matching. On English — or on a page with no
+            // translation — page_md/page_title return the very same strings, so the
+            // two halves share one lowercased copy and are scored once.
             corpus() {
+                const lang = this.lang();
                 const seen = new Set();
                 const docs = [];
                 for (const section of Content.sections()) {
@@ -17501,8 +17511,19 @@ var $;
                                 continue;
                             seen.add(slug);
                             const page = Content.page(slug);
-                            if (page)
-                                docs.push({ slug, title: page.title, text: page.md });
+                            if (!page)
+                                continue;
+                            const title = Content.page_title(slug, lang) ?? page.title;
+                            const md = Content.page_md(slug, lang) ?? page.md;
+                            const title_low = title.toLowerCase();
+                            const text_low = md.toLowerCase();
+                            docs.push({
+                                slug,
+                                title: title_low,
+                                text: text_low,
+                                title_en: title === page.title ? title_low : page.title.toLowerCase(),
+                                text_en: md === page.md ? text_low : page.md.toLowerCase(),
+                            });
                         }
                     }
                 }
@@ -17518,23 +17539,31 @@ var $;
                     return scores;
                 const terms = query.split(/\s+/).filter(Boolean);
                 for (const doc of this.corpus()) {
-                    const title = doc.title.toLowerCase();
-                    const text = doc.text.toLowerCase();
+                    // Untranslated page (or English locale): both halves are the same
+                    // string, so scan it once instead of double-counting every hit.
+                    const titles = doc.title === doc.title_en ? [doc.title] : [doc.title, doc.title_en];
+                    const texts = doc.text === doc.text_en ? [doc.text] : [doc.text, doc.text_en];
                     let score = 0;
                     for (const term of terms) {
-                        if (title.includes(term))
-                            score += 10;
-                        let idx = text.indexOf(term), count = 0;
-                        while (idx >= 0) {
-                            count++;
-                            idx = text.indexOf(term, idx + term.length);
-                        }
-                        score += count;
+                        for (const title of titles)
+                            if (title.includes(term))
+                                score += 10;
+                        for (const text of texts)
+                            score += this.term_count(text, term);
                     }
                     if (score > 0)
                         scores.set(doc.slug, score);
                 }
                 return scores;
+            }
+            /** Occurrences of `term` in already-lowercased `text`. */
+            term_count(text, term) {
+                let idx = text.indexOf(term), count = 0;
+                while (idx >= 0) {
+                    count++;
+                    idx = text.indexOf(term, idx + term.length);
+                }
+                return count;
             }
             // --- Semantic (lazy, in-browser) ---------------------------------
             // The embedder is loaded from a CDN on demand and suspends until ready.
@@ -17644,10 +17673,14 @@ var $;
                 return { section: 'docs', page: slug };
             }
             result_title(slug) {
-                return Content.page(slug)?.title ?? slug;
+                return Content.page_title(slug, this.lang()) ?? slug;
             }
+            // Snippet always comes from the page in the reader's language, matching
+            // the sidebar and the page itself. When the hit was on the English
+            // original only, the term is absent here and we fall back to the head of
+            // the translated page rather than quoting a language nobody picked.
             result_snippet(slug) {
-                const md = (Content.page(slug)?.md ?? '')
+                const md = (Content.page_md(slug, this.lang()) ?? '')
                     .replace(/```[\s\S]*?```/g, ' ')
                     .replace(/[#`*>]/g, ' ')
                     .replace(/\s+/g, ' ')
@@ -17684,6 +17717,9 @@ var $;
         __decorate([
             $mol_action
         ], $bog_smalljs_search.prototype, "select_prev", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_search.prototype, "corpus", null);
         __decorate([
             $mol_mem
         ], $bog_smalljs_search.prototype, "full_text_scores", null);
