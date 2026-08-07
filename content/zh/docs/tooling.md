@@ -1,6 +1,6 @@
 # 工具链
 
-$mol 在任何编辑器中都能工作，但一小套工具能让 `.view.tree` 和带类型的样式舒适得多：一个项目脚手架、一个语言服务器，以及面向 Zed 和 VS Code 的编辑器集成。
+$mol 在任何编辑器中都能工作，但一小套工具能让 `.view.tree` 和带类型的样式舒适得多：一个项目脚手架、一个语言服务器、面向 Zed 和 VS Code 的编辑器集成，以及一个把框架教给 LLM 助手的技能。
 
 ## 脚手架生成项目
 
@@ -79,8 +79,19 @@ MAM 工作区已经自带 VS Code 配置。当你打开克隆下来的 `mam` 文
 
 同一个文件夹还附带 `mol.code-snippets`，因此组件和绑定的代码片段无需任何额外配置即可使用。接受提示后，`.view.tree` 和 TypeScript 文件便开箱即用地高亮显示。
 
+## LLM 技能
+
+`mol_skill` 为 AI 助手补上写 $mol 所需的上下文：`view.tree` 语法、MAM 模块结构、`view.ts` 与 `view.css.ts` 的分工、Giper Baza 的数据建模，以及 Tauri 打包。它就是一个普通的技能目录，一份 `SKILL.md` 工作流加上若干参考文档，因此任何能读 skills 格式的 LLM 工具都可以加载它，包括 Claude Code 和 Cursor。用 skills CLI 安装：
+
+```bash
+npx skills add b-on-g/mol_skill --all -g
+```
+
+之后用自己的话提问（“MAM 模块结构”“Giper Baza 的 CRUD 和角色”），助手会在回答前打开对应的参考文档，写出的代码也就遵循本文档中的约定。[源码](https://github.com/b-on-g/mol_skill)在 GitHub 上；如果你更想自己读，这些参考文档单独看也很完整。
+
 ## 链接
 
 - 脚手架 — [create-view-tree-lsp](https://github.com/Dev-cmyser/create-view-tree-lsp)
 - 语言服务器 — [view-tree-lsp](https://github.com/Dev-cmyser/view.tree)
 - Zed 扩展 — [zed-view.tree-mol-support](https://github.com/Dev-cmyser/zed-view.tree-mol-support)
+- LLM 技能 — [mol_skill](https://github.com/b-on-g/mol_skill)

@@ -1,6 +1,6 @@
 # Werkzeuge
 
-$mol funktioniert in jedem Editor, aber eine kleine Auswahl an Werkzeugen macht `.view.tree` und typisierte Styles deutlich komfortabler: ein Projekt-Scaffolder, ein Language Server und Editor-Integrationen für Zed und VS Code.
+$mol funktioniert in jedem Editor, aber eine kleine Auswahl an Werkzeugen macht `.view.tree` und typisierte Styles deutlich komfortabler: ein Projekt-Scaffolder, ein Language Server, Editor-Integrationen für Zed und VS Code sowie ein Skill, der LLM-Assistenten das Framework beibringt.
 
 ## Ein Projekt scaffolden
 
@@ -79,8 +79,19 @@ Der MAM-Workspace bringt sein VS-Code-Setup bereits mit. Wenn Sie den geklonten 
 
 Derselbe Ordner liefert `mol.code-snippets`, sodass Komponenten- und Binding-Snippets ohne zusätzliche Einrichtung verfügbar sind. Nehmen Sie die Aufforderung an, und `.view.tree`- sowie TypeScript-Dateien werden sofort hervorgehoben.
 
+## LLM-Skill
+
+`mol_skill` gibt einem KI-Assistenten den Kontext, den er zum Schreiben von $mol braucht: die `view.tree`-Syntax, den Aufbau eines MAM-Moduls, die Aufteilung zwischen `view.ts` und `view.css.ts`, Datenmodellierung mit Giper Baza und das Packen mit Tauri. Ausgeliefert wird ein schlichter Skill-Ordner, ein `SKILL.md`-Workflow plus Referenzhandbücher, sodass jedes LLM-Werkzeug, das das skills-Format liest, ihn laden kann, Claude Code und Cursor eingeschlossen. Installieren Sie ihn über die skills-CLI:
+
+```bash
+npx skills add b-on-g/mol_skill --all -g
+```
+
+Danach fragen Sie in eigenen Worten („Aufbau eines MAM-Moduls“, „CRUD und Rollen in Giper Baza“), und der Assistent öffnet vor der Antwort die passende Referenz, sodass der geschriebene Code den Konventionen dieser Dokumentation folgt. Der [Quellcode](https://github.com/b-on-g/mol_skill) liegt auf GitHub, und die Referenzdateien lassen sich auch für sich allein gut lesen, falls Sie sie lieber selbst durchgehen.
+
 ## Links
 
 - Scaffolder — [create-view-tree-lsp](https://github.com/Dev-cmyser/create-view-tree-lsp)
 - Language Server — [view-tree-lsp](https://github.com/Dev-cmyser/view.tree)
 - Zed-Erweiterung — [zed-view.tree-mol-support](https://github.com/Dev-cmyser/zed-view.tree-mol-support)
+- LLM-Skill — [mol_skill](https://github.com/b-on-g/mol_skill)

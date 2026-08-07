@@ -1,6 +1,6 @@
 # Nástroje
 
-$mol funguje v libovolném editoru, ale malá sada nástrojů činí `.view.tree` a typované styly mnohem pohodlnějšími: generátor projektu, jazykový server a integrace pro editory Zed a VS Code.
+$mol funguje v libovolném editoru, ale malá sada nástrojů činí `.view.tree` a typované styly mnohem pohodlnějšími: generátor projektu, jazykový server, integrace pro editory Zed a VS Code a skill, který učí LLM asistenty tomuto frameworku.
 
 ## Vygenerování projektu
 
@@ -79,8 +79,19 @@ Workspace MAM už své nastavení VS Code nese s sebou. Když otevřete naklonov
 
 Táž složka dodává `mol.code-snippets`, takže snippety komponent a bindingů jsou dostupné bez jakékoli další konfigurace. Přijměte výzvu a soubory `.view.tree` a TypeScript jsou zvýrazněné rovnou.
 
+## Skill pro LLM
+
+`mol_skill` dává AI asistentovi kontext, který potřebuje k psaní v $mol: syntaxi `view.tree`, uspořádání MAM modulu, rozdělení mezi `view.ts` a `view.css.ts`, modelování dat v Giper Baza a balení přes Tauri. Dodává se jako obyčejná složka se skillem, postup v `SKILL.md` plus referenční příručky, takže ho načte jakýkoli LLM nástroj, který čte formát skills, včetně Claude Code a Cursoru. Nainstalujte ho přes CLI skills:
+
+```bash
+npx skills add b-on-g/mol_skill --all -g
+```
+
+Pak se ptejte vlastními slovy („struktura MAM modulu“, „CRUD a role v Giper Baza“) a asistent si před odpovědí otevře příslušnou referenci, takže napsaný kód drží konvence z této dokumentace. [Zdrojový kód](https://github.com/b-on-g/mol_skill) je na GitHubu a referenční soubory se dají dobře číst i samostatně, pokud si je raději projdete sami.
+
 ## Odkazy
 
 - Generátor — [create-view-tree-lsp](https://github.com/Dev-cmyser/create-view-tree-lsp)
 - Jazykový server — [view-tree-lsp](https://github.com/Dev-cmyser/view.tree)
 - Rozšíření Zed — [zed-view.tree-mol-support](https://github.com/Dev-cmyser/zed-view.tree-mol-support)
+- Skill pro LLM — [mol_skill](https://github.com/b-on-g/mol_skill)

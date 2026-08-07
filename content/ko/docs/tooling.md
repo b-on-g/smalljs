@@ -1,6 +1,6 @@
 # 도구
 
-$mol은 어떤 에디터에서도 동작하지만, 소수의 도구를 쓰면 `.view.tree`와 타입이 지정된 스타일이 훨씬 편해집니다. 프로젝트 스캐폴더, 언어 서버, 그리고 Zed와 VS Code용 에디터 통합입니다.
+$mol은 어떤 에디터에서도 동작하지만, 소수의 도구를 쓰면 `.view.tree`와 타입이 지정된 스타일이 훨씬 편해집니다. 프로젝트 스캐폴더, 언어 서버, Zed와 VS Code용 에디터 통합, 그리고 LLM 어시스턴트에게 프레임워크를 가르치는 스킬입니다.
 
 ## 프로젝트 스캐폴딩
 
@@ -79,8 +79,19 @@ MAM 워크스페이스는 이미 자체 VS Code 설정을 갖고 있습니다. �
 
 같은 폴더는 `mol.code-snippets`도 제공하므로, 컴포넌트와 바인딩 스니펫을 별도 설정 없이 쓸 수 있습니다. 프롬프트를 수락하면 `.view.tree`와 TypeScript 파일이 기본으로 강조됩니다.
 
+## LLM 스킬
+
+`mol_skill`은 AI 어시스턴트가 $mol을 작성하는 데 필요한 맥락을 제공합니다. `view.tree` 문법, MAM 모듈 구조, `view.ts`와 `view.css.ts`의 역할 분담, Giper Baza 데이터 모델링, Tauri 패키징입니다. 형태는 평범한 스킬 폴더로, `SKILL.md` 워크플로와 레퍼런스 문서가 전부여서 skills 형식을 읽는 LLM 도구라면 Claude Code든 Cursor든 불러올 수 있습니다. skills CLI로 설치합니다:
+
+```bash
+npx skills add b-on-g/mol_skill --all -g
+```
+
+그다음에는 자기 말로 물어보면 됩니다("MAM 모듈 구조", "Giper Baza의 CRUD와 역할"). 어시스턴트가 답하기 전에 해당 레퍼런스를 열기 때문에, 작성되는 코드가 이 문서의 관례를 따릅니다. [소스](https://github.com/b-on-g/mol_skill)는 GitHub에 있고, 직접 읽는 편이 좋다면 레퍼런스 파일만 따로 읽어도 충분합니다.
+
 ## 링크
 
 - 스캐폴더 — [create-view-tree-lsp](https://github.com/Dev-cmyser/create-view-tree-lsp)
 - 언어 서버 — [view-tree-lsp](https://github.com/Dev-cmyser/view.tree)
 - Zed 확장 — [zed-view.tree-mol-support](https://github.com/Dev-cmyser/zed-view.tree-mol-support)
+- LLM 스킬 — [mol_skill](https://github.com/b-on-g/mol_skill)

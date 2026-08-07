@@ -1,6 +1,6 @@
 # ツール
 
-$mol はどのエディタでも動きますが、少数のツールを使うと `.view.tree` と型付きスタイルが格段に快適になります。プロジェクトのスキャフォルダ、言語サーバー、そして Zed と VS Code のエディタ統合です。
+$mol はどのエディタでも動きますが、少数のツールを使うと `.view.tree` と型付きスタイルが格段に快適になります。プロジェクトのスキャフォルダ、言語サーバー、Zed と VS Code のエディタ統合、そして LLM アシスタントにフレームワークを教えるスキルです。
 
 ## プロジェクトをスキャフォールドする
 
@@ -79,8 +79,19 @@ MAM ワークスペースはすでに VS Code のセットアップを備えて�
 
 同じフォルダは `mol.code-snippets` も同梱しており、コンポーネントとバインディングのスニペットが追加設定なしで使えます。プロンプトを承認すれば、`.view.tree` と TypeScript のファイルが最初からハイライトされます。
 
+## LLM スキル
+
+`mol_skill` は、$mol を書くために AI アシスタントが必要とする文脈を与えます。`view.tree` の構文、MAM モジュールの構成、`view.ts` と `view.css.ts` の分担、Giper Baza でのデータモデリング、Tauri でのパッケージングです。中身は素朴なスキルフォルダで、`SKILL.md` のワークフローとリファレンス集だけなので、skills 形式を読める LLM ツールなら Claude Code でも Cursor でも読み込めます。skills CLI でインストールします:
+
+```bash
+npx skills add b-on-g/mol_skill --all -g
+```
+
+あとは自分の言葉で「MAM モジュールの構成」「Giper Baza の CRUD とロール」などと尋ねれば、アシスタントは答える前に該当するリファレンスを開くので、書かれるコードはこのドキュメントの流儀に沿います。[ソース](https://github.com/b-on-g/mol_skill)は GitHub にあり、リファレンス自体を自分で読み通してもかまいません。
+
 ## リンク
 
 - スキャフォルダ — [create-view-tree-lsp](https://github.com/Dev-cmyser/create-view-tree-lsp)
 - 言語サーバー — [view-tree-lsp](https://github.com/Dev-cmyser/view.tree)
 - Zed 拡張 — [zed-view.tree-mol-support](https://github.com/Dev-cmyser/zed-view.tree-mol-support)
+- LLM スキル — [mol_skill](https://github.com/b-on-g/mol_skill)

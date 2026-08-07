@@ -1,6 +1,6 @@
 # Strumenti
 
-$mol funziona in qualsiasi editor, ma un piccolo insieme di strumenti rende `.view.tree` e gli stili tipizzati molto più comodi: uno scaffolder di progetto, un language server e le integrazioni per gli editor Zed e VS Code.
+$mol funziona in qualsiasi editor, ma un piccolo insieme di strumenti rende `.view.tree` e gli stili tipizzati molto più comodi: uno scaffolder di progetto, un language server, le integrazioni per gli editor Zed e VS Code e una skill che insegna il framework agli assistenti LLM.
 
 ## Generare un progetto
 
@@ -79,8 +79,19 @@ Il workspace MAM porta già con sé la sua configurazione di VS Code. Quando apr
 
 La stessa cartella include `mol.code-snippets`, così gli snippet di componenti e binding sono disponibili senza alcuna configurazione aggiuntiva. Accetta la richiesta e i file `.view.tree` e TypeScript vengono evidenziati da subito.
 
+## Skill per LLM
+
+`mol_skill` fornisce a un assistente IA il contesto che serve per scrivere $mol: la sintassi `view.tree`, la struttura di un modulo MAM, la divisione tra `view.ts` e `view.css.ts`, la modellazione dei dati con Giper Baza e il packaging con Tauri. È una semplice cartella di skill, un flusso `SKILL.md` più le guide di riferimento, quindi qualsiasi strumento LLM che legga il formato skills può caricarla, Claude Code e Cursor compresi. Installala con la CLI skills:
+
+```bash
+npx skills add b-on-g/mol_skill --all -g
+```
+
+Poi chiedi con parole tue (“struttura di un modulo MAM”, “CRUD e ruoli in Giper Baza”): l'assistente apre il riferimento giusto prima di rispondere, così il codice che scrive segue le convenzioni di questa documentazione. Il [sorgente](https://github.com/b-on-g/mol_skill) è su GitHub, e i file di riferimento si leggono benissimo anche da soli, se preferisci scorrerli tu.
+
 ## Link
 
 - Scaffolder — [create-view-tree-lsp](https://github.com/Dev-cmyser/create-view-tree-lsp)
 - Language server — [view-tree-lsp](https://github.com/Dev-cmyser/view.tree)
 - Estensione Zed — [zed-view.tree-mol-support](https://github.com/Dev-cmyser/zed-view.tree-mol-support)
+- Skill per LLM — [mol_skill](https://github.com/b-on-g/mol_skill)

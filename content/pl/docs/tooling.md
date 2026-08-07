@@ -1,6 +1,6 @@
 # Narzędzia
 
-$mol działa w każdym edytorze, ale niewielki zestaw narzędzi sprawia, że `.view.tree` i typowane style są znacznie wygodniejsze: generator projektu, serwer języka oraz integracje z edytorami Zed i VS Code.
+$mol działa w każdym edytorze, ale niewielki zestaw narzędzi sprawia, że `.view.tree` i typowane style są znacznie wygodniejsze: generator projektu, serwer języka, integracje z edytorami Zed i VS Code oraz skill, który uczy asystentów LLM tego frameworka.
 
 ## Wygenerowanie projektu
 
@@ -79,8 +79,19 @@ Workspace MAM już niesie swoją konfigurację VS Code. Gdy otworzysz sklonowany
 
 Ten sam folder dostarcza `mol.code-snippets`, więc snippety komponentów i bindingów są dostępne bez żadnej dodatkowej konfiguracji. Zaakceptuj monit, a pliki `.view.tree` i TypeScript są podświetlane od ręki.
 
+## Skill dla LLM
+
+`mol_skill` daje asystentowi AI kontekst potrzebny do pisania w $mol: składnię `view.tree`, budowę modułu MAM, podział między `view.ts` i `view.css.ts`, modelowanie danych w Giper Baza oraz pakowanie w Tauri. To zwykły folder ze skillem, przepływ `SKILL.md` plus przewodniki referencyjne, więc wczytać go może dowolne narzędzie LLM czytające format skills, w tym Claude Code i Cursor. Zainstaluj go przez CLI skills:
+
+```bash
+npx skills add b-on-g/mol_skill --all -g
+```
+
+Potem pytaj własnymi słowami („budowa modułu MAM”, „CRUD i role w Giper Baza”), a asystent otworzy odpowiedni przewodnik przed odpowiedzią, dzięki czemu pisany kod trzyma się konwencji z tej dokumentacji. [Źródła](https://github.com/b-on-g/mol_skill) są na GitHubie, a same pliki referencyjne czyta się dobrze również osobno, jeśli wolisz przejrzeć je samodzielnie.
+
 ## Linki
 
 - Generator — [create-view-tree-lsp](https://github.com/Dev-cmyser/create-view-tree-lsp)
 - Serwer języka — [view-tree-lsp](https://github.com/Dev-cmyser/view.tree)
 - Rozszerzenie Zed — [zed-view.tree-mol-support](https://github.com/Dev-cmyser/zed-view.tree-mol-support)
+- Skill dla LLM — [mol_skill](https://github.com/b-on-g/mol_skill)

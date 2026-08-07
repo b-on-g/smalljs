@@ -1,6 +1,6 @@
 # Outillage
 
-$mol fonctionne dans n'importe quel éditeur, mais un petit ensemble d'outils rend `.view.tree` et les styles typés bien plus confortables : un générateur de projet, un serveur de langage et des intégrations pour les éditeurs Zed et VS Code.
+$mol fonctionne dans n'importe quel éditeur, mais un petit ensemble d'outils rend `.view.tree` et les styles typés bien plus confortables : un générateur de projet, un serveur de langage, des intégrations pour les éditeurs Zed et VS Code, et une compétence qui enseigne le framework aux assistants LLM.
 
 ## Générer un projet
 
@@ -79,8 +79,19 @@ L'espace de travail MAM embarque déjà sa configuration VS Code. Quand vous ouv
 
 Le même dossier fournit `mol.code-snippets`, si bien que les snippets de composants et de bindings sont disponibles sans aucune configuration supplémentaire. Acceptez l'invite et les fichiers `.view.tree` et TypeScript sont mis en évidence d'emblée.
 
+## Compétence LLM
+
+`mol_skill` donne à un assistant IA le contexte nécessaire pour écrire du $mol : la syntaxe `view.tree`, la structure d'un module MAM, la répartition entre `view.ts` et `view.css.ts`, la modélisation des données avec Giper Baza et l'empaquetage Tauri. C'est un simple dossier de compétence, un flux `SKILL.md` accompagné de guides de référence, donc n'importe quel outil LLM qui lit le format skills peut le charger, Claude Code et Cursor compris. Installez-le avec la CLI skills :
+
+```bash
+npx skills add b-on-g/mol_skill --all -g
+```
+
+Posez ensuite vos questions avec vos propres mots (« structure d'un module MAM », « CRUD et rôles avec Giper Baza ») : l'assistant ouvre la référence correspondante avant de répondre, et le code qu'il écrit suit les conventions de cette documentation. Le [code source](https://github.com/b-on-g/mol_skill) est sur GitHub, et les fichiers de référence se lisent très bien seuls si vous préférez les parcourir vous-même.
+
 ## Liens
 
 - Générateur — [create-view-tree-lsp](https://github.com/Dev-cmyser/create-view-tree-lsp)
 - Serveur de langage — [view-tree-lsp](https://github.com/Dev-cmyser/view.tree)
 - Extension Zed — [zed-view.tree-mol-support](https://github.com/Dev-cmyser/zed-view.tree-mol-support)
+- Compétence LLM — [mol_skill](https://github.com/b-on-g/mol_skill)
