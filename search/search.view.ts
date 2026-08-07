@@ -6,16 +6,31 @@ namespace $.$$ {
 	// via $mol_import.module so the ~30MB model is only fetched on first use.
 	const SEMANTIC_CDN = 'https://esm.sh/@xenova/transformers@2.17.2'
 
-	// One searchable page. All four haystacks are pre-lowercased: the corpus is
+	// One searchable section of a page: everything between two headings, plus
+	// the same section of the English original. A result deep-links to `anchor`,
+	// so this is also the unit the snippet is quoted from.
+	type Chunk = {
+		/** Heading text, verbatim — the anchor to jump to. Empty for the preamble. */
+		anchor: string,
+		/** Lowercased heading, localized and English, for the section-pick bonus. */
+		head: string,
+		head_en: string,
+		/** Lowercased section source, heading line included. */
+		text: string,
+		text_en: string,
+		/** Section source as written, for the result snippet. */
+		raw: string,
+	}
+
+	// One searchable page. All haystacks are pre-lowercased: the corpus is
 	// rebuilt only when the language changes, so matching stays a plain
 	// substring scan on every keystroke. `*_en` holds the English original —
 	// see corpus() for why it is kept alongside the translation.
 	type Doc = {
 		slug: string,
 		title: string,
-		text: string,
 		title_en: string,
-		text_en: string,
+		chunks: readonly Chunk[],
 	}
 
 	export class $bog_smalljs_search extends $.$bog_smalljs_search {
@@ -33,15 +48,23 @@ namespace $.$$ {
 			return null
 		}
 
-		// Navigate to a doc page. Explicit arg writes (not the link's own
-		// href) so a result ALWAYS lands on its page — even when it targets
-		// the page you are already on. $mol_link would otherwise treat a
-		// "current" link as a toggle and strip the args, bouncing you home.
+		// Navigate to a doc page, landing on the section that matched. Explicit
+		// arg writes (not the link's own href) so a result ALWAYS lands on its
+		// page — even when it targets the page you are already on. $mol_link
+		// would otherwise treat a "current" link as a toggle and strip the args,
+		// bouncing you home.
+		//
+		// The anchor argument is written on every jump, `null` when the match was
+		// page-level, so a result can never inherit the heading of the previous
+		// one and open somewhere unrelated.
 		@ $mol_action
 		go( slug: string ) {
+			const anchor = this.result_anchor( slug )
+			const key = this.anchor_key()
 			const arg = this.$.$mol_state_arg
 			arg.value( 'section', 'docs' )
 			arg.value( 'page', slug )
+			if( key ) arg.value( key, anchor || null )
 			this.open( false )
 			return null
 		}
@@ -123,13 +146,11 @@ namespace $.$$ {
 						const title = Content.page_title( slug, lang ) ?? page.title
 						const md = Content.page_md( slug, lang ) ?? page.md
 						const title_low = title.toLowerCase()
-						const text_low = md.toLowerCase()
 						docs.push( {
 							slug,
 							title: title_low,
-							text: text_low,
 							title_en: title === page.title ? title_low : page.title.toLowerCase(),
-							text_en: md === page.md ? text_low : page.md.toLowerCase(),
+							chunks: this.chunks( md, page.md ),
 						} )
 					}
 				}
@@ -137,28 +158,120 @@ namespace $.$$ {
 			return docs
 		}
 
+		/**
+		 * Cuts a page into one chunk per heading, plus the preamble, and pairs
+		 * each with the matching section of the English original **by position**:
+		 * translations are generated from the English page and keep its heading
+		 * structure, so the n-th section means the same thing in both.
+		 *
+		 * If the two outlines ever disagree, the page degrades to a single
+		 * anchor-less chunk. Ranking is unaffected — the score of a page is the
+		 * sum over its chunks either way — only the deep link is dropped.
+		 */
+		chunks( md: string, md_en: string ): readonly Chunk[] {
+
+			const sections = $bog_smalljs_outline.sections( md )
+			const translated = md !== md_en
+			const sections_en = translated ? $bog_smalljs_outline.sections( md_en ) : sections
+
+			if( sections_en.length !== sections.length ) {
+				const text = md.toLowerCase()
+				return [ { anchor: '', head: '', head_en: '', text, text_en: md_en.toLowerCase(), raw: md } ]
+			}
+
+			return sections.map( ( section, index ) => {
+				const text = section.md.toLowerCase()
+				const head = section.title.toLowerCase()
+				// Untranslated page (or English locale): both halves are the same
+				// string, and the scorer scans such a pair once instead of twice.
+				const text_en = translated ? sections_en[ index ].md.toLowerCase() : text
+				const head_en = translated ? sections_en[ index ].title.toLowerCase() : head
+				return { anchor: section.title, head, head_en, text, text_en, raw: section.md }
+			} )
+		}
+
 		// --- Full-text (instant, offline) --------------------------------
-		// Raw keyword score for every page, keyed by slug. Works with zero
-		// network and is what shows the moment you type.
+		// Raw keyword score for every page, keyed by slug, together with the
+		// section of that page the query matched best. Works with zero network
+		// and is what shows the moment you type.
+		//
+		// A page scores exactly what a whole-page scan would give it — the
+		// chunks partition the markdown, and the page-title bonus is booked to
+		// the preamble — so page ranking is unchanged by the split.
 		@ $mol_mem
-		full_text_scores(): Map< string, number > {
-			const scores = new Map< string, number >()
+		full_text_hits(): Map< string, { score: number, chunk: Chunk | null } > {
+
+			const hits = new Map< string, { score: number, chunk: Chunk | null } >()
 			const query = this.query().trim().toLowerCase()
-			if( !query ) return scores
+			if( !query ) return hits
 			const terms = query.split( /\s+/ ).filter( Boolean )
+
 			for( const doc of this.corpus() ) {
+
 				// Untranslated page (or English locale): both halves are the same
 				// string, so scan it once instead of double-counting every hit.
 				const titles = doc.title === doc.title_en ? [ doc.title ] : [ doc.title, doc.title_en ]
-				const texts = doc.text === doc.text_en ? [ doc.text ] : [ doc.text, doc.text_en ]
-				let score = 0
+				let title_score = 0
 				for( const term of terms ) {
-					for( const title of titles ) if( title.includes( term ) ) score += 10
-					for( const text of texts ) score += this.term_count( text, term )
+					for( const title of titles ) if( title.includes( term ) ) title_score += 10
 				}
-				if( score > 0 ) scores.set( doc.slug, score )
+
+				let total = 0
+				let best: Chunk | null = null
+				let best_rank = 0
+
+				for( let index = 0; index < doc.chunks.length; index++ ) {
+
+					const chunk = doc.chunks[ index ]
+					const texts = chunk.text === chunk.text_en ? [ chunk.text ] : [ chunk.text, chunk.text_en ]
+					let score = 0
+					for( const term of terms ) {
+						for( const text of texts ) score += this.term_count( text, term )
+					}
+					// The page title belongs to the preamble, which is also the
+					// chunk that means "open at the top".
+					if( index === 0 ) score += title_score
+					total += score
+
+					// Picking a section is a different question from ranking pages:
+					// a term in the section's own heading names the place to jump
+					// to, so it weighs the same as a page title here. Kept out of
+					// `total` so page order stays what it was.
+					const heads = chunk.head === chunk.head_en ? [ chunk.head ] : [ chunk.head, chunk.head_en ]
+					let rank = score
+					for( const term of terms ) {
+						for( const head of heads ) if( head.includes( term ) ) rank += 10
+					}
+
+					// Strictly greater: on a tie the earlier section wins, and the
+					// preamble comes first — a page whose title is the whole match
+					// opens at the top rather than at some arbitrary heading.
+					if( rank > best_rank ) {
+						best_rank = rank
+						best = chunk.anchor ? chunk : null
+					}
+				}
+
+				if( total > 0 ) hits.set( doc.slug, { score: total, chunk: best } )
 			}
+
+			return hits
+		}
+
+		full_text_scores(): Map< string, number > {
+			const scores = new Map< string, number >()
+			for( const [ slug, hit ] of this.full_text_hits() ) scores.set( slug, hit.score )
 			return scores
+		}
+
+		/** Section of `slug` the query matched best, or null for a page-level hit. */
+		result_chunk( slug: string ) {
+			return this.full_text_hits().get( slug )?.chunk ?? null
+		}
+
+		/** Heading to deep-link to, empty when the page should open at the top. */
+		result_anchor( slug: string ) {
+			return this.result_chunk( slug )?.anchor ?? ''
 		}
 
 		/** Occurrences of `term` in already-lowercased `text`. */
@@ -274,20 +387,31 @@ namespace $.$$ {
 			return this.result_ids().map( slug => this.Result( slug ) )
 		}
 
-		result_arg( slug: string ) {
-			return { section: 'docs', page: slug }
+		// The link's own href, for middle-click and copy-link. Mirrors go():
+		// the anchor key is always present so the URL never keeps the heading of
+		// whatever was open before.
+		result_arg( slug: string ): Record< string, string | null > {
+			const arg: Record< string, string | null > = { section: 'docs', page: slug }
+			const key = this.anchor_key()
+			if( key ) arg[ key ] = this.result_anchor( slug ) || null
+			return arg
 		}
 
 		result_title( slug: string ) {
 			return Content.page_title( slug, this.lang() ) ?? slug
 		}
 
-		// Snippet always comes from the page in the reader's language, matching
-		// the sidebar and the page itself. When the hit was on the English
-		// original only, the term is absent here and we fall back to the head of
-		// the translated page rather than quoting a language nobody picked.
+		// Snippet is quoted from the same section the result jumps to, so what you
+		// read is what you land on. Page-level hits (and semantic-only ones, which
+		// have no chunk) quote the head of the page as before.
+		//
+		// It always comes from the page in the reader's language, matching the
+		// sidebar and the page itself. When the hit was on the English original
+		// only, the term is absent here and we fall back to the start of the
+		// section rather than quoting a language nobody picked.
 		result_snippet( slug: string ) {
-			const md = ( Content.page_md( slug, this.lang() ) ?? '' )
+			const source = this.result_chunk( slug )?.raw ?? Content.page_md( slug, this.lang() ) ?? ''
+			const md = source
 				.replace( /```[\s\S]*?```/g, ' ' )
 				.replace( /[#`*>]/g, ' ' )
 				.replace( /\s+/g, ' ' )

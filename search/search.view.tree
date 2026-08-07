@@ -1,6 +1,7 @@
 $bog_smalljs_search $mol_view
 	open? false
 	query? \
+	anchor_key \
 	close? null
 	focus? null
 	activate? null

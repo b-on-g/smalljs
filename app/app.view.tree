@@ -31,6 +31,7 @@ $bog_smalljs_app $bog_builderui_div
 			sub <= body_content /
 		<= Search $bog_smalljs_search
 			open? <=> search_open?
+			anchor_key <= docs_anchor_key \
 	plugins /
 		<= Theme
 	Landing $bog_smalljs_landing

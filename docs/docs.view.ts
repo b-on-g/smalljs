@@ -132,15 +132,9 @@ namespace $.$$ {
 		// --- Table of contents (headings of the current page) -------------
 
 		toc_data() {
-			const items = [] as { level: number, text: string }[]
-			let in_code = false
-			for( const line of this.page_md().split( '\n' ) ) {
-				if( /^```/.test( line ) ) { in_code = !in_code; continue }
-				if( in_code ) continue
-				const match = /^(#{2,3})\s+(.+?)\s*$/.exec( line )
-				if( match ) items.push( { level: match[ 1 ].length, text: match[ 2 ] } )
-			}
-			return items
+			return $bog_smalljs_outline.sections( this.page_md() )
+				.filter( section => section.level > 0 )
+				.map( section => ( { level: section.level, text: section.title } ) )
 		}
 
 		toc_links() {

@@ -141,6 +141,15 @@ namespace $.$$ {
 			return null
 		}
 
+		/** URL argument key $mol_text uses for heading anchors on the docs page.
+		 *  Search results deep-link to a section by writing it, exactly as the
+		 *  right-hand table of contents does ($bog_smalljs_docs.toc_arg). The key
+		 *  is derived from the text component's own id, so it has to be read off
+		 *  that very instance rather than spelled out here. */
+		docs_anchor_key() {
+			return this.Docs().Body().param()
+		}
+
 		@ $mol_action
 		open_search() {
 			this.search_open( true )
