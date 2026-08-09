@@ -1083,7 +1083,7 @@ ${c.reverse().join("")}}
 [mol_string]::-ms-clear {
 	display: none;
 }
-`)})($||($={})),$.$bog_smalljs_search=class extends $.$mol_view{Escape(){const e=new this.$.$mol_hotkey;return e.key=()=>({escape:n=>this.close(n)}),e}Nav_down(){const e=new this.$.$mol_hotkey;return e.key=()=>({down:n=>this.select_next(n)}),e}Nav_up(){const e=new this.$.$mol_hotkey;return e.key=()=>({up:n=>this.select_prev(n)}),e}Backdrop(){const e=new this.$.$mol_view;return e.event=()=>({click:n=>this.close(n)}),e}Field(){const e=new this.$.$mol_string;return e.value=n=>this.query(n),e.hint=()=>this.$.$mol_locale.text("$bog_smalljs_search_Field_hint"),e.submit=n=>this.activate(n),e}Hint(){const e=new this.$.$mol_view;return e.sub=()=>[this.hint_text()],e}result_rows(){return[]}Results(){const e=new this.$.$mol_list;return e.rows=()=>this.result_rows(),e}Panel(){const e=new this.$.$mol_view;return e.sub=()=>[this.Field(),this.Hint(),this.Results()],e}result_arg(e){return{}}result_current(e){return!1}result_title(e){return""}Result_title(e){const n=new this.$.$mol_view;return n.sub=()=>[this.result_title(e)],n}result_snippet(e){return""}Result_snippet(e){const n=new this.$.$mol_view;return n.sub=()=>[this.result_snippet(e)],n}open(e){return e!==void 0?e:!1}query(e){return e!==void 0?e:""}anchor_key(){return""}close(e){return e!==void 0?e:null}focus(e){return e!==void 0?e:null}activate(e){return e!==void 0?e:null}select_next(e){return e!==void 0?e:null}select_prev(e){return e!==void 0?e:null}pick(e,n){return n!==void 0?n:null}attr(){return{bog_smalljs_search_open:this.open()}}plugins(){return[this.Escape(),this.Nav_down(),this.Nav_up()]}sub(){return[this.Backdrop(),this.Panel()]}Result(e){const n=new this.$.$mol_link;return n.arg=()=>this.result_arg(e),n.event_click=o=>this.pick(e,o),n.attr=()=>({...this.$.$mol_link.prototype.attr.call(n),bog_smalljs_search_current:this.result_current(e)}),n.sub=()=>[this.Result_title(e),this.Result_snippet(e)],n}},$mol_mem($.$bog_smalljs_search.prototype,"Escape"),$mol_mem($.$bog_smalljs_search.prototype,"Nav_down"),$mol_mem($.$bog_smalljs_search.prototype,"Nav_up"),$mol_mem($.$bog_smalljs_search.prototype,"Backdrop"),$mol_mem($.$bog_smalljs_search.prototype,"Field"),$mol_mem($.$bog_smalljs_search.prototype,"Hint"),$mol_mem($.$bog_smalljs_search.prototype,"Results"),$mol_mem($.$bog_smalljs_search.prototype,"Panel"),$mol_mem_key($.$bog_smalljs_search.prototype,"Result_title"),$mol_mem_key($.$bog_smalljs_search.prototype,"Result_snippet"),$mol_mem($.$bog_smalljs_search.prototype,"open"),$mol_mem($.$bog_smalljs_search.prototype,"query"),$mol_mem($.$bog_smalljs_search.prototype,"close"),$mol_mem($.$bog_smalljs_search.prototype,"focus"),$mol_mem($.$bog_smalljs_search.prototype,"activate"),$mol_mem($.$bog_smalljs_search.prototype,"select_next"),$mol_mem($.$bog_smalljs_search.prototype,"select_prev"),$mol_mem_key($.$bog_smalljs_search.prototype,"pick"),$mol_mem_key($.$bog_smalljs_search.prototype,"Result");var $;(function(s){class e extends Object{static[Symbol.toStringTag];static[$mol_key_handle](){return this.toString()}static toString(){return $$.$mol_func_name(this)}static check(o){try{return this.guard(o),!0}catch{return!1}}static[Symbol.hasInstance](o){return this.check(o)}static guard(o){return o}static cast(o){try{return this.guard(o),o}catch{return this.default}}static default=null}s.$mol_schema_any=e})($||($={}));var $;(function(s){class e extends $mol_schema_any{static guard(o){return typeof o=="number"?o:$mol_fail(new TypeError("Wrong type",{cause:{value:o,schema:this}}))}static default=Number.NaN}s.$mol_schema_float=e})($||($={}));var $;(function(s){class e extends $mol_schema_float{$mol_schema_integer=!0;static guard(o){const r=super.guard(o);return Number.isFinite(r)?Math.trunc(r)!==r?$mol_fail(new TypeError("Non integer",{cause:{value:o,schema:this}})):r:$mol_fail(new TypeError("Non finite",{cause:{value:o,schema:this}}))}static default=0}s.$mol_schema_integer=e})($||($={}));var $;(function(s){class e extends $mol_schema_any{static guard(o){return typeof o=="bigint"?o:$mol_fail(new TypeError("Wrong type",{cause:{value:o,schema:this}}))}static cast(o){return typeof o=="number"?BigInt($mol_schema_integer.cast(o)):super.cast(o)}static default=0n}s.$mol_schema_bigint=e})($||($={}));var $;(function(s){class e extends $mol_schema_any{static guard(o){return typeof o=="boolean"?o:$mol_fail(new TypeError("Wrong type",{cause:{value:o,schema:this}}))}static default=!1}s.$mol_schema_boolean=e})($||($={}));var $;(function(s){class e extends $mol_schema_any{static guard(o){return typeof o=="string"?o:$mol_fail(new TypeError("Wrong type",{cause:{value:o,schema:this}}))}static cast(o){return super.cast(o)}static default=""}s.$mol_schema_string=e})($||($={}));var $;(function(s){class e extends $mol_wrapper{static wrap(o){const r=new WeakMap,t=function(i,a){let l=r.get(this??t);l||r.set(this??t,l=new Map);const u=$mol_key(i);if(a===void 0&&l.has(u))return l.get(u);const m=o.call(this,i,a)??a;return l.set(u,m),m};return Reflect.defineProperty(t,"name",{value:o.name+" "}),t}}s.$mol_memo_key=e})($||($={}));var $;(function(s){s.$mol_schema_pattern=$mol_memo_key.func(function(n){return class T extends $mol_schema_string{static Pattern=n;static toString(){return this!==T?super.toString():"$mol_schema_pattern<"+$mol_key(n)+">"}static guard(r){return n.test(super.guard(r))?r:$mol_fail(new TypeError("Wrong string",{cause:{value:r,schema:this}}))}static cast(r){return super.cast(r)}static default=""}})})($||($={}));var $;(function(s){s.$mol_schema_instance=$mol_memo_key.func(function(n){class o extends $mol_schema_any{static Class=n;static toString(){return this!==o?super.toString():"$mol_schema_instance<"+$$.$mol_func_name(n)+">"}static guard(t){return t!=null&&Object(t)instanceof n?t:$mol_fail(new TypeError("Wrong class",{cause:{value:t,schema:this}}))}static cast(t){return this.guard(t)}static default}return n?.[Symbol.hasInstance]===$mol_schema_any[Symbol.hasInstance]?n:o})})($||($={}));var $;(function(s){function e(n){return class extends $mol_schema_any{static Schema=$mol_memo.func(n);static guard(r){return this.Schema().guard(r)}static cast(r){return this.Schema().cast(r)}static get default(){return this.Schema().default}}}s.$mol_schema_lazy=e})($||($={}));var $;(function(s){s.$mol_schema_some=$mol_memo_key.func(function(n){return class D extends $mol_schema_any{static Variants=n;static toString(){return this!==D?super.toString():"$mol_schema_some<"+$mol_key(n)+">"}static guard(r){const t=[];for(const i of n)try{return i.guard(r)}catch(a){t.push(a)}return $mol_fail(new AggregateError(t,"Wrong variant",{cause:{value:r,schema:this}}))}static cast(r){try{return this.guard(r)}catch{return n[0].cast(r)}}static default=n[0].default}})})($||($={}));var $;(function(s){s.$mol_schema_dict=$mol_memo_key.func(function(n){return class M extends $mol_schema_any{static Pair=n;static toString(){return this!==M?super.toString():"$mol_schema_dict<"+$mol_key(n)+">"}static guard(r){if(Object.getPrototypeOf(Object.getPrototypeOf(r)))return $mol_fail(new TypeError("Non dictionary",{cause:{value:r,schema:this}}));for(const t in r){try{n[0].guard(t)}catch(i){return $mol_fail(new TypeError("Wrong key",{cause:{key:t,error:i,value:r,schema:this}}))}try{n[1].guard(r[t])}catch(i){return $mol_fail(new TypeError("Wrong val",{cause:{key:t,error:i,value:r,schema:this}}))}}return r}static cast(r){if(Object.getPrototypeOf(Object.getPrototypeOf(r)))return this.default;const t={};for(const i in r)n[0].check(i)&&(t[i]=n[1].cast(r[i]));return t}static default={}}})})($||($={}));var $;(function(s){s.$mol_schema_enum=$mol_memo_key.func(function(n){return class L extends $mol_schema_any{static Options=n;static toString(){return this!==L?super.toString():"$mol_schema_enum<"+$mol_key(n)+">"}static guard(r){return n.some(t=>Object.is(t,r))?r:$mol_fail(new TypeError("Wrong option",{cause:{value:r,schema:this}}))}static cast(r){return this.check(r)?r:n[0]}static default=n[0]}})})($||($={}));var $;(function(s){s.$mol_schema_list=$mol_memo_key.func(function(n){return class C extends $mol_schema_any{static Item=n;static toString(){return this!==C?super.toString():"$mol_schema_list<"+$mol_key(n)+">"}static guard(r){if(!Array.isArray(r))return $mol_fail(new TypeError("Non array",{cause:{value:r,schema:this}}));for(const[t,i]of super.guard(r).entries())try{n.guard(i)}catch(a){return $mol_fail(new TypeError("Wrong item",{cause:{index:t,error:a,value:r,schema:this}}))}return r}static cast(r){return Array.isArray(r)?r.map(t=>n.cast(t)):this.default}static default=[]}})})($||($={}));var $;(function(s){class e extends $mol_schema_lazy(()=>$mol_schema_some([$mol_schema_dict([$mol_schema_string,e]),$mol_schema_enum([null]),$mol_schema_boolean,$mol_schema_float,$mol_schema_string,$mol_schema_list(e)])){}s.$mol_schema_json=e})($||($={}));var $;(function(s){s.$mol_schema_every=$mol_memo_key.func(function(n){return class A extends $mol_schema_any{static Schemas=n;static toString(){return this!==A?super.toString():"$mol_schema_every<"+$mol_key(n)+">"}static guard(r){for(const t of n)t.guard(r);return r}static cast(r){for(const t of n)r=t.cast(r);return r}static default=n.find(r=>this.check(r.default))}})})($||($={}));var $;(function(s){s.$mol_schema_range=$mol_memo_key.func(function(n){return class R extends $mol_schema_any{static Range=n;static toString(){return this!==R?super.toString():"$mol_schema_range<"+$mol_key(n)+">"}static guard(r){return typeof r!="number"&&typeof r!="bigint"?$mol_fail(new TypeError("Uncomparable type",{cause:{value:r,schema:this}})):r<=n[1]?r>=n[0]?r:$mol_fail(new TypeError("Too small",{cause:{value:r,schema:this}})):$mol_fail(new TypeError("Too large",{cause:{value:r,schema:this}}))}static cast(r){return r>n[1]?n[1]:r>=n[0]?r:n[0]}static default=n[0]}})})($||($={}));var $;(function(s){class e extends $mol_schema_range([0,Number.POSITIVE_INFINITY]){}s.$mol_schema_positive=e})($||($={}));var $;(function(s){class e extends $mol_schema_every([$mol_schema_integer,$mol_schema_positive]){}s.$mol_schema_natural=e})($||($={}));var $;(function(s){class e extends $mol_schema_range([Number.NEGATIVE_INFINITY,0]){}s.$mol_schema_negative=e})($||($={}));var $;(function(s){s.$mol_schema_maybe=$mol_memo_key.func(function(n){return class H extends $mol_schema_any{static Some=n;static toString(){return this!==H?super.toString():"$mol_schema_maybe<"+$mol_key(n)+">"}static guard(r){return r==null?r:n.guard(r)}static default=null}})})($||($={}));var $;(function(s){s.$mol_schema_record=$mol_memo_key.func(function(n){return class E extends $mol_schema_any{static Fields=n;static toString(){return this!==E?super.toString():"$mol_schema_record<"+$mol_key(n)+">"}static guard(r){if(Object.getPrototypeOf(Object.getPrototypeOf(r)))return $mol_fail(new TypeError("Non record",{cause:{value:r,schema:this}}));for(const t in n)try{n[t].guard(r[t])}catch(i){return $mol_fail(new TypeError("Wrong field",{cause:{field:t,error:i,value:r,schema:this}}))}return r}static cast(r){if(Object.getPrototypeOf(Object.getPrototypeOf(r)))return this.default;const t={};for(const i in n)t[i]=n[i].cast(r[i]);return t}static default=Object.fromEntries(Object.entries(n).map(([r,t])=>[r,t.default]))}})})($||($={}));var $;(function(s){function e(n){const o={};for(const r in n)o[r]=$mol_schema_maybe(n[r]);return class P extends $mol_schema_record(o){static Fields=n;static toString(){return this!==P?super.toString():"$mol_schema_partial<"+$mol_key(n)+">"}}}s.$mol_schema_partial=e})($||($={})),$.$mol_button_major=class extends $.$mol_button_minor{theme(){return"$mol_theme_base"}};var $;(function(s){$mol_style_attach("mol/button/major/major.view.css",`[mol_button_major] {
+`)})($||($={})),$.$bog_smalljs_search=class extends $.$mol_view{Escape(){const e=new this.$.$mol_hotkey;return e.key=()=>({escape:n=>this.close(n)}),e}Nav_down(){const e=new this.$.$mol_hotkey;return e.key=()=>({down:n=>this.select_next(n)}),e}Nav_up(){const e=new this.$.$mol_hotkey;return e.key=()=>({up:n=>this.select_prev(n)}),e}Backdrop(){const e=new this.$.$mol_view;return e.event=()=>({click:n=>this.close(n)}),e}Field(){const e=new this.$.$mol_string;return e.value=n=>this.query(n),e.hint=()=>this.$.$mol_locale.text("$bog_smalljs_search_Field_hint"),e.submit=n=>this.activate(n),e}Hint(){const e=new this.$.$mol_view;return e.sub=()=>[this.hint_text()],e}result_rows(){return[]}Results(){const e=new this.$.$mol_list;return e.rows=()=>this.result_rows(),e}Panel(){const e=new this.$.$mol_view;return e.sub=()=>[this.Field(),this.Hint(),this.Results()],e}result_arg(e){return{}}result_current(e){return!1}result_title(e){return""}Result_title(e){const n=new this.$.$mol_view;return n.sub=()=>[this.result_title(e)],n}result_snippet(e){return""}Result_snippet(e){const n=new this.$.$mol_view;return n.sub=()=>[this.result_snippet(e)],n}open(e){return e!==void 0?e:!1}query(e){return e!==void 0?e:""}anchor_key(){return""}close(e){return e!==void 0?e:null}focus(e){return e!==void 0?e:null}activate(e){return e!==void 0?e:null}select_next(e){return e!==void 0?e:null}select_prev(e){return e!==void 0?e:null}pick(e,n){return n!==void 0?n:null}attr(){return{bog_smalljs_search_open:this.open()}}plugins(){return[this.Escape(),this.Nav_down(),this.Nav_up()]}sub(){return[this.Backdrop(),this.Panel()]}Result(e){const n=new this.$.$mol_link;return n.arg=()=>this.result_arg(e),n.event_click=o=>this.pick(e,o),n.attr=()=>({...this.$.$mol_link.prototype.attr.call(n),bog_smalljs_search_current:this.result_current(e)}),n.sub=()=>[this.Result_title(e),this.Result_snippet(e)],n}},$mol_mem($.$bog_smalljs_search.prototype,"Escape"),$mol_mem($.$bog_smalljs_search.prototype,"Nav_down"),$mol_mem($.$bog_smalljs_search.prototype,"Nav_up"),$mol_mem($.$bog_smalljs_search.prototype,"Backdrop"),$mol_mem($.$bog_smalljs_search.prototype,"Field"),$mol_mem($.$bog_smalljs_search.prototype,"Hint"),$mol_mem($.$bog_smalljs_search.prototype,"Results"),$mol_mem($.$bog_smalljs_search.prototype,"Panel"),$mol_mem_key($.$bog_smalljs_search.prototype,"Result_title"),$mol_mem_key($.$bog_smalljs_search.prototype,"Result_snippet"),$mol_mem($.$bog_smalljs_search.prototype,"open"),$mol_mem($.$bog_smalljs_search.prototype,"query"),$mol_mem($.$bog_smalljs_search.prototype,"close"),$mol_mem($.$bog_smalljs_search.prototype,"focus"),$mol_mem($.$bog_smalljs_search.prototype,"activate"),$mol_mem($.$bog_smalljs_search.prototype,"select_next"),$mol_mem($.$bog_smalljs_search.prototype,"select_prev"),$mol_mem_key($.$bog_smalljs_search.prototype,"pick"),$mol_mem_key($.$bog_smalljs_search.prototype,"Result");var $;(function(s){class e extends Object{static[Symbol.toStringTag];static[$mol_key_handle](){return this.toString()}static toString(){return $$.$mol_func_name(this)}static check(o){try{return this.guard(o),!0}catch{return!1}}static[Symbol.hasInstance](o){return this.check(o)}static guard(o){return o}static cast(o){try{return this.guard(o),o}catch{return this.default}}static default=null}s.$mol_schema_any=e})($||($={}));var $;(function(s){class e extends $mol_schema_any{static guard(o){return typeof o=="number"?o:$mol_fail(new TypeError("Wrong type",{cause:{value:o,schema:this}}))}static default=Number.NaN}s.$mol_schema_float=e})($||($={}));var $;(function(s){class e extends $mol_schema_float{$mol_schema_integer=!0;static guard(o){const r=super.guard(o);return Number.isFinite(r)?Math.trunc(r)!==r?$mol_fail(new TypeError("Non integer",{cause:{value:o,schema:this}})):r:$mol_fail(new TypeError("Non finite",{cause:{value:o,schema:this}}))}static default=0}s.$mol_schema_integer=e})($||($={}));var $;(function(s){class e extends $mol_schema_any{static guard(o){return typeof o=="bigint"?o:$mol_fail(new TypeError("Wrong type",{cause:{value:o,schema:this}}))}static cast(o){return typeof o=="number"?BigInt($mol_schema_integer.cast(o)):super.cast(o)}static default=0n}s.$mol_schema_bigint=e})($||($={}));var $;(function(s){class e extends $mol_schema_any{static guard(o){return typeof o=="boolean"?o:$mol_fail(new TypeError("Wrong type",{cause:{value:o,schema:this}}))}static default=!1}s.$mol_schema_boolean=e})($||($={}));var $;(function(s){class e extends $mol_schema_any{static guard(o){return typeof o=="string"?o:$mol_fail(new TypeError("Wrong type",{cause:{value:o,schema:this}}))}static cast(o){return super.cast(o)}static default=""}s.$mol_schema_string=e})($||($={}));var $;(function(s){class e extends $mol_wrapper{static wrap(o){const r=new WeakMap,t=function(i,a){let l=r.get(this??t);l||r.set(this??t,l=new Map);const u=$mol_key(i);if(a===void 0&&l.has(u))return l.get(u);const m=o.call(this,i,a)??a;return l.set(u,m),m};return Reflect.defineProperty(t,"name",{value:o.name+" "}),t}}s.$mol_memo_key=e})($||($={}));var $;(function(s){s.$mol_schema_pattern=$mol_memo_key.func(function(n){return class T extends $mol_schema_string{static Pattern=n;static toString(){return this!==T?super.toString():"$mol_schema_pattern<"+$mol_key(n)+">"}static guard(r){return n.test(super.guard(r))?r:$mol_fail(new TypeError("Wrong string",{cause:{value:r,schema:this}}))}static cast(r){return super.cast(r)}static default=""}})})($||($={}));var $;(function(s){s.$mol_schema_instance=$mol_memo_key.func(function(n){class o extends $mol_schema_any{static Class=n;static toString(){return this!==o?super.toString():"$mol_schema_instance<"+$$.$mol_func_name(n)+">"}static guard(t){return t!=null&&Object(t)instanceof n?t:$mol_fail(new TypeError("Wrong class",{cause:{value:t,schema:this}}))}static cast(t){return this.guard(t)}static default}return n?.[Symbol.hasInstance]===$mol_schema_any[Symbol.hasInstance]?n:o})})($||($={}));var $;(function(s){function e(n){return class extends $mol_schema_any{static Schema=$mol_memo.func(n);static guard(r){return this.Schema().guard(r)}static cast(r){return this.Schema().cast(r)}static get default(){return this.Schema().default}}}s.$mol_schema_lazy=e})($||($={}));var $;(function(s){s.$mol_schema_some=$mol_memo_key.func(function(n){return class M extends $mol_schema_any{static Variants=n;static toString(){return this!==M?super.toString():"$mol_schema_some<"+$mol_key(n)+">"}static guard(r){const t=[];for(const i of n)try{return i.guard(r)}catch(a){t.push(a)}return $mol_fail(new AggregateError(t,"Wrong variant",{cause:{value:r,schema:this}}))}static cast(r){try{return this.guard(r)}catch{return n[0].cast(r)}}static default=n[0].default}})})($||($={}));var $;(function(s){s.$mol_schema_dict=$mol_memo_key.func(function(n){return class D extends $mol_schema_any{static Pair=n;static toString(){return this!==D?super.toString():"$mol_schema_dict<"+$mol_key(n)+">"}static guard(r){if(Object.getPrototypeOf(Object.getPrototypeOf(r)))return $mol_fail(new TypeError("Non dictionary",{cause:{value:r,schema:this}}));for(const t in r){try{n[0].guard(t)}catch(i){return $mol_fail(new TypeError("Wrong key",{cause:{key:t,error:i,value:r,schema:this}}))}try{n[1].guard(r[t])}catch(i){return $mol_fail(new TypeError("Wrong val",{cause:{key:t,error:i,value:r,schema:this}}))}}return r}static cast(r){if(Object.getPrototypeOf(Object.getPrototypeOf(r)))return this.default;const t={};for(const i in r)n[0].check(i)&&(t[i]=n[1].cast(r[i]));return t}static default={}}})})($||($={}));var $;(function(s){s.$mol_schema_enum=$mol_memo_key.func(function(n){return class L extends $mol_schema_any{static Options=n;static toString(){return this!==L?super.toString():"$mol_schema_enum<"+$mol_key(n)+">"}static guard(r){return n.some(t=>Object.is(t,r))?r:$mol_fail(new TypeError("Wrong option",{cause:{value:r,schema:this}}))}static cast(r){return this.check(r)?r:n[0]}static default=n[0]}})})($||($={}));var $;(function(s){s.$mol_schema_list=$mol_memo_key.func(function(n){return class C extends $mol_schema_any{static Item=n;static toString(){return this!==C?super.toString():"$mol_schema_list<"+$mol_key(n)+">"}static guard(r){if(!Array.isArray(r))return $mol_fail(new TypeError("Non array",{cause:{value:r,schema:this}}));for(const[t,i]of super.guard(r).entries())try{n.guard(i)}catch(a){return $mol_fail(new TypeError("Wrong item",{cause:{index:t,error:a,value:r,schema:this}}))}return r}static cast(r){return Array.isArray(r)?r.map(t=>n.cast(t)):this.default}static default=[]}})})($||($={}));var $;(function(s){class e extends $mol_schema_lazy(()=>$mol_schema_some([$mol_schema_dict([$mol_schema_string,e]),$mol_schema_enum([null]),$mol_schema_boolean,$mol_schema_float,$mol_schema_string,$mol_schema_list(e)])){}s.$mol_schema_json=e})($||($={}));var $;(function(s){s.$mol_schema_every=$mol_memo_key.func(function(n){return class A extends $mol_schema_any{static Schemas=n;static toString(){return this!==A?super.toString():"$mol_schema_every<"+$mol_key(n)+">"}static guard(r){for(const t of n)t.guard(r);return r}static cast(r){for(const t of n)r=t.cast(r);return r}static default=n.find(r=>this.check(r.default))}})})($||($={}));var $;(function(s){s.$mol_schema_range=$mol_memo_key.func(function(n){return class R extends $mol_schema_any{static Range=n;static toString(){return this!==R?super.toString():"$mol_schema_range<"+$mol_key(n)+">"}static guard(r){return typeof r!="number"&&typeof r!="bigint"?$mol_fail(new TypeError("Uncomparable type",{cause:{value:r,schema:this}})):r<=n[1]?r>=n[0]?r:$mol_fail(new TypeError("Too small",{cause:{value:r,schema:this}})):$mol_fail(new TypeError("Too large",{cause:{value:r,schema:this}}))}static cast(r){return r>n[1]?n[1]:r>=n[0]?r:n[0]}static default=n[0]}})})($||($={}));var $;(function(s){class e extends $mol_schema_range([0,Number.POSITIVE_INFINITY]){}s.$mol_schema_positive=e})($||($={}));var $;(function(s){class e extends $mol_schema_every([$mol_schema_integer,$mol_schema_positive]){}s.$mol_schema_natural=e})($||($={}));var $;(function(s){class e extends $mol_schema_range([Number.NEGATIVE_INFINITY,0]){}s.$mol_schema_negative=e})($||($={}));var $;(function(s){s.$mol_schema_maybe=$mol_memo_key.func(function(n){return class E extends $mol_schema_any{static Some=n;static toString(){return this!==E?super.toString():"$mol_schema_maybe<"+$mol_key(n)+">"}static guard(r){return r==null?r:n.guard(r)}static default=null}})})($||($={}));var $;(function(s){s.$mol_schema_record=$mol_memo_key.func(function(n){return class H extends $mol_schema_any{static Fields=n;static toString(){return this!==H?super.toString():"$mol_schema_record<"+$mol_key(n)+">"}static guard(r){if(Object.getPrototypeOf(Object.getPrototypeOf(r)))return $mol_fail(new TypeError("Non record",{cause:{value:r,schema:this}}));for(const t in n)try{n[t].guard(r[t])}catch(i){return $mol_fail(new TypeError("Wrong field",{cause:{field:t,error:i,value:r,schema:this}}))}return r}static cast(r){if(Object.getPrototypeOf(Object.getPrototypeOf(r)))return this.default;const t={};for(const i in n)t[i]=n[i].cast(r[i]);return t}static default=Object.fromEntries(Object.entries(n).map(([r,t])=>[r,t.default]))}})})($||($={}));var $;(function(s){function e(n){const o={};for(const r in n)o[r]=$mol_schema_maybe(n[r]);return class q extends $mol_schema_record(o){static Fields=n;static toString(){return this!==q?super.toString():"$mol_schema_partial<"+$mol_key(n)+">"}}}s.$mol_schema_partial=e})($||($={})),$.$mol_button_major=class extends $.$mol_button_minor{theme(){return"$mol_theme_base"}};var $;(function(s){$mol_style_attach("mol/button/major/major.view.css",`[mol_button_major] {
 	background-color: var(--mol_theme_back);
 	color: var(--mol_theme_text);
 }
@@ -1617,7 +1617,7 @@ h6[mol_text_header] {
 [mol_text_list_type="*"] > [mol_text_list_item]::before {\r
 	content: "•";\r
 }\r
-`)})($||($={}));var $;(function(s){class e extends $mol_object2{static sections(){return[{id:"docs",title:"Docs",groups:[{title:"Getting Started",pages:["introduction","getting-started","tooling"]},{title:"Essentials",pages:["installation","views","state","routing","rendering"]},{title:"Data",pages:["data","data-schema","giper-baza"]},{title:"More",pages:["showcase","rosetta","cookbook"]},{title:"Advanced",pages:["plugins","meta","offline","ghost"]},{title:"About",pages:["faq","team","releases"]},{title:"API",pages:["api-mol-button-major","api-mol-button-minor","api-mol-string","api-mol-number","api-mol-text","api-mol-paragraph","api-mol-list","api-mol-row","api-mol-link","api-mol-check","api-mol-switch","api-mol-select","api-mol-scroll","api-mol-page","api-mol-pick"]}]}]}static pages(){return{introduction:{slug:"introduction",title:"Introduction",summary:"What $mol is, who it is for, and a taste of reactive views.",file:"content/en/docs/introduction.md",md:`# Introduction
+`)})($||($={}));var $;(function(s){class e extends $mol_object2{static sections(){return[{id:"docs",title:"Docs",groups:[{title:"Getting Started",pages:["introduction","getting-started","from-ts-to-view-tree","tooling"]},{title:"Essentials",pages:["installation","views","state","routing","rendering"]},{title:"Data",pages:["data","data-schema","giper-baza"]},{title:"More",pages:["showcase","rosetta","cookbook"]},{title:"Advanced",pages:["plugins","meta","offline","ghost"]},{title:"About",pages:["faq","team","releases"]},{title:"API",pages:["api-mol-button-major","api-mol-button-minor","api-mol-string","api-mol-number","api-mol-text","api-mol-paragraph","api-mol-list","api-mol-row","api-mol-link","api-mol-check","api-mol-switch","api-mol-select","api-mol-scroll","api-mol-page","api-mol-pick"]}]}]}static pages(){return{introduction:{slug:"introduction",title:"Introduction",summary:"What $mol is, who it is for, and a taste of reactive views.",file:"content/en/docs/introduction.md",md:`# Introduction
 
 ## What is $mol?
 
@@ -1630,6 +1630,8 @@ A component has three files:
 - \`name.view.css.ts\` — typed styles (checked by the compiler)
 
 That separation is the whole idea: layout stays readable, logic stays testable, styles stay type-safe.
+
+None of the three is required on its own. The tree is a shorthand for structure you can also write by hand: [From TypeScript to view.tree](#!section=docs/page=from-ts-to-view-tree) builds one component both ways and shows the code the tree compiles to.
 
 ## Who is it for?
 
@@ -1679,6 +1681,8 @@ $mol 是一个响应式 UI 框架：你描述界面**是什么**，框架来决�
 
 这种分离正是核心思想：布局保持可读，逻辑保持可测，样式保持类型安全。
 
+这三个文件没有哪一个是单独必需的。树只是结构的一种简写，那结构你也可以手写：[从 TypeScript 到 view.tree](#!section=docs/page=from-ts-to-view-tree) 把同一个组件用两种方式各写一遍，并展示树最终编译成的代码。
+
 ## 它适合谁？
 
 - 你想要一个**小巧**的应用，并且随着它成长依然保持小巧——运行时很紧凑，渲染默认虚拟化。
@@ -1726,6 +1730,8 @@ $mol 是一個響應式 UI 框架：你描述介面**是什麼**，框架來決�
 - \`name.view.css.ts\` — 具型別的樣式（由編譯器檢查）
 
 這種分離正是核心理念：版面保持可讀，邏輯保持可測，樣式保持型別安全。
+
+這三個檔案沒有哪一個是單獨必需的。樹只是結構的一種簡寫，那結構你也可以手寫：[從 TypeScript 到 view.tree](#!section=docs/page=from-ts-to-view-tree) 把同一個元件用兩種方式各寫一遍，並展示樹最終編譯成的程式碼。
 
 ## 它適合誰？
 
@@ -1775,6 +1781,8 @@ $mol はリアクティブな UI フレームワークです。インターフ�
 
 この分離こそが核心です。レイアウトは読みやすく、ロジックはテストしやすく、スタイルは型安全に保たれます。
 
+三つのうち単独で必須のものはありません。ツリーは手書きもできる構造の省略記法にすぎません。[TypeScript から view.tree へ](#!section=docs/page=from-ts-to-view-tree)は同じコンポーネントを両方の書き方で組み立て、ツリーがコンパイルされる先のコードまで示します。
+
 ## 誰のためのもの？
 
 - 成長しても**小さいまま**であってほしいアプリを作りたい人へ。ランタイムはコンパクトで、描画はデフォルトで仮想化されます。
@@ -1822,6 +1830,8 @@ $mol 은 반응형 UI 프레임워크입니다. 인터페이스가 **무엇인�
 - \`name.view.css.ts\` — 타입이 있는 스타일(컴파일러가 검사)
 
 이 분리가 핵심 아이디어입니다. 레이아웃은 읽기 쉽게, 로직은 테스트하기 쉽게, 스타일은 타입 안전하게 유지됩니다.
+
+셋 중 그 자체로 필수인 것은 없습니다. 트리는 손으로도 쓸 수 있는 구조의 줄임 표기입니다. [TypeScript에서 view.tree로](#!section=docs/page=from-ts-to-view-tree)가 같은 컴포넌트를 두 방식으로 만들고, 트리가 컴파일되는 코드까지 보여줍니다.
 
 ## 누구를 위한 것인가?
 
@@ -1871,6 +1881,8 @@ Un composant se compose de trois fichiers :
 
 Cette séparation est toute l'idée : la mise en page reste lisible, la logique reste testable, les styles restent sûrs au niveau des types.
 
+Aucun des trois n'est obligatoire à lui seul. L'arbre est un raccourci pour une structure que vous pouvez aussi écrire à la main : [De TypeScript à view.tree](#!section=docs/page=from-ts-to-view-tree) construit un même composant des deux façons et montre le code vers lequel l'arbre compile.
+
 ## À qui s'adresse-t-il ?
 
 - Vous voulez une **petite** application qui le reste en grandissant — le runtime est compact et le rendu est virtualisé par défaut.
@@ -1918,6 +1930,8 @@ Eine Komponente besteht aus drei Dateien:
 - \`name.view.css.ts\` — typisierte Styles (vom Compiler geprüft)
 
 Diese Trennung ist die ganze Idee: Das Layout bleibt lesbar, die Logik bleibt testbar, die Styles bleiben typsicher.
+
+Keine der drei ist für sich genommen Pflicht. Der Baum ist eine Kurzschreibweise für Struktur, die du auch von Hand schreiben kannst: [Von TypeScript zu view.tree](#!section=docs/page=from-ts-to-view-tree) baut eine Komponente auf beide Arten und zeigt den Code, zu dem der Baum kompiliert.
 
 ## Für wen ist es?
 
@@ -1967,6 +1981,8 @@ Um componente tem três arquivos:
 
 Essa separação é a ideia inteira: o layout permanece legível, a lógica permanece testável, os estilos permanecem seguros em tipos.
 
+Nenhum dos três é obrigatório por si só. A árvore é uma abreviação para uma estrutura que você também pode escrever à mão: [De TypeScript para view.tree](#!section=docs/page=from-ts-to-view-tree) constrói um mesmo componente das duas formas e mostra o código em que a árvore compila.
+
 ## Para quem é?
 
 - Você quer um aplicativo **pequeno** que continue pequeno à medida que cresce — o runtime é compacto e a renderização é virtualizada por padrão.
@@ -2014,6 +2030,8 @@ Un componente ha tre file:
 - \`name.view.css.ts\` — gli stili tipizzati (controllati dal compilatore)
 
 Questa separazione è l'idea centrale: il layout resta leggibile, la logica resta testabile, gli stili restano type-safe.
+
+Nessuno dei tre è obbligatorio da solo. L'albero è un'abbreviazione per una struttura che puoi anche scrivere a mano: [Da TypeScript a view.tree](#!section=docs/page=from-ts-to-view-tree) costruisce lo stesso componente in entrambi i modi e mostra il codice in cui l'albero compila.
 
 ## A chi è rivolto?
 
@@ -2063,6 +2081,8 @@ $mol — это реактивный UI-фреймворк, где вы опис
 
 В этом разделении и заключается вся идея: разметка остаётся читаемой, логика — тестируемой, стили — типобезопасными.
 
+Обязательного среди трёх нет ни одного. Дерево — сокращение для структуры, которую можно написать и руками: [От TypeScript к view.tree](#!section=docs/page=from-ts-to-view-tree) собирает один компонент обоими способами и показывает код, в который дерево компилируется.
+
 ## Для кого он?
 
 - Вам нужно **небольшое** приложение, которое остаётся небольшим по мере роста — рантайм компактный, а рендеринг по умолчанию виртуализирован.
@@ -2110,6 +2130,8 @@ $mol — це реактивний UI-фреймворк: ти описуєш, *
 - \`name.view.css.ts\` — типізовані стилі (перевіряються компілятором)
 
 Це розділення і є вся ідея: розмітка лишається читабельною, логіка — придатною до тестування, стилі — типобезпечними.
+
+Обов'язкового серед трьох немає жодного. Дерево — скорочення для структури, яку можна написати й руками: [Від TypeScript до view.tree](#!section=docs/page=from-ts-to-view-tree) збирає один компонент обома способами й показує код, у який дерево компілюється.
 
 ## Для кого це?
 
@@ -2159,6 +2181,8 @@ Komponent składa się z trzech plików:
 
 Ten podział to cała idea: układ pozostaje czytelny, logika pozostaje testowalna, style pozostają bezpieczne typowo.
 
+Żaden z tych trzech nie jest sam w sobie obowiązkowy. Drzewo to skrót zapisu struktury, którą możesz napisać też ręcznie: [Z TypeScriptu do view.tree](#!section=docs/page=from-ts-to-view-tree) buduje jeden komponent na oba sposoby i pokazuje kod, do którego drzewo się kompiluje.
+
 ## Dla kogo jest?
 
 - Chcesz **małą** aplikację, która pozostaje mała w miarę rozwoju — runtime jest zwięzły, a renderowanie domyślnie zwirtualizowane.
@@ -2206,6 +2230,8 @@ Komponenta se skládá ze tří souborů:
 - \`name.view.css.ts\` — typované styly (kontrolované překladačem)
 
 Toto oddělení je celá myšlenka: rozvržení zůstává čitelné, logika testovatelná a styly typově bezpečné.
+
+Povinný sám o sobě není ani jeden ze tří. Strom je zkratka pro strukturu, kterou lze napsat i ručně: [Z TypeScriptu do view.tree](#!section=docs/page=from-ts-to-view-tree) staví jednu komponentu oběma způsoby a ukazuje kód, do kterého se strom překládá.
 
 ## Pro koho je?
 
@@ -2255,6 +2281,8 @@ Připraven spustit něco na vlastním stroji? Zamiř na [Začínáme](#!section=
 
 همین جداسازی، تمام ایده است: چیدمان خوانا می‌ماند، منطق قابل آزمون می‌ماند، و سبک‌ها از نظر نوع ایمن می‌مانند.
 
+هیچ‌کدام از این سه به‌تنهایی اجباری نیست. درخت کوته‌نوشتی برای ساختاری است که می‌توانید دستی هم بنویسید: [از تایپ‌اسکریپت به view.tree](#!section=docs/page=from-ts-to-view-tree) یک مؤلفه را به هر دو شکل می‌سازد و کدی را نشان می‌دهد که درخت به آن کامپایل می‌شود.
+
 ## برای چه کسی است؟
 
 - شما یک برنامه‌ی **کوچک** می‌خواهید که با رشد کردن هم کوچک بماند — رانتایم فشرده است و رندر به‌صورت پیش‌فرض مجازی‌سازی شده است.
@@ -2303,6 +2331,8 @@ $mol একটি রিঅ্যাকটিভ UI ফ্রেমওয়া�
 
 এই বিভাজনটাই মূল ভাবনা: লেআউট পঠনযোগ্য থাকে, লজিক পরীক্ষাযোগ্য থাকে, স্টাইল টাইপ-নিরাপদ থাকে।
 
+তিনটির কোনোটিই একা বাধ্যতামূলক নয়। ট্রি হলো কাঠামোর একটি সংক্ষেপ, যা আপনি হাতেও লিখতে পারেন: [TypeScript থেকে view.tree](#!section=docs/page=from-ts-to-view-tree) একই কম্পোনেন্ট দুভাবেই বানায় আর ট্রি যে কোডে কম্পাইল হয় তা দেখায়।
+
 ## এটি কার জন্য?
 
 - আপনি এমন একটি **ছোট** অ্যাপ চান যা বড় হওয়ার সাথে সাথেও ছোট থাকে — রানটাইম সংক্ষিপ্ত এবং রেন্ডারিং ডিফল্টভাবে ভার্চুয়ালাইজড।
@@ -2341,6 +2371,8 @@ namespace $.$$ {
 
 This page takes you from an empty folder to a running, reactive $mol app. It should take about fifteen minutes. Every snippet below is real, working code — copy it as-is.
 
+You will write the component in plain TypeScript. $mol also has a shorter format for describing components, \`view.tree\`, and you will meet it on the next page. Nothing here needs it: a $mol component is an ordinary class either way.
+
 ## What you need
 
 - **Node.js 18+** and **git**. That is the whole list.
@@ -2370,7 +2402,7 @@ mkdir -p my/hello
 
 > **One rule to remember:** underscores in a component name are folder separators. \`$my_hello\` lives in \`my/hello/\`, \`$my_hello_form\` would live in \`my/hello/form/\`. Module folder names never contain an underscore.
 
-Now add three files inside \`my/hello/\`.
+Now add two files inside \`my/hello/\`.
 
 ### index.html — the entry point
 
@@ -2390,40 +2422,59 @@ Now add three files inside \`my/hello/\`.
 
 The \`mol_view_root="$my_hello"\` attribute mounts your component when the page loads.
 
-### hello.view.tree — the layout
-
-\`\`\`tree-no-run
-$my_hello $mol_page
-	title @ \\Greeting
-	body /
-		<= Name $mol_string
-			hint @ \\Enter your name
-			value? <=> name? \\
-		<= Message $mol_view
-			sub / <= greeting \\
-\`\`\`
-
-A few things worth naming:
-
-- \`$mol_page\` and \`$mol_string\` are built-in components — a page shell and a text input.
-- \`<=\` binds a property one way; \`<=>\` binds two ways. So \`value? <=> name?\` keeps the input and your \`name\` state in sync.
-- \`@\` marks a localizable string; \`\\\` starts a raw string.
-
-### hello.view.ts — the behaviour
+### hello.view.ts — the component
 
 \`\`\`typescript
-namespace $.$$ {
-	export class $my_hello extends $.$my_hello {
+namespace $ {
+
+	export class $my_hello extends $mol_page {
+
+		title() {
+			return 'Greeting'
+		}
+
+		body() {
+			return [ this.Name(), this.Message() ]
+		}
+
 		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+
+		@ $mol_mem
+		name( next?: string ) {
+			return next ?? ''
+		}
+
+		@ $mol_mem
+		Message() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.greeting() ]
+			return obj
+		}
+
 		greeting() {
 			const name = this.name()
-			return name ? \`Hello, \${name}!\` : 'Please enter your name'
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
 		}
+
 	}
+
 }
 \`\`\`
 
-\`@ $mol_mem\` makes \`greeting\` a reactive, cached property. It reads \`name()\`, so the moment \`name\` changes, \`greeting\` recomputes and the message on screen updates. You never wrote a subscription, an effect, or a re-render call.
+Read it top to bottom:
+
+- \`$my_hello\` lives in \`namespace $\`, the ambient namespace that holds every $mol component. It extends \`$mol_page\`, a built-in page shell with a title and a body. \`$mol_string\` further down is the built-in text input.
+- \`body()\` returns the children. A child here is a property, not markup: \`Name\` and \`Message\` are methods you can call, override in a subclass, or target from a stylesheet by name.
+- \`Name()\` builds the input and wires it up. Each of its properties gets an **arrow**, not a value. The child calls that arrow whenever it needs the data, so it always reads the current one.
+- \`name( next?: string )\` is the state. Called with no argument it reads, called with one it writes. Handing that whole function to \`obj.value\` is what makes typing in the field update \`name\`.
+- \`@ $mol_mem\` caches a property per instance. On \`name\` it means the value is kept, and whatever read it is recomputed when it changes. On \`Name\` and \`Message\` it means one child component, built once, instead of a fresh one on every call.
+- \`greeting()\` reads \`name()\`. That read *is* the subscription. When \`name\` changes, \`greeting\` recomputes and the text on screen follows, with no effect to declare, no dependency list and no re-render call.
 
 ## 3. Run it
 
@@ -2433,30 +2484,38 @@ The dev server from step 1 is already watching. Just open:
 http://localhost:9080/my/hello/
 \`\`\`
 
-Type your name — the greeting updates as you type. That is $mol reactivity: state flows to the view on its own.
+Type your name and the greeting updates as you type. That is $mol reactivity: state flows to the view on its own.
 
 ## 4. Add a second reactive value
 
-Reactivity composes. Add a length counter that depends on the same \`name\`, with no extra wiring.
+Reactivity composes. Add a length counter that reads the same \`name\`, with no extra wiring.
 
-In \`hello.view.tree\`, add a line under \`Message\`:
+Put it in \`body()\`:
 
-\`\`\`tree
-		<= Counter $mol_view
-			sub / <= counter \\
+\`\`\`typescript
+		body() {
+			return [ this.Name(), this.Message(), this.Counter() ]
+		}
 \`\`\`
 
-In \`hello.view.ts\`, add the method:
+and add the two properties behind it:
 
 \`\`\`typescript
 		@ $mol_mem
-		counter() {
-			return \`\${this.name().length} characters\`
+		Counter() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.counter() ]
+			return obj
 		}
-}
+
+		counter() {
+			return \`\${ this.name().length } characters\`
+		}
 \`\`\`
 
-Both \`greeting\` and \`counter\` read \`name\`; both update together. Add a third, add a tenth — the pattern does not change. This is why $mol code stays flat as features pile up.
+Both \`greeting\` and \`counter\` read \`name\`, and both update together. Add a third, add a tenth: the reactive half never changes shape.
+
+The other half does. Three lines of logic arrived with six lines of plumbing around them — a factory, a \`new\`, an arrow, a \`return obj\`. Multiply that by every child on a real screen and you have the reason \`view.tree\` exists.
 
 ## 5. Check your build
 
@@ -2470,12 +2529,14 @@ A clean audit means no unused deps, no type problems, nothing to fix. Make a hab
 
 ## You built a $mol app
 
-You have a reactive component, two-way binding, and derived state — with three small files and zero configuration.
+A reactive component with two-way binding and derived state, in one file, with zero configuration.
 
-Keep going: the **[Guide](#!section=docs/page=installation)** covers installation, views, state, routing, and data in depth — and turns this Hello World into something real.
+Now take that exact file and watch it shrink: **[From TypeScript to view.tree](#!section=docs/page=from-ts-to-view-tree)**.
 `,tr:{zh:{title:"快速上手",summary:"本页带你从一个空文件夹走到一个可运行的响应式 $mol 应用，大约需要十五分钟。下面每段代码都是真实可用的——原样复制即可。",md:`# 快速上手
 
 本页带你从一个空文件夹走到一个可运行的响应式 $mol 应用，大约需要十五分钟。下面每段代码都是真实可用的——原样复制即可。
+
+组件你会用普通的 TypeScript 写。$mol 还有一种更短的组件描述格式 \`view.tree\`，下一页你就会遇到它。这里用不上：无论哪种写法，$mol 组件都只是一个普通的类。
 
 ## 你需要什么
 
@@ -2506,7 +2567,7 @@ mkdir -p my/hello
 
 > **要记住的一条规则：** 组件名中的下划线是文件夹分隔符。\`$my_hello\` 位于 \`my/hello/\`，而 \`$my_hello_form\` 会位于 \`my/hello/form/\`。模块文件夹名永远不含下划线。
 
-现在在 \`my/hello/\` 里添加三个文件。
+现在在 \`my/hello/\` 里添加两个文件。
 
 ### index.html — 入口点
 
@@ -2526,73 +2587,100 @@ mkdir -p my/hello
 
 \`mol_view_root="$my_hello"\` 属性会在页面加载时挂载你的组件。
 
-### hello.view.tree — 布局
-
-\`\`\`tree-no-run
-$my_hello $mol_page
-	title @ \\Greeting
-	body /
-		<= Name $mol_string
-			hint @ \\Enter your name
-			value? <=> name? \\
-		<= Message $mol_view
-			sub / <= greeting \\
-\`\`\`
-
-有几点值得点明：
-
-- \`$mol_page\` 和 \`$mol_string\` 是内置组件——一个页面外壳和一个文本输入框。
-- \`<=\` 是单向绑定；\`<=>\` 是双向绑定。所以 \`value? <=> name?\` 会让输入框与你的 \`name\` 状态保持同步。
-- \`@\` 标记可本地化的字符串；\`\\\` 开始一个原始字符串。
-
-### hello.view.ts — 行为
+### hello.view.ts — 组件
 
 \`\`\`typescript
-namespace $.$$ {
-	export class $my_hello extends $.$my_hello {
+namespace $ {
+
+	export class $my_hello extends $mol_page {
+
+		title() {
+			return 'Greeting'
+		}
+
+		body() {
+			return [ this.Name(), this.Message() ]
+		}
+
 		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+
+		@ $mol_mem
+		name( next?: string ) {
+			return next ?? ''
+		}
+
+		@ $mol_mem
+		Message() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.greeting() ]
+			return obj
+		}
+
 		greeting() {
 			const name = this.name()
-			return name ? \`Hello, \${name}!\` : 'Please enter your name'
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
 		}
+
 	}
+
 }
 \`\`\`
 
-\`@ $mol_mem\` 让 \`greeting\` 成为一个响应式、带缓存的属性。它读取 \`name()\`，所以一旦 \`name\` 变化，\`greeting\` 就会重新计算，屏幕上的消息也随之更新。你从没写过订阅、副作用或重新渲染的调用。
+从上往下读：
 
-## 3. 运行它
+- \`$my_hello\` 位于 \`namespace $\`，也就是承载所有 $mol 组件的环境命名空间。它继承 \`$mol_page\`，一个自带标题和主体的内置页面外壳。下面的 \`$mol_string\` 是内置的文本输入框。
+- \`body()\` 返回子组件。这里的子组件不是标记，而是属性：\`Name\` 和 \`Message\` 都是方法，你可以调用它们、在子类里覆盖它们，或者在样式表里按名字选中它们。
+- \`Name()\` 创建输入框并把它接上。它的每个属性拿到的是一个**箭头函数**，而不是一个值。子组件需要数据时才去调用这个箭头，因此读到的总是当前值。
+- \`name( next?: string )\` 是状态。不带参数调用是读，带参数调用是写。正是把这整个函数交给 \`obj.value\`，才让在输入框里打字能更新 \`name\`。
+- \`@ $mol_mem\` 按实例缓存一个属性。用在 \`name\` 上，意味着值会被保存下来，读过它的一切都会在它变化时重新计算。用在 \`Name\` 和 \`Message\` 上，意味着子组件只创建一次，而不是每次调用都新建一个。
+- \`greeting()\` 读取 \`name()\`。这一次读取*就是*订阅。\`name\` 变了，\`greeting\` 就重新计算，屏幕上的文字随之改变；不用声明副作用，不用写依赖数组，也不用调用重渲染。
 
-第 1 步的开发服务器已经在监视了。直接打开：
+## 3. 运行
+
+第 1 步启动的开发服务器已经在监视了。直接打开：
 
 \`\`\`
 http://localhost:9080/my/hello/
 \`\`\`
 
-输入你的名字——问候语会随你的输入而更新。这就是 $mol 的响应式：状态自行流向视图。
+输入你的名字，问候语会随你的输入而更新。这就是 $mol 的响应式：状态自行流向视图。
 
 ## 4. 添加第二个响应式值
 
-响应式是可组合的。添加一个依赖同一个 \`name\` 的长度计数器，无需任何额外接线。
+响应式是可组合的。添加一个读取同一个 \`name\` 的长度计数器，无需任何额外接线。
 
-在 \`hello.view.tree\` 中，在 \`Message\` 下方加一行：
+把它放进 \`body()\`：
 
-\`\`\`tree
-		<= Counter $mol_view
-			sub / <= counter \\
+\`\`\`typescript
+		body() {
+			return [ this.Name(), this.Message(), this.Counter() ]
+		}
 \`\`\`
 
-在 \`hello.view.ts\` 中，加上这个方法：
+再补上它背后的两个属性：
 
 \`\`\`typescript
 		@ $mol_mem
-		counter() {
-			return \`\${this.name().length} characters\`
+		Counter() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.counter() ]
+			return obj
 		}
-}
+
+		counter() {
+			return \`\${ this.name().length } characters\`
+		}
 \`\`\`
 
-\`greeting\` 和 \`counter\` 都读取 \`name\`；两者一起更新。再加第三个、加第十个——模式都不变。这正是为什么随着功能堆叠，$mol 代码依然保持扁平。
+\`greeting\` 和 \`counter\` 都读取 \`name\`，两者一起更新。再加第三个、加第十个：响应式的这一半永远不变形。
+
+另一半会变。三行逻辑带来了六行管道——一个工厂、一个 \`new\`、一个箭头、一个 \`return obj\`。把它乘以真实界面上的每一个子组件，你就得到了 \`view.tree\` 存在的理由。
 
 ## 5. 检查你的构建
 
@@ -2606,12 +2694,14 @@ http://localhost:9080/my/hello/-/web.audit.js
 
 ## 你构建了一个 $mol 应用
 
-你已经拥有一个响应式组件、双向绑定和派生状态——只用了三个小文件，零配置。
+一个带双向绑定和派生状态的响应式组件，写在一个文件里，零配置。
 
-继续前进：**[指南](#!section=docs/page=installation)** 深入讲解安装、视图、状态、路由和数据——并把这个 Hello World 变成真正的东西。
+现在拿这同一个文件，看它如何缩小：**[从 TypeScript 到 view.tree](#!section=docs/page=from-ts-to-view-tree)**。
 `},zh_hk:{title:"快速開始",summary:"本頁帶你從一個空資料夾走到一個可執行的響應式 $mol 應用，大約需要十五分鐘。下面每段程式碼都是真實可用的——原樣複製即可。",md:`# 快速開始
 
 本頁帶你從一個空資料夾走到一個可執行的響應式 $mol 應用，大約需要十五分鐘。下面每段程式碼都是真實可用的——原樣複製即可。
+
+元件你會用普通的 TypeScript 來寫。$mol 另有一種更短的元件描述格式 \`view.tree\`，下一頁你就會遇到它。這裡用不上：不管哪種寫法，$mol 元件都只是一個普通的類別。
 
 ## 你需要什麼
 
@@ -2621,7 +2711,7 @@ http://localhost:9080/my/hello/-/web.audit.js
 
 ## 1. 取得工作區
 
-MAM 是 $mol 的建構工具和模組登錄檔。複製一次並安裝：
+MAM 是 $mol 的建構工具和模組登錄表。複製一次並安裝：
 
 \`\`\`bash
 git clone https://github.com/hyoo-ru/mam.git ./mam
@@ -2642,7 +2732,7 @@ mkdir -p my/hello
 
 > **要記住的一條規則：** 元件名中的底線是資料夾分隔符。\`$my_hello\` 位於 \`my/hello/\`，而 \`$my_hello_form\` 會位於 \`my/hello/form/\`。模組資料夾名永遠不含底線。
 
-現在在 \`my/hello/\` 裡新增三個檔案。
+現在在 \`my/hello/\` 裡加入兩個檔案。
 
 ### index.html — 進入點
 
@@ -2662,73 +2752,100 @@ mkdir -p my/hello
 
 \`mol_view_root="$my_hello"\` 屬性會在頁面載入時掛載你的元件。
 
-### hello.view.tree — 版面
-
-\`\`\`tree-no-run
-$my_hello $mol_page
-	title @ \\Greeting
-	body /
-		<= Name $mol_string
-			hint @ \\Enter your name
-			value? <=> name? \\
-		<= Message $mol_view
-			sub / <= greeting \\
-\`\`\`
-
-有幾點值得點明：
-
-- \`$mol_page\` 和 \`$mol_string\` 是內建元件——一個頁面外殼和一個文字輸入框。
-- \`<=\` 是單向繫結；\`<=>\` 是雙向繫結。所以 \`value? <=> name?\` 會讓輸入框與你的 \`name\` 狀態保持同步。
-- \`@\` 標記可本地化的字串；\`\\\` 開始一個原始字串。
-
-### hello.view.ts — 行為
+### hello.view.ts — 元件
 
 \`\`\`typescript
-namespace $.$$ {
-	export class $my_hello extends $.$my_hello {
+namespace $ {
+
+	export class $my_hello extends $mol_page {
+
+		title() {
+			return 'Greeting'
+		}
+
+		body() {
+			return [ this.Name(), this.Message() ]
+		}
+
 		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+
+		@ $mol_mem
+		name( next?: string ) {
+			return next ?? ''
+		}
+
+		@ $mol_mem
+		Message() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.greeting() ]
+			return obj
+		}
+
 		greeting() {
 			const name = this.name()
-			return name ? \`Hello, \${name}!\` : 'Please enter your name'
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
 		}
+
 	}
+
 }
 \`\`\`
 
-\`@ $mol_mem\` 讓 \`greeting\` 成為一個響應式、具快取的屬性。它讀取 \`name()\`，所以一旦 \`name\` 變化，\`greeting\` 就會重新計算，畫面上的訊息也隨之更新。你從沒寫過訂閱、副作用或重新渲染的呼叫。
+從上往下讀：
 
-## 3. 執行它
+- \`$my_hello\` 位於 \`namespace $\`，也就是承載所有 $mol 元件的環境命名空間。它繼承 \`$mol_page\`，一個自帶標題和主體的內建頁面外殼。下面的 \`$mol_string\` 是內建的文字輸入框。
+- \`body()\` 回傳子元件。這裡的子元件不是標記，而是屬性：\`Name\` 和 \`Message\` 都是方法，你可以呼叫它們、在子類別裡覆寫它們，或者在樣式表裡按名字選中它們。
+- \`Name()\` 建立輸入框並把它接上。它的每個屬性拿到的是一個**箭頭函式**，而不是一個值。子元件需要資料時才去呼叫這個箭頭，因此讀到的總是當前值。
+- \`name( next?: string )\` 是狀態。不帶參數呼叫是讀，帶參數呼叫是寫。正是把這整個函式交給 \`obj.value\`，才讓在輸入框裡打字能更新 \`name\`。
+- \`@ $mol_mem\` 按實例快取一個屬性。用在 \`name\` 上，代表值會被保存下來，讀過它的一切都會在它變化時重新計算。用在 \`Name\` 和 \`Message\` 上，代表子元件只建立一次，而不是每次呼叫都新建一個。
+- \`greeting()\` 讀取 \`name()\`。這一次讀取*就是*訂閱。\`name\` 變了，\`greeting\` 就重新計算，畫面上的文字隨之改變；不用宣告副作用，不用寫相依陣列，也不用呼叫重繪。
 
-第 1 步的開發伺服器已經在監看了。直接開啟：
+## 3. 執行
+
+第 1 步啟動的開發伺服器已經在監看了。直接開啟：
 
 \`\`\`
 http://localhost:9080/my/hello/
 \`\`\`
 
-輸入你的名字——問候語會隨你的輸入而更新。這就是 $mol 的響應式：狀態自行流向視圖。
+輸入你的名字，問候語會隨你的輸入而更新。這就是 $mol 的響應式：狀態自行流向視圖。
 
-## 4. 新增第二個響應式值
+## 4. 加入第二個響應式值
 
-響應式是可組合的。新增一個依賴同一個 \`name\` 的長度計數器，無需任何額外接線。
+響應式是可組合的。加入一個讀取同一個 \`name\` 的長度計數器，無需任何額外接線。
 
-在 \`hello.view.tree\` 中，在 \`Message\` 下方加一行：
+把它放進 \`body()\`：
 
-\`\`\`tree
-		<= Counter $mol_view
-			sub / <= counter \\
+\`\`\`typescript
+		body() {
+			return [ this.Name(), this.Message(), this.Counter() ]
+		}
 \`\`\`
 
-在 \`hello.view.ts\` 中，加上這個方法：
+再補上它背後的兩個屬性：
 
 \`\`\`typescript
 		@ $mol_mem
-		counter() {
-			return \`\${this.name().length} characters\`
+		Counter() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.counter() ]
+			return obj
 		}
-}
+
+		counter() {
+			return \`\${ this.name().length } characters\`
+		}
 \`\`\`
 
-\`greeting\` 和 \`counter\` 都讀取 \`name\`；兩者一起更新。再加第三個、加第十個——模式都不變。這正是為什麼隨著功能堆疊，$mol 程式碼依然保持扁平。
+\`greeting\` 和 \`counter\` 都讀取 \`name\`，兩者一起更新。再加第三個、加第十個：響應式的這一半永遠不變形。
+
+另一半會變。三行邏輯帶來了六行管線——一個工廠、一個 \`new\`、一個箭頭、一個 \`return obj\`。把它乘以真實畫面上的每一個子元件，你就得到了 \`view.tree\` 存在的理由。
 
 ## 5. 檢查你的建構
 
@@ -2742,12 +2859,14 @@ http://localhost:9080/my/hello/-/web.audit.js
 
 ## 你建構了一個 $mol 應用
 
-你已經擁有一個響應式元件、雙向繫結和衍生狀態——只用了三個小檔案，零設定。
+一個帶雙向繫結和衍生狀態的響應式元件，寫在一個檔案裡，零設定。
 
-繼續前進：**[指南](#!section=docs/page=installation)** 深入講解安裝、視圖、狀態、路由和資料——並把這個 Hello World 變成真正的東西。
+現在拿這同一個檔案，看它如何縮小：**[從 TypeScript 到 view.tree](#!section=docs/page=from-ts-to-view-tree)**。
 `},ja:{title:"はじめかた",summary:"このページは、空のフォルダーから動作するリアクティブな $mol アプリまでを案内します。所要時間はおよそ 15 分。以下のスニペットはすべて実際に動くコードです——そのままコピーしてください。",md:`# はじめかた
 
 このページは、空のフォルダーから動作するリアクティブな $mol アプリまでを案内します。所要時間はおよそ 15 分。以下のスニペットはすべて実際に動くコードです——そのままコピーしてください。
+
+コンポーネントはふつうの TypeScript で書きます。$mol にはコンポーネントを記述するもっと短い形式 \`view.tree\` もあり、それには次のページで出会います。ここでは必要ありません。どちらで書いても、$mol のコンポーネントはただのクラスです。
 
 ## 必要なもの
 
@@ -2778,7 +2897,7 @@ mkdir -p my/hello
 
 > **覚えておくべき一つのルール：** コンポーネント名の中のアンダースコアはフォルダーの区切りです。\`$my_hello\` は \`my/hello/\` に、\`$my_hello_form\` なら \`my/hello/form/\` に置かれます。モジュールのフォルダー名にアンダースコアは決して含まれません。
 
-では \`my/hello/\` の中に 3 つのファイルを追加します。
+では \`my/hello/\` の中に 2 つのファイルを追加します。
 
 ### index.html — エントリーポイント
 
@@ -2796,75 +2915,102 @@ mkdir -p my/hello
 </html>
 \`\`\`
 
-\`mol_view_root="$my_hello"\` 属性が、ページ読み込み時にあなたのコンポーネントをマウントします。
+\`mol_view_root="$my_hello"\` 属性が、ページの読み込み時にコンポーネントをマウントします。
 
-### hello.view.tree — レイアウト
-
-\`\`\`tree-no-run
-$my_hello $mol_page
-	title @ \\Greeting
-	body /
-		<= Name $mol_string
-			hint @ \\Enter your name
-			value? <=> name? \\
-		<= Message $mol_view
-			sub / <= greeting \\
-\`\`\`
-
-名前を挙げておく価値のある点がいくつかあります。
-
-- \`$mol_page\` と \`$mol_string\` は組み込みコンポーネントです——ページの外枠とテキスト入力です。
-- \`<=\` はプロパティを一方向に、\`<=>\` は双方向に束縛します。つまり \`value? <=> name?\` は入力と \`name\` の状態を同期させ続けます。
-- \`@\` はローカライズ可能な文字列を示し、\`\\\` は生の文字列を開始します。
-
-### hello.view.ts — 振る舞い
+### hello.view.ts — コンポーネント
 
 \`\`\`typescript
-namespace $.$$ {
-	export class $my_hello extends $.$my_hello {
+namespace $ {
+
+	export class $my_hello extends $mol_page {
+
+		title() {
+			return 'Greeting'
+		}
+
+		body() {
+			return [ this.Name(), this.Message() ]
+		}
+
 		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+
+		@ $mol_mem
+		name( next?: string ) {
+			return next ?? ''
+		}
+
+		@ $mol_mem
+		Message() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.greeting() ]
+			return obj
+		}
+
 		greeting() {
 			const name = this.name()
-			return name ? \`Hello, \${name}!\` : 'Please enter your name'
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
 		}
+
 	}
+
 }
 \`\`\`
 
-\`@ $mol_mem\` は \`greeting\` をリアクティブでキャッシュされるプロパティにします。それは \`name()\` を読むので、\`name\` が変わった瞬間に \`greeting\` が再計算され、画面上のメッセージが更新されます。購読も、エフェクトも、再描画の呼び出しも、あなたは一度も書いていません。
+上から順に読んでみましょう。
+
+- \`$my_hello\` は \`namespace $\`、つまりすべての $mol コンポーネントが住む環境名前空間の中にあります。継承しているのは \`$mol_page\`、タイトルと本体を備えた組み込みのページ外枠です。下に出てくる \`$mol_string\` は組み込みのテキスト入力欄です。
+- \`body()\` は子を返します。ここでの子はマークアップではなくプロパティです。\`Name\` と \`Message\` は呼び出せるメソッドであり、サブクラスで上書きしたり、スタイルシートから名前で狙ったりできます。
+- \`Name()\` は入力欄を組み立てて配線します。そのプロパティに渡すのは値ではなく**アロー関数**です。子はデータが必要になった時点でそのアローを呼ぶので、いつでも最新の値を読みます。
+- \`name( next?: string )\` が状態です。引数なしで呼べば読み、引数付きで呼べば書きます。この関数まるごとを \`obj.value\` に渡しているからこそ、欄に入力すると \`name\` が更新されます。
+- \`@ $mol_mem\` はプロパティをインスタンスごとにキャッシュします。\`name\` に付ければ値が保持され、それを読んだものはすべて値が変わったときに再計算されます。\`Name\` と \`Message\` に付ければ、呼び出すたびに新しく作るのではなく、一度だけ作られた子コンポーネントが一つになります。
+- \`greeting()\` は \`name()\` を読みます。その読み取り*こそが*購読です。\`name\` が変われば \`greeting\` が再計算され、画面の文字がそれに続きます。宣言すべきエフェクトも、依存配列も、再描画の呼び出しもありません。
 
 ## 3. 実行する
 
-ステップ 1 の開発サーバーはすでに監視しています。次を開くだけです。
+ステップ 1 の開発サーバーはすでに監視中です。次を開くだけです。
 
 \`\`\`
 http://localhost:9080/my/hello/
 \`\`\`
 
-名前を入力してみてください——入力するそばから挨拶が更新されます。これが $mol のリアクティビティです。状態はひとりでにビューへ流れていきます。
+名前を入力すると、入力するそばから挨拶が更新されます。これが $mol のリアクティビティです。状態はひとりでにビューへ流れていきます。
 
 ## 4. 二つ目のリアクティブな値を足す
 
-リアクティビティは合成できます。追加の配線なしで、同じ \`name\` に依存する長さカウンターを足してみましょう。
+リアクティビティは合成できます。追加の配線なしで、同じ \`name\` を読む長さカウンターを足してみましょう。
 
-\`hello.view.tree\` の \`Message\` の下に一行加えます。
+まず \`body()\` に入れます。
 
-\`\`\`tree
-		<= Counter $mol_view
-			sub / <= counter \\
+\`\`\`typescript
+		body() {
+			return [ this.Name(), this.Message(), this.Counter() ]
+		}
 \`\`\`
 
-\`hello.view.ts\` にメソッドを加えます。
+その裏側の 2 つのプロパティを加えます。
 
 \`\`\`typescript
 		@ $mol_mem
-		counter() {
-			return \`\${this.name().length} characters\`
+		Counter() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.counter() ]
+			return obj
 		}
-}
+
+		counter() {
+			return \`\${ this.name().length } characters\`
+		}
 \`\`\`
 
-\`greeting\` も \`counter\` も \`name\` を読みます。両方が一緒に更新されます。三つ目を足しても、十個目を足しても——パターンは変わりません。これこそ、機能が積み上がっても $mol のコードが平らなまま保たれる理由です。
+\`greeting\` も \`counter\` も \`name\` を読み、両方が一緒に更新されます。三つ目を足しても、十個目を足しても、リアクティブな側は形を変えません。
+
+もう一方は変えます。3 行のロジックが、周りに 6 行の配管を連れてきました——ファクトリ、\`new\`、アロー、\`return obj\`。これを実際の画面にある子の数だけ掛け算すれば、\`view.tree\` が存在する理由になります。
 
 ## 5. ビルドを確認する
 
@@ -2878,12 +3024,14 @@ http://localhost:9080/my/hello/-/web.audit.js
 
 ## $mol アプリを作れました
 
-あなたはリアクティブなコンポーネント、双方向束縛、そして導出された状態を手にしました——3 つの小さなファイルと、設定ゼロで。
+双方向束縛と導出状態を備えたリアクティブなコンポーネントが、1 つのファイルに、設定ゼロで。
 
-先へ進みましょう。**[ガイド](#!section=docs/page=installation)** はインストール、ビュー、状態、ルーティング、データを深く扱い——この Hello World を本物の何かに変えます。
+では、そのまったく同じファイルが縮んでいくところを見てください。**[TypeScript から view.tree へ](#!section=docs/page=from-ts-to-view-tree)**
 `},ko:{title:"시작하기",summary:"이 페이지는 빈 폴더에서 실행되는 리액티브 $mol 앱까지 안내합니다. 약 15분 정도 걸립니다. 아래의 모든 코드 조각은 실제로 동작하는 코드입니다 — 그대로 복사하세요.",md:`# 시작하기
 
 이 페이지는 빈 폴더에서 실행되는 리액티브 $mol 앱까지 안내합니다. 약 15분 정도 걸립니다. 아래의 모든 코드 조각은 실제로 동작하는 코드입니다 — 그대로 복사하세요.
+
+컴포넌트는 평범한 TypeScript로 작성합니다. $mol에는 컴포넌트를 기술하는 더 짧은 형식인 \`view.tree\`도 있고, 다음 페이지에서 만나게 됩니다. 여기서는 필요 없습니다. 어느 쪽으로 쓰든 $mol 컴포넌트는 평범한 클래스입니다.
 
 ## 필요한 것
 
@@ -2902,19 +3050,19 @@ npm install
 npm start
 \`\`\`
 
-\`npm start\`는 \`http://localhost:9080/\` 에서 개발 서버를 시작합니다. 파일을 감시하고 자동으로 다시 빌드하므로, 별도의 터미널에서 계속 실행되도록 두세요.
+\`npm start\`는 \`http://localhost:9080/\`에서 개발 서버를 띄웁니다. 파일을 감시하며 자동으로 다시 빌드하니, 전용 터미널에서 계속 돌아가게 두세요.
 
 ## 2. 모듈 만들기
 
-$mol 앱은 그냥 폴더입니다. 네임스페이스(당신의 것, 예: \`my\`)와 이름(\`hello\`)을 고르세요.
+$mol 앱은 그냥 폴더 하나입니다. 네임스페이스(당신의 것, 예를 들어 \`my\`)와 이름(\`hello\`)을 정하세요.
 
 \`\`\`bash
 mkdir -p my/hello
 \`\`\`
 
-> **기억해야 할 한 가지 규칙:** 컴포넌트 이름 안의 밑줄은 폴더 구분자입니다. \`$my_hello\`는 \`my/hello/\`에, \`$my_hello_form\`은 \`my/hello/form/\`에 놓입니다. 모듈 폴더 이름에는 절대 밑줄이 포함되지 않습니다.
+> **기억해 둘 규칙 하나:** 컴포넌트 이름의 밑줄은 폴더 구분자입니다. \`$my_hello\`는 \`my/hello/\`에, \`$my_hello_form\`이라면 \`my/hello/form/\`에 놓입니다. 모듈 폴더 이름에는 밑줄이 절대 들어가지 않습니다.
 
-이제 \`my/hello/\` 안에 세 개의 파일을 추가합니다.
+이제 \`my/hello/\` 안에 파일 두 개를 추가하세요.
 
 ### index.html — 진입점
 
@@ -2932,79 +3080,106 @@ mkdir -p my/hello
 </html>
 \`\`\`
 
-\`mol_view_root="$my_hello"\` 속성이 페이지가 로드될 때 당신의 컴포넌트를 마운트합니다.
+\`mol_view_root="$my_hello"\` 속성이 페이지 로드 시 컴포넌트를 마운트합니다.
 
-### hello.view.tree — 레이아웃
-
-\`\`\`tree-no-run
-$my_hello $mol_page
-	title @ \\Greeting
-	body /
-		<= Name $mol_string
-			hint @ \\Enter your name
-			value? <=> name? \\
-		<= Message $mol_view
-			sub / <= greeting \\
-\`\`\`
-
-짚어둘 만한 몇 가지가 있습니다.
-
-- \`$mol_page\`와 \`$mol_string\`은 내장 컴포넌트입니다 — 페이지 셸과 텍스트 입력입니다.
-- \`<=\`는 프로퍼티를 단방향으로, \`<=>\`는 양방향으로 바인딩합니다. 그래서 \`value? <=> name?\`는 입력과 \`name\` 상태를 동기화된 상태로 유지합니다.
-- \`@\`는 로컬라이즈 가능한 문자열을 표시하고, \`\\\`는 원시 문자열을 시작합니다.
-
-### hello.view.ts — 동작
+### hello.view.ts — 컴포넌트
 
 \`\`\`typescript
-namespace $.$$ {
-	export class $my_hello extends $.$my_hello {
+namespace $ {
+
+	export class $my_hello extends $mol_page {
+
+		title() {
+			return 'Greeting'
+		}
+
+		body() {
+			return [ this.Name(), this.Message() ]
+		}
+
 		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+
+		@ $mol_mem
+		name( next?: string ) {
+			return next ?? ''
+		}
+
+		@ $mol_mem
+		Message() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.greeting() ]
+			return obj
+		}
+
 		greeting() {
 			const name = this.name()
-			return name ? \`Hello, \${name}!\` : 'Please enter your name'
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
 		}
+
 	}
+
 }
 \`\`\`
 
-\`@ $mol_mem\`은 \`greeting\`을 리액티브하고 캐시되는 프로퍼티로 만듭니다. 이 프로퍼티는 \`name()\`을 읽으므로, \`name\`이 바뀌는 순간 \`greeting\`이 다시 계산되고 화면의 메시지가 갱신됩니다. 구독도, 이펙트도, 다시 렌더링 호출도 직접 작성하지 않았습니다.
+위에서 아래로 읽어보면:
+
+- \`$my_hello\`는 모든 $mol 컴포넌트가 사는 주변 네임스페이스 \`namespace $\` 안에 있습니다. 제목과 본문을 갖춘 내장 페이지 껍데기 \`$mol_page\`를 확장합니다. 아래쪽의 \`$mol_string\`은 내장 텍스트 입력입니다.
+- \`body()\`는 자식들을 돌려줍니다. 여기서 자식은 마크업이 아니라 프로퍼티입니다. \`Name\`과 \`Message\`는 호출할 수 있고, 서브클래스에서 재정의할 수 있고, 스타일시트에서 이름으로 겨냥할 수 있는 메서드입니다.
+- \`Name()\`은 입력 필드를 만들고 배선합니다. 그 프로퍼티마다 값이 아니라 **화살표 함수**가 들어갑니다. 자식은 데이터가 필요할 때 그 화살표를 호출하므로 언제나 현재 값을 읽습니다.
+- \`name( next?: string )\`이 상태입니다. 인자 없이 부르면 읽고, 인자와 함께 부르면 씁니다. 이 함수 전체를 \`obj.value\`에 넘겼기 때문에 필드에 입력하면 \`name\`이 갱신됩니다.
+- \`@ $mol_mem\`은 프로퍼티를 인스턴스 단위로 캐시합니다. \`name\`에 붙으면 값이 보관되고, 그 값을 읽었던 모든 것이 값이 바뀔 때 다시 계산됩니다. \`Name\`과 \`Message\`에 붙으면 호출할 때마다 새로 만드는 대신 한 번 만들어진 자식 컴포넌트 하나가 유지됩니다.
+- \`greeting()\`은 \`name()\`을 읽습니다. 그 읽기가 *곧* 구독입니다. \`name\`이 바뀌면 \`greeting\`이 다시 계산되고 화면의 글자가 따라옵니다. 선언할 이펙트도, 의존성 배열도, 재렌더 호출도 없습니다.
 
 ## 3. 실행하기
 
-1단계의 개발 서버가 이미 감시하고 있습니다. 그냥 여세요.
+1단계의 개발 서버가 이미 감시 중입니다. 그냥 열면 됩니다.
 
 \`\`\`
 http://localhost:9080/my/hello/
 \`\`\`
 
-이름을 입력해 보세요 — 입력하는 대로 인사말이 갱신됩니다. 이것이 $mol의 리액티비티입니다. 상태는 스스로 뷰로 흘러갑니다.
+이름을 입력하면 타이핑에 맞춰 인사말이 갱신됩니다. 이것이 $mol의 리액티비티입니다. 상태가 스스로 뷰로 흘러갑니다.
 
-## 4. 두 번째 리액티브 값 추가하기
+## 4. 두 번째 리액티브 값 더하기
 
-리액티비티는 조합됩니다. 추가 배선 없이 같은 \`name\`에 의존하는 길이 카운터를 추가해 봅시다.
+리액티비티는 조합됩니다. 추가 배선 없이 같은 \`name\`을 읽는 길이 카운터를 더해 봅시다.
 
-\`hello.view.tree\`의 \`Message\` 아래에 한 줄을 추가하세요.
+\`body()\`에 넣습니다.
 
-\`\`\`tree
-		<= Counter $mol_view
-			sub / <= counter \\
+\`\`\`typescript
+		body() {
+			return [ this.Name(), this.Message(), this.Counter() ]
+		}
 \`\`\`
 
-\`hello.view.ts\`에 메서드를 추가하세요.
+그 뒤의 프로퍼티 두 개를 덧붙입니다.
 
 \`\`\`typescript
 		@ $mol_mem
-		counter() {
-			return \`\${this.name().length} characters\`
+		Counter() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.counter() ]
+			return obj
 		}
-}
+
+		counter() {
+			return \`\${ this.name().length } characters\`
+		}
 \`\`\`
 
-\`greeting\`과 \`counter\` 둘 다 \`name\`을 읽습니다. 둘 다 함께 갱신됩니다. 세 번째를 추가하든, 열 번째를 추가하든 — 패턴은 바뀌지 않습니다. 이것이 기능이 쌓여도 $mol 코드가 평평하게 유지되는 이유입니다.
+\`greeting\`도 \`counter\`도 \`name\`을 읽고, 둘이 함께 갱신됩니다. 세 번째를 더해도, 열 번째를 더해도 리액티브한 절반은 모양이 바뀌지 않습니다.
+
+나머지 절반은 바뀝니다. 세 줄의 로직이 여섯 줄의 배관을 데려왔습니다 — 팩토리, \`new\`, 화살표, \`return obj\`. 실제 화면의 자식 수만큼 곱해 보면 \`view.tree\`가 존재하는 이유가 나옵니다.
 
 ## 5. 빌드 확인하기
 
-MAM은 모든 앱 옆에 진단 파일을 씁니다. 빌드 후에 여세요.
+MAM은 모든 앱 옆에 진단 파일을 씁니다. 빌드 후 열어보세요.
 
 \`\`\`
 http://localhost:9080/my/hello/-/web.audit.js
@@ -3014,12 +3189,14 @@ http://localhost:9080/my/hello/-/web.audit.js
 
 ## $mol 앱을 만들었습니다
 
-당신은 리액티브 컴포넌트, 양방향 바인딩, 그리고 파생 상태를 가지게 되었습니다 — 세 개의 작은 파일과 설정 제로로.
+양방향 바인딩과 파생 상태를 갖춘 리액티브 컴포넌트가, 파일 하나에, 설정 제로로.
 
-계속 나아가세요. **[가이드](#!section=docs/page=installation)**는 설치, 뷰, 상태, 라우팅, 데이터를 깊이 다루고 — 이 Hello World를 진짜 무언가로 바꿉니다.
+이제 바로 그 파일이 줄어드는 모습을 보세요. **[TypeScript에서 view.tree로](#!section=docs/page=from-ts-to-view-tree)**
 `},fr:{title:"Démarrage",summary:"Cette page vous mène d'un dossier vide à une application $mol réactive et fonctionnelle. Comptez environ quinze minutes. Chaque extrait ci-dessous est du code…",md:`# Démarrage
 
 Cette page vous mène d'un dossier vide à une application $mol réactive et fonctionnelle. Comptez environ quinze minutes. Chaque extrait ci-dessous est du code réel qui fonctionne — copiez-le tel quel.
+
+Vous écrirez le composant en TypeScript ordinaire. $mol dispose aussi d'un format plus court pour décrire les composants, \`view.tree\`, que vous rencontrerez à la page suivante. Rien ici n'en a besoin : un composant $mol reste une classe ordinaire dans les deux cas.
 
 ## Ce qu'il vous faut
 
@@ -3050,7 +3227,7 @@ mkdir -p my/hello
 
 > **Une règle à retenir :** les traits de soulignement dans un nom de composant sont des séparateurs de dossiers. \`$my_hello\` vit dans \`my/hello/\`, \`$my_hello_form\` vivrait dans \`my/hello/form/\`. Les noms de dossiers de modules ne contiennent jamais de trait de soulignement.
 
-Ajoutez maintenant trois fichiers dans \`my/hello/\`.
+Ajoutez maintenant deux fichiers dans \`my/hello/\`.
 
 ### index.html — le point d'entrée
 
@@ -3070,40 +3247,59 @@ Ajoutez maintenant trois fichiers dans \`my/hello/\`.
 
 L'attribut \`mol_view_root="$my_hello"\` monte votre composant au chargement de la page.
 
-### hello.view.tree — la mise en page
-
-\`\`\`tree-no-run
-$my_hello $mol_page
-	title @ \\Greeting
-	body /
-		<= Name $mol_string
-			hint @ \\Enter your name
-			value? <=> name? \\
-		<= Message $mol_view
-			sub / <= greeting \\
-\`\`\`
-
-Quelques points qui méritent d'être nommés.
-
-- \`$mol_page\` et \`$mol_string\` sont des composants intégrés — une coquille de page et un champ de saisie de texte.
-- \`<=\` lie une propriété dans un seul sens ; \`<=>\` la lie dans les deux sens. Ainsi \`value? <=> name?\` garde le champ et votre état \`name\` synchronisés.
-- \`@\` marque une chaîne localisable ; \`\\\` débute une chaîne brute.
-
-### hello.view.ts — le comportement
+### hello.view.ts — le composant
 
 \`\`\`typescript
-namespace $.$$ {
-	export class $my_hello extends $.$my_hello {
+namespace $ {
+
+	export class $my_hello extends $mol_page {
+
+		title() {
+			return 'Greeting'
+		}
+
+		body() {
+			return [ this.Name(), this.Message() ]
+		}
+
 		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+
+		@ $mol_mem
+		name( next?: string ) {
+			return next ?? ''
+		}
+
+		@ $mol_mem
+		Message() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.greeting() ]
+			return obj
+		}
+
 		greeting() {
 			const name = this.name()
-			return name ? \`Hello, \${name}!\` : 'Please enter your name'
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
 		}
+
 	}
+
 }
 \`\`\`
 
-\`@ $mol_mem\` fait de \`greeting\` une propriété réactive et mise en cache. Elle lit \`name()\`, donc dès que \`name\` change, \`greeting\` se recalcule et le message à l'écran se met à jour. Vous n'avez jamais écrit d'abonnement, d'effet ni d'appel de re-rendu.
+Lisez-le de haut en bas :
+
+- \`$my_hello\` vit dans \`namespace $\`, l'espace de noms ambiant qui contient tous les composants $mol. Il étend \`$mol_page\`, une coquille de page intégrée avec un titre et un corps. \`$mol_string\` plus bas est le champ de saisie de texte intégré.
+- \`body()\` renvoie les enfants. Ici un enfant n'est pas du balisage mais une propriété : \`Name\` et \`Message\` sont des méthodes que vous pouvez appeler, redéfinir dans une sous-classe ou cibler par leur nom depuis une feuille de style.
+- \`Name()\` construit le champ et le câble. Chacune de ses propriétés reçoit une **flèche**, pas une valeur. L'enfant appelle cette flèche au moment où il a besoin de la donnée, il lit donc toujours la version courante.
+- \`name( next?: string )\` est l'état. Appelée sans argument, la méthode lit ; avec un argument, elle écrit. C'est parce que cette fonction entière est confiée à \`obj.value\` que la frappe dans le champ met \`name\` à jour.
+- \`@ $mol_mem\` met une propriété en cache par instance. Sur \`name\`, cela signifie que la valeur est conservée et que tout ce qui l'a lue est recalculé quand elle change. Sur \`Name\` et \`Message\`, cela signifie un seul composant enfant, construit une fois, au lieu d'un nouveau à chaque appel.
+- \`greeting()\` lit \`name()\`. Cette lecture *est* l'abonnement. Quand \`name\` change, \`greeting\` se recalcule et le texte à l'écran suit, sans effet à déclarer, sans liste de dépendances et sans appel de re-rendu.
 
 ## 3. Lancer l'application
 
@@ -3113,30 +3309,38 @@ Le serveur de développement de l'étape 1 surveille déjà. Ouvrez simplement :
 http://localhost:9080/my/hello/
 \`\`\`
 
-Tapez votre nom — la salutation se met à jour au fil de la frappe. C'est la réactivité de $mol : l'état s'écoule vers la vue tout seul.
+Tapez votre nom et la salutation se met à jour au fil de la frappe. C'est la réactivité de $mol : l'état s'écoule vers la vue tout seul.
 
 ## 4. Ajouter une deuxième valeur réactive
 
-La réactivité se compose. Ajoutez un compteur de longueur qui dépend du même \`name\`, sans câblage supplémentaire.
+La réactivité se compose. Ajoutez un compteur de longueur qui lit le même \`name\`, sans câblage supplémentaire.
 
-Dans \`hello.view.tree\`, ajoutez une ligne sous \`Message\` :
+Placez-le dans \`body()\` :
 
-\`\`\`tree
-		<= Counter $mol_view
-			sub / <= counter \\
+\`\`\`typescript
+		body() {
+			return [ this.Name(), this.Message(), this.Counter() ]
+		}
 \`\`\`
 
-Dans \`hello.view.ts\`, ajoutez la méthode :
+puis ajoutez les deux propriétés derrière :
 
 \`\`\`typescript
 		@ $mol_mem
-		counter() {
-			return \`\${this.name().length} characters\`
+		Counter() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.counter() ]
+			return obj
 		}
-}
+
+		counter() {
+			return \`\${ this.name().length } characters\`
+		}
 \`\`\`
 
-\`greeting\` et \`counter\` lisent tous deux \`name\` ; tous deux se mettent à jour ensemble. Ajoutez-en un troisième, ajoutez-en un dixième — le schéma ne change pas. Voilà pourquoi le code $mol reste plat à mesure que les fonctionnalités s'accumulent.
+\`greeting\` et \`counter\` lisent tous deux \`name\`, et tous deux se mettent à jour ensemble. Ajoutez-en un troisième, ajoutez-en un dixième : la moitié réactive ne change jamais de forme.
+
+L'autre moitié, si. Trois lignes de logique sont arrivées avec six lignes de plomberie autour — une fabrique, un \`new\`, une flèche, un \`return obj\`. Multipliez cela par chaque enfant d'un écran réel et vous tenez la raison d'être de \`view.tree\`.
 
 ## 5. Vérifier votre build
 
@@ -3150,12 +3354,14 @@ Un audit propre signifie aucune dépendance inutilisée, aucun problème de type
 
 ## Vous avez construit une application $mol
 
-Vous disposez d'un composant réactif, d'une liaison bidirectionnelle et d'un état dérivé — avec trois petits fichiers et zéro configuration.
+Un composant réactif avec liaison bidirectionnelle et état dérivé, dans un seul fichier, avec zéro configuration.
 
-Continuez : le **[Guide](#!section=docs/page=installation)** couvre en profondeur l'installation, les vues, l'état, le routage et les données — et transforme ce Hello World en quelque chose de réel.
+Reprenez maintenant ce même fichier et regardez-le rétrécir : **[De TypeScript à view.tree](#!section=docs/page=from-ts-to-view-tree)**.
 `},de:{title:"Erste Schritte",summary:"Diese Seite führt dich von einem leeren Ordner zu einer laufenden, reaktiven $mol-App. Es sollte etwa fünfzehn Minuten dauern. Jeder Ausschnitt unten ist…",md:`# Erste Schritte
 
 Diese Seite führt dich von einem leeren Ordner zu einer laufenden, reaktiven $mol-App. Es sollte etwa fünfzehn Minuten dauern. Jeder Ausschnitt unten ist echter, funktionierender Code — kopiere ihn unverändert.
+
+Du schreibst die Komponente in reinem TypeScript. $mol hat auch ein kürzeres Format für die Beschreibung von Komponenten, \`view.tree\`, und dem begegnest du auf der nächsten Seite. Hier braucht es das nicht: Eine $mol-Komponente ist so oder so eine gewöhnliche Klasse.
 
 ## Was du brauchst
 
@@ -3186,7 +3392,7 @@ mkdir -p my/hello
 
 > **Eine Regel zum Merken:** Unterstriche in einem Komponentennamen sind Ordner-Trenner. \`$my_hello\` liegt in \`my/hello/\`, \`$my_hello_form\` läge in \`my/hello/form/\`. Modul-Ordnernamen enthalten niemals einen Unterstrich.
 
-Füge nun drei Dateien in \`my/hello/\` hinzu.
+Füge nun zwei Dateien in \`my/hello/\` hinzu.
 
 ### index.html — der Einstiegspunkt
 
@@ -3206,40 +3412,59 @@ Füge nun drei Dateien in \`my/hello/\` hinzu.
 
 Das Attribut \`mol_view_root="$my_hello"\` bindet deine Komponente beim Laden der Seite ein.
 
-### hello.view.tree — das Layout
-
-\`\`\`tree-no-run
-$my_hello $mol_page
-	title @ \\Greeting
-	body /
-		<= Name $mol_string
-			hint @ \\Enter your name
-			value? <=> name? \\
-		<= Message $mol_view
-			sub / <= greeting \\
-\`\`\`
-
-Ein paar Dinge, die es wert sind, benannt zu werden.
-
-- \`$mol_page\` und \`$mol_string\` sind eingebaute Komponenten — eine Seitenhülle und ein Texteingabefeld.
-- \`<=\` bindet eine Eigenschaft in eine Richtung; \`<=>\` bindet in beide Richtungen. So hält \`value? <=> name?\` die Eingabe und deinen \`name\`-Zustand synchron.
-- \`@\` markiert eine lokalisierbare Zeichenkette; \`\\\` beginnt eine rohe Zeichenkette.
-
-### hello.view.ts — das Verhalten
+### hello.view.ts — die Komponente
 
 \`\`\`typescript
-namespace $.$$ {
-	export class $my_hello extends $.$my_hello {
+namespace $ {
+
+	export class $my_hello extends $mol_page {
+
+		title() {
+			return 'Greeting'
+		}
+
+		body() {
+			return [ this.Name(), this.Message() ]
+		}
+
 		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+
+		@ $mol_mem
+		name( next?: string ) {
+			return next ?? ''
+		}
+
+		@ $mol_mem
+		Message() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.greeting() ]
+			return obj
+		}
+
 		greeting() {
 			const name = this.name()
-			return name ? \`Hello, \${name}!\` : 'Please enter your name'
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
 		}
+
 	}
+
 }
 \`\`\`
 
-\`@ $mol_mem\` macht \`greeting\` zu einer reaktiven, zwischengespeicherten Eigenschaft. Sie liest \`name()\`, sodass sich \`greeting\` in dem Moment neu berechnet, in dem sich \`name\` ändert, und die Nachricht auf dem Bildschirm aktualisiert wird. Du hast nie ein Abonnement, einen Effekt oder einen Re-Render-Aufruf geschrieben.
+Von oben nach unten gelesen:
+
+- \`$my_hello\` liegt in \`namespace $\`, dem umgebenden Namensraum, in dem jede $mol-Komponente wohnt. Sie erweitert \`$mol_page\`, eine eingebaute Seitenhülle mit Titel und Body. \`$mol_string\` weiter unten ist das eingebaute Texteingabefeld.
+- \`body()\` liefert die Kinder. Ein Kind ist hier keine Markup-Zeile, sondern eine Eigenschaft: \`Name\` und \`Message\` sind Methoden, die du aufrufen, in einer Unterklasse überschreiben oder im Stylesheet über ihren Namen ansprechen kannst.
+- \`Name()\` baut das Eingabefeld und verdrahtet es. Jede seiner Eigenschaften bekommt einen **Pfeil**, keinen Wert. Das Kind ruft diesen Pfeil auf, wenn es die Daten braucht, und liest so immer die aktuellen.
+- \`name( next?: string )\` ist der Zustand. Ohne Argument aufgerufen liest die Methode, mit Argument schreibt sie. Genau weil diese ganze Funktion an \`obj.value\` geht, aktualisiert Tippen im Feld den \`name\`.
+- \`@ $mol_mem\` speichert eine Eigenschaft pro Instanz zwischen. Bei \`name\` heißt das: Der Wert bleibt erhalten, und alles, was ihn gelesen hat, wird bei einer Änderung neu berechnet. Bei \`Name\` und \`Message\` heißt es: eine Kindkomponente, einmal gebaut, statt einer neuen bei jedem Aufruf.
+- \`greeting()\` liest \`name()\`. Dieses Lesen *ist* das Abonnement. Ändert sich \`name\`, berechnet sich \`greeting\` neu und der Text auf dem Bildschirm folgt, ohne deklarierten Effekt, ohne Abhängigkeitsliste, ohne Re-Render-Aufruf.
 
 ## 3. Ausführen
 
@@ -3249,30 +3474,38 @@ Der Entwicklungsserver aus Schritt 1 überwacht bereits. Öffne einfach:
 http://localhost:9080/my/hello/
 \`\`\`
 
-Tippe deinen Namen — die Begrüßung aktualisiert sich beim Tippen. Das ist $mol-Reaktivität: Der Zustand fließt von selbst zur Ansicht.
+Tippe deinen Namen, und die Begrüßung aktualisiert sich beim Tippen. Das ist $mol-Reaktivität: Der Zustand fließt von selbst zur Ansicht.
 
 ## 4. Einen zweiten reaktiven Wert hinzufügen
 
-Reaktivität lässt sich zusammensetzen. Füge einen Längenzähler hinzu, der vom selben \`name\` abhängt, ohne zusätzliche Verdrahtung.
+Reaktivität lässt sich zusammensetzen. Füge einen Längenzähler hinzu, der denselben \`name\` liest, ohne zusätzliche Verdrahtung.
 
-Füge in \`hello.view.tree\` eine Zeile unter \`Message\` hinzu:
+Trag ihn in \`body()\` ein:
 
-\`\`\`tree
-		<= Counter $mol_view
-			sub / <= counter \\
+\`\`\`typescript
+		body() {
+			return [ this.Name(), this.Message(), this.Counter() ]
+		}
 \`\`\`
 
-Füge in \`hello.view.ts\` die Methode hinzu:
+und ergänze die zwei Eigenschaften dahinter:
 
 \`\`\`typescript
 		@ $mol_mem
-		counter() {
-			return \`\${this.name().length} characters\`
+		Counter() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.counter() ]
+			return obj
 		}
-}
+
+		counter() {
+			return \`\${ this.name().length } characters\`
+		}
 \`\`\`
 
-Sowohl \`greeting\` als auch \`counter\` lesen \`name\`; beide aktualisieren sich gemeinsam. Füge einen dritten hinzu, füge einen zehnten hinzu — das Muster ändert sich nicht. Deshalb bleibt $mol-Code flach, während sich Funktionen anhäufen.
+Sowohl \`greeting\` als auch \`counter\` lesen \`name\`, und beide aktualisieren sich gemeinsam. Füge einen dritten hinzu, füge einen zehnten hinzu: Die reaktive Hälfte ändert nie ihre Form.
+
+Die andere Hälfte schon. Drei Zeilen Logik kamen mit sechs Zeilen Klempnerei drumherum — eine Fabrik, ein \`new\`, ein Pfeil, ein \`return obj\`. Multipliziere das mit jedem Kind auf einem echten Bildschirm, und du hast den Grund, warum es \`view.tree\` gibt.
 
 ## 5. Deinen Build prüfen
 
@@ -3286,12 +3519,14 @@ Ein sauberes Audit bedeutet keine ungenutzten Abhängigkeiten, keine Typ-Problem
 
 ## Du hast eine $mol-App gebaut
 
-Du hast eine reaktive Komponente, bidirektionale Bindung und abgeleiteten Zustand — mit drei kleinen Dateien und null Konfiguration.
+Eine reaktive Komponente mit bidirektionaler Bindung und abgeleitetem Zustand, in einer Datei, mit null Konfiguration.
 
-Mach weiter: Der **[Leitfaden](#!section=docs/page=installation)** behandelt Installation, Ansichten, Zustand, Routing und Daten im Detail — und verwandelt dieses Hello World in etwas Echtes.
+Nimm nun genau diese Datei und sieh zu, wie sie schrumpft: **[Von TypeScript zu view.tree](#!section=docs/page=from-ts-to-view-tree)**.
 `},pt:{title:"Primeiros passos",summary:"Esta página leva você de uma pasta vazia até um app $mol reativo e em execução. Deve levar cerca de quinze minutos. Cada trecho abaixo é código real e…",md:`# Primeiros passos
 
 Esta página leva você de uma pasta vazia até um app $mol reativo e em execução. Deve levar cerca de quinze minutos. Cada trecho abaixo é código real e funcional — copie-o como está.
+
+Você vai escrever o componente em TypeScript comum. O $mol também tem um formato mais curto para descrever componentes, o \`view.tree\`, que você encontra na próxima página. Nada aqui precisa dele: um componente $mol é uma classe comum de qualquer jeito.
 
 ## O que você precisa
 
@@ -3322,7 +3557,7 @@ mkdir -p my/hello
 
 > **Uma regra para lembrar:** underscores em um nome de componente são separadores de pastas. \`$my_hello\` fica em \`my/hello/\`, \`$my_hello_form\` ficaria em \`my/hello/form/\`. Nomes de pastas de módulos nunca contêm underscore.
 
-Agora adicione três arquivos dentro de \`my/hello/\`.
+Agora adicione dois arquivos dentro de \`my/hello/\`.
 
 ### index.html — o ponto de entrada
 
@@ -3342,40 +3577,59 @@ Agora adicione três arquivos dentro de \`my/hello/\`.
 
 O atributo \`mol_view_root="$my_hello"\` monta seu componente quando a página carrega.
 
-### hello.view.tree — o layout
-
-\`\`\`tree-no-run
-$my_hello $mol_page
-	title @ \\Greeting
-	body /
-		<= Name $mol_string
-			hint @ \\Enter your name
-			value? <=> name? \\
-		<= Message $mol_view
-			sub / <= greeting \\
-\`\`\`
-
-Algumas coisas que vale a pena nomear.
-
-- \`$mol_page\` e \`$mol_string\` são componentes embutidos — uma casca de página e uma entrada de texto.
-- \`<=\` liga uma propriedade em um sentido; \`<=>\` liga nos dois sentidos. Então \`value? <=> name?\` mantém a entrada e seu estado \`name\` sincronizados.
-- \`@\` marca uma string localizável; \`\\\` inicia uma string bruta.
-
-### hello.view.ts — o comportamento
+### hello.view.ts — o componente
 
 \`\`\`typescript
-namespace $.$$ {
-	export class $my_hello extends $.$my_hello {
+namespace $ {
+
+	export class $my_hello extends $mol_page {
+
+		title() {
+			return 'Greeting'
+		}
+
+		body() {
+			return [ this.Name(), this.Message() ]
+		}
+
 		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+
+		@ $mol_mem
+		name( next?: string ) {
+			return next ?? ''
+		}
+
+		@ $mol_mem
+		Message() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.greeting() ]
+			return obj
+		}
+
 		greeting() {
 			const name = this.name()
-			return name ? \`Hello, \${name}!\` : 'Please enter your name'
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
 		}
+
 	}
+
 }
 \`\`\`
 
-\`@ $mol_mem\` torna \`greeting\` uma propriedade reativa e cacheada. Ela lê \`name()\`, então no momento em que \`name\` muda, \`greeting\` recalcula e a mensagem na tela é atualizada. Você nunca escreveu uma assinatura, um efeito ou uma chamada de re-renderização.
+Leia de cima para baixo:
+
+- \`$my_hello\` vive em \`namespace $\`, o namespace ambiente onde mora todo componente $mol. Ele estende \`$mol_page\`, uma casca de página embutida com título e corpo. \`$mol_string\`, mais abaixo, é a entrada de texto embutida.
+- \`body()\` devolve os filhos. Aqui um filho não é markup, é uma propriedade: \`Name\` e \`Message\` são métodos que você pode chamar, sobrescrever em uma subclasse ou alcançar pelo nome em uma folha de estilos.
+- \`Name()\` constrói o campo e o liga. Cada propriedade dele recebe uma **seta**, não um valor. O filho chama essa seta quando precisa do dado, então sempre lê o valor atual.
+- \`name( next?: string )\` é o estado. Chamado sem argumento, lê; com um argumento, escreve. É justamente entregar essa função inteira a \`obj.value\` que faz digitar no campo atualizar \`name\`.
+- \`@ $mol_mem\` guarda uma propriedade em cache por instância. Em \`name\` isso quer dizer que o valor fica guardado e que tudo que o leu se recalcula quando ele muda. Em \`Name\` e \`Message\` quer dizer um componente filho, construído uma vez, em vez de um novo a cada chamada.
+- \`greeting()\` lê \`name()\`. Essa leitura *é* a assinatura. Quando \`name\` muda, \`greeting\` se recalcula e o texto na tela acompanha, sem efeito a declarar, sem lista de dependências e sem chamada de re-renderização.
 
 ## 3. Executar
 
@@ -3385,30 +3639,38 @@ O servidor de desenvolvimento do passo 1 já está observando. Basta abrir:
 http://localhost:9080/my/hello/
 \`\`\`
 
-Digite seu nome — a saudação se atualiza conforme você digita. Isso é a reatividade do $mol: o estado flui para a view por conta própria.
+Digite seu nome e a saudação se atualiza conforme você digita. Isso é a reatividade do $mol: o estado flui para a view por conta própria.
 
 ## 4. Adicionar um segundo valor reativo
 
-A reatividade se compõe. Adicione um contador de comprimento que depende do mesmo \`name\`, sem nenhuma fiação extra.
+A reatividade se compõe. Adicione um contador de comprimento que lê o mesmo \`name\`, sem nenhuma fiação extra.
 
-Em \`hello.view.tree\`, adicione uma linha abaixo de \`Message\`:
+Coloque-o em \`body()\`:
 
-\`\`\`tree
-		<= Counter $mol_view
-			sub / <= counter \\
+\`\`\`typescript
+		body() {
+			return [ this.Name(), this.Message(), this.Counter() ]
+		}
 \`\`\`
 
-Em \`hello.view.ts\`, adicione o método:
+e acrescente as duas propriedades por trás dele:
 
 \`\`\`typescript
 		@ $mol_mem
-		counter() {
-			return \`\${this.name().length} characters\`
+		Counter() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.counter() ]
+			return obj
 		}
-}
+
+		counter() {
+			return \`\${ this.name().length } characters\`
+		}
 \`\`\`
 
-Tanto \`greeting\` quanto \`counter\` leem \`name\`; ambos se atualizam juntos. Adicione um terceiro, adicione um décimo — o padrão não muda. É por isso que o código $mol permanece plano à medida que os recursos se acumulam.
+Tanto \`greeting\` quanto \`counter\` leem \`name\`, e ambos se atualizam juntos. Adicione um terceiro, adicione um décimo: a metade reativa nunca muda de forma.
+
+A outra metade muda. Três linhas de lógica chegaram com seis linhas de encanamento em volta — uma fábrica, um \`new\`, uma seta, um \`return obj\`. Multiplique isso por cada filho de uma tela de verdade e você tem a razão de existir do \`view.tree\`.
 
 ## 5. Verificar seu build
 
@@ -3422,12 +3684,14 @@ Um audit limpo significa nenhuma dependência não utilizada, nenhum problema de
 
 ## Você construiu um app $mol
 
-Você tem um componente reativo, ligação bidirecional e estado derivado — com três arquivos pequenos e zero configuração.
+Um componente reativo com ligação bidirecional e estado derivado, em um único arquivo, com zero configuração.
 
-Continue: o **[Guia](#!section=docs/page=installation)** cobre em profundidade instalação, views, estado, roteamento e dados — e transforma este Hello World em algo real.
+Agora pegue esse mesmo arquivo e veja-o encolher: **[De TypeScript para view.tree](#!section=docs/page=from-ts-to-view-tree)**.
 `},it:{title:"Per iniziare",summary:"Questa pagina ti porta da una cartella vuota a un'app $mol reattiva e funzionante. Dovrebbe richiedere circa quindici minuti. Ogni frammento qui sotto è codice…",md:`# Per iniziare
 
 Questa pagina ti porta da una cartella vuota a un'app $mol reattiva e funzionante. Dovrebbe richiedere circa quindici minuti. Ogni frammento qui sotto è codice reale e funzionante — copialo così com'è.
+
+Il componente lo scriverai in TypeScript normale. $mol ha anche un formato più breve per descrivere i componenti, \`view.tree\`, che incontrerai nella pagina successiva. Qui non serve: un componente $mol resta una classe ordinaria in entrambi i casi.
 
 ## Cosa ti serve
 
@@ -3458,7 +3722,7 @@ mkdir -p my/hello
 
 > **Una regola da ricordare:** i trattini bassi in un nome di componente sono separatori di cartelle. \`$my_hello\` sta in \`my/hello/\`, \`$my_hello_form\` starebbe in \`my/hello/form/\`. I nomi delle cartelle dei moduli non contengono mai un trattino basso.
 
-Ora aggiungi tre file dentro \`my/hello/\`.
+Ora aggiungi due file dentro \`my/hello/\`.
 
 ### index.html — il punto di ingresso
 
@@ -3478,40 +3742,59 @@ Ora aggiungi tre file dentro \`my/hello/\`.
 
 L'attributo \`mol_view_root="$my_hello"\` monta il tuo componente al caricamento della pagina.
 
-### hello.view.tree — il layout
-
-\`\`\`tree-no-run
-$my_hello $mol_page
-	title @ \\Greeting
-	body /
-		<= Name $mol_string
-			hint @ \\Enter your name
-			value? <=> name? \\
-		<= Message $mol_view
-			sub / <= greeting \\
-\`\`\`
-
-Alcune cose che vale la pena nominare.
-
-- \`$mol_page\` e \`$mol_string\` sono componenti integrati — un guscio di pagina e un campo di input di testo.
-- \`<=\` lega una proprietà in un solo senso; \`<=>\` la lega in entrambi i sensi. Così \`value? <=> name?\` mantiene sincronizzati l'input e il tuo stato \`name\`.
-- \`@\` contrassegna una stringa localizzabile; \`\\\` inizia una stringa grezza.
-
-### hello.view.ts — il comportamento
+### hello.view.ts — il componente
 
 \`\`\`typescript
-namespace $.$$ {
-	export class $my_hello extends $.$my_hello {
+namespace $ {
+
+	export class $my_hello extends $mol_page {
+
+		title() {
+			return 'Greeting'
+		}
+
+		body() {
+			return [ this.Name(), this.Message() ]
+		}
+
 		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+
+		@ $mol_mem
+		name( next?: string ) {
+			return next ?? ''
+		}
+
+		@ $mol_mem
+		Message() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.greeting() ]
+			return obj
+		}
+
 		greeting() {
 			const name = this.name()
-			return name ? \`Hello, \${name}!\` : 'Please enter your name'
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
 		}
+
 	}
+
 }
 \`\`\`
 
-\`@ $mol_mem\` rende \`greeting\` una proprietà reattiva e memorizzata nella cache. Legge \`name()\`, quindi nel momento in cui \`name\` cambia, \`greeting\` viene ricalcolato e il messaggio sullo schermo si aggiorna. Non hai mai scritto una sottoscrizione, un effetto o una chiamata di re-render.
+Leggilo dall'alto in basso:
+
+- \`$my_hello\` vive in \`namespace $\`, lo spazio dei nomi ambiente che contiene ogni componente $mol. Estende \`$mol_page\`, un guscio di pagina integrato con titolo e corpo. \`$mol_string\` più sotto è il campo di testo integrato.
+- \`body()\` restituisce i figli. Qui un figlio non è markup ma una proprietà: \`Name\` e \`Message\` sono metodi che puoi chiamare, ridefinire in una sottoclasse o raggiungere per nome da un foglio di stile.
+- \`Name()\` costruisce il campo e lo collega. Ogni sua proprietà riceve una **freccia**, non un valore. Il figlio chiama quella freccia quando gli servono i dati, quindi legge sempre quelli correnti.
+- \`name( next?: string )\` è lo stato. Chiamato senza argomenti legge, con un argomento scrive. È proprio il passaggio di questa intera funzione a \`obj.value\` a far sì che digitare nel campo aggiorni \`name\`.
+- \`@ $mol_mem\` mette in cache una proprietà per istanza. Su \`name\` significa che il valore viene conservato e che tutto ciò che l'ha letto si ricalcola quando cambia. Su \`Name\` e \`Message\` significa un solo componente figlio, costruito una volta, invece di uno nuovo a ogni chiamata.
+- \`greeting()\` legge \`name()\`. Quella lettura *è* la sottoscrizione. Quando \`name\` cambia, \`greeting\` si ricalcola e il testo a schermo segue, senza effetti da dichiarare, senza liste di dipendenze e senza chiamate di re-render.
 
 ## 3. Eseguirla
 
@@ -3521,30 +3804,38 @@ Il server di sviluppo del passo 1 sta già osservando. Basta aprire:
 http://localhost:9080/my/hello/
 \`\`\`
 
-Digita il tuo nome — il saluto si aggiorna mentre scrivi. Questa è la reattività di $mol: lo stato scorre verso la vista da solo.
+Digita il tuo nome e il saluto si aggiorna mentre scrivi. Questa è la reattività di $mol: lo stato scorre verso la vista da solo.
 
 ## 4. Aggiungere un secondo valore reattivo
 
-La reattività si compone. Aggiungi un contatore di lunghezza che dipende dallo stesso \`name\`, senza cablaggio aggiuntivo.
+La reattività si compone. Aggiungi un contatore di lunghezza che legge lo stesso \`name\`, senza cablaggio aggiuntivo.
 
-In \`hello.view.tree\`, aggiungi una riga sotto \`Message\`:
+Mettilo in \`body()\`:
 
-\`\`\`tree
-		<= Counter $mol_view
-			sub / <= counter \\
+\`\`\`typescript
+		body() {
+			return [ this.Name(), this.Message(), this.Counter() ]
+		}
 \`\`\`
 
-In \`hello.view.ts\`, aggiungi il metodo:
+e aggiungi le due proprietà che stanno dietro:
 
 \`\`\`typescript
 		@ $mol_mem
-		counter() {
-			return \`\${this.name().length} characters\`
+		Counter() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.counter() ]
+			return obj
 		}
-}
+
+		counter() {
+			return \`\${ this.name().length } characters\`
+		}
 \`\`\`
 
-Sia \`greeting\` sia \`counter\` leggono \`name\`; entrambi si aggiornano insieme. Aggiungine un terzo, aggiungine un decimo — lo schema non cambia. Ecco perché il codice $mol resta piatto man mano che le funzionalità si accumulano.
+Sia \`greeting\` sia \`counter\` leggono \`name\`, e si aggiornano insieme. Aggiungine un terzo, aggiungine un decimo: la metà reattiva non cambia mai forma.
+
+L'altra metà sì. Tre righe di logica sono arrivate con sei righe di impalcatura attorno — una fabbrica, un \`new\`, una freccia, un \`return obj\`. Moltiplicalo per ogni figlio di uno schermo vero e hai il motivo per cui esiste \`view.tree\`.
 
 ## 5. Controllare la build
 
@@ -3558,12 +3849,14 @@ Un audit pulito significa nessuna dipendenza inutilizzata, nessun problema di ti
 
 ## Hai costruito un'app $mol
 
-Hai un componente reattivo, un binding bidirezionale e uno stato derivato — con tre piccoli file e zero configurazione.
+Un componente reattivo con binding bidirezionale e stato derivato, in un file solo, con zero configurazione.
 
-Continua: la **[Guida](#!section=docs/page=installation)** copre in profondità installazione, viste, stato, routing e dati — e trasforma questo Hello World in qualcosa di reale.
+Ora prendi quello stesso file e guardalo restringersi: **[Da TypeScript a view.tree](#!section=docs/page=from-ts-to-view-tree)**.
 `},ru:{title:"Быстрый старт",summary:"Эта страница проведёт вас от пустой папки до работающего реактивного $mol-приложения. Займёт около пятнадцати минут. Каждый фрагмент ниже — настоящий рабочий…",md:`# Быстрый старт
 
 Эта страница проведёт вас от пустой папки до работающего реактивного $mol-приложения. Займёт около пятнадцати минут. Каждый фрагмент ниже — настоящий рабочий код, копируйте как есть.
+
+Компонент вы напишете на обычном TypeScript. У $mol есть и более короткий формат описания компонентов, \`view.tree\`, с ним вы познакомитесь на следующей странице. Здесь он не нужен: компонент $mol в любом случае остаётся обычным классом.
 
 ## Что понадобится
 
@@ -3594,7 +3887,7 @@ mkdir -p my/hello
 
 > **Одно правило, которое стоит запомнить:** подчёркивания в имени компонента — это разделители папок. \`$my_hello\` живёт в \`my/hello/\`, а \`$my_hello_form\` жил бы в \`my/hello/form/\`. Имена папок-модулей никогда не содержат подчёркивания.
 
-Теперь добавьте три файла внутрь \`my/hello/\`.
+Теперь добавьте два файла внутрь \`my/hello/\`.
 
 ### index.html — точка входа
 
@@ -3614,40 +3907,59 @@ mkdir -p my/hello
 
 Атрибут \`mol_view_root="$my_hello"\` монтирует ваш компонент при загрузке страницы.
 
-### hello.view.tree — разметка
-
-\`\`\`tree-no-run
-$my_hello $mol_page
-	title @ \\Greeting
-	body /
-		<= Name $mol_string
-			hint @ \\Enter your name
-			value? <=> name? \\
-		<= Message $mol_view
-			sub / <= greeting \\
-\`\`\`
-
-Пара моментов, которые стоит назвать:
-
-- \`$mol_page\` и \`$mol_string\` — встроенные компоненты: каркас страницы и текстовое поле.
-- \`<=\` связывает свойство в одну сторону; \`<=>\` — в обе. Так \`value? <=> name?\` держит поле ввода и ваше состояние \`name\` синхронными.
-- \`@\` помечает локализуемую строку; \`\\\` начинает сырую строку.
-
-### hello.view.ts — поведение
+### hello.view.ts — компонент
 
 \`\`\`typescript
-namespace $.$$ {
-	export class $my_hello extends $.$my_hello {
+namespace $ {
+
+	export class $my_hello extends $mol_page {
+
+		title() {
+			return 'Greeting'
+		}
+
+		body() {
+			return [ this.Name(), this.Message() ]
+		}
+
 		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+
+		@ $mol_mem
+		name( next?: string ) {
+			return next ?? ''
+		}
+
+		@ $mol_mem
+		Message() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.greeting() ]
+			return obj
+		}
+
 		greeting() {
 			const name = this.name()
-			return name ? \`Hello, \${name}!\` : 'Please enter your name'
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
 		}
+
 	}
+
 }
 \`\`\`
 
-\`@ $mol_mem\` делает \`greeting\` реактивным кешируемым свойством. Оно читает \`name()\`, поэтому в момент изменения \`name\` свойство \`greeting\` пересчитывается, и сообщение на экране обновляется. Вы не написали ни подписки, ни эффекта, ни вызова перерисовки.
+Читаем сверху вниз:
+
+- \`$my_hello\` живёт в \`namespace $\` — окружающем пространстве имён, где лежат все компоненты $mol. Он наследует \`$mol_page\`, встроенный каркас страницы с заголовком и телом. \`$mol_string\` ниже — встроенное текстовое поле.
+- \`body()\` возвращает детей. Ребёнок здесь не разметка, а свойство: \`Name\` и \`Message\` — методы, которые можно вызвать, переопределить в наследнике или взять по имени в стилях.
+- \`Name()\` создаёт поле ввода и связывает его. Каждому свойству ребёнка достаётся **стрелка**, а не значение. Ребёнок дёргает её тогда, когда данные ему нужны, поэтому всегда читает актуальные.
+- \`name( next?: string )\` — состояние. Вызов без аргумента читает, с аргументом пишет. Именно передача всей этой функции в \`obj.value\` заставляет ввод в поле обновлять \`name\`.
+- \`@ $mol_mem\` кеширует свойство на экземпляр. На \`name\` это значит, что значение хранится, и всё, что его прочитало, пересчитается при изменении. На \`Name\` и \`Message\` — один дочерний компонент, созданный однажды, вместо нового на каждый вызов.
+- \`greeting()\` читает \`name()\`. Это чтение *и есть* подписка. Меняется \`name\` — пересчитывается \`greeting\`, за ним меняется текст на экране. Ни эффекта, ни списка зависимостей, ни вызова перерисовки.
 
 ## 3. Запустите
 
@@ -3657,30 +3969,38 @@ namespace $.$$ {
 http://localhost:9080/my/hello/
 \`\`\`
 
-Введите имя — приветствие обновляется по мере ввода. Это и есть реактивность $mol: состояние само перетекает во вью.
+Введите имя, и приветствие обновится по мере ввода. Это и есть реактивность $mol: состояние само перетекает во вью.
 
 ## 4. Добавьте второе реактивное значение
 
-Реактивность композируется. Добавьте счётчик длины, который зависит от того же \`name\`, без единой лишней связки.
+Реактивность композируется. Добавьте счётчик длины, который читает тот же \`name\`, без единой лишней связки.
 
-В \`hello.view.tree\` добавьте строку под \`Message\`:
+Положите его в \`body()\`:
 
-\`\`\`tree
-		<= Counter $mol_view
-			sub / <= counter \\
+\`\`\`typescript
+		body() {
+			return [ this.Name(), this.Message(), this.Counter() ]
+		}
 \`\`\`
 
-В \`hello.view.ts\` добавьте метод:
+и допишите два свойства за ним:
 
 \`\`\`typescript
 		@ $mol_mem
-		counter() {
-			return \`\${this.name().length} characters\`
+		Counter() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.counter() ]
+			return obj
 		}
-}
+
+		counter() {
+			return \`\${ this.name().length } characters\`
+		}
 \`\`\`
 
-И \`greeting\`, и \`counter\` читают \`name\`; оба обновляются вместе. Добавьте третье, добавьте десятое — паттерн не меняется. Именно поэтому $mol-код остаётся плоским по мере роста числа фич.
+И \`greeting\`, и \`counter\` читают \`name\`, оба обновляются вместе. Добавьте третье, добавьте десятое: реактивная половина не меняет форму.
+
+Вторая половина меняет. Три строки логики принесли с собой шесть строк обвязки — фабрику, \`new\`, стрелку, \`return obj\`. Умножьте на каждого ребёнка настоящего экрана, и получится причина, по которой существует \`view.tree\`.
 
 ## 5. Проверьте сборку
 
@@ -3694,12 +4014,14 @@ http://localhost:9080/my/hello/-/web.audit.js
 
 ## Вы собрали $mol-приложение
 
-У вас есть реактивный компонент, двустороннее связывание и производное состояние — три маленьких файла и ноль конфигурации.
+Реактивный компонент с двусторонним связыванием и производным состоянием, в одном файле, с нулевой конфигурацией.
 
-Продолжайте: **[Руководство](#!section=docs/page=installation)** подробно разбирает установку, вью, состояние, роутинг и данные — и превращает этот Hello World во что-то настоящее.
+Теперь возьмите этот же файл и посмотрите, как он сожмётся: **[От TypeScript к view.tree](#!section=docs/page=from-ts-to-view-tree)**.
 `},uk:{title:"Початок роботи",summary:"Ця сторінка проведе вас від порожньої теки до робочого реактивного застосунку $mol. Це має зайняти приблизно п'ятнадцять хвилин. Кожен фрагмент нижче — це…",md:`# Початок роботи
 
 Ця сторінка проведе вас від порожньої теки до робочого реактивного застосунку $mol. Це має зайняти приблизно п'ятнадцять хвилин. Кожен фрагмент нижче — це справжній, робочий код; копіюйте його як є.
+
+Компонент ви напишете звичайним TypeScript. У $mol є й коротший формат опису компонентів, \`view.tree\`, з ним ви познайомитеся на наступній сторінці. Тут він не потрібен: компонент $mol у будь-якому разі лишається звичайним класом.
 
 ## Що вам потрібно
 
@@ -3709,7 +4031,7 @@ http://localhost:9080/my/hello/-/web.audit.js
 
 ## 1. Отримати робочий простір
 
-MAM — це інструмент збірки та реєстр модулів для $mol. Клонуйте його й встановіть один раз.
+MAM — це інструмент збірки та реєстр модулів для $mol. Склонуйте його та встановіть залежності один раз:
 
 \`\`\`bash
 git clone https://github.com/hyoo-ru/mam.git ./mam
@@ -3718,19 +4040,19 @@ npm install
 npm start
 \`\`\`
 
-\`npm start\` запускає сервер розробки на \`http://localhost:9080/\`. Він стежить за вашими файлами і пересобирає автоматично — залиште його працювати в окремому терміналі.
+\`npm start\` запускає сервер розробки на \`http://localhost:9080/\`. Він стежить за файлами й перезбирає автоматично — лишіть його працювати в окремому терміналі.
 
 ## 2. Створити модуль
 
-Застосунок $mol — це просто тека. Виберіть простір імен (свій, наприклад \`my\`) і назву (\`hello\`).
+Застосунок $mol — це просто тека. Виберіть простір імен (свій, наприклад \`my\`) та ім'я (\`hello\`):
 
 \`\`\`bash
 mkdir -p my/hello
 \`\`\`
 
-> **Одне правило, яке варто запам'ятати:** підкреслення в імені компонента — це роздільники тек. \`$my_hello\` живе в \`my/hello/\`, а \`$my_hello_form\` жив би в \`my/hello/form/\`. Імена тек модулів ніколи не містять підкреслення.
+> **Одне правило, яке варто запам'ятати:** підкреслення в імені компонента — це роздільники тек. \`$my_hello\` живе в \`my/hello/\`, а \`$my_hello_form\` жив би в \`my/hello/form/\`. Імена тек-модулів ніколи не містять підкреслення.
 
-Тепер додайте три файли всередині \`my/hello/\`.
+Тепер додайте два файли всередину \`my/hello/\`.
 
 ### index.html — точка входу
 
@@ -3750,77 +4072,104 @@ mkdir -p my/hello
 
 Атрибут \`mol_view_root="$my_hello"\` монтує ваш компонент під час завантаження сторінки.
 
-### hello.view.tree — розмітка
-
-\`\`\`tree-no-run
-$my_hello $mol_page
-	title @ \\Greeting
-	body /
-		<= Name $mol_string
-			hint @ \\Enter your name
-			value? <=> name? \\
-		<= Message $mol_view
-			sub / <= greeting \\
-\`\`\`
-
-Кілька речей, які варто назвати.
-
-- \`$mol_page\` і \`$mol_string\` — вбудовані компоненти: оболонка сторінки та текстове поле введення.
-- \`<=\` зв'язує властивість в один бік; \`<=>\` зв'язує в обидва боки. Тож \`value? <=> name?\` тримає введення і ваш стан \`name\` синхронізованими.
-- \`@\` позначає локалізовуваний рядок; \`\\\` починає сирий рядок.
-
-### hello.view.ts — поведінка
+### hello.view.ts — компонент
 
 \`\`\`typescript
-namespace $.$$ {
-	export class $my_hello extends $.$my_hello {
+namespace $ {
+
+	export class $my_hello extends $mol_page {
+
+		title() {
+			return 'Greeting'
+		}
+
+		body() {
+			return [ this.Name(), this.Message() ]
+		}
+
 		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+
+		@ $mol_mem
+		name( next?: string ) {
+			return next ?? ''
+		}
+
+		@ $mol_mem
+		Message() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.greeting() ]
+			return obj
+		}
+
 		greeting() {
 			const name = this.name()
-			return name ? \`Hello, \${name}!\` : 'Please enter your name'
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
 		}
+
 	}
+
 }
 \`\`\`
 
-\`@ $mol_mem\` робить \`greeting\` реактивною, кешованою властивістю. Вона читає \`name()\`, тож щойно \`name\` змінюється, \`greeting\` перераховується, і повідомлення на екрані оновлюється. Ви жодного разу не написали підписку, ефект чи виклик перемалювання.
+Читаємо згори вниз:
+
+- \`$my_hello\` живе в \`namespace $\` — навколишньому просторі імен, де лежать усі компоненти $mol. Він успадковує \`$mol_page\`, вбудований каркас сторінки із заголовком і тілом. \`$mol_string\` нижче — вбудоване текстове поле.
+- \`body()\` повертає дітей. Дитина тут не розмітка, а властивість: \`Name\` і \`Message\` — це методи, які можна викликати, перевизначити в нащадку або взяти за іменем у стилях.
+- \`Name()\` створює поле введення й під'єднує його. Кожній властивості дитини дістається **стрілка**, а не значення. Дитина смикає її тоді, коли їй потрібні дані, тож завжди читає актуальні.
+- \`name( next?: string )\` — це стан. Виклик без аргументу читає, з аргументом пише. Саме передача цієї функції цілком у \`obj.value\` робить так, що введення в полі оновлює \`name\`.
+- \`@ $mol_mem\` кешує властивість на екземпляр. На \`name\` це означає, що значення зберігається, і все, що його прочитало, перераховується при зміні. На \`Name\` і \`Message\` — один дочірній компонент, створений один раз, замість нового на кожен виклик.
+- \`greeting()\` читає \`name()\`. Це читання *і є* підпискою. Змінюється \`name\` — перераховується \`greeting\`, а за ним і текст на екрані. Ні ефекту, ні списку залежностей, ні виклику перемальовування.
 
 ## 3. Запустити
 
-Сервер розробки з кроку 1 уже стежить. Просто відкрийте:
+Сервер розробки з кроку 1 уже стежить за файлами. Просто відкрийте:
 
 \`\`\`
 http://localhost:9080/my/hello/
 \`\`\`
 
-Введіть своє ім'я — вітання оновлюється в міру набору. Це реактивність $mol: стан сам тече до подання.
+Введіть ім'я, і привітання оновиться в міру введення. Це і є реактивність $mol: стан сам перетікає у в'ю.
 
 ## 4. Додати друге реактивне значення
 
-Реактивність компонується. Додайте лічильник довжини, що залежить від того самого \`name\`, без жодного додаткового зв'язування.
+Реактивність композується. Додайте лічильник довжини, який читає той самий \`name\`, без жодного зайвого зв'язування.
 
-У \`hello.view.tree\` додайте рядок під \`Message\`:
+Покладіть його в \`body()\`:
 
-\`\`\`tree
-		<= Counter $mol_view
-			sub / <= counter \\
+\`\`\`typescript
+		body() {
+			return [ this.Name(), this.Message(), this.Counter() ]
+		}
 \`\`\`
 
-У \`hello.view.ts\` додайте метод:
+і допишіть дві властивості за ним:
 
 \`\`\`typescript
 		@ $mol_mem
-		counter() {
-			return \`\${this.name().length} characters\`
+		Counter() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.counter() ]
+			return obj
 		}
-}
+
+		counter() {
+			return \`\${ this.name().length } characters\`
+		}
 \`\`\`
 
-І \`greeting\`, і \`counter\` читають \`name\`; обидва оновлюються разом. Додайте третій, додайте десятий — шаблон не змінюється. Саме тому код $mol залишається пласким, коли можливості накопичуються.
+І \`greeting\`, і \`counter\` читають \`name\`, обидва оновлюються разом. Додайте третє, додайте десяте: реактивна половина не змінює форми.
+
+Друга половина змінює. Три рядки логіки принесли із собою шість рядків обв'язки — фабрику, \`new\`, стрілку, \`return obj\`. Помножте на кожну дитину справжнього екрана, і матимете причину, чому існує \`view.tree\`.
 
 ## 5. Перевірити збірку
 
-MAM записує діагностичний файл поруч із кожним застосунком. Після збірки відкрийте:
+MAM пише файл діагностики поруч із кожним застосунком. Після збірки відкрийте:
 
 \`\`\`
 http://localhost:9080/my/hello/-/web.audit.js
@@ -3830,12 +4179,14 @@ http://localhost:9080/my/hello/-/web.audit.js
 
 ## Ви побудували застосунок $mol
 
-У вас є реактивний компонент, двостороннє зв'язування та похідний стан — за допомогою трьох маленьких файлів і нульової конфігурації.
+Реактивний компонент із двостороннім зв'язуванням і похідним станом, в одному файлі, з нульовою конфігурацією.
 
-Рухайтеся далі: **[Посібник](#!section=docs/page=installation)** докладно охоплює встановлення, подання, стан, маршрутизацію та дані — і перетворює цей Hello World на щось справжнє.
+Тепер візьміть цей самий файл і подивіться, як він стиснеться: **[Від TypeScript до view.tree](#!section=docs/page=from-ts-to-view-tree)**.
 `},pl:{title:"Pierwsze kroki",summary:"Ta strona przeprowadzi cię od pustego folderu do działającej, reaktywnej aplikacji $mol. Powinno to zająć około piętnastu minut. Każdy fragment poniżej to…",md:`# Pierwsze kroki
 
 Ta strona przeprowadzi cię od pustego folderu do działającej, reaktywnej aplikacji $mol. Powinno to zająć około piętnastu minut. Każdy fragment poniżej to prawdziwy, działający kod — skopiuj go bez zmian.
+
+Komponent napiszesz w zwykłym TypeScripcie. $mol ma też krótszy format opisu komponentów, \`view.tree\`, i spotkasz go na następnej stronie. Tutaj nie jest potrzebny: komponent $mol tak czy inaczej pozostaje zwykłą klasą.
 
 ## Czego potrzebujesz
 
@@ -3854,7 +4205,7 @@ npm install
 npm start
 \`\`\`
 
-\`npm start\` uruchamia serwer deweloperski pod adresem \`http://localhost:9080/\`. Obserwuje twoje pliki i przebudowuje automatycznie — zostaw go działającego we własnym terminalu.
+\`npm start\` uruchamia serwer deweloperski pod \`http://localhost:9080/\`. Obserwuje twoje pliki i przebudowuje automatycznie — zostaw go działającego we własnym terminalu.
 
 ## 2. Utwórz moduł
 
@@ -3866,7 +4217,7 @@ mkdir -p my/hello
 
 > **Jedna zasada do zapamiętania:** podkreślenia w nazwie komponentu to separatory folderów. \`$my_hello\` mieszka w \`my/hello/\`, a \`$my_hello_form\` mieszkałby w \`my/hello/form/\`. Nazwy folderów modułów nigdy nie zawierają podkreślenia.
 
-Teraz dodaj trzy pliki wewnątrz \`my/hello/\`.
+Teraz dodaj dwa pliki wewnątrz \`my/hello/\`.
 
 ### index.html — punkt wejścia
 
@@ -3884,42 +4235,61 @@ Teraz dodaj trzy pliki wewnątrz \`my/hello/\`.
 </html>
 \`\`\`
 
-Atrybut \`mol_view_root="$my_hello"\` montuje twój komponent podczas ładowania strony.
+Atrybut \`mol_view_root="$my_hello"\` montuje twój komponent przy ładowaniu strony.
 
-### hello.view.tree — układ
-
-\`\`\`tree-no-run
-$my_hello $mol_page
-	title @ \\Greeting
-	body /
-		<= Name $mol_string
-			hint @ \\Enter your name
-			value? <=> name? \\
-		<= Message $mol_view
-			sub / <= greeting \\
-\`\`\`
-
-Kilka rzeczy wartych nazwania.
-
-- \`$mol_page\` i \`$mol_string\` to komponenty wbudowane — powłoka strony i pole tekstowe.
-- \`<=\` wiąże właściwość w jedną stronę; \`<=>\` wiąże w obie strony. Więc \`value? <=> name?\` utrzymuje pole wejściowe i twój stan \`name\` w synchronizacji.
-- \`@\` oznacza ciąg podlegający lokalizacji; \`\\\` rozpoczyna surowy ciąg.
-
-### hello.view.ts — zachowanie
+### hello.view.ts — komponent
 
 \`\`\`typescript
-namespace $.$$ {
-	export class $my_hello extends $.$my_hello {
+namespace $ {
+
+	export class $my_hello extends $mol_page {
+
+		title() {
+			return 'Greeting'
+		}
+
+		body() {
+			return [ this.Name(), this.Message() ]
+		}
+
 		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+
+		@ $mol_mem
+		name( next?: string ) {
+			return next ?? ''
+		}
+
+		@ $mol_mem
+		Message() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.greeting() ]
+			return obj
+		}
+
 		greeting() {
 			const name = this.name()
-			return name ? \`Hello, \${name}!\` : 'Please enter your name'
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
 		}
+
 	}
+
 }
 \`\`\`
 
-\`@ $mol_mem\` czyni \`greeting\` reaktywną, buforowaną właściwością. Czyta ona \`name()\`, więc w chwili, gdy \`name\` się zmienia, \`greeting\` jest przeliczane, a wiadomość na ekranie się aktualizuje. Nigdy nie napisałeś subskrypcji, efektu ani wywołania ponownego renderowania.
+Czytając od góry:
+
+- \`$my_hello\` mieszka w \`namespace $\`, otaczającej przestrzeni nazw, w której żyje każdy komponent $mol. Rozszerza \`$mol_page\`, wbudowaną skorupę strony z tytułem i treścią. \`$mol_string\` niżej to wbudowane pole tekstowe.
+- \`body()\` zwraca dzieci. Dziecko nie jest tu znacznikiem, tylko właściwością: \`Name\` i \`Message\` to metody, które możesz wywołać, nadpisać w podklasie albo dosięgnąć po nazwie z arkusza stylów.
+- \`Name()\` buduje pole i je podłącza. Każda jego właściwość dostaje **strzałkę**, a nie wartość. Dziecko woła tę strzałkę wtedy, gdy potrzebuje danych, więc zawsze czyta bieżące.
+- \`name( next?: string )\` to stan. Wywołana bez argumentu czyta, z argumentem zapisuje. To właśnie przekazanie całej tej funkcji do \`obj.value\` sprawia, że pisanie w polu aktualizuje \`name\`.
+- \`@ $mol_mem\` buforuje właściwość na instancję. Przy \`name\` znaczy to, że wartość jest przechowywana, a wszystko, co ją odczytało, przelicza się przy zmianie. Przy \`Name\` i \`Message\` znaczy to jeden komponent potomny, zbudowany raz, zamiast nowego przy każdym wywołaniu.
+- \`greeting()\` czyta \`name()\`. Ten odczyt *jest* subskrypcją. Gdy \`name\` się zmienia, \`greeting\` przelicza się, a tekst na ekranie za nim podąża — bez deklarowania efektu, bez listy zależności, bez wywołania ponownego renderu.
 
 ## 3. Uruchom
 
@@ -3929,30 +4299,38 @@ Serwer deweloperski z kroku 1 już obserwuje. Wystarczy otworzyć:
 http://localhost:9080/my/hello/
 \`\`\`
 
-Wpisz swoje imię — powitanie aktualizuje się w miarę pisania. To reaktywność $mol: stan sam płynie do widoku.
+Wpisz swoje imię, a powitanie aktualizuje się w trakcie pisania. To jest reaktywność $mol: stan sam płynie do widoku.
 
 ## 4. Dodaj drugą reaktywną wartość
 
-Reaktywność się komponuje. Dodaj licznik długości zależny od tego samego \`name\`, bez dodatkowego okablowania.
+Reaktywność się składa. Dodaj licznik długości, który czyta ten sam \`name\`, bez żadnego dodatkowego okablowania.
 
-W \`hello.view.tree\` dodaj wiersz pod \`Message\`:
+Wstaw go do \`body()\`:
 
-\`\`\`tree
-		<= Counter $mol_view
-			sub / <= counter \\
+\`\`\`typescript
+		body() {
+			return [ this.Name(), this.Message(), this.Counter() ]
+		}
 \`\`\`
 
-W \`hello.view.ts\` dodaj metodę:
+i dopisz dwie właściwości za nim:
 
 \`\`\`typescript
 		@ $mol_mem
-		counter() {
-			return \`\${this.name().length} characters\`
+		Counter() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.counter() ]
+			return obj
 		}
-}
+
+		counter() {
+			return \`\${ this.name().length } characters\`
+		}
 \`\`\`
 
-Zarówno \`greeting\`, jak i \`counter\` czytają \`name\`; oba aktualizują się razem. Dodaj trzeci, dodaj dziesiąty — wzorzec się nie zmienia. Dlatego kod $mol pozostaje płaski, gdy funkcje się nawarstwiają.
+Zarówno \`greeting\`, jak i \`counter\` czytają \`name\`, i oba aktualizują się razem. Dodaj trzeci, dodaj dziesiąty: reaktywna połowa nigdy nie zmienia kształtu.
+
+Druga połowa zmienia. Trzy linie logiki przyszły z sześcioma liniami hydrauliki wokół — fabryka, \`new\`, strzałka, \`return obj\`. Pomnóż to przez każde dziecko na prawdziwym ekranie, a masz powód, dla którego istnieje \`view.tree\`.
 
 ## 5. Sprawdź swój build
 
@@ -3966,12 +4344,14 @@ Czysty audyt oznacza brak nieużywanych zależności, brak problemów z typami, 
 
 ## Zbudowałeś aplikację $mol
 
-Masz reaktywny komponent, dwukierunkowe wiązanie i stan pochodny — z trzema małymi plikami i zerową konfiguracją.
+Reaktywny komponent z dwukierunkowym wiązaniem i stanem pochodnym, w jednym pliku, z zerową konfiguracją.
 
-Idź dalej: **[Przewodnik](#!section=docs/page=installation)** szczegółowo omawia instalację, widoki, stan, routing i dane — i zamienia ten Hello World w coś prawdziwego.
+Teraz weź ten sam plik i zobacz, jak się kurczy: **[Z TypeScriptu do view.tree](#!section=docs/page=from-ts-to-view-tree)**.
 `},cs:{title:"Začínáme",summary:"Tato stránka vás provede od prázdné složky až po běžící, reaktivní aplikaci $mol. Mělo by to zabrat asi patnáct minut. Každý úryvek níže je skutečný, funkční…",md:`# Začínáme
 
 Tato stránka vás provede od prázdné složky až po běžící, reaktivní aplikaci $mol. Mělo by to zabrat asi patnáct minut. Každý úryvek níže je skutečný, funkční kód — zkopírujte ho tak, jak je.
+
+Komponentu napíšete v obyčejném TypeScriptu. $mol má i kratší formát pro popis komponent, \`view.tree\`, a potkáte ho na další stránce. Tady ho není potřeba: komponenta $mol je tak jako tak obyčejná třída.
 
 ## Co budete potřebovat
 
@@ -3981,7 +4361,7 @@ Neinstalujete globální CLI ani negenerujete šablonový kód, kterému budete 
 
 ## 1. Získejte pracovní prostor
 
-MAM je nástroj pro sestavení a registr modulů pro $mol. Naklonujte ho a jednou nainstalujte.
+MAM je sestavovací nástroj a registr modulů pro $mol. Naklonujte ho a jednou nainstalujte.
 
 \`\`\`bash
 git clone https://github.com/hyoo-ru/mam.git ./mam
@@ -3990,19 +4370,19 @@ npm install
 npm start
 \`\`\`
 
-\`npm start\` spustí vývojový server na \`http://localhost:9080/\`. Sleduje vaše soubory a automaticky přesestavuje — nechte ho běžet ve vlastním terminálu.
+\`npm start\` spustí vývojový server na \`http://localhost:9080/\`. Sleduje vaše soubory a automaticky přestavuje — nechte ho běžet ve vlastním terminálu.
 
 ## 2. Vytvořte modul
 
-Aplikace $mol je jen složka. Vyberte jmenný prostor (svůj vlastní, např. \`my\`) a název (\`hello\`).
+Aplikace $mol je jen složka. Vyberte jmenný prostor (svůj, například \`my\`) a jméno (\`hello\`).
 
 \`\`\`bash
 mkdir -p my/hello
 \`\`\`
 
-> **Jedno pravidlo k zapamatování:** podtržítka v názvu komponenty jsou oddělovače složek. \`$my_hello\` žije v \`my/hello/\`, \`$my_hello_form\` by žil v \`my/hello/form/\`. Názvy složek modulů nikdy neobsahují podtržítko.
+> **Jedno pravidlo k zapamatování:** podtržítka ve jménu komponenty jsou oddělovače složek. \`$my_hello\` bydlí v \`my/hello/\`, \`$my_hello_form\` by bydlel v \`my/hello/form/\`. Názvy složek modulů nikdy neobsahují podtržítko.
 
-Nyní přidejte tři soubory do \`my/hello/\`.
+Teď přidejte do \`my/hello/\` dva soubory.
 
 ### index.html — vstupní bod
 
@@ -4022,40 +4402,59 @@ Nyní přidejte tři soubory do \`my/hello/\`.
 
 Atribut \`mol_view_root="$my_hello"\` připojí vaši komponentu při načtení stránky.
 
-### hello.view.tree — rozvržení
-
-\`\`\`tree-no-run
-$my_hello $mol_page
-	title @ \\Greeting
-	body /
-		<= Name $mol_string
-			hint @ \\Enter your name
-			value? <=> name? \\
-		<= Message $mol_view
-			sub / <= greeting \\
-\`\`\`
-
-Pár věcí, které stojí za zmínku.
-
-- \`$mol_page\` a \`$mol_string\` jsou vestavěné komponenty — obal stránky a textové vstupní pole.
-- \`<=\` váže vlastnost jedním směrem; \`<=>\` váže oběma směry. Takže \`value? <=> name?\` udržuje vstup a váš stav \`name\` synchronizované.
-- \`@\` označuje lokalizovatelný řetězec; \`\\\` zahajuje surový řetězec.
-
-### hello.view.ts — chování
+### hello.view.ts — komponenta
 
 \`\`\`typescript
-namespace $.$$ {
-	export class $my_hello extends $.$my_hello {
+namespace $ {
+
+	export class $my_hello extends $mol_page {
+
+		title() {
+			return 'Greeting'
+		}
+
+		body() {
+			return [ this.Name(), this.Message() ]
+		}
+
 		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+
+		@ $mol_mem
+		name( next?: string ) {
+			return next ?? ''
+		}
+
+		@ $mol_mem
+		Message() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.greeting() ]
+			return obj
+		}
+
 		greeting() {
 			const name = this.name()
-			return name ? \`Hello, \${name}!\` : 'Please enter your name'
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
 		}
+
 	}
+
 }
 \`\`\`
 
-\`@ $mol_mem\` dělá z \`greeting\` reaktivní, mezipaměťovanou vlastnost. Čte \`name()\`, takže v okamžiku, kdy se \`name\` změní, \`greeting\` se přepočítá a zpráva na obrazovce se aktualizuje. Nikdy jste nenapsali odběr, efekt ani volání překreslení.
+Čtěme shora dolů:
+
+- \`$my_hello\` bydlí v \`namespace $\`, okolním jmenném prostoru, kde žije každá komponenta $mol. Rozšiřuje \`$mol_page\`, vestavěnou skořápku stránky s titulkem a tělem. \`$mol_string\` níže je vestavěné textové pole.
+- \`body()\` vrací potomky. Potomek tu není značka, ale vlastnost: \`Name\` a \`Message\` jsou metody, které můžete zavolat, přepsat v potomkovi nebo zacílit jménem ze stylopisu.
+- \`Name()\` sestaví pole a zapojí ho. Každá jeho vlastnost dostane **šipku**, ne hodnotu. Potomek tu šipku zavolá ve chvíli, kdy data potřebuje, takže čte vždy ta aktuální.
+- \`name( next?: string )\` je stav. Zavolána bez argumentu čte, s argumentem zapisuje. Právě předání celé této funkce do \`obj.value\` způsobí, že psaní v poli aktualizuje \`name\`.
+- \`@ $mol_mem\` kešuje vlastnost na instanci. U \`name\` to znamená, že hodnota se uchová a všechno, co ji četlo, se při změně přepočítá. U \`Name\` a \`Message\` to znamená jednu potomkovskou komponentu, sestavenou jednou, místo nové při každém volání.
+- \`greeting()\` čte \`name()\`. To čtení *je* odběr. Když se \`name\` změní, \`greeting\` se přepočítá a text na obrazovce ho následuje, bez deklarovaného efektu, bez seznamu závislostí a bez volání překreslení.
 
 ## 3. Spusťte to
 
@@ -4065,32 +4464,40 @@ Vývojový server z kroku 1 už sleduje. Stačí otevřít:
 http://localhost:9080/my/hello/
 \`\`\`
 
-Napište své jméno — pozdrav se aktualizuje během psaní. To je reaktivita $mol: stav sám plyne do pohledu.
+Napište své jméno a pozdrav se aktualizuje během psaní. To je reaktivita $mol: stav teče do pohledu sám.
 
 ## 4. Přidejte druhou reaktivní hodnotu
 
-Reaktivita se skládá. Přidejte počítadlo délky, které závisí na stejném \`name\`, bez jakéhokoli dalšího propojování.
+Reaktivita se skládá. Přidejte počítadlo délky, které čte stejný \`name\`, bez jakéhokoli dalšího propojování.
 
-V \`hello.view.tree\` přidejte řádek pod \`Message\`:
+Vložte ho do \`body()\`:
 
-\`\`\`tree
-		<= Counter $mol_view
-			sub / <= counter \\
+\`\`\`typescript
+		body() {
+			return [ this.Name(), this.Message(), this.Counter() ]
+		}
 \`\`\`
 
-V \`hello.view.ts\` přidejte metodu:
+a doplňte dvě vlastnosti za ním:
 
 \`\`\`typescript
 		@ $mol_mem
-		counter() {
-			return \`\${this.name().length} characters\`
+		Counter() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.counter() ]
+			return obj
 		}
-}
+
+		counter() {
+			return \`\${ this.name().length } characters\`
+		}
 \`\`\`
 
-\`greeting\` i \`counter\` čtou \`name\`; oba se aktualizují společně. Přidejte třetí, přidejte desátý — vzor se nemění. Proto zůstává kód $mol plochý, jak se funkce hromadí.
+\`greeting\` i \`counter\` čtou \`name\` a obě se aktualizují společně. Přidejte třetí, přidejte desátou: reaktivní polovina nikdy nemění tvar.
 
-## 5. Zkontrolujte svůj build
+Ta druhá ano. Tři řádky logiky přišly se šesti řádky instalatérské práce okolo — továrna, \`new\`, šipka, \`return obj\`. Vynásobte to každým potomkem na skutečné obrazovce a máte důvod, proč \`view.tree\` existuje.
+
+## 5. Zkontrolujte sestavení
 
 MAM zapisuje diagnostický soubor vedle každé aplikace. Po sestavení otevřete:
 
@@ -4102,12 +4509,14 @@ http://localhost:9080/my/hello/-/web.audit.js
 
 ## Sestavili jste aplikaci $mol
 
-Máte reaktivní komponentu, obousměrné vázání a odvozený stav — se třemi malými soubory a nulovou konfigurací.
+Reaktivní komponenta s obousměrným vázáním a odvozeným stavem, v jediném souboru, s nulovou konfigurací.
 
-Pokračujte dál: **[Průvodce](#!section=docs/page=installation)** do hloubky pokrývá instalaci, pohledy, stav, směrování a data — a promění tento Hello World v něco skutečného.
+Teď vezměte přesně ten samý soubor a sledujte, jak se scvrkne: **[Z TypeScriptu do view.tree](#!section=docs/page=from-ts-to-view-tree)**.
 `},fa:{title:"شروع به کار",summary:"این صفحه شما را از یک پوشهٔ خالی تا یک برنامهٔ واکنش‌گرای $mol در حال اجرا راهنمایی می‌کند. حدود پانزده دقیقه طول می‌کشد. هر قطعهٔ کد زیر کد واقعی و کارآمد است…",md:`# شروع به کار
 
 این صفحه شما را از یک پوشهٔ خالی تا یک برنامهٔ واکنش‌گرای $mol در حال اجرا راهنمایی می‌کند. حدود پانزده دقیقه طول می‌کشد. هر قطعهٔ کد زیر کد واقعی و کارآمد است — آن را همان‌طور که هست کپی کنید.
+
+مؤلفه را با تایپ‌اسکریپت معمولی می‌نویسید. $mol قالب کوتاه‌تری هم برای توصیف مؤلفه‌ها دارد، \`view.tree\`، که در صفحهٔ بعد با آن آشنا می‌شوید. اینجا لازمش نداریم: مؤلفهٔ $mol در هر دو حالت یک کلاس معمولی است.
 
 ## آنچه نیاز دارید
 
@@ -4117,7 +4526,7 @@ Pokračujte dál: **[Průvodce](#!section=docs/page=installation)** do hloubky p
 
 ## ۱. فضای کاری را دریافت کنید
 
-MAM ابزار ساخت و رجیستری ماژول‌های $mol است. یک بار آن را کلون و نصب کنید.
+MAM ابزار ساخت و مخزن ماژول‌های $mol است. یک بار آن را کلون و نصب کنید.
 
 \`\`\`bash
 git clone https://github.com/hyoo-ru/mam.git ./mam
@@ -4126,19 +4535,19 @@ npm install
 npm start
 \`\`\`
 
-\`npm start\` سرور توسعه را روی \`http://localhost:9080/\` راه‌اندازی می‌کند. این سرور فایل‌های شما را زیر نظر می‌گیرد و به‌طور خودکار بازسازی می‌کند — آن را در ترمینال جداگانه‌اش در حال اجرا رها کنید.
+\`npm start\` سرور توسعه را روی \`http://localhost:9080/\` بالا می‌آورد. فایل‌های شما را می‌پاید و خودکار بازسازی می‌کند — بگذارید در ترمینال خودش در حال اجرا بماند.
 
 ## ۲. یک ماژول بسازید
 
-یک برنامهٔ $mol فقط یک پوشه است. یک فضای نام (مال خودتان، مثلاً \`my\`) و یک نام (\`hello\`) انتخاب کنید.
+برنامهٔ $mol فقط یک پوشه است. یک فضای نام (مالِ خودتان، مثلاً \`my\`) و یک نام (\`hello\`) انتخاب کنید.
 
 \`\`\`bash
 mkdir -p my/hello
 \`\`\`
 
-> **یک قاعده که باید به خاطر بسپارید:** خط‌های زیرین در نام یک مؤلفه جداکنندهٔ پوشه هستند. \`$my_hello\` در \`my/hello/\` قرار دارد و \`$my_hello_form\` در \`my/hello/form/\` قرار می‌گرفت. نام پوشه‌های ماژول هرگز خط زیرین ندارند.
+> **یک قاعده که باید به خاطر بسپارید:** زیرخط در نام مؤلفه جداکنندهٔ پوشه است. \`$my_hello\` در \`my/hello/\` زندگی می‌کند و \`$my_hello_form\` در \`my/hello/form/\` زندگی می‌کرد. نام پوشهٔ ماژول‌ها هرگز زیرخط ندارد.
 
-حالا سه فایل داخل \`my/hello/\` اضافه کنید.
+حالا دو فایل درون \`my/hello/\` اضافه کنید.
 
 ### index.html — نقطهٔ ورود
 
@@ -4156,79 +4565,106 @@ mkdir -p my/hello
 </html>
 \`\`\`
 
-ویژگی \`mol_view_root="$my_hello"\` مؤلفهٔ شما را هنگام بارگذاری صفحه سوار می‌کند.
+ویژگیِ \`mol_view_root="$my_hello"\` مؤلفهٔ شما را هنگام بارگذاری صفحه سوار می‌کند.
 
-### hello.view.tree — چیدمان
-
-\`\`\`tree-no-run
-$my_hello $mol_page
-	title @ \\Greeting
-	body /
-		<= Name $mol_string
-			hint @ \\Enter your name
-			value? <=> name? \\
-		<= Message $mol_view
-			sub / <= greeting \\
-\`\`\`
-
-چند نکته که ارزش نام بردن دارند.
-
-- \`$mol_page\` و \`$mol_string\` مؤلفه‌های داخلی هستند — یک پوستهٔ صفحه و یک ورودی متنی.
-- \`<=\` یک ویژگی را یک‌طرفه پیوند می‌دهد؛ \`<=>\` آن را دوطرفه پیوند می‌دهد. پس \`value? <=> name?\` ورودی و وضعیت \`name\` شما را همگام نگه می‌دارد.
-- \`@\` یک رشتهٔ قابل بومی‌سازی را مشخص می‌کند؛ \`\\\` یک رشتهٔ خام را آغاز می‌کند.
-
-### hello.view.ts — رفتار
+### hello.view.ts — مؤلفه
 
 \`\`\`typescript
-namespace $.$$ {
-	export class $my_hello extends $.$my_hello {
+namespace $ {
+
+	export class $my_hello extends $mol_page {
+
+		title() {
+			return 'Greeting'
+		}
+
+		body() {
+			return [ this.Name(), this.Message() ]
+		}
+
 		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+
+		@ $mol_mem
+		name( next?: string ) {
+			return next ?? ''
+		}
+
+		@ $mol_mem
+		Message() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.greeting() ]
+			return obj
+		}
+
 		greeting() {
 			const name = this.name()
-			return name ? \`Hello, \${name}!\` : 'Please enter your name'
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
 		}
+
 	}
+
 }
 \`\`\`
 
-\`@ $mol_mem\` از \`greeting\` یک ویژگی واکنش‌گرا و کش‌شده می‌سازد. این ویژگی \`name()\` را می‌خواند، پس در لحظه‌ای که \`name\` تغییر می‌کند، \`greeting\` دوباره محاسبه می‌شود و پیام روی صفحه به‌روز می‌شود. شما هرگز اشتراکی، اثری یا فراخوانی بازترسیمی ننوشتید.
+از بالا به پایین بخوانیم:
 
-## ۳. آن را اجرا کنید
+- \`$my_hello\` در \`namespace $\` زندگی می‌کند، همان فضای نامِ محیطی که هر مؤلفهٔ $mol در آن جای دارد. از \`$mol_page\` ارث می‌برد، پوستهٔ صفحهٔ توکار با عنوان و بدنه. \`$mol_string\` پایین‌تر همان ورودیِ متنیِ توکار است.
+- \`body()\` فرزندان را برمی‌گرداند. فرزند اینجا نشانه‌گذاری نیست، یک ویژگی است: \`Name\` و \`Message\` متدهایی‌اند که می‌توانید صدایشان بزنید، در زیرکلاس بازنویسی‌شان کنید یا در شیوه‌نامه با نامشان هدف بگیرید.
+- \`Name()\` ورودی را می‌سازد و سیم‌کشی‌اش می‌کند. هر ویژگی‌اش یک **تابع پیکانی** می‌گیرد، نه یک مقدار. فرزند وقتی به داده نیاز دارد آن پیکان را صدا می‌زند، پس همیشه مقدار جاری را می‌خواند.
+- \`name( next?: string )\` وضعیت است. بدون آرگومان که صدایش بزنید می‌خواند، با آرگومان می‌نویسد. دقیقاً همین که کلِ این تابع به \`obj.value\` سپرده می‌شود باعث می‌شود تایپ در ورودی \`name\` را به‌روز کند.
+- \`@ $mol_mem\` یک ویژگی را به ازای هر نمونه کش می‌کند. روی \`name\` یعنی مقدار نگه داشته می‌شود و هرچه آن را خوانده باشد با تغییرش دوباره محاسبه می‌شود. روی \`Name\` و \`Message\` یعنی یک مؤلفهٔ فرزند که یک‌بار ساخته می‌شود، نه یکی تازه در هر فراخوانی.
+- \`greeting()\` مقدار \`name()\` را می‌خواند. همان خواندن *خودِ* اشتراک است. وقتی \`name\` عوض شود، \`greeting\` دوباره محاسبه می‌شود و متن روی صفحه دنبالش می‌آید؛ بدون اثری که اعلام کنید، بدون فهرست وابستگی و بدون فراخوانی بازترسیم.
 
-سرور توسعه از گام ۱ همین حالا در حال نظارت است. کافی است باز کنید:
+## ۳. اجرایش کنید
+
+سرور توسعهٔ گام ۱ همین حالا در حال پاییدن است. کافی است باز کنید:
 
 \`\`\`
 http://localhost:9080/my/hello/
 \`\`\`
 
-نام خود را تایپ کنید — سلام هم‌زمان با تایپ به‌روز می‌شود. این واکنش‌گرایی $mol است: وضعیت به‌خودی‌خود به سوی نما جاری می‌شود.
+نامتان را تایپ کنید و سلام همراه تایپ به‌روز می‌شود. این همان واکنش‌گراییِ $mol است: وضعیت خودش به نما سرازیر می‌شود.
 
 ## ۴. یک مقدار واکنش‌گرای دوم اضافه کنید
 
-واکنش‌گرایی ترکیب‌پذیر است. یک شمارندهٔ طول که به همان \`name\` وابسته است، بدون هیچ سیم‌کشی اضافه‌ای اضافه کنید.
+واکنش‌گرایی ترکیب‌پذیر است. یک شمارندهٔ طول اضافه کنید که همان \`name\` را می‌خواند، بدون هیچ سیم‌کشی اضافی.
 
-در \`hello.view.tree\` یک خط زیر \`Message\` اضافه کنید:
+آن را در \`body()\` بگذارید:
 
-\`\`\`tree
-		<= Counter $mol_view
-			sub / <= counter \\
+\`\`\`typescript
+		body() {
+			return [ this.Name(), this.Message(), this.Counter() ]
+		}
 \`\`\`
 
-در \`hello.view.ts\` متد را اضافه کنید:
+و دو ویژگیِ پشتش را بیفزایید:
 
 \`\`\`typescript
 		@ $mol_mem
-		counter() {
-			return \`\${this.name().length} characters\`
+		Counter() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.counter() ]
+			return obj
 		}
-}
+
+		counter() {
+			return \`\${ this.name().length } characters\`
+		}
 \`\`\`
 
-هم \`greeting\` و هم \`counter\` \`name\` را می‌خوانند؛ هر دو با هم به‌روز می‌شوند. یک سومی اضافه کنید، یک دهمی اضافه کنید — الگو تغییر نمی‌کند. به همین دلیل است که کد $mol با انباشته‌شدن قابلیت‌ها هموار باقی می‌ماند.
+هم \`greeting\` و هم \`counter\` مقدار \`name\` را می‌خوانند و هر دو با هم به‌روز می‌شوند. سومی را اضافه کنید، دهمی را اضافه کنید: نیمهٔ واکنش‌گرا هرگز شکلش را عوض نمی‌کند.
 
-## ۵. ساخت خود را بررسی کنید
+نیمهٔ دیگر عوض می‌کند. سه خط منطق با شش خط لوله‌کشی دور خودش آمد — یک کارخانه، یک \`new\`، یک پیکان، یک \`return obj\`. این را در تعداد فرزندانِ یک صفحهٔ واقعی ضرب کنید تا دلیل وجود \`view.tree\` را ببینید.
 
-MAM کنار هر برنامه یک فایل تشخیصی می‌نویسد. پس از یک ساخت، باز کنید:
+## ۵. ساخت را بررسی کنید
+
+MAM کنار هر برنامه یک فایل تشخیصی می‌نویسد. پس از ساخت باز کنید:
 
 \`\`\`
 http://localhost:9080/my/hello/-/web.audit.js
@@ -4238,12 +4674,14 @@ http://localhost:9080/my/hello/-/web.audit.js
 
 ## شما یک برنامهٔ $mol ساختید
 
-شما یک مؤلفهٔ واکنش‌گرا، پیوند دوطرفه و وضعیت مشتق‌شده دارید — با سه فایل کوچک و پیکربندی صفر.
+یک مؤلفهٔ واکنش‌گرا با پیوند دوطرفه و وضعیت مشتق‌شده، در یک فایل، با پیکربندی صفر.
 
-ادامه دهید: **[راهنما](#!section=docs/page=installation)** نصب، نماها، وضعیت، مسیریابی و داده را به‌طور عمیق پوشش می‌دهد — و این Hello World را به چیزی واقعی تبدیل می‌کند.
+حالا همان فایل را بردارید و ببینید چطور جمع می‌شود: **[از تایپ‌اسکریپت به view.tree](#!section=docs/page=from-ts-to-view-tree)**.
 `},bn:{title:"শুরু করা",summary:"এই পৃষ্ঠাটি আপনাকে একটি খালি ফোল্ডার থেকে একটি চলমান, প্রতিক্রিয়াশীল $mol অ্যাপ পর্যন্ত নিয়ে যায়। এতে প্রায় পনেরো মিনিট লাগার কথা। নিচের প্রতিটি অংশ…",md:`# শুরু করা
 
 এই পৃষ্ঠাটি আপনাকে একটি খালি ফোল্ডার থেকে একটি চলমান, প্রতিক্রিয়াশীল $mol অ্যাপ পর্যন্ত নিয়ে যায়। এতে প্রায় পনেরো মিনিট লাগার কথা। নিচের প্রতিটি অংশ প্রকৃত, কার্যকর কোড — এটি যেমন আছে তেমনই কপি করুন।
+
+কম্পোনেন্টটি আপনি সাধারণ TypeScript-এ লিখবেন। কম্পোনেন্ট বর্ণনার জন্য $mol-এর আরও সংক্ষিপ্ত একটি ফরম্যাটও আছে, \`view.tree\`, যার সঙ্গে পরের পৃষ্ঠায় পরিচয় হবে। এখানে সেটির দরকার নেই: যেভাবেই লিখুন, $mol কম্পোনেন্ট একটি সাধারণ ক্লাসই থাকে।
 
 ## আপনার যা প্রয়োজন
 
@@ -4253,7 +4691,7 @@ http://localhost:9080/my/hello/-/web.audit.js
 
 ## ১. ওয়ার্কস্পেস পান
 
-MAM হলো $mol-এর বিল্ড টুল এবং মডিউল রেজিস্ট্রি। একবার এটি ক্লোন করুন এবং ইনস্টল করুন।
+MAM হলো $mol-এর বিল্ড টুল ও মডিউল রেজিস্ট্রি। একবার ক্লোন করে ইনস্টল করুন।
 
 \`\`\`bash
 git clone https://github.com/hyoo-ru/mam.git ./mam
@@ -4262,19 +4700,19 @@ npm install
 npm start
 \`\`\`
 
-\`npm start\` \`http://localhost:9080/\`-এ ডেভেলপমেন্ট সার্ভার চালু করে। এটি আপনার ফাইলগুলি পর্যবেক্ষণ করে এবং স্বয়ংক্রিয়ভাবে পুনর্নির্মাণ করে — এটিকে নিজস্ব টার্মিনালে চলতে দিন।
+\`npm start\` \`http://localhost:9080/\`-এ ডেভ সার্ভার চালু করে। এটি আপনার ফাইল পর্যবেক্ষণ করে এবং স্বয়ংক্রিয়ভাবে আবার বিল্ড করে — নিজের টার্মিনালে এটি চলতে দিন।
 
 ## ২. একটি মডিউল তৈরি করুন
 
-একটি $mol অ্যাপ কেবল একটি ফোল্ডার। একটি নেমস্পেস (আপনার নিজের, যেমন \`my\`) এবং একটি নাম (\`hello\`) বেছে নিন।
+$mol অ্যাপ মানে শুধু একটি ফোল্ডার। একটি নেমস্পেস (আপনার নিজের, যেমন \`my\`) এবং একটি নাম (\`hello\`) বেছে নিন।
 
 \`\`\`bash
 mkdir -p my/hello
 \`\`\`
 
-> **মনে রাখার মতো একটি নিয়ম:** একটি কম্পোনেন্টের নামে আন্ডারস্কোর হলো ফোল্ডার বিভাজক। \`$my_hello\` থাকে \`my/hello/\`-এ, \`$my_hello_form\` থাকত \`my/hello/form/\`-এ। মডিউল ফোল্ডারের নামে কখনো আন্ডারস্কোর থাকে না।
+> **মনে রাখার মতো একটি নিয়ম:** কম্পোনেন্টের নামে আন্ডারস্কোর হলো ফোল্ডার বিভাজক। \`$my_hello\` থাকে \`my/hello/\`-তে, আর \`$my_hello_form\` থাকত \`my/hello/form/\`-এ। মডিউল ফোল্ডারের নামে কখনোই আন্ডারস্কোর থাকে না।
 
-এবার \`my/hello/\`-এর ভেতরে তিনটি ফাইল যোগ করুন।
+এখন \`my/hello/\`-এর ভেতরে দুটি ফাইল যোগ করুন।
 
 ### index.html — প্রবেশবিন্দু
 
@@ -4294,7 +4732,261 @@ mkdir -p my/hello
 
 \`mol_view_root="$my_hello"\` অ্যাট্রিবিউটটি পৃষ্ঠা লোড হওয়ার সময় আপনার কম্পোনেন্ট মাউন্ট করে।
 
-### hello.view.tree — লেআউট
+### hello.view.ts — কম্পোনেন্ট
+
+\`\`\`typescript
+namespace $ {
+
+	export class $my_hello extends $mol_page {
+
+		title() {
+			return 'Greeting'
+		}
+
+		body() {
+			return [ this.Name(), this.Message() ]
+		}
+
+		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+
+		@ $mol_mem
+		name( next?: string ) {
+			return next ?? ''
+		}
+
+		@ $mol_mem
+		Message() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.greeting() ]
+			return obj
+		}
+
+		greeting() {
+			const name = this.name()
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
+		}
+
+	}
+
+}
+\`\`\`
+
+উপর থেকে নিচে পড়ুন:
+
+- \`$my_hello\` থাকে \`namespace $\`-এ, সেই পারিপার্শ্বিক নেমস্পেসে যেখানে প্রতিটি $mol কম্পোনেন্ট বাস করে। এটি \`$mol_page\` প্রসারিত করে, শিরোনাম ও বডি সহ একটি বিল্ট-ইন পৃষ্ঠা-খোল। নিচের \`$mol_string\` হলো বিল্ট-ইন টেক্সট ইনপুট।
+- \`body()\` সন্তানদের ফেরত দেয়। এখানে সন্তান মার্কআপ নয়, একটি প্রপার্টি: \`Name\` এবং \`Message\` হলো মেথড, যেগুলি আপনি ডাকতে পারেন, সাবক্লাসে ওভাররাইড করতে পারেন, কিংবা স্টাইলশিটে নাম ধরে লক্ষ্য করতে পারেন।
+- \`Name()\` ইনপুটটি বানায় এবং জুড়ে দেয়। এর প্রতিটি প্রপার্টি পায় একটি **অ্যারো ফাংশন**, কোনো মান নয়। সন্তান যখন ডেটা দরকার হয় তখনই সেই অ্যারো ডাকে, তাই সব সময় চলতি মানই পড়ে।
+- \`name( next?: string )\` হলো স্টেট। আর্গুমেন্ট ছাড়া ডাকলে পড়ে, আর্গুমেন্ট দিয়ে ডাকলে লেখে। এই পুরো ফাংশনটিই \`obj.value\`-তে দেওয়া হয় বলেই ইনপুটে টাইপ করলে \`name\` হালনাগাদ হয়।
+- \`@ $mol_mem\` প্রতি ইনস্ট্যান্সে একটি প্রপার্টি ক্যাশ করে। \`name\`-এর ক্ষেত্রে এর মানে মানটি জমা থাকে, আর যারা সেটি পড়েছিল তারা মান বদলালে আবার হিসাব করে। \`Name\` ও \`Message\`-এর ক্ষেত্রে মানে প্রতিবার ডাকলে নতুন একটি নয়, একবার তৈরি হওয়া একটিই সন্তান কম্পোনেন্ট।
+- \`greeting()\` \`name()\` পড়ে। সেই পড়াটাই *হলো* সাবস্ক্রিপশন। \`name\` বদলালে \`greeting\` আবার হিসাব হয় আর পর্দার লেখা তার পিছু নেয় — কোনো এফেক্ট ঘোষণা নয়, কোনো নির্ভরতার তালিকা নয়, রি-রেন্ডার ডাকাও নয়।
+
+## ৩. চালান
+
+ধাপ ১-এর ডেভ সার্ভার ইতিমধ্যেই পর্যবেক্ষণ করছে। শুধু খুলুন:
+
+\`\`\`
+http://localhost:9080/my/hello/
+\`\`\`
+
+আপনার নাম লিখুন, আর টাইপ করার সঙ্গে সঙ্গেই অভিবাদন হালনাগাদ হবে। এটাই $mol-এর প্রতিক্রিয়াশীলতা: স্টেট নিজে থেকেই ভিউতে বয়ে যায়।
+
+## ৪. দ্বিতীয় একটি প্রতিক্রিয়াশীল মান যোগ করুন
+
+প্রতিক্রিয়াশীলতা জোড়া লাগে। একই \`name\` পড়ে এমন একটি দৈর্ঘ্য-গণক যোগ করুন, বাড়তি কোনো তারজোড়া ছাড়াই।
+
+এটি \`body()\`-তে রাখুন:
+
+\`\`\`typescript
+		body() {
+			return [ this.Name(), this.Message(), this.Counter() ]
+		}
+\`\`\`
+
+আর এর পেছনের দুটি প্রপার্টি যোগ করুন:
+
+\`\`\`typescript
+		@ $mol_mem
+		Counter() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.counter() ]
+			return obj
+		}
+
+		counter() {
+			return \`\${ this.name().length } characters\`
+		}
+\`\`\`
+
+\`greeting\` আর \`counter\` দুটিই \`name\` পড়ে, আর দুটিই একসঙ্গে হালনাগাদ হয়। তৃতীয়টি যোগ করুন, দশমটি যোগ করুন: প্রতিক্রিয়াশীল অর্ধেকটা কখনো আকার বদলায় না।
+
+অন্য অর্ধেকটা বদলায়। তিন লাইন যুক্তির সঙ্গে ছয় লাইন নলপথ এল — একটি ফ্যাক্টরি, একটি \`new\`, একটি অ্যারো, একটি \`return obj\`। সত্যিকারের একটি পর্দার প্রতিটি সন্তান দিয়ে গুণ করুন, তাহলেই \`view.tree\`-র থাকার কারণ পেয়ে যাবেন।
+
+## ৫. আপনার বিল্ড যাচাই করুন
+
+MAM প্রতিটি অ্যাপের পাশে একটি ডায়াগনস্টিক ফাইল লেখে। বিল্ডের পরে খুলুন:
+
+\`\`\`
+http://localhost:9080/my/hello/-/web.audit.js
+\`\`\`
+
+একটি পরিষ্কার অডিট মানে কোনো অব্যবহৃত নির্ভরতা নেই, কোনো টাইপ সমস্যা নেই, ঠিক করার কিছু নেই। এটির দিকে একনজর দেখার অভ্যাস গড়ুন — ব্রাউজারে পৌঁছানোর আগেই এটি ভুল ধরে ফেলে।
+
+## আপনি একটি $mol অ্যাপ তৈরি করেছেন
+
+দ্বিমুখী বাঁধাই আর উদ্ভূত অবস্থাসহ একটি প্রতিক্রিয়াশীল কম্পোনেন্ট, একটিমাত্র ফাইলে, শূন্য কনফিগারেশনে।
+
+এবার ঠিক ওই ফাইলটিই নিন আর দেখুন কীভাবে ছোট হয়ে আসে: **[TypeScript থেকে view.tree](#!section=docs/page=from-ts-to-view-tree)**।
+`}}},"from-ts-to-view-tree":{slug:"from-ts-to-view-tree",title:"From TypeScript to view.tree",summary:"The same component as a hand-written class and as a tree, line by line, plus the code the compiler generates from it.",file:"content/en/docs/from-ts-to-view-tree.md",md:`# From TypeScript to view.tree
+
+The component you wrote in [Getting Started](#!section=docs/page=getting-started) is a plain TypeScript class. It compiles, it runs, and it is a supported way to describe a $mol component — one of several the framework accepts.
+
+It also asked you to keep four things in your head that had nothing to do with what the component does. This page takes them one at a time and shows the line of \`view.tree\` that removes each one. Then it shows the code the compiler generates, so you can check that the tree is not a second runtime: it produces the class you already wrote.
+
+Here is that file again, to compare against:
+
+\`\`\`typescript
+namespace $ {
+
+	export class $my_hello extends $mol_page {
+
+		title() {
+			return 'Greeting'
+		}
+
+		body() {
+			return [ this.Name(), this.Message() ]
+		}
+
+		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+
+		@ $mol_mem
+		name( next?: string ) {
+			return next ?? ''
+		}
+
+		@ $mol_mem
+		Message() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.greeting() ]
+			return obj
+		}
+
+		greeting() {
+			const name = this.name()
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
+		}
+
+	}
+
+}
+\`\`\`
+
+## The child is yours to build, and yours to cache
+
+Six of those lines are a factory:
+
+\`\`\`typescript
+		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+\`\`\`
+
+Delete \`@ $mol_mem\` and it still compiles. It also stops being one component: \`this.Name() !== this.Name()\`, because the body runs \`new\` on every call. Whoever reads the property last wins, the earlier instances keep whatever they were holding, and nothing disposes of them — $mol only owns the objects it cached for you.
+
+In \`view.tree\` the same child is one line:
+
+\`\`\`tree
+		<= Name $mol_string
+\`\`\`
+
+A capitalized name means the property holds a component; \`<=\` declares it. There is no shorter spelling that forgets the decorator, because you are not writing the factory.
+
+## The operator says which way the data moves
+
+Feeding a child means assigning to it, one property at a time:
+
+\`\`\`typescript
+			obj.sub = () => [ this.greeting() ]
+\`\`\`
+
+Three moving parts: the child object, the property name, and an arrow so the read happens later instead of now. The line says what is connected but not in which direction — to learn that you read the arrow body and check whether anything flows back.
+
+The tree puts the direction in the operator:
+
+\`\`\`tree
+		<= Message $mol_view
+			sub / <= greeting \\
+\`\`\`
+
+\`<=\` is one-way, from \`greeting\` into the child's \`sub\`. \`/\` is a list, \`\\\` starts a raw string, and \`greeting \\\` declares a property with an empty string as its default — the value you will override in TypeScript.
+
+## Two-way binding is one keystroke away from silently read-only
+
+The input needs data going both ways, which is the \`next\` parameter:
+
+\`\`\`typescript
+			obj.value = ( next?: string ) => this.name( next )
+\`\`\`
+
+Now drop \`next\`:
+
+\`\`\`typescript
+			obj.value = () => this.name()
+\`\`\`
+
+TypeScript accepts this. A function of no arguments is assignable where one optional argument is expected, so the types check out and the audit stays green. The field renders, shows the right value, and quietly ignores everything you type.
+
+In the tree that half-connection cannot be written:
+
+\`\`\`tree
+		<= Name $mol_string
+			value? <=> name? \\
+\`\`\`
+
+\`<=>\` binds both directions. The bare \`?\` marks a property that takes an argument, which is the same thing as saying you can write to it. Both ends carry it here, so the value flows into the field and back out again.
+
+## A localized string stays a string until you make it a key
+
+\`\`\`typescript
+		title() {
+			return 'Greeting'
+		}
+\`\`\`
+
+To translate that you invent a key, replace the literal with a \`$mol_locale.text\` call, write the json, and keep the two in step by hand for the rest of the project's life.
+
+\`\`\`tree
+	title @ \\Greeting
+\`\`\`
+
+\`@\` marks the string as localizable, and the build does the rest. After a build, \`my/hello/-/web.locale=en.json\` holds:
+
+\`\`\`json
+{
+	"$my_hello_Name_hint": "Enter your name",
+	"$my_hello_title": "Greeting"
+}
+\`\`\`
+
+Translators get a json file with every string in the app. You never write a key.
+
+## The whole component
 
 \`\`\`tree-no-run
 $my_hello $mol_page
@@ -4307,76 +4999,3884 @@ $my_hello $mol_page
 			sub / <= greeting \\
 \`\`\`
 
-নাম উল্লেখ করার মতো কয়েকটি বিষয়।
-
-- \`$mol_page\` এবং \`$mol_string\` হলো অন্তর্নির্মিত কম্পোনেন্ট — একটি পৃষ্ঠার খোল এবং একটি টেক্সট ইনপুট।
-- \`<=\` একটি প্রপার্টি একমুখীভাবে বাঁধে; \`<=>\` দ্বিমুখীভাবে বাঁধে। তাই \`value? <=> name?\` ইনপুট এবং আপনার \`name\` অবস্থাকে সমন্বিত রাখে।
-- \`@\` একটি স্থানীয়করণযোগ্য স্ট্রিং চিহ্নিত করে; \`\\\` একটি কাঁচা স্ট্রিং শুরু করে।
-
-### hello.view.ts — আচরণ
+That is \`hello.view.tree\`. What stays in \`hello.view.ts\` is the part that was never structure:
 
 \`\`\`typescript
 namespace $.$$ {
+
 	export class $my_hello extends $.$my_hello {
-		@ $mol_mem
+
 		greeting() {
 			const name = this.name()
-			return name ? \`Hello, \${name}!\` : 'Please enter your name'
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
 		}
+
 	}
+
 }
 \`\`\`
 
-\`@ $mol_mem\` \`greeting\`-কে একটি প্রতিক্রিয়াশীল, ক্যাশ করা প্রপার্টিতে পরিণত করে। এটি \`name()\` পড়ে, তাই \`name\` পরিবর্তিত হওয়ার মুহূর্তে \`greeting\` পুনরায় গণনা করা হয় এবং পর্দার বার্তা হালনাগাদ হয়। আপনি কখনো কোনো সাবস্ক্রিপশন, ইফেক্ট, বা পুনরায় রেন্ডার কল লেখেননি।
+The class now extends \`$.$my_hello\`, the base the tree generated, and overrides one property. \`$.$$\` is the namespace for those overrides.
 
-## ৩. এটি চালান
+## What the compiler emits
 
-ধাপ ১-এর ডেভেলপমেন্ট সার্ভার ইতিমধ্যেই পর্যবেক্ষণ করছে। শুধু খুলুন:
+\`view.tree\` is a code generator with no runtime of its own. Build the module and read \`my/hello/-view.tree/hello.view.tree.js\`:
 
+\`\`\`javascript
+	($.$my_hello) = class $my_hello extends ($.$mol_page) {
+		name(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		Name(){
+			const obj = new this.$.$mol_string();
+			(obj.hint) = () => ((this.$.$mol_locale.text("$my_hello_Name_hint")));
+			(obj.value) = (next) => ((this.name(next)));
+			return obj;
+		}
+		greeting(){
+			return "";
+		}
+		Message(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.greeting())]);
+			return obj;
+		}
+		title(){
+			return (this.$.$mol_locale.text("$my_hello_title"));
+		}
+		body(){
+			return [(this.Name()), (this.Message())];
+		}
+	};
+	($mol_mem(($.$my_hello.prototype), "name"));
+	($mol_mem(($.$my_hello.prototype), "Name"));
+	($mol_mem(($.$my_hello.prototype), "Message"));
 \`\`\`
-http://localhost:9080/my/hello/
+
+The same factories, the same arrows, the same three \`$mol_mem\` calls, plus the two locale keys you did not have to name. By the time the bundle reaches a browser the tree is gone.
+
+That is also why the two formats mix freely. A component written as a tree and a component written as a class produce the same kind of object, so one app can hold both and neither knows the difference.
+
+## What a hand-written class cannot hand to a tool
+
+Next to the generated JS the compiler writes \`hello.view.tree.d.ts\`:
+
+\`\`\`typescript
+declare namespace $ {
+
+	type $mol_string__hint_my_hello_1 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_string['hint'] >
+	>
+	type $mol_string__value_my_hello_2 = $mol_type_enforce<
+		ReturnType< $my_hello['name'] >
+		,
+		ReturnType< $mol_string['value'] >
+	>
+	type $mol_view__sub_my_hello_3 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	export class $my_hello extends $mol_page {
+		name( next?: string ): string
+		Name( ): $mol_string
+		greeting( ): string
+		Message( ): $mol_view
+		title( ): string
+		body( ): readonly(any)[]
+	}
+
+}
 \`\`\`
 
-আপনার নাম টাইপ করুন — টাইপ করার সাথে সাথে অভিবাদন হালনাগাদ হয়। এটাই $mol-এর প্রতিক্রিয়াশীলতা: অবস্থা নিজে থেকেই ভিউয়ের দিকে প্রবাহিত হয়।
+The \`$mol_type_enforce\` pairs check each binding against the property it feeds, so a type mismatch is reported at the binding itself rather than somewhere inside the child. The class body below them is a machine-readable description of the component's surface, and things read it: the locale file above is extracted from the same parse, and the [API pages](#!section=docs/page=api-mol-string) on this site are generated from the \`.view.tree.d.ts\` of each core component.
 
-## ৪. একটি দ্বিতীয় প্রতিক্রিয়াশীল মান যোগ করুন
+A class written by hand offers none of that. It is code, and the only thing that can read it is TypeScript.
 
-প্রতিক্রিয়াশীলতা সংযোজনযোগ্য। কোনো অতিরিক্ত সংযোগ ছাড়াই একই \`name\`-এর উপর নির্ভরশীল একটি দৈর্ঘ্য গণক যোগ করুন।
+## The size of it
 
-\`hello.view.tree\`-তে, \`Message\`-এর নিচে একটি লাইন যোগ করুন:
+The Hello World above: 31 lines of TypeScript become 8 lines of tree plus 8 lines of TypeScript.
 
-\`\`\`tree
-		<= Counter $mol_view
-			sub / <= counter \\
+The gap widens with the component. \`$mol_app_users\` — a search field, a list, four buttons and a status line — is 30 lines and 840 characters as a tree, and 125 lines and 3046 characters as a class. Both versions are printed in full on the wiki's [format comparison](https://github.com/hyoo-ru/mam_mol/wiki/View-Formats) page, so you can weigh the trade yourself.
+
+## Which one to write
+
+Both, chosen per component.
+
+\`view.ts\` is a supported format. It is what the tree compiles to, and a component written that way behaves like any other. When a component is mostly logic with one or two children, the class is the honest choice and the tree buys you little.
+
+The tree pays for itself where the ceremony repeats: screens that are mostly structure, long runs of bindings, anything with text a translator will want. That describes most of a user interface, which is why $mol's own components are written this way.
+
+Next, the tree language itself — lists, dictionaries, keyed children, and specializing a component by extending it: **[Views](#!section=docs/page=views)**.
+`,tr:{zh:{title:"从 TypeScript 到 view.tree",summary:"你在快速上手里写的那个组件，是一个普通的 TypeScript 类。它能编译、能运行，而且是框架支持的几种组件描述方式之一。",md:`# 从 TypeScript 到 view.tree
+
+你在[快速上手](#!section=docs/page=getting-started)里写的那个组件，是一个普通的 TypeScript 类。它能编译、能运行，而且是框架支持的几种组件描述方式之一。
+
+它同时也逼你在脑子里记住四件跟组件本身无关的事。本页逐个拆开它们，并给出消掉每一件的那行 \`view.tree\`。最后再看编译器生成的代码，你可以自己核对：树不是第二套运行时，它产出的正是你已经写过的那个类。
+
+先把那份文件再放一遍，方便对照：
+
+\`\`\`typescript
+namespace $ {
+
+	export class $my_hello extends $mol_page {
+
+		title() {
+			return 'Greeting'
+		}
+
+		body() {
+			return [ this.Name(), this.Message() ]
+		}
+
+		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+
+		@ $mol_mem
+		name( next?: string ) {
+			return next ?? ''
+		}
+
+		@ $mol_mem
+		Message() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.greeting() ]
+			return obj
+		}
+
+		greeting() {
+			const name = this.name()
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
+		}
+
+	}
+
+}
 \`\`\`
 
-\`hello.view.ts\`-তে, মেথডটি যোগ করুন:
+## 子组件由你创建，也由你缓存
+
+其中六行是一个工厂：
 
 \`\`\`typescript
 		@ $mol_mem
-		counter() {
-			return \`\${this.name().length} characters\`
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
 		}
+\`\`\`
+
+删掉 \`@ $mol_mem\`，代码照样编译。但它不再是同一个组件了：\`this.Name() !== this.Name()\`，因为函数体每次调用都执行 \`new\`。谁最后读到这个属性谁说了算，先前的实例带着攒下的一切留在原地，也没有人销毁它们——$mol 只拥有它替你缓存过的对象。
+
+在 \`view.tree\` 里，同一个子组件就是一行：
+
+\`\`\`tree
+		<= Name $mol_string
+\`\`\`
+
+首字母大写表示这个属性装的是组件，\`<=\` 负责声明它。这里没有哪种更短的写法会漏掉装饰器，因为工厂根本不用你写。
+
+## 数据往哪边流，由操作符说了算
+
+给子组件喂数据就是赋值，一个属性一次：
+
+\`\`\`typescript
+			obj.sub = () => [ this.greeting() ]
+\`\`\`
+
+三个活动部件：子对象、属性名，以及一个让读取推迟到之后而不是现在发生的箭头。这一行说清了什么连着什么，却没说方向；要知道方向，你得读箭头的函数体，看看有没有东西回流。
+
+树把方向放进了操作符：
+
+\`\`\`tree
+		<= Message $mol_view
+			sub / <= greeting \\
+\`\`\`
+
+\`<=\` 是单向的，从 \`greeting\` 流进子组件的 \`sub\`。\`/\` 是列表，\`\\\` 开始一段原始字符串，而 \`greeting \\\` 声明了一个默认值为空字符串的属性——正是你之后要在 TypeScript 里覆盖的那个。
+
+## 双向绑定离「悄悄变成只读」只差一次按键
+
+输入框需要双向的数据，这正是参数 \`next\` 的作用：
+
+\`\`\`typescript
+			obj.value = ( next?: string ) => this.name( next )
+\`\`\`
+
+现在把 \`next\` 去掉：
+
+\`\`\`typescript
+			obj.value = () => this.name()
+\`\`\`
+
+TypeScript 接受这种写法。无参函数可以赋给期待一个可选参数的位置，于是类型检查通过，审计依然是绿的。输入框照常渲染，显示正确的值，然后悄无声息地忽略你输入的一切。
+
+在树里，这种只连了一半的写法根本写不出来：
+
+\`\`\`tree
+		<= Name $mol_string
+			value? <=> name? \\
+\`\`\`
+
+\`<=>\` 双向绑定。光秃秃的 \`?\` 标记一个接受参数的属性，也就是可以写入的属性。这里两端都带着它，所以值会流进输入框，也会流回来。
+
+## 一段可本地化的文本，在你为它造出键之前只是字符串
+
+\`\`\`typescript
+		title() {
+			return 'Greeting'
+		}
+\`\`\`
+
+要翻译它，你得自己想一个键，把字面量换成 \`$mol_locale.text\` 调用，写好 json，然后在项目余下的日子里手工保持两边一致。
+
+\`\`\`tree
+	title @ \\Greeting
+\`\`\`
+
+\`@\` 把字符串标记为可本地化的，剩下的交给构建。构建之后，\`my/hello/-/web.locale=en.json\` 里是这样：
+
+\`\`\`json
+{
+	"$my_hello_Name_hint": "Enter your name",
+	"$my_hello_title": "Greeting"
 }
 \`\`\`
 
-\`greeting\` এবং \`counter\` উভয়েই \`name\` পড়ে; উভয়ই একসাথে হালনাগাদ হয়। একটি তৃতীয় যোগ করুন, একটি দশম যোগ করুন — প্যাটার্ন বদলায় না। এই কারণেই বৈশিষ্ট্য জমা হতে থাকলেও $mol কোড সমতল থাকে।
+译者拿到的是一份含全部文案的 json。你一个键都不用写。
 
-## ৫. আপনার বিল্ড যাচাই করুন
+## 完整的组件
 
-MAM প্রতিটি অ্যাপের পাশে একটি ডায়াগনস্টিক ফাইল লেখে। একটি বিল্ডের পরে, খুলুন:
-
+\`\`\`tree-no-run
+$my_hello $mol_page
+	title @ \\Greeting
+	body /
+		<= Name $mol_string
+			hint @ \\Enter your name
+			value? <=> name? \\
+		<= Message $mol_view
+			sub / <= greeting \\
 \`\`\`
-http://localhost:9080/my/hello/-/web.audit.js
+
+这就是 \`hello.view.tree\`。留在 \`hello.view.ts\` 里的，是从来就不属于结构的那部分：
+
+\`\`\`typescript
+namespace $.$$ {
+
+	export class $my_hello extends $.$my_hello {
+
+		greeting() {
+			const name = this.name()
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
+		}
+
+	}
+
+}
 \`\`\`
 
-একটি পরিষ্কার অডিট মানে কোনো অব্যবহৃত নির্ভরতা নেই, কোনো টাইপ সমস্যা নেই, ঠিক করার কিছু নেই। এটির দিকে একনজর দেখার অভ্যাস গড়ুন — ব্রাউজারে পৌঁছানোর আগেই এটি ভুল ধরে ফেলে।
+类现在继承 \`$.$my_hello\`，也就是树生成的基类，并覆盖其中一个属性。\`$.$$\` 就是放这类覆盖的命名空间。
 
-## আপনি একটি $mol অ্যাপ তৈরি করেছেন
+## 编译器产出什么
 
-আপনার কাছে একটি প্রতিক্রিয়াশীল কম্পোনেন্ট, দ্বিমুখী বাঁধাই এবং উদ্ভূত অবস্থা রয়েছে — তিনটি ছোট ফাইল এবং শূন্য কনফিগারেশন দিয়ে।
+\`view.tree\` 是一个没有自己运行时的代码生成器。构建模块之后，读一读 \`my/hello/-view.tree/hello.view.tree.js\`：
 
-এগিয়ে যান: **[গাইড](#!section=docs/page=installation)** ইনস্টলেশন, ভিউ, অবস্থা, রাউটিং এবং ডেটা গভীরভাবে আলোচনা করে — এবং এই Hello World-কে সত্যিকারের কিছুতে পরিণত করে।
+\`\`\`javascript
+	($.$my_hello) = class $my_hello extends ($.$mol_page) {
+		name(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		Name(){
+			const obj = new this.$.$mol_string();
+			(obj.hint) = () => ((this.$.$mol_locale.text("$my_hello_Name_hint")));
+			(obj.value) = (next) => ((this.name(next)));
+			return obj;
+		}
+		greeting(){
+			return "";
+		}
+		Message(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.greeting())]);
+			return obj;
+		}
+		title(){
+			return (this.$.$mol_locale.text("$my_hello_title"));
+		}
+		body(){
+			return [(this.Name()), (this.Message())];
+		}
+	};
+	($mol_mem(($.$my_hello.prototype), "name"));
+	($mol_mem(($.$my_hello.prototype), "Name"));
+	($mol_mem(($.$my_hello.prototype), "Message"));
+\`\`\`
+
+同样的工厂、同样的箭头、同样的三次 \`$mol_mem\` 调用，外加两个你没动手命名的本地化键。等 bundle 抵达浏览器时，树早已不在。
+
+这也是两种格式能自由混用的原因。用树写的组件和用类写的组件产出的是同一种对象，同一个应用可以同时容纳两者，谁也察觉不到差别。
+
+## 手写的类交不出去的东西
+
+在生成的 JS 旁边，编译器还会写一份 \`hello.view.tree.d.ts\`：
+
+\`\`\`typescript
+declare namespace $ {
+
+	type $mol_string__hint_my_hello_1 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_string['hint'] >
+	>
+	type $mol_string__value_my_hello_2 = $mol_type_enforce<
+		ReturnType< $my_hello['name'] >
+		,
+		ReturnType< $mol_string['value'] >
+	>
+	type $mol_view__sub_my_hello_3 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	export class $my_hello extends $mol_page {
+		name( next?: string ): string
+		Name( ): $mol_string
+		greeting( ): string
+		Message( ): $mol_view
+		title( ): string
+		body( ): readonly(any)[]
+	}
+
+}
+\`\`\`
+
+那些 \`$mol_type_enforce\` 成对地把每条绑定和它所喂的属性核对一遍，于是类型不匹配会报在绑定这一行，而不是子组件深处的某个地方。下面的类体则是组件对外表面的机器可读描述，而且真的有东西在读它：上面那份本地化文件出自同一次解析，本站的 [API 页面](#!section=docs/page=api-mol-string)也是从每个基础组件的 \`.view.tree.d.ts\` 生成的。
+
+手写的类给不出这些。它是代码，唯一读得懂它的只有 TypeScript。
+
+## 体量
+
+上面这个 Hello World：31 行 TypeScript 变成 8 行树加 8 行 TypeScript。
+
+组件越大，差距越大。\`$mol_app_users\` 有一个搜索框、一个列表、四个按钮和一行状态，写成树是 30 行、840 个字符，写成类是 125 行、3046 个字符。两个版本在维基的[格式对比](https://github.com/hyoo-ru/mam_mol/wiki/View-Formats)页面上都有完整代码，取舍可以自己掂量。
+
+## 该写哪一种
+
+两种都写，按组件来选。
+
+\`view.ts\` 是受支持的格式。树最终编译成的就是它，这样写出的组件与其他组件毫无二致。当一个组件主要是逻辑、只带一两个子组件时，类才是诚实的选择，树给不了多少好处。
+
+树划算的地方在于那些重复的仪式：以结构为主的界面、成排的绑定、任何包含译者需要看到的文案的地方。界面的大部分正是如此，所以 $mol 自己的组件都是这么写的。
+
+接下来是树语言本身——列表、字典、带键的子组件，以及用继承来特化一个组件：**[视图](#!section=docs/page=views)**。
+`},zh_hk:{title:"從 TypeScript 到 view.tree",summary:"你在快速開始裡寫的那個元件，是一個普通的 TypeScript 類別。它能編譯、能執行，而且是框架支援的幾種元件描述方式之一。",md:`# 從 TypeScript 到 view.tree
+
+你在[快速開始](#!section=docs/page=getting-started)裡寫的那個元件，是一個普通的 TypeScript 類別。它能編譯、能執行，而且是框架支援的幾種元件描述方式之一。
+
+它同時也逼你在腦子裡記住四件跟元件本身無關的事。本頁逐個拆開它們，並給出消掉每一件的那行 \`view.tree\`。最後再看編譯器產生的程式碼，你可以自己核對：樹不是第二套執行環境，它產出的正是你已經寫過的那個類別。
+
+先把那份檔案再放一遍，方便對照：
+
+\`\`\`typescript
+namespace $ {
+
+	export class $my_hello extends $mol_page {
+
+		title() {
+			return 'Greeting'
+		}
+
+		body() {
+			return [ this.Name(), this.Message() ]
+		}
+
+		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+
+		@ $mol_mem
+		name( next?: string ) {
+			return next ?? ''
+		}
+
+		@ $mol_mem
+		Message() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.greeting() ]
+			return obj
+		}
+
+		greeting() {
+			const name = this.name()
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
+		}
+
+	}
+
+}
+\`\`\`
+
+## 子元件由你建立，也由你快取
+
+其中六行是一個工廠：
+
+\`\`\`typescript
+		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+\`\`\`
+
+刪掉 \`@ $mol_mem\`，程式碼照樣編譯。但它不再是同一個元件了：\`this.Name() !== this.Name()\`，因為函式主體每次呼叫都執行 \`new\`。誰最後讀到這個屬性誰說了算，先前的實例帶著攢下的一切留在原地，也沒有人銷毀它們——$mol 只擁有它替你快取過的物件。
+
+在 \`view.tree\` 裡，同一個子元件就是一行：
+
+\`\`\`tree
+		<= Name $mol_string
+\`\`\`
+
+首字母大寫代表這個屬性裝的是元件，\`<=\` 負責宣告它。這裡沒有哪種更短的寫法會漏掉裝飾器，因為工廠根本不用你寫。
+
+## 資料往哪邊流，由運算子說了算
+
+給子元件餵資料就是指派，一個屬性一次：
+
+\`\`\`typescript
+			obj.sub = () => [ this.greeting() ]
+\`\`\`
+
+三個活動零件：子物件、屬性名，以及一個讓讀取延後到之後而不是現在發生的箭頭。這一行說清了什麼連著什麼，卻沒說方向；要知道方向，你得讀箭頭的主體，看看有沒有東西回流。
+
+樹把方向放進了運算子：
+
+\`\`\`tree
+		<= Message $mol_view
+			sub / <= greeting \\
+\`\`\`
+
+\`<=\` 是單向的，從 \`greeting\` 流進子元件的 \`sub\`。\`/\` 是列表，\`\\\` 開始一段原始字串，而 \`greeting \\\` 宣告了一個預設值為空字串的屬性——正是你之後要在 TypeScript 裡覆寫的那個。
+
+## 雙向繫結離「悄悄變成唯讀」只差一次按鍵
+
+輸入框需要雙向的資料，這正是參數 \`next\` 的作用：
+
+\`\`\`typescript
+			obj.value = ( next?: string ) => this.name( next )
+\`\`\`
+
+現在把 \`next\` 拿掉：
+
+\`\`\`typescript
+			obj.value = () => this.name()
+\`\`\`
+
+TypeScript 接受這種寫法。無參數函式可以指派給期待一個選用參數的位置，於是型別檢查通過，稽核依然是綠的。輸入框照常繪製，顯示正確的值，然後悄無聲息地忽略你輸入的一切。
+
+在樹裡，這種只連了一半的寫法根本寫不出來：
+
+\`\`\`tree
+		<= Name $mol_string
+			value? <=> name? \\
+\`\`\`
+
+\`<=>\` 雙向繫結。光禿禿的 \`?\` 標記一個接受參數的屬性，也就是可以寫入的屬性。這裡兩端都帶著它，所以值會流進輸入框，也會流回來。
+
+## 一段可在地化的文字，在你為它造出鍵之前只是字串
+
+\`\`\`typescript
+		title() {
+			return 'Greeting'
+		}
+\`\`\`
+
+要翻譯它，你得自己想一個鍵，把字面值換成 \`$mol_locale.text\` 呼叫，寫好 json，然後在專案餘下的日子裡手工保持兩邊一致。
+
+\`\`\`tree
+	title @ \\Greeting
+\`\`\`
+
+\`@\` 把字串標記為可在地化，剩下的交給建構。建構之後，\`my/hello/-/web.locale=en.json\` 裡是這樣：
+
+\`\`\`json
+{
+	"$my_hello_Name_hint": "Enter your name",
+	"$my_hello_title": "Greeting"
+}
+\`\`\`
+
+譯者拿到的是一份含全部文案的 json。你一個鍵都不用寫。
+
+## 完整的元件
+
+\`\`\`tree-no-run
+$my_hello $mol_page
+	title @ \\Greeting
+	body /
+		<= Name $mol_string
+			hint @ \\Enter your name
+			value? <=> name? \\
+		<= Message $mol_view
+			sub / <= greeting \\
+\`\`\`
+
+這就是 \`hello.view.tree\`。留在 \`hello.view.ts\` 裡的，是從來就不屬於結構的那部分：
+
+\`\`\`typescript
+namespace $.$$ {
+
+	export class $my_hello extends $.$my_hello {
+
+		greeting() {
+			const name = this.name()
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
+		}
+
+	}
+
+}
+\`\`\`
+
+類別現在繼承 \`$.$my_hello\`，也就是樹產生的基底類別，並覆寫其中一個屬性。\`$.$$\` 就是放這類覆寫的命名空間。
+
+## 編譯器產出什麼
+
+\`view.tree\` 是一個沒有自己執行環境的程式碼產生器。建構模組之後，讀一讀 \`my/hello/-view.tree/hello.view.tree.js\`：
+
+\`\`\`javascript
+	($.$my_hello) = class $my_hello extends ($.$mol_page) {
+		name(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		Name(){
+			const obj = new this.$.$mol_string();
+			(obj.hint) = () => ((this.$.$mol_locale.text("$my_hello_Name_hint")));
+			(obj.value) = (next) => ((this.name(next)));
+			return obj;
+		}
+		greeting(){
+			return "";
+		}
+		Message(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.greeting())]);
+			return obj;
+		}
+		title(){
+			return (this.$.$mol_locale.text("$my_hello_title"));
+		}
+		body(){
+			return [(this.Name()), (this.Message())];
+		}
+	};
+	($mol_mem(($.$my_hello.prototype), "name"));
+	($mol_mem(($.$my_hello.prototype), "Name"));
+	($mol_mem(($.$my_hello.prototype), "Message"));
+\`\`\`
+
+同樣的工廠、同樣的箭頭、同樣的三次 \`$mol_mem\` 呼叫，外加兩個你沒動手命名的在地化鍵。等 bundle 抵達瀏覽器時，樹早已不在。
+
+這也是兩種格式能自由混用的原因。用樹寫的元件和用類別寫的元件產出的是同一種物件，同一個應用可以同時容納兩者，誰也察覺不到差別。
+
+## 手寫的類別交不出去的東西
+
+在產生的 JS 旁邊，編譯器還會寫一份 \`hello.view.tree.d.ts\`：
+
+\`\`\`typescript
+declare namespace $ {
+
+	type $mol_string__hint_my_hello_1 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_string['hint'] >
+	>
+	type $mol_string__value_my_hello_2 = $mol_type_enforce<
+		ReturnType< $my_hello['name'] >
+		,
+		ReturnType< $mol_string['value'] >
+	>
+	type $mol_view__sub_my_hello_3 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	export class $my_hello extends $mol_page {
+		name( next?: string ): string
+		Name( ): $mol_string
+		greeting( ): string
+		Message( ): $mol_view
+		title( ): string
+		body( ): readonly(any)[]
+	}
+
+}
+\`\`\`
+
+那些 \`$mol_type_enforce\` 成對地把每條繫結和它所餵的屬性核對一遍，於是型別不符會報在繫結這一行，而不是子元件深處的某個地方。下面的類別主體則是元件對外表面的機器可讀描述，而且真的有東西在讀它：上面那份在地化檔案出自同一次剖析，本站的 [API 頁面](#!section=docs/page=api-mol-string)也是從每個基礎元件的 \`.view.tree.d.ts\` 產生的。
+
+手寫的類別給不出這些。它是程式碼，唯一讀得懂它的只有 TypeScript。
+
+## 體量
+
+上面這個 Hello World：31 行 TypeScript 變成 8 行樹加 8 行 TypeScript。
+
+元件越大，差距越大。\`$mol_app_users\` 有一個搜尋框、一個列表、四個按鈕和一行狀態，寫成樹是 30 行、840 個字元，寫成類別是 125 行、3046 個字元。兩個版本在維基的[格式對比](https://github.com/hyoo-ru/mam_mol/wiki/View-Formats)頁面上都有完整程式碼，取捨可以自己掂量。
+
+## 該寫哪一種
+
+兩種都寫，按元件來選。
+
+\`view.ts\` 是受支援的格式。樹最終編譯成的就是它，這樣寫出的元件與其他元件毫無二致。當一個元件主要是邏輯、只帶一兩個子元件時，類別才是誠實的選擇，樹給不了多少好處。
+
+樹划算的地方在於那些重複的儀式：以結構為主的畫面、成排的繫結、任何包含譯者需要看到的文案的地方。介面的大部分正是如此，所以 $mol 自己的元件都是這麼寫的。
+
+接下來是樹語言本身——列表、字典、帶鍵的子元件，以及用繼承來特化一個元件：**[視圖](#!section=docs/page=views)**。
+`},ja:{title:"TypeScript から view.tree へ",summary:"はじめかたで書いたコンポーネントは、ふつうの TypeScript クラスです。コンパイルも実行もできますし、$mol のコンポーネントを記述する正式にサポートされた書き方の一つでもあります。",md:`# TypeScript から view.tree へ
+
+[はじめかた](#!section=docs/page=getting-started)で書いたコンポーネントは、ふつうの TypeScript クラスです。コンパイルも実行もできますし、$mol のコンポーネントを記述する正式にサポートされた書き方の一つでもあります。
+
+同時にそれは、コンポーネントの仕事とは関係のない四つのことを頭の中に置いておくよう求めてきました。このページではそれを一つずつ取り上げ、それぞれを消してくれる \`view.tree\` の一行を見せます。最後にコンパイラが生成するコードを示すので、ツリーが第二のランタイムではないことを自分で確かめられます。ツリーが生むのは、あなたがすでに書いたあのクラスそのものです。
+
+比較用に、あのファイルをもう一度置いておきます。
+
+\`\`\`typescript
+namespace $ {
+
+	export class $my_hello extends $mol_page {
+
+		title() {
+			return 'Greeting'
+		}
+
+		body() {
+			return [ this.Name(), this.Message() ]
+		}
+
+		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+
+		@ $mol_mem
+		name( next?: string ) {
+			return next ?? ''
+		}
+
+		@ $mol_mem
+		Message() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.greeting() ]
+			return obj
+		}
+
+		greeting() {
+			const name = this.name()
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
+		}
+
+	}
+
+}
+\`\`\`
+
+## 子は自分で作り、自分でキャッシュする
+
+そのうち 6 行はファクトリです。
+
+\`\`\`typescript
+		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+\`\`\`
+
+\`@ $mol_mem\` を消してもコンパイルは通ります。ただし一つのコンポーネントではなくなります。\`this.Name() !== this.Name()\` です。本体が呼ばれるたびに \`new\` を実行するからです。最後にプロパティを読んだ者が勝ち、それ以前のインスタンスは抱えていたものごと取り残され、誰も後始末をしません。$mol が所有するのは、$mol 自身があなたのためにキャッシュしたオブジェクトだけだからです。
+
+\`view.tree\` では同じ子が一行です。
+
+\`\`\`tree
+		<= Name $mol_string
+\`\`\`
+
+大文字で始まる名前は、そのプロパティがコンポーネントを保持していることを意味し、\`<=\` がそれを宣言します。デコレーターを書き忘れる短い書き方は存在しません。ファクトリを書くのがあなたではないからです。
+
+## データの向きは演算子が語る
+
+子にデータを与えるとは、プロパティごとに代入することです。
+
+\`\`\`typescript
+			obj.sub = () => [ this.greeting() ]
+\`\`\`
+
+可動部が三つ。子オブジェクト、プロパティ名、そして読み取りを今ではなく後に起こすためのアロー。この行は何と何がつながっているかは語りますが、どちら向きかは語りません。それを知るにはアローの中身を読み、何かが戻ってくるかを確かめる必要があります。
+
+ツリーは向きを演算子に持たせます。
+
+\`\`\`tree
+		<= Message $mol_view
+			sub / <= greeting \\
+\`\`\`
+
+\`<=\` は一方向、\`greeting\` から子の \`sub\` へ。\`/\` はリスト、\`\\\` は生の文字列の始まり、そして \`greeting \\\` は既定値を空文字列としたプロパティの宣言です——あとで TypeScript 側で上書きする、あの値です。
+
+## 双方向束縛は、キー一つで黙って読み取り専用になる
+
+入力欄には双方向のデータが要ります。それを担うのが \`next\` というパラメーターです。
+
+\`\`\`typescript
+			obj.value = ( next?: string ) => this.name( next )
+\`\`\`
+
+ここで \`next\` を落としてみます。
+
+\`\`\`typescript
+			obj.value = () => this.name()
+\`\`\`
+
+TypeScript はこれを受け入れます。引数を取らない関数は、省略可能な引数が一つ期待される場所に代入できるので、型は通り、監査も緑のままです。欄は描画され、正しい値を表示し、あなたが打ち込むものを黙って無視します。
+
+ツリーでは、この半分だけの接続は書けません。
+
+\`\`\`tree
+		<= Name $mol_string
+			value? <=> name? \\
+\`\`\`
+
+\`<=>\` は双方向に束縛します。裸の \`?\` は引数を取るプロパティ、つまり書き込めるプロパティであることを示します。ここでは両端に付いているので、値は欄へ流れ込み、また戻ってきます。
+
+## ローカライズ可能な文字列は、キーにするまでただの文字列
+
+\`\`\`typescript
+		title() {
+			return 'Greeting'
+		}
+\`\`\`
+
+これを翻訳するには、キーを自分で考え、リテラルを \`$mol_locale.text\` の呼び出しに置き換え、json を書き、プロジェクトが続く限り両者を手で揃え続けることになります。
+
+\`\`\`tree
+	title @ \\Greeting
+\`\`\`
+
+\`@\` が文字列をローカライズ可能だと印を付け、残りはビルドがやります。ビルド後、\`my/hello/-/web.locale=en.json\` の中身はこうです。
+
+\`\`\`json
+{
+	"$my_hello_Name_hint": "Enter your name",
+	"$my_hello_title": "Greeting"
+}
+\`\`\`
+
+翻訳者はアプリの全文字列が入った json を受け取ります。あなたはキーを一つも書きません。
+
+## コンポーネント全体
+
+\`\`\`tree-no-run
+$my_hello $mol_page
+	title @ \\Greeting
+	body /
+		<= Name $mol_string
+			hint @ \\Enter your name
+			value? <=> name? \\
+		<= Message $mol_view
+			sub / <= greeting \\
+\`\`\`
+
+これが \`hello.view.tree\` です。\`hello.view.ts\` に残るのは、そもそも構造ではなかった部分だけです。
+
+\`\`\`typescript
+namespace $.$$ {
+
+	export class $my_hello extends $.$my_hello {
+
+		greeting() {
+			const name = this.name()
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
+		}
+
+	}
+
+}
+\`\`\`
+
+クラスはツリーが生成した基底 \`$.$my_hello\` を継承し、プロパティを一つ上書きします。\`$.$$\` はそうした上書きのための名前空間です。
+
+## コンパイラが吐くもの
+
+\`view.tree\` は自前のランタイムを持たないコードジェネレーターです。モジュールをビルドして \`my/hello/-view.tree/hello.view.tree.js\` を読んでみてください。
+
+\`\`\`javascript
+	($.$my_hello) = class $my_hello extends ($.$mol_page) {
+		name(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		Name(){
+			const obj = new this.$.$mol_string();
+			(obj.hint) = () => ((this.$.$mol_locale.text("$my_hello_Name_hint")));
+			(obj.value) = (next) => ((this.name(next)));
+			return obj;
+		}
+		greeting(){
+			return "";
+		}
+		Message(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.greeting())]);
+			return obj;
+		}
+		title(){
+			return (this.$.$mol_locale.text("$my_hello_title"));
+		}
+		body(){
+			return [(this.Name()), (this.Message())];
+		}
+	};
+	($mol_mem(($.$my_hello.prototype), "name"));
+	($mol_mem(($.$my_hello.prototype), "Name"));
+	($mol_mem(($.$my_hello.prototype), "Message"));
+\`\`\`
+
+同じファクトリ、同じアロー、同じ 3 回の \`$mol_mem\` 呼び出し、加えてあなたが名付けずに済んだ 2 つのロケールキー。バンドルがブラウザーに届くころには、ツリーはもうどこにもありません。
+
+二つの形式が自由に混ざるのもそのためです。ツリーで書いたコンポーネントとクラスで書いたコンポーネントは同じ種類のオブジェクトを生むので、一つのアプリが両方を抱えても、誰も違いに気づきません。
+
+## 手書きのクラスがツールに渡せないもの
+
+生成された JS の隣に、コンパイラは \`hello.view.tree.d.ts\` も書き出します。
+
+\`\`\`typescript
+declare namespace $ {
+
+	type $mol_string__hint_my_hello_1 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_string['hint'] >
+	>
+	type $mol_string__value_my_hello_2 = $mol_type_enforce<
+		ReturnType< $my_hello['name'] >
+		,
+		ReturnType< $mol_string['value'] >
+	>
+	type $mol_view__sub_my_hello_3 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	export class $my_hello extends $mol_page {
+		name( next?: string ): string
+		Name( ): $mol_string
+		greeting( ): string
+		Message( ): $mol_view
+		title( ): string
+		body( ): readonly(any)[]
+	}
+
+}
+\`\`\`
+
+\`$mol_type_enforce\` の対が、各束縛とそれが供給するプロパティを突き合わせます。おかげで型の食い違いは子の奥深くではなく、束縛そのものの位置で報告されます。その下のクラス本体はコンポーネントの表面を機械可読に書き出したもので、実際に読まれています。上のロケールファイルは同じ解析から抽出されますし、このサイトの [API ページ](#!section=docs/page=api-mol-string)も各基本コンポーネントの \`.view.tree.d.ts\` から生成されています。
+
+手書きのクラスはそのどれも提供しません。それはコードであり、読めるのは TypeScript だけです。
+
+## 分量の話
+
+上の Hello World の場合、31 行の TypeScript が、8 行のツリーと 8 行の TypeScript になります。
+
+コンポーネントが大きくなるほど差は開きます。\`$mol_app_users\` は検索欄、リスト、ボタン 4 つ、ステータス行を持ち、ツリーなら 30 行 840 文字、クラスなら 125 行 3046 文字です。両方の版が wiki の[フォーマット比較](https://github.com/hyoo-ru/mam_mol/wiki/View-Formats)ページに全文載っているので、取引の重さは自分で量れます。
+
+## どちらを書くか
+
+両方を、コンポーネント単位で選んで。
+
+\`view.ts\` はサポートされた形式です。ツリーがコンパイルされる先そのものであり、その書き方のコンポーネントも他と同じように振る舞います。ロジックが中心で子が一つか二つのコンポーネントなら、クラスのほうが誠実で、ツリーの利は小さいでしょう。
+
+ツリーが元を取るのは、儀式が繰り返される場所です。構造が大半を占める画面、長々と並ぶ束縛、翻訳者が見たがるテキストを含むもの。ユーザーインターフェイスの大部分はまさにそれで、だから $mol 自身のコンポーネントもこの形式で書かれています。
+
+次はツリー言語そのものです——リスト、辞書、キー付きの子、そして継承によるコンポーネントの特殊化。**[ビュー](#!section=docs/page=views)**
+`},ko:{title:"TypeScript에서 view.tree로",summary:"시작하기에서 작성한 컴포넌트는 평범한 TypeScript 클래스입니다. 컴파일되고, 실행되고, $mol 컴포넌트를 기술하는 공식 지원 방식 가운데 하나이기도 합니다.",md:`# TypeScript에서 view.tree로
+
+[시작하기](#!section=docs/page=getting-started)에서 작성한 컴포넌트는 평범한 TypeScript 클래스입니다. 컴파일되고, 실행되고, $mol 컴포넌트를 기술하는 공식 지원 방식 가운데 하나이기도 합니다.
+
+동시에 그 파일은 컴포넌트가 하는 일과는 무관한 네 가지를 머릿속에 담아두라고 요구했습니다. 이 페이지는 그것들을 하나씩 꺼내어, 각각을 없애주는 \`view.tree\` 한 줄을 보여줍니다. 마지막에는 컴파일러가 생성하는 코드를 보여드립니다. 트리가 두 번째 런타임이 아니라는 것을 직접 확인할 수 있습니다. 트리가 만들어내는 것은 당신이 이미 쓴 바로 그 클래스입니다.
+
+비교를 위해 그 파일을 다시 놓습니다.
+
+\`\`\`typescript
+namespace $ {
+
+	export class $my_hello extends $mol_page {
+
+		title() {
+			return 'Greeting'
+		}
+
+		body() {
+			return [ this.Name(), this.Message() ]
+		}
+
+		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+
+		@ $mol_mem
+		name( next?: string ) {
+			return next ?? ''
+		}
+
+		@ $mol_mem
+		Message() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.greeting() ]
+			return obj
+		}
+
+		greeting() {
+			const name = this.name()
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
+		}
+
+	}
+
+}
+\`\`\`
+
+## 자식은 당신이 만들고, 캐시도 당신이 한다
+
+그중 여섯 줄이 팩토리입니다.
+
+\`\`\`typescript
+		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+\`\`\`
+
+\`@ $mol_mem\`을 지워도 컴파일은 됩니다. 다만 더 이상 하나의 컴포넌트가 아닙니다. \`this.Name() !== this.Name()\`, 본문이 호출될 때마다 \`new\`를 실행하기 때문입니다. 프로퍼티를 마지막에 읽은 쪽이 이기고, 이전 인스턴스들은 쌓아둔 것을 그대로 안은 채 남고, 아무도 그것들을 정리하지 않습니다. $mol이 소유하는 것은 자신이 당신을 위해 캐시한 객체뿐이니까요.
+
+\`view.tree\`에서 같은 자식은 한 줄입니다.
+
+\`\`\`tree
+		<= Name $mol_string
+\`\`\`
+
+대문자로 시작하는 이름은 그 프로퍼티가 컴포넌트를 담고 있다는 뜻이고, \`<=\`가 그것을 선언합니다. 데코레이터를 빠뜨리는 더 짧은 표기는 존재하지 않습니다. 팩토리를 쓰는 사람이 당신이 아니니까요.
+
+## 데이터가 어느 쪽으로 흐르는지는 연산자가 말한다
+
+자식에게 값을 먹인다는 것은 프로퍼티 하나씩 대입한다는 뜻입니다.
+
+\`\`\`typescript
+			obj.sub = () => [ this.greeting() ]
+\`\`\`
+
+움직이는 부품이 셋. 자식 객체, 프로퍼티 이름, 그리고 읽기를 지금이 아니라 나중에 일어나게 하는 화살표. 이 줄은 무엇과 무엇이 연결되었는지는 말하지만 어느 방향인지는 말하지 않습니다. 그것을 알려면 화살표 본문을 읽고 무언가 되돌아오는지 확인해야 합니다.
+
+트리는 방향을 연산자에 담습니다.
+
+\`\`\`tree
+		<= Message $mol_view
+			sub / <= greeting \\
+\`\`\`
+
+\`<=\`는 단방향, \`greeting\`에서 자식의 \`sub\`로. \`/\`는 리스트, \`\\\`는 원시 문자열의 시작이고, \`greeting \\\`은 기본값이 빈 문자열인 프로퍼티 선언입니다 — 나중에 TypeScript에서 재정의할 바로 그 값이죠.
+
+## 양방향 바인딩은 키 하나 차이로 조용한 읽기 전용이 된다
+
+입력 필드에는 양방향 데이터가 필요하고, 그 일을 하는 것이 \`next\` 파라미터입니다.
+
+\`\`\`typescript
+			obj.value = ( next?: string ) => this.name( next )
+\`\`\`
+
+이제 \`next\`를 빼봅시다.
+
+\`\`\`typescript
+			obj.value = () => this.name()
+\`\`\`
+
+TypeScript는 이것을 받아들입니다. 인자가 없는 함수는 선택적 인자 하나를 기대하는 자리에 대입할 수 있으니 타입은 맞고 감사도 초록으로 남습니다. 필드는 그려지고, 올바른 값을 보여주고, 당신이 입력하는 모든 것을 조용히 무시합니다.
+
+트리에서는 그런 반쪽짜리 연결을 쓸 수가 없습니다.
+
+\`\`\`tree
+		<= Name $mol_string
+			value? <=> name? \\
+\`\`\`
+
+\`<=>\`는 양방향으로 묶습니다. 맨 \`?\`는 인자를 받는 프로퍼티, 곧 쓸 수 있는 프로퍼티라는 표시입니다. 여기서는 양쪽 끝에 모두 붙어 있으니 값이 필드로 내려가고 다시 올라옵니다.
+
+## 지역화 가능한 문자열은 키로 만들기 전까지 그냥 문자열이다
+
+\`\`\`typescript
+		title() {
+			return 'Greeting'
+		}
+\`\`\`
+
+이것을 번역하려면 키를 직접 짓고, 리터럴을 \`$mol_locale.text\` 호출로 바꾸고, json을 쓰고, 프로젝트가 살아 있는 내내 둘을 손으로 맞춰야 합니다.
+
+\`\`\`tree
+	title @ \\Greeting
+\`\`\`
+
+\`@\`가 문자열을 지역화 대상으로 표시하고, 나머지는 빌드가 합니다. 빌드 후 \`my/hello/-/web.locale=en.json\`에는 이렇게 들어 있습니다.
+
+\`\`\`json
+{
+	"$my_hello_Name_hint": "Enter your name",
+	"$my_hello_title": "Greeting"
+}
+\`\`\`
+
+번역자는 앱의 모든 문자열이 담긴 json 파일을 받습니다. 당신은 키를 하나도 쓰지 않습니다.
+
+## 컴포넌트 전체
+
+\`\`\`tree-no-run
+$my_hello $mol_page
+	title @ \\Greeting
+	body /
+		<= Name $mol_string
+			hint @ \\Enter your name
+			value? <=> name? \\
+		<= Message $mol_view
+			sub / <= greeting \\
+\`\`\`
+
+이것이 \`hello.view.tree\`입니다. \`hello.view.ts\`에 남는 것은 애초에 구조가 아니었던 부분입니다.
+
+\`\`\`typescript
+namespace $.$$ {
+
+	export class $my_hello extends $.$my_hello {
+
+		greeting() {
+			const name = this.name()
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
+		}
+
+	}
+
+}
+\`\`\`
+
+클래스는 이제 트리가 생성한 베이스 \`$.$my_hello\`를 확장하고 프로퍼티 하나를 재정의합니다. \`$.$$\`는 그런 재정의를 위한 네임스페이스입니다.
+
+## 컴파일러가 내놓는 것
+
+\`view.tree\`는 자체 런타임이 없는 코드 생성기입니다. 모듈을 빌드하고 \`my/hello/-view.tree/hello.view.tree.js\`를 읽어보세요.
+
+\`\`\`javascript
+	($.$my_hello) = class $my_hello extends ($.$mol_page) {
+		name(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		Name(){
+			const obj = new this.$.$mol_string();
+			(obj.hint) = () => ((this.$.$mol_locale.text("$my_hello_Name_hint")));
+			(obj.value) = (next) => ((this.name(next)));
+			return obj;
+		}
+		greeting(){
+			return "";
+		}
+		Message(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.greeting())]);
+			return obj;
+		}
+		title(){
+			return (this.$.$mol_locale.text("$my_hello_title"));
+		}
+		body(){
+			return [(this.Name()), (this.Message())];
+		}
+	};
+	($mol_mem(($.$my_hello.prototype), "name"));
+	($mol_mem(($.$my_hello.prototype), "Name"));
+	($mol_mem(($.$my_hello.prototype), "Message"));
+\`\`\`
+
+같은 팩토리, 같은 화살표, 같은 세 번의 \`$mol_mem\` 호출, 그리고 당신이 이름 붙이지 않아도 되었던 로케일 키 두 개. 번들이 브라우저에 닿을 무렵 트리는 이미 사라지고 없습니다.
+
+두 형식이 자유롭게 섞이는 이유도 여기에 있습니다. 트리로 쓴 컴포넌트와 클래스로 쓴 컴포넌트는 같은 종류의 객체를 만들어내므로, 한 앱이 둘을 함께 품어도 아무도 차이를 알아채지 못합니다.
+
+## 손으로 쓴 클래스가 도구에게 건네줄 수 없는 것
+
+생성된 JS 옆에 컴파일러는 \`hello.view.tree.d.ts\`도 씁니다.
+
+\`\`\`typescript
+declare namespace $ {
+
+	type $mol_string__hint_my_hello_1 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_string['hint'] >
+	>
+	type $mol_string__value_my_hello_2 = $mol_type_enforce<
+		ReturnType< $my_hello['name'] >
+		,
+		ReturnType< $mol_string['value'] >
+	>
+	type $mol_view__sub_my_hello_3 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	export class $my_hello extends $mol_page {
+		name( next?: string ): string
+		Name( ): $mol_string
+		greeting( ): string
+		Message( ): $mol_view
+		title( ): string
+		body( ): readonly(any)[]
+	}
+
+}
+\`\`\`
+
+\`$mol_type_enforce\` 쌍이 각 바인딩을 그것이 먹이는 프로퍼티와 대조합니다. 덕분에 타입이 어긋나면 자식 내부 어딘가가 아니라 바인딩 그 자리에서 보고됩니다. 그 아래 클래스 본문은 컴포넌트 표면을 기계가 읽을 수 있게 적어둔 것이고, 실제로 읽는 쪽이 있습니다. 위의 로케일 파일도 같은 파싱에서 뽑히고, 이 사이트의 [API 페이지](#!section=docs/page=api-mol-string)도 각 기본 컴포넌트의 \`.view.tree.d.ts\`에서 생성됩니다.
+
+손으로 쓴 클래스는 그중 무엇도 제공하지 않습니다. 그것은 코드이고, 읽을 수 있는 것은 TypeScript뿐입니다.
+
+## 분량 이야기
+
+위의 Hello World는 31줄의 TypeScript가 8줄의 트리와 8줄의 TypeScript가 됩니다.
+
+컴포넌트가 커질수록 격차도 커집니다. \`$mol_app_users\`는 검색 필드, 리스트, 버튼 네 개, 상태 줄을 갖고 있는데 트리로는 30줄 840자, 클래스로는 125줄 3046자입니다. 두 버전 모두 위키의 [포맷 비교](https://github.com/hyoo-ru/mam_mol/wiki/View-Formats) 페이지에 전문이 실려 있으니 교환의 무게는 직접 재보세요.
+
+## 무엇을 쓸까
+
+둘 다, 컴포넌트 단위로 골라서.
+
+\`view.ts\`는 지원되는 형식입니다. 트리가 컴파일되어 도달하는 곳이 바로 그것이고, 그렇게 쓴 컴포넌트도 다른 것과 똑같이 동작합니다. 로직이 대부분이고 자식이 한둘뿐인 컴포넌트라면 클래스가 정직한 선택이고 트리가 주는 이득은 크지 않습니다.
+
+트리가 값을 하는 곳은 의식이 반복되는 자리입니다. 대부분이 구조인 화면, 길게 이어지는 바인딩, 번역자가 보고 싶어 할 텍스트가 들어가는 모든 것. 사용자 인터페이스의 대부분이 그렇고, 그래서 $mol 자신의 컴포넌트도 이 방식으로 쓰여 있습니다.
+
+다음은 트리 언어 자체입니다 — 리스트, 딕셔너리, 키가 붙은 자식, 그리고 상속을 통한 컴포넌트 특수화. **[뷰](#!section=docs/page=views)**
+`},fr:{title:"De TypeScript à view.tree",summary:"Le composant que vous avez écrit au Démarrage est une classe TypeScript ordinaire. Il compile, il tourne, et c'est une façon prise en charge de décrire un…",md:`# De TypeScript à view.tree
+
+Le composant que vous avez écrit au [Démarrage](#!section=docs/page=getting-started) est une classe TypeScript ordinaire. Il compile, il tourne, et c'est une façon prise en charge de décrire un composant $mol — l'une des plusieurs que le framework accepte.
+
+Il vous a aussi demandé de garder en tête quatre choses qui n'ont rien à voir avec ce que le composant fait. Cette page les prend une par une et montre la ligne de \`view.tree\` qui supprime chacune d'elles. Puis elle montre le code que le compilateur génère, pour que vous puissiez vérifier que l'arbre n'est pas un second runtime : il produit la classe que vous avez déjà écrite.
+
+Voici ce fichier à nouveau, pour comparer :
+
+\`\`\`typescript
+namespace $ {
+
+	export class $my_hello extends $mol_page {
+
+		title() {
+			return 'Greeting'
+		}
+
+		body() {
+			return [ this.Name(), this.Message() ]
+		}
+
+		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+
+		@ $mol_mem
+		name( next?: string ) {
+			return next ?? ''
+		}
+
+		@ $mol_mem
+		Message() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.greeting() ]
+			return obj
+		}
+
+		greeting() {
+			const name = this.name()
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
+		}
+
+	}
+
+}
+\`\`\`
+
+## L'enfant, c'est à vous de le construire, et de le mettre en cache
+
+Six de ces lignes sont une fabrique :
+
+\`\`\`typescript
+		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+\`\`\`
+
+Supprimez \`@ $mol_mem\` : cela compile toujours. Mais ce n'est plus un composant unique. \`this.Name() !== this.Name()\`, parce que le corps exécute \`new\` à chaque appel. Le dernier qui lit la propriété gagne, les instances précédentes gardent tout ce qu'elles avaient accumulé, et personne ne les libère — $mol ne possède que les objets qu'il a mis en cache pour vous.
+
+Dans \`view.tree\`, le même enfant tient sur une ligne :
+
+\`\`\`tree
+		<= Name $mol_string
+\`\`\`
+
+Un nom capitalisé signifie que la propriété contient un composant ; \`<=\` la déclare. Il n'existe pas d'écriture plus courte qui oublie le décorateur, puisque vous n'écrivez pas la fabrique.
+
+## L'opérateur dit dans quel sens vont les données
+
+Nourrir un enfant, c'est affecter, propriété par propriété :
+
+\`\`\`typescript
+			obj.sub = () => [ this.greeting() ]
+\`\`\`
+
+Trois pièces mobiles : l'objet enfant, le nom de la propriété, et une flèche pour que la lecture ait lieu plus tard plutôt que maintenant. La ligne dit ce qui est relié, pas dans quel sens ; pour le savoir, il faut lire le corps de la flèche et vérifier si quelque chose revient.
+
+L'arbre met le sens dans l'opérateur :
+
+\`\`\`tree
+		<= Message $mol_view
+			sub / <= greeting \\
+\`\`\`
+
+\`<=\` est unidirectionnel, de \`greeting\` vers le \`sub\` de l'enfant. \`/\` est une liste, \`\\\` débute une chaîne brute, et \`greeting \\\` déclare une propriété dont la valeur par défaut est la chaîne vide — celle que vous redéfinirez en TypeScript.
+
+## La liaison bidirectionnelle est à une touche du lecture-seule silencieux
+
+Le champ a besoin de données dans les deux sens, d'où le paramètre \`next\` :
+
+\`\`\`typescript
+			obj.value = ( next?: string ) => this.name( next )
+\`\`\`
+
+Retirez maintenant \`next\` :
+
+\`\`\`typescript
+			obj.value = () => this.name()
+\`\`\`
+
+TypeScript l'accepte. Une fonction sans argument est assignable là où un argument optionnel est attendu : les types passent et l'audit reste vert. Le champ s'affiche, montre la bonne valeur, et ignore silencieusement tout ce que vous tapez.
+
+Dans l'arbre, cette demi-liaison ne peut pas s'écrire :
+
+\`\`\`tree
+		<= Name $mol_string
+			value? <=> name? \\
+\`\`\`
+
+\`<=>\` relie dans les deux sens. Le \`?\` nu marque une propriété qui prend un argument, autrement dit une propriété dans laquelle on peut écrire. Ici il est présent aux deux bouts, donc la valeur descend dans le champ et remonte.
+
+## Une chaîne localisable reste une chaîne tant que vous n'en faites pas une clé
+
+\`\`\`typescript
+		title() {
+			return 'Greeting'
+		}
+\`\`\`
+
+Pour la traduire, vous inventez une clé, remplacez le littéral par un appel à \`$mol_locale.text\`, écrivez le json, puis maintenez les deux à la main jusqu'à la fin de la vie du projet.
+
+\`\`\`tree
+	title @ \\Greeting
+\`\`\`
+
+\`@\` marque la chaîne comme localisable, et le build fait le reste. Après un build, \`my/hello/-/web.locale=en.json\` contient :
+
+\`\`\`json
+{
+	"$my_hello_Name_hint": "Enter your name",
+	"$my_hello_title": "Greeting"
+}
+\`\`\`
+
+Les traducteurs reçoivent un fichier json avec toutes les chaînes de l'application. Vous n'écrivez aucune clé.
+
+## Le composant entier
+
+\`\`\`tree-no-run
+$my_hello $mol_page
+	title @ \\Greeting
+	body /
+		<= Name $mol_string
+			hint @ \\Enter your name
+			value? <=> name? \\
+		<= Message $mol_view
+			sub / <= greeting \\
+\`\`\`
+
+Voilà \`hello.view.tree\`. Ce qui reste dans \`hello.view.ts\`, c'est la part qui n'a jamais été de la structure :
+
+\`\`\`typescript
+namespace $.$$ {
+
+	export class $my_hello extends $.$my_hello {
+
+		greeting() {
+			const name = this.name()
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
+		}
+
+	}
+
+}
+\`\`\`
+
+La classe étend désormais \`$.$my_hello\`, la base engendrée par l'arbre, et redéfinit une propriété. \`$.$$\` est l'espace de noms de ces redéfinitions.
+
+## Ce que le compilateur produit
+
+\`view.tree\` est un générateur de code sans runtime propre. Construisez le module et lisez \`my/hello/-view.tree/hello.view.tree.js\` :
+
+\`\`\`javascript
+	($.$my_hello) = class $my_hello extends ($.$mol_page) {
+		name(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		Name(){
+			const obj = new this.$.$mol_string();
+			(obj.hint) = () => ((this.$.$mol_locale.text("$my_hello_Name_hint")));
+			(obj.value) = (next) => ((this.name(next)));
+			return obj;
+		}
+		greeting(){
+			return "";
+		}
+		Message(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.greeting())]);
+			return obj;
+		}
+		title(){
+			return (this.$.$mol_locale.text("$my_hello_title"));
+		}
+		body(){
+			return [(this.Name()), (this.Message())];
+		}
+	};
+	($mol_mem(($.$my_hello.prototype), "name"));
+	($mol_mem(($.$my_hello.prototype), "Name"));
+	($mol_mem(($.$my_hello.prototype), "Message"));
+\`\`\`
+
+Les mêmes fabriques, les mêmes flèches, les mêmes trois appels à \`$mol_mem\`, plus les deux clés de locale que vous n'avez pas eu à nommer. Quand le bundle arrive au navigateur, l'arbre a disparu.
+
+C'est aussi pourquoi les deux formats cohabitent sans effort. Un composant écrit en arbre et un composant écrit en classe produisent le même genre d'objet : une application peut contenir les deux sans que personne ne voie la différence.
+
+## Ce qu'une classe écrite à la main ne peut donner à aucun outil
+
+À côté du JS généré, le compilateur écrit \`hello.view.tree.d.ts\` :
+
+\`\`\`typescript
+declare namespace $ {
+
+	type $mol_string__hint_my_hello_1 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_string['hint'] >
+	>
+	type $mol_string__value_my_hello_2 = $mol_type_enforce<
+		ReturnType< $my_hello['name'] >
+		,
+		ReturnType< $mol_string['value'] >
+	>
+	type $mol_view__sub_my_hello_3 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	export class $my_hello extends $mol_page {
+		name( next?: string ): string
+		Name( ): $mol_string
+		greeting( ): string
+		Message( ): $mol_view
+		title( ): string
+		body( ): readonly(any)[]
+	}
+
+}
+\`\`\`
+
+Les paires \`$mol_type_enforce\` vérifient chaque liaison face à la propriété qu'elle alimente, si bien qu'une incompatibilité de types est signalée sur la liaison elle-même plutôt que quelque part au fond de l'enfant. Le corps de classe en dessous est une description lisible par une machine de la surface du composant, et des outils la lisent : le fichier de locale plus haut sort de la même analyse, et les [pages d'API](#!section=docs/page=api-mol-string) de ce site sont générées à partir du \`.view.tree.d.ts\` de chaque composant de base.
+
+Une classe écrite à la main n'offre rien de tout cela. C'est du code, et la seule chose capable de le lire est TypeScript.
+
+## La taille de tout ça
+
+Le Hello World ci-dessus : 31 lignes de TypeScript deviennent 8 lignes d'arbre plus 8 lignes de TypeScript.
+
+L'écart se creuse avec le composant. \`$mol_app_users\` — un champ de recherche, une liste, quatre boutons et une ligne de statut — fait 30 lignes et 840 caractères en arbre, et 125 lignes et 3046 caractères en classe. Les deux versions figurent en entier sur la page wiki de [comparaison des formats](https://github.com/hyoo-ru/mam_mol/wiki/View-Formats), à vous de peser l'échange.
+
+## Lequel écrire
+
+Les deux, au cas par cas, composant par composant.
+
+\`view.ts\` est un format pris en charge. C'est ce vers quoi l'arbre compile, et un composant écrit ainsi se comporte comme n'importe quel autre. Quand un composant est surtout de la logique avec un ou deux enfants, la classe est le choix honnête et l'arbre n'apporte pas grand-chose.
+
+L'arbre se rentabilise là où la cérémonie se répète : des écrans faits surtout de structure, de longues séries de liaisons, tout ce qui contient du texte qu'un traducteur voudra voir. Cela décrit la majeure partie d'une interface, et c'est pourquoi les composants de $mol eux-mêmes sont écrits ainsi.
+
+Vient ensuite le langage de l'arbre lui-même — listes, dictionnaires, vues à clé et spécialisation d'un composant par extension : **[Vues](#!section=docs/page=views)**.
+`},de:{title:"Von TypeScript zu view.tree",summary:"Die Komponente, die du in den Ersten Schritten geschrieben hast, ist eine gewöhnliche TypeScript-Klasse. Sie kompiliert, sie läuft, und sie ist eine…",md:`# Von TypeScript zu view.tree
+
+Die Komponente, die du in den [Ersten Schritten](#!section=docs/page=getting-started) geschrieben hast, ist eine gewöhnliche TypeScript-Klasse. Sie kompiliert, sie läuft, und sie ist eine unterstützte Art, eine $mol-Komponente zu beschreiben — eine von mehreren, die das Framework akzeptiert.
+
+Sie hat dich außerdem vier Dinge im Kopf behalten lassen, die nichts damit zu tun haben, was die Komponente tut. Diese Seite nimmt sie einzeln vor und zeigt jeweils die Zeile \`view.tree\`, die sie verschwinden lässt. Danach kommt der Code, den der Compiler erzeugt, damit du nachprüfen kannst: Der Baum ist keine zweite Laufzeitumgebung, sondern erzeugt genau die Klasse, die du schon geschrieben hast.
+
+Hier ist die Datei noch einmal, zum Vergleich:
+
+\`\`\`typescript
+namespace $ {
+
+	export class $my_hello extends $mol_page {
+
+		title() {
+			return 'Greeting'
+		}
+
+		body() {
+			return [ this.Name(), this.Message() ]
+		}
+
+		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+
+		@ $mol_mem
+		name( next?: string ) {
+			return next ?? ''
+		}
+
+		@ $mol_mem
+		Message() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.greeting() ]
+			return obj
+		}
+
+		greeting() {
+			const name = this.name()
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
+		}
+
+	}
+
+}
+\`\`\`
+
+## Das Kind baust du, und zwischenspeichern musst du es auch
+
+Sechs dieser Zeilen sind eine Fabrik:
+
+\`\`\`typescript
+		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+\`\`\`
+
+Lösch \`@ $mol_mem\`, und es kompiliert weiterhin. Es ist nur keine einzelne Komponente mehr: \`this.Name() !== this.Name()\`, weil der Rumpf bei jedem Aufruf \`new\` ausführt. Wer die Eigenschaft zuletzt liest, gewinnt, die früheren Instanzen behalten alles, was sie angesammelt haben, und niemand räumt sie ab — $mol besitzt nur die Objekte, die es für dich zwischengespeichert hat.
+
+In \`view.tree\` ist dasselbe Kind eine Zeile:
+
+\`\`\`tree
+		<= Name $mol_string
+\`\`\`
+
+Ein großgeschriebener Name bedeutet, dass die Eigenschaft eine Komponente hält; \`<=\` deklariert sie. Es gibt keine kürzere Schreibweise, die den Dekorator vergisst, weil du die Fabrik gar nicht schreibst.
+
+## Die Richtung steckt im Operator
+
+Ein Kind zu füttern heißt zuweisen, Eigenschaft für Eigenschaft:
+
+\`\`\`typescript
+			obj.sub = () => [ this.greeting() ]
+\`\`\`
+
+Drei bewegliche Teile: das Kindobjekt, der Eigenschaftsname und ein Pfeil, damit das Lesen später statt jetzt passiert. Die Zeile sagt, was verbunden ist, aber nicht in welche Richtung; dafür musst du den Rumpf des Pfeils lesen und prüfen, ob etwas zurückfließt.
+
+Der Baum legt die Richtung in den Operator:
+
+\`\`\`tree
+		<= Message $mol_view
+			sub / <= greeting \\
+\`\`\`
+
+\`<=\` ist einseitig, von \`greeting\` in das \`sub\` des Kindes. \`/\` ist eine Liste, \`\\\` beginnt eine rohe Zeichenkette, und \`greeting \\\` deklariert eine Eigenschaft mit der leeren Zeichenkette als Vorgabe — dem Wert, den du in TypeScript überschreiben wirst.
+
+## Bidirektionale Bindung ist einen Tastendruck von stillem Read-only entfernt
+
+Das Eingabefeld braucht Daten in beide Richtungen, dafür steht der Parameter \`next\`:
+
+\`\`\`typescript
+			obj.value = ( next?: string ) => this.name( next )
+\`\`\`
+
+Lass nun \`next\` weg:
+
+\`\`\`typescript
+			obj.value = () => this.name()
+\`\`\`
+
+TypeScript akzeptiert das. Eine Funktion ohne Argumente passt dorthin, wo ein optionales erwartet wird, also stimmen die Typen und das Audit bleibt grün. Das Feld wird gerendert, zeigt den richtigen Wert und ignoriert still alles, was du tippst.
+
+Im Baum lässt sich diese halbe Verbindung nicht schreiben:
+
+\`\`\`tree
+		<= Name $mol_string
+			value? <=> name? \\
+\`\`\`
+
+\`<=>\` bindet in beide Richtungen. Das nackte \`?\` markiert eine Eigenschaft, die ein Argument annimmt — also eine, in die man schreiben kann. Hier trägt es beide Enden, deshalb fließt der Wert ins Feld und wieder heraus.
+
+## Eine lokalisierbare Zeichenkette bleibt eine Zeichenkette, bis du einen Schlüssel daraus machst
+
+\`\`\`typescript
+		title() {
+			return 'Greeting'
+		}
+\`\`\`
+
+Zum Übersetzen erfindest du einen Schlüssel, ersetzt das Literal durch einen \`$mol_locale.text\`-Aufruf, schreibst das JSON und hältst beides für den Rest des Projektlebens von Hand im Gleichschritt.
+
+\`\`\`tree
+	title @ \\Greeting
+\`\`\`
+
+\`@\` markiert die Zeichenkette als lokalisierbar, den Rest erledigt der Build. Danach steht in \`my/hello/-/web.locale=en.json\`:
+
+\`\`\`json
+{
+	"$my_hello_Name_hint": "Enter your name",
+	"$my_hello_title": "Greeting"
+}
+\`\`\`
+
+Übersetzer bekommen eine JSON-Datei mit jeder Zeichenkette der App. Du schreibst keinen einzigen Schlüssel.
+
+## Die ganze Komponente
+
+\`\`\`tree-no-run
+$my_hello $mol_page
+	title @ \\Greeting
+	body /
+		<= Name $mol_string
+			hint @ \\Enter your name
+			value? <=> name? \\
+		<= Message $mol_view
+			sub / <= greeting \\
+\`\`\`
+
+Das ist \`hello.view.tree\`. In \`hello.view.ts\` bleibt der Teil, der nie Struktur war:
+
+\`\`\`typescript
+namespace $.$$ {
+
+	export class $my_hello extends $.$my_hello {
+
+		greeting() {
+			const name = this.name()
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
+		}
+
+	}
+
+}
+\`\`\`
+
+Die Klasse erweitert jetzt \`$.$my_hello\`, die vom Baum erzeugte Basis, und überschreibt eine Eigenschaft. \`$.$$\` ist der Namensraum für solche Überschreibungen.
+
+## Was der Compiler ausgibt
+
+\`view.tree\` ist ein Codegenerator ohne eigene Laufzeit. Baue das Modul und lies \`my/hello/-view.tree/hello.view.tree.js\`:
+
+\`\`\`javascript
+	($.$my_hello) = class $my_hello extends ($.$mol_page) {
+		name(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		Name(){
+			const obj = new this.$.$mol_string();
+			(obj.hint) = () => ((this.$.$mol_locale.text("$my_hello_Name_hint")));
+			(obj.value) = (next) => ((this.name(next)));
+			return obj;
+		}
+		greeting(){
+			return "";
+		}
+		Message(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.greeting())]);
+			return obj;
+		}
+		title(){
+			return (this.$.$mol_locale.text("$my_hello_title"));
+		}
+		body(){
+			return [(this.Name()), (this.Message())];
+		}
+	};
+	($mol_mem(($.$my_hello.prototype), "name"));
+	($mol_mem(($.$my_hello.prototype), "Name"));
+	($mol_mem(($.$my_hello.prototype), "Message"));
+\`\`\`
+
+Dieselben Fabriken, dieselben Pfeile, dieselben drei \`$mol_mem\`-Aufrufe, dazu die zwei Locale-Schlüssel, die du nicht benennen musstest. Bis das Bundle im Browser ankommt, ist der Baum verschwunden.
+
+Deshalb vertragen sich beide Formate auch problemlos. Eine als Baum geschriebene und eine als Klasse geschriebene Komponente ergeben dieselbe Art von Objekt, also kann eine App beide halten, ohne dass eine davon den Unterschied merkt.
+
+## Was eine handgeschriebene Klasse keinem Werkzeug geben kann
+
+Neben dem erzeugten JS schreibt der Compiler \`hello.view.tree.d.ts\`:
+
+\`\`\`typescript
+declare namespace $ {
+
+	type $mol_string__hint_my_hello_1 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_string['hint'] >
+	>
+	type $mol_string__value_my_hello_2 = $mol_type_enforce<
+		ReturnType< $my_hello['name'] >
+		,
+		ReturnType< $mol_string['value'] >
+	>
+	type $mol_view__sub_my_hello_3 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	export class $my_hello extends $mol_page {
+		name( next?: string ): string
+		Name( ): $mol_string
+		greeting( ): string
+		Message( ): $mol_view
+		title( ): string
+		body( ): readonly(any)[]
+	}
+
+}
+\`\`\`
+
+Die \`$mol_type_enforce\`-Paare prüfen jede Bindung gegen die Eigenschaft, die sie speist, sodass ein Typfehler an der Bindung selbst gemeldet wird und nicht irgendwo tief im Kind. Der Klassenrumpf darunter ist eine maschinenlesbare Beschreibung der Oberfläche der Komponente, und sie wird gelesen: Die Locale-Datei oben stammt aus derselben Analyse, und die [API-Seiten](#!section=docs/page=api-mol-string) auf dieser Website werden aus der \`.view.tree.d.ts\` jeder Basiskomponente generiert.
+
+Eine handgeschriebene Klasse bietet davon nichts. Sie ist Code, und lesen kann sie nur TypeScript.
+
+## Der Umfang
+
+Das Hello World von oben: Aus 31 Zeilen TypeScript werden 8 Zeilen Baum plus 8 Zeilen TypeScript.
+
+Mit der Komponente wächst der Abstand. \`$mol_app_users\` — ein Suchfeld, eine Liste, vier Buttons und eine Statuszeile — hat als Baum 30 Zeilen und 840 Zeichen und als Klasse 125 Zeilen und 3046 Zeichen. Beide Fassungen stehen vollständig auf der Wiki-Seite zum [Formatvergleich](https://github.com/hyoo-ru/mam_mol/wiki/View-Formats), du kannst den Handel also selbst abwägen.
+
+## Was du schreiben solltest
+
+Beides, pro Komponente entschieden.
+
+\`view.ts\` ist ein unterstütztes Format. Es ist das, wozu der Baum kompiliert, und eine so geschriebene Komponente verhält sich wie jede andere. Wenn eine Komponente vor allem aus Logik mit ein oder zwei Kindern besteht, ist die Klasse die ehrliche Wahl und der Baum bringt wenig.
+
+Der Baum zahlt sich dort aus, wo sich die Zeremonie wiederholt: Bildschirme, die überwiegend Struktur sind, lange Reihen von Bindungen, alles mit Text, den ein Übersetzer sehen will. Das beschreibt den größten Teil einer Benutzeroberfläche, und genau deshalb sind $mols eigene Komponenten so geschrieben.
+
+Als Nächstes die Baumsprache selbst — Listen, Wörterbücher, View-Familien mit Schlüssel und das Spezialisieren einer Komponente durch Erweitern: **[Views](#!section=docs/page=views)**.
+`},pt:{title:"De TypeScript para view.tree",summary:"O componente que você escreveu em Primeiros passos é uma classe TypeScript comum. Ele compila, ele roda, e é uma forma suportada de descrever um componente…",md:`# De TypeScript para view.tree
+
+O componente que você escreveu em [Primeiros passos](#!section=docs/page=getting-started) é uma classe TypeScript comum. Ele compila, ele roda, e é uma forma suportada de descrever um componente $mol — uma entre as várias que o framework aceita.
+
+Ele também pediu que você segurasse na cabeça quatro coisas que nada têm a ver com o que o componente faz. Esta página pega uma de cada vez e mostra a linha de \`view.tree\` que remove cada uma. Depois mostra o código que o compilador gera, para você conferir que a árvore não é um segundo runtime: ela produz a classe que você já escreveu.
+
+Aqui está o arquivo de novo, para comparar:
+
+\`\`\`typescript
+namespace $ {
+
+	export class $my_hello extends $mol_page {
+
+		title() {
+			return 'Greeting'
+		}
+
+		body() {
+			return [ this.Name(), this.Message() ]
+		}
+
+		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+
+		@ $mol_mem
+		name( next?: string ) {
+			return next ?? ''
+		}
+
+		@ $mol_mem
+		Message() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.greeting() ]
+			return obj
+		}
+
+		greeting() {
+			const name = this.name()
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
+		}
+
+	}
+
+}
+\`\`\`
+
+## O filho é você quem constrói, e é você quem guarda em cache
+
+Seis dessas linhas são uma fábrica:
+
+\`\`\`typescript
+		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+\`\`\`
+
+Apague \`@ $mol_mem\` e continua compilando. Só deixa de ser um componente: \`this.Name() !== this.Name()\`, porque o corpo executa \`new\` a cada chamada. Quem lê a propriedade por último ganha, as instâncias anteriores ficam com tudo o que acumularam, e ninguém as descarta — o $mol só é dono dos objetos que ele mesmo guardou em cache para você.
+
+Em \`view.tree\` o mesmo filho ocupa uma linha:
+
+\`\`\`tree
+		<= Name $mol_string
+\`\`\`
+
+Um nome com inicial maiúscula significa que a propriedade guarda um componente; \`<=\` a declara. Não existe uma escrita mais curta que esqueça o decorador, porque a fábrica não é você quem escreve.
+
+## O operador diz para onde os dados vão
+
+Alimentar um filho é atribuir, uma propriedade por vez:
+
+\`\`\`typescript
+			obj.sub = () => [ this.greeting() ]
+\`\`\`
+
+Três peças móveis: o objeto filho, o nome da propriedade e uma seta para que a leitura aconteça depois, e não agora. A linha diz o que está ligado, mas não em que direção; para descobrir isso você lê o corpo da seta e verifica se algo volta.
+
+A árvore põe a direção no operador:
+
+\`\`\`tree
+		<= Message $mol_view
+			sub / <= greeting \\
+\`\`\`
+
+\`<=\` é de mão única, de \`greeting\` para o \`sub\` do filho. \`/\` é uma lista, \`\\\` inicia uma string bruta, e \`greeting \\\` declara uma propriedade com a string vazia como padrão — o valor que você vai sobrescrever em TypeScript.
+
+## A ligação bidirecional está a uma tecla do somente-leitura silencioso
+
+O campo precisa de dados nas duas direções, e é isso que o parâmetro \`next\` faz:
+
+\`\`\`typescript
+			obj.value = ( next?: string ) => this.name( next )
+\`\`\`
+
+Agora tire o \`next\`:
+
+\`\`\`typescript
+			obj.value = () => this.name()
+\`\`\`
+
+O TypeScript aceita. Uma função sem argumentos é atribuível onde se espera um argumento opcional, então os tipos fecham e o audit continua verde. O campo é renderizado, mostra o valor certo e ignora em silêncio tudo o que você digita.
+
+Na árvore essa meia ligação não tem como ser escrita:
+
+\`\`\`tree
+		<= Name $mol_string
+			value? <=> name? \\
+\`\`\`
+
+\`<=>\` liga nos dois sentidos. O \`?\` puro marca uma propriedade que aceita um argumento, ou seja, uma propriedade na qual dá para escrever. Aqui ele está nas duas pontas, então o valor desce para o campo e volta.
+
+## Uma string localizável continua sendo uma string até você criar uma chave
+
+\`\`\`typescript
+		title() {
+			return 'Greeting'
+		}
+\`\`\`
+
+Para traduzir isso você inventa uma chave, troca o literal por uma chamada a \`$mol_locale.text\`, escreve o json e, pelo resto da vida do projeto, mantém os dois em sincronia na mão.
+
+\`\`\`tree
+	title @ \\Greeting
+\`\`\`
+
+\`@\` marca a string como localizável, e o build faz o resto. Depois de um build, \`my/hello/-/web.locale=en.json\` contém:
+
+\`\`\`json
+{
+	"$my_hello_Name_hint": "Enter your name",
+	"$my_hello_title": "Greeting"
+}
+\`\`\`
+
+Tradutores recebem um arquivo json com todas as strings do app. Você não escreve nenhuma chave.
+
+## O componente inteiro
+
+\`\`\`tree-no-run
+$my_hello $mol_page
+	title @ \\Greeting
+	body /
+		<= Name $mol_string
+			hint @ \\Enter your name
+			value? <=> name? \\
+		<= Message $mol_view
+			sub / <= greeting \\
+\`\`\`
+
+Isso é o \`hello.view.tree\`. O que fica em \`hello.view.ts\` é a parte que nunca foi estrutura:
+
+\`\`\`typescript
+namespace $.$$ {
+
+	export class $my_hello extends $.$my_hello {
+
+		greeting() {
+			const name = this.name()
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
+		}
+
+	}
+
+}
+\`\`\`
+
+A classe agora estende \`$.$my_hello\`, a base que a árvore gerou, e sobrescreve uma propriedade. \`$.$$\` é o namespace dessas sobrescritas.
+
+## O que o compilador emite
+
+\`view.tree\` é um gerador de código sem runtime próprio. Construa o módulo e leia \`my/hello/-view.tree/hello.view.tree.js\`:
+
+\`\`\`javascript
+	($.$my_hello) = class $my_hello extends ($.$mol_page) {
+		name(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		Name(){
+			const obj = new this.$.$mol_string();
+			(obj.hint) = () => ((this.$.$mol_locale.text("$my_hello_Name_hint")));
+			(obj.value) = (next) => ((this.name(next)));
+			return obj;
+		}
+		greeting(){
+			return "";
+		}
+		Message(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.greeting())]);
+			return obj;
+		}
+		title(){
+			return (this.$.$mol_locale.text("$my_hello_title"));
+		}
+		body(){
+			return [(this.Name()), (this.Message())];
+		}
+	};
+	($mol_mem(($.$my_hello.prototype), "name"));
+	($mol_mem(($.$my_hello.prototype), "Name"));
+	($mol_mem(($.$my_hello.prototype), "Message"));
+\`\`\`
+
+As mesmas fábricas, as mesmas setas, as mesmas três chamadas a \`$mol_mem\`, mais as duas chaves de locale que você não precisou nomear. Quando o bundle chega ao navegador, a árvore já não existe.
+
+É também por isso que os dois formatos convivem sem atrito. Um componente escrito como árvore e um escrito como classe produzem o mesmo tipo de objeto: um app pode ter os dois e ninguém percebe a diferença.
+
+## O que uma classe escrita à mão não entrega a nenhuma ferramenta
+
+Ao lado do JS gerado o compilador escreve \`hello.view.tree.d.ts\`:
+
+\`\`\`typescript
+declare namespace $ {
+
+	type $mol_string__hint_my_hello_1 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_string['hint'] >
+	>
+	type $mol_string__value_my_hello_2 = $mol_type_enforce<
+		ReturnType< $my_hello['name'] >
+		,
+		ReturnType< $mol_string['value'] >
+	>
+	type $mol_view__sub_my_hello_3 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	export class $my_hello extends $mol_page {
+		name( next?: string ): string
+		Name( ): $mol_string
+		greeting( ): string
+		Message( ): $mol_view
+		title( ): string
+		body( ): readonly(any)[]
+	}
+
+}
+\`\`\`
+
+Os pares \`$mol_type_enforce\` conferem cada ligação contra a propriedade que ela alimenta, então um tipo errado é apontado na própria ligação em vez de em algum ponto dentro do filho. O corpo da classe abaixo deles é uma descrição legível por máquina da superfície do componente, e há quem a leia: o arquivo de locale acima sai da mesma análise, e as [páginas de API](#!section=docs/page=api-mol-string) deste site são geradas a partir do \`.view.tree.d.ts\` de cada componente básico.
+
+Uma classe escrita à mão não oferece nada disso. É código, e a única coisa capaz de lê-lo é o TypeScript.
+
+## O tamanho da coisa
+
+O Hello World acima: 31 linhas de TypeScript viram 8 linhas de árvore mais 8 linhas de TypeScript.
+
+A diferença cresce junto com o componente. \`$mol_app_users\` — um campo de busca, uma lista, quatro botões e uma linha de status — tem 30 linhas e 840 caracteres como árvore, e 125 linhas e 3046 caracteres como classe. As duas versões estão impressas na íntegra na página wiki de [comparação de formatos](https://github.com/hyoo-ru/mam_mol/wiki/View-Formats), então dá para pesar a troca por conta própria.
+
+## Qual escrever
+
+Os dois, escolhendo componente a componente.
+
+\`view.ts\` é um formato suportado. É nele que a árvore compila, e um componente escrito assim se comporta como qualquer outro. Quando um componente é sobretudo lógica com um ou dois filhos, a classe é a escolha honesta e a árvore rende pouco.
+
+A árvore se paga onde a cerimônia se repete: telas feitas sobretudo de estrutura, longas sequências de ligações, tudo que tem texto que um tradutor vai querer ver. Isso descreve a maior parte de uma interface, e é por isso que os próprios componentes do $mol são escritos assim.
+
+A seguir, a linguagem da árvore em si — listas, dicionários, views com chave e a especialização de um componente por extensão: **[Views](#!section=docs/page=views)**.
+`},it:{title:"Da TypeScript a view.tree",summary:"Il componente che hai scritto in Per iniziare è una normale classe TypeScript. Compila, funziona, ed è un modo supportato di descrivere un componente $mol —…",md:`# Da TypeScript a view.tree
+
+Il componente che hai scritto in [Per iniziare](#!section=docs/page=getting-started) è una normale classe TypeScript. Compila, funziona, ed è un modo supportato di descrivere un componente $mol — uno dei diversi che il framework accetta.
+
+Ti ha però anche chiesto di tenere a mente quattro cose che non hanno nulla a che vedere con quello che il componente fa. Questa pagina le affronta una alla volta e mostra la riga di \`view.tree\` che elimina ciascuna. Poi mostra il codice generato dal compilatore, così puoi verificare che l'albero non sia un secondo runtime: produce la classe che hai già scritto.
+
+Ecco di nuovo quel file, per il confronto:
+
+\`\`\`typescript
+namespace $ {
+
+	export class $my_hello extends $mol_page {
+
+		title() {
+			return 'Greeting'
+		}
+
+		body() {
+			return [ this.Name(), this.Message() ]
+		}
+
+		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+
+		@ $mol_mem
+		name( next?: string ) {
+			return next ?? ''
+		}
+
+		@ $mol_mem
+		Message() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.greeting() ]
+			return obj
+		}
+
+		greeting() {
+			const name = this.name()
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
+		}
+
+	}
+
+}
+\`\`\`
+
+## Il figlio lo costruisci tu, e lo metti in cache tu
+
+Sei di quelle righe sono una fabbrica:
+
+\`\`\`typescript
+		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+\`\`\`
+
+Togli \`@ $mol_mem\` e continua a compilare. Smette però di essere un componente solo: \`this.Name() !== this.Name()\`, perché il corpo esegue \`new\` a ogni chiamata. Vince chi legge la proprietà per ultimo, le istanze precedenti si tengono tutto quello che avevano accumulato e nessuno le smaltisce: $mol possiede soltanto gli oggetti che ha messo in cache per te.
+
+In \`view.tree\` lo stesso figlio è una riga:
+
+\`\`\`tree
+		<= Name $mol_string
+\`\`\`
+
+Un nome con l'iniziale maiuscola vuol dire che la proprietà contiene un componente; \`<=\` la dichiara. Non esiste una scrittura più breve che dimentichi il decoratore, perché la fabbrica non la scrivi tu.
+
+## La direzione dei dati sta nell'operatore
+
+Alimentare un figlio significa assegnare, una proprietà alla volta:
+
+\`\`\`typescript
+			obj.sub = () => [ this.greeting() ]
+\`\`\`
+
+Tre parti mobili: l'oggetto figlio, il nome della proprietà e una freccia perché la lettura avvenga dopo, non adesso. La riga dice cosa è collegato, non in che direzione; per scoprirlo devi leggere il corpo della freccia e controllare se qualcosa torna indietro.
+
+L'albero mette la direzione nell'operatore:
+
+\`\`\`tree
+		<= Message $mol_view
+			sub / <= greeting \\
+\`\`\`
+
+\`<=\` è unidirezionale, da \`greeting\` al \`sub\` del figlio. \`/\` è una lista, \`\\\` inizia una stringa grezza e \`greeting \\\` dichiara una proprietà con la stringa vuota come valore predefinito: quello che poi ridefinirai in TypeScript.
+
+## Il binding bidirezionale è a un tasto dal sola-lettura silenzioso
+
+Al campo servono dati in entrambe le direzioni, ed è quello che fa il parametro \`next\`:
+
+\`\`\`typescript
+			obj.value = ( next?: string ) => this.name( next )
+\`\`\`
+
+Ora togli \`next\`:
+
+\`\`\`typescript
+			obj.value = () => this.name()
+\`\`\`
+
+TypeScript lo accetta. Una funzione senza argomenti è assegnabile dove se ne attende uno opzionale, quindi i tipi tornano e l'audit resta verde. Il campo si disegna, mostra il valore giusto e ignora in silenzio tutto quello che digiti.
+
+Nell'albero quella mezza connessione non si può scrivere:
+
+\`\`\`tree
+		<= Name $mol_string
+			value? <=> name? \\
+\`\`\`
+
+\`<=>\` collega in entrambe le direzioni. Il \`?\` nudo segna una proprietà che accetta un argomento, cioè una proprietà su cui si può scrivere. Qui sta a entrambi i capi, perciò il valore scende nel campo e risale.
+
+## Una stringa localizzabile resta una stringa finché non ne fai una chiave
+
+\`\`\`typescript
+		title() {
+			return 'Greeting'
+		}
+\`\`\`
+
+Per tradurla ti inventi una chiave, sostituisci il letterale con una chiamata a \`$mol_locale.text\`, scrivi il json e per il resto della vita del progetto tieni le due cose allineate a mano.
+
+\`\`\`tree
+	title @ \\Greeting
+\`\`\`
+
+\`@\` segna la stringa come localizzabile, il resto lo fa la build. Dopo una build, \`my/hello/-/web.locale=en.json\` contiene:
+
+\`\`\`json
+{
+	"$my_hello_Name_hint": "Enter your name",
+	"$my_hello_title": "Greeting"
+}
+\`\`\`
+
+I traduttori ricevono un file json con tutte le stringhe dell'app. Tu non scrivi nemmeno una chiave.
+
+## Il componente intero
+
+\`\`\`tree-no-run
+$my_hello $mol_page
+	title @ \\Greeting
+	body /
+		<= Name $mol_string
+			hint @ \\Enter your name
+			value? <=> name? \\
+		<= Message $mol_view
+			sub / <= greeting \\
+\`\`\`
+
+Questo è \`hello.view.tree\`. In \`hello.view.ts\` resta la parte che struttura non è mai stata:
+
+\`\`\`typescript
+namespace $.$$ {
+
+	export class $my_hello extends $.$my_hello {
+
+		greeting() {
+			const name = this.name()
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
+		}
+
+	}
+
+}
+\`\`\`
+
+La classe ora estende \`$.$my_hello\`, la base generata dall'albero, e ridefinisce una proprietà. \`$.$$\` è lo spazio dei nomi di queste ridefinizioni.
+
+## Cosa emette il compilatore
+
+\`view.tree\` è un generatore di codice senza runtime proprio. Costruisci il modulo e leggi \`my/hello/-view.tree/hello.view.tree.js\`:
+
+\`\`\`javascript
+	($.$my_hello) = class $my_hello extends ($.$mol_page) {
+		name(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		Name(){
+			const obj = new this.$.$mol_string();
+			(obj.hint) = () => ((this.$.$mol_locale.text("$my_hello_Name_hint")));
+			(obj.value) = (next) => ((this.name(next)));
+			return obj;
+		}
+		greeting(){
+			return "";
+		}
+		Message(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.greeting())]);
+			return obj;
+		}
+		title(){
+			return (this.$.$mol_locale.text("$my_hello_title"));
+		}
+		body(){
+			return [(this.Name()), (this.Message())];
+		}
+	};
+	($mol_mem(($.$my_hello.prototype), "name"));
+	($mol_mem(($.$my_hello.prototype), "Name"));
+	($mol_mem(($.$my_hello.prototype), "Message"));
+\`\`\`
+
+Le stesse fabbriche, le stesse frecce, le stesse tre chiamate a \`$mol_mem\`, più le due chiavi di locale che non hai dovuto inventare. Quando il bundle arriva al browser, dell'albero non resta nulla.
+
+È anche il motivo per cui i due formati convivono senza attriti. Un componente scritto ad albero e uno scritto a classe producono lo stesso tipo di oggetto: una sola app può contenerli entrambi senza che nessuno noti la differenza.
+
+## Cosa una classe scritta a mano non può consegnare a uno strumento
+
+Accanto al JS generato il compilatore scrive \`hello.view.tree.d.ts\`:
+
+\`\`\`typescript
+declare namespace $ {
+
+	type $mol_string__hint_my_hello_1 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_string['hint'] >
+	>
+	type $mol_string__value_my_hello_2 = $mol_type_enforce<
+		ReturnType< $my_hello['name'] >
+		,
+		ReturnType< $mol_string['value'] >
+	>
+	type $mol_view__sub_my_hello_3 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	export class $my_hello extends $mol_page {
+		name( next?: string ): string
+		Name( ): $mol_string
+		greeting( ): string
+		Message( ): $mol_view
+		title( ): string
+		body( ): readonly(any)[]
+	}
+
+}
+\`\`\`
+
+Le coppie \`$mol_type_enforce\` verificano ogni binding rispetto alla proprietà che alimenta, così un tipo sbagliato viene segnalato sul binding stesso invece che da qualche parte dentro il figlio. Il corpo della classe sotto è una descrizione leggibile da una macchina della superficie del componente, e c'è chi la legge: il file di locale qui sopra nasce dalla stessa analisi, e le [pagine di API](#!section=docs/page=api-mol-string) di questo sito sono generate dal \`.view.tree.d.ts\` di ogni componente di base.
+
+Una classe scritta a mano non offre niente di tutto questo. È codice, e l'unica cosa capace di leggerlo è TypeScript.
+
+## Quanto pesa
+
+L'Hello World qui sopra: 31 righe di TypeScript diventano 8 righe di albero più 8 righe di TypeScript.
+
+Con il componente il divario cresce. \`$mol_app_users\` — un campo di ricerca, una lista, quattro bottoni e una riga di stato — sta in 30 righe e 840 caratteri come albero, e in 125 righe e 3046 caratteri come classe. Entrambe le versioni sono riportate per intero nella pagina wiki di [confronto tra formati](https://github.com/hyoo-ru/mam_mol/wiki/View-Formats), così puoi valutare lo scambio da solo.
+
+## Quale scrivere
+
+Entrambi, scegliendo componente per componente.
+
+\`view.ts\` è un formato supportato. È ciò in cui l'albero compila, e un componente scritto così si comporta come qualunque altro. Quando un componente è soprattutto logica con uno o due figli, la classe è la scelta onesta e l'albero aggiunge poco.
+
+L'albero si ripaga dove la cerimonia si ripete: schermi fatti soprattutto di struttura, lunghe file di binding, tutto ciò che contiene testo che un traduttore vorrà vedere. Descrive la maggior parte di un'interfaccia, ed è per questo che i componenti di $mol stessi sono scritti così.
+
+Adesso il linguaggio dell'albero vero e proprio — liste, dizionari, viste con chiave e specializzazione di un componente per estensione: **[Viste](#!section=docs/page=views)**.
+`},ru:{title:"От TypeScript к view.tree",summary:"Компонент, который вы написали в Быстром старте, — обычный класс на TypeScript. Он компилируется, он работает, и это поддерживаемый способ описать компонент…",md:`# От TypeScript к view.tree
+
+Компонент, который вы написали в [Быстром старте](#!section=docs/page=getting-started), — обычный класс на TypeScript. Он компилируется, он работает, и это поддерживаемый способ описать компонент $mol, один из нескольких, которые фреймворк принимает.
+
+Он же заставил вас держать в голове четыре вещи, не имеющие отношения к тому, что компонент делает. Разберём их по одной и покажем строку \`view.tree\`, которая убирает каждую. А потом посмотрим на код, который генерирует компилятор, — чтобы убедиться, что дерево не второй рантайм, а способ получить тот самый класс, который вы уже написали.
+
+Вот тот файл ещё раз, для сравнения:
+
+\`\`\`typescript
+namespace $ {
+
+	export class $my_hello extends $mol_page {
+
+		title() {
+			return 'Greeting'
+		}
+
+		body() {
+			return [ this.Name(), this.Message() ]
+		}
+
+		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+
+		@ $mol_mem
+		name( next?: string ) {
+			return next ?? ''
+		}
+
+		@ $mol_mem
+		Message() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.greeting() ]
+			return obj
+		}
+
+		greeting() {
+			const name = this.name()
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
+		}
+
+	}
+
+}
+\`\`\`
+
+## Ребёнка создаёте вы, и кешируете тоже вы
+
+Шесть строк из этого файла — фабрика:
+
+\`\`\`typescript
+		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+\`\`\`
+
+Удалите \`@ $mol_mem\` — код всё ещё компилируется. И перестаёт быть одним компонентом: \`this.Name() !== this.Name()\`, потому что тело выполняет \`new\` на каждый вызов. Побеждает тот, кто прочитал свойство последним, прежние экземпляры остаются со всем, что в них накопилось, и никто их не разрушает: $mol владеет только теми объектами, которые сам вам закешировал.
+
+В \`view.tree\` тот же ребёнок занимает одну строку:
+
+\`\`\`tree
+		<= Name $mol_string
+\`\`\`
+
+Имя с большой буквы означает, что в свойстве лежит компонент, а \`<=\` его объявляет. Короткого написания, которое забывает декоратор, тут нет — вы не пишете фабрику.
+
+## Направление данных задаёт оператор
+
+Накормить ребёнка значит присвоить, по свойству за раз:
+
+\`\`\`typescript
+			obj.sub = () => [ this.greeting() ]
+\`\`\`
+
+Три подвижные части: объект ребёнка, имя свойства и стрелка, чтобы чтение случилось позже, а не сейчас. Строка говорит, что с чем связано, но не говорит, в какую сторону; чтобы это узнать, придётся прочитать тело стрелки и проверить, течёт ли что-нибудь обратно.
+
+Дерево кладёт направление в оператор:
+
+\`\`\`tree
+		<= Message $mol_view
+			sub / <= greeting \\
+\`\`\`
+
+\`<=\` связывает в одну сторону, из \`greeting\` в \`sub\` ребёнка. \`/\` означает список, \`\\\` начинает сырую строку, а \`greeting \\\` объявляет свойство с пустой строкой по умолчанию — то самое значение, которое вы переопределите в TypeScript.
+
+## Двусторонняя связь в одно нажатие от молчаливого read-only
+
+Полю ввода данные нужны в обе стороны, за это отвечает параметр \`next\`:
+
+\`\`\`typescript
+			obj.value = ( next?: string ) => this.name( next )
+\`\`\`
+
+А теперь уберите \`next\`:
+
+\`\`\`typescript
+			obj.value = () => this.name()
+\`\`\`
+
+TypeScript это примет. Функция без аргументов подходит туда, где ждут один необязательный, так что типы сходятся и аудит остаётся зелёным. Поле рисуется, показывает правильное значение и тихо игнорирует всё, что вы печатаете.
+
+В дереве такую половинчатую связь не написать:
+
+\`\`\`tree
+		<= Name $mol_string
+			value? <=> name? \\
+\`\`\`
+
+\`<=>\` связывает в обе стороны. Голый \`?\` помечает свойство, принимающее аргумент, то есть свойство, в которое можно писать. Здесь он стоит с обоих концов, поэтому значение течёт в поле и обратно.
+
+## Локализуемая строка остаётся строкой, пока вы не заведёте ключ
+
+\`\`\`typescript
+		title() {
+			return 'Greeting'
+		}
+\`\`\`
+
+Чтобы это перевести, вы придумываете ключ, заменяете литерал вызовом \`$mol_locale.text\`, пишете json и до конца жизни проекта руками держите две вещи в согласии.
+
+\`\`\`tree
+	title @ \\Greeting
+\`\`\`
+
+\`@\` помечает строку как локализуемую, остальное делает сборка. После сборки в \`my/hello/-/web.locale=en.json\` лежит:
+
+\`\`\`json
+{
+	"$my_hello_Name_hint": "Enter your name",
+	"$my_hello_title": "Greeting"
+}
+\`\`\`
+
+Переводчик получает json со всеми строками приложения. Вы не пишете ни одного ключа.
+
+## Компонент целиком
+
+\`\`\`tree-no-run
+$my_hello $mol_page
+	title @ \\Greeting
+	body /
+		<= Name $mol_string
+			hint @ \\Enter your name
+			value? <=> name? \\
+		<= Message $mol_view
+			sub / <= greeting \\
+\`\`\`
+
+Это \`hello.view.tree\`. В \`hello.view.ts\` остаётся то, что структурой никогда и не было:
+
+\`\`\`typescript
+namespace $.$$ {
+
+	export class $my_hello extends $.$my_hello {
+
+		greeting() {
+			const name = this.name()
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
+		}
+
+	}
+
+}
+\`\`\`
+
+Класс теперь наследует \`$.$my_hello\`, базу, которую сгенерировало дерево, и переопределяет одно свойство. \`$.$$\` — пространство имён для таких переопределений.
+
+## Что выдаёт компилятор
+
+\`view.tree\` — генератор кода без собственного рантайма. Соберите модуль и откройте \`my/hello/-view.tree/hello.view.tree.js\`:
+
+\`\`\`javascript
+	($.$my_hello) = class $my_hello extends ($.$mol_page) {
+		name(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		Name(){
+			const obj = new this.$.$mol_string();
+			(obj.hint) = () => ((this.$.$mol_locale.text("$my_hello_Name_hint")));
+			(obj.value) = (next) => ((this.name(next)));
+			return obj;
+		}
+		greeting(){
+			return "";
+		}
+		Message(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.greeting())]);
+			return obj;
+		}
+		title(){
+			return (this.$.$mol_locale.text("$my_hello_title"));
+		}
+		body(){
+			return [(this.Name()), (this.Message())];
+		}
+	};
+	($mol_mem(($.$my_hello.prototype), "name"));
+	($mol_mem(($.$my_hello.prototype), "Name"));
+	($mol_mem(($.$my_hello.prototype), "Message"));
+\`\`\`
+
+Те же фабрики, те же стрелки, те же три вызова \`$mol_mem\` плюс два ключа локали, которые вам не пришлось придумывать. К моменту, когда бандл доедет до браузера, дерева уже нет.
+
+Поэтому же оба формата спокойно уживаются. Компонент, написанный деревом, и компонент, написанный классом, дают объекты одного сорта: одно приложение держит и те и другие, и никто не замечает разницы.
+
+## Чего рукописный класс не может отдать инструментам
+
+Рядом со сгенерированным JS компилятор пишет \`hello.view.tree.d.ts\`:
+
+\`\`\`typescript
+declare namespace $ {
+
+	type $mol_string__hint_my_hello_1 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_string['hint'] >
+	>
+	type $mol_string__value_my_hello_2 = $mol_type_enforce<
+		ReturnType< $my_hello['name'] >
+		,
+		ReturnType< $mol_string['value'] >
+	>
+	type $mol_view__sub_my_hello_3 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	export class $my_hello extends $mol_page {
+		name( next?: string ): string
+		Name( ): $mol_string
+		greeting( ): string
+		Message( ): $mol_view
+		title( ): string
+		body( ): readonly(any)[]
+	}
+
+}
+\`\`\`
+
+Пары \`$mol_type_enforce\` сверяют каждую связку со свойством, которое она кормит, поэтому несовпадение типов всплывает на самой связке, а не где-то внутри ребёнка. Тело класса под ними — машиночитаемое описание поверхности компонента, и его читают: файл локали выше извлекается из того же разбора, а [страницы API](#!section=docs/page=api-mol-string) на этом сайте генерируются из \`.view.tree.d.ts\` каждого базового компонента.
+
+Рукописный класс не даёт ничего из этого. Это код, и прочитать его умеет только TypeScript.
+
+## Про объём
+
+Hello World выше: 31 строка TypeScript превращается в 8 строк дерева плюс 8 строк TypeScript.
+
+С ростом компонента разрыв растёт. \`$mol_app_users\` — поле поиска, список, четыре кнопки и строка статуса — занимает 30 строк и 840 символов деревом и 125 строк и 3046 символов классом. Оба варианта целиком приведены на вики-странице [сравнения форматов](https://github.com/hyoo-ru/mam_mol/wiki/View-Formats), так что размен можно взвесить самому.
+
+## Что выбрать
+
+Оба, по компоненту.
+
+\`view.ts\` — поддерживаемый формат. В него компилируется дерево, и написанный так компонент ведёт себя как любой другой. Когда компонент состоит в основном из логики и держит одного-двух детей, класс честнее, а дерево почти ничего не даст.
+
+Дерево окупается там, где обвязка повторяется: экраны, состоящие в основном из структуры, длинные ряды связок, всё, где есть текст для переводчика. Так устроена бо́льшая часть интерфейса — поэтому собственные компоненты $mol написаны деревом.
+
+Дальше — сам язык дерева: списки, словари, ключевые дети и специализация компонента через наследование: **[Вью](#!section=docs/page=views)**.
+`},uk:{title:"Від TypeScript до view.tree",summary:"Компонент, який ви написали в Початку роботи, — звичайний клас на TypeScript. Він компілюється, він працює, і це підтримуваний спосіб описати компонент $mol,…",md:`# Від TypeScript до view.tree
+
+Компонент, який ви написали в [Початку роботи](#!section=docs/page=getting-started), — звичайний клас на TypeScript. Він компілюється, він працює, і це підтримуваний спосіб описати компонент $mol, один із кількох, які фреймворк приймає.
+
+Він же змусив вас тримати в голові чотири речі, що не стосуються того, що компонент робить. Розберемо їх по одній і покажемо рядок \`view.tree\`, який прибирає кожну. А потім подивимось на код, який генерує компілятор, — щоб переконатися, що дерево не другий рантайм, а спосіб отримати той самий клас, який ви вже написали.
+
+Ось той файл ще раз, для порівняння:
+
+\`\`\`typescript
+namespace $ {
+
+	export class $my_hello extends $mol_page {
+
+		title() {
+			return 'Greeting'
+		}
+
+		body() {
+			return [ this.Name(), this.Message() ]
+		}
+
+		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+
+		@ $mol_mem
+		name( next?: string ) {
+			return next ?? ''
+		}
+
+		@ $mol_mem
+		Message() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.greeting() ]
+			return obj
+		}
+
+		greeting() {
+			const name = this.name()
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
+		}
+
+	}
+
+}
+\`\`\`
+
+## Дитину створюєте ви, і кешуєте теж ви
+
+Шість рядків із цього файлу — фабрика:
+
+\`\`\`typescript
+		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+\`\`\`
+
+Видаліть \`@ $mol_mem\` — код усе ще компілюється. І перестає бути одним компонентом: \`this.Name() !== this.Name()\`, бо тіло виконує \`new\` на кожен виклик. Перемагає той, хто прочитав властивість останнім, попередні екземпляри лишаються з усім, що в них накопичилось, і ніхто їх не знищує: $mol володіє лише тими об'єктами, які сам вам закешував.
+
+У \`view.tree\` та сама дитина займає один рядок:
+
+\`\`\`tree
+		<= Name $mol_string
+\`\`\`
+
+Ім'я з великої літери означає, що у властивості лежить компонент, а \`<=\` її оголошує. Коротшого написання, яке забуває декоратор, тут немає — фабрику пишете не ви.
+
+## Напрямок даних задає оператор
+
+Нагодувати дитину означає присвоїти, по властивості за раз:
+
+\`\`\`typescript
+			obj.sub = () => [ this.greeting() ]
+\`\`\`
+
+Три рухомі частини: об'єкт дитини, ім'я властивості та стрілка, щоб читання сталося пізніше, а не зараз. Рядок каже, що з чим пов'язано, але не каже, в який бік; щоб це дізнатися, доведеться прочитати тіло стрілки й перевірити, чи тече щось назад.
+
+Дерево кладе напрямок в оператор:
+
+\`\`\`tree
+		<= Message $mol_view
+			sub / <= greeting \\
+\`\`\`
+
+\`<=\` — одностороннє, з \`greeting\` у \`sub\` дитини. \`/\` — список, \`\\\` починає сирий рядок, а \`greeting \\\` оголошує властивість із порожнім рядком за замовчуванням: те саме значення, яке ви перевизначите в TypeScript.
+
+## Двостороннє зв'язування за одне натискання від мовчазного read-only
+
+Полю введення дані потрібні в обидва боки, за це відповідає параметр \`next\`:
+
+\`\`\`typescript
+			obj.value = ( next?: string ) => this.name( next )
+\`\`\`
+
+А тепер приберіть \`next\`:
+
+\`\`\`typescript
+			obj.value = () => this.name()
+\`\`\`
+
+TypeScript це прийме. Функція без аргументів підходить туди, де чекають один необов'язковий, тож типи сходяться й аудит лишається зеленим. Поле малюється, показує правильне значення й тихо ігнорує все, що ви друкуєте.
+
+У дереві таке половинчасте зв'язування не написати:
+
+\`\`\`tree
+		<= Name $mol_string
+			value? <=> name? \\
+\`\`\`
+
+\`<=>\` зв'язує в обидва боки. Голий \`?\` позначає властивість, що приймає аргумент, тобто властивість, у яку можна писати. Тут він стоїть з обох кінців, тому значення тече в поле й назад.
+
+## Локалізований рядок лишається рядком, доки ви не заведете ключ
+
+\`\`\`typescript
+		title() {
+			return 'Greeting'
+		}
+\`\`\`
+
+Щоб це перекласти, ви вигадуєте ключ, замінюєте літерал викликом \`$mol_locale.text\`, пишете json і до кінця життя проєкту руками тримаєте дві речі в злагоді.
+
+\`\`\`tree
+	title @ \\Greeting
+\`\`\`
+
+\`@\` позначає рядок як локалізований, решту робить збірка. Після збірки в \`my/hello/-/web.locale=en.json\` лежить:
+
+\`\`\`json
+{
+	"$my_hello_Name_hint": "Enter your name",
+	"$my_hello_title": "Greeting"
+}
+\`\`\`
+
+Перекладач отримує json з усіма рядками застосунку. Ви не пишете жодного ключа.
+
+## Компонент цілком
+
+\`\`\`tree-no-run
+$my_hello $mol_page
+	title @ \\Greeting
+	body /
+		<= Name $mol_string
+			hint @ \\Enter your name
+			value? <=> name? \\
+		<= Message $mol_view
+			sub / <= greeting \\
+\`\`\`
+
+Це \`hello.view.tree\`. У \`hello.view.ts\` лишається те, що структурою ніколи й не було:
+
+\`\`\`typescript
+namespace $.$$ {
+
+	export class $my_hello extends $.$my_hello {
+
+		greeting() {
+			const name = this.name()
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
+		}
+
+	}
+
+}
+\`\`\`
+
+Клас тепер успадковує \`$.$my_hello\`, базу, яку згенерувало дерево, і перевизначає одну властивість. \`$.$$\` — простір імен для таких перевизначень.
+
+## Що видає компілятор
+
+\`view.tree\` — генератор коду без власного рантайму. Зберіть модуль і відкрийте \`my/hello/-view.tree/hello.view.tree.js\`:
+
+\`\`\`javascript
+	($.$my_hello) = class $my_hello extends ($.$mol_page) {
+		name(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		Name(){
+			const obj = new this.$.$mol_string();
+			(obj.hint) = () => ((this.$.$mol_locale.text("$my_hello_Name_hint")));
+			(obj.value) = (next) => ((this.name(next)));
+			return obj;
+		}
+		greeting(){
+			return "";
+		}
+		Message(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.greeting())]);
+			return obj;
+		}
+		title(){
+			return (this.$.$mol_locale.text("$my_hello_title"));
+		}
+		body(){
+			return [(this.Name()), (this.Message())];
+		}
+	};
+	($mol_mem(($.$my_hello.prototype), "name"));
+	($mol_mem(($.$my_hello.prototype), "Name"));
+	($mol_mem(($.$my_hello.prototype), "Message"));
+\`\`\`
+
+Ті самі фабрики, ті самі стрілки, ті самі три виклики \`$mol_mem\` плюс два ключі локалі, яких вам не довелося вигадувати. До моменту, коли бандл доїде до браузера, дерева вже немає.
+
+Тому ж обидва формати спокійно уживаються. Компонент, написаний деревом, і компонент, написаний класом, дають об'єкти одного ґатунку: один застосунок тримає і ті й ті, і ніхто не помічає різниці.
+
+## Чого рукописний клас не може віддати інструментам
+
+Поруч зі згенерованим JS компілятор пише \`hello.view.tree.d.ts\`:
+
+\`\`\`typescript
+declare namespace $ {
+
+	type $mol_string__hint_my_hello_1 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_string['hint'] >
+	>
+	type $mol_string__value_my_hello_2 = $mol_type_enforce<
+		ReturnType< $my_hello['name'] >
+		,
+		ReturnType< $mol_string['value'] >
+	>
+	type $mol_view__sub_my_hello_3 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	export class $my_hello extends $mol_page {
+		name( next?: string ): string
+		Name( ): $mol_string
+		greeting( ): string
+		Message( ): $mol_view
+		title( ): string
+		body( ): readonly(any)[]
+	}
+
+}
+\`\`\`
+
+Пари \`$mol_type_enforce\` звіряють кожне зв'язування з властивістю, яку воно годує, тож розбіжність типів спливає на самому зв'язуванні, а не десь усередині дитини. Тіло класу під ними — машиночитний опис поверхні компонента, і його читають: файл локалі вище видобувається з того самого розбору, а [сторінки API](#!section=docs/page=api-mol-string) на цьому сайті генеруються з \`.view.tree.d.ts\` кожного базового компонента.
+
+Рукописний клас не дає нічого з цього. Це код, і прочитати його вміє лише TypeScript.
+
+## Про обсяг
+
+Hello World вище: 31 рядок TypeScript перетворюється на 8 рядків дерева плюс 8 рядків TypeScript.
+
+Зі зростанням компонента розрив росте. \`$mol_app_users\` — поле пошуку, список, чотири кнопки й рядок статусу — займає 30 рядків і 840 символів деревом і 125 рядків та 3046 символів класом. Обидва варіанти цілком наведені на вікі-сторінці [порівняння форматів](https://github.com/hyoo-ru/mam_mol/wiki/View-Formats), тож розмін можна зважити самому.
+
+## Що обрати
+
+Обидва, по компоненту.
+
+\`view.ts\` — підтримуваний формат. У нього компілюється дерево, і написаний так компонент поводиться як будь-який інший. Коли компонент складається переважно з логіки й тримає одну-дві дитини, клас чесніший, а дерево майже нічого не дасть.
+
+Дерево окупається там, де обв'язка повторюється: екрани, що складаються переважно зі структури, довгі ряди зв'язувань, усе, де є текст для перекладача. Так влаштована більша частина інтерфейсу — тому власні компоненти $mol написані деревом.
+
+Далі — сама мова дерева: списки, словники, ключові діти й спеціалізація компонента через успадкування: **[В'ю](#!section=docs/page=views)**.
+`},pl:{title:"Z TypeScriptu do view.tree",summary:"Komponent, który napisałeś w Pierwszych krokach, to zwykła klasa TypeScriptu. Kompiluje się, działa i jest wspieranym sposobem opisania komponentu $mol —…",md:`# Z TypeScriptu do view.tree
+
+Komponent, który napisałeś w [Pierwszych krokach](#!section=docs/page=getting-started), to zwykła klasa TypeScriptu. Kompiluje się, działa i jest wspieranym sposobem opisania komponentu $mol — jednym z kilku, które framework przyjmuje.
+
+Kazał ci też trzymać w głowie cztery rzeczy niemające nic wspólnego z tym, co komponent robi. Ta strona bierze je po kolei i pokazuje linię \`view.tree\`, która usuwa każdą z nich. Potem pokazuje kod generowany przez kompilator, żebyś mógł sprawdzić, że drzewo nie jest drugim środowiskiem uruchomieniowym: wytwarza tę samą klasę, którą już napisałeś.
+
+Oto ten plik jeszcze raz, do porównania:
+
+\`\`\`typescript
+namespace $ {
+
+	export class $my_hello extends $mol_page {
+
+		title() {
+			return 'Greeting'
+		}
+
+		body() {
+			return [ this.Name(), this.Message() ]
+		}
+
+		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+
+		@ $mol_mem
+		name( next?: string ) {
+			return next ?? ''
+		}
+
+		@ $mol_mem
+		Message() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.greeting() ]
+			return obj
+		}
+
+		greeting() {
+			const name = this.name()
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
+		}
+
+	}
+
+}
+\`\`\`
+
+## Dziecko budujesz ty i ty je buforujesz
+
+Sześć z tych linii to fabryka:
+
+\`\`\`typescript
+		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+\`\`\`
+
+Usuń \`@ $mol_mem\`, a nadal się skompiluje. Przestanie za to być jednym komponentem: \`this.Name() !== this.Name()\`, bo ciało wykonuje \`new\` przy każdym wywołaniu. Wygrywa ten, kto odczytał właściwość jako ostatni, wcześniejsze instancje zostają ze wszystkim, co uzbierały, i nikt ich nie sprząta — $mol jest właścicielem tylko tych obiektów, które sam ci zbuforował.
+
+W \`view.tree\` to samo dziecko to jedna linia:
+
+\`\`\`tree
+		<= Name $mol_string
+\`\`\`
+
+Nazwa z wielkiej litery oznacza, że właściwość trzyma komponent, a \`<=\` ją deklaruje. Nie ma krótszego zapisu, który zapomina o dekoratorze, bo fabryki nie piszesz ty.
+
+## Kierunek danych mówi operator
+
+Nakarmić dziecko to przypisać, po jednej właściwości naraz:
+
+\`\`\`typescript
+			obj.sub = () => [ this.greeting() ]
+\`\`\`
+
+Trzy ruchome części: obiekt dziecka, nazwa właściwości i strzałka, żeby odczyt nastąpił później, a nie teraz. Ta linia mówi, co jest połączone, ale nie w którą stronę; żeby to ustalić, musisz przeczytać ciało strzałki i sprawdzić, czy coś wraca.
+
+Drzewo wkłada kierunek w operator:
+
+\`\`\`tree
+		<= Message $mol_view
+			sub / <= greeting \\
+\`\`\`
+
+\`<=\` jest jednokierunkowe, z \`greeting\` do \`sub\` dziecka. \`/\` to lista, \`\\\` zaczyna surowy łańcuch znaków, a \`greeting \\\` deklaruje właściwość z pustym łańcuchem jako wartością domyślną — tą, którą nadpiszesz w TypeScripcie.
+
+## Wiązanie dwukierunkowe dzieli jeden klawisz od cichego tylko-do-odczytu
+
+Pole potrzebuje danych w obie strony i za to odpowiada parametr \`next\`:
+
+\`\`\`typescript
+			obj.value = ( next?: string ) => this.name( next )
+\`\`\`
+
+Teraz usuń \`next\`:
+
+\`\`\`typescript
+			obj.value = () => this.name()
+\`\`\`
+
+TypeScript to przyjmie. Funkcja bez argumentów pasuje tam, gdzie oczekiwany jest jeden opcjonalny, więc typy się zgadzają, a audyt zostaje zielony. Pole się renderuje, pokazuje właściwą wartość i po cichu ignoruje wszystko, co wpiszesz.
+
+W drzewie takiego półpołączenia nie da się zapisać:
+
+\`\`\`tree
+		<= Name $mol_string
+			value? <=> name? \\
+\`\`\`
+
+\`<=>\` wiąże w obie strony. Nagie \`?\` oznacza właściwość, która przyjmuje argument, czyli taką, do której można pisać. Tutaj stoi po obu stronach, więc wartość płynie do pola i z powrotem.
+
+## Lokalizowalny napis pozostaje napisem, dopóki nie zrobisz z niego klucza
+
+\`\`\`typescript
+		title() {
+			return 'Greeting'
+		}
+\`\`\`
+
+Żeby to przetłumaczyć, wymyślasz klucz, zamieniasz literał na wywołanie \`$mol_locale.text\`, piszesz json i do końca życia projektu ręcznie trzymasz jedno w zgodzie z drugim.
+
+\`\`\`tree
+	title @ \\Greeting
+\`\`\`
+
+\`@\` oznacza napis jako lokalizowalny, resztę robi build. Po zbudowaniu w \`my/hello/-/web.locale=en.json\` leży:
+
+\`\`\`json
+{
+	"$my_hello_Name_hint": "Enter your name",
+	"$my_hello_title": "Greeting"
+}
+\`\`\`
+
+Tłumacze dostają plik json ze wszystkimi napisami aplikacji. Ty nie piszesz ani jednego klucza.
+
+## Cały komponent
+
+\`\`\`tree-no-run
+$my_hello $mol_page
+	title @ \\Greeting
+	body /
+		<= Name $mol_string
+			hint @ \\Enter your name
+			value? <=> name? \\
+		<= Message $mol_view
+			sub / <= greeting \\
+\`\`\`
+
+To jest \`hello.view.tree\`. W \`hello.view.ts\` zostaje ta część, która nigdy nie była strukturą:
+
+\`\`\`typescript
+namespace $.$$ {
+
+	export class $my_hello extends $.$my_hello {
+
+		greeting() {
+			const name = this.name()
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
+		}
+
+	}
+
+}
+\`\`\`
+
+Klasa rozszerza teraz \`$.$my_hello\`, bazę wygenerowaną przez drzewo, i nadpisuje jedną właściwość. \`$.$$\` to przestrzeń nazw dla takich nadpisań.
+
+## Co wypuszcza kompilator
+
+\`view.tree\` to generator kodu bez własnego środowiska uruchomieniowego. Zbuduj moduł i przeczytaj \`my/hello/-view.tree/hello.view.tree.js\`:
+
+\`\`\`javascript
+	($.$my_hello) = class $my_hello extends ($.$mol_page) {
+		name(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		Name(){
+			const obj = new this.$.$mol_string();
+			(obj.hint) = () => ((this.$.$mol_locale.text("$my_hello_Name_hint")));
+			(obj.value) = (next) => ((this.name(next)));
+			return obj;
+		}
+		greeting(){
+			return "";
+		}
+		Message(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.greeting())]);
+			return obj;
+		}
+		title(){
+			return (this.$.$mol_locale.text("$my_hello_title"));
+		}
+		body(){
+			return [(this.Name()), (this.Message())];
+		}
+	};
+	($mol_mem(($.$my_hello.prototype), "name"));
+	($mol_mem(($.$my_hello.prototype), "Name"));
+	($mol_mem(($.$my_hello.prototype), "Message"));
+\`\`\`
+
+Te same fabryki, te same strzałki, te same trzy wywołania \`$mol_mem\`, plus dwa klucze lokalizacji, których nie musiałeś nazywać. Zanim bundle dotrze do przeglądarki, drzewa już nie ma.
+
+To także powód, dla którego oba formaty mieszają się bez tarć. Komponent napisany drzewem i komponent napisany klasą dają ten sam rodzaj obiektu, więc jedna aplikacja może trzymać oba i żaden nie zauważy różnicy.
+
+## Czego ręcznie napisana klasa nie odda żadnemu narzędziu
+
+Obok wygenerowanego JS kompilator zapisuje \`hello.view.tree.d.ts\`:
+
+\`\`\`typescript
+declare namespace $ {
+
+	type $mol_string__hint_my_hello_1 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_string['hint'] >
+	>
+	type $mol_string__value_my_hello_2 = $mol_type_enforce<
+		ReturnType< $my_hello['name'] >
+		,
+		ReturnType< $mol_string['value'] >
+	>
+	type $mol_view__sub_my_hello_3 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	export class $my_hello extends $mol_page {
+		name( next?: string ): string
+		Name( ): $mol_string
+		greeting( ): string
+		Message( ): $mol_view
+		title( ): string
+		body( ): readonly(any)[]
+	}
+
+}
+\`\`\`
+
+Pary \`$mol_type_enforce\` sprawdzają każde wiązanie względem właściwości, którą karmi, więc niezgodność typów jest zgłaszana przy samym wiązaniu, a nie gdzieś w środku dziecka. Ciało klasy poniżej to czytelny dla maszyny opis powierzchni komponentu i naprawdę są tacy, którzy go czytają: plik lokalizacji powyżej pochodzi z tego samego parsowania, a [strony API](#!section=docs/page=api-mol-string) na tej witrynie są generowane z \`.view.tree.d.ts\` każdego komponentu bazowego.
+
+Ręcznie napisana klasa nie oferuje nic z tego. To kod, a jedyne, co potrafi go przeczytać, to TypeScript.
+
+## Rozmiar tego wszystkiego
+
+Hello World powyżej: 31 linii TypeScriptu zamienia się w 8 linii drzewa plus 8 linii TypeScriptu.
+
+Wraz z komponentem różnica rośnie. \`$mol_app_users\` — pole wyszukiwania, lista, cztery przyciski i wiersz statusu — ma 30 linii i 840 znaków jako drzewo oraz 125 linii i 3046 znaków jako klasa. Obie wersje są w całości wydrukowane na wiki, na stronie [porównania formatów](https://github.com/hyoo-ru/mam_mol/wiki/View-Formats), więc możesz sam zważyć ten kompromis.
+
+## Co pisać
+
+Jedno i drugie, wybierając komponent po komponencie.
+
+\`view.ts\` to wspierany format. To do niego kompiluje się drzewo, a komponent napisany w ten sposób zachowuje się jak każdy inny. Gdy komponent to głównie logika z jednym lub dwoma dziećmi, klasa jest uczciwym wyborem, a drzewo niewiele daje.
+
+Drzewo zwraca się tam, gdzie ceremonia się powtarza: ekrany złożone głównie ze struktury, długie serie wiązań, wszystko z tekstem, który tłumacz zechce zobaczyć. To opisuje większość interfejsu i dlatego własne komponenty $mol są pisane właśnie tak.
+
+Dalej sam język drzewa — listy, słowniki, dzieci z kluczem i specjalizowanie komponentu przez dziedziczenie: **[Widoki](#!section=docs/page=views)**.
+`},cs:{title:"Z TypeScriptu do view.tree",summary:"Komponenta, kterou jste napsali v kapitole Začínáme, je obyčejná třída TypeScriptu. Přeloží se, běží a je to podporovaný způsob, jak popsat komponentu $mol —…",md:`# Z TypeScriptu do view.tree
+
+Komponenta, kterou jste napsali v kapitole [Začínáme](#!section=docs/page=getting-started), je obyčejná třída TypeScriptu. Přeloží se, běží a je to podporovaný způsob, jak popsat komponentu $mol — jeden z několika, které framework přijímá.
+
+Zároveň vás donutila držet v hlavě čtyři věci, které s prací komponenty nemají nic společného. Tato stránka je bere jednu po druhé a ukazuje řádek \`view.tree\`, který každou z nich odstraní. Pak ukáže kód, který generuje překladač, abyste si ověřili, že strom není druhé běhové prostředí: vyrábí přesně tu třídu, kterou jste už napsali.
+
+Tady je ten soubor znovu, pro srovnání:
+
+\`\`\`typescript
+namespace $ {
+
+	export class $my_hello extends $mol_page {
+
+		title() {
+			return 'Greeting'
+		}
+
+		body() {
+			return [ this.Name(), this.Message() ]
+		}
+
+		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+
+		@ $mol_mem
+		name( next?: string ) {
+			return next ?? ''
+		}
+
+		@ $mol_mem
+		Message() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.greeting() ]
+			return obj
+		}
+
+		greeting() {
+			const name = this.name()
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
+		}
+
+	}
+
+}
+\`\`\`
+
+## Potomka si vytváříte sami a sami ho i kešujete
+
+Šest z těch řádků je továrna:
+
+\`\`\`typescript
+		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+\`\`\`
+
+Smažte \`@ $mol_mem\` a pořád se to přeloží. Přestane to ale být jedna komponenta: \`this.Name() !== this.Name()\`, protože tělo při každém volání spustí \`new\`. Vyhrává ten, kdo vlastnost přečetl poslední, dřívější instance zůstanou se vším, co nasbíraly, a nikdo je neuklidí — $mol vlastní jen ty objekty, které vám sám nakešoval.
+
+Ve \`view.tree\` je stejný potomek jeden řádek:
+
+\`\`\`tree
+		<= Name $mol_string
+\`\`\`
+
+Jméno s velkým písmenem znamená, že vlastnost drží komponentu, a \`<=\` ji deklaruje. Neexistuje kratší zápis, který by zapomněl dekorátor, protože továrnu nepíšete vy.
+
+## Směr dat udává operátor
+
+Nakrmit potomka znamená přiřazovat, vlastnost po vlastnosti:
+
+\`\`\`typescript
+			obj.sub = () => [ this.greeting() ]
+\`\`\`
+
+Tři pohyblivé části: objekt potomka, jméno vlastnosti a šipka, aby se čtení odehrálo později, ne teď. Řádek říká, co je propojeno, ale ne kterým směrem; abyste to zjistili, musíte přečíst tělo šipky a ověřit, jestli se něco vrací.
+
+Strom vkládá směr do operátoru:
+
+\`\`\`tree
+		<= Message $mol_view
+			sub / <= greeting \\
+\`\`\`
+
+\`<=\` je jednosměrné, z \`greeting\` do \`sub\` potomka. \`/\` je seznam, \`\\\` začíná surový řetězec a \`greeting \\\` deklaruje vlastnost s prázdným řetězcem jako výchozí hodnotou — tou, kterou přepíšete v TypeScriptu.
+
+## Obousměrné vázání je jednu klávesu od tichého jen-pro-čtení
+
+Pole potřebuje data oběma směry a přesně to dělá parametr \`next\`:
+
+\`\`\`typescript
+			obj.value = ( next?: string ) => this.name( next )
+\`\`\`
+
+Teď \`next\` vypusťte:
+
+\`\`\`typescript
+			obj.value = () => this.name()
+\`\`\`
+
+TypeScript to přijme. Funkce bez argumentů je přiřaditelná tam, kde se čeká jeden nepovinný, takže typy sedí a audit zůstává zelený. Pole se vykreslí, ukáže správnou hodnotu a tiše ignoruje všechno, co napíšete.
+
+Ve stromu se takové poloviční spojení zapsat nedá:
+
+\`\`\`tree
+		<= Name $mol_string
+			value? <=> name? \\
+\`\`\`
+
+\`<=>\` váže oběma směry. Holý \`?\` označuje vlastnost, která přijímá argument, tedy vlastnost, do níž lze zapisovat. Tady je na obou koncích, takže hodnota teče do pole a zase zpátky.
+
+## Lokalizovatelný řetězec zůstává řetězcem, dokud z něj neuděláte klíč
+
+\`\`\`typescript
+		title() {
+			return 'Greeting'
+		}
+\`\`\`
+
+Abyste to přeložili, vymyslíte klíč, nahradíte literál voláním \`$mol_locale.text\`, napíšete json a po zbytek života projektu držíte obojí ručně v souladu.
+
+\`\`\`tree
+	title @ \\Greeting
+\`\`\`
+
+\`@\` označí řetězec jako lokalizovatelný, zbytek udělá build. Po sestavení je v \`my/hello/-/web.locale=en.json\`:
+
+\`\`\`json
+{
+	"$my_hello_Name_hint": "Enter your name",
+	"$my_hello_title": "Greeting"
+}
+\`\`\`
+
+Překladatelé dostanou json se všemi řetězci aplikace. Vy nenapíšete jediný klíč.
+
+## Celá komponenta
+
+\`\`\`tree-no-run
+$my_hello $mol_page
+	title @ \\Greeting
+	body /
+		<= Name $mol_string
+			hint @ \\Enter your name
+			value? <=> name? \\
+		<= Message $mol_view
+			sub / <= greeting \\
+\`\`\`
+
+To je \`hello.view.tree\`. V \`hello.view.ts\` zůstává ta část, která nikdy nebyla strukturou:
+
+\`\`\`typescript
+namespace $.$$ {
+
+	export class $my_hello extends $.$my_hello {
+
+		greeting() {
+			const name = this.name()
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
+		}
+
+	}
+
+}
+\`\`\`
+
+Třída nyní rozšiřuje \`$.$my_hello\`, základ vygenerovaný stromem, a přepisuje jednu vlastnost. \`$.$$\` je jmenný prostor pro tyhle přepisy.
+
+## Co překladač vydá
+
+\`view.tree\` je generátor kódu bez vlastního běhového prostředí. Sestavte modul a přečtěte si \`my/hello/-view.tree/hello.view.tree.js\`:
+
+\`\`\`javascript
+	($.$my_hello) = class $my_hello extends ($.$mol_page) {
+		name(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		Name(){
+			const obj = new this.$.$mol_string();
+			(obj.hint) = () => ((this.$.$mol_locale.text("$my_hello_Name_hint")));
+			(obj.value) = (next) => ((this.name(next)));
+			return obj;
+		}
+		greeting(){
+			return "";
+		}
+		Message(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.greeting())]);
+			return obj;
+		}
+		title(){
+			return (this.$.$mol_locale.text("$my_hello_title"));
+		}
+		body(){
+			return [(this.Name()), (this.Message())];
+		}
+	};
+	($mol_mem(($.$my_hello.prototype), "name"));
+	($mol_mem(($.$my_hello.prototype), "Name"));
+	($mol_mem(($.$my_hello.prototype), "Message"));
+\`\`\`
+
+Stejné továrny, stejné šipky, stejná tři volání \`$mol_mem\`, k tomu dva klíče lokalizace, které jste nemuseli pojmenovat. Než balíček dorazí do prohlížeče, strom je pryč.
+
+Proto se také oba formáty bez potíží mísí. Komponenta psaná stromem a komponenta psaná třídou vyrobí stejný druh objektu, takže jedna aplikace může držet obojí a nikdo rozdíl nepozná.
+
+## Co ručně psaná třída žádnému nástroji nepředá
+
+Vedle vygenerovaného JS zapíše překladač i \`hello.view.tree.d.ts\`:
+
+\`\`\`typescript
+declare namespace $ {
+
+	type $mol_string__hint_my_hello_1 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_string['hint'] >
+	>
+	type $mol_string__value_my_hello_2 = $mol_type_enforce<
+		ReturnType< $my_hello['name'] >
+		,
+		ReturnType< $mol_string['value'] >
+	>
+	type $mol_view__sub_my_hello_3 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	export class $my_hello extends $mol_page {
+		name( next?: string ): string
+		Name( ): $mol_string
+		greeting( ): string
+		Message( ): $mol_view
+		title( ): string
+		body( ): readonly(any)[]
+	}
+
+}
+\`\`\`
+
+Dvojice \`$mol_type_enforce\` prověřují každé vázání proti vlastnosti, kterou napájí, takže nesouhlas typů se ohlásí přímo na vázání, ne někde uvnitř potomka. Tělo třídy pod nimi je strojově čitelný popis povrchu komponenty a opravdu se čte: soubor lokalizace výše vzniká ze stejného rozboru a [stránky API](#!section=docs/page=api-mol-string) na tomto webu se generují z \`.view.tree.d.ts\` každé základní komponenty.
+
+Ručně psaná třída nenabízí nic z toho. Je to kód a jediné, co ho umí přečíst, je TypeScript.
+
+## Kolik toho je
+
+Hello World výše: 31 řádků TypeScriptu se změní v 8 řádků stromu plus 8 řádků TypeScriptu.
+
+S velikostí komponenty rozdíl roste. \`$mol_app_users\` — vyhledávací pole, seznam, čtyři tlačítka a stavový řádek — má jako strom 30 řádků a 840 znaků a jako třída 125 řádků a 3046 znaků. Obě verze jsou v úplnosti vytištěné na wiki stránce [srovnání formátů](https://github.com/hyoo-ru/mam_mol/wiki/View-Formats), takže si výměnu můžete zvážit sami.
+
+## Co psát
+
+Obojí, po jednotlivých komponentách.
+
+\`view.ts\` je podporovaný formát. Je to to, do čeho se strom překládá, a takto psaná komponenta se chová jako každá jiná. Když je komponenta hlavně logika s jedním nebo dvěma potomky, třída je poctivá volba a strom moc nepřinese.
+
+Strom se vyplatí tam, kde se obřad opakuje: obrazovky složené hlavně ze struktury, dlouhé řady vázání, cokoli s textem, který bude chtít vidět překladatel. To popisuje většinu uživatelského rozhraní, a proto jsou vlastní komponenty $mol psané právě takhle.
+
+Dále přijde samotný jazyk stromu — seznamy, slovníky, potomci s klíčem a specializace komponenty děděním: **[Pohledy](#!section=docs/page=views)**.
+`},fa:{title:"از تایپ‌اسکریپت به view.tree",summary:"مؤلفه‌ای که در شروع به کار نوشتید یک کلاس معمولیِ تایپ‌اسکریپت است. کامپایل می‌شود، اجرا می‌شود و یکی از راه‌های پشتیبانی‌شده برای توصیف مؤلفهٔ $mol است.",md:`# از تایپ‌اسکریپت به view.tree
+
+مؤلفه‌ای که در [شروع به کار](#!section=docs/page=getting-started) نوشتید یک کلاس معمولیِ تایپ‌اسکریپت است. کامپایل می‌شود، اجرا می‌شود و یکی از راه‌های پشتیبانی‌شده برای توصیف مؤلفهٔ $mol است.
+
+همان مؤلفه از شما خواست چهار چیز را در ذهن نگه دارید که هیچ ربطی به کارِ خودِ مؤلفه ندارند. این صفحه آن‌ها را یکی‌یکی برمی‌دارد و خطِ \`view.tree\` را نشان می‌دهد که هر کدام را حذف می‌کند. بعد کدی را نشان می‌دهد که کامپایلر تولید می‌کند تا خودتان بسنجید: درخت زمانِ اجرای دومی نیست، همان کلاسی را می‌سازد که پیش‌تر نوشته‌اید.
+
+این هم دوبارهٔ آن فایل، برای مقایسه:
+
+\`\`\`typescript
+namespace $ {
+
+	export class $my_hello extends $mol_page {
+
+		title() {
+			return 'Greeting'
+		}
+
+		body() {
+			return [ this.Name(), this.Message() ]
+		}
+
+		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+
+		@ $mol_mem
+		name( next?: string ) {
+			return next ?? ''
+		}
+
+		@ $mol_mem
+		Message() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.greeting() ]
+			return obj
+		}
+
+		greeting() {
+			const name = this.name()
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
+		}
+
+	}
+
+}
+\`\`\`
+
+## فرزند را خودتان می‌سازید و خودتان هم کش می‌کنید
+
+شش خط از آن‌ها یک کارخانه است:
+
+\`\`\`typescript
+		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+\`\`\`
+
+\`@ $mol_mem\` را پاک کنید؛ باز هم کامپایل می‌شود. اما دیگر یک مؤلفه نیست: \`this.Name() !== this.Name()\`، چون بدنه در هر فراخوانی \`new\` را اجرا می‌کند. هرکس آخر از همه ویژگی را بخواند برنده است، نمونه‌های قبلی با هرچه انباشته‌اند باقی می‌مانند و کسی جمعشان نمی‌کند — $mol فقط مالکِ اشیائی است که خودش برایتان کش کرده.
+
+در \`view.tree\` همان فرزند یک خط است:
+
+\`\`\`tree
+		<= Name $mol_string
+\`\`\`
+
+نامِ با حرف بزرگ یعنی این ویژگی یک مؤلفه را نگه می‌دارد و \`<=\` آن را اعلام می‌کند. نگارشِ کوتاه‌تری که دکوراتور را جا بیندازد وجود ندارد، چون کارخانه را شما نمی‌نویسید.
+
+## جهتِ داده را عملگر می‌گوید
+
+غذا دادن به فرزند یعنی انتساب، ویژگی به ویژگی:
+
+\`\`\`typescript
+			obj.sub = () => [ this.greeting() ]
+\`\`\`
+
+سه قطعهٔ متحرک: شیء فرزند، نام ویژگی، و یک پیکان تا خواندن بعداً اتفاق بیفتد نه همین حالا. این خط می‌گوید چه چیزی به چه چیزی وصل است، اما نمی‌گوید در کدام جهت؛ برای فهمیدنش باید بدنهٔ پیکان را بخوانید و ببینید چیزی برمی‌گردد یا نه.
+
+درخت جهت را در عملگر می‌گذارد:
+
+\`\`\`tree
+		<= Message $mol_view
+			sub / <= greeting \\
+\`\`\`
+
+\`<=\` یک‌طرفه است، از \`greeting\` به \`sub\`ِ فرزند. \`/\` یک فهرست است، \`\\\` آغازِ رشتهٔ خام است و \`greeting \\\` ویژگی‌ای را با رشتهٔ خالی به‌عنوان پیش‌فرض اعلام می‌کند — همان مقداری که در تایپ‌اسکریپت بازنویسی‌اش می‌کنید.
+
+## پیوند دوطرفه یک کلید تا «فقط‌خواندنیِ خاموش» فاصله دارد
+
+ورودی به دادهٔ دوطرفه نیاز دارد و کارِ پارامترِ \`next\` همین است:
+
+\`\`\`typescript
+			obj.value = ( next?: string ) => this.name( next )
+\`\`\`
+
+حالا \`next\` را بردارید:
+
+\`\`\`typescript
+			obj.value = () => this.name()
+\`\`\`
+
+تایپ‌اسکریپت این را می‌پذیرد. تابعی بدون آرگومان جایی که یک آرگومانِ اختیاری انتظار می‌رود قابل انتساب است، پس نوع‌ها جور درمی‌آیند و ممیزی سبز می‌ماند. ورودی رسم می‌شود، مقدار درست را نشان می‌دهد و هرچه تایپ کنید بی‌صدا نادیده می‌گیرد.
+
+در درخت چنین اتصالِ نیمه‌کاره‌ای نوشتنی نیست:
+
+\`\`\`tree
+		<= Name $mol_string
+			value? <=> name? \\
+\`\`\`
+
+\`<=>\` دوطرفه پیوند می‌زند. \`?\`ِ خالی نشانهٔ ویژگی‌ای است که آرگومان می‌گیرد، یعنی ویژگی‌ای که می‌شود در آن نوشت. اینجا در هر دو سر آمده، پس مقدار به ورودی می‌رود و برمی‌گردد.
+
+## رشتهٔ قابل‌بومی‌سازی تا وقتی کلید نسازید فقط یک رشته است
+
+\`\`\`typescript
+		title() {
+			return 'Greeting'
+		}
+\`\`\`
+
+برای ترجمه‌اش کلیدی از خودتان می‌سازید، لفظ را با فراخوانی \`$mol_locale.text\` جایگزین می‌کنید، json را می‌نویسید و تا پایان عمرِ پروژه این دو را دستی هماهنگ نگه می‌دارید.
+
+\`\`\`tree
+	title @ \\Greeting
+\`\`\`
+
+\`@\` رشته را قابل‌بومی‌سازی علامت می‌زند و بقیه‌اش با فرایند ساخت است. پس از ساخت، در \`my/hello/-/web.locale=en.json\` این هست:
+
+\`\`\`json
+{
+	"$my_hello_Name_hint": "Enter your name",
+	"$my_hello_title": "Greeting"
+}
+\`\`\`
+
+مترجم‌ها یک فایل json با تمام رشته‌های برنامه می‌گیرند. شما حتی یک کلید هم نمی‌نویسید.
+
+## کل مؤلفه
+
+\`\`\`tree-no-run
+$my_hello $mol_page
+	title @ \\Greeting
+	body /
+		<= Name $mol_string
+			hint @ \\Enter your name
+			value? <=> name? \\
+		<= Message $mol_view
+			sub / <= greeting \\
+\`\`\`
+
+این \`hello.view.tree\` است. آنچه در \`hello.view.ts\` می‌ماند بخشی است که هرگز ساختار نبود:
+
+\`\`\`typescript
+namespace $.$$ {
+
+	export class $my_hello extends $.$my_hello {
+
+		greeting() {
+			const name = this.name()
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
+		}
+
+	}
+
+}
+\`\`\`
+
+کلاس اکنون از \`$.$my_hello\` ارث می‌برد، همان پایه‌ای که درخت ساخته، و یک ویژگی را بازنویسی می‌کند. \`$.$$\` فضای نامِ این بازنویسی‌هاست.
+
+## کامپایلر چه بیرون می‌دهد
+
+\`view.tree\` یک تولیدکنندهٔ کد است بدون زمانِ اجرای مخصوص خودش. ماژول را بسازید و \`my/hello/-view.tree/hello.view.tree.js\` را بخوانید:
+
+\`\`\`javascript
+	($.$my_hello) = class $my_hello extends ($.$mol_page) {
+		name(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		Name(){
+			const obj = new this.$.$mol_string();
+			(obj.hint) = () => ((this.$.$mol_locale.text("$my_hello_Name_hint")));
+			(obj.value) = (next) => ((this.name(next)));
+			return obj;
+		}
+		greeting(){
+			return "";
+		}
+		Message(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.greeting())]);
+			return obj;
+		}
+		title(){
+			return (this.$.$mol_locale.text("$my_hello_title"));
+		}
+		body(){
+			return [(this.Name()), (this.Message())];
+		}
+	};
+	($mol_mem(($.$my_hello.prototype), "name"));
+	($mol_mem(($.$my_hello.prototype), "Name"));
+	($mol_mem(($.$my_hello.prototype), "Message"));
+\`\`\`
+
+همان کارخانه‌ها، همان پیکان‌ها، همان سه فراخوانیِ \`$mol_mem\`، به‌اضافهٔ دو کلید بومی‌سازی که مجبور نشدید نامشان را بگذارید. تا وقتی بسته به مرورگر برسد، دیگر خبری از درخت نیست.
+
+به همین دلیل هم دو قالب آزادانه در کنار هم می‌نشینند. مؤلفه‌ای که با درخت نوشته شده و مؤلفه‌ای که با کلاس نوشته شده هر دو یک جور شیء تولید می‌کنند، پس یک برنامه می‌تواند هر دو را داشته باشد و هیچ‌کدام تفاوتی حس نکند.
+
+## چیزی که کلاسِ دست‌نویس به هیچ ابزاری نمی‌دهد
+
+کنار JSِ تولیدشده، کامپایلر \`hello.view.tree.d.ts\` را هم می‌نویسد:
+
+\`\`\`typescript
+declare namespace $ {
+
+	type $mol_string__hint_my_hello_1 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_string['hint'] >
+	>
+	type $mol_string__value_my_hello_2 = $mol_type_enforce<
+		ReturnType< $my_hello['name'] >
+		,
+		ReturnType< $mol_string['value'] >
+	>
+	type $mol_view__sub_my_hello_3 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	export class $my_hello extends $mol_page {
+		name( next?: string ): string
+		Name( ): $mol_string
+		greeting( ): string
+		Message( ): $mol_view
+		title( ): string
+		body( ): readonly(any)[]
+	}
+
+}
+\`\`\`
+
+جفت‌های \`$mol_type_enforce\` هر پیوند را با ویژگی‌ای که تغذیه می‌کند می‌سنجند، پس ناسازگاریِ نوع درست روی خودِ پیوند گزارش می‌شود نه جایی در دلِ فرزند. بدنهٔ کلاس زیر آن‌ها توصیفی ماشین‌خوان از سطحِ بیرونیِ مؤلفه است و واقعاً خوانده می‌شود: فایل بومی‌سازیِ بالا از همین تجزیه بیرون می‌آید و [صفحه‌های API](#!section=docs/page=api-mol-string) همین سایت از \`.view.tree.d.ts\`ِ هر مؤلفهٔ پایه تولید می‌شوند.
+
+کلاسِ دست‌نویس هیچ‌کدام از این‌ها را عرضه نمی‌کند. کد است و تنها چیزی که می‌تواند بخواندش تایپ‌اسکریپت است.
+
+## اندازهٔ ماجرا
+
+همان Hello World بالا: ۳۱ خط تایپ‌اسکریپت می‌شود ۸ خط درخت به‌علاوهٔ ۸ خط تایپ‌اسکریپت.
+
+هرچه مؤلفه بزرگ‌تر شود فاصله بیشتر می‌شود. \`$mol_app_users\` — یک جعبهٔ جست‌وجو، یک فهرست، چهار دکمه و یک خط وضعیت — به‌صورت درخت ۳۰ خط و ۸۴۰ نویسه است و به‌صورت کلاس ۱۲۵ خط و ۳۰۴۶ نویسه. هر دو نسخه به‌طور کامل در صفحهٔ ویکیِ [مقایسهٔ قالب‌ها](https://github.com/hyoo-ru/mam_mol/wiki/View-Formats) آمده‌اند تا خودتان معامله را بسنجید.
+
+## کدام را بنویسیم
+
+هر دو را، مؤلفه به مؤلفه.
+
+\`view.ts\` قالبی پشتیبانی‌شده است. درخت به همین کامپایل می‌شود و مؤلفه‌ای که این‌طور نوشته شود مثل بقیه رفتار می‌کند. وقتی مؤلفه بیشتر منطق است و یکی دو فرزند دارد، کلاس انتخابِ صادقانه‌تری است و درخت چیز زیادی اضافه نمی‌کند.
+
+درخت جایی خرجش را درمی‌آورد که تشریفات تکرار می‌شود: صفحه‌هایی که بیشترشان ساختار است، ردیف‌های بلند پیوند، هر چیزی که متنی دارد که مترجم می‌خواهد ببیندش. بیشترِ یک رابط کاربری همین است، و برای همین مؤلفه‌های خودِ $mol این‌طور نوشته شده‌اند.
+
+بعدی خودِ زبانِ درخت است — فهرست‌ها، دیکشنری‌ها، فرزندانِ کلیددار و تخصصی‌کردنِ یک مؤلفه با ارث‌بری: **[نماها](#!section=docs/page=views)**.
+`},bn:{title:"TypeScript থেকে view.tree",summary:"শুরু করা-য় আপনি যে কম্পোনেন্টটি লিখেছেন সেটি একটি সাধারণ TypeScript ক্লাস। এটি কম্পাইল হয়, চলে, আর $mol কম্পোনেন্ট বর্ণনার সমর্থিত উপায়গুলির একটি।",md:`# TypeScript থেকে view.tree
+
+[শুরু করা](#!section=docs/page=getting-started)-য় আপনি যে কম্পোনেন্টটি লিখেছেন সেটি একটি সাধারণ TypeScript ক্লাস। এটি কম্পাইল হয়, চলে, আর $mol কম্পোনেন্ট বর্ণনার সমর্থিত উপায়গুলির একটি।
+
+একই সঙ্গে এটি আপনাকে চারটি জিনিস মাথায় রাখতে বাধ্য করেছে, যেগুলির সঙ্গে কম্পোনেন্টের কাজের কোনো সম্পর্ক নেই। এই পৃষ্ঠা সেগুলি একটি একটি করে ধরে, আর প্রতিটির জন্য \`view.tree\`-র যে লাইনটি সেটিকে মুছে দেয় তা দেখায়। তারপর কম্পাইলার যে কোড তৈরি করে সেটি দেখায়, যাতে আপনি নিজেই যাচাই করতে পারেন: ট্রি দ্বিতীয় কোনো রানটাইম নয়, এটি সেই ক্লাসটিই বানায় যা আপনি আগেই লিখেছেন।
+
+তুলনার জন্য সেই ফাইলটি আবার:
+
+\`\`\`typescript
+namespace $ {
+
+	export class $my_hello extends $mol_page {
+
+		title() {
+			return 'Greeting'
+		}
+
+		body() {
+			return [ this.Name(), this.Message() ]
+		}
+
+		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+
+		@ $mol_mem
+		name( next?: string ) {
+			return next ?? ''
+		}
+
+		@ $mol_mem
+		Message() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.greeting() ]
+			return obj
+		}
+
+		greeting() {
+			const name = this.name()
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
+		}
+
+	}
+
+}
+\`\`\`
+
+## সন্তান আপনিই বানান, ক্যাশও আপনিই করেন
+
+ওর মধ্যে ছয় লাইন একটি ফ্যাক্টরি:
+
+\`\`\`typescript
+		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+\`\`\`
+
+\`@ $mol_mem\` মুছে দিন, তবু কম্পাইল হবে। কিন্তু এটি আর একটিমাত্র কম্পোনেন্ট থাকবে না: \`this.Name() !== this.Name()\`, কারণ প্রতিবার ডাকলেই বডি \`new\` চালায়। যে সবার শেষে প্রপার্টিটি পড়ল সে-ই জেতে, আগের ইনস্ট্যান্সগুলি যা জমিয়েছিল তা নিয়েই পড়ে থাকে, আর কেউ সেগুলি সরায় না — $mol কেবল সেই বস্তুগুলিরই মালিক যেগুলি সে নিজে আপনার জন্য ক্যাশ করেছে।
+
+\`view.tree\`-তে একই সন্তান এক লাইন:
+
+\`\`\`tree
+		<= Name $mol_string
+\`\`\`
+
+বড় হাতের অক্ষরে শুরু হওয়া নাম মানে প্রপার্টিটি একটি কম্পোনেন্ট ধরে রাখে, আর \`<=\` সেটি ঘোষণা করে। ডেকোরেটর ভুলে যায় এমন কোনো ছোট লেখনভঙ্গি নেই, কারণ ফ্যাক্টরিটি আপনি লিখছেনই না।
+
+## ডেটা কোন দিকে যাবে, তা অপারেটরই বলে
+
+সন্তানকে খাওয়ানো মানে অ্যাসাইন করা, একবারে একটি প্রপার্টি:
+
+\`\`\`typescript
+			obj.sub = () => [ this.greeting() ]
+\`\`\`
+
+তিনটি চলমান অংশ: সন্তান বস্তু, প্রপার্টির নাম, আর একটি অ্যারো যাতে পড়াটা এখন নয়, পরে ঘটে। লাইনটি বলে কী কার সঙ্গে জোড়া, কিন্তু কোন দিকে তা বলে না; সেটি জানতে হলে অ্যারোর ভেতরটা পড়ে দেখতে হবে কিছু ফিরে আসে কি না।
+
+ট্রি দিকটা অপারেটরের ভেতরেই রাখে:
+
+\`\`\`tree
+		<= Message $mol_view
+			sub / <= greeting \\
+\`\`\`
+
+\`<=\` একমুখী, \`greeting\` থেকে সন্তানের \`sub\`-এ। \`/\` একটি তালিকা, \`\\\` কাঁচা স্ট্রিং শুরু করে, আর \`greeting \\\` ফাঁকা স্ট্রিং ডিফল্ট রেখে একটি প্রপার্টি ঘোষণা করে — যেটি আপনি পরে TypeScript-এ ওভাররাইড করবেন।
+
+## দ্বিমুখী বাঁধাই নিঃশব্দ কেবল-পঠনযোগ্য হওয়া থেকে এক কি-স্ট্রোক দূরে
+
+ইনপুটের দুই দিকেই ডেটা দরকার, আর সেই কাজটাই করে \`next\` প্যারামিটার:
+
+\`\`\`typescript
+			obj.value = ( next?: string ) => this.name( next )
+\`\`\`
+
+এবার \`next\` বাদ দিন:
+
+\`\`\`typescript
+			obj.value = () => this.name()
+\`\`\`
+
+TypeScript এটি মেনে নেয়। যেখানে একটি ঐচ্ছিক আর্গুমেন্ট প্রত্যাশিত সেখানে আর্গুমেন্টহীন ফাংশন বসানো যায়, তাই টাইপ মিলে যায় আর অডিটও সবুজ থাকে। ইনপুট আঁকা হয়, সঠিক মান দেখায়, আর আপনি যা টাইপ করেন তার সবটা নিঃশব্দে উপেক্ষা করে।
+
+ট্রি-তে এমন আধখানা জোড়া লেখাই যায় না:
+
+\`\`\`tree
+		<= Name $mol_string
+			value? <=> name? \\
+\`\`\`
+
+\`<=>\` দুই দিকেই বাঁধে। খালি \`?\` এমন প্রপার্টি চিহ্নিত করে যা আর্গুমেন্ট নেয়, অর্থাৎ যেটিতে লেখা যায়। এখানে দুই প্রান্তেই সেটি আছে, তাই মান ইনপুটে নামে আর ফিরেও আসে।
+
+## স্থানীয়করণযোগ্য একটি স্ট্রিং কি না বানানো পর্যন্ত স্রেফ স্ট্রিং
+
+\`\`\`typescript
+		title() {
+			return 'Greeting'
+		}
+\`\`\`
+
+এটি অনুবাদ করতে হলে আপনি একটি কি বানান, লিটারেলটি \`$mol_locale.text\` কলে বদলান, json লেখেন, আর প্রকল্পের বাকি জীবনভর দুটিকে হাতে হাতে মিলিয়ে রাখেন।
+
+\`\`\`tree
+	title @ \\Greeting
+\`\`\`
+
+\`@\` স্ট্রিংটিকে স্থানীয়করণযোগ্য বলে চিহ্নিত করে, বাকিটা বিল্ড করে দেয়। বিল্ডের পরে \`my/hello/-/web.locale=en.json\`-এ থাকে:
+
+\`\`\`json
+{
+	"$my_hello_Name_hint": "Enter your name",
+	"$my_hello_title": "Greeting"
+}
+\`\`\`
+
+অনুবাদকরা অ্যাপের সব স্ট্রিংসহ একটি json ফাইল পান। আপনি একটি কি-ও লেখেন না।
+
+## পুরো কম্পোনেন্ট
+
+\`\`\`tree-no-run
+$my_hello $mol_page
+	title @ \\Greeting
+	body /
+		<= Name $mol_string
+			hint @ \\Enter your name
+			value? <=> name? \\
+		<= Message $mol_view
+			sub / <= greeting \\
+\`\`\`
+
+এটাই \`hello.view.tree\`। \`hello.view.ts\`-এ যা থাকে তা কখনো কাঠামো ছিলই না:
+
+\`\`\`typescript
+namespace $.$$ {
+
+	export class $my_hello extends $.$my_hello {
+
+		greeting() {
+			const name = this.name()
+			return name ? \`Hello, \${ name }!\` : 'Please enter your name'
+		}
+
+	}
+
+}
+\`\`\`
+
+ক্লাসটি এখন \`$.$my_hello\` প্রসারিত করে, অর্থাৎ ট্রি যে বেসটি তৈরি করেছে, আর একটি প্রপার্টি ওভাররাইড করে। \`$.$$\` হলো এসব ওভাররাইডের নেমস্পেস।
+
+## কম্পাইলার কী বের করে
+
+\`view.tree\` নিজস্ব রানটাইমহীন একটি কোড জেনারেটর। মডিউলটি বিল্ড করে \`my/hello/-view.tree/hello.view.tree.js\` পড়ুন:
+
+\`\`\`javascript
+	($.$my_hello) = class $my_hello extends ($.$mol_page) {
+		name(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		Name(){
+			const obj = new this.$.$mol_string();
+			(obj.hint) = () => ((this.$.$mol_locale.text("$my_hello_Name_hint")));
+			(obj.value) = (next) => ((this.name(next)));
+			return obj;
+		}
+		greeting(){
+			return "";
+		}
+		Message(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.greeting())]);
+			return obj;
+		}
+		title(){
+			return (this.$.$mol_locale.text("$my_hello_title"));
+		}
+		body(){
+			return [(this.Name()), (this.Message())];
+		}
+	};
+	($mol_mem(($.$my_hello.prototype), "name"));
+	($mol_mem(($.$my_hello.prototype), "Name"));
+	($mol_mem(($.$my_hello.prototype), "Message"));
+\`\`\`
+
+একই ফ্যাক্টরি, একই অ্যারো, \`$mol_mem\`-এর একই তিনটি কল, সঙ্গে দুটি লোকেল কি যেগুলির নাম আপনাকে দিতে হয়নি। বান্ডল ব্রাউজারে পৌঁছানোর আগেই ট্রি আর নেই।
+
+এ কারণেই দুই ফরম্যাট নির্দ্বিধায় পাশাপাশি চলে। ট্রি দিয়ে লেখা কম্পোনেন্ট আর ক্লাস দিয়ে লেখা কম্পোনেন্ট একই ধরনের বস্তু বানায়, তাই একটি অ্যাপ দুটোই রাখতে পারে আর কেউ পার্থক্য টের পায় না।
+
+## হাতে লেখা ক্লাস কোনো টুলকে যা দিতে পারে না
+
+তৈরি হওয়া JS-এর পাশে কম্পাইলার \`hello.view.tree.d.ts\`-ও লেখে:
+
+\`\`\`typescript
+declare namespace $ {
+
+	type $mol_string__hint_my_hello_1 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_string['hint'] >
+	>
+	type $mol_string__value_my_hello_2 = $mol_type_enforce<
+		ReturnType< $my_hello['name'] >
+		,
+		ReturnType< $mol_string['value'] >
+	>
+	type $mol_view__sub_my_hello_3 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	export class $my_hello extends $mol_page {
+		name( next?: string ): string
+		Name( ): $mol_string
+		greeting( ): string
+		Message( ): $mol_view
+		title( ): string
+		body( ): readonly(any)[]
+	}
+
+}
+\`\`\`
+
+\`$mol_type_enforce\` জোড়াগুলি প্রতিটি বাঁধাইকে সেই প্রপার্টির সঙ্গে মিলিয়ে দেখে যেটিকে সেটি খাওয়াচ্ছে, ফলে টাইপের অমিল সন্তানের ভেতরে কোথাও নয়, বাঁধাইয়ের জায়গাতেই ধরা পড়ে। নিচের ক্লাস বডিটি কম্পোনেন্টের বাইরের পৃষ্ঠের যন্ত্রপাঠ্য বর্ণনা, আর সত্যিই সেটি পড়া হয়: উপরের লোকেল ফাইলটি একই পার্স থেকে বেরোয়, আর এই সাইটের [API পৃষ্ঠাগুলি](#!section=docs/page=api-mol-string) প্রতিটি মৌলিক কম্পোনেন্টের \`.view.tree.d.ts\` থেকে তৈরি হয়।
+
+হাতে লেখা ক্লাস এর কিছুই দেয় না। সেটি কোড, আর পড়তে পারে কেবল TypeScript।
+
+## আকারের হিসাব
+
+উপরের Hello World: ৩১ লাইন TypeScript হয়ে যায় ৮ লাইন ট্রি আর ৮ লাইন TypeScript।
+
+কম্পোনেন্ট যত বড়, ফারাক তত বড়। \`$mol_app_users\` — একটি সার্চ ফিল্ড, একটি তালিকা, চারটি বোতাম আর একটি স্ট্যাটাস লাইন — ট্রি হিসেবে ৩০ লাইন ও ৮৪০ অক্ষর, আর ক্লাস হিসেবে ১২৫ লাইন ও ৩০৪৬ অক্ষর। দুটি সংস্করণই উইকির [ফরম্যাট তুলনা](https://github.com/hyoo-ru/mam_mol/wiki/View-Formats) পৃষ্ঠায় পুরোটা ছাপা আছে, তাই বিনিময়টা আপনি নিজেই ওজন করতে পারেন।
+
+## কোনটি লিখবেন
+
+দুটোই, কম্পোনেন্ট ধরে ধরে বেছে।
+
+\`view.ts\` একটি সমর্থিত ফরম্যাট। ট্রি এটিতেই কম্পাইল হয়, আর এভাবে লেখা কম্পোনেন্ট অন্য যেকোনোটির মতোই আচরণ করে। কোনো কম্পোনেন্ট যখন মূলত যুক্তি আর সঙ্গে এক-দুটি সন্তান, তখন ক্লাসই সৎ পছন্দ আর ট্রি বিশেষ কিছু দেয় না।
+
+ট্রি পোষায় সেখানে যেখানে আনুষ্ঠানিকতা বারবার ফিরে আসে: যেসব পর্দা মূলত কাঠামো, লম্বা সারি সারি বাঁধাই, আর যেকোনো কিছু যাতে অনুবাদকের দেখার মতো লেখা আছে। একটি ইউজার ইন্টারফেসের বেশির ভাগটাই তা-ই, আর সে কারণেই $mol-এর নিজের কম্পোনেন্টগুলি এভাবেই লেখা।
+
+এরপর ট্রি ভাষাটাই — তালিকা, অভিধান, কি-যুক্ত সন্তান, আর উত্তরাধিকারে কম্পোনেন্ট বিশেষায়িত করা: **[ভিউ](#!section=docs/page=views)**।
 `}}},tooling:{slug:"tooling",title:"Tooling",summary:"Project scaffolder, view.tree language server, and editor support for Zed and VS Code.",file:"content/en/docs/tooling.md",md:'# Tooling\n\n$mol works in any editor, but a small set of tools makes `.view.tree` and typed styles far more comfortable: a project scaffolder, a language server, editor integrations for Zed and VS Code, and a skill that teaches LLM assistants the framework.\n\n## Scaffold a project\n\n`create-view-tree-lsp` generates a ready-to-run $mol module so you do not assemble the boilerplate by hand:\n\n```bash\nnpx create-view-tree-lsp bog/myapp\n```\n\nThe argument is the module path (`namespace/name`, or the equivalent `bog_myapp`). It writes the `view.tree`, `view.ts`, `view.css.ts`, and `index.html` for a working app, plus the GitHub Actions to deploy it. By default it also includes a **Giper Baza** local-first store, a **Docker** setup, and a **Tauri** desktop shell. Turn any of them off with a flag:\n\n```bash\nnpx create-view-tree-lsp bog/myapp --no-baza --no-docker --no-tauri\n```\n\nA few pieces are opt-in instead:\n\n- `--backend` adds a `$mol_server` REST backend with `node:sqlite` storage and a shared TypeScript item type\n- `--prerender` and `--seo` add search-engine visibility, described under [Continuous integration](#!section=docs/page=tooling/Docs.Body=Continuous%20integration) below\n\nThe scaffolder is a thin wrapper over the CLI in the language server, so `npx view-tree-lsp create bog/myapp` does the same thing directly.\n\n## Continuous integration\n\nThe scaffolder writes GitHub Actions to `.github/workflows/`, so a new project deploys and releases without extra setup.\n\n`deploy.yml` runs on every push. It builds the app with `hyoo-ru/mam_build`, publishes `app/-` to **GitHub Pages** from `main`, and gives each `feature/*` branch its own preview folder — removed automatically when the branch is deleted.\n\n### SEO\n\nTwo independent options, both triggered on `v*` tags:\n\n- **`--prerender`** renders the screens you list (such as `home`) to static HTML with `b-on-g/mol-prerender-action`, so crawlers and link previews see real content.\n- **`--seo`** adds the `$bog_seo` runtime: a pathname router with a sitemap, `robots.txt`, `llms.txt`, and per-page meta injection. The job serves the build, dumps canonical prerendered HTML, and folds it back into the deploy.\n\nReach for the prerender action when a handful of public screens need to be crawlable, and for `$bog_seo` when you need sitemaps and per-page metadata.\n\n### Tauri desktop\n\nWith the Tauri option, `tauri.yml` builds desktop binaries on `v*` tags (or on demand) through the reusable `b-on-g/tauri-mol-workflow-template` workflow, from the same module you deploy to the web.\n\n## Language server\n\n`view-tree-lsp` is a Language Server Protocol implementation for the `view.tree` format. Run it on demand with npx, no global install required:\n\n```bash\nnpx view-tree-lsp@latest\n```\n\nIt scans your workspace and gives any LSP-capable editor:\n\n- completion for `$mol_*` components and the components and properties defined in your own project\n- property suggestions scoped to the component under the cursor\n- an outline of component declarations for navigation\n- live updates as files change\n\nBecause it speaks LSP, you can point any editor\'s language-client at `npx view-tree-lsp`. The two integrations below wire it up for you.\n\n## Zed\n\nThe **View Tree Syntax Highlighting for $mol** extension bundles the tree-sitter grammar, the language server, and an optional icon theme. Install it from Zed\'s extension manager:\n\n1. Open the command palette (`Cmd+Shift+P` / `Ctrl+Shift+P`)\n2. Run **zed: extensions**\n3. Search for `view.tree` or `mol` and install the extension\n\nYou get syntax highlighting, completion, and outline for `.view.tree` files. The [source](https://github.com/Dev-cmyser/zed-view.tree-mol-support) and a matching [icon theme](https://github.com/Dev-cmyser/zed-viewtree-icon-theme) are on GitHub.\n\n## VS Code\n\nThe MAM workspace already carries its VS Code setup. When you open the cloned `mam` folder, VS Code offers to install the recommended extensions from `.vscode/extensions.json`:\n\n- `nin-jin.vscode-language-tree` — `view.tree` language support\n- `stan-donarise.view-tree-language` — syntax and grammar\n- `editorconfig.editorconfig` — consistent formatting\n\nThe same folder ships `mol.code-snippets`, so component and binding snippets are available without any extra setup. Accept the prompt and `.view.tree` and TypeScript files are highlighted out of the box.\n\n## LLM skill\n\n`mol_skill` gives an AI assistant the context it needs to write $mol: `view.tree` syntax, MAM module layout, the split between `view.ts` and `view.css.ts`, Giper Baza data modelling, and Tauri packaging. It ships as a plain skill folder, a `SKILL.md` workflow plus reference guides, so any LLM tool that reads the skills format can load it — Claude Code and Cursor among them. Install it with the skills CLI:\n\n```bash\nnpx skills add b-on-g/mol_skill --all -g\n```\n\nThen ask in your own words ("MAM module structure", "Giper Baza CRUD and roles") and the assistant opens the matching reference before it answers, so the code it writes follows the conventions in these docs. The [source](https://github.com/b-on-g/mol_skill) is on GitHub, and the reference files read perfectly well on their own if you would rather go through them yourself.\n\n## Links\n\n- Scaffolder — [create-view-tree-lsp](https://github.com/Dev-cmyser/create-view-tree-lsp)\n- Language server — [view-tree-lsp](https://github.com/Dev-cmyser/view.tree)\n- Zed extension — [zed-view.tree-mol-support](https://github.com/Dev-cmyser/zed-view.tree-mol-support)\n- LLM skill — [mol_skill](https://github.com/b-on-g/mol_skill)\n',tr:{zh:{title:"工具链",summary:"$mol 在任何编辑器中都能工作，但一小套工具能让 .view.tree 和带类型的样式舒适得多：一个项目脚手架、一个语言服务器、面向 Zed 和 VS Code 的编辑器集成，以及一个把框架教给 LLM 助手的技能。",md:"# 工具链\n\n$mol 在任何编辑器中都能工作，但一小套工具能让 `.view.tree` 和带类型的样式舒适得多：一个项目脚手架、一个语言服务器、面向 Zed 和 VS Code 的编辑器集成，以及一个把框架教给 LLM 助手的技能。\n\n## 脚手架生成项目\n\n`create-view-tree-lsp` 生成一个开箱即用的 $mol 模块，这样你就不必手工拼装样板代码：\n\n```bash\nnpx create-view-tree-lsp bog/myapp\n```\n\n参数是模块路径（`namespace/name`，或等价的 `bog_myapp`）。它会为一个可运行的应用写出 `view.tree`、`view.ts`、`view.css.ts` 和 `index.html`，外加用于部署的 GitHub Actions。默认情况下，它还包含一个 local-first 存储 **Giper Baza**、一套 **Docker** 配置和一个 **Tauri** 桌面外壳。任意一项都可以用标志关闭：\n\n```bash\nnpx create-view-tree-lsp bog/myapp --no-baza --no-docker --no-tauri\n```\n\n相反，还有几项是按需启用的：\n\n- `--backend` 添加一个 `$mol_server` REST 后端，配有 `node:sqlite` 存储和共享的 TypeScript item 类型\n- `--prerender` 和 `--seo` 添加搜索引擎可见性，详见下文的 [持续集成](#!section=docs/page=tooling/Docs.Body=%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90)\n\n脚手架只是语言服务器中 CLI 的一层薄封装，所以 `npx view-tree-lsp create bog/myapp` 会直接做同样的事。\n\n## 持续集成\n\n脚手架会把 GitHub Actions 写入 `.github/workflows/`，于是新项目无需额外配置即可部署和发布。\n\n`deploy.yml` 在每次 push 时运行。它用 `hyoo-ru/mam_build` 构建应用，从 `main` 把 `app/-` 发布到 **GitHub Pages**，并给每个 `feature/*` 分支各自的预览文件夹——分支被删除时会自动移除。\n\n### SEO\n\n两个独立选项，都由 `v*` 标签触发：\n\n- **`--prerender`** 用 `b-on-g/mol-prerender-action` 把你列出的屏幕（例如 `home`）渲染成静态 HTML，这样爬虫和链接预览就能看到真实内容。\n- **`--seo`** 添加 `$bog_seo` 运行时：一个基于 pathname 的路由器，带有站点地图、`robots.txt`、`llms.txt` 以及每页的 meta 注入。该任务会服务构建产物，导出规范的预渲染 HTML，并将其折回部署中。\n\n当少数公开屏幕需要可爬取时，选用 prerender action；当你需要站点地图和每页元数据时，选用 `$bog_seo`。\n\n### Tauri 桌面\n\n启用 Tauri 选项后，`tauri.yml` 会通过可复用工作流 `b-on-g/tauri-mol-workflow-template`，在 `v*` 标签上（或按需）从你部署到 Web 的同一个模块构建桌面二进制文件。\n\n## 语言服务器\n\n`view-tree-lsp` 是针对 `view.tree` 格式的 Language Server Protocol 实现。用 npx 按需运行，无需全局安装：\n\n```bash\nnpx view-tree-lsp@latest\n```\n\n它扫描你的工作区，为任何支持 LSP 的编辑器提供：\n\n- 对 `$mol_*` 组件，以及你自己项目中定义的组件和属性的补全\n- 限定在光标所在组件范围内的属性建议\n- 用于导航的组件声明大纲\n- 随文件变化的实时更新\n\n因为它讲 LSP，你可以把任何编辑器的语言客户端指向 `npx view-tree-lsp`。下面两个集成会替你接好。\n\n## Zed\n\n**View Tree Syntax Highlighting for $mol** 扩展打包了 tree-sitter 语法、语言服务器和一个可选的图标主题。从 Zed 的扩展管理器安装：\n\n1. 打开命令面板（`Cmd+Shift+P` / `Ctrl+Shift+P`）\n2. 运行 **zed: extensions**\n3. 搜索 `view.tree` 或 `mol` 并安装该扩展\n\n你会获得 `.view.tree` 文件的语法高亮、补全和大纲。[源码](https://github.com/Dev-cmyser/zed-view.tree-mol-support) 和配套的 [图标主题](https://github.com/Dev-cmyser/zed-viewtree-icon-theme) 都在 GitHub 上。\n\n## VS Code\n\nMAM 工作区已经自带 VS Code 配置。当你打开克隆下来的 `mam` 文件夹时，VS Code 会提示从 `.vscode/extensions.json` 安装推荐扩展：\n\n- `nin-jin.vscode-language-tree` — `view.tree` 语言支持\n- `stan-donarise.view-tree-language` — 语法和文法\n- `editorconfig.editorconfig` — 一致的格式化\n\n同一个文件夹还附带 `mol.code-snippets`，因此组件和绑定的代码片段无需任何额外配置即可使用。接受提示后，`.view.tree` 和 TypeScript 文件便开箱即用地高亮显示。\n\n## LLM 技能\n\n`mol_skill` 为 AI 助手补上写 $mol 所需的上下文：`view.tree` 语法、MAM 模块结构、`view.ts` 与 `view.css.ts` 的分工、Giper Baza 的数据建模，以及 Tauri 打包。它就是一个普通的技能目录，一份 `SKILL.md` 工作流加上若干参考文档，因此任何能读 skills 格式的 LLM 工具都可以加载它，包括 Claude Code 和 Cursor。用 skills CLI 安装：\n\n```bash\nnpx skills add b-on-g/mol_skill --all -g\n```\n\n之后用自己的话提问（“MAM 模块结构”“Giper Baza 的 CRUD 和角色”），助手会在回答前打开对应的参考文档，写出的代码也就遵循本文档中的约定。[源码](https://github.com/b-on-g/mol_skill)在 GitHub 上；如果你更想自己读，这些参考文档单独看也很完整。\n\n## 链接\n\n- 脚手架 — [create-view-tree-lsp](https://github.com/Dev-cmyser/create-view-tree-lsp)\n- 语言服务器 — [view-tree-lsp](https://github.com/Dev-cmyser/view.tree)\n- Zed 扩展 — [zed-view.tree-mol-support](https://github.com/Dev-cmyser/zed-view.tree-mol-support)\n- LLM 技能 — [mol_skill](https://github.com/b-on-g/mol_skill)\n"},zh_hk:{title:"工具鏈",summary:"$mol 在任何編輯器中都能運作，但一小套工具能讓 .view.tree 和帶型別的樣式舒適得多：一個專案腳手架、一個語言伺服器、面向 Zed 和 VS Code 的編輯器整合，以及一個把框架教給 LLM 助手的技能。",md:"# 工具鏈\n\n$mol 在任何編輯器中都能運作，但一小套工具能讓 `.view.tree` 和帶型別的樣式舒適得多：一個專案腳手架、一個語言伺服器、面向 Zed 和 VS Code 的編輯器整合，以及一個把框架教給 LLM 助手的技能。\n\n## 用腳手架產生專案\n\n`create-view-tree-lsp` 會產生一個開箱即用的 $mol 模組，這樣你就不必手工拼湊樣板程式碼：\n\n```bash\nnpx create-view-tree-lsp bog/myapp\n```\n\n參數是模組路徑（`namespace/name`，或等價的 `bog_myapp`）。它會為一個可運行的應用寫出 `view.tree`、`view.ts`、`view.css.ts` 和 `index.html`，外加用於部署的 GitHub Actions。預設情況下，它還包含一個 local-first 儲存 **Giper Baza**、一套 **Docker** 設定和一個 **Tauri** 桌面外殼。任何一項都可以用旗標關閉：\n\n```bash\nnpx create-view-tree-lsp bog/myapp --no-baza --no-docker --no-tauri\n```\n\n相反，還有幾項是按需啟用的：\n\n- `--backend` 加入一個 `$mol_server` REST 後端，配有 `node:sqlite` 儲存和共用的 TypeScript item 型別\n- `--prerender` 和 `--seo` 加入搜尋引擎可見性，詳見下文的 [持續整合](#!section=docs/page=tooling/Docs.Body=%E6%8C%81%E7%BA%8C%E6%95%B4%E5%90%88)\n\n腳手架只是語言伺服器中 CLI 的一層薄封裝，所以 `npx view-tree-lsp create bog/myapp` 會直接做同樣的事。\n\n## 持續整合\n\n腳手架會把 GitHub Actions 寫入 `.github/workflows/`，於是新專案無需額外設定即可部署和發布。\n\n`deploy.yml` 在每次 push 時運行。它用 `hyoo-ru/mam_build` 建置應用，從 `main` 把 `app/-` 發布到 **GitHub Pages**，並給每個 `feature/*` 分支各自的預覽資料夾——分支被刪除時會自動移除。\n\n### SEO\n\n兩個獨立選項，都由 `v*` 標籤觸發：\n\n- **`--prerender`** 用 `b-on-g/mol-prerender-action` 把你列出的畫面（例如 `home`）算繪成靜態 HTML，這樣爬蟲和連結預覽就能看到真實內容。\n- **`--seo`** 加入 `$bog_seo` 執行期：一個基於 pathname 的路由器，帶有網站地圖、`robots.txt`、`llms.txt` 以及每頁的 meta 注入。該工作會服務建置產物，匯出正規的預算繪 HTML，並將其折回部署中。\n\n當少數公開畫面需要可被爬取時，選用 prerender action；當你需要網站地圖和每頁中繼資料時，選用 `$bog_seo`。\n\n### Tauri 桌面\n\n啟用 Tauri 選項後，`tauri.yml` 會透過可重用工作流程 `b-on-g/tauri-mol-workflow-template`，在 `v*` 標籤上（或按需）從你部署到 Web 的同一個模組建置桌面二進位檔。\n\n## 語言伺服器\n\n`view-tree-lsp` 是針對 `view.tree` 格式的 Language Server Protocol 實作。用 npx 按需運行，無需全域安裝：\n\n```bash\nnpx view-tree-lsp@latest\n```\n\n它會掃描你的工作區，為任何支援 LSP 的編輯器提供：\n\n- 對 `$mol_*` 元件，以及你自己專案中定義的元件和屬性的補全\n- 限定在游標所在元件範圍內的屬性建議\n- 用於導覽的元件宣告大綱\n- 隨檔案變動的即時更新\n\n因為它講 LSP，你可以把任何編輯器的語言用戶端指向 `npx view-tree-lsp`。下面兩個整合會替你接好。\n\n## Zed\n\n**View Tree Syntax Highlighting for $mol** 擴充功能打包了 tree-sitter 文法、語言伺服器和一個可選的圖示主題。從 Zed 的擴充功能管理員安裝：\n\n1. 開啟命令面板（`Cmd+Shift+P` / `Ctrl+Shift+P`）\n2. 執行 **zed: extensions**\n3. 搜尋 `view.tree` 或 `mol` 並安裝該擴充功能\n\n你會獲得 `.view.tree` 檔案的語法高亮、補全和大綱。[原始碼](https://github.com/Dev-cmyser/zed-view.tree-mol-support) 和搭配的 [圖示主題](https://github.com/Dev-cmyser/zed-viewtree-icon-theme) 都在 GitHub 上。\n\n## VS Code\n\nMAM 工作區已經自帶 VS Code 設定。當你開啟複製下來的 `mam` 資料夾時，VS Code 會提示從 `.vscode/extensions.json` 安裝推薦擴充功能：\n\n- `nin-jin.vscode-language-tree` — `view.tree` 語言支援\n- `stan-donarise.view-tree-language` — 語法和文法\n- `editorconfig.editorconfig` — 一致的格式化\n\n同一個資料夾還附帶 `mol.code-snippets`，因此元件和繫結的程式碼片段無需任何額外設定即可使用。接受提示後，`.view.tree` 和 TypeScript 檔案便開箱即用地高亮顯示。\n\n## LLM 技能\n\n`mol_skill` 為 AI 助手補上寫 $mol 所需的脈絡：`view.tree` 語法、MAM 模組結構、`view.ts` 與 `view.css.ts` 的分工、Giper Baza 的資料建模，以及 Tauri 打包。它就是一個普通的技能資料夾，一份 `SKILL.md` 工作流加上若干參考文件，因此任何能讀 skills 格式的 LLM 工具都可以載入它，包括 Claude Code 和 Cursor。用 skills CLI 安裝：\n\n```bash\nnpx skills add b-on-g/mol_skill --all -g\n```\n\n之後用自己的話提問（「MAM 模組結構」「Giper Baza 的 CRUD 和角色」），助手會在回答前打開對應的參考文件，寫出的程式碼也就遵循本文件中的慣例。[原始碼](https://github.com/b-on-g/mol_skill)在 GitHub 上；如果你更想自己讀，這些參考文件單獨看也很完整。\n\n## 連結\n\n- 腳手架 — [create-view-tree-lsp](https://github.com/Dev-cmyser/create-view-tree-lsp)\n- 語言伺服器 — [view-tree-lsp](https://github.com/Dev-cmyser/view.tree)\n- Zed 擴充功能 — [zed-view.tree-mol-support](https://github.com/Dev-cmyser/zed-view.tree-mol-support)\n- LLM 技能 — [mol_skill](https://github.com/b-on-g/mol_skill)\n"},ja:{title:"ツール",summary:"$mol はどのエディタでも動きますが、少数のツールを使うと .view.tree と型付きスタイルが格段に快適になります。プロジェクトのスキャフォルダ、言語サーバー、Zed と VS Code のエディタ統合、そして LLM アシスタントにフレームワークを教えるスキルです。",md:"# ツール\n\n$mol はどのエディタでも動きますが、少数のツールを使うと `.view.tree` と型付きスタイルが格段に快適になります。プロジェクトのスキャフォルダ、言語サーバー、Zed と VS Code のエディタ統合、そして LLM アシスタントにフレームワークを教えるスキルです。\n\n## プロジェクトをスキャフォールドする\n\n`create-view-tree-lsp` は、すぐに動く $mol モジュールを生成するので、ボイラープレートを手で組み立てる必要がありません。\n\n```bash\nnpx create-view-tree-lsp bog/myapp\n```\n\n引数はモジュールパス（`namespace/name`、または同等の `bog_myapp`）です。動作するアプリの `view.tree`、`view.ts`、`view.css.ts`、`index.html` に加え、それをデプロイする GitHub Actions を書き出します。デフォルトでは、local-first ストアの **Giper Baza**、**Docker** のセットアップ、**Tauri** のデスクトップシェルも含まれます。いずれもフラグでオフにできます。\n\n```bash\nnpx create-view-tree-lsp bog/myapp --no-baza --no-docker --no-tauri\n```\n\n一方、いくつかの要素はオプトインです。\n\n- `--backend` は、`node:sqlite` ストレージと共有 TypeScript アイテム型を備えた `$mol_server` の REST バックエンドを追加します\n- `--prerender` と `--seo` は検索エンジンでの可視性を追加します。詳細は下の [継続的インテグレーション](#!section=docs/page=tooling/Docs.Body=%E7%B6%99%E7%B6%9A%E7%9A%84%E3%82%A4%E3%83%B3%E3%83%86%E3%82%B0%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3) を参照してください\n\nスキャフォルダは言語サーバー内の CLI の薄いラッパーなので、`npx view-tree-lsp create bog/myapp` でも同じことを直接行えます。\n\n## 継続的インテグレーション\n\nスキャフォルダは GitHub Actions を `.github/workflows/` に書き出すので、新しいプロジェクトは追加のセットアップなしにデプロイとリリースが行われます。\n\n`deploy.yml` はプッシュのたびに実行されます。`hyoo-ru/mam_build` でアプリをビルドし、`main` から `app/-` を **GitHub Pages** に公開し、各 `feature/*` ブランチに専用のプレビューフォルダを与えます。ブランチが削除されると自動的に取り除かれます。\n\n### SEO\n\n独立した 2 つのオプションで、どちらも `v*` タグで発火します。\n\n- **`--prerender`** は、`b-on-g/mol-prerender-action` を使って、あなたが列挙した画面（`home` など）を静的 HTML にレンダリングするので、クローラーやリンクプレビューが本物のコンテンツを見られます。\n- **`--seo`** は `$bog_seo` ランタイムを追加します。サイトマップ、`robots.txt`、`llms.txt`、ページごとのメタ注入を備えた pathname ルーターです。ジョブはビルドを配信し、正規のプリレンダー済み HTML をダンプして、それをデプロイに折り込みます。\n\n少数の公開画面をクロール可能にしたいときは prerender アクションを、サイトマップとページごとのメタデータが必要なときは `$bog_seo` を選んでください。\n\n### Tauri デスクトップ\n\nTauri オプションを使うと、`tauri.yml` が再利用可能なワークフロー `b-on-g/tauri-mol-workflow-template` を通じて、`v*` タグで（またはオンデマンドで）デスクトップバイナリをビルドします。ウェブにデプロイするのと同じモジュールからです。\n\n## 言語サーバー\n\n`view-tree-lsp` は `view.tree` 形式のための Language Server Protocol 実装です。グローバルインストールは不要で、npx でオンデマンドに実行できます。\n\n```bash\nnpx view-tree-lsp@latest\n```\n\nワークスペースをスキャンし、LSP に対応したあらゆるエディタに次を提供します。\n\n- `$mol_*` コンポーネント、および自分のプロジェクトで定義したコンポーネントとプロパティの補完\n- カーソル下のコンポーネントに限定したプロパティ候補\n- ナビゲーション用のコンポーネント宣言のアウトライン\n- ファイルの変更に応じたライブ更新\n\nLSP を話すので、どのエディタの言語クライアントも `npx view-tree-lsp` に向けられます。下の 2 つの統合が代わりに配線してくれます。\n\n## Zed\n\n**View Tree Syntax Highlighting for $mol** 拡張は、tree-sitter 文法、言語サーバー、任意のアイコンテーマをまとめています。Zed の拡張マネージャーからインストールしてください。\n\n1. コマンドパレットを開く（`Cmd+Shift+P` / `Ctrl+Shift+P`）\n2. **zed: extensions** を実行する\n3. `view.tree` または `mol` を検索して拡張をインストールする\n\n`.view.tree` ファイルのシンタックスハイライト、補完、アウトラインが得られます。[ソース](https://github.com/Dev-cmyser/zed-view.tree-mol-support) と対応する [アイコンテーマ](https://github.com/Dev-cmyser/zed-viewtree-icon-theme) は GitHub にあります。\n\n## VS Code\n\nMAM ワークスペースはすでに VS Code のセットアップを備えています。クローンした `mam` フォルダを開くと、VS Code は `.vscode/extensions.json` の推奨拡張のインストールを提案します。\n\n- `nin-jin.vscode-language-tree` — `view.tree` の言語サポート\n- `stan-donarise.view-tree-language` — シンタックスと文法\n- `editorconfig.editorconfig` — 一貫したフォーマット\n\n同じフォルダは `mol.code-snippets` も同梱しており、コンポーネントとバインディングのスニペットが追加設定なしで使えます。プロンプトを承認すれば、`.view.tree` と TypeScript のファイルが最初からハイライトされます。\n\n## LLM スキル\n\n`mol_skill` は、$mol を書くために AI アシスタントが必要とする文脈を与えます。`view.tree` の構文、MAM モジュールの構成、`view.ts` と `view.css.ts` の分担、Giper Baza でのデータモデリング、Tauri でのパッケージングです。中身は素朴なスキルフォルダで、`SKILL.md` のワークフローとリファレンス集だけなので、skills 形式を読める LLM ツールなら Claude Code でも Cursor でも読み込めます。skills CLI でインストールします:\n\n```bash\nnpx skills add b-on-g/mol_skill --all -g\n```\n\nあとは自分の言葉で「MAM モジュールの構成」「Giper Baza の CRUD とロール」などと尋ねれば、アシスタントは答える前に該当するリファレンスを開くので、書かれるコードはこのドキュメントの流儀に沿います。[ソース](https://github.com/b-on-g/mol_skill)は GitHub にあり、リファレンス自体を自分で読み通してもかまいません。\n\n## リンク\n\n- スキャフォルダ — [create-view-tree-lsp](https://github.com/Dev-cmyser/create-view-tree-lsp)\n- 言語サーバー — [view-tree-lsp](https://github.com/Dev-cmyser/view.tree)\n- Zed 拡張 — [zed-view.tree-mol-support](https://github.com/Dev-cmyser/zed-view.tree-mol-support)\n- LLM スキル — [mol_skill](https://github.com/b-on-g/mol_skill)\n"},ko:{title:"도구",summary:"$mol은 어떤 에디터에서도 동작하지만, 소수의 도구를 쓰면 .view.tree와 타입이 지정된 스타일이 훨씬 편해집니다. 프로젝트 스캐폴더, 언어 서버, Zed와 VS Code용 에디터 통합, 그리고 LLM 어시스턴트에게 프레임워크를 가르치는 스킬입니다.",md:'# 도구\n\n$mol은 어떤 에디터에서도 동작하지만, 소수의 도구를 쓰면 `.view.tree`와 타입이 지정된 스타일이 훨씬 편해집니다. 프로젝트 스캐폴더, 언어 서버, Zed와 VS Code용 에디터 통합, 그리고 LLM 어시스턴트에게 프레임워크를 가르치는 스킬입니다.\n\n## 프로젝트 스캐폴딩\n\n`create-view-tree-lsp`는 바로 실행 가능한 $mol 모듈을 생성하므로 보일러플레이트를 손으로 조립할 필요가 없습니다.\n\n```bash\nnpx create-view-tree-lsp bog/myapp\n```\n\n인자는 모듈 경로(`namespace/name` 또는 동등한 `bog_myapp`)입니다. 동작하는 앱의 `view.tree`, `view.ts`, `view.css.ts`, `index.html`과 함께, 이를 배포하는 GitHub Actions를 작성합니다. 기본적으로 local-first 저장소 **Giper Baza**, **Docker** 설정, **Tauri** 데스크톱 셸도 포함합니다. 어느 것이든 플래그로 끌 수 있습니다.\n\n```bash\nnpx create-view-tree-lsp bog/myapp --no-baza --no-docker --no-tauri\n```\n\n반대로, 몇 가지 요소는 선택적으로 켭니다.\n\n- `--backend`는 `node:sqlite` 저장소와 공유 TypeScript 아이템 타입을 갖춘 `$mol_server` REST 백엔드를 추가합니다\n- `--prerender`와 `--seo`는 검색 엔진 가시성을 추가하며, 아래 [지속적 통합](#!section=docs/page=tooling/Docs.Body=%EC%A7%80%EC%86%8D%EC%A0%81%20%ED%86%B5%ED%95%A9)에서 설명합니다\n\n스캐폴더는 언어 서버의 CLI를 감싼 얇은 래퍼이므로, `npx view-tree-lsp create bog/myapp`도 같은 일을 직접 수행합니다.\n\n## 지속적 통합\n\n스캐폴더는 GitHub Actions를 `.github/workflows/`에 작성하므로, 새 프로젝트는 별도 설정 없이 배포되고 릴리스됩니다.\n\n`deploy.yml`은 모든 푸시에서 실행됩니다. `hyoo-ru/mam_build`로 앱을 빌드하고, `main`에서 `app/-`을 **GitHub Pages**에 게시하며, 각 `feature/*` 브랜치에 자체 미리보기 폴더를 부여합니다. 브랜치가 삭제되면 자동으로 제거됩니다.\n\n### SEO\n\n두 가지 독립적인 옵션이며, 둘 다 `v*` 태그에서 트리거됩니다.\n\n- **`--prerender`**는 `b-on-g/mol-prerender-action`으로 나열한 화면(예: `home`)을 정적 HTML로 렌더링하므로, 크롤러와 링크 미리보기가 실제 콘텐츠를 봅니다.\n- **`--seo`**는 `$bog_seo` 런타임을 추가합니다. 사이트맵, `robots.txt`, `llms.txt`, 페이지별 메타 주입을 갖춘 pathname 라우터입니다. 이 잡은 빌드를 서빙하고, 정규 프리렌더 HTML을 덤프하여 배포에 다시 접어 넣습니다.\n\n소수의 공개 화면이 크롤 가능해야 할 때는 prerender 액션을, 사이트맵과 페이지별 메타데이터가 필요할 때는 `$bog_seo`를 선택하세요.\n\n### Tauri 데스크톱\n\nTauri 옵션을 쓰면, `tauri.yml`이 재사용 가능한 워크플로 `b-on-g/tauri-mol-workflow-template`을 통해 `v*` 태그에서(또는 필요 시) 데스크톱 바이너리를 빌드합니다. 웹에 배포하는 것과 같은 모듈에서요.\n\n## 언어 서버\n\n`view-tree-lsp`는 `view.tree` 형식을 위한 Language Server Protocol 구현입니다. 전역 설치 없이 npx로 필요할 때 실행하세요.\n\n```bash\nnpx view-tree-lsp@latest\n```\n\n워크스페이스를 스캔하여 LSP를 지원하는 모든 에디터에 다음을 제공합니다.\n\n- `$mol_*` 컴포넌트와 자신의 프로젝트에 정의된 컴포넌트 및 프로퍼티에 대한 자동 완성\n- 커서 아래 컴포넌트로 한정된 프로퍼티 제안\n- 탐색용 컴포넌트 선언 개요\n- 파일이 바뀌는 대로 반영되는 실시간 업데이트\n\nLSP를 말하므로, 어떤 에디터의 언어 클라이언트든 `npx view-tree-lsp`로 향하게 할 수 있습니다. 아래 두 통합이 대신 연결해 줍니다.\n\n## Zed\n\n**View Tree Syntax Highlighting for $mol** 확장은 tree-sitter 문법, 언어 서버, 선택적 아이콘 테마를 묶습니다. Zed의 확장 관리자에서 설치하세요.\n\n1. 명령 팔레트를 엽니다(`Cmd+Shift+P` / `Ctrl+Shift+P`)\n2. **zed: extensions**를 실행합니다\n3. `view.tree` 또는 `mol`을 검색하여 확장을 설치합니다\n\n`.view.tree` 파일의 구문 강조, 자동 완성, 개요를 얻습니다. [소스](https://github.com/Dev-cmyser/zed-view.tree-mol-support)와 어울리는 [아이콘 테마](https://github.com/Dev-cmyser/zed-viewtree-icon-theme)는 GitHub에 있습니다.\n\n## VS Code\n\nMAM 워크스페이스는 이미 자체 VS Code 설정을 갖고 있습니다. 클론한 `mam` 폴더를 열면, VS Code는 `.vscode/extensions.json`의 권장 확장 설치를 제안합니다.\n\n- `nin-jin.vscode-language-tree` — `view.tree` 언어 지원\n- `stan-donarise.view-tree-language` — 구문과 문법\n- `editorconfig.editorconfig` — 일관된 포매팅\n\n같은 폴더는 `mol.code-snippets`도 제공하므로, 컴포넌트와 바인딩 스니펫을 별도 설정 없이 쓸 수 있습니다. 프롬프트를 수락하면 `.view.tree`와 TypeScript 파일이 기본으로 강조됩니다.\n\n## LLM 스킬\n\n`mol_skill`은 AI 어시스턴트가 $mol을 작성하는 데 필요한 맥락을 제공합니다. `view.tree` 문법, MAM 모듈 구조, `view.ts`와 `view.css.ts`의 역할 분담, Giper Baza 데이터 모델링, Tauri 패키징입니다. 형태는 평범한 스킬 폴더로, `SKILL.md` 워크플로와 레퍼런스 문서가 전부여서 skills 형식을 읽는 LLM 도구라면 Claude Code든 Cursor든 불러올 수 있습니다. skills CLI로 설치합니다:\n\n```bash\nnpx skills add b-on-g/mol_skill --all -g\n```\n\n그다음에는 자기 말로 물어보면 됩니다("MAM 모듈 구조", "Giper Baza의 CRUD와 역할"). 어시스턴트가 답하기 전에 해당 레퍼런스를 열기 때문에, 작성되는 코드가 이 문서의 관례를 따릅니다. [소스](https://github.com/b-on-g/mol_skill)는 GitHub에 있고, 직접 읽는 편이 좋다면 레퍼런스 파일만 따로 읽어도 충분합니다.\n\n## 링크\n\n- 스캐폴더 — [create-view-tree-lsp](https://github.com/Dev-cmyser/create-view-tree-lsp)\n- 언어 서버 — [view-tree-lsp](https://github.com/Dev-cmyser/view.tree)\n- Zed 확장 — [zed-view.tree-mol-support](https://github.com/Dev-cmyser/zed-view.tree-mol-support)\n- LLM 스킬 — [mol_skill](https://github.com/b-on-g/mol_skill)\n'},fr:{title:"Outillage",summary:"$mol fonctionne dans n'importe quel éditeur, mais un petit ensemble d'outils rend .view.tree et les styles typés bien plus confortables : un générateur de…",md:"# Outillage\n\n$mol fonctionne dans n'importe quel éditeur, mais un petit ensemble d'outils rend `.view.tree` et les styles typés bien plus confortables : un générateur de projet, un serveur de langage, des intégrations pour les éditeurs Zed et VS Code, et une compétence qui enseigne le framework aux assistants LLM.\n\n## Générer un projet\n\n`create-view-tree-lsp` génère un module $mol prêt à l'emploi pour que vous n'ayez pas à assembler le code standard à la main :\n\n```bash\nnpx create-view-tree-lsp bog/myapp\n```\n\nL'argument est le chemin du module (`namespace/name`, ou son équivalent `bog_myapp`). Il écrit les `view.tree`, `view.ts`, `view.css.ts` et `index.html` d'une application fonctionnelle, ainsi que les GitHub Actions pour la déployer. Par défaut, il inclut aussi un stockage local-first **Giper Baza**, une configuration **Docker** et une enveloppe de bureau **Tauri**. Désactivez l'un ou l'autre avec un drapeau :\n\n```bash\nnpx create-view-tree-lsp bog/myapp --no-baza --no-docker --no-tauri\n```\n\nQuelques éléments sont au contraire optionnels :\n\n- `--backend` ajoute un backend REST `$mol_server` avec un stockage `node:sqlite` et un type d'item TypeScript partagé\n- `--prerender` et `--seo` ajoutent la visibilité pour les moteurs de recherche, décrite plus bas sous [Intégration continue](#!section=docs/page=tooling/Docs.Body=Int%C3%A9gration%20continue)\n\nLe générateur est une fine surcouche de la CLI du serveur de langage, si bien que `npx view-tree-lsp create bog/myapp` fait la même chose directement.\n\n## Intégration continue\n\nLe générateur écrit les GitHub Actions dans `.github/workflows/`, de sorte qu'un nouveau projet se déploie et se publie sans configuration supplémentaire.\n\n`deploy.yml` s'exécute à chaque push. Il construit l'application avec `hyoo-ru/mam_build`, publie `app/-` sur **GitHub Pages** depuis `main` et donne à chaque branche `feature/*` son propre dossier de prévisualisation — supprimé automatiquement à la suppression de la branche.\n\n### SEO\n\nDeux options indépendantes, toutes deux déclenchées par les tags `v*` :\n\n- **`--prerender`** rend les écrans que vous listez (comme `home`) en HTML statique avec `b-on-g/mol-prerender-action`, afin que les robots et les aperçus de liens voient un vrai contenu.\n- **`--seo`** ajoute le runtime `$bog_seo` : un routeur par pathname avec un sitemap, `robots.txt`, `llms.txt` et l'injection de métadonnées par page. Le job sert le build, extrait le HTML pré-rendu canonique et le réintègre dans le déploiement.\n\nOptez pour l'action de prérendu quand une poignée d'écrans publics doivent être explorables, et pour `$bog_seo` quand vous avez besoin de sitemaps et de métadonnées par page.\n\n### Bureau Tauri\n\nAvec l'option Tauri, `tauri.yml` construit des binaires de bureau sur les tags `v*` (ou à la demande) via le workflow réutilisable `b-on-g/tauri-mol-workflow-template`, à partir du même module que celui que vous déployez sur le web.\n\n## Serveur de langage\n\n`view-tree-lsp` est une implémentation du Language Server Protocol pour le format `view.tree`. Lancez-le à la demande avec npx, sans installation globale :\n\n```bash\nnpx view-tree-lsp@latest\n```\n\nIl analyse votre espace de travail et offre à tout éditeur compatible LSP :\n\n- la complétion des composants `$mol_*` ainsi que des composants et propriétés définis dans votre propre projet\n- des suggestions de propriétés limitées au composant sous le curseur\n- un plan des déclarations de composants pour la navigation\n- des mises à jour en direct à mesure que les fichiers changent\n\nComme il parle LSP, vous pouvez pointer le client de langage de n'importe quel éditeur vers `npx view-tree-lsp`. Les deux intégrations ci-dessous le câblent pour vous.\n\n## Zed\n\nL'extension **View Tree Syntax Highlighting for $mol** regroupe la grammaire tree-sitter, le serveur de langage et un thème d'icônes optionnel. Installez-la depuis le gestionnaire d'extensions de Zed :\n\n1. Ouvrez la palette de commandes (`Cmd+Shift+P` / `Ctrl+Shift+P`)\n2. Exécutez **zed: extensions**\n3. Recherchez `view.tree` ou `mol` et installez l'extension\n\nVous obtenez la coloration syntaxique, la complétion et le plan pour les fichiers `.view.tree`. Les [sources](https://github.com/Dev-cmyser/zed-view.tree-mol-support) et un [thème d'icônes](https://github.com/Dev-cmyser/zed-viewtree-icon-theme) assorti sont sur GitHub.\n\n## VS Code\n\nL'espace de travail MAM embarque déjà sa configuration VS Code. Quand vous ouvrez le dossier `mam` cloné, VS Code propose d'installer les extensions recommandées depuis `.vscode/extensions.json` :\n\n- `nin-jin.vscode-language-tree` — prise en charge du langage `view.tree`\n- `stan-donarise.view-tree-language` — syntaxe et grammaire\n- `editorconfig.editorconfig` — formatage cohérent\n\nLe même dossier fournit `mol.code-snippets`, si bien que les snippets de composants et de bindings sont disponibles sans aucune configuration supplémentaire. Acceptez l'invite et les fichiers `.view.tree` et TypeScript sont mis en évidence d'emblée.\n\n## Compétence LLM\n\n`mol_skill` donne à un assistant IA le contexte nécessaire pour écrire du $mol : la syntaxe `view.tree`, la structure d'un module MAM, la répartition entre `view.ts` et `view.css.ts`, la modélisation des données avec Giper Baza et l'empaquetage Tauri. C'est un simple dossier de compétence, un flux `SKILL.md` accompagné de guides de référence, donc n'importe quel outil LLM qui lit le format skills peut le charger, Claude Code et Cursor compris. Installez-le avec la CLI skills :\n\n```bash\nnpx skills add b-on-g/mol_skill --all -g\n```\n\nPosez ensuite vos questions avec vos propres mots (« structure d'un module MAM », « CRUD et rôles avec Giper Baza ») : l'assistant ouvre la référence correspondante avant de répondre, et le code qu'il écrit suit les conventions de cette documentation. Le [code source](https://github.com/b-on-g/mol_skill) est sur GitHub, et les fichiers de référence se lisent très bien seuls si vous préférez les parcourir vous-même.\n\n## Liens\n\n- Générateur — [create-view-tree-lsp](https://github.com/Dev-cmyser/create-view-tree-lsp)\n- Serveur de langage — [view-tree-lsp](https://github.com/Dev-cmyser/view.tree)\n- Extension Zed — [zed-view.tree-mol-support](https://github.com/Dev-cmyser/zed-view.tree-mol-support)\n- Compétence LLM — [mol_skill](https://github.com/b-on-g/mol_skill)\n"},de:{title:"Werkzeuge",summary:"$mol funktioniert in jedem Editor, aber eine kleine Auswahl an Werkzeugen macht .view.tree und typisierte Styles deutlich komfortabler: ein Projekt-Scaffolder,…",md:"# Werkzeuge\n\n$mol funktioniert in jedem Editor, aber eine kleine Auswahl an Werkzeugen macht `.view.tree` und typisierte Styles deutlich komfortabler: ein Projekt-Scaffolder, ein Language Server, Editor-Integrationen für Zed und VS Code sowie ein Skill, der LLM-Assistenten das Framework beibringt.\n\n## Ein Projekt scaffolden\n\n`create-view-tree-lsp` erzeugt ein sofort lauffähiges $mol-Modul, sodass Sie den Boilerplate-Code nicht von Hand zusammenbauen müssen:\n\n```bash\nnpx create-view-tree-lsp bog/myapp\n```\n\nDas Argument ist der Modulpfad (`namespace/name` oder das gleichwertige `bog_myapp`). Es schreibt `view.tree`, `view.ts`, `view.css.ts` und `index.html` für eine funktionierende App sowie die GitHub Actions zum Deployen. Standardmäßig enthält es außerdem einen local-first Speicher **Giper Baza**, ein **Docker**-Setup und eine **Tauri**-Desktop-Hülle. Jedes davon lässt sich mit einem Flag abschalten:\n\n```bash\nnpx create-view-tree-lsp bog/myapp --no-baza --no-docker --no-tauri\n```\n\nEin paar Bestandteile sind stattdessen optional:\n\n- `--backend` fügt ein `$mol_server`-REST-Backend mit `node:sqlite`-Speicher und einem gemeinsam genutzten TypeScript-Item-Typ hinzu\n- `--prerender` und `--seo` fügen Sichtbarkeit für Suchmaschinen hinzu, weiter unten unter [Kontinuierliche Integration](#!section=docs/page=tooling/Docs.Body=Kontinuierliche%20Integration) beschrieben\n\nDer Scaffolder ist ein dünner Wrapper über der CLI im Language Server, sodass `npx view-tree-lsp create bog/myapp` dasselbe direkt erledigt.\n\n## Kontinuierliche Integration\n\nDer Scaffolder schreibt die GitHub Actions nach `.github/workflows/`, sodass ein neues Projekt ohne zusätzliche Einrichtung deployt und released wird.\n\n`deploy.yml` läuft bei jedem Push. Es baut die App mit `hyoo-ru/mam_build`, veröffentlicht `app/-` aus `main` auf **GitHub Pages** und gibt jedem `feature/*`-Branch einen eigenen Vorschau-Ordner — automatisch entfernt, wenn der Branch gelöscht wird.\n\n### SEO\n\nZwei unabhängige Optionen, beide ausgelöst durch `v*`-Tags:\n\n- **`--prerender`** rendert die von Ihnen aufgelisteten Screens (etwa `home`) mit `b-on-g/mol-prerender-action` zu statischem HTML, sodass Crawler und Link-Vorschauen echten Inhalt sehen.\n- **`--seo`** fügt die `$bog_seo`-Laufzeit hinzu: einen Pathname-Router mit Sitemap, `robots.txt`, `llms.txt` und Meta-Injektion pro Seite. Der Job serviert den Build, dumpt kanonisches vorgerendertes HTML und faltet es zurück in das Deploy.\n\nGreifen Sie zur Prerender-Action, wenn eine Handvoll öffentlicher Screens crawlbar sein muss, und zu `$bog_seo`, wenn Sie Sitemaps und Metadaten pro Seite brauchen.\n\n### Tauri-Desktop\n\nMit der Tauri-Option baut `tauri.yml` Desktop-Binaries bei `v*`-Tags (oder auf Anforderung) über den wiederverwendbaren Workflow `b-on-g/tauri-mol-workflow-template`, aus demselben Modul, das Sie ins Web deployen.\n\n## Language Server\n\n`view-tree-lsp` ist eine Language-Server-Protocol-Implementierung für das `view.tree`-Format. Führen Sie es bei Bedarf mit npx aus, keine globale Installation nötig:\n\n```bash\nnpx view-tree-lsp@latest\n```\n\nEs scannt Ihren Workspace und gibt jedem LSP-fähigen Editor:\n\n- Vervollständigung für `$mol_*`-Komponenten sowie die in Ihrem eigenen Projekt definierten Komponenten und Properties\n- Property-Vorschläge im Rahmen der Komponente unter dem Cursor\n- eine Gliederung der Komponenten-Deklarationen zur Navigation\n- Live-Updates, während sich Dateien ändern\n\nDa es LSP spricht, können Sie den Language-Client jedes Editors auf `npx view-tree-lsp` richten. Die beiden Integrationen unten verdrahten es für Sie.\n\n## Zed\n\nDie Erweiterung **View Tree Syntax Highlighting for $mol** bündelt die tree-sitter-Grammatik, den Language Server und ein optionales Icon-Theme. Installieren Sie sie über Zeds Erweiterungsmanager:\n\n1. Öffnen Sie die Befehlspalette (`Cmd+Shift+P` / `Ctrl+Shift+P`)\n2. Führen Sie **zed: extensions** aus\n3. Suchen Sie nach `view.tree` oder `mol` und installieren Sie die Erweiterung\n\nSie erhalten Syntaxhervorhebung, Vervollständigung und Gliederung für `.view.tree`-Dateien. Der [Quellcode](https://github.com/Dev-cmyser/zed-view.tree-mol-support) und ein passendes [Icon-Theme](https://github.com/Dev-cmyser/zed-viewtree-icon-theme) liegen auf GitHub.\n\n## VS Code\n\nDer MAM-Workspace bringt sein VS-Code-Setup bereits mit. Wenn Sie den geklonten `mam`-Ordner öffnen, bietet VS Code an, die empfohlenen Erweiterungen aus `.vscode/extensions.json` zu installieren:\n\n- `nin-jin.vscode-language-tree` — `view.tree`-Sprachunterstützung\n- `stan-donarise.view-tree-language` — Syntax und Grammatik\n- `editorconfig.editorconfig` — einheitliche Formatierung\n\nDerselbe Ordner liefert `mol.code-snippets`, sodass Komponenten- und Binding-Snippets ohne zusätzliche Einrichtung verfügbar sind. Nehmen Sie die Aufforderung an, und `.view.tree`- sowie TypeScript-Dateien werden sofort hervorgehoben.\n\n## LLM-Skill\n\n`mol_skill` gibt einem KI-Assistenten den Kontext, den er zum Schreiben von $mol braucht: die `view.tree`-Syntax, den Aufbau eines MAM-Moduls, die Aufteilung zwischen `view.ts` und `view.css.ts`, Datenmodellierung mit Giper Baza und das Packen mit Tauri. Ausgeliefert wird ein schlichter Skill-Ordner, ein `SKILL.md`-Workflow plus Referenzhandbücher, sodass jedes LLM-Werkzeug, das das skills-Format liest, ihn laden kann, Claude Code und Cursor eingeschlossen. Installieren Sie ihn über die skills-CLI:\n\n```bash\nnpx skills add b-on-g/mol_skill --all -g\n```\n\nDanach fragen Sie in eigenen Worten („Aufbau eines MAM-Moduls“, „CRUD und Rollen in Giper Baza“), und der Assistent öffnet vor der Antwort die passende Referenz, sodass der geschriebene Code den Konventionen dieser Dokumentation folgt. Der [Quellcode](https://github.com/b-on-g/mol_skill) liegt auf GitHub, und die Referenzdateien lassen sich auch für sich allein gut lesen, falls Sie sie lieber selbst durchgehen.\n\n## Links\n\n- Scaffolder — [create-view-tree-lsp](https://github.com/Dev-cmyser/create-view-tree-lsp)\n- Language Server — [view-tree-lsp](https://github.com/Dev-cmyser/view.tree)\n- Zed-Erweiterung — [zed-view.tree-mol-support](https://github.com/Dev-cmyser/zed-view.tree-mol-support)\n- LLM-Skill — [mol_skill](https://github.com/b-on-g/mol_skill)\n"},pt:{title:"Ferramentas",summary:"O $mol funciona em qualquer editor, mas um pequeno conjunto de ferramentas torna o .view.tree e os estilos tipados bem mais confortáveis: um gerador de…",md:"# Ferramentas\n\nO $mol funciona em qualquer editor, mas um pequeno conjunto de ferramentas torna o `.view.tree` e os estilos tipados bem mais confortáveis: um gerador de projeto, um language server, integrações para os editores Zed e VS Code e uma skill que ensina o framework a assistentes de LLM.\n\n## Gerar um projeto\n\nO `create-view-tree-lsp` gera um módulo $mol pronto para rodar, para você não montar o boilerplate à mão:\n\n```bash\nnpx create-view-tree-lsp bog/myapp\n```\n\nO argumento é o caminho do módulo (`namespace/name`, ou o equivalente `bog_myapp`). Ele escreve `view.tree`, `view.ts`, `view.css.ts` e `index.html` de uma app funcional, além das GitHub Actions para fazer o deploy. Por padrão, também inclui um armazenamento local-first **Giper Baza**, uma configuração **Docker** e uma casca desktop **Tauri**. Desligue qualquer um deles com uma flag:\n\n```bash\nnpx create-view-tree-lsp bog/myapp --no-baza --no-docker --no-tauri\n```\n\nAlgumas peças, ao contrário, são opcionais:\n\n- `--backend` adiciona um backend REST `$mol_server` com armazenamento `node:sqlite` e um tipo de item TypeScript compartilhado\n- `--prerender` e `--seo` adicionam visibilidade para mecanismos de busca, descrita abaixo em [Integração contínua](#!section=docs/page=tooling/Docs.Body=Integra%C3%A7%C3%A3o%20cont%C3%ADnua)\n\nO gerador é um wrapper fino sobre a CLI do language server, então `npx view-tree-lsp create bog/myapp` faz o mesmo diretamente.\n\n## Integração contínua\n\nO gerador escreve as GitHub Actions em `.github/workflows/`, de modo que um novo projeto faz deploy e release sem configuração extra.\n\nO `deploy.yml` roda a cada push. Ele constrói a app com `hyoo-ru/mam_build`, publica `app/-` no **GitHub Pages** a partir de `main` e dá a cada branch `feature/*` sua própria pasta de pré-visualização — removida automaticamente quando o branch é excluído.\n\n### SEO\n\nDuas opções independentes, ambas acionadas por tags `v*`:\n\n- **`--prerender`** renderiza as telas que você listar (como `home`) em HTML estático com `b-on-g/mol-prerender-action`, para que crawlers e prévias de link vejam conteúdo real.\n- **`--seo`** adiciona o runtime `$bog_seo`: um roteador por pathname com sitemap, `robots.txt`, `llms.txt` e injeção de meta por página. O job serve o build, exporta o HTML pré-renderizado canônico e o reincorpora no deploy.\n\nRecorra à prerender action quando um punhado de telas públicas precisar ser rastreável, e ao `$bog_seo` quando você precisar de sitemaps e metadados por página.\n\n### Desktop Tauri\n\nCom a opção Tauri, o `tauri.yml` constrói binários desktop em tags `v*` (ou sob demanda) através do workflow reutilizável `b-on-g/tauri-mol-workflow-template`, a partir do mesmo módulo que você faz deploy para a web.\n\n## Language server\n\nO `view-tree-lsp` é uma implementação do Language Server Protocol para o formato `view.tree`. Rode-o sob demanda com npx, sem instalação global:\n\n```bash\nnpx view-tree-lsp@latest\n```\n\nEle varre seu workspace e dá a qualquer editor compatível com LSP:\n\n- completação para os componentes `$mol_*` e para os componentes e propriedades definidos no seu próprio projeto\n- sugestões de propriedades restritas ao componente sob o cursor\n- uma estrutura das declarações de componentes para navegação\n- atualizações ao vivo conforme os arquivos mudam\n\nComo ele fala LSP, você pode apontar o language client de qualquer editor para `npx view-tree-lsp`. As duas integrações abaixo o conectam para você.\n\n## Zed\n\nA extensão **View Tree Syntax Highlighting for $mol** reúne a gramática tree-sitter, o language server e um tema de ícones opcional. Instale-a pelo gerenciador de extensões do Zed:\n\n1. Abra a paleta de comandos (`Cmd+Shift+P` / `Ctrl+Shift+P`)\n2. Execute **zed: extensions**\n3. Busque por `view.tree` ou `mol` e instale a extensão\n\nVocê ganha realce de sintaxe, completação e estrutura para arquivos `.view.tree`. O [código-fonte](https://github.com/Dev-cmyser/zed-view.tree-mol-support) e um [tema de ícones](https://github.com/Dev-cmyser/zed-viewtree-icon-theme) correspondente estão no GitHub.\n\n## VS Code\n\nO workspace MAM já traz sua configuração do VS Code. Quando você abre a pasta `mam` clonada, o VS Code se oferece para instalar as extensões recomendadas de `.vscode/extensions.json`:\n\n- `nin-jin.vscode-language-tree` — suporte à linguagem `view.tree`\n- `stan-donarise.view-tree-language` — sintaxe e gramática\n- `editorconfig.editorconfig` — formatação consistente\n\nA mesma pasta traz `mol.code-snippets`, então os snippets de componentes e bindings ficam disponíveis sem nenhuma configuração extra. Aceite o aviso e os arquivos `.view.tree` e TypeScript são realçados de imediato.\n\n## Skill de LLM\n\nO `mol_skill` dá ao assistente de IA o contexto necessário para escrever $mol: a sintaxe `view.tree`, a estrutura de um módulo MAM, a divisão entre `view.ts` e `view.css.ts`, a modelagem de dados com Giper Baza e o empacotamento com Tauri. Ele vem como uma pasta de skill comum, um fluxo `SKILL.md` mais guias de referência, então qualquer ferramenta de LLM que leia o formato skills consegue carregá-lo, incluindo Claude Code e Cursor. Instale com a CLI skills:\n\n```bash\nnpx skills add b-on-g/mol_skill --all -g\n```\n\nDepois é só perguntar com suas palavras (“estrutura de um módulo MAM”, “CRUD e papéis no Giper Baza”): o assistente abre a referência correspondente antes de responder, e o código que ele escreve segue as convenções desta documentação. O [código-fonte](https://github.com/b-on-g/mol_skill) está no GitHub, e os arquivos de referência se leem muito bem sozinhos, se você preferir percorrê-los por conta própria.\n\n## Links\n\n- Gerador — [create-view-tree-lsp](https://github.com/Dev-cmyser/create-view-tree-lsp)\n- Language server — [view-tree-lsp](https://github.com/Dev-cmyser/view.tree)\n- Extensão Zed — [zed-view.tree-mol-support](https://github.com/Dev-cmyser/zed-view.tree-mol-support)\n- Skill de LLM — [mol_skill](https://github.com/b-on-g/mol_skill)\n"},it:{title:"Strumenti",summary:"$mol funziona in qualsiasi editor, ma un piccolo insieme di strumenti rende .view.tree e gli stili tipizzati molto più comodi: uno scaffolder di progetto, un…",md:"# Strumenti\n\n$mol funziona in qualsiasi editor, ma un piccolo insieme di strumenti rende `.view.tree` e gli stili tipizzati molto più comodi: uno scaffolder di progetto, un language server, le integrazioni per gli editor Zed e VS Code e una skill che insegna il framework agli assistenti LLM.\n\n## Generare un progetto\n\n`create-view-tree-lsp` genera un modulo $mol pronto all'uso, così non devi mettere insieme il boilerplate a mano:\n\n```bash\nnpx create-view-tree-lsp bog/myapp\n```\n\nL'argomento è il percorso del modulo (`namespace/name`, o l'equivalente `bog_myapp`). Scrive `view.tree`, `view.ts`, `view.css.ts` e `index.html` per un'app funzionante, più le GitHub Actions per il deploy. Per impostazione predefinita include anche uno store local-first **Giper Baza**, una configurazione **Docker** e un guscio desktop **Tauri**. Disattivane uno qualsiasi con un flag:\n\n```bash\nnpx create-view-tree-lsp bog/myapp --no-baza --no-docker --no-tauri\n```\n\nAlcuni pezzi sono invece opzionali:\n\n- `--backend` aggiunge un backend REST `$mol_server` con storage `node:sqlite` e un tipo di item TypeScript condiviso\n- `--prerender` e `--seo` aggiungono la visibilità per i motori di ricerca, descritta più sotto sotto [Integrazione continua](#!section=docs/page=tooling/Docs.Body=Integrazione%20continua)\n\nLo scaffolder è un sottile wrapper attorno alla CLI del language server, quindi `npx view-tree-lsp create bog/myapp` fa la stessa cosa direttamente.\n\n## Integrazione continua\n\nLo scaffolder scrive le GitHub Actions in `.github/workflows/`, così un nuovo progetto viene deployato e rilasciato senza configurazione aggiuntiva.\n\n`deploy.yml` gira a ogni push. Costruisce l'app con `hyoo-ru/mam_build`, pubblica `app/-` su **GitHub Pages** da `main` e assegna a ogni branch `feature/*` una propria cartella di anteprima — rimossa automaticamente quando il branch viene eliminato.\n\n### SEO\n\nDue opzioni indipendenti, entrambe attivate dai tag `v*`:\n\n- **`--prerender`** renderizza le schermate che elenchi (come `home`) in HTML statico con `b-on-g/mol-prerender-action`, così i crawler e le anteprime dei link vedono contenuto reale.\n- **`--seo`** aggiunge il runtime `$bog_seo`: un router basato sul pathname con sitemap, `robots.txt`, `llms.txt` e iniezione dei meta per pagina. Il job serve il build, esporta l'HTML prerenderizzato canonico e lo reincorpora nel deploy.\n\nRicorri all'azione di prerender quando una manciata di schermate pubbliche deve essere indicizzabile, e a `$bog_seo` quando ti servono sitemap e metadati per pagina.\n\n### Desktop Tauri\n\nCon l'opzione Tauri, `tauri.yml` costruisce i binari desktop sui tag `v*` (o su richiesta) tramite il workflow riutilizzabile `b-on-g/tauri-mol-workflow-template`, dallo stesso modulo che deployi sul web.\n\n## Language server\n\n`view-tree-lsp` è un'implementazione del Language Server Protocol per il formato `view.tree`. Eseguilo all'occorrenza con npx, senza installazione globale:\n\n```bash\nnpx view-tree-lsp@latest\n```\n\nAnalizza il tuo workspace e offre a qualsiasi editor compatibile con LSP:\n\n- il completamento per i componenti `$mol_*` e per i componenti e le proprietà definiti nel tuo progetto\n- suggerimenti di proprietà limitati al componente sotto il cursore\n- una struttura delle dichiarazioni dei componenti per la navigazione\n- aggiornamenti in tempo reale al variare dei file\n\nPoiché parla LSP, puoi puntare il language client di qualsiasi editor a `npx view-tree-lsp`. Le due integrazioni qui sotto lo cablano per te.\n\n## Zed\n\nL'estensione **View Tree Syntax Highlighting for $mol** racchiude la grammatica tree-sitter, il language server e un tema di icone opzionale. Installala dal gestore di estensioni di Zed:\n\n1. Apri la palette dei comandi (`Cmd+Shift+P` / `Ctrl+Shift+P`)\n2. Esegui **zed: extensions**\n3. Cerca `view.tree` o `mol` e installa l'estensione\n\nOttieni evidenziazione della sintassi, completamento e struttura per i file `.view.tree`. Il [sorgente](https://github.com/Dev-cmyser/zed-view.tree-mol-support) e un [tema di icone](https://github.com/Dev-cmyser/zed-viewtree-icon-theme) abbinato sono su GitHub.\n\n## VS Code\n\nIl workspace MAM porta già con sé la sua configurazione di VS Code. Quando apri la cartella `mam` clonata, VS Code propone di installare le estensioni consigliate da `.vscode/extensions.json`:\n\n- `nin-jin.vscode-language-tree` — supporto al linguaggio `view.tree`\n- `stan-donarise.view-tree-language` — sintassi e grammatica\n- `editorconfig.editorconfig` — formattazione coerente\n\nLa stessa cartella include `mol.code-snippets`, così gli snippet di componenti e binding sono disponibili senza alcuna configurazione aggiuntiva. Accetta la richiesta e i file `.view.tree` e TypeScript vengono evidenziati da subito.\n\n## Skill per LLM\n\n`mol_skill` fornisce a un assistente IA il contesto che serve per scrivere $mol: la sintassi `view.tree`, la struttura di un modulo MAM, la divisione tra `view.ts` e `view.css.ts`, la modellazione dei dati con Giper Baza e il packaging con Tauri. È una semplice cartella di skill, un flusso `SKILL.md` più le guide di riferimento, quindi qualsiasi strumento LLM che legga il formato skills può caricarla, Claude Code e Cursor compresi. Installala con la CLI skills:\n\n```bash\nnpx skills add b-on-g/mol_skill --all -g\n```\n\nPoi chiedi con parole tue (“struttura di un modulo MAM”, “CRUD e ruoli in Giper Baza”): l'assistente apre il riferimento giusto prima di rispondere, così il codice che scrive segue le convenzioni di questa documentazione. Il [sorgente](https://github.com/b-on-g/mol_skill) è su GitHub, e i file di riferimento si leggono benissimo anche da soli, se preferisci scorrerli tu.\n\n## Link\n\n- Scaffolder — [create-view-tree-lsp](https://github.com/Dev-cmyser/create-view-tree-lsp)\n- Language server — [view-tree-lsp](https://github.com/Dev-cmyser/view.tree)\n- Estensione Zed — [zed-view.tree-mol-support](https://github.com/Dev-cmyser/zed-view.tree-mol-support)\n- Skill per LLM — [mol_skill](https://github.com/b-on-g/mol_skill)\n"},ru:{title:"Инструментарий",summary:"$mol работает в любом редакторе, но небольшой набор инструментов делает .view.tree и типизированные стили гораздо удобнее: генератор проектов, языковой сервер,…",md:"# Инструментарий\n\n$mol работает в любом редакторе, но небольшой набор инструментов делает `.view.tree` и типизированные стили гораздо удобнее: генератор проектов, языковой сервер, интеграции с редакторами Zed и VS Code, а также скилл, который учит LLM-ассистентов фреймворку.\n\n## Генерация проекта\n\n`create-view-tree-lsp` создаёт готовый к запуску модуль $mol, чтобы вам не собирать шаблонный код вручную:\n\n```bash\nnpx create-view-tree-lsp bog/myapp\n```\n\nАргумент — путь модуля (`namespace/name` или эквивалентное `bog_myapp`). Он записывает `view.tree`, `view.ts`, `view.css.ts` и `index.html` для работающего приложения, плюс GitHub Actions для его деплоя. По умолчанию он также включает local-first хранилище **Гипер База**, настройку **Docker** и десктопную оболочку **Tauri**. Отключить любое из них можно флагом:\n\n```bash\nnpx create-view-tree-lsp bog/myapp --no-baza --no-docker --no-tauri\n```\n\nНесколько частей, наоборот, подключаются по желанию:\n\n- `--backend` добавляет REST-бэкенд `$mol_server` с хранилищем `node:sqlite` и общим типом элемента на TypeScript\n- `--prerender` и `--seo` добавляют видимость для поисковиков, описанную ниже в разделе [Непрерывная интеграция](#!section=docs/page=tooling/Docs.Body=%D0%9D%D0%B5%D0%BF%D1%80%D0%B5%D1%80%D1%8B%D0%B2%D0%BD%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%82%D0%B5%D0%B3%D1%80%D0%B0%D1%86%D0%B8%D1%8F)\n\nГенератор — это тонкая обёртка над CLI языкового сервера, так что `npx view-tree-lsp create bog/myapp` делает то же самое напрямую.\n\n## Непрерывная интеграция\n\nГенератор записывает GitHub Actions в `.github/workflows/`, так что новый проект деплоится и релизится без дополнительной настройки.\n\n`deploy.yml` запускается на каждый push. Он собирает приложение с помощью `hyoo-ru/mam_build`, публикует `app/-` в **GitHub Pages** из `main` и даёт каждой ветке `feature/*` свою папку предпросмотра — она удаляется автоматически, когда ветку удаляют.\n\n### SEO\n\nДва независимых варианта, оба срабатывают по тегам `v*`:\n\n- **`--prerender`** рендерит перечисленные вами экраны (например, `home`) в статический HTML с помощью `b-on-g/mol-prerender-action`, так что краулеры и превью ссылок видят настоящий контент.\n- **`--seo`** добавляет рантайм `$bog_seo`: роутер по pathname с картой сайта, `robots.txt`, `llms.txt` и внедрением метаданных на каждую страницу. Задача обслуживает сборку, выгружает канонический предрендеренный HTML и заворачивает его обратно в деплой.\n\nБерите prerender-action, когда горстке публичных экранов нужно быть индексируемыми, а `$bog_seo` — когда нужны карты сайта и метаданные на каждую страницу.\n\n### Десктоп Tauri\n\nС опцией Tauri `tauri.yml` собирает десктопные бинарники по тегам `v*` (или по запросу) через переиспользуемый воркфлоу `b-on-g/tauri-mol-workflow-template`, из того же модуля, что вы деплоите в веб.\n\n## Языковой сервер\n\n`view-tree-lsp` — это реализация Language Server Protocol для формата `view.tree`. Запускайте его по требованию через npx, без глобальной установки:\n\n```bash\nnpx view-tree-lsp@latest\n```\n\nОн сканирует ваше рабочее пространство и даёт любому редактору с поддержкой LSP:\n\n- автодополнение для компонентов `$mol_*` и компонентов и свойств, определённых в вашем собственном проекте\n- подсказки свойств в рамках компонента под курсором\n- структуру объявлений компонентов для навигации\n- живые обновления по мере изменения файлов\n\nПоскольку он говорит на LSP, вы можете направить language-client любого редактора на `npx view-tree-lsp`. Две интеграции ниже настраивают его за вас.\n\n## Zed\n\nРасширение **View Tree Syntax Highlighting for $mol** объединяет грамматику tree-sitter, языковой сервер и опциональную тему иконок. Установите его из менеджера расширений Zed:\n\n1. Откройте палитру команд (`Cmd+Shift+P` / `Ctrl+Shift+P`)\n2. Выполните **zed: extensions**\n3. Найдите `view.tree` или `mol` и установите расширение\n\nВы получаете подсветку синтаксиса, автодополнение и структуру для файлов `.view.tree`. [Исходники](https://github.com/Dev-cmyser/zed-view.tree-mol-support) и соответствующая [тема иконок](https://github.com/Dev-cmyser/zed-viewtree-icon-theme) на GitHub.\n\n## VS Code\n\nРабочее пространство MAM уже несёт свою настройку VS Code. Когда вы открываете склонированную папку `mam`, VS Code предлагает установить рекомендованные расширения из `.vscode/extensions.json`:\n\n- `nin-jin.vscode-language-tree` — поддержка языка `view.tree`\n- `stan-donarise.view-tree-language` — синтаксис и грамматика\n- `editorconfig.editorconfig` — единообразное форматирование\n\nТа же папка поставляет `mol.code-snippets`, так что сниппеты компонентов и биндингов доступны без всякой дополнительной настройки. Примите предложение — и файлы `.view.tree` и TypeScript подсвечиваются из коробки.\n\n## Скилл для LLM\n\n`mol_skill` даёт AI-ассистенту контекст, нужный, чтобы писать на $mol: синтаксис `view.tree`, устройство MAM-модуля, разделение между `view.ts` и `view.css.ts`, моделирование данных в Гипер Базе и упаковку в Tauri. Это обычная папка со скиллом — воркфлоу `SKILL.md` плюс справочники, так что подхватить его может любой LLM-инструмент, читающий формат skills, включая Claude Code и Cursor. Установка через CLI skills:\n\n```bash\nnpx skills add b-on-g/mol_skill --all -g\n```\n\nДальше спрашивайте своими словами («устройство MAM-модуля», «CRUD и роли в Гипер Базе»), и ассистент откроет подходящий справочник до того, как ответит, так что код будет следовать соглашениям из этой документации. [Исходники](https://github.com/b-on-g/mol_skill) лежат на GitHub, а сами справочные файлы прекрасно читаются и по отдельности, если хочется пройтись по ним самому.\n\n## Ссылки\n\n- Генератор — [create-view-tree-lsp](https://github.com/Dev-cmyser/create-view-tree-lsp)\n- Языковой сервер — [view-tree-lsp](https://github.com/Dev-cmyser/view.tree)\n- Расширение для Zed — [zed-view.tree-mol-support](https://github.com/Dev-cmyser/zed-view.tree-mol-support)\n- Скилл для LLM — [mol_skill](https://github.com/b-on-g/mol_skill)\n"},uk:{title:"Інструментарій",summary:"$mol працює в будь-якому редакторі, але невеликий набір інструментів робить .view.tree і типізовані стилі значно зручнішими: генератор проєктів, мовний сервер,…",md:"# Інструментарій\n\n$mol працює в будь-якому редакторі, але невеликий набір інструментів робить `.view.tree` і типізовані стилі значно зручнішими: генератор проєктів, мовний сервер, інтеграції з редакторами Zed і VS Code та скіл, який навчає LLM-асистентів фреймворку.\n\n## Генерація проєкту\n\n`create-view-tree-lsp` створює готовий до запуску модуль $mol, щоб ви не збирали шаблонний код вручну:\n\n```bash\nnpx create-view-tree-lsp bog/myapp\n```\n\nАргумент — шлях модуля (`namespace/name` або еквівалентне `bog_myapp`). Він записує `view.tree`, `view.ts`, `view.css.ts` та `index.html` для працюючого застосунку, плюс GitHub Actions для його розгортання. За замовчуванням він також містить local-first сховище **Giper Baza**, налаштування **Docker** і десктопну оболонку **Tauri**. Вимкнути будь-яке з них можна прапорцем:\n\n```bash\nnpx create-view-tree-lsp bog/myapp --no-baza --no-docker --no-tauri\n```\n\nКілька частин, навпаки, підключаються за бажанням:\n\n- `--backend` додає REST-бекенд `$mol_server` зі сховищем `node:sqlite` і спільним типом елемента на TypeScript\n- `--prerender` та `--seo` додають видимість для пошукових систем, описану нижче в розділі [Неперервна інтеграція](#!section=docs/page=tooling/Docs.Body=%D0%9D%D0%B5%D0%BF%D0%B5%D1%80%D0%B5%D1%80%D0%B2%D0%BD%D0%B0%20%D1%96%D0%BD%D1%82%D0%B5%D0%B3%D1%80%D0%B0%D1%86%D1%96%D1%8F)\n\nГенератор — це тонка обгортка над CLI мовного сервера, тож `npx view-tree-lsp create bog/myapp` робить те саме безпосередньо.\n\n## Неперервна інтеграція\n\nГенератор записує GitHub Actions у `.github/workflows/`, тож новий проєкт розгортається й релізиться без додаткового налаштування.\n\n`deploy.yml` запускається на кожен push. Він збирає застосунок за допомогою `hyoo-ru/mam_build`, публікує `app/-` у **GitHub Pages** з `main` і дає кожній гілці `feature/*` власну папку попереднього перегляду — вона видаляється автоматично, коли гілку видаляють.\n\n### SEO\n\nДва незалежні варіанти, обидва спрацьовують на теги `v*`:\n\n- **`--prerender`** рендерить перелічені вами екрани (наприклад, `home`) у статичний HTML за допомогою `b-on-g/mol-prerender-action`, тож краулери та превʼю посилань бачать справжній контент.\n- **`--seo`** додає рантайм `$bog_seo`: роутер за pathname з картою сайту, `robots.txt`, `llms.txt` та вставкою метаданих на кожну сторінку. Завдання обслуговує збірку, вивантажує канонічний передрендерений HTML і загортає його назад у розгортання.\n\nБеріть prerender-action, коли жменьці публічних екранів треба бути індексованими, а `$bog_seo` — коли потрібні карти сайту й метадані на кожну сторінку.\n\n### Десктоп Tauri\n\nЗ опцією Tauri `tauri.yml` збирає десктопні бінарники на теги `v*` (або на вимогу) через повторно використовуваний воркфлоу `b-on-g/tauri-mol-workflow-template`, з того самого модуля, що ви розгортаєте у веб.\n\n## Мовний сервер\n\n`view-tree-lsp` — це реалізація Language Server Protocol для формату `view.tree`. Запускайте його на вимогу через npx, без глобального встановлення:\n\n```bash\nnpx view-tree-lsp@latest\n```\n\nВін сканує ваш робочий простір і дає будь-якому редактору з підтримкою LSP:\n\n- автодоповнення для компонентів `$mol_*` і компонентів та властивостей, визначених у вашому власному проєкті\n- підказки властивостей у межах компонента під курсором\n- структуру оголошень компонентів для навігації\n- живі оновлення в міру зміни файлів\n\nОскільки він говорить мовою LSP, ви можете спрямувати language-client будь-якого редактора на `npx view-tree-lsp`. Дві інтеграції нижче налаштовують його за вас.\n\n## Zed\n\nРозширення **View Tree Syntax Highlighting for $mol** обʼєднує граматику tree-sitter, мовний сервер та опціональну тему іконок. Встановіть його з менеджера розширень Zed:\n\n1. Відкрийте палітру команд (`Cmd+Shift+P` / `Ctrl+Shift+P`)\n2. Виконайте **zed: extensions**\n3. Знайдіть `view.tree` або `mol` і встановіть розширення\n\nВи отримуєте підсвічування синтаксису, автодоповнення та структуру для файлів `.view.tree`. [Джерела](https://github.com/Dev-cmyser/zed-view.tree-mol-support) і відповідна [тема іконок](https://github.com/Dev-cmyser/zed-viewtree-icon-theme) на GitHub.\n\n## VS Code\n\nРобочий простір MAM уже несе своє налаштування VS Code. Коли ви відкриваєте склоновану папку `mam`, VS Code пропонує встановити рекомендовані розширення з `.vscode/extensions.json`:\n\n- `nin-jin.vscode-language-tree` — підтримка мови `view.tree`\n- `stan-donarise.view-tree-language` — синтаксис і граматика\n- `editorconfig.editorconfig` — узгоджене форматування\n\nТа сама папка постачає `mol.code-snippets`, тож сніпети компонентів і привʼязок доступні без жодного додаткового налаштування. Прийміть пропозицію — і файли `.view.tree` та TypeScript підсвічуються з коробки.\n\n## Скіл для LLM\n\n`mol_skill` дає AI-асистенту контекст, потрібний, щоб писати на $mol: синтаксис `view.tree`, будову MAM-модуля, поділ між `view.ts` і `view.css.ts`, моделювання даних у Giper Baza та пакування в Tauri. Це звичайна тека зі скілом — робочий процес `SKILL.md` плюс довідники, тож завантажити його може будь-який LLM-інструмент, що читає формат skills, зокрема Claude Code і Cursor. Встановіть його через CLI skills:\n\n```bash\nnpx skills add b-on-g/mol_skill --all -g\n```\n\nДалі питайте своїми словами («будова MAM-модуля», «CRUD і ролі в Giper Baza»), і асистент відкриє потрібний довідник перед відповіддю, тож код відповідатиме домовленостям із цієї документації. [Вихідний код](https://github.com/b-on-g/mol_skill) лежить на GitHub, а самі довідники чудово читаються й окремо, якщо волієте пройтися ними самостійно.\n\n## Посилання\n\n- Генератор — [create-view-tree-lsp](https://github.com/Dev-cmyser/create-view-tree-lsp)\n- Мовний сервер — [view-tree-lsp](https://github.com/Dev-cmyser/view.tree)\n- Розширення для Zed — [zed-view.tree-mol-support](https://github.com/Dev-cmyser/zed-view.tree-mol-support)\n- Скіл для LLM — [mol_skill](https://github.com/b-on-g/mol_skill)\n"},pl:{title:"Narzędzia",summary:"$mol działa w każdym edytorze, ale niewielki zestaw narzędzi sprawia, że .view.tree i typowane style są znacznie wygodniejsze: generator projektu, serwer…",md:"# Narzędzia\n\n$mol działa w każdym edytorze, ale niewielki zestaw narzędzi sprawia, że `.view.tree` i typowane style są znacznie wygodniejsze: generator projektu, serwer języka, integracje z edytorami Zed i VS Code oraz skill, który uczy asystentów LLM tego frameworka.\n\n## Wygenerowanie projektu\n\n`create-view-tree-lsp` generuje gotowy do uruchomienia moduł $mol, byś nie musiał składać szablonowego kodu ręcznie:\n\n```bash\nnpx create-view-tree-lsp bog/myapp\n```\n\nArgumentem jest ścieżka modułu (`namespace/name` lub równoważne `bog_myapp`). Zapisuje `view.tree`, `view.ts`, `view.css.ts` i `index.html` działającej aplikacji, a także GitHub Actions do jej wdrożenia. Domyślnie dołącza też local-first magazyn **Giper Baza**, konfigurację **Docker** oraz desktopową powłokę **Tauri**. Każde z nich możesz wyłączyć flagą:\n\n```bash\nnpx create-view-tree-lsp bog/myapp --no-baza --no-docker --no-tauri\n```\n\nKilka elementów jest natomiast opcjonalnych:\n\n- `--backend` dodaje backend REST `$mol_server` z magazynem `node:sqlite` i współdzielonym typem elementu w TypeScript\n- `--prerender` i `--seo` dodają widoczność w wyszukiwarkach, opisaną poniżej w sekcji [Ciągła integracja](#!section=docs/page=tooling/Docs.Body=Ci%C4%85g%C5%82a%20integracja)\n\nGenerator to cienka nakładka na CLI serwera języka, więc `npx view-tree-lsp create bog/myapp` robi to samo bezpośrednio.\n\n## Ciągła integracja\n\nGenerator zapisuje GitHub Actions w `.github/workflows/`, dzięki czemu nowy projekt wdraża się i wydaje bez dodatkowej konfiguracji.\n\n`deploy.yml` uruchamia się przy każdym pushu. Buduje aplikację za pomocą `hyoo-ru/mam_build`, publikuje `app/-` na **GitHub Pages** z `main` i daje każdej gałęzi `feature/*` własny folder podglądu — usuwany automatycznie po skasowaniu gałęzi.\n\n### SEO\n\nDwie niezależne opcje, obie wyzwalane tagami `v*`:\n\n- **`--prerender`** renderuje wskazane przez Ciebie ekrany (na przykład `home`) do statycznego HTML za pomocą `b-on-g/mol-prerender-action`, dzięki czemu roboty i podglądy linków widzą prawdziwą treść.\n- **`--seo`** dodaje runtime `$bog_seo`: router po pathname z mapą witryny, `robots.txt`, `llms.txt` oraz wstrzykiwaniem meta na każdą stronę. Zadanie serwuje build, zrzuca kanoniczny prerenderowany HTML i wplata go z powrotem do wdrożenia.\n\nSięgnij po prerender action, gdy garstka publicznych ekranów musi być indeksowalna, a po `$bog_seo`, gdy potrzebujesz map witryny i metadanych na każdą stronę.\n\n### Pulpit Tauri\n\nZ opcją Tauri `tauri.yml` buduje binaria desktopowe na tagach `v*` (lub na żądanie) przez wielokrotnego użytku workflow `b-on-g/tauri-mol-workflow-template`, z tego samego modułu, który wdrażasz do sieci.\n\n## Serwer języka\n\n`view-tree-lsp` to implementacja Language Server Protocol dla formatu `view.tree`. Uruchamiaj go na żądanie przez npx, bez globalnej instalacji:\n\n```bash\nnpx view-tree-lsp@latest\n```\n\nSkanuje Twój workspace i daje każdemu edytorowi obsługującemu LSP:\n\n- uzupełnianie dla komponentów `$mol_*` oraz komponentów i właściwości zdefiniowanych w Twoim własnym projekcie\n- podpowiedzi właściwości ograniczone do komponentu pod kursorem\n- zarys deklaracji komponentów do nawigacji\n- aktualizacje na żywo w miarę zmian plików\n\nPonieważ mówi w LSP, możesz skierować klienta języka dowolnego edytora na `npx view-tree-lsp`. Dwie poniższe integracje podłączają go za Ciebie.\n\n## Zed\n\nRozszerzenie **View Tree Syntax Highlighting for $mol** łączy gramatykę tree-sitter, serwer języka oraz opcjonalny motyw ikon. Zainstaluj je z menedżera rozszerzeń Zeda:\n\n1. Otwórz paletę poleceń (`Cmd+Shift+P` / `Ctrl+Shift+P`)\n2. Uruchom **zed: extensions**\n3. Wyszukaj `view.tree` lub `mol` i zainstaluj rozszerzenie\n\nOtrzymujesz podświetlanie składni, uzupełnianie i zarys dla plików `.view.tree`. [Źródła](https://github.com/Dev-cmyser/zed-view.tree-mol-support) i pasujący [motyw ikon](https://github.com/Dev-cmyser/zed-viewtree-icon-theme) są na GitHubie.\n\n## VS Code\n\nWorkspace MAM już niesie swoją konfigurację VS Code. Gdy otworzysz sklonowany folder `mam`, VS Code zaproponuje instalację zalecanych rozszerzeń z `.vscode/extensions.json`:\n\n- `nin-jin.vscode-language-tree` — obsługa języka `view.tree`\n- `stan-donarise.view-tree-language` — składnia i gramatyka\n- `editorconfig.editorconfig` — spójne formatowanie\n\nTen sam folder dostarcza `mol.code-snippets`, więc snippety komponentów i bindingów są dostępne bez żadnej dodatkowej konfiguracji. Zaakceptuj monit, a pliki `.view.tree` i TypeScript są podświetlane od ręki.\n\n## Skill dla LLM\n\n`mol_skill` daje asystentowi AI kontekst potrzebny do pisania w $mol: składnię `view.tree`, budowę modułu MAM, podział między `view.ts` i `view.css.ts`, modelowanie danych w Giper Baza oraz pakowanie w Tauri. To zwykły folder ze skillem, przepływ `SKILL.md` plus przewodniki referencyjne, więc wczytać go może dowolne narzędzie LLM czytające format skills, w tym Claude Code i Cursor. Zainstaluj go przez CLI skills:\n\n```bash\nnpx skills add b-on-g/mol_skill --all -g\n```\n\nPotem pytaj własnymi słowami („budowa modułu MAM”, „CRUD i role w Giper Baza”), a asystent otworzy odpowiedni przewodnik przed odpowiedzią, dzięki czemu pisany kod trzyma się konwencji z tej dokumentacji. [Źródła](https://github.com/b-on-g/mol_skill) są na GitHubie, a same pliki referencyjne czyta się dobrze również osobno, jeśli wolisz przejrzeć je samodzielnie.\n\n## Linki\n\n- Generator — [create-view-tree-lsp](https://github.com/Dev-cmyser/create-view-tree-lsp)\n- Serwer języka — [view-tree-lsp](https://github.com/Dev-cmyser/view.tree)\n- Rozszerzenie Zed — [zed-view.tree-mol-support](https://github.com/Dev-cmyser/zed-view.tree-mol-support)\n- Skill dla LLM — [mol_skill](https://github.com/b-on-g/mol_skill)\n"},cs:{title:"Nástroje",summary:"$mol funguje v libovolném editoru, ale malá sada nástrojů činí .view.tree a typované styly mnohem pohodlnějšími: generátor projektu, jazykový server, integrace…",md:"# Nástroje\n\n$mol funguje v libovolném editoru, ale malá sada nástrojů činí `.view.tree` a typované styly mnohem pohodlnějšími: generátor projektu, jazykový server, integrace pro editory Zed a VS Code a skill, který učí LLM asistenty tomuto frameworku.\n\n## Vygenerování projektu\n\n`create-view-tree-lsp` vygeneruje ihned spustitelný $mol modul, abyste boilerplate nemuseli skládat ručně:\n\n```bash\nnpx create-view-tree-lsp bog/myapp\n```\n\nArgumentem je cesta modulu (`namespace/name` nebo ekvivalentní `bog_myapp`). Zapíše `view.tree`, `view.ts`, `view.css.ts` a `index.html` fungující aplikace a k tomu GitHub Actions pro její nasazení. Ve výchozím nastavení zahrnuje také local-first úložiště **Giper Baza**, konfiguraci **Docker** a desktopový obal **Tauri**. Kterékoli z nich vypnete přepínačem:\n\n```bash\nnpx create-view-tree-lsp bog/myapp --no-baza --no-docker --no-tauri\n```\n\nNěkolik částí je naopak volitelných:\n\n- `--backend` přidá REST backend `$mol_server` s úložištěm `node:sqlite` a sdíleným TypeScriptovým typem položky\n- `--prerender` a `--seo` přidají viditelnost pro vyhledávače, popsanou níže v sekci [Průběžná integrace](#!section=docs/page=tooling/Docs.Body=Pr%C5%AFb%C4%9B%C5%BEn%C3%A1%20integrace)\n\nGenerátor je tenká obálka nad CLI jazykového serveru, takže `npx view-tree-lsp create bog/myapp` udělá totéž přímo.\n\n## Průběžná integrace\n\nGenerátor zapíše GitHub Actions do `.github/workflows/`, takže nový projekt se nasazuje a vydává bez další konfigurace.\n\n`deploy.yml` běží při každém pushi. Sestaví aplikaci pomocí `hyoo-ru/mam_build`, publikuje `app/-` na **GitHub Pages** z `main` a každé větvi `feature/*` dá vlastní složku náhledu — odstraněnou automaticky při smazání větve.\n\n### SEO\n\nDvě nezávislé volby, obě spouštěné tagy `v*`:\n\n- **`--prerender`** vykreslí obrazovky, které vyjmenujete (například `home`), do statického HTML pomocí `b-on-g/mol-prerender-action`, takže crawlery a náhledy odkazů vidí skutečný obsah.\n- **`--seo`** přidá runtime `$bog_seo`: router podle pathname se sitemapou, `robots.txt`, `llms.txt` a vkládáním meta pro každou stránku. Úloha obslouží build, vypíše kanonické předvykreslené HTML a vloží ho zpět do nasazení.\n\nSáhněte po prerender action, když má být hrstka veřejných obrazovek procházitelná, a po `$bog_seo`, když potřebujete sitemapy a metadata pro každou stránku.\n\n### Desktop Tauri\n\nS volbou Tauri `tauri.yml` sestavuje desktopové binárky na tagách `v*` (nebo na vyžádání) přes znovupoužitelný workflow `b-on-g/tauri-mol-workflow-template`, ze stejného modulu, který nasazujete na web.\n\n## Jazykový server\n\n`view-tree-lsp` je implementace Language Server Protocolu pro formát `view.tree`. Spouštějte ho na vyžádání přes npx, bez globální instalace:\n\n```bash\nnpx view-tree-lsp@latest\n```\n\nProhledá váš workspace a poskytne libovolnému editoru se schopností LSP:\n\n- dokončování pro komponenty `$mol_*` a pro komponenty a vlastnosti definované ve vašem vlastním projektu\n- návrhy vlastností omezené na komponentu pod kurzorem\n- osnovu deklarací komponent pro navigaci\n- živé aktualizace, jak se soubory mění\n\nProtože mluví LSP, můžete namířit jazykového klienta libovolného editoru na `npx view-tree-lsp`. Dvě integrace níže vám ho zapojí.\n\n## Zed\n\nRozšíření **View Tree Syntax Highlighting for $mol** sdružuje gramatiku tree-sitter, jazykový server a volitelný motiv ikon. Nainstalujte ho ze správce rozšíření Zedu:\n\n1. Otevřete paletu příkazů (`Cmd+Shift+P` / `Ctrl+Shift+P`)\n2. Spusťte **zed: extensions**\n3. Vyhledejte `view.tree` nebo `mol` a nainstalujte rozšíření\n\nZískáte zvýrazňování syntaxe, dokončování a osnovu pro soubory `.view.tree`. [Zdroje](https://github.com/Dev-cmyser/zed-view.tree-mol-support) a odpovídající [motiv ikon](https://github.com/Dev-cmyser/zed-viewtree-icon-theme) jsou na GitHubu.\n\n## VS Code\n\nWorkspace MAM už své nastavení VS Code nese s sebou. Když otevřete naklonovanou složku `mam`, VS Code nabídne instalaci doporučených rozšíření z `.vscode/extensions.json`:\n\n- `nin-jin.vscode-language-tree` — jazyková podpora `view.tree`\n- `stan-donarise.view-tree-language` — syntaxe a gramatika\n- `editorconfig.editorconfig` — konzistentní formátování\n\nTáž složka dodává `mol.code-snippets`, takže snippety komponent a bindingů jsou dostupné bez jakékoli další konfigurace. Přijměte výzvu a soubory `.view.tree` a TypeScript jsou zvýrazněné rovnou.\n\n## Skill pro LLM\n\n`mol_skill` dává AI asistentovi kontext, který potřebuje k psaní v $mol: syntaxi `view.tree`, uspořádání MAM modulu, rozdělení mezi `view.ts` a `view.css.ts`, modelování dat v Giper Baza a balení přes Tauri. Dodává se jako obyčejná složka se skillem, postup v `SKILL.md` plus referenční příručky, takže ho načte jakýkoli LLM nástroj, který čte formát skills, včetně Claude Code a Cursoru. Nainstalujte ho přes CLI skills:\n\n```bash\nnpx skills add b-on-g/mol_skill --all -g\n```\n\nPak se ptejte vlastními slovy („struktura MAM modulu“, „CRUD a role v Giper Baza“) a asistent si před odpovědí otevře příslušnou referenci, takže napsaný kód drží konvence z této dokumentace. [Zdrojový kód](https://github.com/b-on-g/mol_skill) je na GitHubu a referenční soubory se dají dobře číst i samostatně, pokud si je raději projdete sami.\n\n## Odkazy\n\n- Generátor — [create-view-tree-lsp](https://github.com/Dev-cmyser/create-view-tree-lsp)\n- Jazykový server — [view-tree-lsp](https://github.com/Dev-cmyser/view.tree)\n- Rozšíření Zed — [zed-view.tree-mol-support](https://github.com/Dev-cmyser/zed-view.tree-mol-support)\n- Skill pro LLM — [mol_skill](https://github.com/b-on-g/mol_skill)\n"},fa:{title:"ابزارها",summary:"$mol در هر ویرایشگری کار می‌کند، اما مجموعه‌ای کوچک از ابزارها کار با .view.tree و سبک‌های نوع‌دار را بسیار راحت‌تر می‌کند: یک اسکافولدر پروژه، یک زبان‌سرور،…",md:"# ابزارها\n\n$mol در هر ویرایشگری کار می‌کند، اما مجموعه‌ای کوچک از ابزارها کار با `.view.tree` و سبک‌های نوع‌دار را بسیار راحت‌تر می‌کند: یک اسکافولدر پروژه، یک زبان‌سرور، یکپارچه‌سازی‌های ویرایشگر برای Zed و VS Code، و یک مهارت که فریم‌ورک را به دستیارهای LLM می‌آموزد.\n\n## اسکافولد کردن یک پروژه\n\n`create-view-tree-lsp` یک ماژول $mol آمادهٔ اجرا تولید می‌کند تا مجبور نباشید کد قالبی را با دست کنار هم بچینید:\n\n```bash\nnpx create-view-tree-lsp bog/myapp\n```\n\nآرگومان همان مسیر ماژول است (`namespace/name` یا معادل آن `bog_myapp`). این دستور `view.tree`، `view.ts`، `view.css.ts` و `index.html` یک برنامهٔ کارآمد را می‌نویسد، به‌علاوهٔ GitHub Actions برای استقرار آن. به‌طور پیش‌فرض یک ذخیره‌گاه local-first به نام **Giper Baza**، یک پیکربندی **Docker** و یک پوستهٔ دسکتاپ **Tauri** را نیز شامل می‌شود. هرکدام را می‌توانید با یک پرچم خاموش کنید:\n\n```bash\nnpx create-view-tree-lsp bog/myapp --no-baza --no-docker --no-tauri\n```\n\nدر عوض، چند بخش اختیاری‌اند و باید فعالشان کرد:\n\n- `--backend` یک بک‌اند REST به نام `$mol_server` با ذخیره‌سازی `node:sqlite` و یک نوع آیتم TypeScript مشترک اضافه می‌کند\n- `--prerender` و `--seo` دیده‌شدن در موتورهای جست‌وجو را اضافه می‌کنند، که در پایین زیر بخش [یکپارچه‌سازی مداوم](#!section=docs/page=tooling/Docs.Body=%DB%8C%DA%A9%D9%BE%D8%A7%D8%B1%DA%86%D9%87%E2%80%8C%D8%B3%D8%A7%D8%B2%DB%8C%20%D9%85%D8%AF%D8%A7%D9%88%D9%85) توضیح داده شده‌اند\n\nاسکافولدر یک پوشش نازک روی CLI موجود در زبان‌سرور است، بنابراین `npx view-tree-lsp create bog/myapp` همان کار را مستقیماً انجام می‌دهد.\n\n## یکپارچه‌سازی مداوم\n\nاسکافولدر GitHub Actions را در `.github/workflows/` می‌نویسد، پس یک پروژهٔ جدید بدون تنظیمات اضافی مستقر و منتشر می‌شود.\n\n`deploy.yml` روی هر push اجرا می‌شود. برنامه را با `hyoo-ru/mam_build` می‌سازد، `app/-` را از `main` روی **GitHub Pages** منتشر می‌کند، و به هر شاخهٔ `feature/*` پوشهٔ پیش‌نمایش مخصوص خودش را می‌دهد — که هنگام حذف شاخه به‌طور خودکار برداشته می‌شود.\n\n### SEO\n\nدو گزینهٔ مستقل، هر دو با برچسب‌های `v*` فعال می‌شوند:\n\n- **`--prerender`** صفحه‌هایی را که فهرست می‌کنید (مانند `home`) با `b-on-g/mol-prerender-action` به HTML ایستا رندر می‌کند، تا خزنده‌ها و پیش‌نمایش‌های پیوند محتوای واقعی را ببینند.\n- **`--seo`** رانتایم `$bog_seo` را اضافه می‌کند: یک مسیریاب بر پایهٔ pathname همراه با نقشهٔ سایت، `robots.txt`، `llms.txt` و تزریق متادیتا برای هر صفحه. این کار بیلد را سرو می‌کند، HTML پیش‌رندرشدهٔ متعارف را استخراج می‌کند و آن را دوباره در استقرار می‌گنجاند.\n\nوقتی مشتی صفحهٔ عمومی باید قابل خزش باشند سراغ prerender action بروید، و وقتی به نقشهٔ سایت و متادیتای هر صفحه نیاز دارید سراغ `$bog_seo`.\n\n### دسکتاپ Tauri\n\nبا گزینهٔ Tauri، `tauri.yml` باینری‌های دسکتاپ را روی برچسب‌های `v*` (یا بنا به درخواست) از طریق ورک‌فلوی قابل‌استفادهٔ مجدد `b-on-g/tauri-mol-workflow-template` می‌سازد، از همان ماژولی که روی وب مستقر می‌کنید.\n\n## زبان‌سرور\n\n`view-tree-lsp` یک پیاده‌سازی Language Server Protocol برای قالب `view.tree` است. آن را بنا به درخواست با npx اجرا کنید، بدون نیاز به نصب سراسری:\n\n```bash\nnpx view-tree-lsp@latest\n```\n\nفضای کاری شما را پویش می‌کند و به هر ویرایشگر توانمند در LSP این‌ها را می‌دهد:\n\n- تکمیل خودکار برای مؤلفه‌های `$mol_*` و مؤلفه‌ها و ویژگی‌های تعریف‌شده در پروژهٔ خودتان\n- پیشنهاد ویژگی محدود به مؤلفهٔ زیر مکان‌نما\n- طرح کلی از اعلان‌های مؤلفه برای ناوبری\n- به‌روزرسانی زنده همزمان با تغییر فایل‌ها\n\nچون به LSP سخن می‌گوید، می‌توانید language-client هر ویرایشگری را به `npx view-tree-lsp` نشانه بگیرید. دو یکپارچه‌سازی زیر آن را برای شما سیم‌کشی می‌کنند.\n\n## Zed\n\nافزونهٔ **View Tree Syntax Highlighting for $mol** گرامر tree-sitter، زبان‌سرور و یک تم آیکون اختیاری را با هم بسته‌بندی می‌کند. آن را از مدیر افزونهٔ Zed نصب کنید:\n\n1. پالت فرمان را باز کنید (`Cmd+Shift+P` / `Ctrl+Shift+P`)\n2. **zed: extensions** را اجرا کنید\n3. `view.tree` یا `mol` را جست‌وجو کنید و افزونه را نصب کنید\n\nبرجسته‌سازی نحوی، تکمیل خودکار و طرح کلی برای فایل‌های `.view.tree` را دریافت می‌کنید. [منبع](https://github.com/Dev-cmyser/zed-view.tree-mol-support) و یک [تم آیکون](https://github.com/Dev-cmyser/zed-viewtree-icon-theme) متناسب روی GitHub هستند.\n\n## VS Code\n\nفضای کاری MAM از پیش پیکربندی VS Code خود را همراه دارد. وقتی پوشهٔ کلون‌شدهٔ `mam` را باز می‌کنید، VS Code پیشنهاد می‌دهد افزونه‌های توصیه‌شده را از `.vscode/extensions.json` نصب کنید:\n\n- `nin-jin.vscode-language-tree` — پشتیبانی زبان `view.tree`\n- `stan-donarise.view-tree-language` — نحو و گرامر\n- `editorconfig.editorconfig` — قالب‌بندی یکدست\n\nهمان پوشه `mol.code-snippets` را نیز عرضه می‌کند، پس اسنیپت‌های مؤلفه و بایندینگ بدون هیچ تنظیم اضافی در دسترس‌اند. درخواست را بپذیرید و فایل‌های `.view.tree` و TypeScript از همان ابتدا برجسته می‌شوند.\n\n## مهارتِ LLM\n\n`mol_skill` زمینه‌ای را که یک دستیار هوش مصنوعی برای نوشتن $mol لازم دارد فراهم می‌کند: نحوِ `view.tree`، ساختار ماژول MAM، تقسیمِ کار میان `view.ts` و `view.css.ts`، مدل‌سازی داده با Giper Baza و بسته‌بندی با Tauri. این فقط یک پوشهٔ مهارتِ ساده است، یک گردش‌کارِ `SKILL.md` به‌همراه راهنماهای مرجع، پس هر ابزار LLM که قالبِ skills را بخواند می‌تواند آن را بارگذاری کند، از جمله Claude Code و Cursor. با CLIِ skills نصبش کنید:\n\n```bash\nnpx skills add b-on-g/mol_skill --all -g\n```\n\nسپس با زبان خودتان بپرسید («ساختار ماژول MAM»، «CRUD و نقش‌ها در Giper Baza») و دستیار پیش از پاسخ، مرجعِ مناسب را باز می‌کند، پس کدی که می‌نویسد از قراردادهای همین مستندات پیروی می‌کند. [سورس](https://github.com/b-on-g/mol_skill) روی GitHub است و اگر ترجیح می‌دهید خودتان بخوانید، فایل‌های مرجع به‌تنهایی هم کاملاً خوانا هستند.\n\n## پیوندها\n\n- اسکافولدر — [create-view-tree-lsp](https://github.com/Dev-cmyser/create-view-tree-lsp)\n- زبان‌سرور — [view-tree-lsp](https://github.com/Dev-cmyser/view.tree)\n- افزونهٔ Zed — [zed-view.tree-mol-support](https://github.com/Dev-cmyser/zed-view.tree-mol-support)\n- مهارتِ LLM — [mol_skill](https://github.com/b-on-g/mol_skill)\n"},bn:{title:"টুলিং",summary:"$mol যেকোনো এডিটরে কাজ করে, তবে একটি ছোট টুলসেট .view.tree এবং টাইপ করা স্টাইলকে অনেক বেশি আরামদায়ক করে তোলে: একটি প্রজেক্ট স্ক্যাফোল্ডার, একটি ল্যাঙ্গুয়েজ…",md:"# টুলিং\n\n$mol যেকোনো এডিটরে কাজ করে, তবে একটি ছোট টুলসেট `.view.tree` এবং টাইপ করা স্টাইলকে অনেক বেশি আরামদায়ক করে তোলে: একটি প্রজেক্ট স্ক্যাফোল্ডার, একটি ল্যাঙ্গুয়েজ সার্ভার, Zed ও VS Code-এর জন্য এডিটর ইন্টিগ্রেশন, এবং একটি স্কিল যা LLM সহকারীদের এই ফ্রেমওয়ার্ক শেখায়।\n\n## একটি প্রজেক্ট স্ক্যাফোল্ড করা\n\n`create-view-tree-lsp` একটি রেডি-টু-রান $mol মডিউল তৈরি করে, যাতে আপনাকে বয়লারপ্লেট হাতে জোড়া লাগাতে না হয়:\n\n```bash\nnpx create-view-tree-lsp bog/myapp\n```\n\nআর্গুমেন্টটি হলো মডিউল পাথ (`namespace/name`, অথবা সমতুল্য `bog_myapp`)। এটি একটি কার্যকর অ্যাপের জন্য `view.tree`, `view.ts`, `view.css.ts` এবং `index.html` লেখে, সেই সঙ্গে এটি ডিপ্লয় করার GitHub Actions। ডিফল্টভাবে এটি একটি local-first স্টোর **Giper Baza**, একটি **Docker** সেটআপ এবং একটি **Tauri** ডেস্কটপ শেলও অন্তর্ভুক্ত করে। এদের যেকোনোটি একটি ফ্ল্যাগ দিয়ে বন্ধ করুন:\n\n```bash\nnpx create-view-tree-lsp bog/myapp --no-baza --no-docker --no-tauri\n```\n\nকয়েকটি অংশ বরং অপ্ট-ইন:\n\n- `--backend` একটি `$mol_server` REST ব্যাকএন্ড যোগ করে, যাতে থাকে `node:sqlite` স্টোরেজ এবং একটি শেয়ার করা TypeScript আইটেম টাইপ\n- `--prerender` এবং `--seo` সার্চ-ইঞ্জিন দৃশ্যমানতা যোগ করে, যা নিচে [ধারাবাহিক ইন্টিগ্রেশন](#!section=docs/page=tooling/Docs.Body=%E0%A6%A7%E0%A6%BE%E0%A6%B0%E0%A6%BE%E0%A6%AC%E0%A6%BE%E0%A6%B9%E0%A6%BF%E0%A6%95%20%E0%A6%87%E0%A6%A8%E0%A7%8D%E0%A6%9F%E0%A6%BF%E0%A6%97%E0%A7%8D%E0%A6%B0%E0%A7%87%E0%A6%B6%E0%A6%A8)-এ বর্ণিত\n\nস্ক্যাফোল্ডারটি ল্যাঙ্গুয়েজ সার্ভারের CLI-এর ওপর একটি পাতলা র‍্যাপার, তাই `npx view-tree-lsp create bog/myapp` সরাসরি একই কাজ করে।\n\n## ধারাবাহিক ইন্টিগ্রেশন\n\nস্ক্যাফোল্ডার GitHub Actions-কে `.github/workflows/`-এ লেখে, তাই একটি নতুন প্রজেক্ট বাড়তি সেটআপ ছাড়াই ডিপ্লয় ও রিলিজ হয়।\n\n`deploy.yml` প্রতিটি push-এ চলে। এটি `hyoo-ru/mam_build` দিয়ে অ্যাপ বিল্ড করে, `main` থেকে `app/-` **GitHub Pages**-এ প্রকাশ করে, এবং প্রতিটি `feature/*` ব্রাঞ্চকে নিজস্ব প্রিভিউ ফোল্ডার দেয় — ব্রাঞ্চ মুছে ফেলা হলে যা স্বয়ংক্রিয়ভাবে সরে যায়।\n\n### SEO\n\nদুটি স্বাধীন অপশন, দুটিই `v*` ট্যাগে ট্রিগার হয়:\n\n- **`--prerender`** আপনার তালিকাভুক্ত স্ক্রিনগুলো (যেমন `home`) `b-on-g/mol-prerender-action` দিয়ে স্ট্যাটিক HTML-এ রেন্ডার করে, যাতে ক্রলার ও লিংক প্রিভিউ আসল কন্টেন্ট দেখতে পায়।\n- **`--seo`** `$bog_seo` রানটাইম যোগ করে: একটি pathname রাউটার, যাতে থাকে সাইটম্যাপ, `robots.txt`, `llms.txt` এবং প্রতি-পৃষ্ঠায় মেটা ইনজেকশন। জবটি বিল্ড পরিবেশন করে, ক্যানোনিকাল প্রি-রেন্ডার করা HTML ডাম্প করে, এবং তা ডিপ্লয়ে ভাঁজ করে ফিরিয়ে দেয়।\n\nযখন গুটিকয় পাবলিক স্ক্রিনকে ক্রলযোগ্য হতে হবে তখন prerender action বেছে নিন, আর যখন সাইটম্যাপ ও প্রতি-পৃষ্ঠা মেটাডেটা দরকার তখন `$bog_seo`।\n\n### Tauri ডেস্কটপ\n\nTauri অপশন সহ, `tauri.yml` পুনর্ব্যবহারযোগ্য ওয়ার্কফ্লো `b-on-g/tauri-mol-workflow-template`-এর মাধ্যমে `v*` ট্যাগে (বা চাহিদামতো) ডেস্কটপ বাইনারি বিল্ড করে, ঠিক সেই মডিউল থেকে যা আপনি ওয়েবে ডিপ্লয় করেন।\n\n## ল্যাঙ্গুয়েজ সার্ভার\n\n`view-tree-lsp` হলো `view.tree` ফরম্যাটের জন্য একটি Language Server Protocol বাস্তবায়ন। এটি npx দিয়ে চাহিদামতো চালান, কোনো গ্লোবাল ইনস্টল দরকার নেই:\n\n```bash\nnpx view-tree-lsp@latest\n```\n\nএটি আপনার ওয়ার্কস্পেস স্ক্যান করে এবং LSP-সক্ষম যেকোনো এডিটরকে দেয়:\n\n- `$mol_*` কম্পোনেন্ট এবং আপনার নিজের প্রজেক্টে সংজ্ঞায়িত কম্পোনেন্ট ও প্রপার্টির জন্য কমপ্লিশন\n- কার্সারের নিচের কম্পোনেন্টের মধ্যে সীমাবদ্ধ প্রপার্টি পরামর্শ\n- নেভিগেশনের জন্য কম্পোনেন্ট ঘোষণার একটি আউটলাইন\n- ফাইল বদলানোর সঙ্গে সঙ্গে লাইভ আপডেট\n\nযেহেতু এটি LSP বলে, আপনি যেকোনো এডিটরের ল্যাঙ্গুয়েজ-ক্লায়েন্টকে `npx view-tree-lsp`-এ নির্দেশ করতে পারেন। নিচের দুটি ইন্টিগ্রেশন এটি আপনার জন্য জুড়ে দেয়।\n\n## Zed\n\n**View Tree Syntax Highlighting for $mol** এক্সটেনশনটি tree-sitter গ্রামার, ল্যাঙ্গুয়েজ সার্ভার এবং একটি ঐচ্ছিক আইকন থিম একসাথে বান্ডল করে। Zed-এর এক্সটেনশন ম্যানেজার থেকে এটি ইনস্টল করুন:\n\n1. কমান্ড প্যালেট খুলুন (`Cmd+Shift+P` / `Ctrl+Shift+P`)\n2. **zed: extensions** চালান\n3. `view.tree` বা `mol` সার্চ করে এক্সটেনশনটি ইনস্টল করুন\n\nআপনি `.view.tree` ফাইলের জন্য সিনট্যাক্স হাইলাইটিং, কমপ্লিশন এবং আউটলাইন পান। [সোর্স](https://github.com/Dev-cmyser/zed-view.tree-mol-support) এবং একটি মানানসই [আইকন থিম](https://github.com/Dev-cmyser/zed-viewtree-icon-theme) GitHub-এ আছে।\n\n## VS Code\n\nMAM ওয়ার্কস্পেস ইতিমধ্যে নিজের VS Code সেটআপ বহন করে। আপনি ক্লোন করা `mam` ফোল্ডার খুললে, VS Code `.vscode/extensions.json` থেকে প্রস্তাবিত এক্সটেনশন ইনস্টল করার প্রস্তাব দেয়:\n\n- `nin-jin.vscode-language-tree` — `view.tree` ল্যাঙ্গুয়েজ সমর্থন\n- `stan-donarise.view-tree-language` — সিনট্যাক্স ও গ্রামার\n- `editorconfig.editorconfig` — সামঞ্জস্যপূর্ণ ফরম্যাটিং\n\nএকই ফোল্ডার `mol.code-snippets` সরবরাহ করে, তাই কম্পোনেন্ট ও বাইন্ডিং স্নিপেট কোনো বাড়তি সেটআপ ছাড়াই পাওয়া যায়। প্রম্পট গ্রহণ করুন, আর `.view.tree` ও TypeScript ফাইল শুরু থেকেই হাইলাইট হয়।\n\n## LLM স্কিল\n\n`mol_skill` একটি AI সহকারীকে $mol লেখার জন্য দরকারি প্রেক্ষাপট দেয়: `view.tree` সিনট্যাক্স, MAM মডিউলের গঠন, `view.ts` ও `view.css.ts`-এর ভাগাভাগি, Giper Baza দিয়ে ডেটা মডেলিং, এবং Tauri দিয়ে প্যাকেজিং। এটি সাধারণ একটি স্কিল ফোল্ডার, একটি `SKILL.md` ওয়ার্কফ্লো ও কয়েকটি রেফারেন্স গাইড, তাই skills ফরম্যাট পড়তে পারে এমন যেকোনো LLM টুল এটি লোড করতে পারে, Claude Code ও Cursor সহ। skills CLI দিয়ে ইনস্টল করুন:\n\n```bash\nnpx skills add b-on-g/mol_skill --all -g\n```\n\nএরপর নিজের ভাষায় জিজ্ঞেস করুন (“MAM মডিউলের গঠন”, “Giper Baza-তে CRUD ও রোল”), সহকারী উত্তর দেওয়ার আগে মানানসই রেফারেন্সটি খুলে নেবে, ফলে লেখা কোড এই ডকুমেন্টেশনের রীতি মেনে চলবে। [সোর্স](https://github.com/b-on-g/mol_skill) GitHub-এ আছে, আর নিজে পড়তে চাইলে রেফারেন্স ফাইলগুলো আলাদাভাবেও দিব্যি পড়া যায়।\n\n## লিংক\n\n- স্ক্যাফোল্ডার — [create-view-tree-lsp](https://github.com/Dev-cmyser/create-view-tree-lsp)\n- ল্যাঙ্গুয়েজ সার্ভার — [view-tree-lsp](https://github.com/Dev-cmyser/view.tree)\n- Zed এক্সটেনশন — [zed-view.tree-mol-support](https://github.com/Dev-cmyser/zed-view.tree-mol-support)\n- LLM স্কিল — [mol_skill](https://github.com/b-on-g/mol_skill)\n"}}},installation:{slug:"installation",title:"Installation",summary:"The MAM workspace, module layout, dev server, and production build.",file:"content/en/docs/installation.md",md:`# Installation
 
 [Getting Started](#!section=docs/page=getting-started) walks you through your first app step by step. This page is the reference: how a $mol project is laid out and how the build works.
@@ -5476,6 +9976,8 @@ const dayjs = require( 'dayjs' ) as typeof import( 'dayjs' )
 
 A view is a component: a node in the UI tree with its own layout, behaviour, and styles. This chapter covers how views are declared, wired to logic, composed, and reused.
 
+> Coming to \`view.tree\` cold: [From TypeScript to view.tree](#!section=docs/page=from-ts-to-view-tree) builds one component twice, once as a hand-written class and once as a tree, and shows the code the tree compiles to. Read it first if the syntax below feels like a new language rather than shorthand.
+
 ## Three files, one component
 
 A component \`$my_card\` lives in \`my/card/\` and is described by up to three files, each with a clear job:
@@ -5485,6 +9987,8 @@ A component \`$my_card\` lives in \`my/card/\` and is described by up to three f
 - \`card.view.css.ts\` — how it looks: typed styles checked by the compiler.
 
 Keeping structure, behaviour, and style apart is deliberate — each file stays small and readable, and the layout is never tangled with logic.
+
+None of the three is mandatory on its own. Drop \`card.view.tree\` and write the class directly in \`namespace $\`: the structure becomes ordinary methods and the component still works. The rest of this chapter uses the tree, because that is what the structure looks like once the plumbing is generated for you.
 
 ## The view.tree language
 
@@ -5605,6 +10109,8 @@ Views describe structure; what makes them come alive is reactive data. Continue 
 
 视图就是一个组件：UI 树中的一个节点，拥有自己的布局、行为和样式。本章介绍视图如何声明、如何与逻辑连接、如何组合与复用。
 
+> 第一次接触 \`view.tree\`：[从 TypeScript 到 view.tree](#!section=docs/page=from-ts-to-view-tree) 把同一个组件写两遍——一遍手写类，一遍树——并展示树最终编译成的代码。如果下面的语法读起来像一门新语言而不是一种简写，先看那一页。
+
 ## 三个文件，一个组件
 
 组件 \`$my_card\` 位于 \`my/card/\`，由最多三个文件描述，每个文件职责清晰：
@@ -5614,6 +10120,8 @@ Views describe structure; what makes them come alive is reactive data. Continue 
 - \`card.view.css.ts\` —— 它长什么样：由编译器检查的带类型样式。
 
 把结构、行为和样式分开是刻意为之——每个文件都保持短小易读，布局永远不会和逻辑纠缠在一起。
+
+这三个文件没有哪一个是单独必需的。去掉 \`card.view.tree\`，把类直接写进 \`namespace $\`：结构变成普通方法，组件照样能用。本章接下来用树，因为管道由别人替你生成之后，结构看起来就是这个样子。
 
 ## view.tree 语言
 
@@ -5734,6 +10242,8 @@ $my_users_list $mol_list
 
 視圖就是一個元件：UI 樹中的一個節點，擁有自己的版面、行為和樣式。本章介紹視圖如何宣告、如何與邏輯連接、如何組合與重用。
 
+> 第一次接觸 \`view.tree\`：[從 TypeScript 到 view.tree](#!section=docs/page=from-ts-to-view-tree) 把同一個元件寫兩遍——一遍手寫類別，一遍樹——並展示樹最終編譯成的程式碼。如果下面的語法讀起來像一門新語言而不是一種簡寫，先看那一頁。
+
 ## 三個檔案，一個元件
 
 元件 \`$my_card\` 位於 \`my/card/\`，由最多三個檔案描述，每個檔案職責清晰：
@@ -5743,6 +10253,8 @@ $my_users_list $mol_list
 - \`card.view.css.ts\` —— 它長甚麼樣：由編譯器檢查的帶型別樣式。
 
 把結構、行為和樣式分開是刻意為之——每個檔案都保持短小易讀，版面永遠不會和邏輯糾纏在一起。
+
+這三個檔案沒有哪一個是單獨必需的。拿掉 \`card.view.tree\`，把類別直接寫進 \`namespace $\`：結構變成普通方法，元件照樣能用。本章接下來用樹，因為管線由別人替你產生之後，結構看起來就是這個樣子。
 
 ## view.tree 語言
 
@@ -5863,6 +10375,8 @@ $my_users_list $mol_list
 
 ビューはコンポーネントです。UI ツリー内のノードであり、独自のレイアウト、振る舞い、スタイルを持ちます。この章では、ビューをどう宣言し、ロジックへどう配線し、どう組み合わせて再利用するかを扱います。
 
+> \`view.tree\` に初めて触れるなら、[TypeScript から view.tree へ](#!section=docs/page=from-ts-to-view-tree)が同じコンポーネントを手書きのクラスとツリーの二通りで組み立て、ツリーがコンパイルされる先のコードまで見せます。以下の構文が省略記法ではなく新しい言語に見えるなら、先にそちらを読んでください。
+
 ## 3 つのファイル、1 つのコンポーネント
 
 コンポーネント \`$my_card\` は \`my/card/\` にあり、最大 3 つのファイルで記述されます。それぞれに明確な役割があります。
@@ -5872,6 +10386,8 @@ $my_users_list $mol_list
 - \`card.view.css.ts\` — どう見えるか。コンパイラが検査する型付きスタイル。
 
 構造・振る舞い・スタイルを分けるのは意図的です。各ファイルは小さく読みやすいまま保たれ、レイアウトがロジックと絡み合うことはありません。
+
+三つのうち単独で必須のものはありません。\`card.view.tree\` を省いてクラスを \`namespace $\` に直接書けば、構造はふつうのメソッドになり、コンポーネントはそのまま動きます。この章の残りがツリーを使うのは、配管を生成してもらったときの構造がまさにその見た目だからです。
 
 ## view.tree 言語
 
@@ -5992,6 +10508,8 @@ $my_users_list $mol_list
 
 뷰는 컴포넌트입니다. UI 트리의 노드로서 자체 레이아웃, 동작, 스타일을 가집니다. 이 장에서는 뷰를 어떻게 선언하고, 로직에 연결하고, 조합하고, 재사용하는지 다룹니다.
 
+> \`view.tree\`를 처음 접한다면, [TypeScript에서 view.tree로](#!section=docs/page=from-ts-to-view-tree)가 같은 컴포넌트를 손으로 쓴 클래스와 트리, 두 가지로 만들어 보이고 트리가 컴파일되는 코드까지 보여줍니다. 아래 문법이 줄임 표기가 아니라 새로운 언어처럼 느껴진다면 그 페이지를 먼저 읽으세요.
+
 ## 세 개의 파일, 하나의 컴포넌트
 
 컴포넌트 \`$my_card\` 는 \`my/card/\` 에 있으며 최대 세 개의 파일로 기술되고, 각 파일은 명확한 역할을 가집니다.
@@ -6001,6 +10519,8 @@ $my_users_list $mol_list
 - \`card.view.css.ts\` — 어떻게 보이는지: 컴파일러가 검사하는 타입 붙은 스타일.
 
 구조, 동작, 스타일을 분리한 것은 의도적입니다. 각 파일은 작고 읽기 쉬운 상태로 유지되며, 레이아웃이 로직과 뒤엉키지 않습니다.
+
+셋 중 그 자체로 필수인 것은 없습니다. \`card.view.tree\`를 빼고 클래스를 \`namespace $\`에 바로 쓰면 구조는 평범한 메서드가 되고 컴포넌트는 그대로 동작합니다. 이 장의 나머지가 트리를 쓰는 이유는, 배관을 대신 만들어 줬을 때 구조가 바로 그런 모습이기 때문입니다.
 
 ## view.tree 언어
 
@@ -6121,6 +10641,8 @@ $my_users_list $mol_list
 
 Une vue est un composant : un nœud de l'arbre d'interface avec sa propre mise en page, son comportement et ses styles. Ce chapitre explique comment les vues sont déclarées, reliées à la logique, composées et réutilisées.
 
+> Vous découvrez \`view.tree\` : [De TypeScript à view.tree](#!section=docs/page=from-ts-to-view-tree) construit un même composant deux fois, une fois en classe écrite à la main et une fois en arbre, et montre le code vers lequel l'arbre compile. Lisez-la d'abord si la syntaxe ci-dessous ressemble à un nouveau langage plutôt qu'à un raccourci.
+
 ## Trois fichiers, un composant
 
 Un composant \`$my_card\` vit dans \`my/card/\` et est décrit par un maximum de trois fichiers, chacun avec un rôle clair :
@@ -6130,6 +10652,8 @@ Un composant \`$my_card\` vit dans \`my/card/\` et est décrit par un maximum de
 - \`card.view.css.ts\` — à quoi il ressemble : styles typés vérifiés par le compilateur.
 
 Séparer structure, comportement et style est délibéré — chaque fichier reste petit et lisible, et la mise en page n'est jamais mêlée à la logique.
+
+Aucun des trois n'est obligatoire à lui seul. Retirez \`card.view.tree\` et écrivez la classe directement dans \`namespace $\` : la structure devient des méthodes ordinaires et le composant fonctionne toujours. La suite de ce chapitre utilise l'arbre, parce que c'est à cela que ressemble la structure une fois la plomberie générée pour vous.
 
 ## Le langage view.tree
 
@@ -6250,6 +10774,8 @@ Les vues décrivent la structure ; ce qui les fait vivre, ce sont les données r
 
 Eine View ist eine Komponente: ein Knoten im UI-Baum mit eigenem Layout, Verhalten und Styles. Dieses Kapitel behandelt, wie Views deklariert, mit Logik verdrahtet, zusammengesetzt und wiederverwendet werden.
 
+> Du kommst ganz frisch zu \`view.tree\`: [Von TypeScript zu view.tree](#!section=docs/page=from-ts-to-view-tree) baut eine Komponente zweimal, einmal als handgeschriebene Klasse und einmal als Baum, und zeigt den Code, zu dem der Baum kompiliert. Lies das zuerst, wenn die Syntax unten wie eine neue Sprache wirkt und nicht wie eine Kurzschreibweise.
+
 ## Drei Dateien, eine Komponente
 
 Eine Komponente \`$my_card\` lebt in \`my/card/\` und wird durch bis zu drei Dateien beschrieben, jede mit einer klaren Aufgabe:
@@ -6259,6 +10785,8 @@ Eine Komponente \`$my_card\` lebt in \`my/card/\` und wird durch bis zu drei Dat
 - \`card.view.css.ts\` — wie sie aussieht: typisierte, vom Compiler geprüfte Styles.
 
 Struktur, Verhalten und Style getrennt zu halten ist Absicht — jede Datei bleibt klein und lesbar, und das Layout ist nie mit Logik verstrickt.
+
+Keine der drei ist für sich genommen Pflicht. Lass \`card.view.tree\` weg und schreib die Klasse direkt in \`namespace $\`: Die Struktur wird zu gewöhnlichen Methoden, und die Komponente funktioniert weiter. Der Rest dieses Kapitels benutzt den Baum, weil Struktur so aussieht, sobald die Klempnerei für dich erzeugt wird.
 
 ## Die view.tree-Sprache
 
@@ -6379,6 +10907,8 @@ Views beschreiben Struktur; was sie zum Leben erweckt, sind reaktive Daten. Weit
 
 Uma view é um componente: um nó na árvore de UI com seu próprio layout, comportamento e estilos. Este capítulo cobre como as views são declaradas, ligadas à lógica, compostas e reutilizadas.
 
+> Chegando ao \`view.tree\` do zero: [De TypeScript para view.tree](#!section=docs/page=from-ts-to-view-tree) constrói um mesmo componente duas vezes, uma como classe escrita à mão e outra como árvore, e mostra o código em que a árvore compila. Leia essa página primeiro se a sintaxe abaixo parecer uma linguagem nova em vez de uma abreviação.
+
 ## Três arquivos, um componente
 
 Um componente \`$my_card\` vive em \`my/card/\` e é descrito por até três arquivos, cada um com uma função clara:
@@ -6388,6 +10918,8 @@ Um componente \`$my_card\` vive em \`my/card/\` e é descrito por até três arq
 - \`card.view.css.ts\` — como ele se parece: estilos tipados verificados pelo compilador.
 
 Manter estrutura, comportamento e estilo separados é proposital — cada arquivo permanece pequeno e legível, e o layout nunca se emaranha com a lógica.
+
+Nenhum dos três é obrigatório por si só. Tire o \`card.view.tree\` e escreva a classe direto em \`namespace $\`: a estrutura vira métodos comuns e o componente continua funcionando. O resto do capítulo usa a árvore, porque é assim que a estrutura fica quando o encanamento é gerado para você.
 
 ## A linguagem view.tree
 
@@ -6508,6 +11040,8 @@ As views descrevem a estrutura; o que as faz ganhar vida são os dados reativos.
 
 Una vista è un componente: un nodo nell'albero dell'interfaccia con il proprio layout, comportamento e stili. Questo capitolo tratta come le viste vengono dichiarate, collegate alla logica, composte e riutilizzate.
 
+> Se \`view.tree\` ti è del tutto nuovo: [Da TypeScript a view.tree](#!section=docs/page=from-ts-to-view-tree) costruisce lo stesso componente due volte, una come classe scritta a mano e una come albero, e mostra il codice in cui l'albero compila. Leggila prima, se la sintassi qui sotto sembra una lingua nuova invece che un'abbreviazione.
+
 ## Tre file, un componente
 
 Un componente \`$my_card\` vive in \`my/card/\` ed è descritto da un massimo di tre file, ciascuno con un compito chiaro:
@@ -6517,6 +11051,8 @@ Un componente \`$my_card\` vive in \`my/card/\` ed è descritto da un massimo di
 - \`card.view.css.ts\` — come appare: stili tipizzati verificati dal compilatore.
 
 Tenere separati struttura, comportamento e stile è voluto — ogni file rimane piccolo e leggibile, e il layout non si aggroviglia mai con la logica.
+
+Nessuno dei tre è obbligatorio da solo. Togli \`card.view.tree\` e scrivi la classe direttamente in \`namespace $\`: la struttura diventa metodi ordinari e il componente continua a funzionare. Il resto del capitolo usa l'albero, perché è così che appare la struttura quando l'impalcatura viene generata per te.
 
 ## Il linguaggio view.tree
 
@@ -6637,6 +11173,8 @@ Le viste descrivono la struttura; ciò che le rende vive sono i dati reattivi. C
 
 Вью — это компонент: узел в дереве интерфейса со своей разметкой, поведением и стилями. Эта глава о том, как вью объявляются, связываются с логикой, композируются и переиспользуются.
 
+> Если \`view.tree\` для вас в новинку: [От TypeScript к view.tree](#!section=docs/page=from-ts-to-view-tree) собирает один компонент дважды — рукописным классом и деревом — и показывает код, в который дерево компилируется. Прочтите сначала её, если синтаксис ниже выглядит новым языком, а не сокращением.
+
 ## Три файла, один компонент
 
 Компонент \`$my_card\` живёт в \`my/card/\` и описывается максимум тремя файлами, у каждого — своя роль:
@@ -6646,6 +11184,8 @@ Le viste descrivono la struttura; ciò che le rende vive sono i dati reattivi. C
 - \`card.view.css.ts\` — как он выглядит: типизированные стили, проверяемые компилятором.
 
 Разделение структуры, поведения и стиля сделано намеренно — каждый файл остаётся маленьким и читаемым, а разметка никогда не переплетается с логикой.
+
+Обязательного среди трёх нет ни одного. Уберите \`card.view.tree\` и напишите класс прямо в \`namespace $\`: структура станет обычными методами, а компонент продолжит работать. Дальше в главе используется дерево, потому что так структура выглядит, когда обвязку генерируют за вас.
 
 ## Язык view.tree
 
@@ -6766,6 +11306,8 @@ $my_users_list $mol_list
 
 Вид — це компонент: вузол у дереві інтерфейсу з власною розміткою, поведінкою та стилями. Цей розділ описує, як види оголошуються, зв'язуються з логікою, компонуються та повторно використовуються.
 
+> Якщо \`view.tree\` для вас новина: [Від TypeScript до view.tree](#!section=docs/page=from-ts-to-view-tree) збирає один компонент двічі — рукописним класом і деревом — і показує код, у який дерево компілюється. Прочитайте спершу її, якщо синтаксис нижче виглядає новою мовою, а не скороченням.
+
 ## Три файли, один компонент
 
 Компонент \`$my_card\` живе в \`my/card/\` й описується щонайбільше трьома файлами, кожен із чіткою роллю:
@@ -6775,6 +11317,8 @@ $my_users_list $mol_list
 - \`card.view.css.ts\` — як він виглядає: типізовані стилі, які перевіряє компілятор.
 
 Тримати структуру, поведінку та стиль окремо — це навмисно: кожен файл лишається малим і читабельним, а розмітка ніколи не переплітається з логікою.
+
+Обов'язкового серед трьох немає жодного. Приберіть \`card.view.tree\` і напишіть клас просто в \`namespace $\`: структура стане звичайними методами, а компонент працюватиме далі. Далі в розділі використано дерево, бо саме так виглядає структура, коли обв'язку генерують за вас.
 
 ## Мова view.tree
 
@@ -6895,6 +11439,8 @@ $my_users_list $mol_list
 
 Widok to komponent: węzeł w drzewie interfejsu z własnym układem, zachowaniem i stylami. Ten rozdział omawia, jak widoki są deklarowane, łączone z logiką, komponowane i ponownie używane.
 
+> Jeśli \`view.tree\` widzisz pierwszy raz: [Z TypeScriptu do view.tree](#!section=docs/page=from-ts-to-view-tree) buduje jeden komponent dwa razy, raz jako ręcznie napisaną klasę i raz jako drzewo, i pokazuje kod, do którego drzewo się kompiluje. Przeczytaj to najpierw, jeśli składnia poniżej wygląda jak nowy język, a nie jak skrót.
+
 ## Trzy pliki, jeden komponent
 
 Komponent \`$my_card\` żyje w \`my/card/\` i jest opisany przez maksymalnie trzy pliki, każdy z jasnym zadaniem:
@@ -6904,6 +11450,8 @@ Komponent \`$my_card\` żyje w \`my/card/\` i jest opisany przez maksymalnie trz
 - \`card.view.css.ts\` — jak wygląda: typowane style sprawdzane przez kompilator.
 
 Trzymanie struktury, zachowania i stylu osobno jest zamierzone — każdy plik pozostaje mały i czytelny, a układ nigdy nie splata się z logiką.
+
+Żaden z tych trzech nie jest sam w sobie obowiązkowy. Usuń \`card.view.tree\` i napisz klasę wprost w \`namespace $\`: struktura staje się zwykłymi metodami, a komponent nadal działa. Reszta rozdziału używa drzewa, bo tak wygląda struktura, gdy hydraulika jest generowana za ciebie.
 
 ## Język view.tree
 
@@ -7024,6 +11572,8 @@ Widoki opisują strukturę; tym, co je ożywia, są dane reaktywne. Przejdź do 
 
 Pohled je komponenta: uzel ve stromu UI s vlastním rozvržením, chováním a styly. Tato kapitola popisuje, jak se pohledy deklarují, propojují s logikou, skládají a znovu používají.
 
+> Přicházíte k \`view.tree\` úplně poprvé: [Z TypeScriptu do view.tree](#!section=docs/page=from-ts-to-view-tree) staví jednu komponentu dvakrát, jednou jako ručně psanou třídu a jednou jako strom, a ukazuje kód, do kterého se strom překládá. Přečtěte si to nejdřív, pokud vám syntaxe níže připadá jako nový jazyk, a ne jako zkratka.
+
 ## Tři soubory, jedna komponenta
 
 Komponenta \`$my_card\` žije v \`my/card/\` a je popsána až třemi soubory, každý s jasným úkolem:
@@ -7033,6 +11583,8 @@ Komponenta \`$my_card\` žije v \`my/card/\` a je popsána až třemi soubory, k
 - \`card.view.css.ts\` — jak vypadá: typované styly kontrolované překladačem.
 
 Oddělení struktury, chování a stylu je záměrné — každý soubor zůstává malý a čitelný a rozvržení se nikdy neproplétá s logikou.
+
+Povinný sám o sobě není ani jeden ze tří. Vynechte \`card.view.tree\` a napište třídu rovnou do \`namespace $\`: struktura se stane obyčejnými metodami a komponenta bude dál fungovat. Zbytek kapitoly používá strom, protože takhle struktura vypadá, když se instalatérská práce vygeneruje za vás.
 
 ## Jazyk view.tree
 
@@ -7153,6 +11705,8 @@ Pohledy popisují strukturu; tím, co je oživuje, jsou reaktivní data. Pokrač
 
 نما یک کامپوننت است: گره‌ای در درخت رابط کاربری با چیدمان، رفتار و استایل‌های خاص خود. این فصل به این می‌پردازد که نماها چگونه تعریف، به منطق متصل، ترکیب و بازاستفاده می‌شوند.
 
+> اگر \`view.tree\` برایتان تازه است: [از تایپ‌اسکریپت به view.tree](#!section=docs/page=from-ts-to-view-tree) یک مؤلفه را دو بار می‌سازد — یک بار به‌صورت کلاسِ دست‌نویس و یک بار به‌صورت درخت — و کدی را نشان می‌دهد که درخت به آن کامپایل می‌شود. اگر نحوِ زیر به‌جای یک کوته‌نوشت، زبانی تازه به نظر می‌رسد، اول آن صفحه را بخوانید.
+
 ## سه فایل، یک کامپوننت
 
 کامپوننت \`$my_card\` در \`my/card/\` قرار دارد و با حداکثر سه فایل توصیف می‌شود که هرکدام وظیفه‌ای روشن دارند:
@@ -7162,6 +11716,8 @@ Pohledy popisují strukturu; tím, co je oživuje, jsou reaktivní data. Pokrač
 - \`card.view.css.ts\` — چه ظاهری دارد: استایل‌های نوع‌دار که توسط کامپایلر بررسی می‌شوند.
 
 جدا نگه‌داشتن ساختار، رفتار و استایل عمدی است — هر فایل کوچک و خوانا می‌ماند و چیدمان هرگز با منطق درهم‌تنیده نمی‌شود.
+
+هیچ‌کدام از این سه به‌تنهایی اجباری نیست. \`card.view.tree\` را حذف کنید و کلاس را مستقیم در \`namespace $\` بنویسید: ساختار به متدهای معمولی تبدیل می‌شود و مؤلفه همچنان کار می‌کند. بقیهٔ این فصل از درخت استفاده می‌کند، چون ساختار وقتی لوله‌کشی‌اش برایتان تولید شود همین شکلی است.
 
 ## زبان view.tree
 
@@ -7282,6 +11838,8 @@ $my_users_list $mol_list
 
 ভিউ হলো একটি কম্পোনেন্ট: UI ট্রি-এর একটি নোড, যার নিজস্ব লেআউট, আচরণ ও স্টাইল থাকে। এই অধ্যায়ে দেখানো হয়েছে ভিউ কীভাবে ঘোষণা করা হয়, লজিকের সঙ্গে যুক্ত করা হয়, গঠন করা হয় ও পুনর্ব্যবহার করা হয়।
 
+> \`view.tree\` একেবারে নতুন লাগছে? [TypeScript থেকে view.tree](#!section=docs/page=from-ts-to-view-tree) একই কম্পোনেন্ট দুবার বানায় — একবার হাতে লেখা ক্লাস হিসেবে, একবার ট্রি হিসেবে — আর ট্রি যে কোডে কম্পাইল হয় তা দেখায়। নিচের সিনট্যাক্স যদি সংক্ষেপ নয়, নতুন কোনো ভাষা মনে হয়, তবে আগে ওটি পড়ুন।
+
 ## তিনটি ফাইল, একটি কম্পোনেন্ট
 
 একটি কম্পোনেন্ট \`$my_card\` থাকে \`my/card/\`-এ এবং সর্বোচ্চ তিনটি ফাইল দিয়ে বর্ণিত হয়, প্রতিটির একটি স্পষ্ট কাজ আছে:
@@ -7291,6 +11849,8 @@ $my_users_list $mol_list
 - \`card.view.css.ts\` — এটি দেখতে কেমন: কম্পাইলার-যাচাইকৃত টাইপড স্টাইল।
 
 গঠন, আচরণ ও স্টাইল আলাদা রাখা ইচ্ছাকৃত — প্রতিটি ফাইল ছোট ও পঠনযোগ্য থাকে, আর লেআউট কখনো লজিকের সঙ্গে জড়িয়ে যায় না।
+
+তিনটির কোনোটিই একা বাধ্যতামূলক নয়। \`card.view.tree\` বাদ দিয়ে ক্লাসটি সরাসরি \`namespace $\`-এ লিখুন: কাঠামো সাধারণ মেথডে পরিণত হবে আর কম্পোনেন্ট তবু কাজ করবে। এই অধ্যায়ের বাকিটা ট্রি ব্যবহার করে, কারণ নলপথটা আপনার হয়ে তৈরি হয়ে গেলে কাঠামো দেখতে এমনই লাগে।
 
 ## view.tree ভাষা
 
@@ -17567,7 +22127,7 @@ ${this.clone([])}`,t)}}s.$mol_tree2=e;class n extends e{constructor(){super("","
 			[] \\$mol_locale
 			[] \\text
 			(,) #key
-	`,"localized_string");function l(m,c){const{klass:d,members:_,addons:h}=m,{name:p,key:g,next:y}=this.$mol_view_tree2_prop_parts(c),f=()=>c.struct("()",[c.struct(g?"$mol_mem_key":"$mol_mem"),c.struct("(,)",[c.struct("()",[d.struct("$"),c.struct("[]",[d.data(d.type)]),c.struct("[]",[c.data("prototype")])]),c.data(p)])]),v=c.kids[0],w=v?.type==="<=>"||v?.type==="=";!w&&y&&h.push(f());const x=c.hack({"@":(b,z,S)=>{const k=S.chain?.join("_");return a.hack({"#key":j=>[b.data(`${d.type}_${p}${k?`_${k}`:""}`)]})},"<=":b=>[i.call(this,b,!1)],"<=>":b=>[i.call(this,b,!0)],"=>":b=>[],"^":(b,z,S)=>[b.struct("...",[b.kids[0]?.type?b.struct("()",[b.struct("this"),b.struct("[]",[b.data(n.call(this,b.kids[0]))]),r.call(this,b.kids[0])]):S.chain?b.struct("()",[b.struct("this"),b.struct("[]",[b.data("$")]),b.struct("[]",[b.data(v.type)]),b.struct("[]",[b.data("prototype")]),b.struct("[]",[b.data(S.chain[0])]),b.struct("[]",[b.data("call")]),b.struct("(,)",[b.struct("obj")]),...S.chain.slice(1).map(k=>b.struct("[]",[b.data(k)]))]):b.struct("()",[b.struct("super"),b.struct("[]",[b.data(p)]),b.struct("(,)")])])],"=":b=>[b.struct("()",[b.struct("this"),...b.hack({"":(z,S,k)=>[t.call(this,z,k.item_index++>0),r.call(this,z),...z.hack(S)]},{item_index:0})])],"":(b,z,S)=>{if(b.type[0]==="*")return[b.struct("{,}",b.kids.map(k=>{if(k.type==="^")return k.list([k]).hack(z,S)[0];const j=(k.type||k.value).replace(/\?\w*$/,"");return k.struct(":",[k.data(j),k.kids[0].type==="<=>"?k.struct("=>",[o.call(this,k),...k.hack(z)]):k.hack(z,{...S,chain:[...S.chain??[],j]})[0]])}).filter(this.$mol_guard_defined))];if(b.type[0]==="/")return[b.struct("[,]",b.hack(z,S))];if(b.type&&$mol_tree2_js_is_number(b.type))return[b];if($mol_view_tree2_class_match(b)){y||h.push(f());const k=[];for(const j of b.kids){if(j.type[0]==="/"||j.kids[0].type==="=>")continue;const q=n.call(this,j),U=[r.call(this,j),j.struct("()",j.hack(z,{chain:[j.type]}))];k.push(j.struct("=",[j.struct("()",[j.struct("obj"),j.struct("[]",[j.data(q)])]),j.struct("=>",U)]))}return[b.struct("const",[b.struct("obj"),b.struct("new",[b.struct("this"),b.struct("[]",[b.data("$")]),b.struct("[]",[b.data(b.type.replace(/<.+>/g,""))]),b.struct("(,)",b.select("/",null).hack(z))])]),...k,b.struct("obj")]}return[b]}});return _.push(c.struct(".",[c.data(p),o.call(this,c),c.struct("{;}",[...y&&!w?[c.struct("if",[c.struct("(!==)",[c.struct("next"),c.struct("undefined")]),c.struct("return",[c.struct("next")])])]:[],...x.slice(0,-1),c.struct("return",x.slice(-1))])])),m}function u(m){m=$mol_view_tree2_classes(m);const c=[];for(const d of m.kids){const _=d.kids[0],h=this.$mol_view_tree2_class_props(d),p=[],g=[],y={klass:d,addons:p,members:g};for(const f of h)try{l.call(this,y,f)}catch(v){v.message+=` at ${f.span}`,$mol_fail_hidden(v)}c.push(d.struct("=",[d.struct("()",[d.struct("$"),d.struct("[]",[d.data(d.type)])]),d.struct("class",[d.struct(d.type),_.struct("extends",[_.struct("()",[_.struct("$"),_.struct("[]",[_.data(_.type)])])]),d.struct("{}",g)])]),...p)}return m.list([m.struct(";",c)])}s.$mol_view_tree2_to_js=u})($||($={}));var $;(function(s){class e extends $mol_object2{static module(o){return $mol_wire_solid(),$mol_wire_sync(this).module_async(o)}static module_async(o){return import(o)}static script(o){return $mol_wire_solid(),$mol_wire_sync(this).script_async(o)}static script_async(o){const r=$mol_dom_context.document,t=r.createElement("script");return t.src=o,r.head.appendChild(t),new Promise((i,a)=>{t.onload=()=>i($mol_dom_context),t.onerror=()=>a(new Error(`Can not import ${o}`))})}static style(o){return $mol_wire_sync(this).style_async(o)}static style_async(o){const r=$mol_dom_context.document,t=r.createElement("link");return t.rel="stylesheet",t.href=o,r.head.appendChild(t),new Promise((i,a)=>{t.onload=()=>i(t.sheet),t.onerror=()=>a(new Error(`Can not import ${o}`))})}}__decorate([$mol_mem_key],e,"module",null),__decorate([$mol_mem_key],e,"script",null),__decorate([$mol_mem_key],e,"style",null),s.$mol_import=e})($||($={}));var $;(function(s){function e(n){let o="";function r(t,i,a){if(t.type==="indent"){a&&(o+=`
+	`,"localized_string");function l(m,c){const{klass:d,members:_,addons:h}=m,{name:p,key:g,next:y}=this.$mol_view_tree2_prop_parts(c),f=()=>c.struct("()",[c.struct(g?"$mol_mem_key":"$mol_mem"),c.struct("(,)",[c.struct("()",[d.struct("$"),c.struct("[]",[d.data(d.type)]),c.struct("[]",[c.data("prototype")])]),c.data(p)])]),v=c.kids[0],w=v?.type==="<=>"||v?.type==="=";!w&&y&&h.push(f());const x=c.hack({"@":(b,z,S)=>{const k=S.chain?.join("_");return a.hack({"#key":j=>[b.data(`${d.type}_${p}${k?`_${k}`:""}`)]})},"<=":b=>[i.call(this,b,!1)],"<=>":b=>[i.call(this,b,!0)],"=>":b=>[],"^":(b,z,S)=>[b.struct("...",[b.kids[0]?.type?b.struct("()",[b.struct("this"),b.struct("[]",[b.data(n.call(this,b.kids[0]))]),r.call(this,b.kids[0])]):S.chain?b.struct("()",[b.struct("this"),b.struct("[]",[b.data("$")]),b.struct("[]",[b.data(v.type)]),b.struct("[]",[b.data("prototype")]),b.struct("[]",[b.data(S.chain[0])]),b.struct("[]",[b.data("call")]),b.struct("(,)",[b.struct("obj")]),...S.chain.slice(1).map(k=>b.struct("[]",[b.data(k)]))]):b.struct("()",[b.struct("super"),b.struct("[]",[b.data(p)]),b.struct("(,)")])])],"=":b=>[b.struct("()",[b.struct("this"),...b.hack({"":(z,S,k)=>[t.call(this,z,k.item_index++>0),r.call(this,z),...z.hack(S)]},{item_index:0})])],"":(b,z,S)=>{if(b.type[0]==="*")return[b.struct("{,}",b.kids.map(k=>{if(k.type==="^")return k.list([k]).hack(z,S)[0];const j=(k.type||k.value).replace(/\?\w*$/,"");return k.struct(":",[k.data(j),k.kids[0].type==="<=>"?k.struct("=>",[o.call(this,k),...k.hack(z)]):k.hack(z,{...S,chain:[...S.chain??[],j]})[0]])}).filter(this.$mol_guard_defined))];if(b.type[0]==="/")return[b.struct("[,]",b.hack(z,S))];if(b.type&&$mol_tree2_js_is_number(b.type))return[b];if($mol_view_tree2_class_match(b)){y||h.push(f());const k=[];for(const j of b.kids){if(j.type[0]==="/"||j.kids[0].type==="=>")continue;const P=n.call(this,j),G=[r.call(this,j),j.struct("()",j.hack(z,{chain:[j.type]}))];k.push(j.struct("=",[j.struct("()",[j.struct("obj"),j.struct("[]",[j.data(P)])]),j.struct("=>",G)]))}return[b.struct("const",[b.struct("obj"),b.struct("new",[b.struct("this"),b.struct("[]",[b.data("$")]),b.struct("[]",[b.data(b.type.replace(/<.+>/g,""))]),b.struct("(,)",b.select("/",null).hack(z))])]),...k,b.struct("obj")]}return[b]}});return _.push(c.struct(".",[c.data(p),o.call(this,c),c.struct("{;}",[...y&&!w?[c.struct("if",[c.struct("(!==)",[c.struct("next"),c.struct("undefined")]),c.struct("return",[c.struct("next")])])]:[],...x.slice(0,-1),c.struct("return",x.slice(-1))])])),m}function u(m){m=$mol_view_tree2_classes(m);const c=[];for(const d of m.kids){const _=d.kids[0],h=this.$mol_view_tree2_class_props(d),p=[],g=[],y={klass:d,addons:p,members:g};for(const f of h)try{l.call(this,y,f)}catch(v){v.message+=` at ${f.span}`,$mol_fail_hidden(v)}c.push(d.struct("=",[d.struct("()",[d.struct("$"),d.struct("[]",[d.data(d.type)])]),d.struct("class",[d.struct(d.type),_.struct("extends",[_.struct("()",[_.struct("$"),_.struct("[]",[_.data(_.type)])])]),d.struct("{}",g)])]),...p)}return m.list([m.struct(";",c)])}s.$mol_view_tree2_to_js=u})($||($={}));var $;(function(s){class e extends $mol_object2{static module(o){return $mol_wire_solid(),$mol_wire_sync(this).module_async(o)}static module_async(o){return import(o)}static script(o){return $mol_wire_solid(),$mol_wire_sync(this).script_async(o)}static script_async(o){const r=$mol_dom_context.document,t=r.createElement("script");return t.src=o,r.head.appendChild(t),new Promise((i,a)=>{t.onload=()=>i($mol_dom_context),t.onerror=()=>a(new Error(`Can not import ${o}`))})}static style(o){return $mol_wire_sync(this).style_async(o)}static style_async(o){const r=$mol_dom_context.document,t=r.createElement("link");return t.rel="stylesheet",t.href=o,r.head.appendChild(t),new Promise((i,a)=>{t.onload=()=>i(t.sheet),t.onerror=()=>a(new Error(`Can not import ${o}`))})}}__decorate([$mol_mem_key],e,"module",null),__decorate([$mol_mem_key],e,"script",null),__decorate([$mol_mem_key],e,"style",null),s.$mol_import=e})($||($={}));var $;(function(s){function e(n){let o="";function r(t,i,a){if(t.type==="indent"){a&&(o+=`
 `);for(let l of t.kids)r(l,i+"	",!1);a&&(o+=i)}else if(t.type==="line"){a||(o+=i);for(let l of t.kids)r(l,i,!0);a||(o+=`
 `)}else a||(o+=i),o+=t.text(),a||(o+=`
 `)}for(let t of n.kids)r(t,"",!1);return o}s.$mol_tree2_text_to_string=e})($||($={}));var $;(function(s){const e="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";function n(o){const r=o<0?1:0;r&&(o=-o);let t=r|(o&15)<<1;o>>>=4;let i="";for(;o&&(t|=32,i+=e[t],!!o);)t=o&31,o>>>=5;return i+=e[t],i}s.$mol_vlq_encode=n})($||($={}));var $;(function(s){function e(n){let o=1,r,t=0,i=1,a="",l=[];const u=new Map,m=new Map;function c(p){if(u.has(p.uri))return u.get(p.uri);const g=u.size;return u.set(p.uri,g),m.set(p.uri,p.source),g}function d(){l.length&&(a+=l.join(",")+";",l=[],o=1,i=1)}function _(p,g,y){function f(){o+=g}if(y&&p.type==="indent"&&d(),r!==p.span||o===1){const v=c(p.span);l.push($mol_vlq_encode(o-i)+$mol_vlq_encode(v-t)+$mol_vlq_encode(p.span.row-(r?.row??1))+$mol_vlq_encode(p.span.col-(r?.col??1))),i=o,r=p.span,t=v}if(p.type==="indent"){for(let v of p.kids)_(v,g+1,!1);y&&d()}else if(p.type==="line"){y||f();for(let v of p.kids)_(v,g,!0);y||d()}else y||f(),o+=p.text().length,y||d()}for(let p of n.kids)_(p,0,!1);return d(),{version:3,sources:[...m.keys()],sourcesContent:[...m.values()],mappings:a}}s.$mol_tree2_text_to_sourcemap=e})($||($={}));var $;(function(s){function e(n,o="js"){return o==="css"?`
