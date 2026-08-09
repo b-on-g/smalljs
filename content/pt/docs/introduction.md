@@ -12,6 +12,8 @@ Um componente tem três arquivos:
 
 Essa separação é a ideia inteira: o layout permanece legível, a lógica permanece testável, os estilos permanecem seguros em tipos.
 
+Nenhum dos três é obrigatório por si só. A árvore é uma abreviação para uma estrutura que você também pode escrever à mão: [De TypeScript para view.tree](#!section=docs/page=from-ts-to-view-tree) constrói um mesmo componente das duas formas e mostra o código em que a árvore compila.
+
 ## Para quem é?
 
 - Você quer um aplicativo **pequeno** que continue pequeno à medida que cresce — o runtime é compacto e a renderização é virtualizada por padrão.

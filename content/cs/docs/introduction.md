@@ -12,6 +12,8 @@ Komponenta se skládá ze tří souborů:
 
 Toto oddělení je celá myšlenka: rozvržení zůstává čitelné, logika testovatelná a styly typově bezpečné.
 
+Povinný sám o sobě není ani jeden ze tří. Strom je zkratka pro strukturu, kterou lze napsat i ručně: [Z TypeScriptu do view.tree](#!section=docs/page=from-ts-to-view-tree) staví jednu komponentu oběma způsoby a ukazuje kód, do kterého se strom překládá.
+
 ## Pro koho je?
 
 - Chceš **malou** aplikaci, která zůstane malá i když roste — runtime je kompaktní a vykreslování je ve výchozím stavu virtualizované.

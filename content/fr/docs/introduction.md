@@ -12,6 +12,8 @@ Un composant se compose de trois fichiers :
 
 Cette séparation est toute l'idée : la mise en page reste lisible, la logique reste testable, les styles restent sûrs au niveau des types.
 
+Aucun des trois n'est obligatoire à lui seul. L'arbre est un raccourci pour une structure que vous pouvez aussi écrire à la main : [De TypeScript à view.tree](#!section=docs/page=from-ts-to-view-tree) construit un même composant des deux façons et montre le code vers lequel l'arbre compile.
+
 ## À qui s'adresse-t-il ?
 
 - Vous voulez une **petite** application qui le reste en grandissant — le runtime est compact et le rendu est virtualisé par défaut.

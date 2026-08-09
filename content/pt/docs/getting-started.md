@@ -2,6 +2,8 @@
 
 Esta página leva você de uma pasta vazia até um app $mol reativo e em execução. Deve levar cerca de quinze minutos. Cada trecho abaixo é código real e funcional — copie-o como está.
 
+Você vai escrever o componente em TypeScript comum. O $mol também tem um formato mais curto para descrever componentes, o `view.tree`, que você encontra na próxima página. Nada aqui precisa dele: um componente $mol é uma classe comum de qualquer jeito.
+
 ## O que você precisa
 
 - **Node.js 18+** e **git**. É toda a lista.
@@ -31,7 +33,7 @@ mkdir -p my/hello
 
 > **Uma regra para lembrar:** underscores em um nome de componente são separadores de pastas. `$my_hello` fica em `my/hello/`, `$my_hello_form` ficaria em `my/hello/form/`. Nomes de pastas de módulos nunca contêm underscore.
 
-Agora adicione três arquivos dentro de `my/hello/`.
+Agora adicione dois arquivos dentro de `my/hello/`.
 
 ### index.html — o ponto de entrada
 
@@ -51,40 +53,59 @@ Agora adicione três arquivos dentro de `my/hello/`.
 
 O atributo `mol_view_root="$my_hello"` monta seu componente quando a página carrega.
 
-### hello.view.tree — o layout
-
-```tree-no-run
-$my_hello $mol_page
-	title @ \Greeting
-	body /
-		<= Name $mol_string
-			hint @ \Enter your name
-			value? <=> name? \
-		<= Message $mol_view
-			sub / <= greeting \
-```
-
-Algumas coisas que vale a pena nomear.
-
-- `$mol_page` e `$mol_string` são componentes embutidos — uma casca de página e uma entrada de texto.
-- `<=` liga uma propriedade em um sentido; `<=>` liga nos dois sentidos. Então `value? <=> name?` mantém a entrada e seu estado `name` sincronizados.
-- `@` marca uma string localizável; `\` inicia uma string bruta.
-
-### hello.view.ts — o comportamento
+### hello.view.ts — o componente
 
 ```typescript
-namespace $.$$ {
-	export class $my_hello extends $.$my_hello {
+namespace $ {
+
+	export class $my_hello extends $mol_page {
+
+		title() {
+			return 'Greeting'
+		}
+
+		body() {
+			return [ this.Name(), this.Message() ]
+		}
+
 		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+
+		@ $mol_mem
+		name( next?: string ) {
+			return next ?? ''
+		}
+
+		@ $mol_mem
+		Message() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.greeting() ]
+			return obj
+		}
+
 		greeting() {
 			const name = this.name()
-			return name ? `Hello, ${name}!` : 'Please enter your name'
+			return name ? `Hello, ${ name }!` : 'Please enter your name'
 		}
+
 	}
+
 }
 ```
 
-`@ $mol_mem` torna `greeting` uma propriedade reativa e cacheada. Ela lê `name()`, então no momento em que `name` muda, `greeting` recalcula e a mensagem na tela é atualizada. Você nunca escreveu uma assinatura, um efeito ou uma chamada de re-renderização.
+Leia de cima para baixo:
+
+- `$my_hello` vive em `namespace $`, o namespace ambiente onde mora todo componente $mol. Ele estende `$mol_page`, uma casca de página embutida com título e corpo. `$mol_string`, mais abaixo, é a entrada de texto embutida.
+- `body()` devolve os filhos. Aqui um filho não é markup, é uma propriedade: `Name` e `Message` são métodos que você pode chamar, sobrescrever em uma subclasse ou alcançar pelo nome em uma folha de estilos.
+- `Name()` constrói o campo e o liga. Cada propriedade dele recebe uma **seta**, não um valor. O filho chama essa seta quando precisa do dado, então sempre lê o valor atual.
+- `name( next?: string )` é o estado. Chamado sem argumento, lê; com um argumento, escreve. É justamente entregar essa função inteira a `obj.value` que faz digitar no campo atualizar `name`.
+- `@ $mol_mem` guarda uma propriedade em cache por instância. Em `name` isso quer dizer que o valor fica guardado e que tudo que o leu se recalcula quando ele muda. Em `Name` e `Message` quer dizer um componente filho, construído uma vez, em vez de um novo a cada chamada.
+- `greeting()` lê `name()`. Essa leitura *é* a assinatura. Quando `name` muda, `greeting` se recalcula e o texto na tela acompanha, sem efeito a declarar, sem lista de dependências e sem chamada de re-renderização.
 
 ## 3. Executar
 
@@ -94,30 +115,38 @@ O servidor de desenvolvimento do passo 1 já está observando. Basta abrir:
 http://localhost:9080/my/hello/
 ```
 
-Digite seu nome — a saudação se atualiza conforme você digita. Isso é a reatividade do $mol: o estado flui para a view por conta própria.
+Digite seu nome e a saudação se atualiza conforme você digita. Isso é a reatividade do $mol: o estado flui para a view por conta própria.
 
 ## 4. Adicionar um segundo valor reativo
 
-A reatividade se compõe. Adicione um contador de comprimento que depende do mesmo `name`, sem nenhuma fiação extra.
+A reatividade se compõe. Adicione um contador de comprimento que lê o mesmo `name`, sem nenhuma fiação extra.
 
-Em `hello.view.tree`, adicione uma linha abaixo de `Message`:
+Coloque-o em `body()`:
 
-```tree
-		<= Counter $mol_view
-			sub / <= counter \
+```typescript
+		body() {
+			return [ this.Name(), this.Message(), this.Counter() ]
+		}
 ```
 
-Em `hello.view.ts`, adicione o método:
+e acrescente as duas propriedades por trás dele:
 
 ```typescript
 		@ $mol_mem
-		counter() {
-			return `${this.name().length} characters`
+		Counter() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.counter() ]
+			return obj
 		}
-}
+
+		counter() {
+			return `${ this.name().length } characters`
+		}
 ```
 
-Tanto `greeting` quanto `counter` leem `name`; ambos se atualizam juntos. Adicione um terceiro, adicione um décimo — o padrão não muda. É por isso que o código $mol permanece plano à medida que os recursos se acumulam.
+Tanto `greeting` quanto `counter` leem `name`, e ambos se atualizam juntos. Adicione um terceiro, adicione um décimo: a metade reativa nunca muda de forma.
+
+A outra metade muda. Três linhas de lógica chegaram com seis linhas de encanamento em volta — uma fábrica, um `new`, uma seta, um `return obj`. Multiplique isso por cada filho de uma tela de verdade e você tem a razão de existir do `view.tree`.
 
 ## 5. Verificar seu build
 
@@ -131,6 +160,6 @@ Um audit limpo significa nenhuma dependência não utilizada, nenhum problema de
 
 ## Você construiu um app $mol
 
-Você tem um componente reativo, ligação bidirecional e estado derivado — com três arquivos pequenos e zero configuração.
+Um componente reativo com ligação bidirecional e estado derivado, em um único arquivo, com zero configuração.
 
-Continue: o **[Guia](#!section=docs/page=installation)** cobre em profundidade instalação, views, estado, roteamento e dados — e transforma este Hello World em algo real.
+Agora pegue esse mesmo arquivo e veja-o encolher: **[De TypeScript para view.tree](#!section=docs/page=from-ts-to-view-tree)**.

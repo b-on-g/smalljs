@@ -12,6 +12,8 @@ Eine Komponente besteht aus drei Dateien:
 
 Diese Trennung ist die ganze Idee: Das Layout bleibt lesbar, die Logik bleibt testbar, die Styles bleiben typsicher.
 
+Keine der drei ist für sich genommen Pflicht. Der Baum ist eine Kurzschreibweise für Struktur, die du auch von Hand schreiben kannst: [Von TypeScript zu view.tree](#!section=docs/page=from-ts-to-view-tree) baut eine Komponente auf beide Arten und zeigt den Code, zu dem der Baum kompiliert.
+
 ## Für wen ist es?
 
 - Du willst eine **kleine** App, die klein bleibt, während sie wächst — die Runtime ist kompakt und das Rendering ist standardmäßig virtualisiert.

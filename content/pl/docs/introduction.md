@@ -12,6 +12,8 @@ Komponent składa się z trzech plików:
 
 Ten podział to cała idea: układ pozostaje czytelny, logika pozostaje testowalna, style pozostają bezpieczne typowo.
 
+Żaden z tych trzech nie jest sam w sobie obowiązkowy. Drzewo to skrót zapisu struktury, którą możesz napisać też ręcznie: [Z TypeScriptu do view.tree](#!section=docs/page=from-ts-to-view-tree) buduje jeden komponent na oba sposoby i pokazuje kod, do którego drzewo się kompiluje.
+
 ## Dla kogo jest?
 
 - Chcesz **małą** aplikację, która pozostaje mała w miarę rozwoju — runtime jest zwięzły, a renderowanie domyślnie zwirtualizowane.

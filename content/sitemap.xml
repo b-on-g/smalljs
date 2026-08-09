@@ -2,158 +2,162 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=introduction</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=getting-started</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
+	</url>
+	<url>
+		<loc>https://b-on-g.github.io/smalljs/section=docs/page=from-ts-to-view-tree</loc>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=tooling</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=installation</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=views</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=state</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=routing</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=rendering</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=data</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=data-schema</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=giper-baza</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=showcase</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=rosetta</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=cookbook</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=plugins</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=meta</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=offline</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=ghost</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=faq</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=team</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=releases</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=api-mol-button-major</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=api-mol-button-minor</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=api-mol-string</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=api-mol-number</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=api-mol-text</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=api-mol-paragraph</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=api-mol-list</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=api-mol-row</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=api-mol-link</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=api-mol-check</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=api-mol-switch</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=api-mol-select</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=api-mol-scroll</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=api-mol-page</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=docs/page=api-mol-pick</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=playground</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 	<url>
 		<loc>https://b-on-g.github.io/smalljs/section=course</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-08-09</lastmod>
 	</url>
 </urlset>

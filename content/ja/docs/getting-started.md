@@ -2,6 +2,8 @@
 
 このページは、空のフォルダーから動作するリアクティブな $mol アプリまでを案内します。所要時間はおよそ 15 分。以下のスニペットはすべて実際に動くコードです——そのままコピーしてください。
 
+コンポーネントはふつうの TypeScript で書きます。$mol にはコンポーネントを記述するもっと短い形式 `view.tree` もあり、それには次のページで出会います。ここでは必要ありません。どちらで書いても、$mol のコンポーネントはただのクラスです。
+
 ## 必要なもの
 
 - **Node.js 18+** と **git**。リストはこれで全部です。
@@ -31,7 +33,7 @@ mkdir -p my/hello
 
 > **覚えておくべき一つのルール：** コンポーネント名の中のアンダースコアはフォルダーの区切りです。`$my_hello` は `my/hello/` に、`$my_hello_form` なら `my/hello/form/` に置かれます。モジュールのフォルダー名にアンダースコアは決して含まれません。
 
-では `my/hello/` の中に 3 つのファイルを追加します。
+では `my/hello/` の中に 2 つのファイルを追加します。
 
 ### index.html — エントリーポイント
 
@@ -49,75 +51,102 @@ mkdir -p my/hello
 </html>
 ```
 
-`mol_view_root="$my_hello"` 属性が、ページ読み込み時にあなたのコンポーネントをマウントします。
+`mol_view_root="$my_hello"` 属性が、ページの読み込み時にコンポーネントをマウントします。
 
-### hello.view.tree — レイアウト
-
-```tree-no-run
-$my_hello $mol_page
-	title @ \Greeting
-	body /
-		<= Name $mol_string
-			hint @ \Enter your name
-			value? <=> name? \
-		<= Message $mol_view
-			sub / <= greeting \
-```
-
-名前を挙げておく価値のある点がいくつかあります。
-
-- `$mol_page` と `$mol_string` は組み込みコンポーネントです——ページの外枠とテキスト入力です。
-- `<=` はプロパティを一方向に、`<=>` は双方向に束縛します。つまり `value? <=> name?` は入力と `name` の状態を同期させ続けます。
-- `@` はローカライズ可能な文字列を示し、`\` は生の文字列を開始します。
-
-### hello.view.ts — 振る舞い
+### hello.view.ts — コンポーネント
 
 ```typescript
-namespace $.$$ {
-	export class $my_hello extends $.$my_hello {
+namespace $ {
+
+	export class $my_hello extends $mol_page {
+
+		title() {
+			return 'Greeting'
+		}
+
+		body() {
+			return [ this.Name(), this.Message() ]
+		}
+
 		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+
+		@ $mol_mem
+		name( next?: string ) {
+			return next ?? ''
+		}
+
+		@ $mol_mem
+		Message() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.greeting() ]
+			return obj
+		}
+
 		greeting() {
 			const name = this.name()
-			return name ? `Hello, ${name}!` : 'Please enter your name'
+			return name ? `Hello, ${ name }!` : 'Please enter your name'
 		}
+
 	}
+
 }
 ```
 
-`@ $mol_mem` は `greeting` をリアクティブでキャッシュされるプロパティにします。それは `name()` を読むので、`name` が変わった瞬間に `greeting` が再計算され、画面上のメッセージが更新されます。購読も、エフェクトも、再描画の呼び出しも、あなたは一度も書いていません。
+上から順に読んでみましょう。
+
+- `$my_hello` は `namespace $`、つまりすべての $mol コンポーネントが住む環境名前空間の中にあります。継承しているのは `$mol_page`、タイトルと本体を備えた組み込みのページ外枠です。下に出てくる `$mol_string` は組み込みのテキスト入力欄です。
+- `body()` は子を返します。ここでの子はマークアップではなくプロパティです。`Name` と `Message` は呼び出せるメソッドであり、サブクラスで上書きしたり、スタイルシートから名前で狙ったりできます。
+- `Name()` は入力欄を組み立てて配線します。そのプロパティに渡すのは値ではなく**アロー関数**です。子はデータが必要になった時点でそのアローを呼ぶので、いつでも最新の値を読みます。
+- `name( next?: string )` が状態です。引数なしで呼べば読み、引数付きで呼べば書きます。この関数まるごとを `obj.value` に渡しているからこそ、欄に入力すると `name` が更新されます。
+- `@ $mol_mem` はプロパティをインスタンスごとにキャッシュします。`name` に付ければ値が保持され、それを読んだものはすべて値が変わったときに再計算されます。`Name` と `Message` に付ければ、呼び出すたびに新しく作るのではなく、一度だけ作られた子コンポーネントが一つになります。
+- `greeting()` は `name()` を読みます。その読み取り*こそが*購読です。`name` が変われば `greeting` が再計算され、画面の文字がそれに続きます。宣言すべきエフェクトも、依存配列も、再描画の呼び出しもありません。
 
 ## 3. 実行する
 
-ステップ 1 の開発サーバーはすでに監視しています。次を開くだけです。
+ステップ 1 の開発サーバーはすでに監視中です。次を開くだけです。
 
 ```
 http://localhost:9080/my/hello/
 ```
 
-名前を入力してみてください——入力するそばから挨拶が更新されます。これが $mol のリアクティビティです。状態はひとりでにビューへ流れていきます。
+名前を入力すると、入力するそばから挨拶が更新されます。これが $mol のリアクティビティです。状態はひとりでにビューへ流れていきます。
 
 ## 4. 二つ目のリアクティブな値を足す
 
-リアクティビティは合成できます。追加の配線なしで、同じ `name` に依存する長さカウンターを足してみましょう。
+リアクティビティは合成できます。追加の配線なしで、同じ `name` を読む長さカウンターを足してみましょう。
 
-`hello.view.tree` の `Message` の下に一行加えます。
+まず `body()` に入れます。
 
-```tree
-		<= Counter $mol_view
-			sub / <= counter \
+```typescript
+		body() {
+			return [ this.Name(), this.Message(), this.Counter() ]
+		}
 ```
 
-`hello.view.ts` にメソッドを加えます。
+その裏側の 2 つのプロパティを加えます。
 
 ```typescript
 		@ $mol_mem
-		counter() {
-			return `${this.name().length} characters`
+		Counter() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.counter() ]
+			return obj
 		}
-}
+
+		counter() {
+			return `${ this.name().length } characters`
+		}
 ```
 
-`greeting` も `counter` も `name` を読みます。両方が一緒に更新されます。三つ目を足しても、十個目を足しても——パターンは変わりません。これこそ、機能が積み上がっても $mol のコードが平らなまま保たれる理由です。
+`greeting` も `counter` も `name` を読み、両方が一緒に更新されます。三つ目を足しても、十個目を足しても、リアクティブな側は形を変えません。
+
+もう一方は変えます。3 行のロジックが、周りに 6 行の配管を連れてきました——ファクトリ、`new`、アロー、`return obj`。これを実際の画面にある子の数だけ掛け算すれば、`view.tree` が存在する理由になります。
 
 ## 5. ビルドを確認する
 
@@ -131,6 +160,6 @@ http://localhost:9080/my/hello/-/web.audit.js
 
 ## $mol アプリを作れました
 
-あなたはリアクティブなコンポーネント、双方向束縛、そして導出された状態を手にしました——3 つの小さなファイルと、設定ゼロで。
+双方向束縛と導出状態を備えたリアクティブなコンポーネントが、1 つのファイルに、設定ゼロで。
 
-先へ進みましょう。**[ガイド](#!section=docs/page=installation)** はインストール、ビュー、状態、ルーティング、データを深く扱い——この Hello World を本物の何かに変えます。
+では、そのまったく同じファイルが縮んでいくところを見てください。**[TypeScript から view.tree へ](#!section=docs/page=from-ts-to-view-tree)**

@@ -12,6 +12,8 @@ A component has three files:
 
 That separation is the whole idea: layout stays readable, logic stays testable, styles stay type-safe.
 
+None of the three is required on its own. The tree is a shorthand for structure you can also write by hand: [From TypeScript to view.tree](#!section=docs/page=from-ts-to-view-tree) builds one component both ways and shows the code the tree compiles to.
+
 ## Who is it for?
 
 - You want a **small** app that stays small as it grows — the runtime is compact and rendering is virtualized by default.

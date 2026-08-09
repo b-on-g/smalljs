@@ -2,6 +2,8 @@
 
 A view is a component: a node in the UI tree with its own layout, behaviour, and styles. This chapter covers how views are declared, wired to logic, composed, and reused.
 
+> Coming to `view.tree` cold: [From TypeScript to view.tree](#!section=docs/page=from-ts-to-view-tree) builds one component twice, once as a hand-written class and once as a tree, and shows the code the tree compiles to. Read it first if the syntax below feels like a new language rather than shorthand.
+
 ## Three files, one component
 
 A component `$my_card` lives in `my/card/` and is described by up to three files, each with a clear job:
@@ -11,6 +13,8 @@ A component `$my_card` lives in `my/card/` and is described by up to three files
 - `card.view.css.ts` — how it looks: typed styles checked by the compiler.
 
 Keeping structure, behaviour, and style apart is deliberate — each file stays small and readable, and the layout is never tangled with logic.
+
+None of the three is mandatory on its own. Drop `card.view.tree` and write the class directly in `namespace $`: the structure becomes ordinary methods and the component still works. The rest of this chapter uses the tree, because that is what the structure looks like once the plumbing is generated for you.
 
 ## The view.tree language
 

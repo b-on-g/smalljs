@@ -2,6 +2,8 @@
 
 Diese Seite führt dich von einem leeren Ordner zu einer laufenden, reaktiven $mol-App. Es sollte etwa fünfzehn Minuten dauern. Jeder Ausschnitt unten ist echter, funktionierender Code — kopiere ihn unverändert.
 
+Du schreibst die Komponente in reinem TypeScript. $mol hat auch ein kürzeres Format für die Beschreibung von Komponenten, `view.tree`, und dem begegnest du auf der nächsten Seite. Hier braucht es das nicht: Eine $mol-Komponente ist so oder so eine gewöhnliche Klasse.
+
 ## Was du brauchst
 
 - **Node.js 18+** und **git**. Das ist die ganze Liste.
@@ -31,7 +33,7 @@ mkdir -p my/hello
 
 > **Eine Regel zum Merken:** Unterstriche in einem Komponentennamen sind Ordner-Trenner. `$my_hello` liegt in `my/hello/`, `$my_hello_form` läge in `my/hello/form/`. Modul-Ordnernamen enthalten niemals einen Unterstrich.
 
-Füge nun drei Dateien in `my/hello/` hinzu.
+Füge nun zwei Dateien in `my/hello/` hinzu.
 
 ### index.html — der Einstiegspunkt
 
@@ -51,40 +53,59 @@ Füge nun drei Dateien in `my/hello/` hinzu.
 
 Das Attribut `mol_view_root="$my_hello"` bindet deine Komponente beim Laden der Seite ein.
 
-### hello.view.tree — das Layout
-
-```tree-no-run
-$my_hello $mol_page
-	title @ \Greeting
-	body /
-		<= Name $mol_string
-			hint @ \Enter your name
-			value? <=> name? \
-		<= Message $mol_view
-			sub / <= greeting \
-```
-
-Ein paar Dinge, die es wert sind, benannt zu werden.
-
-- `$mol_page` und `$mol_string` sind eingebaute Komponenten — eine Seitenhülle und ein Texteingabefeld.
-- `<=` bindet eine Eigenschaft in eine Richtung; `<=>` bindet in beide Richtungen. So hält `value? <=> name?` die Eingabe und deinen `name`-Zustand synchron.
-- `@` markiert eine lokalisierbare Zeichenkette; `\` beginnt eine rohe Zeichenkette.
-
-### hello.view.ts — das Verhalten
+### hello.view.ts — die Komponente
 
 ```typescript
-namespace $.$$ {
-	export class $my_hello extends $.$my_hello {
+namespace $ {
+
+	export class $my_hello extends $mol_page {
+
+		title() {
+			return 'Greeting'
+		}
+
+		body() {
+			return [ this.Name(), this.Message() ]
+		}
+
 		@ $mol_mem
+		Name() {
+			const obj = new this.$.$mol_string
+			obj.hint = () => 'Enter your name'
+			obj.value = ( next?: string ) => this.name( next )
+			return obj
+		}
+
+		@ $mol_mem
+		name( next?: string ) {
+			return next ?? ''
+		}
+
+		@ $mol_mem
+		Message() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.greeting() ]
+			return obj
+		}
+
 		greeting() {
 			const name = this.name()
-			return name ? `Hello, ${name}!` : 'Please enter your name'
+			return name ? `Hello, ${ name }!` : 'Please enter your name'
 		}
+
 	}
+
 }
 ```
 
-`@ $mol_mem` macht `greeting` zu einer reaktiven, zwischengespeicherten Eigenschaft. Sie liest `name()`, sodass sich `greeting` in dem Moment neu berechnet, in dem sich `name` ändert, und die Nachricht auf dem Bildschirm aktualisiert wird. Du hast nie ein Abonnement, einen Effekt oder einen Re-Render-Aufruf geschrieben.
+Von oben nach unten gelesen:
+
+- `$my_hello` liegt in `namespace $`, dem umgebenden Namensraum, in dem jede $mol-Komponente wohnt. Sie erweitert `$mol_page`, eine eingebaute Seitenhülle mit Titel und Body. `$mol_string` weiter unten ist das eingebaute Texteingabefeld.
+- `body()` liefert die Kinder. Ein Kind ist hier keine Markup-Zeile, sondern eine Eigenschaft: `Name` und `Message` sind Methoden, die du aufrufen, in einer Unterklasse überschreiben oder im Stylesheet über ihren Namen ansprechen kannst.
+- `Name()` baut das Eingabefeld und verdrahtet es. Jede seiner Eigenschaften bekommt einen **Pfeil**, keinen Wert. Das Kind ruft diesen Pfeil auf, wenn es die Daten braucht, und liest so immer die aktuellen.
+- `name( next?: string )` ist der Zustand. Ohne Argument aufgerufen liest die Methode, mit Argument schreibt sie. Genau weil diese ganze Funktion an `obj.value` geht, aktualisiert Tippen im Feld den `name`.
+- `@ $mol_mem` speichert eine Eigenschaft pro Instanz zwischen. Bei `name` heißt das: Der Wert bleibt erhalten, und alles, was ihn gelesen hat, wird bei einer Änderung neu berechnet. Bei `Name` und `Message` heißt es: eine Kindkomponente, einmal gebaut, statt einer neuen bei jedem Aufruf.
+- `greeting()` liest `name()`. Dieses Lesen *ist* das Abonnement. Ändert sich `name`, berechnet sich `greeting` neu und der Text auf dem Bildschirm folgt, ohne deklarierten Effekt, ohne Abhängigkeitsliste, ohne Re-Render-Aufruf.
 
 ## 3. Ausführen
 
@@ -94,30 +115,38 @@ Der Entwicklungsserver aus Schritt 1 überwacht bereits. Öffne einfach:
 http://localhost:9080/my/hello/
 ```
 
-Tippe deinen Namen — die Begrüßung aktualisiert sich beim Tippen. Das ist $mol-Reaktivität: Der Zustand fließt von selbst zur Ansicht.
+Tippe deinen Namen, und die Begrüßung aktualisiert sich beim Tippen. Das ist $mol-Reaktivität: Der Zustand fließt von selbst zur Ansicht.
 
 ## 4. Einen zweiten reaktiven Wert hinzufügen
 
-Reaktivität lässt sich zusammensetzen. Füge einen Längenzähler hinzu, der vom selben `name` abhängt, ohne zusätzliche Verdrahtung.
+Reaktivität lässt sich zusammensetzen. Füge einen Längenzähler hinzu, der denselben `name` liest, ohne zusätzliche Verdrahtung.
 
-Füge in `hello.view.tree` eine Zeile unter `Message` hinzu:
+Trag ihn in `body()` ein:
 
-```tree
-		<= Counter $mol_view
-			sub / <= counter \
+```typescript
+		body() {
+			return [ this.Name(), this.Message(), this.Counter() ]
+		}
 ```
 
-Füge in `hello.view.ts` die Methode hinzu:
+und ergänze die zwei Eigenschaften dahinter:
 
 ```typescript
 		@ $mol_mem
-		counter() {
-			return `${this.name().length} characters`
+		Counter() {
+			const obj = new this.$.$mol_view
+			obj.sub = () => [ this.counter() ]
+			return obj
 		}
-}
+
+		counter() {
+			return `${ this.name().length } characters`
+		}
 ```
 
-Sowohl `greeting` als auch `counter` lesen `name`; beide aktualisieren sich gemeinsam. Füge einen dritten hinzu, füge einen zehnten hinzu — das Muster ändert sich nicht. Deshalb bleibt $mol-Code flach, während sich Funktionen anhäufen.
+Sowohl `greeting` als auch `counter` lesen `name`, und beide aktualisieren sich gemeinsam. Füge einen dritten hinzu, füge einen zehnten hinzu: Die reaktive Hälfte ändert nie ihre Form.
+
+Die andere Hälfte schon. Drei Zeilen Logik kamen mit sechs Zeilen Klempnerei drumherum — eine Fabrik, ein `new`, ein Pfeil, ein `return obj`. Multipliziere das mit jedem Kind auf einem echten Bildschirm, und du hast den Grund, warum es `view.tree` gibt.
 
 ## 5. Deinen Build prüfen
 
@@ -131,6 +160,6 @@ Ein sauberes Audit bedeutet keine ungenutzten Abhängigkeiten, keine Typ-Problem
 
 ## Du hast eine $mol-App gebaut
 
-Du hast eine reaktive Komponente, bidirektionale Bindung und abgeleiteten Zustand — mit drei kleinen Dateien und null Konfiguration.
+Eine reaktive Komponente mit bidirektionaler Bindung und abgeleitetem Zustand, in einer Datei, mit null Konfiguration.
 
-Mach weiter: Der **[Leitfaden](#!section=docs/page=installation)** behandelt Installation, Ansichten, Zustand, Routing und Daten im Detail — und verwandelt dieses Hello World in etwas Echtes.
+Nimm nun genau diese Datei und sieh zu, wie sie schrumpft: **[Von TypeScript zu view.tree](#!section=docs/page=from-ts-to-view-tree)**.

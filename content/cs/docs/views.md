@@ -2,6 +2,8 @@
 
 Pohled je komponenta: uzel ve stromu UI s vlastním rozvržením, chováním a styly. Tato kapitola popisuje, jak se pohledy deklarují, propojují s logikou, skládají a znovu používají.
 
+> Přicházíte k `view.tree` úplně poprvé: [Z TypeScriptu do view.tree](#!section=docs/page=from-ts-to-view-tree) staví jednu komponentu dvakrát, jednou jako ručně psanou třídu a jednou jako strom, a ukazuje kód, do kterého se strom překládá. Přečtěte si to nejdřív, pokud vám syntaxe níže připadá jako nový jazyk, a ne jako zkratka.
+
 ## Tři soubory, jedna komponenta
 
 Komponenta `$my_card` žije v `my/card/` a je popsána až třemi soubory, každý s jasným úkolem:
@@ -11,6 +13,8 @@ Komponenta `$my_card` žije v `my/card/` a je popsána až třemi soubory, každ
 - `card.view.css.ts` — jak vypadá: typované styly kontrolované překladačem.
 
 Oddělení struktury, chování a stylu je záměrné — každý soubor zůstává malý a čitelný a rozvržení se nikdy neproplétá s logikou.
+
+Povinný sám o sobě není ani jeden ze tří. Vynechte `card.view.tree` a napište třídu rovnou do `namespace $`: struktura se stane obyčejnými metodami a komponenta bude dál fungovat. Zbytek kapitoly používá strom, protože takhle struktura vypadá, když se instalatérská práce vygeneruje za vás.
 
 ## Jazyk view.tree
 

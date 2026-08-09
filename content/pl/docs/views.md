@@ -2,6 +2,8 @@
 
 Widok to komponent: węzeł w drzewie interfejsu z własnym układem, zachowaniem i stylami. Ten rozdział omawia, jak widoki są deklarowane, łączone z logiką, komponowane i ponownie używane.
 
+> Jeśli `view.tree` widzisz pierwszy raz: [Z TypeScriptu do view.tree](#!section=docs/page=from-ts-to-view-tree) buduje jeden komponent dwa razy, raz jako ręcznie napisaną klasę i raz jako drzewo, i pokazuje kod, do którego drzewo się kompiluje. Przeczytaj to najpierw, jeśli składnia poniżej wygląda jak nowy język, a nie jak skrót.
+
 ## Trzy pliki, jeden komponent
 
 Komponent `$my_card` żyje w `my/card/` i jest opisany przez maksymalnie trzy pliki, każdy z jasnym zadaniem:
@@ -11,6 +13,8 @@ Komponent `$my_card` żyje w `my/card/` i jest opisany przez maksymalnie trzy pl
 - `card.view.css.ts` — jak wygląda: typowane style sprawdzane przez kompilator.
 
 Trzymanie struktury, zachowania i stylu osobno jest zamierzone — każdy plik pozostaje mały i czytelny, a układ nigdy nie splata się z logiką.
+
+Żaden z tych trzech nie jest sam w sobie obowiązkowy. Usuń `card.view.tree` i napisz klasę wprost w `namespace $`: struktura staje się zwykłymi metodami, a komponent nadal działa. Reszta rozdziału używa drzewa, bo tak wygląda struktura, gdy hydraulika jest generowana za ciebie.
 
 ## Język view.tree
 

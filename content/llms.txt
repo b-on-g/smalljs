@@ -6,6 +6,7 @@
 
 - [Introduction](https://b-on-g.github.io/smalljs/docs/introduction.md): What $mol is, who it is for, and a taste of reactive views.
 - [Getting Started](https://b-on-g.github.io/smalljs/docs/getting-started.md): From an empty folder to a running, reactive $mol app in under 15 minutes.
+- [From TypeScript to view.tree](https://b-on-g.github.io/smalljs/docs/from-ts-to-view-tree.md): The same component as a hand-written class and as a tree, line by line, plus the code the compiler generates from it.
 - [Tooling](https://b-on-g.github.io/smalljs/docs/tooling.md): Project scaffolder, view.tree language server, and editor support for Zed and VS Code.
 
 ## Essentials

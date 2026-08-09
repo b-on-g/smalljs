@@ -2,6 +2,8 @@
 
 Une vue est un composant : un nœud de l'arbre d'interface avec sa propre mise en page, son comportement et ses styles. Ce chapitre explique comment les vues sont déclarées, reliées à la logique, composées et réutilisées.
 
+> Vous découvrez `view.tree` : [De TypeScript à view.tree](#!section=docs/page=from-ts-to-view-tree) construit un même composant deux fois, une fois en classe écrite à la main et une fois en arbre, et montre le code vers lequel l'arbre compile. Lisez-la d'abord si la syntaxe ci-dessous ressemble à un nouveau langage plutôt qu'à un raccourci.
+
 ## Trois fichiers, un composant
 
 Un composant `$my_card` vit dans `my/card/` et est décrit par un maximum de trois fichiers, chacun avec un rôle clair :
@@ -11,6 +13,8 @@ Un composant `$my_card` vit dans `my/card/` et est décrit par un maximum de tro
 - `card.view.css.ts` — à quoi il ressemble : styles typés vérifiés par le compilateur.
 
 Séparer structure, comportement et style est délibéré — chaque fichier reste petit et lisible, et la mise en page n'est jamais mêlée à la logique.
+
+Aucun des trois n'est obligatoire à lui seul. Retirez `card.view.tree` et écrivez la classe directement dans `namespace $` : la structure devient des méthodes ordinaires et le composant fonctionne toujours. La suite de ce chapitre utilise l'arbre, parce que c'est à cela que ressemble la structure une fois la plomberie générée pour vous.
 
 ## Le langage view.tree
 
