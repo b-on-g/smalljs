@@ -26,6 +26,16 @@ namespace $ {
 		},
 	} as const
 
+	// A section link sitting directly in the mobile menu, next to the expander
+	// headers. Without this it would pick up the nested-link style of the menu's
+	// $mol_link rule and read as an item of some group above it.
+	const mobile_entry = {
+		padding: { top: rem(0.5), bottom: rem(0.5), left: rem(0.625), right: rem(0.625) },
+		border: { radius: rem(0.375) },
+		font: { size: rem(0.9375), weight: 600 },
+		color: $bog_builderui_tokens.text,
+	} as const
+
 	$mol_style_define( $bog_smalljs_top, {
 
 		flex: { direction: 'row' },
@@ -156,12 +166,8 @@ namespace $ {
 			},
 		},
 
-		Mobile_playground: {
-			padding: { top: rem(0.5), bottom: rem(0.5), left: rem(0.625), right: rem(0.625) },
-			border: { radius: rem(0.375) },
-			font: { size: rem(0.9375), weight: 600 },
-			color: $bog_builderui_tokens.text,
-		},
+		Mobile_playground: mobile_entry,
+		Mobile_versus: mobile_entry,
 
 		M_eco_libs_title: {
 			padding: { top: rem(0.5), bottom: rem(0.25), left: rem(1.25), right: rem(0.625) },

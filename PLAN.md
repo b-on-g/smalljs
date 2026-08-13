@@ -40,14 +40,16 @@
 9. **Showcase реальных приложений** — vas3k.club, blitz, styler, wiki, bog/vk, mam, view-tree-lsp. Скриншоты + ссылка + 1–2 предложения про роль $mol.
 10. **Rosetta-таблица** — «React component → $mol», «Vue ref → $mol_mem», «Svelte store → $mol_wire». Нейтрально, с признанием сильных сторон чужих решений ( pre-publish tone check ).
 
-Про перф: отдельной страницы / бенч-репо НЕ делаем ( у Vue тоже нет ). Виртуализация упоминается одним абзацем в guide про рендеринг — архитектурный факт + ссылка на форк js-framework-benchmark с результатами $mol: `https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html`.
+11. **Раздел «Сравнить» ( versus )** — интерактивное сравнение фреймворков по образцу 1vs1.site: выбрал два → нажал → увидел разницу. Ядро — живые краш-тесты на краевых случаях, а не таблица цифр. План: [VERSUS_PLAN.md](./VERSUS_PLAN.md).
+
+Про перф: голой страницы с бенчмарками не делаем ( у Vue тоже нет ) — вместо неё раздел `versus` выше, где цифры идут вторым слоем после живых демо. Виртуализация упоминается одним абзацем в guide про рендеринг — архитектурный факт + ссылка на форк js-framework-benchmark с результатами $mol: `https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html`.
 
 ### Блок D. Polish ( после )
-11. Темизация ( light / dark, как у Vue ).
-12. Версионирование доки — отложить, пока не нужно.
-13. i18n — **EN-first**, RU по остаточному принципу. Не RU-first, иначе застрянем в нише.
-14. Changelog / блог — отложить.
-15. Discord / Telegram ссылки в footer.
+12. Темизация ( light / dark, как у Vue ).
+13. Версионирование доки — отложить, пока не нужно.
+14. i18n — **EN-first**, RU по остаточному принципу. Не RU-first, иначе застрянем в нише.
+15. Changelog / блог — отложить.
+16. Discord / Telegram ссылки в footer.
 
 ---
 

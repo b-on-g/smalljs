@@ -1,0 +1,71 @@
+$bog_smalljs_versus_runner $mol_view
+	sub <= case_content /
+	-
+	- race
+	Race $mol_view
+		sub /
+			<= Race_options $mol_view
+				sub <= race_options /
+			<= Race_panel $mol_view
+				sub /
+					<= Race_panel_name $mol_view
+						sub / <= race_panel_name \
+					<= Race_panel_descr $mol_view
+						sub / <= race_panel_descr \
+	Race_option* $bog_smalljs_versus_runner_option
+		click? <=> race_option_click*? null
+		current <= race_option_current* false
+		title <= race_option_label* \
+	-
+	- virtual
+	Virtual $mol_view
+		sub /
+			<= Virtual_scroll $mol_scroll
+				sub /
+					<= Virtual_list $mol_list
+						rows <= virtual_rows /
+	Virtual_row* $mol_paragraph
+		title <= virtual_row_text* \
+	Virtual_placeholder $mol_view
+		sub / <= virtual_placeholder @ \Press Run to load 10,000 rows
+	-
+	- leak
+	Leak $mol_view
+		sub /
+			<= Leak_hint $mol_view
+				sub / <= leak_hint @ \Press Run to mount and unmount 100 times
+			<= Leak_place $mol_view
+				sub <= leak_probes /
+	Leak_probe* $bog_smalljs_versus_runner_probe
+		label <= leak_probe_label* \
+	-
+	- crash
+	Crash $mol_view
+		sub /
+			<= Crash_scroll $mol_scroll
+				sub /
+					<= Crash_list $mol_view
+						sub <= crash_cards /
+	Crash_card* $bog_smalljs_versus_runner_card
+		name <= crash_card_name* \
+		text <= crash_card_text* \
+
+$bog_smalljs_versus_runner_option $mol_button_minor
+	current false
+	attr *
+		^
+		versus_current <= current
+
+$bog_smalljs_versus_runner_probe $mol_view
+	label \
+	sub / <= label
+
+$bog_smalljs_versus_runner_card $mol_view
+	name \
+	text \
+	attr *
+		^
+		versus_card \
+	sub /
+		<= name
+		<= text

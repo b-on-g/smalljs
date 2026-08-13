@@ -1,0 +1,91 @@
+$bog_smalljs_versus_case $mol_view
+	case_id \
+	title @ \
+	hint @ \
+	status_idle @ \Not run yet
+	status_running @ \Running…
+	status_ok @ \Expected behaviour
+	status_warn @ \Works, with a caveat
+	status_fail @ \Artifact observed
+	status_error @ \No result
+	status_invalid @ \Measurement interrupted
+	error_timeout @ \The runner did not answer within 15 seconds.
+	error_not_loaded @ \The runner page did not load, so this framework cannot take part in the comparison.
+	run_hint_broken @ \One of the frames did not load, so the three cannot be compared on this machine right now.
+	invalid_tab_hidden @ \The tab went to the background during the run, so the timings measured waiting rather than work. Run it again with this tab in front.
+	invalid_timers_throttled @ \The run took noticeably longer than the scenario expects: the machine was busy and the timers were squeezed. Run it again when things are quieter.
+	invalid_frame_offscreen @ \This frame scrolled out of view while it was working, and a browser stops drawing frames it cannot see. Run it again and stay on this case until it finishes.
+	invalid_other @ \This run could not be measured honestly. Run it again.
+	run_hint_hidden @ \Runs start only while this tab is in front: a background tab throttles timers and stops painting frames, which would make the numbers meaningless.
+	run_hint_loading @ \Waiting for all three frames to finish loading.
+	sub /
+		<= Head $mol_view
+			sub /
+				<= Title $mol_view
+					sub / <= title
+				<= Hint $mol_view
+					sub / <= hint
+		<= Controls $mol_view
+			sub <= controls_content /
+		<= Columns $mol_view
+			sub <= columns /
+	Run $mol_button_major
+		enabled <= run_enabled true
+		click? <=> run? null
+		sub / <= run_label @ \Run
+	Run_hint $mol_view
+		sub / <= run_hint \
+	Column* $mol_view
+		sub /
+			<= Label* $mol_view
+				sub / <= framework_name* \
+			<= Frame* $bog_smalljs_versus_case_frame
+				uri <= frame_uri* \
+				frame_title <= frame_title* \
+				loaded? <=> frame_loaded*? null
+			<= Card* $mol_view
+				sub <= card_content* /
+	Status* $bog_smalljs_versus_case_status
+		status <= status* \
+		icon <= status_icon* \
+		text <= status_text* \
+	Observed* $mol_view
+		sub / <= observed* \
+	Metrics* $mol_view
+		sub <= metric_rows* /
+	Metric* $mol_view
+		sub /
+			<= Metric_name* $mol_view
+				sub / <= metric_name* \
+			<= Metric_value* $mol_view
+				sub / <= metric_value* \
+	Note* $mol_view
+		sub / <= note* \
+
+$bog_smalljs_versus_case_status $mol_view
+	status \idle
+	icon \
+	text \
+	attr *
+		^
+		bog_smalljs_versus_status <= status
+	sub /
+		<= Icon $mol_view
+			sub / <= icon
+		<= Text $mol_view
+			sub / <= text
+
+$bog_smalljs_versus_case_frame $mol_view
+	dom_name \iframe
+	uri \
+	frame_title \
+	loaded? null
+	sub /
+	event *
+		^
+		load? <=> loaded? null
+	attr *
+		^
+		src <= uri
+		title <= frame_title
+		loading \lazy

@@ -52,6 +52,7 @@ namespace $.$$ {
 				}
 				case 'playground': return [ [ 'section', 'playground' ] ]
 				case 'course': return [ [ 'section', 'course' ] ]
+				case 'versus': return [ [ 'section', 'versus' ] ]
 				default: return []
 			}
 		}
@@ -93,6 +94,10 @@ namespace $.$$ {
 				case 'course':
 					title = `Interactive Course — ${ site_name }`
 					description = 'Learn $mol step by step: reactive views, state, events, and routing, each in a live editor.'
+					break
+				case 'versus':
+					title = `Compare — ${ site_name }`
+					description = 'Run the same scenario in React, Vue and $mol side by side in your own browser, and see how each one behaves.'
 					break
 			}
 
@@ -196,6 +201,7 @@ namespace $.$$ {
 				case 'docs': return [ this.Docs() ]
 				case 'playground': return [ this.Playground() ]
 				case 'course': return [ this.Course() ]
+				case 'versus': return [ this.Versus() ]
 				default: return [ this.Landing() ]
 			}
 		}

@@ -72,6 +72,11 @@ $bog_smalljs_top $mol_view
 					arg *
 						section \playground
 						page \
+				<= Nav_versus $mol_link
+					title @ \Compare
+					arg *
+						section \versus
+						page \
 				<= Ecosystem_pick $mol_pick
 					hint @ \Ecosystem
 					align \bottom_left
@@ -155,6 +160,12 @@ $bog_smalljs_top $mol_view
 							title @ \Playground
 							arg *
 								section \playground
+								page \
+							event_click? <=> nav_pick?
+						<= Mobile_versus $mol_link
+							title @ \Compare
+							arg *
+								section \versus
 								page \
 							event_click? <=> nav_pick?
 						<= Docs_group $mol_expander
