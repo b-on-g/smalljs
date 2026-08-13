@@ -6522,6 +6522,7 @@ var $;
                 $mol_assert_equal(view.rows('code').length, 1);
                 $mol_assert_equal(view.score('code'), { left: 1, right: 0, total: 1 });
                 $mol_assert_equal(view.metric_left_value('cve'), '0');
+                $mol_assert_equal(view.metric_right_value('cve'), '3');
             },
             'higher-is-better flips which side the bar and the score go to'() {
                 const view = pair_over({
@@ -6549,13 +6550,35 @@ var $;
                 $mol_assert_equal(view.metric_left_value('router'), 'yes');
                 $mol_assert_equal(view.metric_right_value('router'), 'no');
             },
-            'a missing reading is a dash, never a zero'() {
+            'a metric only one side reports is a dash on BOTH sides'() {
+                // The 7 is a real measurement, and it is still withheld: printed
+                // opposite a dash it reads as a comparison nobody made. See
+                // metric_left_value for the full argument.
                 const view = pair_over({
                     lonely: { meta: meta('lower'), left: 7 },
                 });
-                $mol_assert_equal(view.metric_left_value('lonely'), '7');
+                $mol_assert_equal(view.metric_left_value('lonely'), '—');
                 $mol_assert_equal(view.metric_right_value('lonely'), '—');
                 $mol_assert_equal(view.metric_bar('lonely'), false);
+                // and nothing is cited, since nothing is on show
+                $mol_assert_equal(view.metric_sources('lonely').length, 0);
+                $mol_assert_equal(view.metric_method('lonely'), '');
+            },
+            'a metric both sides report shows both values'() {
+                const view = pair_over({
+                    shared: { meta: meta('lower'), left: 7, right: 9 },
+                });
+                $mol_assert_equal(view.metric_left_value('shared'), '7');
+                $mol_assert_equal(view.metric_right_value('shared'), '9');
+                $mol_assert_equal(view.metric_sources('shared').length, 2);
+            },
+            'a missing reading is never a zero'() {
+                const view = pair_over({
+                    lonely: { meta: meta('lower'), left: 0 },
+                });
+                // the one reading is a zero, and it still must not surface as "0 vs —"
+                $mol_assert_equal(view.metric_left_value('lonely'), '—');
+                $mol_assert_equal(view.metric_right_value('lonely'), '—');
             },
             'the gap is stated against the losing side, whichever way the metric points'() {
                 const lower = pair_over({ ms: { meta: meta('lower', 'speed'), left: 69, right: 100 } });
@@ -6567,15 +6590,50 @@ var $;
                 // 50 of the loser's 100
                 $mol_assert_equal(higher.metric_delta('stars'), 'A is 50% above B');
             },
+            'a reading of zero is stated plainly, whichever way the metric points'() {
+                // lower is better and the winner is at zero
+                const lower = pair_over({ cve: { meta: meta('lower', 'cost'), left: 3, right: 0 } });
+                lower.delta_zero = () => '{a} has none, {b} has {p}';
+                $mol_assert_equal(lower.metric_delta('cve'), 'B has none, A has 3');
+                // higher is better and the loser is at zero
+                const higher = pair_over({ q: { meta: meta('higher', 'market'), left: 0, right: 420 } });
+                higher.delta_zero = () => '{a} has none, {b} has {p}';
+                $mol_assert_equal(higher.metric_delta('q'), 'A has none, B has 420');
+                // both at zero is a tie, not a zero case
+                const tied = pair_over({ cve: { meta: meta('lower', 'cost'), left: 0, right: 0 } });
+                tied.delta_tie = () => 'same';
+                $mol_assert_equal(tied.metric_delta('cve'), 'same');
+                $mol_assert_equal(tied.score('cost'), { left: 0, right: 0, total: 1 });
+                // no bar for any of them: a proportion with a zero in it draws as one
+                // solid block, and the block reads as the row rather than as a side
+                $mol_assert_equal(lower.metric_bar('cve'), false);
+                $mol_assert_equal(higher.metric_bar('q'), false);
+                // the metric still counts — only the drawing changed
+                $mol_assert_equal(lower.score('cost'), { left: 0, right: 1, total: 1 });
+            },
             'a gap past a doubling is stated as a multiplier'() {
                 const view = pair_over({ stars: { meta: meta('higher', 'market'), left: 340, right: 100 } });
                 view.delta_times = () => '{a} is {p}× {b}';
                 $mol_assert_equal(view.metric_delta('stars'), 'A is 3.4× B');
             },
-            'a metric only one side reports says so instead of showing a winner'() {
+            'an uncounted row names the side we know nothing about'() {
+                // Not the side that reported. "No data for B" cannot be read as a
+                // verdict about B, the way "only A reports this" sits one word from
+                // "A yes, B no" and means the opposite of it.
                 const view = pair_over({ lonely: { meta: meta('lower'), left: 7 } });
-                view.delta_partial = () => 'not counted: only {a}';
-                $mol_assert_equal(view.metric_delta('lonely'), 'not counted: only A');
+                view.delta_partial = () => 'no data for {a}';
+                $mol_assert_equal(view.metric_delta('lonely'), 'no data for B');
+                // and the same from the other side
+                const mirror = pair_over({ lonely: { meta: meta('lower'), right: 7 } });
+                mirror.delta_partial = () => 'no data for {a}';
+                $mol_assert_equal(mirror.metric_delta('lonely'), 'no data for A');
+            },
+            'a counted yes/no row names both sides, so it cannot read as missing data'() {
+                const view = pair_over({
+                    router: { meta: meta('boolean', 'builtin'), left: true, right: false },
+                });
+                view.delta_only = () => '{a} yes, {b} no';
+                $mol_assert_equal(view.metric_delta('router'), 'A yes, B no');
             },
             'a live case counts only once both columns have a verdict'() {
                 const view = pair_over({});

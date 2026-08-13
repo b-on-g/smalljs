@@ -2156,11 +2156,12 @@ $bog_smalljs_versus_pair $mol_view
 	delta_above @ \{a} is {p}% above {b}
 	delta_times @ \{a} is {p}× {b}
 	delta_ahead @ \{a} is ahead on this one
+	delta_zero @ \{a} has none, {b} has {p}
 	delta_tie @ \Both report the same value
-	delta_only @ \Only {a} has it
+	delta_only @ \{a} yes, {b} no
 	delta_both @ \Both have it
 	delta_neither @ \Neither has it
-	delta_partial @ \Not counted: only {a} reports this
+	delta_partial @ \Not counted: no data for {a}
 	value_yes @ \Yes
 	value_no @ \No
 	no_data @ \no data

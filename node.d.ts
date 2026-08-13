@@ -12191,6 +12191,7 @@ declare namespace $ {
 		delta_above( ): string
 		delta_times( ): string
 		delta_ahead( ): string
+		delta_zero( ): string
 		delta_tie( ): string
 		delta_only( ): string
 		delta_both( ): string
@@ -12539,9 +12540,33 @@ declare namespace $.$$ {
          *  doubts one number should not have to go looking for what it means. */
         metric_method(id: string): string;
         value_text(measure: Measure | null, meta: $bog_smalljs_versus_pair_meta | undefined): string;
+        /**
+         * A metric only one side reports is a dash on **both** sides, not a number
+         * against a dash.
+         *
+         * The number is real and printing it would feel like the honest thing to
+         * do. It is not. Put "357" opposite a dash and the row reads "this side is
+         * small, the other side is unknown" — a comparison the reader cannot help
+         * making and that nobody measured. The true reading is "we measured
+         * ourselves and did not measure them", and there is no way to tell those
+         * two apart from the outside.
+         *
+         * The cost is real too: a measurement we have is withheld. It is the right
+         * trade, because the alternative puts a thumb on the scale in whichever
+         * direction our data happens to be fuller, and this section is worth
+         * nothing the moment a reader finds one of those.
+         */
         metric_left_value(id: string): string;
         metric_right_value(id: string): string;
-        /** Left's share of the bar, or null when this row has no honest bar. */
+        /** Left's share of the bar, or null when this row has no honest bar.
+         *
+         *  A reading of zero on one side is one of those cases. The proportion is
+         *  real — one side holds all of it — but it draws as a single solid block
+         *  spanning the whole track, and at that point the only thing left to read
+         *  is the colour, which says "this row is good" rather than "this side
+         *  is". The numbers are right there and the sentence names both sides, so
+         *  the bar is dropped rather than drawn as something the eye misreads.
+         *  Same reasoning as a yes/no metric, which is the same shape. */
         metric_share(id: string): number | null;
         metric_bar(id: string): boolean;
         /** Which half of the bar is the better one. The length already says it,
@@ -12550,6 +12575,10 @@ declare namespace $.$$ {
         metric_lead(id: string): "" | "left" | "right";
         metric_left_share(id: string): string;
         metric_right_share(id: string): string;
+        /** The side whose numeric reading is exactly zero, when the other side's
+         *  is not. Null for anything else, including two zeroes — that is a tie
+         *  and reads as one. */
+        zero_side(row: Row): 'left' | 'right' | null;
         /** The sentence next to the bar. Every wording states its own base — a
          *  percentage is always measured against the losing side — because "62%
          *  faster" is ambiguous about what it is 62% of, and an ambiguous number
