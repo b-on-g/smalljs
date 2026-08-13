@@ -27,9 +27,15 @@ namespace $.$$ {
 		 *  pathname already starts with `/smalljs/` (its own guard). On the mam dev
 		 *  server the path is `/bog/smalljs/app/-/test.html`, which does not — so this
 		 *  is a clean no-op there and the standard hash router stays active, keeping
-		 *  local dev (and its non-SPA file server) working unchanged. */
+		 *  local dev (and its non-SPA file server) working unchanged.
+		 *
+		 *  $bog_smalljs_router is that router with one behaviour changed: a click
+		 *  goes exactly where the link points, instead of dragging along keys of the
+		 *  current address that the link never mentions. Without it `lesson`, `a` and
+		 *  `b` leak out of the course and the comparison section into every address
+		 *  after them. See the class for the full reasoning. */
 		static {
-			$bog_builderui_router.activate( '/smalljs/' )
+			$bog_smalljs_router.activate( '/smalljs/' )
 		}
 
 		section( next?: string ) {

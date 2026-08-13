@@ -1,0 +1,39 @@
+namespace $ {
+
+	/**
+	 * The site's router: a link leads exactly where it points.
+	 *
+	 * `$bog_builderui_router` merges by default — segments of the current address
+	 * whose key the link never mentions are carried into the next one. That suits
+	 * apps whose screens share keys, and four of them rely on it, so the default
+	 * stays as it is. This site is the other kind: every screen owns its own keys,
+	 * and carrying them across is pure damage.
+	 *
+	 * What it fixed here. The course writes `lesson`, the comparison section writes
+	 * `a` and `b`, and no link in the top bar names any of the three — so leaving
+	 * either screen used to produce `lesson=hello/section=docs/page=views`. Three
+	 * consequences: the address stopped matching the link the reader had just
+	 * clicked; a shared link carried a stale key from wherever its author happened
+	 * to be standing; and crawlers were handed endless spellings of one page, which
+	 * is exactly what the canonical pair order in the sitemap exists to prevent.
+	 *
+	 * Nothing is lost by dropping the merge, because the link already carries the
+	 * full target: `$mol_state_arg.link()` folds the current address in through
+	 * `dict_cut()` while building the href. One caveat worth knowing — `dict_cut`
+	 * stops at the first key the link mentions and drops everything after it in the
+	 * address. Harmless here, since `section` leads every address and every link
+	 * sets it, so the cut always lands at the start. A link that sets a later key
+	 * while expecting still later ones to survive would need more care.
+	 *
+	 * @see bog/builderui/router/router.web.ts — the seam and why its default holds
+	 * @see bog/builderui/router/router.web.test.ts — both behaviours, pinned
+	 */
+	export class $bog_smalljs_router extends $bog_builderui_router {
+
+		static override route_target( anchor_path: string ) {
+			return anchor_path
+		}
+
+	}
+
+}
