@@ -1,0 +1,135 @@
+{
+	"id": "mol",
+	"title": "$mol",
+	"since": 2016,
+	"since_source": "https://github.com/hyoo-ru/mam_mol",
+	"runner": true,
+	"metrics": {
+		"loc_todomvc": {
+			"value": 357,
+			"source": "https://github.com/b-on-g/todomvc-compare/blob/master/README.md",
+			"measured_at": "2026-04-08"
+		},
+		"bundle_gzip": {
+			"value": 33,
+			"source": "https://github.com/b-on-g/todomvc-compare/blob/master/README.md",
+			"measured_at": "2026-04-08"
+		},
+		"startup_bytes": {
+			"value": 127.8,
+			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
+			"measured_at": "2022-02-05",
+			"method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results"
+		},
+		"create_1k": {
+			"value": 55.1,
+			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
+			"measured_at": "2022-02-05",
+			"method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results"
+		},
+		"update_1k": {
+			"value": 316.2,
+			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
+			"measured_at": "2022-02-05",
+			"method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results"
+		},
+		"swap_rows": {
+			"value": 46.3,
+			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
+			"measured_at": "2022-02-05",
+			"method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results"
+		},
+		"remove_row": {
+			"value": 26.9,
+			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
+			"measured_at": "2022-02-05",
+			"method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results"
+		},
+		"mem_ready": {
+			"value": 1.54,
+			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
+			"measured_at": "2022-02-05",
+			"method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results"
+		},
+		"mem_1k": {
+			"value": 1.94,
+			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
+			"measured_at": "2022-02-05",
+			"method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results"
+		},
+		"startup_tbt": {
+			"value": 244.2,
+			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
+			"measured_at": "2022-02-05",
+			"method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results"
+		},
+		"router": {
+			"value": true,
+			"source": "https://github.com/hyoo-ru/mam_mol/tree/master/state/arg",
+			"measured_at": "2026-08-13"
+		},
+		"i18n": {
+			"value": true,
+			"source": "https://github.com/hyoo-ru/mam_mol/tree/master/locale",
+			"measured_at": "2026-08-13"
+		},
+		"themes": {
+			"value": true,
+			"source": "https://github.com/hyoo-ru/mam_mol/tree/master/theme",
+			"measured_at": "2026-08-13"
+		},
+		"virtual": {
+			"value": true,
+			"source": "https://github.com/hyoo-ru/mam_mol/tree/master/list",
+			"measured_at": "2026-08-13"
+		},
+		"offline": {
+			"value": true,
+			"source": "https://github.com/hyoo-ru/mam_mol/tree/master/offline",
+			"measured_at": "2026-08-13"
+		},
+		"ssr": {
+			"value": false,
+			"source": "https://github.com/hyoo-ru/mam_mol",
+			"measured_at": "2026-08-13"
+		},
+		"tests_nodom": {
+			"value": true,
+			"source": "https://github.com/hyoo-ru/mam_mol/tree/master/test",
+			"measured_at": "2026-08-13"
+		},
+		"di": {
+			"value": true,
+			"source": "https://github.com/hyoo-ru/mam_mol/tree/master/ambient",
+			"measured_at": "2026-08-13"
+		},
+		"forms": {
+			"value": true,
+			"source": "https://github.com/hyoo-ru/mam_mol/tree/master/form",
+			"measured_at": "2026-08-13"
+		},
+		"typed_templates": {
+			"value": true,
+			"source": "https://github.com/hyoo-ru/mam_mol/tree/master/view/tree2",
+			"measured_at": "2026-08-13"
+		},
+		"stars": {
+			"value": 743,
+			"source": "https://github.com/hyoo-ru/mam_mol",
+			"measured_at": "2026-08-13",
+			"method": "https://docs.github.com/en/rest/repos/repos#get-a-repository"
+		},
+		"npm_downloads": {
+			"value": 3327,
+			"source": "https://api.npmjs.org/downloads/point/last-week/mam",
+			"measured_at": "2026-08-13",
+			"method": "https://www.npmjs.com/package/mam"
+		},
+		"maintainers": {
+			"value": 1,
+			"source": "https://registry.npmjs.org/mam",
+			"measured_at": "2026-08-13",
+			"method": "https://www.npmjs.com/package/mam?activeTab=versions"
+		}
+	}
+}

@@ -4,18 +4,18 @@ namespace $ {
 	 * Shared store with a plain list of subscribers. Same shape in every runner
 	 * of the comparison, so that `subscribers.length` means the same thing.
 	 */
-	export class $bog_smalljs_versus_runner_store extends $mol_object {
+	export class $bog_smalljs_lab_store extends $mol_object {
 
 		subscribers = [] as ( ()=> void )[]
 
 		@ $mol_mem
-		static shared(): $bog_smalljs_versus_runner_store {
+		static shared(): $bog_smalljs_lab_store {
 			return new this
 		}
 
 		subscribe( handler: ()=> void ) {
 			this.subscribers.push( handler )
-			return new $bog_smalljs_versus_runner_link( this, handler )
+			return new $bog_smalljs_lab_link( this, handler )
 		}
 
 	}
@@ -25,7 +25,7 @@ namespace $ {
 	 * its own measures against the top level viewport even from a nested frame,
 	 * which is what makes a scrolled away frame detectable from the inside.
 	 */
-	export class $bog_smalljs_versus_runner_watch extends $mol_object {
+	export class $bog_smalljs_lab_watch extends $mol_object {
 
 		readonly observer: IntersectionObserver
 
@@ -52,10 +52,10 @@ namespace $ {
 	 * the subscribing component, so the engine drops it together with that
 	 * component and the store forgets the handler without a manual call.
 	 */
-	export class $bog_smalljs_versus_runner_link extends $mol_object {
+	export class $bog_smalljs_lab_link extends $mol_object {
 
 		constructor(
-			readonly store: $bog_smalljs_versus_runner_store,
+			readonly store: $bog_smalljs_lab_store,
 			readonly handler: ()=> void,
 		) {
 			super()
@@ -80,7 +80,7 @@ namespace $.$$ {
 	 *  rows does not rebuild it 10 000 times. */
 	const filler = 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua '
 
-	export class $bog_smalljs_versus_runner extends $.$bog_smalljs_versus_runner {
+	export class $bog_smalljs_lab extends $.$bog_smalljs_lab {
 
 		/** Scenario to mount, taken from the query of the page the iframe loads. */
 		@ $mol_mem
@@ -140,7 +140,7 @@ namespace $.$$ {
 		 *  frames, which would otherwise look like the framework hanging. */
 		@ $mol_mem
 		frame_watch() {
-			return new this.$.$bog_smalljs_versus_runner_watch(
+			return new this.$.$bog_smalljs_lab_watch(
 				this.dom_node(),
 				visible => { if( !visible ) this.spoil( 'frame-offscreen' ) },
 			)
@@ -459,7 +459,7 @@ namespace $.$$ {
 
 		async run_leak() {
 
-			const store = this.$.$bog_smalljs_versus_runner_store.shared()
+			const store = this.$.$bog_smalljs_lab_store.shared()
 			const place = this.Leak_place()
 
 			// dom_tree() renders the place right here instead of on the next
@@ -580,13 +580,13 @@ namespace $.$$ {
 
 	}
 
-	export class $bog_smalljs_versus_runner_probe extends $.$bog_smalljs_versus_runner_probe {
+	export class $bog_smalljs_lab_probe extends $.$bog_smalljs_lab_probe {
 
 		/** Subscription lives in a cell of this component, so it is released
 		 *  together with the component. There is no teardown hook to forget. */
 		@ $mol_mem
 		subscription() {
-			return this.$.$bog_smalljs_versus_runner_store.shared().subscribe( ()=> this.label() )
+			return this.$.$bog_smalljs_lab_store.shared().subscribe( ()=> this.label() )
 		}
 
 		override auto() {

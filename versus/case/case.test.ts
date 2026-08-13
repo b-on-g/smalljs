@@ -18,7 +18,7 @@ namespace $.$$ {
 			// the $mol runner is a module of its own, not a copy under assets
 			$mol_assert_equal(
 				view.frame_uri( 'mol' ),
-				'/bog/smalljs/versus/runner/-/index.html?case=race',
+				'/bog/smalljs/lab/-/index.html?case=race',
 			)
 		},
 
@@ -30,7 +30,7 @@ namespace $.$$ {
 			$mol_assert_equal( case_at( '/smalljs/section=versus/' ).frame_uri( 'vue' ), vue )
 			$mol_assert_equal(
 				case_at( '/smalljs/section=versus' ).frame_uri( 'mol' ),
-				'/smalljs/bog/smalljs/versus/runner/-/index.html?case=race',
+				'/smalljs/bog/smalljs/lab/-/index.html?case=race',
 			)
 		},
 
@@ -42,7 +42,7 @@ namespace $.$$ {
 		'runner uris when the app is served from the root'() {
 			$mol_assert_equal(
 				case_at( '/' ).frame_uri( 'mol' ),
-				'/bog/smalljs/versus/runner/-/index.html?case=race',
+				'/bog/smalljs/lab/-/index.html?case=race',
 			)
 		},
 

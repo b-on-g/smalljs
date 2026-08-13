@@ -1,0 +1,254 @@
+$bog_smalljs_versus_pair $mol_view
+	left \
+	right \
+	left_title \
+	right_title \
+	verdict_win @ \{a} wins {x} of {total} categories, {b} {y}, {ties} tied
+	verdict_draw @ \{a} and {b} take {x} categories each of {total}, {ties} tied
+	verdict_none @ \Nothing is decided yet: no category has a metric that both {a} and {b} report.
+	verdict_note_edge @ \Edge cases join the count once you run the live tests below. They are measured in your browser, not stored here.
+	verdict_note_no_runner @ \Edge cases cannot be counted here: there are no live tests for {b} yet.
+	verdict_note_no_runner_both @ \Edge cases cannot be counted here: there are no live tests for either of these two yet.
+	verdict_note_gap_one @ \One more category has no metric that both of them report yet.
+	verdict_note_gaps @ \{n} more categories have no metric that both of them report yet.
+	category_edge @ \Edge cases
+	category_code @ \Code
+	category_weight @ \Weight and loading
+	category_speed @ \Speed
+	category_builtin @ \Built in
+	category_market @ \Ecosystem and market
+	category_cost @ \Cost of ownership
+	note_edge @ \Four everyday situations running side by side in your browser. Press Run on a case and read what happens; nothing here is recorded in advance.
+	note_code @ \How much there is to read, and how much of it belongs to somebody else.
+	note_weight @ \What the browser downloads, and how long it waits before the page reacts.
+	note_speed @ \How long changes take to reach the screen, and how much memory is held while they do.
+	note_builtin @ \Whether the framework ships it, or you reach for a library.
+	note_market @ \How easy it is to hire for it, to search for it, and to find a ready-made part.
+	note_cost @ \What the dependency tree and the release history ask for over the years.
+	score_line @ \{a} {x} of {n}, {b} {y} of {n}
+	score_ahead @ \{a} ahead
+	score_tied @ \tied
+	score_empty @ \No metric both of them report yet
+	edge_score_line @ \{a} {x} of {n} cases, {b} {y} of {n}
+	edge_score_empty @ \Not run yet
+	edge_missing_one @ \There are no live tests for {b} yet, so these cases run in one column.
+	edge_missing_both @ \There are no live tests for either of these two yet.
+	delta_below @ \{a} is {p}% below {b}
+	delta_above @ \{a} is {p}% above {b}
+	delta_times @ \{a} is {p}× {b}
+	delta_ahead @ \{a} is ahead on this one
+	delta_tie @ \Both report the same value
+	delta_only @ \Only {a} has it
+	delta_both @ \Both have it
+	delta_neither @ \Neither has it
+	delta_partial @ \Not counted: only {a} reports this
+	value_yes @ \Yes
+	value_no @ \No
+	no_data @ \no data
+	sub /
+		<= Head $mol_view
+			sub <= head_content /
+		<= Sections $mol_view
+			sub <= sections /
+		<= Method $mol_view
+			sub /
+				<= Method_title $mol_view
+					dom_name \h2
+					sub /
+						<= method_title_text @ \How this is measured
+				<= Method_text $mol_view
+					sub /
+						<= method_body @ \Every value here comes from a measurement or from an outside source, and carries the link and the date it was taken with it. A metric counts towards a category only when both frameworks report it: otherwise the one with the fuller table would win on how complete its data is rather than on what the numbers say. Where nobody has measured yet, the row says so instead of guessing.
+				<= Method_link $mol_link
+					uri \https://github.com/b-on-g/smalljs/tree/master/versus
+					target \_blank
+					sub /
+						<= method_link_label @ \Methodology and sources on GitHub
+						<= Method_link_icon $mol_icon_open_in_new
+		<= Suggest $mol_view
+			sub /
+				<= Suggest_title $mol_view
+					dom_name \h2
+					sub /
+						<= suggest_title_text @ \Suggest a framework
+				<= Suggest_text $mol_view
+					sub /
+						<= suggest_body @ \Missing one? Name it and open an issue. Adding a framework means a data file with its measurements, and, for the live tests, a runner page — both live in the repository next to the ones already here.
+				<= Suggest_form $mol_view
+					sub /
+						<= Suggest_field $mol_string
+							value? <=> suggest_name? \
+							hint @ \Framework name
+						<= Suggest_send $mol_link
+							uri <= suggest_uri \
+							target \_blank
+							sub /
+								<= suggest_send_label @ \Open an issue
+								<= Suggest_send_icon $mol_icon_open_in_new
+	Title $mol_view
+		dom_name \h1
+		sub /
+			<= title_text \
+	Verdict $mol_view
+		sub /
+			<= verdict_text \
+	Verdict_note $mol_view
+		sub /
+			<= verdict_note_text \
+	Section* $bog_smalljs_versus_pair_section
+		title <= section_title* \
+		score <= section_score* \
+		note <= section_note* \
+		content <= section_content* /
+	Names* $bog_smalljs_versus_pair_names
+		left_name <= left_title
+		right_name <= right_title
+	Metric* $bog_smalljs_versus_pair_metric
+		title <= metric_title* \
+		left_value <= metric_left_value* \
+		right_value <= metric_right_value* \
+		bar <= metric_bar* false
+		left_share <= metric_left_share* \50%
+		right_share <= metric_right_share* \50%
+		delta <= metric_delta* \
+		human <= metric_human* \
+		sources <= metric_sources* /
+	Source* $bog_smalljs_versus_pair_source
+		name <= source_name* \
+		label <= source_label* \
+		uri <= source_uri* \
+		date <= source_date* \
+	Case_race $bog_smalljs_versus_pair_case
+		case_id \race
+		title @ \Stale response overwrites fresh one
+		hint @ \Click through a list faster than the server answers.
+		left <= left
+		right <= right
+		missing_note <= edge_missing_note \
+	Case_virtual $bog_smalljs_versus_pair_case
+		case_id \virtual
+		title @ \10,000 rows of irregular height
+		hint @ \Scroll a long list where every row has a different height.
+		left <= left
+		right <= right
+		missing_note <= edge_missing_note \
+	Case_leak $bog_smalljs_versus_pair_case
+		case_id \leak
+		title @ \Subscriptions after 100 mount cycles
+		hint @ \Mount and unmount a subscribed component a hundred times.
+		left <= left
+		right <= right
+		missing_note <= edge_missing_note \
+	Case_crash $bog_smalljs_versus_pair_case
+		case_id \crash
+		title @ \One broken item takes down the tree
+		hint @ \Put malformed data into one card out of twenty.
+		left <= left
+		right <= right
+		missing_note <= edge_missing_note \
+
+$bog_smalljs_versus_pair_case $bog_smalljs_versus_case
+	left \
+	right \
+	missing_note \
+	Missing_note $mol_view
+		sub /
+			<= missing_note
+
+$bog_smalljs_versus_pair_section $mol_view
+	title \
+	score \
+	note \
+	content /
+	sub <= section_content /
+	Head $mol_view
+		sub <= head_content /
+	Title $mol_view
+		dom_name \h2
+		sub /
+			<= title
+	Score $mol_view
+		sub /
+			<= score
+	Note $mol_view
+		sub /
+			<= note
+	Content $mol_view
+		sub <= content /
+
+$bog_smalljs_versus_pair_names $mol_view
+	left_name \
+	right_name \
+	sub /
+		<= Left $mol_view
+			sub /
+				<= left_name
+		<= Middle $mol_view
+			sub /
+		<= Right $mol_view
+			sub /
+				<= right_name
+
+$bog_smalljs_versus_pair_metric $mol_view
+	title \
+	left_value \
+	right_value \
+	bar false
+	left_share \50%
+	right_share \50%
+	delta \
+	human \
+	sources /
+	sub <= metric_content /
+	Title $mol_view
+		sub /
+			<= title
+	Row $mol_view
+		sub <= row_content /
+	Value_left $mol_view
+		sub /
+			<= left_value
+	Value_right $mol_view
+		sub /
+			<= right_value
+	Gap $mol_view
+		sub /
+	Bar $mol_view
+		sub /
+			<= Bar_left $mol_view
+				style *
+					^
+					width <= left_share
+			<= Bar_right $mol_view
+				style *
+					^
+					width <= right_share
+	Delta $mol_view
+		sub /
+			<= delta
+	Human $mol_view
+		sub /
+			<= human
+	Sources $mol_view
+		sub <= sources /
+
+$bog_smalljs_versus_pair_source $mol_view
+	name \
+	label \
+	uri \
+	date \
+	sub <= source_content /
+	Name $mol_view
+		sub /
+			<= name
+	Link $mol_link
+		uri <= uri
+		target \_blank
+		sub /
+			<= label
+	Text $mol_view
+		sub /
+			<= label
+	Taken $mol_view
+		sub /
+			<= date

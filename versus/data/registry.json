@@ -1,0 +1,234 @@
+{
+	"loc_todomvc": {
+		"category": "code",
+		"title": "Lines of code (TodoMVC)",
+		"unit": "",
+		"better": "lower",
+		"human": "Fewer lines to read when someone else picks the project up.",
+		"method": "Logic plus styles of a TodoMVC implementation, tests excluded. Counted by hand in the todomvc-compare repository."
+	},
+	"deps_direct": {
+		"category": "code",
+		"title": "Direct dependencies",
+		"unit": "",
+		"better": "lower",
+		"human": "Packages the framework itself declares. Every one of them is code you did not choose but still ship.",
+		"method": "Sum of the `dependencies` fields of the packages installed by the framework's documented runtime install (react + react-dom, vue, svelte, solid-js). Frameworks with no documented bare npm runtime install are left blank."
+	},
+	"deps_transitive": {
+		"category": "code",
+		"title": "Packages installed",
+		"unit": "",
+		"better": "lower",
+		"human": "How many separate packages end up in node_modules once npm is done resolving. Each one is a separate author you trust.",
+		"method": "`npm install --omit=dev` of the documented runtime packages into an empty project, then distinct name+version pairs in `npm ls --all --omit=dev`. Roots included."
+	},
+	"node_modules_size": {
+		"category": "code",
+		"title": "node_modules size",
+		"unit": "MB",
+		"better": "lower",
+		"human": "Disk footprint of a clean install. It is not what ships to the browser, but it is what every CI run downloads.",
+		"method": "`du -sk node_modules` after `npm install --omit=dev` of the documented runtime packages into an empty project."
+	},
+	"bundle_gzip": {
+		"category": "weight",
+		"title": "TodoMVC bundle, gzip",
+		"unit": "KB",
+		"better": "lower",
+		"human": "What the browser actually downloads for a small but complete application.",
+		"method": "Gzipped production bundle of a TodoMVC implementation, measured in the todomvc-compare repository."
+	},
+	"startup_bytes": {
+		"category": "weight",
+		"title": "Startup transfer",
+		"unit": "KB",
+		"better": "lower",
+		"human": "Bytes pulled over the network before the benchmark application is usable. Same application in every column, so the difference is the framework.",
+		"method": "Lighthouse total byte weight for the js-framework-benchmark application, reported as benchmark 34_startup-totalbytes. Transfer size, not gzip specifically."
+	},
+	"create_1k": {
+		"category": "speed",
+		"title": "Create 1,000 rows",
+		"unit": "ms",
+		"better": "lower",
+		"human": "Time to put a thousand fresh rows on the screen. This is the wait after hitting a filter or opening a list.",
+		"method": "js-framework-benchmark 01_run1k, arithmetic mean of 10 runs."
+	},
+	"update_1k": {
+		"category": "speed",
+		"title": "Partial update",
+		"unit": "ms",
+		"better": "lower",
+		"human": "Touching every tenth row of a thousand, sixteen times. This is where a framework either finds the changed rows or re-checks everything.",
+		"method": "js-framework-benchmark 03_update10th1k_x16, arithmetic mean of 10 runs."
+	},
+	"swap_rows": {
+		"category": "speed",
+		"title": "Swap two rows",
+		"unit": "ms",
+		"better": "lower",
+		"human": "Two rows trade places out of a thousand. The ideal answer is two DOM moves, and the gap here shows who gets close to it.",
+		"method": "js-framework-benchmark 05_swap1k, arithmetic mean of 10 runs."
+	},
+	"remove_row": {
+		"category": "speed",
+		"title": "Remove one row",
+		"unit": "ms",
+		"better": "lower",
+		"human": "Deleting a single row out of a thousand. The smallest possible change, so it measures the fixed cost of reacting at all.",
+		"method": "js-framework-benchmark 06_remove-one-1k, arithmetic mean of 10 runs."
+	},
+	"mem_ready": {
+		"category": "speed",
+		"title": "Memory after load",
+		"unit": "MB",
+		"better": "lower",
+		"human": "Heap the framework occupies with nothing on the page yet.",
+		"method": "js-framework-benchmark 21_ready-memory, single run."
+	},
+	"mem_1k": {
+		"category": "speed",
+		"title": "Memory with 1,000 rows",
+		"unit": "MB",
+		"better": "lower",
+		"human": "Heap once a thousand rows are on screen. On a phone this is the difference between staying alive in the background and being killed.",
+		"method": "js-framework-benchmark 22_run-memory, single run."
+	},
+	"startup_tbt": {
+		"category": "speed",
+		"title": "Startup blocking time",
+		"unit": "ms",
+		"better": "lower",
+		"human": "How long the main thread is busy during startup, so taps and scrolls do nothing.",
+		"method": "js-framework-benchmark 32_startup-bt (Lighthouse total blocking time), arithmetic mean of 4 runs."
+	},
+	"router": {
+		"category": "builtin",
+		"title": "Router",
+		"unit": "",
+		"better": "boolean",
+		"human": "Whether URLs and navigation come from the framework project itself, or you go pick a library and own that choice forever.",
+		"method": "Yes when the framework project publishes and documents a routing solution of its own. No when its own official docs send you to a third-party project instead. Blank when neither is stated anywhere official."
+	},
+	"i18n": {
+		"category": "builtin",
+		"title": "Localization",
+		"unit": "",
+		"better": "boolean",
+		"human": "Translating an application is rarely planned at the start and always arrives later.",
+		"method": "Yes when the framework project publishes and documents localization support of its own."
+	},
+	"themes": {
+		"category": "builtin",
+		"title": "Theming",
+		"unit": "",
+		"better": "boolean",
+		"human": "Dark mode and brand colours without inventing your own CSS variable convention.",
+		"method": "Yes when the framework project publishes and documents a theming mechanism of its own."
+	},
+	"virtual": {
+		"category": "builtin",
+		"title": "List virtualization",
+		"unit": "",
+		"better": "boolean",
+		"human": "Long lists stay smooth because off-screen rows are never rendered. Without it, someone eventually bolts a library onto a list that already shipped.",
+		"method": "Yes when the framework project publishes and documents virtual scrolling of its own."
+	},
+	"offline": {
+		"category": "builtin",
+		"title": "Offline support",
+		"unit": "",
+		"better": "boolean",
+		"human": "A service worker set up by the framework rather than copied from a blog post.",
+		"method": "Yes when the framework project publishes and documents service worker support of its own."
+	},
+	"ssr": {
+		"category": "builtin",
+		"title": "Server rendering",
+		"unit": "",
+		"better": "boolean",
+		"human": "Rendering to HTML on the server, for search engines and for the first paint.",
+		"method": "Yes when the framework project publishes and documents a server rendering API of its own. No when its published module list contains no such module."
+	},
+	"tests_nodom": {
+		"category": "builtin",
+		"title": "Tests without a DOM",
+		"unit": "",
+		"better": "boolean",
+		"human": "Components testable as plain objects, with no browser and no jsdom to boot up first.",
+		"method": "Yes when components can be instantiated and asserted on outside a document, using the framework's own test runner."
+	},
+	"di": {
+		"category": "builtin",
+		"title": "Dependency injection",
+		"unit": "",
+		"better": "boolean",
+		"human": "Swapping a real service for a fake one in a test without touching the component that uses it.",
+		"method": "Yes when the framework project documents a dependency injection mechanism of its own."
+	},
+	"forms": {
+		"category": "builtin",
+		"title": "Forms",
+		"unit": "",
+		"better": "boolean",
+		"human": "Validation, dirty state and submission handled by the framework instead of a fourth form library per team.",
+		"method": "Yes when the framework project publishes and documents form handling of its own."
+	},
+	"typed_templates": {
+		"category": "builtin",
+		"title": "Typed templates",
+		"unit": "",
+		"better": "boolean",
+		"human": "A typo in a template is caught by the compiler, not by a user.",
+		"method": "Yes when the framework's official TypeScript documentation covers type checking of its template or view layer."
+	},
+	"stars": {
+		"category": "market",
+		"title": "GitHub stars",
+		"unit": "",
+		"better": "higher",
+		"human": "A popularity signal, and nothing more. It says how many people bookmarked the repository, not how many shipped with it.",
+		"method": "`stargazers_count` from the GitHub API for the repository that holds the framework's current source."
+	},
+	"npm_downloads": {
+		"category": "market",
+		"title": "npm downloads",
+		"unit": "per week",
+		"better": "higher",
+		"human": "The closest thing to a usage count. Inflated by CI runs, but inflated the same way for everyone.",
+		"method": "npm registry downloads for the last full week, for the package you install to use the framework."
+	},
+	"so_questions": {
+		"category": "market",
+		"title": "Stack Overflow questions",
+		"unit": "",
+		"better": "higher",
+		"human": "How likely it is that your problem was already asked and answered by someone else.",
+		"method": "Question count of the framework's Stack Overflow tag, via the Stack Exchange API."
+	},
+	"maintainers": {
+		"category": "market",
+		"title": "npm maintainers",
+		"unit": "",
+		"better": "higher",
+		"human": "How many people can publish a release. A low number is a bus factor.",
+		"method": "Length of the `maintainers` array in the npm registry metadata of the framework's primary package."
+	},
+	"cve_tree": {
+		"category": "cost",
+		"title": "Known vulnerabilities",
+		"unit": "",
+		"better": "lower",
+		"human": "Advisories in the packages a clean install drags in. Someone has to triage each one of them.",
+		"method": "`npm audit --omit=dev` on a fresh install of the documented runtime packages in an empty project."
+	},
+	"breaking_3y": {
+		"category": "cost",
+		"title": "Breaking releases in 3 years",
+		"unit": "",
+		"better": "lower",
+		"human": "Major versions shipped since 2023. Every one of them is a migration someone on the team pays for.",
+		"method": "Count of major semver versions of the framework's primary npm package first published in the last three years. Left blank for packages that do not use semver majors."
+	}
+}

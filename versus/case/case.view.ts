@@ -55,7 +55,7 @@ namespace $.$$ {
 	const runner_paths: Record< string, string > = {
 		react: 'bog/smalljs/assets/versus/react/runner.html',
 		vue: 'bog/smalljs/assets/versus/vue/runner.html',
-		mol: 'bog/smalljs/versus/runner/-/index.html',
+		mol: 'bog/smalljs/lab/-/index.html',
 	}
 
 	// The mam dev server serves the repo root, so the page path carries this.

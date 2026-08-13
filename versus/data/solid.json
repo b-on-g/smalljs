@@ -1,0 +1,123 @@
+{
+	"id": "solid",
+	"title": "Solid",
+	"since": 2018,
+	"since_source": "https://github.com/solidjs/solid",
+	"runner": false,
+	"metrics": {
+		"deps_direct": {
+			"value": 3,
+			"source": "https://www.npmjs.com/package/solid-js?activeTab=dependencies",
+			"measured_at": "2026-08-13"
+		},
+		"deps_transitive": {
+			"value": 4,
+			"source": "https://www.npmjs.com/package/solid-js?activeTab=dependencies",
+			"measured_at": "2026-08-13"
+		},
+		"node_modules_size": {
+			"value": 4.1,
+			"source": "https://www.npmjs.com/package/solid-js?activeTab=dependencies",
+			"measured_at": "2026-08-13"
+		},
+		"startup_bytes": {
+			"value": 149.7,
+			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
+			"measured_at": "2022-02-05",
+			"method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results"
+		},
+		"create_1k": {
+			"value": 152.8,
+			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
+			"measured_at": "2022-02-05",
+			"method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results"
+		},
+		"update_1k": {
+			"value": 992.0,
+			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
+			"measured_at": "2022-02-05",
+			"method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results"
+		},
+		"swap_rows": {
+			"value": 181.3,
+			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
+			"measured_at": "2022-02-05",
+			"method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results"
+		},
+		"remove_row": {
+			"value": 45.3,
+			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
+			"measured_at": "2022-02-05",
+			"method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results"
+		},
+		"mem_ready": {
+			"value": 1.22,
+			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
+			"measured_at": "2022-02-05",
+			"method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results"
+		},
+		"mem_1k": {
+			"value": 1.94,
+			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
+			"measured_at": "2022-02-05",
+			"method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results"
+		},
+		"startup_tbt": {
+			"value": 20.7,
+			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
+			"measured_at": "2022-02-05",
+			"method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results"
+		},
+		"router": {
+			"value": true,
+			"source": "https://docs.solidjs.com/solid-router",
+			"measured_at": "2026-08-13"
+		},
+		"ssr": {
+			"value": true,
+			"source": "https://docs.solidjs.com/reference/rendering/render-to-string",
+			"measured_at": "2026-08-13"
+		},
+		"typed_templates": {
+			"value": true,
+			"source": "https://docs.solidjs.com/configuration/typescript",
+			"measured_at": "2026-08-13"
+		},
+		"stars": {
+			"value": 35816,
+			"source": "https://github.com/solidjs/solid",
+			"measured_at": "2026-08-13",
+			"method": "https://docs.github.com/en/rest/repos/repos#get-a-repository"
+		},
+		"npm_downloads": {
+			"value": 3456458,
+			"source": "https://api.npmjs.org/downloads/point/last-week/solid-js",
+			"measured_at": "2026-08-13",
+			"method": "https://www.npmjs.com/package/solid-js"
+		},
+		"so_questions": {
+			"value": 323,
+			"source": "https://stackoverflow.com/questions/tagged/solid-js",
+			"measured_at": "2026-08-13",
+			"method": "https://api.stackexchange.com/2.3/tags/solid-js/info?site=stackoverflow"
+		},
+		"maintainers": {
+			"value": 1,
+			"source": "https://registry.npmjs.org/solid-js",
+			"measured_at": "2026-08-13",
+			"method": "https://www.npmjs.com/package/solid-js?activeTab=versions"
+		},
+		"cve_tree": {
+			"value": 0,
+			"source": "https://github.com/npm/cli#readme",
+			"measured_at": "2026-08-13",
+			"method": "https://docs.npmjs.com/cli/commands/npm-audit"
+		},
+		"breaking_3y": {
+			"value": 0,
+			"source": "https://registry.npmjs.org/solid-js",
+			"measured_at": "2026-08-13",
+			"method": "https://www.npmjs.com/package/solid-js?activeTab=versions"
+		}
+	}
+}

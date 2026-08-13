@@ -43,6 +43,76 @@ namespace $.$$ {
 			return this.meta().title ?? super.title()
 		}
 
+		/** The two frameworks of a comparison, always alphabetical by id.
+		 *
+		 *  `a=react/b=vue` and `a=vue/b=react` are the same comparison, and a
+		 *  search engine indexing both would split one page in two. So one order
+		 *  is canonical, the address is corrected to it (see route_canonical),
+		 *  and everything downstream — the page, the title, the canonical link —
+		 *  reads the pair from here rather than from the raw args.
+		 *
+		 *  Null when only one side is named: `section=versus/a=react` is the
+		 *  section front page with React already picked, not a comparison.
+		 *
+		 *  The comparison is by code unit, not by locale: framework ids are
+		 *  lower-case ascii slugs, so no collation rule can reorder them and the
+		 *  same URL is canonical in every language. */
+		versus_pair(): readonly [ string, string ] | null {
+			if( this.section() !== 'versus' ) return null
+			const a = this.$.$mol_state_arg.value( 'a' ) || ''
+			const b = this.$.$mol_state_arg.value( 'b' ) || ''
+			if( !a || !b || a === b ) return null
+			return a < b ? [ a, b ] : [ b, a ]
+		}
+
+		versus_a() {
+			return this.versus_pair()?.[ 0 ] ?? ''
+		}
+
+		versus_b() {
+			return this.versus_pair()?.[ 1 ] ?? ''
+		}
+
+		/** Keeps the address honest about which page is open.
+		 *
+		 *  Two corrections, both rewrites in place rather than navigations — the
+		 *  user asked for this page, only its spelling changes, so there is no
+		 *  extra entry to press Back through:
+		 *
+		 *  - a reversed pair (`a=vue/b=react`) is put back in canonical order;
+		 *  - `a`/`b` are dropped outside the comparison section, where the
+		 *    path router would otherwise carry them from link to link (it keeps
+		 *    the keys a link does not mention) and leave `a=react` hanging in
+		 *    the address of a documentation page.
+		 *
+		 *  Deferred through $mol_wire_async: setting one memoized cell from the
+		 *  body of another is the invalidation loop $mol forbids. */
+		@ $mol_mem
+		route_canonical() {
+
+			const arg = this.$.$mol_state_arg
+			const a = arg.value( 'a' )
+			const b = arg.value( 'b' )
+			if( !a && !b ) return null
+
+			let next_a = a
+			let next_b = b
+
+			if( this.section() !== 'versus' ) {
+				next_a = null
+				next_b = null
+			} else if( a && b && a > b ) {
+				next_a = b
+				next_b = a
+			}
+
+			if( next_a === a && next_b === b ) return null
+
+			$mol_wire_async( arg ).dict({ ... arg.dict(), a: next_a, b: next_b })
+
+			return null
+		}
+
 		/** Ordered arg pairs describing the current screen ($mol hash-router state). */
 		route_args(): [ string, string ][] {
 			switch( this.section() ) {
@@ -52,7 +122,11 @@ namespace $.$$ {
 				}
 				case 'playground': return [ [ 'section', 'playground' ] ]
 				case 'course': return [ [ 'section', 'course' ] ]
-				case 'versus': return [ [ 'section', 'versus' ] ]
+				case 'versus': {
+					const pair = this.versus_pair()
+					if( !pair ) return [ [ 'section', 'versus' ] ]
+					return [ [ 'section', 'versus' ], [ 'a', pair[ 0 ] ], [ 'b', pair[ 1 ] ] ]
+				}
 				default: return []
 			}
 		}
@@ -95,10 +169,21 @@ namespace $.$$ {
 					title = `Interactive Course — ${ site_name }`
 					description = 'Learn $mol step by step: reactive views, state, events, and routing, each in a live editor.'
 					break
-				case 'versus':
-					title = `Compare — ${ site_name }`
-					description = 'Run the same scenario in React, Vue and $mol side by side in your own browser, and see how each one behaves.'
+				case 'versus': {
+					const pair = this.versus_pair()
+					if( pair ) {
+						// Names come from the data files, so the title says "$mol"
+						// and "Vue.js" exactly as the framework spells itself.
+						const left = this.Versus().framework_title( pair[ 0 ] )
+						const right = this.Versus().framework_title( pair[ 1 ] )
+						title = `${ left } vs ${ right } — ${ site_name }`
+						description = `${ left } vs ${ right }: edge cases, code, weight and loading, speed, built-in features, ecosystem and cost of ownership. Every number carries the source it came from and the date it was measured.`
+					} else {
+						title = `Compare — ${ site_name }`
+						description = 'Pick two frameworks and compare them on code, weight, speed, built-in features, ecosystem and cost of ownership — plus crash tests that run in your own browser.'
+					}
 					break
+				}
 			}
 
 			const alternates = meta_langs.map( code => ( {
@@ -201,7 +286,9 @@ namespace $.$$ {
 				case 'docs': return [ this.Docs() ]
 				case 'playground': return [ this.Playground() ]
 				case 'course': return [ this.Course() ]
-				case 'versus': return [ this.Versus() ]
+				// Both sides named — the comparison; one or none — the section
+				// front page, with whatever was named already picked in a field.
+				case 'versus': return this.versus_pair() ? [ this.Pair() ] : [ this.Versus() ]
 				default: return [ this.Landing() ]
 			}
 		}

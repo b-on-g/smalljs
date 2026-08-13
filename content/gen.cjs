@@ -377,6 +377,50 @@ for ( const sec of sections ) {
 }
 fs.writeFileSync( path.join( root, 'llms.txt' ), llms )
 
+// --- versus: frameworks and their pair pages ---------------------------------
+// "X vs Y" is what people type, so the pair pages are the section's search
+// channel and belong in the map. A pair is listed only when BOTH sides publish
+// a data file carrying at least one metric: a page with two columns of dashes is
+// thin content, and inventing numbers to fill it is the one thing versus/SPEC2.md
+// forbids outright. The rule is also what keeps the map from exploding — pairs
+// grow as n*(n-1)/2, and gating on real data is a cap that needs no maintenance.
+//
+// Each pair is emitted once, ids in alphabetical order, matching the single
+// canonical address the section normalizes to. The reverse spelling
+// (`a=react/b=mol`) is deliberately absent: it is the same page, and listing
+// both would hand crawlers a duplicate.
+const versus_dir = path.join( root, '..', 'versus', 'data' )
+
+// Before versus/data/ lands, fall back to the three frameworks that have live
+// crash-test runners, so the section is never absent from the map entirely.
+const versus_fallback = [ 'mol', 'react', 'vue' ]
+
+function versus_ids() {
+
+	if( !fs.existsSync( versus_dir ) ) return versus_fallback
+
+	const ids = fs.readdirSync( versus_dir )
+		.filter( name => name.endsWith( '.json' ) && name !== 'registry.json' )
+		.map( name => {
+			const data = JSON.parse( fs.readFileSync( path.join( versus_dir, name ), 'utf8' ) )
+			const measured = data.metrics && Object.keys( data.metrics ).length > 0
+			return measured ? ( data.id || path.basename( name, '.json' ) ) : null
+		} )
+		.filter( Boolean )
+
+	return ids.length ? ids : versus_fallback
+}
+
+function versus_pairs_of( ids ) {
+	const pairs = []
+	for ( let x = 0; x < ids.length; ++ x ) {
+		for ( let y = x + 1; y < ids.length; ++ y ) pairs.push( [ ids[ x ], ids[ y ] ] )
+	}
+	return pairs
+}
+
+const versus_pairs = versus_pairs_of( versus_ids().sort() )
+
 // --- sitemap.xml + robots.txt ------------------------------------------------
 // The app now uses path-based routing ($bog_builderui_router), so every screen is a
 // distinct, crawlable URL — `/smalljs/section=docs/page=<slug>` etc. These are the
@@ -388,7 +432,8 @@ fs.writeFileSync( path.join( root, 'llms.txt' ), llms )
 const lastmod = new Date().toISOString().slice( 0, 10 )
 const sitemap_urls = [ prod_base + '/' ]
 	.concat( slugs.map( slug => `${ prod_base }/section=docs/page=${ slug }` ) )
-	.concat( [ `${ prod_base }/section=playground`, `${ prod_base }/section=course` ] )
+	.concat( [ `${ prod_base }/section=playground`, `${ prod_base }/section=course`, `${ prod_base }/section=versus` ] )
+	.concat( versus_pairs.map( ( [ a, b ] ) => `${ prod_base }/section=versus/a=${ a }/b=${ b }` ) )
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n`
 	+ `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`
 	+ sitemap_urls.map( loc =>
@@ -615,4 +660,4 @@ const lessons_dir = path.join( root, '..', 'lessons' )
 fs.mkdirSync( lessons_dir, { recursive: true } )
 fs.writeFileSync( path.join( lessons_dir, 'lessons.ts' ), lessons_ts )
 
-console.log( `generated: content.ts (${ slugs.length } pages, incl. ${ api_count } API, ${ translated_count } translated) + llms.txt + lessons.ts (${ lessons.length } lessons, ${ lessons_translated } translated)` )
+console.log( `generated: content.ts (${ slugs.length } pages, incl. ${ api_count } API, ${ translated_count } translated) + llms.txt + lessons.ts (${ lessons.length } lessons, ${ lessons_translated } translated) + sitemap.xml (${ sitemap_urls.length } routes, incl. ${ versus_pairs.length } versus pairs)` )

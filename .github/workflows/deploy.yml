@@ -20,14 +20,14 @@ jobs:
             - uses: hyoo-ru/mam_build@master2
               with:
                   package: "bog/smalljs"
-                  # `versus/runner` is the $mol side of the crash-test comparison: a
+                  # `lab` is the $mol side of the crash-test comparison: a
                   # separate, deliberately lean app (~400 KB unminified vs the site's
                   # ~2.4 MB) loaded into an iframe next to the React and Vue runners.
                   # It has to be its own bundle — folding it into the site via
                   # include/require would make the iframe pull the whole documentation
                   # site, and a comparison page that ships a bloated $mol bundle argues
                   # against itself.
-                  modules: 'app versus/runner'
+                  modules: 'app lab'
 
             # SEO: prerender EVERY route (from the committed sitemap) to a real static
             # HTML file at /<route>/index.html, with per-page <title>/meta/og/canonical/
@@ -103,22 +103,22 @@ jobs:
 
             # Publish the $mol crash-test runner next to the React and Vue ones. The
             # target path mirrors the dev server's own layout exactly, so the iframe URL
-            # is the same string in both places (`bog/smalljs/versus/runner/-/index.html`)
+            # is the same string in both places (`bog/smalljs/lab/-/index.html`)
             # and what we verify locally is literally what ships. Done as a copy step
             # rather than a `deploy` directive in app.meta.tree because deploy copies
             # whatever exists at the moment `app` is bundled, which says nothing about
-            # whether `versus/runner` has been built yet; an explicit copy after both
+            # whether `lab` has been built yet; an explicit copy after both
             # modules are built has no such ordering assumption.
             - name: Copy $mol crash-test runner
               if: github.ref == 'refs/heads/main'
               run: |
-                  mkdir -p bog/smalljs/app/-/bog/smalljs/versus/runner/-
-                  cp bog/smalljs/versus/runner/-/index.html \
-                     bog/smalljs/versus/runner/-/web.js \
-                     bog/smalljs/app/-/bog/smalljs/versus/runner/-/
+                  mkdir -p bog/smalljs/app/-/bog/smalljs/lab/-
+                  cp bog/smalljs/lab/-/index.html \
+                     bog/smalljs/lab/-/web.js \
+                     bog/smalljs/app/-/bog/smalljs/lab/-/
                   # web.css only exists if the runner defines styles; don't fail without it.
-                  cp bog/smalljs/versus/runner/-/web.css \
-                     bog/smalljs/app/-/bog/smalljs/versus/runner/-/ 2>/dev/null || true
+                  cp bog/smalljs/lab/-/web.css \
+                     bog/smalljs/app/-/bog/smalljs/lab/-/ 2>/dev/null || true
 
             - uses: hyoo-ru/gh-deploy@v4.4.1
               if: github.ref == 'refs/heads/main'

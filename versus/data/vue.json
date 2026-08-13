@@ -1,0 +1,123 @@
+{
+	"id": "vue",
+	"title": "Vue",
+	"since": 2013,
+	"since_source": "https://github.com/vuejs/vue",
+	"runner": true,
+	"metrics": {
+		"deps_direct": {
+			"value": 5,
+			"source": "https://www.npmjs.com/package/vue?activeTab=dependencies",
+			"measured_at": "2026-08-13"
+		},
+		"deps_transitive": {
+			"value": 21,
+			"source": "https://www.npmjs.com/package/vue?activeTab=dependencies",
+			"measured_at": "2026-08-13"
+		},
+		"node_modules_size": {
+			"value": 17.7,
+			"source": "https://www.npmjs.com/package/vue?activeTab=dependencies",
+			"measured_at": "2026-08-13"
+		},
+		"startup_bytes": {
+			"value": 195.3,
+			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
+			"measured_at": "2022-02-05",
+			"method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results"
+		},
+		"create_1k": {
+			"value": 201.2,
+			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
+			"measured_at": "2022-02-05",
+			"method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results"
+		},
+		"update_1k": {
+			"value": 1145.5,
+			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
+			"measured_at": "2022-02-05",
+			"method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results"
+		},
+		"swap_rows": {
+			"value": 178.1,
+			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
+			"measured_at": "2022-02-05",
+			"method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results"
+		},
+		"remove_row": {
+			"value": 37.9,
+			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
+			"measured_at": "2022-02-05",
+			"method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results"
+		},
+		"mem_ready": {
+			"value": 1.37,
+			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
+			"measured_at": "2022-02-05",
+			"method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results"
+		},
+		"mem_1k": {
+			"value": 3.47,
+			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
+			"measured_at": "2022-02-05",
+			"method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results"
+		},
+		"startup_tbt": {
+			"value": 16.5,
+			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
+			"measured_at": "2022-02-05",
+			"method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results"
+		},
+		"router": {
+			"value": true,
+			"source": "https://router.vuejs.org/",
+			"measured_at": "2026-08-13"
+		},
+		"ssr": {
+			"value": true,
+			"source": "https://vuejs.org/guide/scaling-up/ssr.html",
+			"measured_at": "2026-08-13"
+		},
+		"typed_templates": {
+			"value": true,
+			"source": "https://vuejs.org/guide/typescript/overview.html",
+			"measured_at": "2026-08-13"
+		},
+		"stars": {
+			"value": 54230,
+			"source": "https://github.com/vuejs/core",
+			"measured_at": "2026-08-13",
+			"method": "https://docs.github.com/en/rest/repos/repos#get-a-repository"
+		},
+		"npm_downloads": {
+			"value": 14550122,
+			"source": "https://api.npmjs.org/downloads/point/last-week/vue",
+			"measured_at": "2026-08-13",
+			"method": "https://www.npmjs.com/package/vue"
+		},
+		"so_questions": {
+			"value": 107927,
+			"source": "https://stackoverflow.com/questions/tagged/vue.js",
+			"measured_at": "2026-08-13",
+			"method": "https://api.stackexchange.com/2.3/tags/vue.js/info?site=stackoverflow"
+		},
+		"maintainers": {
+			"value": 2,
+			"source": "https://registry.npmjs.org/vue",
+			"measured_at": "2026-08-13",
+			"method": "https://www.npmjs.com/package/vue?activeTab=versions"
+		},
+		"cve_tree": {
+			"value": 0,
+			"source": "https://github.com/npm/cli#readme",
+			"measured_at": "2026-08-13",
+			"method": "https://docs.npmjs.com/cli/commands/npm-audit"
+		},
+		"breaking_3y": {
+			"value": 0,
+			"source": "https://registry.npmjs.org/vue",
+			"measured_at": "2026-08-13",
+			"method": "https://www.npmjs.com/package/vue?activeTab=versions"
+		}
+	}
+}

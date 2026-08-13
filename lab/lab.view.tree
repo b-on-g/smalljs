@@ -1,4 +1,4 @@
-$bog_smalljs_versus_runner $mol_view
+$bog_smalljs_lab $mol_view
 	sub <= case_content /
 	-
 	- race
@@ -12,7 +12,7 @@ $bog_smalljs_versus_runner $mol_view
 						sub / <= race_panel_name \
 					<= Race_panel_descr $mol_view
 						sub / <= race_panel_descr \
-	Race_option* $bog_smalljs_versus_runner_option
+	Race_option* $bog_smalljs_lab_option
 		click? <=> race_option_click*? null
 		current <= race_option_current* false
 		title <= race_option_label* \
@@ -36,7 +36,7 @@ $bog_smalljs_versus_runner $mol_view
 				sub / <= leak_hint @ \Press Run to mount and unmount 100 times
 			<= Leak_place $mol_view
 				sub <= leak_probes /
-	Leak_probe* $bog_smalljs_versus_runner_probe
+	Leak_probe* $bog_smalljs_lab_probe
 		label <= leak_probe_label* \
 	-
 	- crash
@@ -46,21 +46,21 @@ $bog_smalljs_versus_runner $mol_view
 				sub /
 					<= Crash_list $mol_view
 						sub <= crash_cards /
-	Crash_card* $bog_smalljs_versus_runner_card
+	Crash_card* $bog_smalljs_lab_card
 		name <= crash_card_name* \
 		text <= crash_card_text* \
 
-$bog_smalljs_versus_runner_option $mol_button_minor
+$bog_smalljs_lab_option $mol_button_minor
 	current false
 	attr *
 		^
 		versus_current <= current
 
-$bog_smalljs_versus_runner_probe $mol_view
+$bog_smalljs_lab_probe $mol_view
 	label \
 	sub / <= label
 
-$bog_smalljs_versus_runner_card $mol_view
+$bog_smalljs_lab_card $mol_view
 	name \
 	text \
 	attr *

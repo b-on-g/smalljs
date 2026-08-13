@@ -41,7 +41,7 @@ namespace $ {
 		border: { bottom: { width: '1px', style: 'solid', color: line_color } },
 	} as const
 
-	$mol_style_define( $bog_smalljs_versus_runner, {
+	$mol_style_define( $bog_smalljs_lab, {
 
 		flex: { direction: 'column' },
 		gap: rem( 0.5 ),
@@ -128,7 +128,7 @@ namespace $ {
 
 	} )
 
-	$mol_style_define( $bog_smalljs_versus_runner_option, {
+	$mol_style_define( $bog_smalljs_lab_option, {
 
 		flex: { grow: 0, shrink: 0 },
 		justify: { content: 'flex-start' },
@@ -149,13 +149,13 @@ namespace $ {
 
 	} )
 
-	$mol_style_define( $bog_smalljs_versus_runner_probe, {
+	$mol_style_define( $bog_smalljs_lab_probe, {
 
 		color: shade,
 
 	} )
 
-	$mol_style_define( $bog_smalljs_versus_runner_card, {
+	$mol_style_define( $bog_smalljs_lab_card, {
 
 		flex: { direction: 'column', shrink: 0 },
 		minHeight: rem( 2.5 ),

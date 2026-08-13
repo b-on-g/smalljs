@@ -17,6 +17,7 @@ $bog_smalljs_app $bog_builderui_div
 		<= hotkeys null
 		<= locale_sync null
 		<= lang_sync null
+		<= route_canonical null
 	sub /
 		<= Top $bog_smalljs_top
 			search_click? <=> search_toggle?
@@ -39,3 +40,6 @@ $bog_smalljs_app $bog_builderui_div
 	Playground $bog_smalljs_playground
 	Course $bog_smalljs_course
 	Versus $bog_smalljs_versus
+	Pair $bog_smalljs_versus_pair
+		left <= versus_a \
+		right <= versus_b \

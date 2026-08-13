@@ -1,0 +1,128 @@
+{
+	"id": "svelte",
+	"title": "Svelte",
+	"since": 2016,
+	"since_source": "https://github.com/sveltejs/svelte",
+	"runner": false,
+	"metrics": {
+		"deps_direct": {
+			"value": 16,
+			"source": "https://www.npmjs.com/package/svelte?activeTab=dependencies",
+			"measured_at": "2026-08-13"
+		},
+		"deps_transitive": {
+			"value": 20,
+			"source": "https://www.npmjs.com/package/svelte?activeTab=dependencies",
+			"measured_at": "2026-08-13"
+		},
+		"node_modules_size": {
+			"value": 7.5,
+			"source": "https://www.npmjs.com/package/svelte?activeTab=dependencies",
+			"measured_at": "2026-08-13"
+		},
+		"startup_bytes": {
+			"value": 146.1,
+			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
+			"measured_at": "2022-02-05",
+			"method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results"
+		},
+		"create_1k": {
+			"value": 172.7,
+			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
+			"measured_at": "2022-02-05",
+			"method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results"
+		},
+		"update_1k": {
+			"value": 977.3,
+			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
+			"measured_at": "2022-02-05",
+			"method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results"
+		},
+		"swap_rows": {
+			"value": 173.0,
+			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
+			"measured_at": "2022-02-05",
+			"method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results"
+		},
+		"remove_row": {
+			"value": 36.2,
+			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
+			"measured_at": "2022-02-05",
+			"method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results"
+		},
+		"mem_ready": {
+			"value": 1.22,
+			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
+			"measured_at": "2022-02-05",
+			"method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results"
+		},
+		"mem_1k": {
+			"value": 2.14,
+			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
+			"measured_at": "2022-02-05",
+			"method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results"
+		},
+		"startup_tbt": {
+			"value": 10.1,
+			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
+			"measured_at": "2022-02-05",
+			"method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results"
+		},
+		"router": {
+			"value": true,
+			"source": "https://svelte.dev/docs/kit/routing",
+			"measured_at": "2026-08-13"
+		},
+		"offline": {
+			"value": true,
+			"source": "https://svelte.dev/docs/kit/service-workers",
+			"measured_at": "2026-08-13"
+		},
+		"ssr": {
+			"value": true,
+			"source": "https://svelte.dev/docs/kit/page-options",
+			"measured_at": "2026-08-13"
+		},
+		"typed_templates": {
+			"value": true,
+			"source": "https://svelte.dev/docs/svelte/typescript",
+			"measured_at": "2026-08-13"
+		},
+		"stars": {
+			"value": 87975,
+			"source": "https://github.com/sveltejs/svelte",
+			"measured_at": "2026-08-13",
+			"method": "https://docs.github.com/en/rest/repos/repos#get-a-repository"
+		},
+		"npm_downloads": {
+			"value": 5273631,
+			"source": "https://api.npmjs.org/downloads/point/last-week/svelte",
+			"measured_at": "2026-08-13",
+			"method": "https://www.npmjs.com/package/svelte"
+		},
+		"so_questions": {
+			"value": 6281,
+			"source": "https://stackoverflow.com/questions/tagged/svelte",
+			"measured_at": "2026-08-13",
+			"method": "https://api.stackexchange.com/2.3/tags/svelte/info?site=stackoverflow"
+		},
+		"maintainers": {
+			"value": 3,
+			"source": "https://registry.npmjs.org/svelte",
+			"measured_at": "2026-08-13",
+			"method": "https://www.npmjs.com/package/svelte?activeTab=versions"
+		},
+		"cve_tree": {
+			"value": 0,
+			"source": "https://github.com/npm/cli#readme",
+			"measured_at": "2026-08-13",
+			"method": "https://docs.npmjs.com/cli/commands/npm-audit"
+		},
+		"breaking_3y": {
+			"value": 1,
+			"source": "https://registry.npmjs.org/svelte",
+			"measured_at": "2026-08-13",
+			"method": "https://www.npmjs.com/package/svelte?activeTab=versions"
+		}
+	}
+}
