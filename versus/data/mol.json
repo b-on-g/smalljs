@@ -5,16 +5,6 @@
 	"since_source": "https://github.com/hyoo-ru/mam_mol",
 	"runner": true,
 	"metrics": {
-		"loc_todomvc": {
-			"value": 357,
-			"source": "https://github.com/b-on-g/todomvc-compare/blob/master/README.md",
-			"measured_at": "2026-04-08"
-		},
-		"bundle_gzip": {
-			"value": 33,
-			"source": "https://github.com/b-on-g/todomvc-compare/blob/master/README.md",
-			"measured_at": "2026-04-08"
-		},
 		"startup_bytes": {
 			"value": 127.8,
 			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
@@ -71,11 +61,6 @@
 		"i18n": {
 			"value": true,
 			"source": "https://github.com/hyoo-ru/mam_mol/tree/master/locale",
-			"measured_at": "2026-08-13"
-		},
-		"themes": {
-			"value": true,
-			"source": "https://github.com/hyoo-ru/mam_mol/tree/master/theme",
 			"measured_at": "2026-08-13"
 		},
 		"virtual": {

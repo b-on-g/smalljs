@@ -381,7 +381,15 @@ namespace $.$$ {
 			const parts: string[] = []
 
 			if( !this.edge_live() ) {
-				parts.push( this.edge_missing_note() )
+				// Says what the missing runner means for the count. The case blocks
+				// below carry their own line about what it means for them.
+				parts.push(
+					this.runner( this.left() ) || this.runner( this.right() )
+						? fill( this.verdict_note_no_runner(), {
+							b: this.runner( this.left() ) ? this.right_title() : this.left_title(),
+						} )
+						: this.verdict_note_no_runner_both()
+				)
 			} else if( !this.score( 'edge' ).total ) {
 				parts.push( this.verdict_note_edge() )
 			}
@@ -433,7 +441,8 @@ namespace $.$$ {
 			const right_name = this.right_title()
 
 			if( !score.total ) {
-				return category === 'edge' && this.edge_live() ? this.edge_score_empty() : this.score_empty()
+				if( category !== 'edge' ) return this.score_empty()
+				return this.edge_live() ? this.edge_score_empty() : this.edge_score_no_runner()
 			}
 
 			const line = fill( category === 'edge' ? this.edge_score_line() : this.score_line(), {
@@ -471,12 +480,19 @@ namespace $.$$ {
 			return this.row( id )?.meta.human ?? ''
 		}
 
+		/** Whether both sides have a reading. Only a shared metric is ever printed
+		 *  as a pair of values; see `metric_left_value` for why. */
+		shared( id: string ) {
+			const row = this.row( id )
+			return !!row?.left && !!row?.right
+		}
+
 		/** How the number was obtained — the same procedure for both sides, which
 		 *  is what makes the two comparable at all. Printed next to the row rather
 		 *  than hidden behind the methodology link at the bottom: a reader who
 		 *  doubts one number should not have to go looking for what it means. */
 		metric_method( id: string ) {
-			return this.row( id )?.meta.method ?? ''
+			return this.shared( id ) ? this.row( id )?.meta.method ?? '' : ''
 		}
 
 		value_text( measure: Measure | null, meta: $bog_smalljs_versus_pair_meta | undefined ) {

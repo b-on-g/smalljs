@@ -1,12 +1,4 @@
 {
-	"loc_todomvc": {
-		"category": "code",
-		"title": "Lines of code (TodoMVC)",
-		"unit": "",
-		"better": "lower",
-		"human": "Fewer lines to read when someone else picks the project up.",
-		"method": "Logic plus styles of a TodoMVC implementation, tests excluded. Counted by hand in the todomvc-compare repository."
-	},
 	"deps_direct": {
 		"category": "code",
 		"title": "Direct dependencies",
@@ -30,14 +22,6 @@
 		"better": "lower",
 		"human": "Disk footprint of a clean install. It is not what ships to the browser, but it is what every CI run downloads.",
 		"method": "`du -sk node_modules` after `npm install --omit=dev` of the documented runtime packages into an empty project."
-	},
-	"bundle_gzip": {
-		"category": "weight",
-		"title": "TodoMVC bundle, gzip",
-		"unit": "KB",
-		"better": "lower",
-		"human": "What the browser actually downloads for a small but complete application.",
-		"method": "Gzipped production bundle of a TodoMVC implementation, measured in the todomvc-compare repository."
 	},
 	"startup_bytes": {
 		"category": "weight",
@@ -118,14 +102,6 @@
 		"better": "boolean",
 		"human": "Translating an application is rarely planned at the start and always arrives later.",
 		"method": "Yes when the framework project publishes and documents localization support of its own."
-	},
-	"themes": {
-		"category": "builtin",
-		"title": "Theming",
-		"unit": "",
-		"better": "boolean",
-		"human": "Dark mode and brand colours without inventing your own CSS variable convention.",
-		"method": "Yes when the framework project publishes and documents a theming mechanism of its own."
 	},
 	"virtual": {
 		"category": "builtin",

@@ -7,8 +7,8 @@ $bog_smalljs_top $mol_view
 	sub /
 		<= Logo $mol_link
 			arg *
-				section \
-				page \
+				section null
+				page null
 			sub /
 				<= Logo_image $mol_image
 					uri <= logo_uri

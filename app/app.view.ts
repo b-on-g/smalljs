@@ -91,8 +91,10 @@ namespace $.$$ {
 		 *    the keys a link does not mention) and leave `a=react` hanging in
 		 *    the address of a documentation page.
 		 *
-		 *  Deferred through $mol_wire_async: setting one memoized cell from the
-		 *  body of another is the invalidation loop $mol forbids. */
+		 *  This cell only decides what the address should say. The writing itself
+		 *  happens in the action below, reached through $mol_wire_async so it
+		 *  lands outside this memoized body: setting $mol_state_arg from inside
+		 *  one is the invalidation loop $mol forbids. */
 		@ $mol_mem
 		route_canonical() {
 
@@ -114,8 +116,17 @@ namespace $.$$ {
 
 			if( next_a === a && next_b === b ) return null
 
-			$mol_wire_async( arg ).dict({ ... arg.dict(), a: next_a, b: next_b })
+			$mol_wire_async( this ).route_rewrite( next_a, next_b )
 
+			return null
+		}
+
+		/** Rewrites `a`/`b` in place — no history entry, because this corrects
+		 *  the spelling of the address the reader already asked for. */
+		@ $mol_action
+		route_rewrite( a: string | null, b: string | null ) {
+			const arg = this.$.$mol_state_arg
+			arg.dict({ ... arg.dict(), a, b })
 			return null
 		}
 

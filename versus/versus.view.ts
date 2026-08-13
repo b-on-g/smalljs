@@ -3,18 +3,6 @@ namespace $.$$ {
 	/** Rows of the rating shown at once, as on the reference site. */
 	const page_size = 10
 
-	/** The roster of the section. `versus/data/` is one JSON per framework with
-	 *  no index to enumerate, so the list of ids lives here; an id whose file is
-	 *  missing or unreadable simply drops out of every block on the page. */
-	const framework_ids: readonly string[] = [
-		'angular',
-		'mol',
-		'react',
-		'solid',
-		'svelte',
-		'vue',
-	]
-
 	/** The two top blocks are not an editorial opinion: each one counts wins in
 	 *  the categories named under its heading, so the order can be recomputed by
 	 *  anyone from the same JSON. */
@@ -37,17 +25,6 @@ namespace $.$$ {
 		[ 'mol', 'vue' ],
 	]
 
-	/** Display names for ids the page can mention before the data files land
-	 *  (the featured pairs above are static). Data always wins over this table. */
-	const title_fallback: Readonly< Record< string, string > > = {
-		angular: 'Angular',
-		mol: '$mol',
-		react: 'React',
-		solid: 'Solid',
-		svelte: 'Svelte',
-		vue: 'Vue',
-	}
-
 	/** Canonical order of a pair: alphabetical by id, so `react`/`vue` and
 	 *  `vue`/`react` are one address and one page. Plain code-unit comparison —
 	 *  ids are lower-case ascii slugs, so locale rules cannot reorder them. */
@@ -69,46 +46,35 @@ namespace $.$$ {
 
 		// ——— Data ———————————————————————————————————————————————————————————
 		//
-		// `versus/data/*.json` is read through the same loader the comparison
-		// page uses, so a framework has one set of numbers on the site and not
-		// two. A file that is missing or unreadable is not an error here: the
-		// framework drops out of the lists and the blocks say they have nothing
-		// to show, which beats filling the gap with a plausible number.
+		// The catalogue is compiled into the bundle by versus/data/gen.cjs, so
+		// there is nothing to fetch and no loading state: `list()` is always the
+		// full roster. Which frameworks exist is the data module's business, not
+		// this page's — nothing here keeps its own list of ids.
 
 		data() {
-			return this.$.$bog_smalljs_versus_pair_data
+			return this.$.$bog_smalljs_versus_data
 		}
 
-		/** Every framework whose data file could be read. */
-		@ $mol_mem
-		frameworks(): readonly $bog_smalljs_versus_pair_framework[] {
-			return framework_ids
-				.filter( id => this.data().known( id ) )
-				.map( id => this.data().framework( id ) )
+		/** Every framework in the catalogue. */
+		frameworks(): readonly $bog_smalljs_versus_data_framework[] {
+			return this.data().list()
 		}
 
 		/** Metric descriptions, keyed by metric id. */
-		registry(): Readonly< Record< string, $bog_smalljs_versus_pair_meta > > {
+		registry(): Readonly< Record< string, $bog_smalljs_versus_data_metric > > {
 			return this.data().registry()
-		}
-
-		@ $mol_mem
-		by_id() {
-			const map = new Map< string, $bog_smalljs_versus_pair_framework >()
-			for( const fw of this.frameworks() ) map.set( fw.id, fw )
-			return map
 		}
 
 		/** Human name of a framework id. Also used by the app shell for the
 		 *  `React vs Vue — $mol` page title, which is why it is declared in the
-		 *  tree rather than kept private here. */
+		 *  tree rather than kept private here.
+		 *
+		 *  An id nobody wrote a file for is shown capitalized rather than mapped
+		 *  through a table of hand-written names: a second place where a
+		 *  framework is named is a second place to keep in step with the data. */
 		framework_title( id: string ) {
 			if( !id ) return ''
-			// One file, not the whole roster: the app shell asks this for the
-			// browser title of a comparison, and that should not wait on five
-			// requests it has no use for.
-			if( this.data().known( id ) ) return this.data().framework( id ).title
-			return title_fallback[ id ] ?? id[ 0 ].toUpperCase() + id.slice( 1 )
+			return this.data().item( id )?.title ?? id[ 0 ].toUpperCase() + id.slice( 1 )
 		}
 
 		// ——— Scoring ————————————————————————————————————————————————————————
@@ -135,23 +101,25 @@ namespace $.$$ {
 		}
 
 		/** +1 when `a` is better, -1 when `b` is, 0 when tied or when either side
-		 *  does not publish the metric. Decided by the same comparison the pair
-		 *  page draws its bars from, so the rating cannot disagree with the page
-		 *  it links to. */
-		compare_metric( metric: string, a: $bog_smalljs_versus_pair_framework, b: $bog_smalljs_versus_pair_framework ) {
+		 *  does not publish the metric — the rule from the section's spec, and
+		 *  the same one the comparison page scores a category by. */
+		compare_metric( metric: string, a: $bog_smalljs_versus_data_framework, b: $bog_smalljs_versus_data_framework ) {
 
 			const meta = this.registry()[ metric ]
 			const left = a.metrics[ metric ]
 			const right = b.metrics[ metric ]
 			if( !meta || !left || !right ) return 0
 
-			const side = this.$.$bog_smalljs_versus_pair_compare.diff( meta.better, left.value, right.value ).side
+			const x = Number( left.value )
+			const y = Number( right.value )
+			if( !Number.isFinite( x ) || !Number.isFinite( y ) || x === y ) return 0
 
-			return side === 'left' ? 1 : side === 'right' ? -1 : 0
+			// `boolean` rides the higher-is-better branch: true (1) beats false (0).
+			return meta.better === 'lower' ? ( x < y ? 1 : -1 ) : ( x > y ? 1 : -1 )
 		}
 
 		/** +1 / -1 / 0 for one category of one duel. */
-		category_winner( a: $bog_smalljs_versus_pair_framework, b: $bog_smalljs_versus_pair_framework, category: string ) {
+		category_winner( a: $bog_smalljs_versus_data_framework, b: $bog_smalljs_versus_data_framework, category: string ) {
 
 			let wins = 0
 			let losses = 0
@@ -191,7 +159,7 @@ namespace $.$$ {
 		/** Frameworks ordered by `scores( key )`, ties broken by name so the
 		 *  order never wobbles between renders. */
 		@ $mol_mem_key
-		ranked( key: string ): readonly $bog_smalljs_versus_pair_framework[] {
+		ranked( key: string ): readonly $bog_smalljs_versus_data_framework[] {
 			const scores = this.scores( key )
 			return [ ... this.frameworks() ].sort(
 				( x, y ) => ( scores[ y.id ] ?? 0 ) - ( scores[ x.id ] ?? 0 ) || x.title.localeCompare( y.title )
@@ -200,7 +168,7 @@ namespace $.$$ {
 
 		/** How many of the registry's metrics this framework actually publishes. */
 		coverage( id: string ) {
-			return Object.keys( this.by_id().get( id )?.metrics ?? {} ).length
+			return Object.keys( this.data().item( id )?.metrics ?? {} ).length
 		}
 
 		/** Whether the row deserves a word about how thin its table is. Every
@@ -271,10 +239,12 @@ namespace $.$$ {
 		 *  reference site has no Compare button either: choosing the second one
 		 *  is the action.
 		 *
-		 *  The address is written through `$mol_wire_async` because setting one
-		 *  memoized cell from the body of another is exactly the loop $mol
-		 *  forbids; and it is skipped when the address already says this, so a
-		 *  pair page that renders these very fields cannot re-trigger itself. */
+		 *  This cell only *notices*; the address is written by the action below,
+		 *  reached through `$mol_wire_async` so the write lands outside this
+		 *  memoized body. Writing `$mol_state_arg` from inside one is the
+		 *  invalidation loop $mol forbids. The check against the current address
+		 *  is what keeps a page that renders these very fields from re-triggering
+		 *  itself once the address already says this. */
 		@ $mol_mem
 		pick_sync() {
 
@@ -287,8 +257,15 @@ namespace $.$$ {
 			const arg = this.$.$mol_state_arg
 			if( arg.value( 'a' ) === first && arg.value( 'b' ) === second ) return null
 
-			$mol_wire_async( arg ).go({ section: 'versus', a: first, b: second })
+			$mol_wire_async( this ).pair_open( first, second )
 
+			return null
+		}
+
+		/** Navigation proper: a history entry the reader can step back out of. */
+		@ $mol_action
+		pair_open( a: string, b: string ) {
+			this.$.$mol_state_arg.go({ section: 'versus', a, b })
 			return null
 		}
 
@@ -419,7 +396,7 @@ namespace $.$$ {
 		}
 
 		row_since_text( id: string ) {
-			const since = this.by_id().get( id )?.since
+			const since = this.data().item( id )?.since
 			return since ? String( since ) : '—'
 		}
 
