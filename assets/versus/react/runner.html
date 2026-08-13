@@ -575,6 +575,13 @@
 		send( { type: 'ready', case: CASE } )
 	}
 
+	// visibilityState rather than document.hidden: the two agree in every browser
+	// that follows the spec, and this one is also correct for the states that are
+	// not plain 'visible'. All three runners check it the same way.
+	function tab_hidden() {
+		return document.visibilityState !== 'visible'
+	}
+
 	// A hidden tab clamps timers to a common wake-up, and a frame scrolled out of
 	// the viewport stops getting frames at all. Both make the run say more about
 	// the browser than about the framework, so watch for them the whole way
@@ -585,7 +592,7 @@
 		const alarm = new Promise( ( done, fail ) => { abort = fail } )
 
 		const on_visibility = () => {
-			if( document.hidden ) abort( new Invalid( 'tab-hidden' ) )
+			if( tab_hidden() ) abort( new Invalid( 'tab-hidden' ) )
 		}
 		document.addEventListener( 'visibilitychange', on_visibility )
 
@@ -596,7 +603,7 @@
 		} )
 		observer.observe( document.documentElement )
 
-		if( document.hidden ) abort( new Invalid( 'tab-hidden' ) )
+		if( tab_hidden() ) abort( new Invalid( 'tab-hidden' ) )
 
 		return {
 			alarm: alarm,

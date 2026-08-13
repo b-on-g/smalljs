@@ -120,13 +120,19 @@ namespace $.$$ {
 			)
 		}
 
+		// Checked through visibilityState rather than the `hidden` flag: inside a
+		// frame Chrome leaves `hidden` false while visibilityState already says
+		// the tab went away, which makes a check on the flag silently dead.
+		hidden() {
+			return this.$.$mol_dom_context.document.visibilityState !== 'visible'
+		}
+
 		@ $mol_mem
 		visibility_listener() {
-			const context = this.$.$mol_dom_context
 			return new this.$.$mol_dom_listener(
-				context.document,
+				this.$.$mol_dom_context.document,
 				'visibilitychange',
-				()=> { if( context.document.hidden ) this.spoil( 'tab-hidden' ) },
+				()=> { if( this.hidden() ) this.spoil( 'tab-hidden' ) },
 			)
 		}
 
@@ -153,7 +159,7 @@ namespace $.$$ {
 		}
 
 		spoiled() {
-			if( this.$.$mol_dom_context.document.hidden ) this.spoil( 'tab-hidden' )
+			if( this.hidden() ) this.spoil( 'tab-hidden' )
 			return this.spoil_reason()
 		}
 

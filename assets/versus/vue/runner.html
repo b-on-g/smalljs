@@ -543,8 +543,12 @@
 			interrupt()
 		}
 
+		// visibilityState rather than the document.hidden shorthand, purely so all three
+		// runners spell the check the same way. The state is read once at the start and
+		// then on every change: the event alone would miss a tab that was already hidden
+		// when Run was pressed, and the start read alone would miss it leaving mid-run.
 		function watch() {
-			if ( document.hidden ) spoil( 'tab-hidden' )
+			if ( document.visibilityState !== 'visible' ) spoil( 'tab-hidden' )
 		}
 
 		document.addEventListener( 'visibilitychange', watch )
