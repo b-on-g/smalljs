@@ -23451,6 +23451,63 @@ var $;
 			]);
 			return obj;
 		}
+		versus_eyebrow_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_landing_versus_eyebrow_text"));
+		}
+		Versus_eyebrow(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.versus_eyebrow_text())]);
+			return obj;
+		}
+		versus_line_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_landing_versus_line_text"));
+		}
+		Versus_line(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.versus_line_text())]);
+			return obj;
+		}
+		versus_open_label(){
+			return (this.$.$mol_locale.text("$bog_smalljs_landing_versus_open_label"));
+		}
+		Versus_open_icon(){
+			const obj = new this.$.$mol_icon_arrow_right();
+			return obj;
+		}
+		Versus_open(){
+			const obj = new this.$.$mol_link();
+			(obj.arg) = () => ({"section": "versus", "page": null});
+			(obj.sub) = () => ([(this.versus_open_label()), (this.Versus_open_icon())]);
+			return obj;
+		}
+		versus_pair_label(){
+			return (this.$.$mol_locale.text("$bog_smalljs_landing_versus_pair_label"));
+		}
+		Versus_pair(){
+			const obj = new this.$.$mol_link();
+			(obj.arg) = () => ({
+				"section": "versus", 
+				"a": "mol", 
+				"b": "react", 
+				"page": null
+			});
+			(obj.sub) = () => ([(this.versus_pair_label())]);
+			return obj;
+		}
+		Versus_links(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Versus_open()), (this.Versus_pair())]);
+			return obj;
+		}
+		Versus(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([
+				(this.Versus_eyebrow()), 
+				(this.Versus_line()), 
+				(this.Versus_links())
+			]);
+			return obj;
+		}
 		Footer_sect_docs_title_text(){
 			return (this.$.$mol_locale.text("$bog_smalljs_landing_Footer_sect_docs_title_text"));
 		}
@@ -23713,6 +23770,7 @@ var $;
 			return [
 				(this.Hero()), 
 				(this.Features()), 
+				(this.Versus()), 
 				(this.Footer())
 			];
 		}
@@ -23751,6 +23809,13 @@ var $;
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Feature3_text"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Feature3"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Features"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Versus_eyebrow"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Versus_line"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Versus_open_icon"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Versus_open"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Versus_pair"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Versus_links"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Versus"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_sect_docs_title"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_quickstart"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Footer_link_guide"));
@@ -24061,6 +24126,63 @@ var $;
         Feature1_text: { color: $bog_builderui_tokens.shade, lineHeight: '1.6' },
         Feature2_text: { color: $bog_builderui_tokens.shade, lineHeight: '1.6' },
         Feature3_text: { color: $bog_builderui_tokens.shade, lineHeight: '1.6' },
+        // ── Compare ──
+        // The way into the comparison section, and deliberately quiet: a thin rule,
+        // one line and two text links, below the fold. The section is meant to be
+        // tried rather than announced, so it gets no card, no button and no place in
+        // the hero — a reader who scrolls this far is already curious enough.
+        Versus: {
+            flex: { direction: 'column' },
+            align: { items: 'center' },
+            gap: rem(0.625),
+            width: '100%',
+            maxWidth: rem(62),
+            margin: { left: 'auto', right: 'auto' },
+            padding: { top: rem(2.5), bottom: rem(3), left: $mol_gap.block, right: $mol_gap.block },
+            border: { top: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+        },
+        Versus_eyebrow: {
+            display: 'block',
+            ...eyebrow,
+            textAlign: 'center',
+        },
+        Versus_line: {
+            display: 'block',
+            font: { size: rem(1.0625) },
+            lineHeight: '1.6',
+            textAlign: 'center',
+            maxWidth: rem(38),
+            color: $bog_builderui_tokens.shade,
+        },
+        Versus_links: {
+            flex: { direction: 'row', wrap: 'wrap' },
+            justify: { content: 'center' },
+            align: { items: 'center' },
+            gap: rem(1.25),
+            margin: { top: rem(0.375) },
+        },
+        Versus_open: {
+            flex: { direction: 'row' },
+            align: { items: 'center' },
+            gap: rem(0.4),
+            color: $bog_builderui_tokens.control,
+            font: { weight: 600 },
+            ':hover': { color: $bog_builderui_tokens.focus },
+        },
+        Versus_open_icon: {
+            width: rem(0.9),
+            height: rem(0.9),
+            flex: { shrink: 0 },
+        },
+        // The concrete pair reads as the quieter of the two: one is the door to the
+        // section, the other a single example behind it.
+        Versus_pair: {
+            flex: { direction: 'row' },
+            align: { items: 'center' },
+            color: $bog_builderui_tokens.shade,
+            font: { size: rem(0.9375) },
+            ':hover': { color: $bog_builderui_tokens.text },
+        },
         // ── Footer ──
         Footer: {
             flex: { direction: 'column' },
@@ -24138,6 +24260,9 @@ var $;
                     gridTemplateColumns: '1fr',
                     gap: rem(1.75),
                     padding: { top: rem(1), bottom: rem(3), left: rem(1.25), right: rem(1.25) },
+                },
+                Versus: {
+                    padding: { top: rem(2), bottom: rem(2.25), left: rem(1.25), right: rem(1.25) },
                 },
                 Footer: {
                     padding: { top: rem(2.5), bottom: rem(2), left: rem(1.25), right: rem(1.25) },

@@ -10025,57 +10025,53 @@ declare namespace $ {
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_link__title_bog_smalljs_landing_41 = $mol_type_enforce<
-		string
+	type $mol_view__sub_bog_smalljs_landing_41 = $mol_type_enforce<
+		readonly(any)[]
 		,
-		ReturnType< $mol_link['title'] >
+		ReturnType< $mol_view['sub'] >
 	>
 	type $mol_link__arg_bog_smalljs_landing_42 = $mol_type_enforce<
 		({ 
 			'section': string,
-			'page': string,
+			'page': any,
 		}) 
 		,
 		ReturnType< $mol_link['arg'] >
 	>
-	type $mol_link__title_bog_smalljs_landing_43 = $mol_type_enforce<
-		string
+	type $mol_link__sub_bog_smalljs_landing_43 = $mol_type_enforce<
+		readonly(any)[]
 		,
-		ReturnType< $mol_link['title'] >
+		ReturnType< $mol_link['sub'] >
 	>
 	type $mol_link__arg_bog_smalljs_landing_44 = $mol_type_enforce<
 		({ 
 			'section': string,
-			'page': string,
+			'a': string,
+			'b': string,
+			'page': any,
 		}) 
 		,
 		ReturnType< $mol_link['arg'] >
 	>
-	type $mol_link__title_bog_smalljs_landing_45 = $mol_type_enforce<
-		string
+	type $mol_link__sub_bog_smalljs_landing_45 = $mol_type_enforce<
+		readonly(any)[]
 		,
-		ReturnType< $mol_link['title'] >
+		ReturnType< $mol_link['sub'] >
 	>
-	type $mol_link__arg_bog_smalljs_landing_46 = $mol_type_enforce<
-		({ 
-			'section': string,
-			'page': string,
-		}) 
+	type $mol_view__sub_bog_smalljs_landing_46 = $mol_type_enforce<
+		readonly(any)[]
 		,
-		ReturnType< $mol_link['arg'] >
+		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_link__title_bog_smalljs_landing_47 = $mol_type_enforce<
-		string
+	type $mol_view__sub_bog_smalljs_landing_47 = $mol_type_enforce<
+		readonly(any)[]
 		,
-		ReturnType< $mol_link['title'] >
+		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_link__arg_bog_smalljs_landing_48 = $mol_type_enforce<
-		({ 
-			'section': string,
-			'page': string,
-		}) 
+	type $mol_view__sub_bog_smalljs_landing_48 = $mol_type_enforce<
+		readonly(any)[]
 		,
-		ReturnType< $mol_link['arg'] >
+		ReturnType< $mol_view['sub'] >
 	>
 	type $mol_link__title_bog_smalljs_landing_49 = $mol_type_enforce<
 		string
@@ -10090,27 +10086,12 @@ declare namespace $ {
 		,
 		ReturnType< $mol_link['arg'] >
 	>
-	type $mol_view__sub_bog_smalljs_landing_51 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_52 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_53 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_link__title_bog_smalljs_landing_54 = $mol_type_enforce<
+	type $mol_link__title_bog_smalljs_landing_51 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_link__arg_bog_smalljs_landing_55 = $mol_type_enforce<
+	type $mol_link__arg_bog_smalljs_landing_52 = $mol_type_enforce<
 		({ 
 			'section': string,
 			'page': string,
@@ -10118,12 +10099,12 @@ declare namespace $ {
 		,
 		ReturnType< $mol_link['arg'] >
 	>
-	type $mol_link__title_bog_smalljs_landing_56 = $mol_type_enforce<
+	type $mol_link__title_bog_smalljs_landing_53 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_link__arg_bog_smalljs_landing_57 = $mol_type_enforce<
+	type $mol_link__arg_bog_smalljs_landing_54 = $mol_type_enforce<
 		({ 
 			'section': string,
 			'page': string,
@@ -10131,18 +10112,36 @@ declare namespace $ {
 		,
 		ReturnType< $mol_link['arg'] >
 	>
-	type $mol_link__title_bog_smalljs_landing_58 = $mol_type_enforce<
+	type $mol_link__title_bog_smalljs_landing_55 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_link__arg_bog_smalljs_landing_59 = $mol_type_enforce<
+	type $mol_link__arg_bog_smalljs_landing_56 = $mol_type_enforce<
 		({ 
 			'section': string,
 			'page': string,
 		}) 
 		,
 		ReturnType< $mol_link['arg'] >
+	>
+	type $mol_link__title_bog_smalljs_landing_57 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_link__arg_bog_smalljs_landing_58 = $mol_type_enforce<
+		({ 
+			'section': string,
+			'page': string,
+		}) 
+		,
+		ReturnType< $mol_link['arg'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_59 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
 	>
 	type $mol_view__sub_bog_smalljs_landing_60 = $mol_type_enforce<
 		readonly(any)[]
@@ -10154,218 +10153,267 @@ declare namespace $ {
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_landing_62 = $mol_type_enforce<
+	type $mol_link__title_bog_smalljs_landing_62 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_link__arg_bog_smalljs_landing_63 = $mol_type_enforce<
+		({ 
+			'section': string,
+			'page': string,
+		}) 
+		,
+		ReturnType< $mol_link['arg'] >
+	>
+	type $mol_link__title_bog_smalljs_landing_64 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_link__arg_bog_smalljs_landing_65 = $mol_type_enforce<
+		({ 
+			'section': string,
+			'page': string,
+		}) 
+		,
+		ReturnType< $mol_link['arg'] >
+	>
+	type $mol_link__title_bog_smalljs_landing_66 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_link__arg_bog_smalljs_landing_67 = $mol_type_enforce<
+		({ 
+			'section': string,
+			'page': string,
+		}) 
+		,
+		ReturnType< $mol_link['arg'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_68 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_link__title_bog_smalljs_landing_63 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_landing_69 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_70 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_link__title_bog_smalljs_landing_71 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_link__arg_bog_smalljs_landing_64 = $mol_type_enforce<
+	type $mol_link__arg_bog_smalljs_landing_72 = $mol_type_enforce<
 		({ 
 			'section': string,
 			'page': string,
 		}) 
 		,
 		ReturnType< $mol_link['arg'] >
-	>
-	type $mol_link__title_bog_smalljs_landing_65 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['title'] >
-	>
-	type $mol_link__arg_bog_smalljs_landing_66 = $mol_type_enforce<
-		({ 
-			'section': string,
-			'page': string,
-		}) 
-		,
-		ReturnType< $mol_link['arg'] >
-	>
-	type $mol_link__title_bog_smalljs_landing_67 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['title'] >
-	>
-	type $mol_link__uri_bog_smalljs_landing_68 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['uri'] >
-	>
-	type $mol_link__target_bog_smalljs_landing_69 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['target'] >
-	>
-	type $mol_link__title_bog_smalljs_landing_70 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['title'] >
-	>
-	type $mol_link__uri_bog_smalljs_landing_71 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['uri'] >
-	>
-	type $mol_link__target_bog_smalljs_landing_72 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['target'] >
 	>
 	type $mol_link__title_bog_smalljs_landing_73 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_link__uri_bog_smalljs_landing_74 = $mol_type_enforce<
-		string
+	type $mol_link__arg_bog_smalljs_landing_74 = $mol_type_enforce<
+		({ 
+			'section': string,
+			'page': string,
+		}) 
 		,
-		ReturnType< $mol_link['uri'] >
+		ReturnType< $mol_link['arg'] >
 	>
-	type $mol_link__target_bog_smalljs_landing_75 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['target'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_76 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_77 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_78 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_link__title_bog_smalljs_landing_79 = $mol_type_enforce<
+	type $mol_link__title_bog_smalljs_landing_75 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_link__uri_bog_smalljs_landing_80 = $mol_type_enforce<
+	type $mol_link__uri_bog_smalljs_landing_76 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__target_bog_smalljs_landing_81 = $mol_type_enforce<
+	type $mol_link__target_bog_smalljs_landing_77 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['target'] >
 	>
-	type $mol_link__title_bog_smalljs_landing_82 = $mol_type_enforce<
+	type $mol_link__title_bog_smalljs_landing_78 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_link__uri_bog_smalljs_landing_83 = $mol_type_enforce<
+	type $mol_link__uri_bog_smalljs_landing_79 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__target_bog_smalljs_landing_84 = $mol_type_enforce<
+	type $mol_link__target_bog_smalljs_landing_80 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['target'] >
 	>
-	type $mol_link__title_bog_smalljs_landing_85 = $mol_type_enforce<
+	type $mol_link__title_bog_smalljs_landing_81 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_link__uri_bog_smalljs_landing_86 = $mol_type_enforce<
+	type $mol_link__uri_bog_smalljs_landing_82 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__target_bog_smalljs_landing_87 = $mol_type_enforce<
+	type $mol_link__target_bog_smalljs_landing_83 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['target'] >
 	>
-	type $mol_link__title_bog_smalljs_landing_88 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_landing_84 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_85 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_86 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_link__title_bog_smalljs_landing_87 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_link__uri_bog_smalljs_landing_89 = $mol_type_enforce<
+	type $mol_link__uri_bog_smalljs_landing_88 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__target_bog_smalljs_landing_90 = $mol_type_enforce<
+	type $mol_link__target_bog_smalljs_landing_89 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['target'] >
 	>
-	type $mol_link__title_bog_smalljs_landing_91 = $mol_type_enforce<
+	type $mol_link__title_bog_smalljs_landing_90 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_link__uri_bog_smalljs_landing_92 = $mol_type_enforce<
+	type $mol_link__uri_bog_smalljs_landing_91 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__target_bog_smalljs_landing_93 = $mol_type_enforce<
+	type $mol_link__target_bog_smalljs_landing_92 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['target'] >
 	>
-	type $mol_link__title_bog_smalljs_landing_94 = $mol_type_enforce<
+	type $mol_link__title_bog_smalljs_landing_93 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_link__uri_bog_smalljs_landing_95 = $mol_type_enforce<
+	type $mol_link__uri_bog_smalljs_landing_94 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__target_bog_smalljs_landing_96 = $mol_type_enforce<
+	type $mol_link__target_bog_smalljs_landing_95 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['target'] >
 	>
-	type $mol_view__sub_bog_smalljs_landing_97 = $mol_type_enforce<
+	type $mol_link__title_bog_smalljs_landing_96 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_link__uri_bog_smalljs_landing_97 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__target_bog_smalljs_landing_98 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['target'] >
+	>
+	type $mol_link__title_bog_smalljs_landing_99 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_link__uri_bog_smalljs_landing_100 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__target_bog_smalljs_landing_101 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['target'] >
+	>
+	type $mol_link__title_bog_smalljs_landing_102 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_link__uri_bog_smalljs_landing_103 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__target_bog_smalljs_landing_104 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['target'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_105 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_landing_98 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_landing_106 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_landing_99 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_landing_107 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_landing_100 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_landing_108 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_landing_101 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_landing_109 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_landing_102 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_landing_110 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_landing_103 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_landing_111 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
@@ -10422,6 +10470,17 @@ declare namespace $ {
 		Feature3_text( ): $mol_text
 		Feature3( ): $mol_view
 		Features( ): $mol_view
+		versus_eyebrow_text( ): string
+		Versus_eyebrow( ): $mol_view
+		versus_line_text( ): string
+		Versus_line( ): $mol_view
+		versus_open_label( ): string
+		Versus_open_icon( ): $mol_icon_arrow_right
+		Versus_open( ): $mol_link
+		versus_pair_label( ): string
+		Versus_pair( ): $mol_link
+		Versus_links( ): $mol_view
+		Versus( ): $mol_view
 		Footer_sect_docs_title_text( ): string
 		Footer_sect_docs_title( ): $mol_view
 		Footer_link_quickstart( ): $mol_link
