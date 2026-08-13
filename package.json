@@ -364,8 +364,11 @@
     "$bog_smalljs_course",
     "$bog_smalljs_lessons",
     "$bog_smalljs_versus",
+    "$bog_smalljs_versus_pair",
+    "$bog_smalljs_versus_data",
     "$bog_smalljs_versus_case",
     "$bog_builderui_router",
+    "$bog_smalljs_router",
     "$bog_meta",
     "$mol_offline_install",
     "$mol_offline"

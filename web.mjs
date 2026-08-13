@@ -24989,6 +24989,599 @@ var $;
 })($ || ($ = {}));
 
 ;
+	($.$bog_smalljs_versus) = class $bog_smalljs_versus extends ($.$mol_view) {
+		pick_sync(){
+			return null;
+		}
+		title_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_title_text"));
+		}
+		Title(){
+			const obj = new this.$.$mol_view();
+			(obj.dom_name) = () => ("h1");
+			(obj.sub) = () => ([(this.title_text())]);
+			return obj;
+		}
+		intro_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_intro_text"));
+		}
+		Intro(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.intro_text())]);
+			return obj;
+		}
+		Head(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Title()), (this.Intro())]);
+			return obj;
+		}
+		query_a(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		suggests_a(){
+			return [];
+		}
+		Pick_a(){
+			const obj = new this.$.$mol_search();
+			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_smalljs_versus_Pick_a_hint")));
+			(obj.query) = (next) => ((this.query_a(next)));
+			(obj.suggests) = () => ((this.suggests_a()));
+			return obj;
+		}
+		Vs(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.vs_text())]);
+			return obj;
+		}
+		query_b(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		suggests_b(){
+			return [];
+		}
+		Pick_b(){
+			const obj = new this.$.$mol_search();
+			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_smalljs_versus_Pick_b_hint")));
+			(obj.query) = (next) => ((this.query_b(next)));
+			(obj.suggests) = () => ((this.suggests_b()));
+			return obj;
+		}
+		Picker(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([
+				(this.Pick_a()), 
+				(this.Vs()), 
+				(this.Pick_b())
+			]);
+			return obj;
+		}
+		popular_title(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_popular_title"));
+		}
+		Popular_title(){
+			const obj = new this.$.$mol_view();
+			(obj.dom_name) = () => ("h2");
+			(obj.sub) = () => ([(this.popular_title())]);
+			return obj;
+		}
+		popular_links(){
+			return [];
+		}
+		Popular_list(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.popular_links()));
+			return obj;
+		}
+		Popular(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Popular_title()), (this.Popular_list())]);
+			return obj;
+		}
+		top_apps_title(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_top_apps_title"));
+		}
+		Top_apps_title(){
+			const obj = new this.$.$mol_view();
+			(obj.dom_name) = () => ("h2");
+			(obj.sub) = () => ([(this.top_apps_title())]);
+			return obj;
+		}
+		top_apps_note(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_top_apps_note"));
+		}
+		Top_apps_note(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.top_apps_note())]);
+			return obj;
+		}
+		top_apps_content(){
+			return [];
+		}
+		Top_apps_list(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.top_apps_content()));
+			return obj;
+		}
+		Top_apps(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([
+				(this.Top_apps_title()), 
+				(this.Top_apps_note()), 
+				(this.Top_apps_list())
+			]);
+			return obj;
+		}
+		top_sites_title(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_top_sites_title"));
+		}
+		Top_sites_title(){
+			const obj = new this.$.$mol_view();
+			(obj.dom_name) = () => ("h2");
+			(obj.sub) = () => ([(this.top_sites_title())]);
+			return obj;
+		}
+		top_sites_note(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_top_sites_note"));
+		}
+		Top_sites_note(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.top_sites_note())]);
+			return obj;
+		}
+		top_sites_content(){
+			return [];
+		}
+		Top_sites_list(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.top_sites_content()));
+			return obj;
+		}
+		Top_sites(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([
+				(this.Top_sites_title()), 
+				(this.Top_sites_note()), 
+				(this.Top_sites_list())
+			]);
+			return obj;
+		}
+		rating_title(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_rating_title"));
+		}
+		Rating_title(){
+			const obj = new this.$.$mol_view();
+			(obj.dom_name) = () => ("h2");
+			(obj.sub) = () => ([(this.rating_title())]);
+			return obj;
+		}
+		rating_note(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_rating_note"));
+		}
+		Rating_note(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.rating_note())]);
+			return obj;
+		}
+		rating_head_rank(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_rating_head_rank"));
+		}
+		Rating_head_rank(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.rating_head_rank())]);
+			return obj;
+		}
+		Rating_head_mark(){
+			const obj = new this.$.$mol_view();
+			return obj;
+		}
+		rating_head_name(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_rating_head_name"));
+		}
+		Rating_head_name(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.rating_head_name())]);
+			return obj;
+		}
+		rating_head_score(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_rating_head_score"));
+		}
+		Rating_head_score(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.rating_head_score())]);
+			return obj;
+		}
+		rating_head_since(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_rating_head_since"));
+		}
+		Rating_head_since(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.rating_head_since())]);
+			return obj;
+		}
+		Rating_head(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([
+				(this.Rating_head_rank()), 
+				(this.Rating_head_mark()), 
+				(this.Rating_head_name()), 
+				(this.Rating_head_score()), 
+				(this.Rating_head_since())
+			]);
+			return obj;
+		}
+		rating_content(){
+			return [];
+		}
+		Rating_list(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.rating_content()));
+			return obj;
+		}
+		pager_content(){
+			return [];
+		}
+		Pager(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.pager_content()));
+			return obj;
+		}
+		Rating(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([
+				(this.Rating_title()), 
+				(this.Rating_note()), 
+				(this.Rating_head()), 
+				(this.Rating_list()), 
+				(this.Pager())
+			]);
+			return obj;
+		}
+		pair_arg(id){
+			return {};
+		}
+		pair_left(id){
+			return "";
+		}
+		Popular_left(id){
+			const obj = new this.$.$mol_view();
+			(obj.dom_name) = () => ("strong");
+			(obj.sub) = () => ([(this.pair_left(id))]);
+			return obj;
+		}
+		Popular_mid(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.vs_text())]);
+			return obj;
+		}
+		pair_right(id){
+			return "";
+		}
+		Popular_right(id){
+			const obj = new this.$.$mol_view();
+			(obj.dom_name) = () => ("strong");
+			(obj.sub) = () => ([(this.pair_right(id))]);
+			return obj;
+		}
+		card_arg(id){
+			return {};
+		}
+		card_mark(id){
+			return "";
+		}
+		Card_mark(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.card_mark(id))]);
+			return obj;
+		}
+		card_name(id){
+			return "";
+		}
+		Card_name(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.card_name(id))]);
+			return obj;
+		}
+		row_content(id){
+			return [];
+		}
+		rank(id){
+			return "";
+		}
+		row_mark(id){
+			return "";
+		}
+		row_name_content(id){
+			return [];
+		}
+		row_arg(id){
+			return {};
+		}
+		row_title(id){
+			return "";
+		}
+		row_partial_text(id){
+			return "";
+		}
+		row_fill_width(id){
+			return "0%";
+		}
+		Row_fill(id){
+			const obj = new this.$.$mol_view();
+			(obj.style) = () => ({"width": (this.row_fill_width(id))});
+			return obj;
+		}
+		Row_track(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Row_fill(id))]);
+			return obj;
+		}
+		row_score_text(id){
+			return "";
+		}
+		Row_value(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.row_score_text(id))]);
+			return obj;
+		}
+		row_since_text(id){
+			return "";
+		}
+		page_click(id, next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		page_current(id){
+			return false;
+		}
+		page_label(id){
+			return "";
+		}
+		page_next_hint(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_page_next_hint"));
+		}
+		page_next(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		page_next_label(){
+			return "›";
+		}
+		empty_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_empty_text"));
+		}
+		framework_title(id){
+			return "";
+		}
+		vs_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_vs_text"));
+		}
+		row_partial_template(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_row_partial_template"));
+		}
+		auto(){
+			return [(this.pick_sync())];
+		}
+		sub(){
+			return [
+				(this.Head()), 
+				(this.Picker()), 
+				(this.Popular()), 
+				(this.Top_apps()), 
+				(this.Top_sites()), 
+				(this.Rating())
+			];
+		}
+		Popular_link(id){
+			const obj = new this.$.$mol_link();
+			(obj.arg) = () => ((this.pair_arg(id)));
+			(obj.sub) = () => ([
+				(this.Popular_left(id)), 
+				(this.Popular_mid(id)), 
+				(this.Popular_right(id))
+			]);
+			return obj;
+		}
+		Card(id){
+			const obj = new this.$.$mol_link();
+			(obj.arg) = () => ((this.card_arg(id)));
+			(obj.sub) = () => ([(this.Card_mark(id)), (this.Card_name(id))]);
+			return obj;
+		}
+		Row(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.row_content(id)));
+			return obj;
+		}
+		Rank(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.rank(id))]);
+			return obj;
+		}
+		Row_mark(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.row_mark(id))]);
+			return obj;
+		}
+		Row_name(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.row_name_content(id)));
+			return obj;
+		}
+		Row_link(id){
+			const obj = new this.$.$mol_link();
+			(obj.arg) = () => ((this.row_arg(id)));
+			(obj.sub) = () => ([(this.row_title(id))]);
+			return obj;
+		}
+		Row_partial(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.row_partial_text(id))]);
+			return obj;
+		}
+		Row_score(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Row_track(id)), (this.Row_value(id))]);
+			return obj;
+		}
+		Row_since(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.row_since_text(id))]);
+			return obj;
+		}
+		Page(id){
+			const obj = new this.$.$mol_button_minor();
+			(obj.click) = (next) => ((this.page_click(id, next)));
+			(obj.attr) = () => ({...(this.$.$mol_button_minor.prototype.attr.call(obj)), "bog_smalljs_versus_page_current": (this.page_current(id))});
+			(obj.sub) = () => ([(this.page_label(id))]);
+			return obj;
+		}
+		Page_next(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.hint) = () => ((this.page_next_hint()));
+			(obj.click) = (next) => ((this.page_next(next)));
+			(obj.sub) = () => ([(this.page_next_label())]);
+			return obj;
+		}
+		Empty(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.empty_text())]);
+			return obj;
+		}
+	};
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Title"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Intro"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Head"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "query_a"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Pick_a"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Vs"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "query_b"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Pick_b"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Picker"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Popular_title"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Popular_list"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Popular"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Top_apps_title"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Top_apps_note"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Top_apps_list"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Top_apps"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Top_sites_title"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Top_sites_note"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Top_sites_list"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Top_sites"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Rating_title"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Rating_note"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Rating_head_rank"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Rating_head_mark"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Rating_head_name"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Rating_head_score"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Rating_head_since"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Rating_head"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Rating_list"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Pager"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Rating"));
+	($mol_mem_key(($.$bog_smalljs_versus.prototype), "Popular_left"));
+	($mol_mem_key(($.$bog_smalljs_versus.prototype), "Popular_mid"));
+	($mol_mem_key(($.$bog_smalljs_versus.prototype), "Popular_right"));
+	($mol_mem_key(($.$bog_smalljs_versus.prototype), "Card_mark"));
+	($mol_mem_key(($.$bog_smalljs_versus.prototype), "Card_name"));
+	($mol_mem_key(($.$bog_smalljs_versus.prototype), "Row_fill"));
+	($mol_mem_key(($.$bog_smalljs_versus.prototype), "Row_track"));
+	($mol_mem_key(($.$bog_smalljs_versus.prototype), "Row_value"));
+	($mol_mem_key(($.$bog_smalljs_versus.prototype), "page_click"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "page_next"));
+	($mol_mem_key(($.$bog_smalljs_versus.prototype), "Popular_link"));
+	($mol_mem_key(($.$bog_smalljs_versus.prototype), "Card"));
+	($mol_mem_key(($.$bog_smalljs_versus.prototype), "Row"));
+	($mol_mem_key(($.$bog_smalljs_versus.prototype), "Rank"));
+	($mol_mem_key(($.$bog_smalljs_versus.prototype), "Row_mark"));
+	($mol_mem_key(($.$bog_smalljs_versus.prototype), "Row_name"));
+	($mol_mem_key(($.$bog_smalljs_versus.prototype), "Row_link"));
+	($mol_mem_key(($.$bog_smalljs_versus.prototype), "Row_partial"));
+	($mol_mem_key(($.$bog_smalljs_versus.prototype), "Row_score"));
+	($mol_mem_key(($.$bog_smalljs_versus.prototype), "Row_since"));
+	($mol_mem_key(($.$bog_smalljs_versus.prototype), "Page"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Page_next"));
+	($mol_mem_key(($.$bog_smalljs_versus.prototype), "Empty"));
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $bog_smalljs_versus_data extends $mol_object2 {
+        /** Metric descriptions, keyed by metric id. */
+        static registry() {
+            return {
+                "loc_todomvc": { "category": "code", "title": "Lines of code (TodoMVC)", "unit": "", "better": "lower", "human": "Fewer lines to read when someone else picks the project up.", "method": "Logic plus styles of a TodoMVC implementation, tests excluded. Counted by hand in the todomvc-compare repository." },
+                "deps_direct": { "category": "code", "title": "Direct dependencies", "unit": "", "better": "lower", "human": "Packages the framework itself declares. Every one of them is code you did not choose but still ship.", "method": "Sum of the `dependencies` fields of the packages installed by the framework's documented runtime install (react + react-dom, vue, svelte, solid-js). Frameworks with no documented bare npm runtime install are left blank." },
+                "deps_transitive": { "category": "code", "title": "Packages installed", "unit": "", "better": "lower", "human": "How many separate packages end up in node_modules once npm is done resolving. Each one is a separate author you trust.", "method": "`npm install --omit=dev` of the documented runtime packages into an empty project, then distinct name+version pairs in `npm ls --all --omit=dev`. Roots included." },
+                "node_modules_size": { "category": "code", "title": "node_modules size", "unit": "MB", "better": "lower", "human": "Disk footprint of a clean install. It is not what ships to the browser, but it is what every CI run downloads.", "method": "`du -sk node_modules` after `npm install --omit=dev` of the documented runtime packages into an empty project." },
+                "bundle_gzip": { "category": "weight", "title": "TodoMVC bundle, gzip", "unit": "KB", "better": "lower", "human": "What the browser actually downloads for a small but complete application.", "method": "Gzipped production bundle of a TodoMVC implementation, measured in the todomvc-compare repository." },
+                "startup_bytes": { "category": "weight", "title": "Startup transfer", "unit": "KB", "better": "lower", "human": "Bytes pulled over the network before the benchmark application is usable. Same application in every column, so the difference is the framework.", "method": "Lighthouse total byte weight for the js-framework-benchmark application, reported as benchmark 34_startup-totalbytes. Transfer size, not gzip specifically." },
+                "create_1k": { "category": "speed", "title": "Create 1,000 rows", "unit": "ms", "better": "lower", "human": "Time to put a thousand fresh rows on the screen. This is the wait after hitting a filter or opening a list.", "method": "js-framework-benchmark 01_run1k, arithmetic mean of 10 runs." },
+                "update_1k": { "category": "speed", "title": "Partial update", "unit": "ms", "better": "lower", "human": "Touching every tenth row of a thousand, sixteen times. This is where a framework either finds the changed rows or re-checks everything.", "method": "js-framework-benchmark 03_update10th1k_x16, arithmetic mean of 10 runs." },
+                "swap_rows": { "category": "speed", "title": "Swap two rows", "unit": "ms", "better": "lower", "human": "Two rows trade places out of a thousand. The ideal answer is two DOM moves, and the gap here shows who gets close to it.", "method": "js-framework-benchmark 05_swap1k, arithmetic mean of 10 runs." },
+                "remove_row": { "category": "speed", "title": "Remove one row", "unit": "ms", "better": "lower", "human": "Deleting a single row out of a thousand. The smallest possible change, so it measures the fixed cost of reacting at all.", "method": "js-framework-benchmark 06_remove-one-1k, arithmetic mean of 10 runs." },
+                "mem_ready": { "category": "speed", "title": "Memory after load", "unit": "MB", "better": "lower", "human": "Heap the framework occupies with nothing on the page yet.", "method": "js-framework-benchmark 21_ready-memory, single run." },
+                "mem_1k": { "category": "speed", "title": "Memory with 1,000 rows", "unit": "MB", "better": "lower", "human": "Heap once a thousand rows are on screen. On a phone this is the difference between staying alive in the background and being killed.", "method": "js-framework-benchmark 22_run-memory, single run." },
+                "startup_tbt": { "category": "speed", "title": "Startup blocking time", "unit": "ms", "better": "lower", "human": "How long the main thread is busy during startup, so taps and scrolls do nothing.", "method": "js-framework-benchmark 32_startup-bt (Lighthouse total blocking time), arithmetic mean of 4 runs." },
+                "router": { "category": "builtin", "title": "Router", "unit": "", "better": "boolean", "human": "Whether URLs and navigation come from the framework project itself, or you go pick a library and own that choice forever.", "method": "Yes when the framework project publishes and documents a routing solution of its own. No when its own official docs send you to a third-party project instead. Blank when neither is stated anywhere official." },
+                "i18n": { "category": "builtin", "title": "Localization", "unit": "", "better": "boolean", "human": "Translating an application is rarely planned at the start and always arrives later.", "method": "Yes when the framework project publishes and documents localization support of its own." },
+                "themes": { "category": "builtin", "title": "Theming", "unit": "", "better": "boolean", "human": "Dark mode and brand colours without inventing your own CSS variable convention.", "method": "Yes when the framework project publishes and documents a theming mechanism of its own." },
+                "virtual": { "category": "builtin", "title": "List virtualization", "unit": "", "better": "boolean", "human": "Long lists stay smooth because off-screen rows are never rendered. Without it, someone eventually bolts a library onto a list that already shipped.", "method": "Yes when the framework project publishes and documents virtual scrolling of its own." },
+                "offline": { "category": "builtin", "title": "Offline support", "unit": "", "better": "boolean", "human": "A service worker set up by the framework rather than copied from a blog post.", "method": "Yes when the framework project publishes and documents service worker support of its own." },
+                "ssr": { "category": "builtin", "title": "Server rendering", "unit": "", "better": "boolean", "human": "Rendering to HTML on the server, for search engines and for the first paint.", "method": "Yes when the framework project publishes and documents a server rendering API of its own. No when its published module list contains no such module." },
+                "tests_nodom": { "category": "builtin", "title": "Tests without a DOM", "unit": "", "better": "boolean", "human": "Components testable as plain objects, with no browser and no jsdom to boot up first.", "method": "Yes when components can be instantiated and asserted on outside a document, using the framework's own test runner." },
+                "di": { "category": "builtin", "title": "Dependency injection", "unit": "", "better": "boolean", "human": "Swapping a real service for a fake one in a test without touching the component that uses it.", "method": "Yes when the framework project documents a dependency injection mechanism of its own." },
+                "forms": { "category": "builtin", "title": "Forms", "unit": "", "better": "boolean", "human": "Validation, dirty state and submission handled by the framework instead of a fourth form library per team.", "method": "Yes when the framework project publishes and documents form handling of its own." },
+                "typed_templates": { "category": "builtin", "title": "Typed templates", "unit": "", "better": "boolean", "human": "A typo in a template is caught by the compiler, not by a user.", "method": "Yes when the framework's official TypeScript documentation covers type checking of its template or view layer." },
+                "stars": { "category": "market", "title": "GitHub stars", "unit": "", "better": "higher", "human": "A popularity signal, and nothing more. It says how many people bookmarked the repository, not how many shipped with it.", "method": "`stargazers_count` from the GitHub API for the repository that holds the framework's current source." },
+                "npm_downloads": { "category": "market", "title": "npm downloads", "unit": "per week", "better": "higher", "human": "The closest thing to a usage count. Inflated by CI runs, but inflated the same way for everyone.", "method": "npm registry downloads for the last full week, for the package you install to use the framework." },
+                "so_questions": { "category": "market", "title": "Stack Overflow questions", "unit": "", "better": "higher", "human": "How likely it is that your problem was already asked and answered by someone else.", "method": "Question count of the framework's Stack Overflow tag, via the Stack Exchange API." },
+                "maintainers": { "category": "market", "title": "npm maintainers", "unit": "", "better": "higher", "human": "How many people can publish a release. A low number is a bus factor.", "method": "Length of the `maintainers` array in the npm registry metadata of the framework's primary package." },
+                "cve_tree": { "category": "cost", "title": "Known vulnerabilities", "unit": "", "better": "lower", "human": "Advisories in the packages a clean install drags in. Someone has to triage each one of them.", "method": "`npm audit --omit=dev` on a fresh install of the documented runtime packages in an empty project." },
+                "breaking_3y": { "category": "cost", "title": "Breaking releases in 3 years", "unit": "", "better": "lower", "human": "Major versions shipped since 2023. Every one of them is a migration someone on the team pays for.", "method": "Count of major semver versions of the framework's primary npm package first published in the last three years. Left blank for packages that do not use semver majors." },
+            };
+        }
+        static metric(id) {
+            return this.registry()[id] ?? null;
+        }
+        /** Every framework, keyed by id. */
+        static items() {
+            return {
+                "angular": { "id": "angular", "title": "Angular", "since": 2014, "since_source": "https://github.com/angular/angular", "runner": false, "metrics": { "startup_bytes": { "value": 259, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "create_1k": { "value": 209.4, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "update_1k": { "value": 1159.7, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "swap_rows": { "value": 1553.8, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "remove_row": { "value": 55, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "mem_ready": { "value": 1.59, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "mem_1k": { "value": 3.03, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "startup_tbt": { "value": 149.4, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "router": { "value": true, "source": "https://angular.dev/guide/routing", "measured_at": "2026-08-13" }, "i18n": { "value": true, "source": "https://angular.dev/guide/i18n", "measured_at": "2026-08-13" }, "virtual": { "value": true, "source": "https://material.angular.dev/cdk/scrolling/overview", "measured_at": "2026-08-13" }, "offline": { "value": true, "source": "https://angular.dev/ecosystem/service-workers", "measured_at": "2026-08-13" }, "ssr": { "value": true, "source": "https://angular.dev/guide/ssr", "measured_at": "2026-08-13" }, "di": { "value": true, "source": "https://angular.dev/guide/di", "measured_at": "2026-08-13" }, "forms": { "value": true, "source": "https://angular.dev/guide/forms", "measured_at": "2026-08-13" }, "typed_templates": { "value": true, "source": "https://angular.dev/tools/cli/template-typecheck", "measured_at": "2026-08-13" }, "stars": { "value": 100990, "source": "https://github.com/angular/angular", "measured_at": "2026-08-13", "method": "https://docs.github.com/en/rest/repos/repos#get-a-repository" }, "npm_downloads": { "value": 5983187, "source": "https://api.npmjs.org/downloads/point/last-week/@angular/core", "measured_at": "2026-08-13", "method": "https://www.npmjs.com/package/@angular/core" }, "so_questions": { "value": 306418, "source": "https://stackoverflow.com/questions/tagged/angular", "measured_at": "2026-08-13", "method": "https://api.stackexchange.com/2.3/tags/angular/info?site=stackoverflow" }, "maintainers": { "value": 2, "source": "https://registry.npmjs.org/@angular/core", "measured_at": "2026-08-13", "method": "https://www.npmjs.com/package/@angular/core?activeTab=versions" }, "breaking_3y": { "value": 6, "source": "https://registry.npmjs.org/@angular/core", "measured_at": "2026-08-13", "method": "https://www.npmjs.com/package/@angular/core?activeTab=versions" } } },
+                "mol": { "id": "mol", "title": "\u0024mol", "since": 2016, "since_source": "https://github.com/hyoo-ru/mam_mol", "runner": true, "metrics": { "loc_todomvc": { "value": 357, "source": "https://github.com/b-on-g/todomvc-compare/blob/master/README.md", "measured_at": "2026-04-08" }, "bundle_gzip": { "value": 33, "source": "https://github.com/b-on-g/todomvc-compare/blob/master/README.md", "measured_at": "2026-04-08" }, "startup_bytes": { "value": 127.8, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "create_1k": { "value": 55.1, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "update_1k": { "value": 316.2, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "swap_rows": { "value": 46.3, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "remove_row": { "value": 26.9, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "mem_ready": { "value": 1.54, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "mem_1k": { "value": 1.94, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "startup_tbt": { "value": 244.2, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "router": { "value": true, "source": "https://github.com/hyoo-ru/mam_mol/tree/master/state/arg", "measured_at": "2026-08-13" }, "i18n": { "value": true, "source": "https://github.com/hyoo-ru/mam_mol/tree/master/locale", "measured_at": "2026-08-13" }, "themes": { "value": true, "source": "https://github.com/hyoo-ru/mam_mol/tree/master/theme", "measured_at": "2026-08-13" }, "virtual": { "value": true, "source": "https://github.com/hyoo-ru/mam_mol/tree/master/list", "measured_at": "2026-08-13" }, "offline": { "value": true, "source": "https://github.com/hyoo-ru/mam_mol/tree/master/offline", "measured_at": "2026-08-13" }, "ssr": { "value": false, "source": "https://github.com/hyoo-ru/mam_mol", "measured_at": "2026-08-13" }, "tests_nodom": { "value": true, "source": "https://github.com/hyoo-ru/mam_mol/tree/master/test", "measured_at": "2026-08-13" }, "di": { "value": true, "source": "https://github.com/hyoo-ru/mam_mol/tree/master/ambient", "measured_at": "2026-08-13" }, "forms": { "value": true, "source": "https://github.com/hyoo-ru/mam_mol/tree/master/form", "measured_at": "2026-08-13" }, "typed_templates": { "value": true, "source": "https://github.com/hyoo-ru/mam_mol/tree/master/view/tree2", "measured_at": "2026-08-13" }, "stars": { "value": 743, "source": "https://github.com/hyoo-ru/mam_mol", "measured_at": "2026-08-13", "method": "https://docs.github.com/en/rest/repos/repos#get-a-repository" }, "npm_downloads": { "value": 3327, "source": "https://api.npmjs.org/downloads/point/last-week/mam", "measured_at": "2026-08-13", "method": "https://www.npmjs.com/package/mam" }, "maintainers": { "value": 1, "source": "https://registry.npmjs.org/mam", "measured_at": "2026-08-13", "method": "https://www.npmjs.com/package/mam?activeTab=versions" } } },
+                "react": { "id": "react", "title": "React", "since": 2013, "since_source": "https://github.com/react/react", "runner": true, "metrics": { "deps_direct": { "value": 1, "source": "https://www.npmjs.com/package/react-dom?activeTab=dependencies", "measured_at": "2026-08-13" }, "deps_transitive": { "value": 3, "source": "https://www.npmjs.com/package/react-dom?activeTab=dependencies", "measured_at": "2026-08-13" }, "node_modules_size": { "value": 7.5, "source": "https://www.npmjs.com/package/react-dom?activeTab=dependencies", "measured_at": "2026-08-13" }, "startup_bytes": { "value": 274.4, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "create_1k": { "value": 224.3, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "update_1k": { "value": 1263.1, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "swap_rows": { "value": 1505.4, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "remove_row": { "value": 37.2, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "mem_ready": { "value": 1.44, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "mem_1k": { "value": 4.24, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "startup_tbt": { "value": 101.6, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "router": { "value": false, "source": "https://react.dev/learn/creating-a-react-app", "measured_at": "2026-08-13" }, "ssr": { "value": true, "source": "https://react.dev/reference/react-dom/server", "measured_at": "2026-08-13" }, "typed_templates": { "value": true, "source": "https://react.dev/learn/typescript", "measured_at": "2026-08-13" }, "stars": { "value": 247218, "source": "https://github.com/react/react", "measured_at": "2026-08-13", "method": "https://docs.github.com/en/rest/repos/repos#get-a-repository" }, "npm_downloads": { "value": 163083190, "source": "https://api.npmjs.org/downloads/point/last-week/react", "measured_at": "2026-08-13", "method": "https://www.npmjs.com/package/react" }, "so_questions": { "value": 473925, "source": "https://stackoverflow.com/questions/tagged/reactjs", "measured_at": "2026-08-13", "method": "https://api.stackexchange.com/2.3/tags/reactjs/info?site=stackoverflow" }, "maintainers": { "value": 2, "source": "https://registry.npmjs.org/react", "measured_at": "2026-08-13", "method": "https://www.npmjs.com/package/react?activeTab=versions" }, "cve_tree": { "value": 0, "source": "https://github.com/npm/cli#readme", "measured_at": "2026-08-13", "method": "https://docs.npmjs.com/cli/commands/npm-audit" }, "breaking_3y": { "value": 1, "source": "https://registry.npmjs.org/react", "measured_at": "2026-08-13", "method": "https://www.npmjs.com/package/react?activeTab=versions" } } },
+                "solid": { "id": "solid", "title": "Solid", "since": 2018, "since_source": "https://github.com/solidjs/solid", "runner": false, "metrics": { "deps_direct": { "value": 3, "source": "https://www.npmjs.com/package/solid-js?activeTab=dependencies", "measured_at": "2026-08-13" }, "deps_transitive": { "value": 4, "source": "https://www.npmjs.com/package/solid-js?activeTab=dependencies", "measured_at": "2026-08-13" }, "node_modules_size": { "value": 4.1, "source": "https://www.npmjs.com/package/solid-js?activeTab=dependencies", "measured_at": "2026-08-13" }, "startup_bytes": { "value": 149.7, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "create_1k": { "value": 152.8, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "update_1k": { "value": 992, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "swap_rows": { "value": 181.3, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "remove_row": { "value": 45.3, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "mem_ready": { "value": 1.22, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "mem_1k": { "value": 1.94, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "startup_tbt": { "value": 20.7, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "router": { "value": true, "source": "https://docs.solidjs.com/solid-router", "measured_at": "2026-08-13" }, "ssr": { "value": true, "source": "https://docs.solidjs.com/reference/rendering/render-to-string", "measured_at": "2026-08-13" }, "typed_templates": { "value": true, "source": "https://docs.solidjs.com/configuration/typescript", "measured_at": "2026-08-13" }, "stars": { "value": 35816, "source": "https://github.com/solidjs/solid", "measured_at": "2026-08-13", "method": "https://docs.github.com/en/rest/repos/repos#get-a-repository" }, "npm_downloads": { "value": 3456458, "source": "https://api.npmjs.org/downloads/point/last-week/solid-js", "measured_at": "2026-08-13", "method": "https://www.npmjs.com/package/solid-js" }, "so_questions": { "value": 323, "source": "https://stackoverflow.com/questions/tagged/solid-js", "measured_at": "2026-08-13", "method": "https://api.stackexchange.com/2.3/tags/solid-js/info?site=stackoverflow" }, "maintainers": { "value": 1, "source": "https://registry.npmjs.org/solid-js", "measured_at": "2026-08-13", "method": "https://www.npmjs.com/package/solid-js?activeTab=versions" }, "cve_tree": { "value": 0, "source": "https://github.com/npm/cli#readme", "measured_at": "2026-08-13", "method": "https://docs.npmjs.com/cli/commands/npm-audit" }, "breaking_3y": { "value": 0, "source": "https://registry.npmjs.org/solid-js", "measured_at": "2026-08-13", "method": "https://www.npmjs.com/package/solid-js?activeTab=versions" } } },
+                "svelte": { "id": "svelte", "title": "Svelte", "since": 2016, "since_source": "https://github.com/sveltejs/svelte", "runner": false, "metrics": { "deps_direct": { "value": 16, "source": "https://www.npmjs.com/package/svelte?activeTab=dependencies", "measured_at": "2026-08-13" }, "deps_transitive": { "value": 20, "source": "https://www.npmjs.com/package/svelte?activeTab=dependencies", "measured_at": "2026-08-13" }, "node_modules_size": { "value": 7.5, "source": "https://www.npmjs.com/package/svelte?activeTab=dependencies", "measured_at": "2026-08-13" }, "startup_bytes": { "value": 146.1, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "create_1k": { "value": 172.7, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "update_1k": { "value": 977.3, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "swap_rows": { "value": 173, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "remove_row": { "value": 36.2, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "mem_ready": { "value": 1.22, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "mem_1k": { "value": 2.14, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "startup_tbt": { "value": 10.1, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "router": { "value": true, "source": "https://svelte.dev/docs/kit/routing", "measured_at": "2026-08-13" }, "offline": { "value": true, "source": "https://svelte.dev/docs/kit/service-workers", "measured_at": "2026-08-13" }, "ssr": { "value": true, "source": "https://svelte.dev/docs/kit/page-options", "measured_at": "2026-08-13" }, "typed_templates": { "value": true, "source": "https://svelte.dev/docs/svelte/typescript", "measured_at": "2026-08-13" }, "stars": { "value": 87975, "source": "https://github.com/sveltejs/svelte", "measured_at": "2026-08-13", "method": "https://docs.github.com/en/rest/repos/repos#get-a-repository" }, "npm_downloads": { "value": 5273631, "source": "https://api.npmjs.org/downloads/point/last-week/svelte", "measured_at": "2026-08-13", "method": "https://www.npmjs.com/package/svelte" }, "so_questions": { "value": 6281, "source": "https://stackoverflow.com/questions/tagged/svelte", "measured_at": "2026-08-13", "method": "https://api.stackexchange.com/2.3/tags/svelte/info?site=stackoverflow" }, "maintainers": { "value": 3, "source": "https://registry.npmjs.org/svelte", "measured_at": "2026-08-13", "method": "https://www.npmjs.com/package/svelte?activeTab=versions" }, "cve_tree": { "value": 0, "source": "https://github.com/npm/cli#readme", "measured_at": "2026-08-13", "method": "https://docs.npmjs.com/cli/commands/npm-audit" }, "breaking_3y": { "value": 1, "source": "https://registry.npmjs.org/svelte", "measured_at": "2026-08-13", "method": "https://www.npmjs.com/package/svelte?activeTab=versions" } } },
+                "vue": { "id": "vue", "title": "Vue", "since": 2013, "since_source": "https://github.com/vuejs/vue", "runner": true, "metrics": { "deps_direct": { "value": 5, "source": "https://www.npmjs.com/package/vue?activeTab=dependencies", "measured_at": "2026-08-13" }, "deps_transitive": { "value": 21, "source": "https://www.npmjs.com/package/vue?activeTab=dependencies", "measured_at": "2026-08-13" }, "node_modules_size": { "value": 17.7, "source": "https://www.npmjs.com/package/vue?activeTab=dependencies", "measured_at": "2026-08-13" }, "startup_bytes": { "value": 195.3, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "create_1k": { "value": 201.2, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "update_1k": { "value": 1145.5, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "swap_rows": { "value": 178.1, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "remove_row": { "value": 37.9, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "mem_ready": { "value": 1.37, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "mem_1k": { "value": 3.47, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "startup_tbt": { "value": 16.5, "source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html", "measured_at": "2022-02-05", "method": "https://github.com/nin-jin/js-framework-benchmark/tree/mol-results" }, "router": { "value": true, "source": "https://router.vuejs.org/", "measured_at": "2026-08-13" }, "ssr": { "value": true, "source": "https://vuejs.org/guide/scaling-up/ssr.html", "measured_at": "2026-08-13" }, "typed_templates": { "value": true, "source": "https://vuejs.org/guide/typescript/overview.html", "measured_at": "2026-08-13" }, "stars": { "value": 54230, "source": "https://github.com/vuejs/core", "measured_at": "2026-08-13", "method": "https://docs.github.com/en/rest/repos/repos#get-a-repository" }, "npm_downloads": { "value": 14550122, "source": "https://api.npmjs.org/downloads/point/last-week/vue", "measured_at": "2026-08-13", "method": "https://www.npmjs.com/package/vue" }, "so_questions": { "value": 107927, "source": "https://stackoverflow.com/questions/tagged/vue.js", "measured_at": "2026-08-13", "method": "https://api.stackexchange.com/2.3/tags/vue.js/info?site=stackoverflow" }, "maintainers": { "value": 2, "source": "https://registry.npmjs.org/vue", "measured_at": "2026-08-13", "method": "https://www.npmjs.com/package/vue?activeTab=versions" }, "cve_tree": { "value": 0, "source": "https://github.com/npm/cli#readme", "measured_at": "2026-08-13", "method": "https://docs.npmjs.com/cli/commands/npm-audit" }, "breaking_3y": { "value": 0, "source": "https://registry.npmjs.org/vue", "measured_at": "2026-08-13", "method": "https://www.npmjs.com/package/vue?activeTab=versions" } } },
+            };
+        }
+        /** Every framework, sorted by title. Never throws, never empty-checks. */
+        static list() {
+            return [
+                "angular",
+                "mol",
+                "react",
+                "solid",
+                "svelte",
+                "vue",
+            ].map(id => this.items()[id]);
+        }
+        static item(id) {
+            return this.items()[id] ?? null;
+        }
+        /** One measurement, or null when this framework has no data for it. */
+        static value(framework, metric) {
+            return this.item(framework)?.metrics[metric] ?? null;
+        }
+    }
+    $.$bog_smalljs_versus_data = $bog_smalljs_versus_data;
+})($ || ($ = {}));
+
+;
 	($.$bog_smalljs_versus_case) = class $bog_smalljs_versus_case extends ($.$mol_view) {
 		Title(){
 			const obj = new this.$.$mol_view();
@@ -25339,7 +25932,7 @@ var $;
         const runner_paths = {
             react: 'bog/smalljs/assets/versus/react/runner.html',
             vue: 'bog/smalljs/assets/versus/vue/runner.html',
-            mol: 'bog/smalljs/versus/runner/-/index.html',
+            mol: 'bog/smalljs/lab/-/index.html',
         };
         // The mam dev server serves the repo root, so the page path carries this.
         const repo_prefix = '/bog/smalljs/';
@@ -25910,39 +26503,25 @@ var $;
 })($ || ($ = {}));
 
 ;
-	($.$bog_smalljs_versus) = class $bog_smalljs_versus extends ($.$mol_view) {
-		title_text(){
-			return (this.$.$mol_locale.text("$bog_smalljs_versus_title_text"));
-		}
-		Title(){
-			const obj = new this.$.$mol_view();
-			(obj.dom_name) = () => ("h1");
-			(obj.sub) = () => ([(this.title_text())]);
-			return obj;
-		}
-		intro_text(){
-			return (this.$.$mol_locale.text("$bog_smalljs_versus_intro_text"));
-		}
-		Intro(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.intro_text())]);
-			return obj;
+	($.$bog_smalljs_versus_pair) = class $bog_smalljs_versus_pair extends ($.$mol_view) {
+		head_content(){
+			return [];
 		}
 		Head(){
 			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Title()), (this.Intro())]);
+			(obj.sub) = () => ((this.head_content()));
 			return obj;
 		}
-		cases(){
+		sections(){
 			return [];
 		}
-		Cases(){
+		Sections(){
 			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ((this.cases()));
+			(obj.sub) = () => ((this.sections()));
 			return obj;
 		}
 		method_title_text(){
-			return (this.$.$mol_locale.text("$bog_smalljs_versus_method_title_text"));
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_method_title_text"));
 		}
 		Method_title(){
 			const obj = new this.$.$mol_view();
@@ -25951,7 +26530,7 @@ var $;
 			return obj;
 		}
 		method_body(){
-			return (this.$.$mol_locale.text("$bog_smalljs_versus_method_body"));
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_method_body"));
 		}
 		Method_text(){
 			const obj = new this.$.$mol_view();
@@ -25959,7 +26538,7 @@ var $;
 			return obj;
 		}
 		method_link_label(){
-			return (this.$.$mol_locale.text("$bog_smalljs_versus_method_link_label"));
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_method_link_label"));
 		}
 		Method_link_icon(){
 			const obj = new this.$.$mol_icon_open_in_new();
@@ -25968,6 +26547,7 @@ var $;
 		Method_link(){
 			const obj = new this.$.$mol_link();
 			(obj.uri) = () => ("https://github.com/b-on-g/smalljs/tree/master/versus");
+			(obj.target) = () => ("_blank");
 			(obj.sub) = () => ([(this.method_link_label()), (this.Method_link_icon())]);
 			return obj;
 		}
@@ -25980,56 +26560,821 @@ var $;
 			]);
 			return obj;
 		}
+		suggest_title_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_suggest_title_text"));
+		}
+		Suggest_title(){
+			const obj = new this.$.$mol_view();
+			(obj.dom_name) = () => ("h2");
+			(obj.sub) = () => ([(this.suggest_title_text())]);
+			return obj;
+		}
+		suggest_body(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_suggest_body"));
+		}
+		Suggest_text(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.suggest_body())]);
+			return obj;
+		}
+		suggest_name(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		Suggest_field(){
+			const obj = new this.$.$mol_string();
+			(obj.value) = (next) => ((this.suggest_name(next)));
+			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_smalljs_versus_pair_Suggest_field_hint")));
+			return obj;
+		}
+		suggest_uri(){
+			return "";
+		}
+		suggest_send_label(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_suggest_send_label"));
+		}
+		Suggest_send_icon(){
+			const obj = new this.$.$mol_icon_open_in_new();
+			return obj;
+		}
+		Suggest_send(){
+			const obj = new this.$.$mol_link();
+			(obj.uri) = () => ((this.suggest_uri()));
+			(obj.target) = () => ("_blank");
+			(obj.sub) = () => ([(this.suggest_send_label()), (this.Suggest_send_icon())]);
+			return obj;
+		}
+		Suggest_form(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Suggest_field()), (this.Suggest_send())]);
+			return obj;
+		}
+		Suggest(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([
+				(this.Suggest_title()), 
+				(this.Suggest_text()), 
+				(this.Suggest_form())
+			]);
+			return obj;
+		}
+		title_text(){
+			return "";
+		}
+		verdict_text(){
+			return "";
+		}
+		verdict_note_text(){
+			return "";
+		}
+		section_title(id){
+			return "";
+		}
+		section_score(id){
+			return "";
+		}
+		section_note(id){
+			return "";
+		}
+		section_content(id){
+			return [];
+		}
+		metric_title(id){
+			return "";
+		}
+		metric_left_value(id){
+			return "";
+		}
+		metric_right_value(id){
+			return "";
+		}
+		metric_bar(id){
+			return false;
+		}
+		metric_lead(id){
+			return "";
+		}
+		metric_left_share(id){
+			return "50%";
+		}
+		metric_right_share(id){
+			return "50%";
+		}
+		metric_delta(id){
+			return "";
+		}
+		metric_human(id){
+			return "";
+		}
+		metric_method(id){
+			return "";
+		}
+		metric_sources(id){
+			return [];
+		}
+		source_name(id){
+			return "";
+		}
+		source_label(id){
+			return "";
+		}
+		source_uri(id){
+			return "";
+		}
+		source_date(id){
+			return "";
+		}
+		edge_missing_note(){
+			return "";
+		}
+		left(){
+			return "";
+		}
+		right(){
+			return "";
+		}
+		left_title(){
+			return "";
+		}
+		right_title(){
+			return "";
+		}
+		verdict_win(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_verdict_win"));
+		}
+		verdict_draw(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_verdict_draw"));
+		}
+		verdict_none(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_verdict_none"));
+		}
+		verdict_note_edge(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_verdict_note_edge"));
+		}
+		verdict_note_no_runner(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_verdict_note_no_runner"));
+		}
+		verdict_note_no_runner_both(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_verdict_note_no_runner_both"));
+		}
+		verdict_note_gap_one(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_verdict_note_gap_one"));
+		}
+		verdict_note_gaps(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_verdict_note_gaps"));
+		}
+		category_edge(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_category_edge"));
+		}
+		category_code(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_category_code"));
+		}
+		category_weight(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_category_weight"));
+		}
+		category_speed(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_category_speed"));
+		}
+		category_builtin(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_category_builtin"));
+		}
+		category_market(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_category_market"));
+		}
+		category_cost(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_category_cost"));
+		}
+		note_edge(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_note_edge"));
+		}
+		note_code(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_note_code"));
+		}
+		note_weight(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_note_weight"));
+		}
+		note_speed(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_note_speed"));
+		}
+		note_builtin(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_note_builtin"));
+		}
+		note_market(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_note_market"));
+		}
+		note_cost(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_note_cost"));
+		}
+		score_line(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_score_line"));
+		}
+		score_ahead(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_score_ahead"));
+		}
+		score_tied(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_score_tied"));
+		}
+		score_empty(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_score_empty"));
+		}
+		edge_score_line(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_edge_score_line"));
+		}
+		edge_score_empty(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_edge_score_empty"));
+		}
+		edge_missing_one(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_edge_missing_one"));
+		}
+		edge_missing_both(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_edge_missing_both"));
+		}
+		delta_below(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_delta_below"));
+		}
+		delta_above(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_delta_above"));
+		}
+		delta_times(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_delta_times"));
+		}
+		delta_ahead(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_delta_ahead"));
+		}
+		delta_tie(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_delta_tie"));
+		}
+		delta_only(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_delta_only"));
+		}
+		delta_both(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_delta_both"));
+		}
+		delta_neither(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_delta_neither"));
+		}
+		delta_partial(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_delta_partial"));
+		}
+		value_yes(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_value_yes"));
+		}
+		value_no(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_value_no"));
+		}
+		no_data(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_no_data"));
+		}
 		sub(){
 			return [
 				(this.Head()), 
-				(this.Cases()), 
-				(this.Method())
+				(this.Sections()), 
+				(this.Method()), 
+				(this.Suggest())
 			];
 		}
+		Title(){
+			const obj = new this.$.$mol_view();
+			(obj.dom_name) = () => ("h1");
+			(obj.sub) = () => ([(this.title_text())]);
+			return obj;
+		}
+		Verdict(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.verdict_text())]);
+			return obj;
+		}
+		Verdict_note(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.verdict_note_text())]);
+			return obj;
+		}
+		Section(id){
+			const obj = new this.$.$bog_smalljs_versus_pair_section();
+			(obj.title) = () => ((this.section_title(id)));
+			(obj.score) = () => ((this.section_score(id)));
+			(obj.note) = () => ((this.section_note(id)));
+			(obj.content) = () => ((this.section_content(id)));
+			return obj;
+		}
+		Names(id){
+			const obj = new this.$.$bog_smalljs_versus_pair_names();
+			(obj.left_name) = () => ((this.left_title()));
+			(obj.right_name) = () => ((this.right_title()));
+			return obj;
+		}
+		Metric(id){
+			const obj = new this.$.$bog_smalljs_versus_pair_metric();
+			(obj.title) = () => ((this.metric_title(id)));
+			(obj.left_value) = () => ((this.metric_left_value(id)));
+			(obj.right_value) = () => ((this.metric_right_value(id)));
+			(obj.bar) = () => ((this.metric_bar(id)));
+			(obj.lead) = () => ((this.metric_lead(id)));
+			(obj.left_share) = () => ((this.metric_left_share(id)));
+			(obj.right_share) = () => ((this.metric_right_share(id)));
+			(obj.delta) = () => ((this.metric_delta(id)));
+			(obj.human) = () => ((this.metric_human(id)));
+			(obj.method) = () => ((this.metric_method(id)));
+			(obj.sources) = () => ((this.metric_sources(id)));
+			return obj;
+		}
+		Source(id){
+			const obj = new this.$.$bog_smalljs_versus_pair_source();
+			(obj.name) = () => ((this.source_name(id)));
+			(obj.label) = () => ((this.source_label(id)));
+			(obj.uri) = () => ((this.source_uri(id)));
+			(obj.date) = () => ((this.source_date(id)));
+			return obj;
+		}
 		Case_race(){
-			const obj = new this.$.$bog_smalljs_versus_case();
+			const obj = new this.$.$bog_smalljs_versus_pair_case();
 			(obj.case_id) = () => ("race");
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_versus_Case_race_title")));
-			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_smalljs_versus_Case_race_hint")));
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_versus_pair_Case_race_title")));
+			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_smalljs_versus_pair_Case_race_hint")));
+			(obj.left) = () => ((this.left()));
+			(obj.right) = () => ((this.right()));
+			(obj.missing_note) = () => ((this.edge_missing_note()));
 			return obj;
 		}
 		Case_virtual(){
-			const obj = new this.$.$bog_smalljs_versus_case();
+			const obj = new this.$.$bog_smalljs_versus_pair_case();
 			(obj.case_id) = () => ("virtual");
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_versus_Case_virtual_title")));
-			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_smalljs_versus_Case_virtual_hint")));
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_versus_pair_Case_virtual_title")));
+			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_smalljs_versus_pair_Case_virtual_hint")));
+			(obj.left) = () => ((this.left()));
+			(obj.right) = () => ((this.right()));
+			(obj.missing_note) = () => ((this.edge_missing_note()));
 			return obj;
 		}
 		Case_leak(){
-			const obj = new this.$.$bog_smalljs_versus_case();
+			const obj = new this.$.$bog_smalljs_versus_pair_case();
 			(obj.case_id) = () => ("leak");
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_versus_Case_leak_title")));
-			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_smalljs_versus_Case_leak_hint")));
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_versus_pair_Case_leak_title")));
+			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_smalljs_versus_pair_Case_leak_hint")));
+			(obj.left) = () => ((this.left()));
+			(obj.right) = () => ((this.right()));
+			(obj.missing_note) = () => ((this.edge_missing_note()));
 			return obj;
 		}
 		Case_crash(){
-			const obj = new this.$.$bog_smalljs_versus_case();
+			const obj = new this.$.$bog_smalljs_versus_pair_case();
 			(obj.case_id) = () => ("crash");
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_versus_Case_crash_title")));
-			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_smalljs_versus_Case_crash_hint")));
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_versus_pair_Case_crash_title")));
+			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_smalljs_versus_pair_Case_crash_hint")));
+			(obj.left) = () => ((this.left()));
+			(obj.right) = () => ((this.right()));
+			(obj.missing_note) = () => ((this.edge_missing_note()));
 			return obj;
 		}
 	};
-	($mol_mem(($.$bog_smalljs_versus.prototype), "Title"));
-	($mol_mem(($.$bog_smalljs_versus.prototype), "Intro"));
-	($mol_mem(($.$bog_smalljs_versus.prototype), "Head"));
-	($mol_mem(($.$bog_smalljs_versus.prototype), "Cases"));
-	($mol_mem(($.$bog_smalljs_versus.prototype), "Method_title"));
-	($mol_mem(($.$bog_smalljs_versus.prototype), "Method_text"));
-	($mol_mem(($.$bog_smalljs_versus.prototype), "Method_link_icon"));
-	($mol_mem(($.$bog_smalljs_versus.prototype), "Method_link"));
-	($mol_mem(($.$bog_smalljs_versus.prototype), "Method"));
-	($mol_mem(($.$bog_smalljs_versus.prototype), "Case_race"));
-	($mol_mem(($.$bog_smalljs_versus.prototype), "Case_virtual"));
-	($mol_mem(($.$bog_smalljs_versus.prototype), "Case_leak"));
-	($mol_mem(($.$bog_smalljs_versus.prototype), "Case_crash"));
+	($mol_mem(($.$bog_smalljs_versus_pair.prototype), "Head"));
+	($mol_mem(($.$bog_smalljs_versus_pair.prototype), "Sections"));
+	($mol_mem(($.$bog_smalljs_versus_pair.prototype), "Method_title"));
+	($mol_mem(($.$bog_smalljs_versus_pair.prototype), "Method_text"));
+	($mol_mem(($.$bog_smalljs_versus_pair.prototype), "Method_link_icon"));
+	($mol_mem(($.$bog_smalljs_versus_pair.prototype), "Method_link"));
+	($mol_mem(($.$bog_smalljs_versus_pair.prototype), "Method"));
+	($mol_mem(($.$bog_smalljs_versus_pair.prototype), "Suggest_title"));
+	($mol_mem(($.$bog_smalljs_versus_pair.prototype), "Suggest_text"));
+	($mol_mem(($.$bog_smalljs_versus_pair.prototype), "suggest_name"));
+	($mol_mem(($.$bog_smalljs_versus_pair.prototype), "Suggest_field"));
+	($mol_mem(($.$bog_smalljs_versus_pair.prototype), "Suggest_send_icon"));
+	($mol_mem(($.$bog_smalljs_versus_pair.prototype), "Suggest_send"));
+	($mol_mem(($.$bog_smalljs_versus_pair.prototype), "Suggest_form"));
+	($mol_mem(($.$bog_smalljs_versus_pair.prototype), "Suggest"));
+	($mol_mem(($.$bog_smalljs_versus_pair.prototype), "Title"));
+	($mol_mem(($.$bog_smalljs_versus_pair.prototype), "Verdict"));
+	($mol_mem(($.$bog_smalljs_versus_pair.prototype), "Verdict_note"));
+	($mol_mem_key(($.$bog_smalljs_versus_pair.prototype), "Section"));
+	($mol_mem_key(($.$bog_smalljs_versus_pair.prototype), "Names"));
+	($mol_mem_key(($.$bog_smalljs_versus_pair.prototype), "Metric"));
+	($mol_mem_key(($.$bog_smalljs_versus_pair.prototype), "Source"));
+	($mol_mem(($.$bog_smalljs_versus_pair.prototype), "Case_race"));
+	($mol_mem(($.$bog_smalljs_versus_pair.prototype), "Case_virtual"));
+	($mol_mem(($.$bog_smalljs_versus_pair.prototype), "Case_leak"));
+	($mol_mem(($.$bog_smalljs_versus_pair.prototype), "Case_crash"));
+	($.$bog_smalljs_versus_pair_case) = class $bog_smalljs_versus_pair_case extends ($.$bog_smalljs_versus_case) {
+		left(){
+			return "";
+		}
+		right(){
+			return "";
+		}
+		missing_note(){
+			return "";
+		}
+		columns_count(){
+			return 2;
+		}
+		attr(){
+			return {...(super.attr()), "bog_smalljs_versus_pair_columns": (this.columns_count())};
+		}
+		Missing_note(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.missing_note())]);
+			return obj;
+		}
+	};
+	($mol_mem(($.$bog_smalljs_versus_pair_case.prototype), "Missing_note"));
+	($.$bog_smalljs_versus_pair_section) = class $bog_smalljs_versus_pair_section extends ($.$mol_view) {
+		section_content(){
+			return [];
+		}
+		head_content(){
+			return [];
+		}
+		content(){
+			return [];
+		}
+		title(){
+			return "";
+		}
+		score(){
+			return "";
+		}
+		note(){
+			return "";
+		}
+		sub(){
+			return (this.section_content());
+		}
+		Head(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.head_content()));
+			return obj;
+		}
+		Title(){
+			const obj = new this.$.$mol_view();
+			(obj.dom_name) = () => ("h2");
+			(obj.sub) = () => ([(this.title())]);
+			return obj;
+		}
+		Score(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.score())]);
+			return obj;
+		}
+		Note(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.note())]);
+			return obj;
+		}
+		Content(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.content()));
+			return obj;
+		}
+	};
+	($mol_mem(($.$bog_smalljs_versus_pair_section.prototype), "Head"));
+	($mol_mem(($.$bog_smalljs_versus_pair_section.prototype), "Title"));
+	($mol_mem(($.$bog_smalljs_versus_pair_section.prototype), "Score"));
+	($mol_mem(($.$bog_smalljs_versus_pair_section.prototype), "Note"));
+	($mol_mem(($.$bog_smalljs_versus_pair_section.prototype), "Content"));
+	($.$bog_smalljs_versus_pair_names) = class $bog_smalljs_versus_pair_names extends ($.$mol_view) {
+		Left(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.left_name())]);
+			return obj;
+		}
+		Middle(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([]);
+			return obj;
+		}
+		Right(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.right_name())]);
+			return obj;
+		}
+		left_name(){
+			return "";
+		}
+		right_name(){
+			return "";
+		}
+		sub(){
+			return [
+				(this.Left()), 
+				(this.Middle()), 
+				(this.Right())
+			];
+		}
+	};
+	($mol_mem(($.$bog_smalljs_versus_pair_names.prototype), "Left"));
+	($mol_mem(($.$bog_smalljs_versus_pair_names.prototype), "Middle"));
+	($mol_mem(($.$bog_smalljs_versus_pair_names.prototype), "Right"));
+	($.$bog_smalljs_versus_pair_metric) = class $bog_smalljs_versus_pair_metric extends ($.$mol_view) {
+		metric_content(){
+			return [];
+		}
+		row_content(){
+			return [];
+		}
+		Bar_left(){
+			const obj = new this.$.$mol_view();
+			(obj.style) = () => ({...(this.$.$mol_view.prototype.style.call(obj)), "width": (this.left_share())});
+			return obj;
+		}
+		Bar_right(){
+			const obj = new this.$.$mol_view();
+			(obj.style) = () => ({...(this.$.$mol_view.prototype.style.call(obj)), "width": (this.right_share())});
+			return obj;
+		}
+		sources(){
+			return [];
+		}
+		title(){
+			return "";
+		}
+		left_value(){
+			return "";
+		}
+		right_value(){
+			return "";
+		}
+		bar(){
+			return false;
+		}
+		lead(){
+			return "";
+		}
+		left_share(){
+			return "50%";
+		}
+		right_share(){
+			return "50%";
+		}
+		attr(){
+			return {...(super.attr()), "bog_smalljs_versus_pair_lead": (this.lead())};
+		}
+		delta(){
+			return "";
+		}
+		human(){
+			return "";
+		}
+		method(){
+			return "";
+		}
+		sub(){
+			return (this.metric_content());
+		}
+		Title(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.title())]);
+			return obj;
+		}
+		Row(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.row_content()));
+			return obj;
+		}
+		Value_left(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.left_value())]);
+			return obj;
+		}
+		Value_right(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.right_value())]);
+			return obj;
+		}
+		Gap(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([]);
+			return obj;
+		}
+		Bar(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Bar_left()), (this.Bar_right())]);
+			return obj;
+		}
+		Delta(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.delta())]);
+			return obj;
+		}
+		Human(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.human())]);
+			return obj;
+		}
+		Method(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.method())]);
+			return obj;
+		}
+		Sources(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.sources()));
+			return obj;
+		}
+	};
+	($mol_mem(($.$bog_smalljs_versus_pair_metric.prototype), "Bar_left"));
+	($mol_mem(($.$bog_smalljs_versus_pair_metric.prototype), "Bar_right"));
+	($mol_mem(($.$bog_smalljs_versus_pair_metric.prototype), "Title"));
+	($mol_mem(($.$bog_smalljs_versus_pair_metric.prototype), "Row"));
+	($mol_mem(($.$bog_smalljs_versus_pair_metric.prototype), "Value_left"));
+	($mol_mem(($.$bog_smalljs_versus_pair_metric.prototype), "Value_right"));
+	($mol_mem(($.$bog_smalljs_versus_pair_metric.prototype), "Gap"));
+	($mol_mem(($.$bog_smalljs_versus_pair_metric.prototype), "Bar"));
+	($mol_mem(($.$bog_smalljs_versus_pair_metric.prototype), "Delta"));
+	($mol_mem(($.$bog_smalljs_versus_pair_metric.prototype), "Human"));
+	($mol_mem(($.$bog_smalljs_versus_pair_metric.prototype), "Method"));
+	($mol_mem(($.$bog_smalljs_versus_pair_metric.prototype), "Sources"));
+	($.$bog_smalljs_versus_pair_source) = class $bog_smalljs_versus_pair_source extends ($.$mol_view) {
+		source_content(){
+			return [];
+		}
+		name(){
+			return "";
+		}
+		label(){
+			return "";
+		}
+		uri(){
+			return "";
+		}
+		date(){
+			return "";
+		}
+		sub(){
+			return (this.source_content());
+		}
+		Name(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.name())]);
+			return obj;
+		}
+		Link(){
+			const obj = new this.$.$mol_link();
+			(obj.uri) = () => ((this.uri()));
+			(obj.target) = () => ("_blank");
+			(obj.sub) = () => ([(this.label())]);
+			return obj;
+		}
+		Text(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.label())]);
+			return obj;
+		}
+		Taken(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.date())]);
+			return obj;
+		}
+	};
+	($mol_mem(($.$bog_smalljs_versus_pair_source.prototype), "Name"));
+	($mol_mem(($.$bog_smalljs_versus_pair_source.prototype), "Link"));
+	($mol_mem(($.$bog_smalljs_versus_pair_source.prototype), "Text"));
+	($mol_mem(($.$bog_smalljs_versus_pair_source.prototype), "Taken"));
 
+
+;
+"use strict";
+var $;
+(function ($) {
+    /**
+     * Reading side of `versus/data`.
+     *
+     * The measurements themselves live in `$bog_smalljs_versus_data`, generated
+     * from the JSON files next to it and compiled into the bundle. This sits in
+     * front of them and answers the questions a page actually asks — what is this
+     * framework called, what does it report for this metric, which metrics belong
+     * to this category — with answers that hold even when the id is one nobody
+     * has written a file for.
+     *
+     * That last part is the whole point of the layer. A framework with no data is
+     * a normal state of this section, not an error: ids arrive from the URL, and
+     * the roster grows one file at a time. So an unknown id resolves to a
+     * framework with no metrics rather than to null, and every page above renders
+     * the same dash it renders for a metric that was never measured.
+     */
+    class $bog_smalljs_versus_pair_data extends $mol_object2 {
+        static source() {
+            return this.$.$bog_smalljs_versus_data;
+        }
+        /** Whether anything at all is on file for this id. Tells "we have no file
+         *  for this framework" apart from "we have a file and it is thin". */
+        static known(id) {
+            return this.source().item(id) !== null;
+        }
+        /** Never null, so nothing above has to branch on an id it got from a URL.
+         *  An unknown one comes back with no metrics and no runner, which is the
+         *  truth about it. */
+        static framework(id) {
+            return this.source().item(id) ?? { id, title: id, runner: false, metrics: {} };
+        }
+        static registry() {
+            return this.source().registry();
+        }
+        /** Display name. An id with no file keeps the id: a name nobody wrote
+         *  down is as made up as a number nobody measured. */
+        static title(id) {
+            return this.framework(id).title;
+        }
+        static measure(id, metric) {
+            return this.framework(id).metrics[metric] ?? null;
+        }
+        static meta(metric) {
+            return this.source().metric(metric);
+        }
+        /** Metric ids of a category, in the order the registry lists them. Pages
+         *  reorder them by their own canonical list and append whatever they do
+         *  not know about, so a metric added to the registry alone still reaches
+         *  the reader. */
+        static category_metrics(category) {
+            return Object.entries(this.registry())
+                .filter(([, meta]) => meta.category === category)
+                .map(([id]) => id);
+        }
+    }
+    __decorate([
+        $mol_mem_key
+    ], $bog_smalljs_versus_pair_data, "framework", null);
+    __decorate([
+        $mol_mem_key
+    ], $bog_smalljs_versus_pair_data, "category_metrics", null);
+    $.$bog_smalljs_versus_pair_data = $bog_smalljs_versus_pair_data;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    const diff_none = { side: 'none', share: null, percent: null, times: null };
+    const diff_tie = { side: 'tie', share: 0.5, percent: null, times: null };
+    /**
+     * Compares one metric for the two sides of a pair. Pure, so the scoring rule
+     * can be read and tested without a page around it.
+     */
+    class $bog_smalljs_versus_pair_compare extends $mol_object2 {
+        /** Whether a value can take part in a comparison at all. A string reading
+         *  is displayable but not rankable, so it is shown and left unscored. */
+        static rankable(better, value) {
+            if (better === 'boolean')
+                return typeof value === 'boolean';
+            if (better !== 'lower' && better !== 'higher')
+                return false;
+            return typeof value === 'number' && Number.isFinite(value);
+        }
+        static diff(better, left, right) {
+            if (!this.rankable(better, left))
+                return diff_none;
+            if (!this.rankable(better, right))
+                return diff_none;
+            if (better === 'boolean') {
+                if (left === right)
+                    return { side: 'tie', share: null, percent: null, times: null };
+                return { side: left === true ? 'left' : 'right', share: null, percent: null, times: null };
+            }
+            const a = left;
+            const b = right;
+            if (a === b)
+                return diff_tie;
+            const lower_wins = better === 'lower';
+            const side = (a < b) === lower_wins ? 'left' : 'right';
+            return {
+                side,
+                share: this.share(lower_wins, a, b),
+                ...this.distance(lower_wins, a, b),
+            };
+        }
+        /** Left's share of the bar. Both sides are put on one track so the eye
+         *  reads the ratio rather than two lengths it has to hold at once; the
+         *  track is flipped for a lower-is-better metric, so the longer half is
+         *  always the better one and the bar means the same thing in every row.
+         *  A negative reading is refused rather than folded in — it would make
+         *  the two halves add up to something other than the whole, and a bar
+         *  that lies about proportion is worse than no bar. */
+        static share(lower_wins, a, b) {
+            if (a < 0 || b < 0)
+                return null;
+            const total = a + b;
+            if (total === 0)
+                return 0.5;
+            return lower_wins ? b / total : a / total;
+        }
+        /** Distance between the two readings, stated against the losing side. */
+        static distance(lower_wins, a, b) {
+            const min = Math.min(a, b);
+            const max = Math.max(a, b);
+            // Percent below the loser: the winner is the smaller number, and the
+            // loser is what the reader is comparing it against.
+            if (lower_wins) {
+                if (max <= 0)
+                    return { percent: null, times: null };
+                return { percent: (max - min) / max * 100, times: null };
+            }
+            // Percent above the loser. With the loser at zero there is no base to
+            // measure against, and inventing one would be inventing a number.
+            if (min <= 0)
+                return { percent: null, times: null };
+            return { percent: (max - min) / min * 100, times: max / min };
+        }
+    }
+    $.$bog_smalljs_versus_pair_compare = $bog_smalljs_versus_pair_compare;
+})($ || ($ = {}));
 
 ;
 "use strict";
@@ -26041,11 +27386,506 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
-        class $bog_smalljs_versus extends $.$bog_smalljs_versus {
-            /** Crash-test cases in reading order. Each one is a $bog_smalljs_versus_case
-             *  declared in the tree with its own `case_id`; the id is what the case passes
-             *  to every runner iframe as `runner.html?case=<id>`. Adding a case means one
-             *  declaration there plus one line here — the page itself stays static. */
+        /** Categories in reading order. Edge cases come first: they are the only
+         *  thing on this page the reader can start and watch, and everything below
+         *  them is a table. */
+        const categories = ['edge', 'code', 'weight', 'speed', 'builtin', 'market', 'cost'];
+        /** Canonical order of the metrics inside a category. The registry decides
+         *  which category a metric belongs to; this decides what comes first, so the
+         *  same comparison reads the same way whatever order the JSON happens to be
+         *  written in. A metric the registry knows and this list does not still
+         *  shows up — appended after the known ones — so adding a measurement does
+         *  not require touching this file. */
+        const metric_order = {
+            code: ['loc_todomvc', 'files_todomvc', 'deps_direct', 'deps_transitive', 'node_modules_size'],
+            weight: ['bundle_gzip', 'framework_gzip', 'app_gzip', 'startup_bytes', 'tti_3g', 'lighthouse'],
+            speed: ['create_1k', 'update_1k', 'swap_rows', 'remove_row', 'mem_ready', 'mem_1k', 'startup_tbt'],
+            builtin: ['router', 'i18n', 'themes', 'virtual', 'offline', 'ssr', 'tests_nodom', 'di', 'forms', 'typed_templates'],
+            market: ['stars', 'npm_downloads', 'so_questions', 'jobs', 'ui_kits', 'maintainers', 'release_rate'],
+            cost: ['cve_tree', 'breaking_3y'],
+        };
+        /** Live crash tests, in the order they run on the section page. */
+        const case_ids = ['race', 'virtual', 'leak', 'crash'];
+        /** Shown wherever a value is absent. Never a zero: a zero is a reading, this
+         *  is the absence of one. */
+        const no_value = '—';
+        /** Live case statuses that count towards the edge score, best first. A case
+         *  that has not run, broke, or ran under conditions that make it worthless
+         *  is simply not scored. */
+        const case_rank = { ok: 2, warn: 1, fail: 0 };
+        /** Past this multiple a percentage stops reading as a quantity, so the gap
+         *  is stated as "3.4×" instead of "240% above". */
+        const times_from = 2;
+        /** Where a suggestion goes. There is no backend behind this section, so the
+         *  form fills in a real issue rather than pretending to submit somewhere. */
+        const issues_uri = 'https://github.com/b-on-g/smalljs/issues/new';
+        const count_words = ['none', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+        function count_word(count) {
+            return count_words[count] ?? String(count);
+        }
+        /** Fills `{name}` slots in a localized template. A slot with nothing to put
+         *  in it is left alone rather than blanked, so a broken translation shows
+         *  what it is missing instead of a hole. */
+        function fill(template, vars) {
+            return template.replace(/\{(\w+)\}/g, (whole, name) => {
+                const value = vars[name];
+                return value === undefined ? whole : String(value);
+            });
+        }
+        /** Groups thousands and keeps at most two decimals, without going through
+         *  toLocaleString: the page is prerendered on a machine whose locale has
+         *  nothing to do with the reader's, and a separator that changes between
+         *  the prerender and the live render would flicker on hydration. */
+        function number_text(value) {
+            const abs = Math.abs(value);
+            const rounded = abs >= 100 ? Math.round(value)
+                : abs >= 10 ? Math.round(value * 10) / 10
+                    : Math.round(value * 100) / 100;
+            const [int, frac] = String(rounded).split('.');
+            const grouped = int.replace(/\B(?=(\d{3})+$)/g, ',');
+            return frac ? grouped + '.' + frac : grouped;
+        }
+        function percent_text(value) {
+            return value >= 10 ? String(Math.round(value)) : String(Math.round(value * 10) / 10);
+        }
+        function times_text(value) {
+            return String(Math.round(value * 10) / 10);
+        }
+        /** Readable stand-in for a source URL. The full address stays in the href —
+         *  this is only what the eye reads, and a line of benchmark rows each ending
+         *  in a hundred-character URL is a line nobody reads at all. Short paths are
+         *  kept whole, since that is usually the part that identifies the source. */
+        function link_label(uri) {
+            const bare = uri
+                .replace(/^https?:\/\//, '')
+                .replace(/[?#].*$/, '')
+                .replace(/\/+$/, '');
+            const parts = bare.split('/');
+            parts[0] = parts[0].replace(/^www\./, '');
+            if (parts.length <= 3)
+                return parts.join('/');
+            return parts[0] + '/…/' + parts[parts.length - 1];
+        }
+        /** A 0..1 share as a CSS width. Rounded before it reaches the style, so a
+         *  division that lands on 62.50000000000001 does not end up in the DOM. */
+        function share_text(share) {
+            return Math.round(share * 1000) / 10 + '%';
+        }
+        const score_none = { left: 0, right: 0, total: 0 };
+        /**
+         * One comparison of two frameworks.
+         *
+         * There is no overall score anywhere on this page, on purpose: rolling seven
+         * unlike categories into a single number would need weights, and a weight is
+         * an opinion wearing the clothes of a measurement.
+         *
+         * What a category score does mean: the share of metrics a side is better on,
+         * counted only among the metrics **both** sides report. A metric one of them
+         * has no reading for is drawn as a dash on both sides and scores for nobody.
+         * Counting it would hand the win to whoever has the fuller data file, which
+         * measures how much work went into the table rather than the framework.
+         */
+        class $bog_smalljs_versus_pair extends $.$bog_smalljs_versus_pair {
+            data() {
+                return this.$.$bog_smalljs_versus_pair_data;
+            }
+            compare() {
+                return this.$.$bog_smalljs_versus_pair_compare;
+            }
+            // Every read of the data set goes through one of these four, so the page
+            // can be exercised against a made-up data set without a data set being
+            // present, and so a change in where the numbers live touches four lines.
+            meta(metric) {
+                return this.data().meta(metric);
+            }
+            measure(id, metric) {
+                return this.data().measure(id, metric);
+            }
+            registry_metrics(category) {
+                return this.data().category_metrics(category);
+            }
+            runner(id) {
+                return this.data().framework(id).runner === true;
+            }
+            /** Display names come from the data files. Before a file exists the id is
+             *  shown as it stands rather than being prettied up into a name nobody
+             *  wrote down. */
+            left_title() {
+                return this.data().title(this.left());
+            }
+            right_title() {
+                return this.data().title(this.right());
+            }
+            title_text() {
+                return this.left_title() + ' vs ' + this.right_title();
+            }
+            head_content() {
+                return [
+                    this.Title(),
+                    this.Verdict(),
+                    ...this.verdict_note_text() ? [this.Verdict_note()] : [],
+                ];
+            }
+            // ---- metrics ------------------------------------------------------
+            /** Metric ids of a category: the canonical order first, then anything the
+             *  registry lists that this build has never heard of. */
+            metric_ids(category) {
+                const known = metric_order[category] ?? [];
+                const listed = this.registry_metrics(category);
+                const rest = listed.filter(id => !known.includes(id));
+                return [...known.filter(id => listed.includes(id)), ...rest];
+            }
+            /** Rows of a category. A metric neither side reports is dropped: a wall
+             *  of dashes says nothing that the category score does not already say,
+             *  and it buries the rows that do carry a reading. A metric only one side
+             *  reports stays — it is worth seeing what is known — but it is marked as
+             *  not counted. */
+            rows(category) {
+                const left = this.left();
+                const right = this.right();
+                return this.metric_ids(category).flatMap(id => {
+                    const meta = this.meta(id);
+                    if (!meta)
+                        return [];
+                    const left_measure = this.measure(left, id);
+                    const right_measure = this.measure(right, id);
+                    if (!left_measure && !right_measure)
+                        return [];
+                    return [{
+                            id,
+                            meta,
+                            left: left_measure,
+                            right: right_measure,
+                            diff: this.compare().diff(meta.better, left_measure?.value, right_measure?.value),
+                        }];
+                });
+            }
+            row(id) {
+                const meta = this.meta(id);
+                if (!meta)
+                    return null;
+                return this.rows(meta.category).find(row => row.id === id) ?? null;
+            }
+            // ---- scores -------------------------------------------------------
+            score(category) {
+                if (category === 'edge')
+                    return this.edge_score();
+                let left = 0;
+                let right = 0;
+                let total = 0;
+                for (const row of this.rows(category)) {
+                    if (row.diff.side === 'none')
+                        continue;
+                    total += 1;
+                    if (row.diff.side === 'left')
+                        left += 1;
+                    if (row.diff.side === 'right')
+                        right += 1;
+                }
+                return { left, right, total };
+            }
+            /** Same rule as every other category, applied to what the reader has
+             *  actually run. A case counts once both columns have a status that can
+             *  be ranked; until then it is a metric one side has no reading for, and
+             *  it scores for nobody. Which is why the verdict grows from six
+             *  categories to seven as the cases below are run, rather than claiming
+             *  an outcome for tests that have not happened. */
+            edge_score() {
+                const left = this.left();
+                const right = this.right();
+                if (!this.edge_live())
+                    return score_none;
+                let left_wins = 0;
+                let right_wins = 0;
+                let total = 0;
+                for (const block of this.cases()) {
+                    const side = this.case_side(block.status(left), block.status(right));
+                    if (side === 'none')
+                        continue;
+                    total += 1;
+                    if (side === 'left')
+                        left_wins += 1;
+                    if (side === 'right')
+                        right_wins += 1;
+                }
+                return { left: left_wins, right: right_wins, total };
+            }
+            /** Which side one live case went to. Unrunnable outcomes on either side —
+             *  not started, broken, measured under conditions that void the run — make
+             *  the case count for nobody, exactly as a metric only one side reports
+             *  counts for nobody. */
+            case_side(left_status, right_status) {
+                const left = case_rank[left_status];
+                const right = case_rank[right_status];
+                if (left === undefined || right === undefined)
+                    return 'none';
+                if (left === right)
+                    return 'tie';
+                return left > right ? 'left' : 'right';
+            }
+            /** Whether the live tests can decide anything for this pair at all. */
+            edge_live() {
+                return this.runner(this.left()) && this.runner(this.right());
+            }
+            /** Categories that have something to say. A category with no metric both
+             *  sides report is not a draw — nothing was compared — so it stays out of
+             *  the count instead of quietly padding it. */
+            decided() {
+                return categories.filter(id => this.score(id).total > 0);
+            }
+            /** Category counts behind the verdict line. */
+            tally() {
+                let left = 0;
+                let right = 0;
+                let ties = 0;
+                for (const id of this.decided()) {
+                    const score = this.score(id);
+                    const left_share = score.left / score.total;
+                    const right_share = score.right / score.total;
+                    if (left_share > right_share)
+                        left += 1;
+                    else if (right_share > left_share)
+                        right += 1;
+                    else
+                        ties += 1;
+                }
+                return { left, right, ties, total: left + right + ties };
+            }
+            // ---- verdict ------------------------------------------------------
+            verdict_text() {
+                const tally = this.tally();
+                const left_name = this.left_title();
+                const right_name = this.right_title();
+                if (!tally.total)
+                    return fill(this.verdict_none(), { a: left_name, b: right_name });
+                if (tally.left === tally.right)
+                    return fill(this.verdict_draw(), {
+                        a: left_name,
+                        b: right_name,
+                        x: tally.left,
+                        total: tally.total,
+                        ties: count_word(tally.ties),
+                    });
+                const left_wins = tally.left > tally.right;
+                return fill(this.verdict_win(), {
+                    a: left_wins ? left_name : right_name,
+                    b: left_wins ? right_name : left_name,
+                    x: left_wins ? tally.left : tally.right,
+                    y: left_wins ? tally.right : tally.left,
+                    total: tally.total,
+                    ties: count_word(tally.ties),
+                });
+            }
+            /** What the verdict line does not cover: the live category while it is
+             *  still unrun, and the static ones nobody has measured for this pair. */
+            verdict_note_text() {
+                const parts = [];
+                if (!this.edge_live()) {
+                    parts.push(this.edge_missing_note());
+                }
+                else if (!this.score('edge').total) {
+                    parts.push(this.verdict_note_edge());
+                }
+                const gaps = categories.length - 1 - this.decided().filter(id => id !== 'edge').length;
+                if (gaps === 1)
+                    parts.push(this.verdict_note_gap_one());
+                else if (gaps > 1)
+                    parts.push(fill(this.verdict_note_gaps(), { n: gaps }));
+                return parts.join(' ');
+            }
+            // ---- sections -----------------------------------------------------
+            sections() {
+                return categories.map(id => this.Section(id));
+            }
+            section_title(category) {
+                switch (category) {
+                    case 'edge': return this.category_edge();
+                    case 'code': return this.category_code();
+                    case 'weight': return this.category_weight();
+                    case 'speed': return this.category_speed();
+                    case 'builtin': return this.category_builtin();
+                    case 'market': return this.category_market();
+                    case 'cost': return this.category_cost();
+                    default: return category;
+                }
+            }
+            section_note(category) {
+                switch (category) {
+                    case 'edge': return this.note_edge();
+                    case 'code': return this.note_code();
+                    case 'weight': return this.note_weight();
+                    case 'speed': return this.note_speed();
+                    case 'builtin': return this.note_builtin();
+                    case 'market': return this.note_market();
+                    case 'cost': return this.note_cost();
+                    default: return '';
+                }
+            }
+            section_score(category) {
+                const score = this.score(category);
+                const left_name = this.left_title();
+                const right_name = this.right_title();
+                if (!score.total) {
+                    return category === 'edge' && this.edge_live() ? this.edge_score_empty() : this.score_empty();
+                }
+                const line = fill(category === 'edge' ? this.edge_score_line() : this.score_line(), {
+                    a: left_name,
+                    b: right_name,
+                    x: score.left,
+                    y: score.right,
+                    n: score.total,
+                });
+                const outcome = score.left === score.right
+                    ? this.score_tied()
+                    : fill(this.score_ahead(), { a: score.left > score.right ? left_name : right_name });
+                return line + ' · ' + outcome;
+            }
+            section_content(category) {
+                if (category === 'edge')
+                    return this.cases();
+                const rows = this.rows(category);
+                if (!rows.length)
+                    return [];
+                return [this.Names(category), ...rows.map(row => this.Metric(row.id))];
+            }
+            // ---- one metric row -----------------------------------------------
+            metric_title(id) {
+                return this.row(id)?.meta.title ?? id;
+            }
+            metric_human(id) {
+                return this.row(id)?.meta.human ?? '';
+            }
+            /** How the number was obtained — the same procedure for both sides, which
+             *  is what makes the two comparable at all. Printed next to the row rather
+             *  than hidden behind the methodology link at the bottom: a reader who
+             *  doubts one number should not have to go looking for what it means. */
+            metric_method(id) {
+                return this.row(id)?.meta.method ?? '';
+            }
+            value_text(measure, meta) {
+                if (!measure)
+                    return no_value;
+                const value = measure.value;
+                if (typeof value === 'boolean')
+                    return value ? this.value_yes() : this.value_no();
+                if (typeof value === 'string')
+                    return value;
+                const unit = meta?.unit ?? '';
+                const text = number_text(value);
+                if (!unit)
+                    return text;
+                return unit === '%' ? text + unit : text + ' ' + unit;
+            }
+            metric_left_value(id) {
+                const row = this.row(id);
+                return this.value_text(row?.left ?? null, row?.meta);
+            }
+            metric_right_value(id) {
+                const row = this.row(id);
+                return this.value_text(row?.right ?? null, row?.meta);
+            }
+            /** Left's share of the bar, or null when this row has no honest bar. */
+            metric_share(id) {
+                return this.row(id)?.diff.share ?? null;
+            }
+            metric_bar(id) {
+                return this.metric_share(id) !== null;
+            }
+            /** Which half of the bar is the better one. The length already says it,
+             *  but the colour has to agree: a fixed green on the left would read as
+             *  "left is good" and would be wrong on every row the right side wins. */
+            metric_lead(id) {
+                const side = this.row(id)?.diff.side;
+                return side === 'left' || side === 'right' ? side : '';
+            }
+            metric_left_share(id) {
+                return share_text(this.metric_share(id) ?? 0.5);
+            }
+            metric_right_share(id) {
+                return share_text(1 - (this.metric_share(id) ?? 0.5));
+            }
+            /** The sentence next to the bar. Every wording states its own base — a
+             *  percentage is always measured against the losing side — because "62%
+             *  faster" is ambiguous about what it is 62% of, and an ambiguous number
+             *  is the kind a reader is right to distrust. */
+            metric_delta(id) {
+                const row = this.row(id);
+                if (!row)
+                    return '';
+                const left_name = this.left_title();
+                const right_name = this.right_title();
+                const boolean = row.meta.better === 'boolean';
+                if (row.diff.side === 'none') {
+                    if (row.left && row.right)
+                        return '';
+                    return fill(this.delta_partial(), { a: row.left ? left_name : right_name });
+                }
+                if (row.diff.side === 'tie') {
+                    if (!boolean)
+                        return this.delta_tie();
+                    return row.left?.value === true ? this.delta_both() : this.delta_neither();
+                }
+                const winner = row.diff.side === 'left' ? left_name : right_name;
+                const loser = row.diff.side === 'left' ? right_name : left_name;
+                if (boolean)
+                    return fill(this.delta_only(), { a: winner });
+                const { percent, times } = row.diff;
+                if (times !== null && percent !== null && times >= times_from) {
+                    return fill(this.delta_times(), { a: winner, p: times_text(times), b: loser });
+                }
+                if (percent === null)
+                    return fill(this.delta_ahead(), { a: winner });
+                if (Math.round(percent * 10) === 0)
+                    return '';
+                const template = row.meta.better === 'lower' ? this.delta_below() : this.delta_above();
+                return fill(template, { a: winner, p: percent_text(percent), b: loser });
+            }
+            // ---- sources -------------------------------------------------------
+            /** One line per side that has a reading, so a row built from two
+             *  measurements taken on different days cannot hide that. */
+            metric_sources(id) {
+                const row = this.row(id);
+                if (!row)
+                    return [];
+                return [
+                    ...row.left ? [this.Source(id + '/left')] : [],
+                    ...row.right ? [this.Source(id + '/right')] : [],
+                ];
+            }
+            source_measure(key) {
+                const slash = key.lastIndexOf('/');
+                const row = this.row(key.slice(0, slash));
+                return key.slice(slash + 1) === 'left' ? row?.left : row?.right;
+            }
+            source_name(key) {
+                return key.endsWith('/left') ? this.left_title() : this.right_title();
+            }
+            /** Whichever of the two links is an address a reader can open. `source`
+             *  can be a path in the repository, which is worth printing but is not a
+             *  link; `method` is the page describing how the number was taken. */
+            source_uri(key) {
+                const measure = this.source_measure(key);
+                if (!measure)
+                    return '';
+                if (/^https?:\/\//.test(measure.source))
+                    return measure.source;
+                if (/^https?:\/\//.test(measure.method ?? ''))
+                    return measure.method ?? '';
+                return '';
+            }
+            source_label(key) {
+                const measure = this.source_measure(key);
+                if (!measure)
+                    return '';
+                const uri = this.source_uri(key);
+                if (uri)
+                    return link_label(uri);
+                return measure.source || this.no_data();
+            }
+            source_date(key) {
+                return this.source_measure(key)?.measured_at ?? '';
+            }
+            // ---- live cases -----------------------------------------------------
             cases() {
                 return [
                     this.Case_race(),
@@ -26054,8 +27894,129 @@ var $;
                     this.Case_crash(),
                 ];
             }
+            /** Said once, under the Run button of every case, when one of the pair has
+             *  no runner. Written here rather than in the case block because only the
+             *  page knows what the two are called. */
+            edge_missing_note() {
+                const left_runner = this.runner(this.left());
+                const right_runner = this.runner(this.right());
+                if (left_runner && right_runner)
+                    return '';
+                if (!left_runner && !right_runner)
+                    return this.edge_missing_both();
+                return fill(this.edge_missing_one(), { b: left_runner ? this.right_title() : this.left_title() });
+            }
+            // ---- suggestion -----------------------------------------------------
+            suggest_uri() {
+                const name = this.suggest_name().trim();
+                const title = 'Add ' + (name || 'a framework') + ' to the comparison';
+                const body = [
+                    'Framework: ' + (name || ''),
+                    'Home page: ',
+                    '',
+                    'What it would take: a data file under versus/data/ with sources and dates for each metric,',
+                    'and a runner page if the live edge cases should cover it too.',
+                ].join('\n');
+                return issues_uri
+                    + '?title=' + encodeURIComponent(title)
+                    + '&body=' + encodeURIComponent(body);
+            }
         }
-        $$.$bog_smalljs_versus = $bog_smalljs_versus;
+        __decorate([
+            $mol_mem_key
+        ], $bog_smalljs_versus_pair.prototype, "rows", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_smalljs_versus_pair.prototype, "score", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus_pair.prototype, "edge_score", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus_pair.prototype, "tally", null);
+        $$.$bog_smalljs_versus_pair = $bog_smalljs_versus_pair;
+        /**
+         * The crash-test block of the section page, narrowed to the two frameworks
+         * of this pair. Everything else about it — the protocol, the timeouts, the
+         * visibility rules — is inherited untouched, so a case behaves here exactly
+         * as it does on the section page and the two pages cannot drift apart.
+         */
+        class $bog_smalljs_versus_pair_case extends $.$bog_smalljs_versus_pair_case {
+            /** Only the sides that have a runner. A framework nobody wrote a runner
+             *  for gets no column rather than an empty one: an empty frame next to a
+             *  working one reads as a failure, and it is not one. */
+            frameworks() {
+                return [this.left(), this.right()].filter(id => {
+                    return id ? this.$.$bog_smalljs_versus_pair_data.framework(id).runner : false;
+                });
+            }
+            /** The section page always has three columns and says so in its stylesheet.
+             *  Here the count depends on how many of the pair have a runner, so it has
+             *  to reach the stylesheet as an attribute — otherwise a pair with one
+             *  runner leaves two thirds of the block empty and reads as two frames
+             *  that failed to load. */
+            columns_count() {
+                return this.frameworks().length;
+            }
+            /** With no runnable column there is nothing to run, so the button goes
+             *  and only the explanation stays. */
+            controls_content() {
+                const note = this.missing_note() ? [this.Missing_note()] : [];
+                if (!this.frameworks().length)
+                    return note;
+                return [...super.controls_content(), ...note];
+            }
+        }
+        $$.$bog_smalljs_versus_pair_case = $bog_smalljs_versus_pair_case;
+        class $bog_smalljs_versus_pair_section extends $.$bog_smalljs_versus_pair_section {
+            head_content() {
+                return [
+                    this.Title(),
+                    ...this.score() ? [this.Score()] : [],
+                ];
+            }
+            section_content() {
+                return [
+                    this.Head(),
+                    ...this.note() ? [this.Note()] : [],
+                    ...this.content().length ? [this.Content()] : [],
+                ];
+            }
+        }
+        $$.$bog_smalljs_versus_pair_section = $bog_smalljs_versus_pair_section;
+        class $bog_smalljs_versus_pair_metric extends $.$bog_smalljs_versus_pair_metric {
+            /** The middle cell is always there, with or without a bar, so the values
+             *  of every row line up down the page whether or not a particular metric
+             *  can be drawn as a proportion. */
+            row_content() {
+                return [
+                    this.Value_left(),
+                    this.bar() ? this.Bar() : this.Gap(),
+                    this.Value_right(),
+                ];
+            }
+            metric_content() {
+                return [
+                    this.Title(),
+                    this.Row(),
+                    ...this.delta() ? [this.Delta()] : [],
+                    ...this.human() ? [this.Human()] : [],
+                    ...this.method() ? [this.Method()] : [],
+                    ...this.sources().length ? [this.Sources()] : [],
+                ];
+            }
+        }
+        $$.$bog_smalljs_versus_pair_metric = $bog_smalljs_versus_pair_metric;
+        class $bog_smalljs_versus_pair_source extends $.$bog_smalljs_versus_pair_source {
+            source_content() {
+                return [
+                    this.Name(),
+                    this.uri() ? this.Link() : this.Text(),
+                    ...this.date() ? [this.Taken()] : [],
+                ];
+            }
+        }
+        $$.$bog_smalljs_versus_pair_source = $bog_smalljs_versus_pair_source;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
 
@@ -26064,11 +28025,19 @@ var $;
 var $;
 (function ($) {
     const { rem } = $mol_style_unit;
-    // One editorial column for prose (heading, intro, methodology) and a wider one for
-    // the cases, which hold three side-by-side runner frames and need the room.
+    const line = { width: '1px', style: 'solid', color: $bog_builderui_tokens.line };
+    const mono = "'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace";
+    // One editorial column for prose and a wider one for the sections, which hold
+    // the runner frames and the three-column metric rows.
     const prose = rem(48);
     const wide = rem(76);
-    $mol_style_define($bog_smalljs_versus, {
+    // The two halves of a metric bar. Not theme tokens: the palette has no
+    // winner/loser slots, and these mid-tones stay legible on both themes. The
+    // leading half is the better one whichever way the metric points, so the
+    // colours mean the same thing in every row.
+    const bar_ahead = '#3f9e57';
+    const bar_behind = '#8a8f98';
+    $mol_style_define($bog_smalljs_versus_pair, {
         flex: { direction: 'column', grow: 1 },
         align: { items: 'center' },
         gap: rem(3),
@@ -26077,7 +28046,7 @@ var $;
         background: { color: $bog_builderui_tokens.back },
         Head: {
             flex: { direction: 'column' },
-            gap: rem(1),
+            gap: rem(0.75),
             // width:100% (not just max-width) so the column never collapses to its
             // max-content width and pushes the page sideways on a phone.
             width: '100%',
@@ -26092,16 +28061,19 @@ var $;
             maxWidth: '100%',
             overflowWrap: 'break-word',
         },
-        Intro: {
+        Verdict: {
             display: 'block',
-            font: { size: rem(1.0625) },
+            font: { size: rem(1.125), weight: 600 },
+            lineHeight: '1.5',
+            color: $bog_builderui_tokens.text,
+        },
+        Verdict_note: {
+            display: 'block',
+            font: { size: rem(0.9375) },
             lineHeight: '1.6',
-            maxWidth: rem(42),
             color: $bog_builderui_tokens.shade,
         },
-        // Cases style themselves ($bog_smalljs_versus_case owns its layout); the page
-        // only decides how wide the column is and how far apart the blocks sit.
-        Cases: {
+        Sections: {
             flex: { direction: 'column' },
             gap: rem(3),
             width: '100%',
@@ -26115,7 +28087,7 @@ var $;
             width: '100%',
             maxWidth: prose,
             padding: { top: rem(2) },
-            border: { top: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+            border: { top: line },
         },
         Method_title: {
             display: 'block',
@@ -26143,16 +28115,1170 @@ var $;
             height: rem(0.9),
             flex: { shrink: 0 },
         },
+        Suggest: {
+            flex: { direction: 'column' },
+            align: { items: 'flex-start' },
+            gap: rem(0.75),
+            width: '100%',
+            maxWidth: prose,
+            padding: { top: rem(2) },
+            border: { top: line },
+        },
+        Suggest_title: {
+            display: 'block',
+            font: { family: $bog_builderui_tokens.font_head, size: rem(1.625), weight: 500 },
+            lineHeight: '1.2',
+            color: $bog_builderui_tokens.text,
+        },
+        Suggest_text: {
+            display: 'block',
+            font: { size: rem(0.9375) },
+            lineHeight: '1.6',
+            color: $bog_builderui_tokens.shade,
+        },
+        Suggest_form: {
+            flex: { direction: 'row', wrap: 'wrap' },
+            align: { items: 'center' },
+            gap: rem(0.5),
+            margin: { top: rem(0.25) },
+            width: '100%',
+        },
+        Suggest_field: {
+            flex: { grow: 1, shrink: 1 },
+            // without it the input keeps its intrinsic width and pushes the button
+            // off the row on a narrow screen
+            minWidth: rem(12),
+            maxWidth: rem(20),
+            padding: { top: rem(0.4), bottom: rem(0.4), left: rem(0.6), right: rem(0.6) },
+            border: { radius: rem(0.375), ...line },
+            background: { color: $bog_builderui_tokens.field },
+            color: $bog_builderui_tokens.text,
+        },
+        Suggest_send: {
+            flex: { direction: 'row', grow: 0, shrink: 0 },
+            align: { items: 'center' },
+            gap: rem(0.4),
+            padding: { top: rem(0.45), bottom: rem(0.45), left: rem(0.9), right: rem(0.9) },
+            border: { radius: rem(0.375), ...line },
+            color: $bog_builderui_tokens.control,
+            font: { size: rem(0.9375), weight: 600 },
+            ':hover': { color: $bog_builderui_tokens.focus },
+        },
+        Suggest_send_icon: {
+            width: rem(0.9),
+            height: rem(0.9),
+            flex: { shrink: 0 },
+        },
         '@media': {
             '(max-width: 47.9375rem)': {
                 gap: rem(2.25),
                 padding: { top: rem(2), bottom: rem(2.5), left: rem(1.25), right: rem(1.25) },
                 Title: { font: { size: rem(2) } },
-                Cases: { gap: rem(2.25) },
+                Sections: { gap: rem(2.25) },
                 Method: { padding: { top: rem(1.5) } },
+                Suggest: { padding: { top: rem(1.5) } },
             },
         },
     });
+    $mol_style_define($bog_smalljs_versus_pair_section, {
+        flex: { direction: 'column' },
+        gap: rem(0.75),
+        minWidth: 0,
+        Head: {
+            flex: { direction: 'row', wrap: 'wrap' },
+            align: { items: 'baseline' },
+            justify: { content: 'space-between' },
+            gap: rem(0.5),
+        },
+        Title: {
+            display: 'block',
+            font: { family: $bog_builderui_tokens.font_head, size: rem(1.625), weight: 500 },
+            lineHeight: '1.2',
+            color: $bog_builderui_tokens.text,
+        },
+        Score: {
+            display: 'block',
+            font: { size: rem(0.875), weight: 600 },
+            lineHeight: '1.4',
+            color: $bog_builderui_tokens.shade,
+        },
+        Note: {
+            display: 'block',
+            font: { size: rem(0.9375) },
+            lineHeight: '1.6',
+            maxWidth: rem(42),
+            color: $bog_builderui_tokens.shade,
+        },
+        Content: {
+            flex: { direction: 'column' },
+            gap: rem(0.75),
+            minWidth: 0,
+        },
+    });
+    $mol_style_define($bog_smalljs_versus_pair_names, {
+        display: 'grid',
+        gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1.6fr) minmax(0, 1fr)',
+        align: { items: 'baseline' },
+        gap: rem(0.75),
+        // matches the metric card's own padding plus its 1px border, so the two
+        // framework names sit exactly over the columns of values below them
+        padding: { bottom: rem(0.15), left: rem(0.8125), right: rem(0.8125) },
+        Left: {
+            display: 'block',
+            textAlign: 'right',
+            font: { family: mono, size: rem(0.6875), weight: 600 },
+            letterSpacing: rem(0.06),
+            textTransform: 'uppercase',
+            color: $bog_builderui_tokens.shade,
+            overflowWrap: 'break-word',
+        },
+        Middle: {
+            display: 'block',
+        },
+        Right: {
+            display: 'block',
+            font: { family: mono, size: rem(0.6875), weight: 600 },
+            letterSpacing: rem(0.06),
+            textTransform: 'uppercase',
+            color: $bog_builderui_tokens.shade,
+            overflowWrap: 'break-word',
+        },
+        '@media': {
+            '(max-width: 47.9375rem)': {
+                gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr)',
+            },
+        },
+    });
+    $mol_style_define($bog_smalljs_versus_pair_metric, {
+        flex: { direction: 'column' },
+        gap: rem(0.3),
+        minWidth: 0,
+        padding: rem(0.75),
+        border: { radius: rem(0.5), ...line },
+        background: { color: $bog_builderui_tokens.card },
+        Title: {
+            display: 'block',
+            font: { size: rem(0.9375), weight: 600 },
+            lineHeight: '1.35',
+            color: $bog_builderui_tokens.text,
+        },
+        Row: {
+            display: 'grid',
+            gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1.6fr) minmax(0, 1fr)',
+            align: { items: 'center' },
+            gap: rem(0.75),
+            padding: { top: rem(0.15), bottom: rem(0.15) },
+        },
+        Value_left: {
+            display: 'block',
+            textAlign: 'right',
+            font: { family: mono, size: rem(1) },
+            color: $bog_builderui_tokens.text,
+            overflowWrap: 'break-word',
+        },
+        Value_right: {
+            display: 'block',
+            font: { family: mono, size: rem(1) },
+            color: $bog_builderui_tokens.text,
+            overflowWrap: 'break-word',
+        },
+        Gap: {
+            display: 'block',
+        },
+        Bar: {
+            display: 'flex',
+            flex: { direction: 'row' },
+            height: rem(0.5),
+            minWidth: 0,
+            border: { radius: rem(0.25) },
+            overflow: 'hidden',
+            background: { color: $bog_builderui_tokens.line },
+        },
+        // Both halves start neutral; the leading one is coloured by the attribute
+        // below. A tie keeps them both neutral, which is what a tie looks like.
+        Bar_left: {
+            display: 'block',
+            flex: { shrink: 0 },
+            background: { color: bar_behind },
+        },
+        Bar_right: {
+            display: 'block',
+            flex: { shrink: 0 },
+            background: { color: bar_behind },
+        },
+        '@': {
+            bog_smalljs_versus_pair_lead: {
+                left: { Bar_left: { background: { color: bar_ahead } } },
+                right: { Bar_right: { background: { color: bar_ahead } } },
+            },
+        },
+        Delta: {
+            display: 'block',
+            font: { size: rem(0.875), weight: 600 },
+            lineHeight: '1.45',
+            color: $bog_builderui_tokens.text,
+        },
+        Human: {
+            display: 'block',
+            font: { size: rem(0.875) },
+            lineHeight: '1.5',
+            color: $bog_builderui_tokens.shade,
+        },
+        Method: {
+            display: 'block',
+            font: { size: rem(0.75) },
+            lineHeight: '1.5',
+            color: $bog_builderui_tokens.shade,
+            opacity: 0.85,
+        },
+        Sources: {
+            flex: { direction: 'row', wrap: 'wrap' },
+            gap: [rem(0.15), rem(1)],
+            padding: { top: rem(0.35) },
+            margin: { top: rem(0.15) },
+            border: { top: line },
+        },
+        '@media': {
+            '(max-width: 47.9375rem)': {
+                Row: {
+                    gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr)',
+                },
+                Value_left: { font: { size: rem(0.9375) } },
+                Value_right: { font: { size: rem(0.9375) } },
+            },
+        },
+    });
+    $mol_style_define($bog_smalljs_versus_pair_source, {
+        flex: { direction: 'row', wrap: 'wrap' },
+        align: { items: 'baseline' },
+        gap: rem(0.35),
+        minWidth: 0,
+        font: { size: rem(0.75) },
+        lineHeight: '1.45',
+        color: $bog_builderui_tokens.shade,
+        Name: {
+            display: 'block',
+            font: { weight: 600 },
+        },
+        Link: {
+            display: 'inline',
+            minWidth: 0,
+            color: $bog_builderui_tokens.control,
+            overflowWrap: 'break-word',
+            ':hover': { color: $bog_builderui_tokens.focus },
+        },
+        Text: {
+            display: 'block',
+            minWidth: 0,
+            font: { family: mono },
+            overflowWrap: 'break-word',
+        },
+        Taken: {
+            display: 'block',
+            font: { family: mono },
+        },
+    });
+    $mol_style_define($bog_smalljs_versus_pair_case, {
+        '@': {
+            bog_smalljs_versus_pair_columns: {
+                1: { Columns: { gridTemplateColumns: 'minmax(0, 1fr)' } },
+                2: { Columns: { gridTemplateColumns: 'repeat(2, minmax(0, 1fr))' } },
+            },
+        },
+        Missing_note: {
+            display: 'block',
+            flex: { shrink: 1 },
+            minWidth: 0,
+            font: { size: rem(0.8125) },
+            lineHeight: '1.45',
+            color: $bog_builderui_tokens.shade,
+        },
+        // The case block folds its columns into one at the same width the section
+        // page does. Repeated here rather than left to the base sheet: the rules
+        // above are written for this subclass, so they are attached after it and
+        // would otherwise keep two columns on a phone.
+        '@media': {
+            '(max-width: 47.9375rem)': {
+                '@': {
+                    bog_smalljs_versus_pair_columns: {
+                        1: { Columns: { gridTemplateColumns: 'minmax(0, 1fr)' } },
+                        2: { Columns: { gridTemplateColumns: 'minmax(0, 1fr)' } },
+                    },
+                },
+            },
+        },
+    });
+})($ || ($ = {}));
+
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        /** Rows of the rating shown at once, as on the reference site. */
+        const page_size = 10;
+        /** The roster of the section. `versus/data/` is one JSON per framework with
+         *  no index to enumerate, so the list of ids lives here; an id whose file is
+         *  missing or unreadable simply drops out of every block on the page. */
+        const framework_ids = [
+            'angular',
+            'mol',
+            'react',
+            'solid',
+            'svelte',
+            'vue',
+        ];
+        /** The two top blocks are not an editorial opinion: each one counts wins in
+         *  the categories named under its heading, so the order can be recomputed by
+         *  anyone from the same JSON. */
+        const top_apps_categories = ['speed', 'code'];
+        const top_sites_categories = ['weight', 'builtin'];
+        /** The nine comparisons the section leads with. Which pairs are worth
+         *  featuring is a choice, not a measurement — so it lives here in the open
+         *  rather than pretending to be derived from traffic we do not have. Ids are
+         *  written in canonical (alphabetical) order, the same one the URL uses. */
+        const popular_pairs = [
+            ['react', 'vue'],
+            ['angular', 'react'],
+            ['react', 'svelte'],
+            ['svelte', 'vue'],
+            ['react', 'solid'],
+            ['solid', 'svelte'],
+            ['angular', 'vue'],
+            ['mol', 'react'],
+            ['mol', 'vue'],
+        ];
+        /** Display names for ids the page can mention before the data files land
+         *  (the featured pairs above are static). Data always wins over this table. */
+        const title_fallback = {
+            angular: 'Angular',
+            mol: '$mol',
+            react: 'React',
+            solid: 'Solid',
+            svelte: 'Svelte',
+            vue: 'Vue',
+        };
+        /** Canonical order of a pair: alphabetical by id, so `react`/`vue` and
+         *  `vue`/`react` are one address and one page. Plain code-unit comparison —
+         *  ids are lower-case ascii slugs, so locale rules cannot reorder them. */
+        function pair_order(a, b) {
+            return a < b ? [a, b] : [b, a];
+        }
+        function pair_key(a, b) {
+            return pair_order(a, b).join('/');
+        }
+        /** Letter shown in the square tile that stands in for a logo. */
+        function mark_of(title) {
+            const letter = /[\p{L}\p{N}]/u.exec(title);
+            return (letter ? letter[0] : title.slice(0, 1)).toUpperCase();
+        }
+        class $bog_smalljs_versus extends $.$bog_smalljs_versus {
+            // ——— Data ———————————————————————————————————————————————————————————
+            //
+            // `versus/data/*.json` is read through the same loader the comparison
+            // page uses, so a framework has one set of numbers on the site and not
+            // two. A file that is missing or unreadable is not an error here: the
+            // framework drops out of the lists and the blocks say they have nothing
+            // to show, which beats filling the gap with a plausible number.
+            data() {
+                return this.$.$bog_smalljs_versus_pair_data;
+            }
+            /** Every framework whose data file could be read. */
+            frameworks() {
+                return framework_ids
+                    .filter(id => this.data().known(id))
+                    .map(id => this.data().framework(id));
+            }
+            /** Metric descriptions, keyed by metric id. */
+            registry() {
+                return this.data().registry();
+            }
+            by_id() {
+                const map = new Map();
+                for (const fw of this.frameworks())
+                    map.set(fw.id, fw);
+                return map;
+            }
+            /** Human name of a framework id. Also used by the app shell for the
+             *  `React vs Vue — $mol` page title, which is why it is declared in the
+             *  tree rather than kept private here. */
+            framework_title(id) {
+                if (!id)
+                    return '';
+                // One file, not the whole roster: the app shell asks this for the
+                // browser title of a comparison, and that should not wait on five
+                // requests it has no use for.
+                if (this.data().known(id))
+                    return this.data().framework(id).title;
+                return title_fallback[id] ?? id[0].toUpperCase() + id.slice(1);
+            }
+            // ——— Scoring ————————————————————————————————————————————————————————
+            //
+            // A category is won by whoever is better on more of its metrics. Only
+            // metrics *both* sides publish are counted, so a framework with a fuller
+            // file cannot win on paperwork alone. The rating score is the number of
+            // categories won across all pairwise duels; there is no overall grade.
+            metrics_by_category() {
+                const map = {};
+                const registry = this.registry();
+                for (const id of Object.keys(registry)) {
+                    const cat = registry[id].category;
+                    (map[cat] ??= []).push(id);
+                }
+                return map;
+            }
+            categories() {
+                return Object.keys(this.metrics_by_category());
+            }
+            /** +1 when `a` is better, -1 when `b` is, 0 when tied or when either side
+             *  does not publish the metric. Decided by the same comparison the pair
+             *  page draws its bars from, so the rating cannot disagree with the page
+             *  it links to. */
+            compare_metric(metric, a, b) {
+                const meta = this.registry()[metric];
+                const left = a.metrics[metric];
+                const right = b.metrics[metric];
+                if (!meta || !left || !right)
+                    return 0;
+                const side = this.$.$bog_smalljs_versus_pair_compare.diff(meta.better, left.value, right.value).side;
+                return side === 'left' ? 1 : side === 'right' ? -1 : 0;
+            }
+            /** +1 / -1 / 0 for one category of one duel. */
+            category_winner(a, b, category) {
+                let wins = 0;
+                let losses = 0;
+                for (const metric of this.metrics_by_category()[category] ?? []) {
+                    const cmp = this.compare_metric(metric, a, b);
+                    if (cmp > 0)
+                        ++wins;
+                    else if (cmp < 0)
+                        ++losses;
+                }
+                return Math.sign(wins - losses);
+            }
+            /** Categories won by each framework against every other one. `key` is a
+             *  comma-separated category filter; empty means all of them. */
+            scores(key) {
+                const categories = key ? key.split(',') : this.categories();
+                const list = this.frameworks();
+                const result = {};
+                for (const fw of list) {
+                    let won = 0;
+                    for (const other of list) {
+                        if (other.id === fw.id)
+                            continue;
+                        for (const category of categories) {
+                            if (this.category_winner(fw, other, category) > 0)
+                                ++won;
+                        }
+                    }
+                    result[fw.id] = won;
+                }
+                return result;
+            }
+            /** Frameworks ordered by `scores( key )`, ties broken by name so the
+             *  order never wobbles between renders. */
+            ranked(key) {
+                const scores = this.scores(key);
+                return [...this.frameworks()].sort((x, y) => (scores[y.id] ?? 0) - (scores[x.id] ?? 0) || x.title.localeCompare(y.title));
+            }
+            /** How many of the registry's metrics this framework actually publishes. */
+            coverage(id) {
+                return Object.keys(this.by_id().get(id)?.metrics ?? {}).length;
+            }
+            /** Whether the row deserves a word about how thin its table is. Every
+             *  file is missing something, so flagging "incomplete" everywhere would
+             *  say nothing; the note appears once less than half the registry is
+             *  filled in, where the placing really is standing on little. */
+            partial(id) {
+                const total = Object.keys(this.registry()).length;
+                if (!total)
+                    return false;
+                return this.coverage(id) * 2 < total;
+            }
+            row_partial_text(id) {
+                return this.row_partial_template()
+                    .replace('{n}', String(this.coverage(id)))
+                    .replace('{total}', String(Object.keys(this.registry()).length));
+            }
+            // ——— Picking a pair —————————————————————————————————————————————————
+            /** Field text defaults to whatever the address preselects, so a link like
+             *  `section=versus/a=react` opens the section with React already in the
+             *  left field. Typing overrides it. */
+            query_a(next) {
+                if (next !== undefined)
+                    return next;
+                return this.framework_title(this.$.$mol_state_arg.value('a') ?? '');
+            }
+            query_b(next) {
+                if (next !== undefined)
+                    return next;
+                return this.framework_title(this.$.$mol_state_arg.value('b') ?? '');
+            }
+            /** Id behind the text typed in a field, or '' while it matches nothing. */
+            query_id(text) {
+                const norm = text.trim().toLowerCase();
+                if (!norm)
+                    return '';
+                for (const fw of this.frameworks()) {
+                    if (fw.id === norm || fw.title.toLowerCase() === norm)
+                        return fw.id;
+                }
+                return '';
+            }
+            /** Titles offered under a field: everything the text is a substring of,
+             *  minus whatever the other field already holds. */
+            suggest_titles(query, exclude) {
+                const norm = query.trim().toLowerCase();
+                return this.frameworks()
+                    .filter(fw => fw.id !== exclude)
+                    .filter(fw => !norm || fw.title.toLowerCase().includes(norm) || fw.id.includes(norm))
+                    .map(fw => fw.title)
+                    .slice(0, 8);
+            }
+            suggests_a() {
+                return this.suggest_titles(this.query_a(), this.query_id(this.query_b()));
+            }
+            suggests_b() {
+                return this.suggest_titles(this.query_b(), this.query_id(this.query_a()));
+            }
+            /** Both fields resolved to different frameworks — open their page. The
+             *  reference site has no Compare button either: choosing the second one
+             *  is the action.
+             *
+             *  The address is written through `$mol_wire_async` because setting one
+             *  memoized cell from the body of another is exactly the loop $mol
+             *  forbids; and it is skipped when the address already says this, so a
+             *  pair page that renders these very fields cannot re-trigger itself. */
+            pick_sync() {
+                const a = this.query_id(this.query_a());
+                const b = this.query_id(this.query_b());
+                if (!a || !b || a === b)
+                    return null;
+                const [first, second] = pair_order(a, b);
+                const arg = this.$.$mol_state_arg;
+                if (arg.value('a') === first && arg.value('b') === second)
+                    return null;
+                $mol_wire_async(arg).go({ section: 'versus', a: first, b: second });
+                return null;
+            }
+            // ——— Popular comparisons ————————————————————————————————————————————
+            popular_links() {
+                return popular_pairs.map(([a, b]) => this.Popular_link(pair_key(a, b)));
+            }
+            pair_arg(key) {
+                const [a, b] = key.split('/');
+                return { section: 'versus', a, b };
+            }
+            pair_left(key) {
+                return this.framework_title(key.split('/')[0]);
+            }
+            pair_right(key) {
+                return this.framework_title(key.split('/')[1]);
+            }
+            // ——— Top blocks —————————————————————————————————————————————————————
+            /** Cards of one top block. The key of a card carries its block, because
+             *  the same framework can lead both lists and one view cannot hang in two
+             *  places at once. */
+            top_content(block, categories) {
+                const ranked = this.ranked(categories.join(',')).slice(0, 6);
+                if (!ranked.length)
+                    return [this.Empty(block)];
+                return ranked.map(fw => this.Card(block + '/' + fw.id));
+            }
+            top_apps_content() {
+                return this.top_content('apps', top_apps_categories);
+            }
+            top_sites_content() {
+                return this.top_content('sites', top_sites_categories);
+            }
+            card_id(key) {
+                return key.split('/')[1];
+            }
+            card_name(key) {
+                return this.framework_title(this.card_id(key));
+            }
+            card_mark(key) {
+                return mark_of(this.card_name(key));
+            }
+            /** A card preselects its framework in the left field: there is no page
+             *  for a single framework, the section is about pairs. */
+            card_arg(key) {
+                return { section: 'versus', a: this.card_id(key), b: null };
+            }
+            // ——— Rating —————————————————————————————————————————————————————————
+            rating_rows() {
+                return this.ranked('');
+            }
+            ranks() {
+                const map = {};
+                this.rating_rows().forEach((fw, index) => map[fw.id] = index + 1);
+                return map;
+            }
+            rating_content() {
+                const rows = this.rating_rows();
+                if (!rows.length)
+                    return [this.Empty('rating')];
+                const from = this.page_current_index() * page_size;
+                return rows.slice(from, from + page_size).map(fw => this.Row(fw.id));
+            }
+            row_content(id) {
+                return [
+                    this.Rank(id),
+                    this.Row_mark(id),
+                    this.Row_name(id),
+                    this.Row_score(id),
+                    this.Row_since(id),
+                ];
+            }
+            row_name_content(id) {
+                return [
+                    this.Row_link(id),
+                    ...this.partial(id) ? [this.Row_partial(id)] : [],
+                ];
+            }
+            rank(id) {
+                return String(this.ranks()[id] ?? '');
+            }
+            row_mark(id) {
+                return mark_of(this.framework_title(id));
+            }
+            row_title(id) {
+                return this.framework_title(id);
+            }
+            row_arg(id) {
+                return { section: 'versus', a: id, b: null };
+            }
+            row_score_text(id) {
+                return String(this.scores('')[id] ?? 0);
+            }
+            row_fill_width(id) {
+                const scores = this.scores('');
+                const top = Math.max(0, ...Object.values(scores));
+                if (!top)
+                    return '0%';
+                return Math.round((scores[id] ?? 0) / top * 100) + '%';
+            }
+            row_since_text(id) {
+                const since = this.by_id().get(id)?.since;
+                return since ? String(since) : '—';
+            }
+            // ——— Pagination —————————————————————————————————————————————————————
+            //
+            // Kept out of the address on purpose: page 2 of the rating is the same
+            // page for a crawler, and a second URL for it would only split it.
+            page(next) {
+                return next ?? 0;
+            }
+            pages() {
+                return Math.ceil(this.rating_rows().length / page_size);
+            }
+            /** Clamped, so shrinking data cannot leave the view on a page that is no
+             *  longer there. */
+            page_current_index() {
+                return Math.max(0, Math.min(this.page(), this.pages() - 1));
+            }
+            pager_content() {
+                const pages = this.pages();
+                if (pages <= 1)
+                    return [];
+                const list = [
+                    ...Array.from({ length: pages }, (_, index) => this.Page(String(index))),
+                    ...this.page_current_index() < pages - 1 ? [this.Page_next()] : [],
+                ];
+                return list;
+            }
+            page_label(key) {
+                return String(Number(key) + 1);
+            }
+            page_current(key) {
+                return Number(key) === this.page_current_index();
+            }
+            page_click(key, event) {
+                this.page(Number(key));
+                return null;
+            }
+            page_next(event) {
+                this.page(Math.min(this.page_current_index() + 1, this.pages() - 1));
+                return null;
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus.prototype, "frameworks", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus.prototype, "by_id", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus.prototype, "metrics_by_category", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus.prototype, "categories", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_smalljs_versus.prototype, "scores", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_smalljs_versus.prototype, "ranked", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus.prototype, "query_a", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus.prototype, "query_b", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus.prototype, "suggests_a", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus.prototype, "suggests_b", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus.prototype, "pick_sync", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus.prototype, "top_apps_content", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus.prototype, "top_sites_content", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus.prototype, "rating_rows", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus.prototype, "ranks", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus.prototype, "rating_content", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus.prototype, "page", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus.prototype, "pages", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus.prototype, "pager_content", null);
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_versus.prototype, "page_click", null);
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_versus.prototype, "page_next", null);
+        $$.$bog_smalljs_versus = $bog_smalljs_versus;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    const { rem } = $mol_style_unit;
+    // One editorial column for prose (heading, intro) and a wider one for the
+    // grids: nine featured pairs, six-card tops and the rating all want room.
+    const prose = rem(48);
+    const wide = rem(64);
+    // Rank | logo tile | name | score bar | year. Head and rows share the track
+    // list, so the columns line up without a <table>.
+    const rating_columns = '2.5rem 2.25rem minmax( 0, 1fr ) minmax( 7rem, 12rem ) 4rem';
+    const rating_columns_narrow = '2rem minmax( 0, 1fr ) 4.5rem 3.5rem';
+    $mol_style_define($bog_smalljs_versus, {
+        flex: { direction: 'column', grow: 1 },
+        align: { items: 'center' },
+        gap: rem(3.5),
+        minWidth: 0,
+        padding: { top: rem(3.5), bottom: rem(4), left: $mol_gap.block, right: $mol_gap.block },
+        background: { color: $bog_builderui_tokens.back },
+        Head: {
+            flex: { direction: 'column' },
+            gap: rem(1),
+            // width:100% (not just max-width) so the column never collapses to its
+            // max-content width and pushes the page sideways on a phone. The
+            // measure of the prose is set on the paragraph, not here: every block
+            // on the page has to start at the same left edge.
+            width: '100%',
+            maxWidth: wide,
+        },
+        Title: {
+            display: 'block',
+            font: { family: $bog_builderui_tokens.font_head, size: rem(2.75), weight: 500 },
+            lineHeight: '1.14',
+            letterSpacing: '-0.02em',
+            color: $bog_builderui_tokens.text,
+            maxWidth: '100%',
+            overflowWrap: 'break-word',
+        },
+        Intro: {
+            display: 'block',
+            font: { size: rem(1.0625) },
+            lineHeight: '1.6',
+            maxWidth: rem(42),
+            color: $bog_builderui_tokens.shade,
+        },
+        // Above the fold: two fields and the word between them, nothing else.
+        Picker: {
+            flex: { direction: 'row', wrap: 'nowrap' },
+            align: { items: 'center' },
+            gap: rem(1),
+            width: '100%',
+            maxWidth: wide,
+            minWidth: 0,
+        },
+        Pick_a: {
+            flex: { grow: 1, shrink: 1, basis: 0 },
+            align: { self: 'stretch' },
+            minWidth: 0,
+            background: { color: $bog_builderui_tokens.field },
+            border: { radius: $bog_builderui_tokens.radius, width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
+            padding: { top: rem(0.35), bottom: rem(0.35), left: rem(0.5), right: rem(0.5) },
+            ':focus-within': {
+                border: { color: $bog_builderui_tokens.control },
+            },
+        },
+        Pick_b: {
+            flex: { grow: 1, shrink: 1, basis: 0 },
+            align: { self: 'stretch' },
+            minWidth: 0,
+            background: { color: $bog_builderui_tokens.field },
+            border: { radius: $bog_builderui_tokens.radius, width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
+            padding: { top: rem(0.35), bottom: rem(0.35), left: rem(0.5), right: rem(0.5) },
+            ':focus-within': {
+                border: { color: $bog_builderui_tokens.control },
+            },
+        },
+        Vs: {
+            flex: { shrink: 0 },
+            font: { family: $bog_builderui_tokens.font_head, size: rem(1.25), weight: 500 },
+            color: $bog_builderui_tokens.shade,
+        },
+        Popular: {
+            flex: { direction: 'column' },
+            gap: rem(1),
+            width: '100%',
+            maxWidth: wide,
+            minWidth: 0,
+        },
+        Popular_title: {
+            display: 'block',
+            font: { family: $bog_builderui_tokens.font_head, size: rem(1.625), weight: 500 },
+            lineHeight: '1.2',
+            color: $bog_builderui_tokens.text,
+        },
+        Popular_list: {
+            display: 'grid',
+            gridTemplateColumns: 'repeat( auto-fill, minmax( 19rem, 1fr ) )',
+            gap: rem(0.5),
+            minWidth: 0,
+        },
+        Popular_link: {
+            flex: { direction: 'row' },
+            align: { items: 'center' },
+            justify: { content: 'center' },
+            gap: rem(0.4),
+            minWidth: 0,
+            padding: { top: rem(0.7), bottom: rem(0.7), left: rem(0.75), right: rem(0.75) },
+            background: { color: $bog_builderui_tokens.card },
+            border: { radius: $bog_builderui_tokens.radius, width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
+            font: { size: rem(0.9375) },
+            color: $bog_builderui_tokens.text,
+            ':hover': {
+                border: { color: $bog_builderui_tokens.control },
+                color: $bog_builderui_tokens.control,
+            },
+        },
+        Popular_left: {
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            font: { weight: 600 },
+        },
+        Popular_mid: {
+            flex: { shrink: 0 },
+            color: $bog_builderui_tokens.shade,
+        },
+        Popular_right: {
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            font: { weight: 600 },
+        },
+        Top_apps: {
+            flex: { direction: 'column' },
+            gap: rem(0.4),
+            width: '100%',
+            maxWidth: wide,
+            minWidth: 0,
+        },
+        Top_apps_title: {
+            display: 'block',
+            font: { family: $bog_builderui_tokens.font_head, size: rem(1.625), weight: 500 },
+            lineHeight: '1.2',
+            color: $bog_builderui_tokens.text,
+        },
+        Top_apps_note: {
+            display: 'block',
+            font: { size: rem(0.875) },
+            lineHeight: '1.5',
+            color: $bog_builderui_tokens.shade,
+            margin: { bottom: rem(0.6) },
+        },
+        Top_apps_list: {
+            display: 'grid',
+            gridTemplateColumns: 'repeat( auto-fill, minmax( 19rem, 1fr ) )',
+            gap: rem(0.5),
+            minWidth: 0,
+        },
+        Top_sites: {
+            flex: { direction: 'column' },
+            gap: rem(0.4),
+            width: '100%',
+            maxWidth: wide,
+            minWidth: 0,
+        },
+        Top_sites_title: {
+            display: 'block',
+            font: { family: $bog_builderui_tokens.font_head, size: rem(1.625), weight: 500 },
+            lineHeight: '1.2',
+            color: $bog_builderui_tokens.text,
+        },
+        Top_sites_note: {
+            display: 'block',
+            font: { size: rem(0.875) },
+            lineHeight: '1.5',
+            color: $bog_builderui_tokens.shade,
+            margin: { bottom: rem(0.6) },
+        },
+        Top_sites_list: {
+            display: 'grid',
+            gridTemplateColumns: 'repeat( auto-fill, minmax( 19rem, 1fr ) )',
+            gap: rem(0.5),
+            minWidth: 0,
+        },
+        Card: {
+            flex: { direction: 'row' },
+            align: { items: 'center' },
+            gap: rem(0.6),
+            minWidth: 0,
+            padding: { top: rem(0.6), bottom: rem(0.6), left: rem(0.6), right: rem(0.75) },
+            background: { color: $bog_builderui_tokens.card },
+            border: { radius: $bog_builderui_tokens.radius, width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
+            color: $bog_builderui_tokens.text,
+            ':hover': {
+                border: { color: $bog_builderui_tokens.control },
+                color: $bog_builderui_tokens.control,
+            },
+        },
+        Card_mark: {
+            flex: { shrink: 0 },
+            align: { items: 'center' },
+            justify: { content: 'center' },
+            width: rem(2),
+            height: rem(2),
+            border: { radius: $bog_builderui_tokens.radius },
+            background: { color: $bog_builderui_tokens.hover },
+            font: { family: $bog_builderui_tokens.font_head, size: rem(1), weight: 600 },
+            color: $bog_builderui_tokens.special,
+        },
+        Card_name: {
+            minWidth: 0,
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            font: { size: rem(0.9375), weight: 600 },
+        },
+        Rating: {
+            flex: { direction: 'column' },
+            gap: rem(0.4),
+            width: '100%',
+            maxWidth: wide,
+            minWidth: 0,
+        },
+        Rating_title: {
+            display: 'block',
+            font: { family: $bog_builderui_tokens.font_head, size: rem(1.625), weight: 500 },
+            lineHeight: '1.2',
+            color: $bog_builderui_tokens.text,
+        },
+        Rating_note: {
+            display: 'block',
+            font: { size: rem(0.875) },
+            lineHeight: '1.5',
+            maxWidth: rem(42),
+            color: $bog_builderui_tokens.shade,
+            margin: { bottom: rem(0.6) },
+        },
+        Rating_head: {
+            display: 'grid',
+            gridTemplateColumns: rating_columns,
+            align: { items: 'center' },
+            gap: rem(0.75),
+            padding: { top: rem(0.4), bottom: rem(0.4), left: rem(0.6), right: rem(0.6) },
+            font: { size: rem(0.75), weight: 600 },
+            letterSpacing: '0.04em',
+            textTransform: 'uppercase',
+            color: $bog_builderui_tokens.shade,
+            border: { bottom: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+        },
+        Rating_head_since: {
+            justify: { content: 'flex-end' },
+        },
+        Rating_list: {
+            flex: { direction: 'column' },
+            minWidth: 0,
+        },
+        Row: {
+            display: 'grid',
+            gridTemplateColumns: rating_columns,
+            align: { items: 'center' },
+            gap: rem(0.75),
+            minWidth: 0,
+            padding: { top: rem(0.5), bottom: rem(0.5), left: rem(0.6), right: rem(0.6) },
+            border: { bottom: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+            ':hover': {
+                background: { color: $bog_builderui_tokens.hover },
+            },
+        },
+        Rank: {
+            font: { size: rem(0.875), weight: 600 },
+            color: $bog_builderui_tokens.shade,
+        },
+        Row_mark: {
+            align: { items: 'center' },
+            justify: { content: 'center' },
+            width: rem(2),
+            height: rem(2),
+            border: { radius: $bog_builderui_tokens.radius },
+            background: { color: $bog_builderui_tokens.hover },
+            font: { family: $bog_builderui_tokens.font_head, size: rem(1), weight: 600 },
+            color: $bog_builderui_tokens.special,
+        },
+        Row_name: {
+            flex: { direction: 'column' },
+            align: { items: 'flex-start' },
+            gap: rem(0.1),
+            minWidth: 0,
+        },
+        Row_link: {
+            maxWidth: '100%',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            font: { size: rem(0.9375), weight: 600 },
+            color: $bog_builderui_tokens.text,
+            ':hover': { color: $bog_builderui_tokens.control },
+        },
+        Row_partial: {
+            font: { size: rem(0.75) },
+            color: $bog_builderui_tokens.shade,
+        },
+        Row_score: {
+            flex: { direction: 'row' },
+            align: { items: 'center' },
+            gap: rem(0.5),
+            minWidth: 0,
+        },
+        Row_track: {
+            flex: { grow: 1 },
+            minWidth: 0,
+            height: rem(0.375),
+            border: { radius: rem(0.25) },
+            background: { color: $bog_builderui_tokens.hover },
+            overflow: 'hidden',
+        },
+        Row_fill: {
+            height: '100%',
+            border: { radius: rem(0.25) },
+            background: { color: $bog_builderui_tokens.control },
+        },
+        Row_value: {
+            flex: { shrink: 0 },
+            justify: { content: 'flex-end' },
+            minWidth: rem(1.5),
+            font: { size: rem(0.875), weight: 600 },
+            color: $bog_builderui_tokens.text,
+        },
+        Row_since: {
+            justify: { content: 'flex-end' },
+            font: { size: rem(0.875) },
+            color: $bog_builderui_tokens.shade,
+        },
+        Pager: {
+            flex: { direction: 'row', wrap: 'wrap' },
+            align: { items: 'center' },
+            gap: rem(0.25),
+            margin: { top: rem(0.75) },
+        },
+        Page: {
+            justify: { content: 'center' },
+            minWidth: rem(2),
+            padding: { top: rem(0.3), bottom: rem(0.3), left: rem(0.5), right: rem(0.5) },
+            border: { radius: $bog_builderui_tokens.radius },
+            font: { size: rem(0.875) },
+            color: $bog_builderui_tokens.control,
+            '[bog_smalljs_versus_page_current]': {
+                true: {
+                    background: { color: $bog_builderui_tokens.control },
+                    color: $bog_builderui_tokens.back,
+                },
+            },
+        },
+        Page_next: {
+            justify: { content: 'center' },
+            minWidth: rem(2),
+            padding: { top: rem(0.3), bottom: rem(0.3), left: rem(0.5), right: rem(0.5) },
+            border: { radius: $bog_builderui_tokens.radius },
+            font: { size: rem(1) },
+            color: $bog_builderui_tokens.control,
+        },
+        Empty: {
+            display: 'block',
+            padding: { top: rem(1), bottom: rem(1) },
+            font: { size: rem(0.9375) },
+            lineHeight: '1.6',
+            color: $bog_builderui_tokens.shade,
+        },
+        '@media': {
+            '(max-width: 47.9375rem)': {
+                gap: rem(2.5),
+                padding: { top: rem(2), bottom: rem(2.5), left: rem(1.25), right: rem(1.25) },
+                Title: { font: { size: rem(2) } },
+                Picker: {
+                    flex: { direction: 'column' },
+                    align: { items: 'stretch' },
+                    gap: rem(0.5),
+                },
+                Vs: { align: { self: 'center' } },
+                // The logo tile is the first thing to go: on a phone the name,
+                // the score and the year are what the column is for.
+                Rating_head: { gridTemplateColumns: rating_columns_narrow },
+                Rating_head_mark: { display: 'none' },
+                Row: { gridTemplateColumns: rating_columns_narrow },
+                Row_mark: { display: 'none' },
+            },
+        },
+    });
+    // The two picker fields are $mol_search instances, so their input and their
+    // suggest list belong to $mol_search, not to this page. Restyling them
+    // through $mol_style_define( $mol_search ) would repaint every search box in
+    // the app; scoping raw CSS under our own block keeps the change local.
+    $mol_style_attach('$bog_smalljs_versus.picker', `
+
+		[bog_smalljs_versus_picker] [mol_search_query] {
+			font-size: 1.0625rem;
+			padding: 0.5rem 0.6rem;
+		}
+
+		[bog_smalljs_versus_picker] [mol_search_menu] {
+			min-width: 14rem;
+		}
+
+	`);
 })($ || ($ = {}));
 
 ;
@@ -27976,6 +31102,9 @@ var $;
 		lang_sync(){
 			return null;
 		}
+		route_canonical(){
+			return null;
+		}
 		Theme(){
 			const obj = new this.$.$bog_theme_auto();
 			(obj.theme_light) = () => ("$mol_theme_calm_light");
@@ -28006,6 +31135,12 @@ var $;
 			(obj.open) = (next) => ((this.search_open(next)));
 			(obj.anchor_key) = () => ((this.docs_anchor_key()));
 			return obj;
+		}
+		versus_a(){
+			return "";
+		}
+		versus_b(){
+			return "";
 		}
 		section(next){
 			if(next !== undefined) return next;
@@ -28039,7 +31174,8 @@ var $;
 			return [
 				(this.hotkeys()), 
 				(this.locale_sync()), 
-				(this.lang_sync())
+				(this.lang_sync()), 
+				(this.route_canonical())
 			];
 		}
 		sub(){
@@ -28072,6 +31208,12 @@ var $;
 			const obj = new this.$.$bog_smalljs_versus();
 			return obj;
 		}
+		Pair(){
+			const obj = new this.$.$bog_smalljs_versus_pair();
+			(obj.left) = () => ((this.versus_a()));
+			(obj.right) = () => ((this.versus_b()));
+			return obj;
+		}
 	};
 	($mol_mem(($.$bog_smalljs_app.prototype), "Theme"));
 	($mol_mem(($.$bog_smalljs_app.prototype), "Top"));
@@ -28085,6 +31227,7 @@ var $;
 	($mol_mem(($.$bog_smalljs_app.prototype), "Playground"));
 	($mol_mem(($.$bog_smalljs_app.prototype), "Course"));
 	($mol_mem(($.$bog_smalljs_app.prototype), "Versus"));
+	($mol_mem(($.$bog_smalljs_app.prototype), "Pair"));
 
 
 ;
@@ -28240,6 +31383,43 @@ var $;
             self.addEventListener('click', this.on_click.bind(this), true);
             return this;
         }
+        /**
+         * Path below `mount` that a click on `anchor_path` navigates to, given the
+         * current `current_path`. Both arrive decoded and already stripped of the
+         * mount prefix. Pure — no DOM, no state — so an app can override it and a
+         * test can call it directly.
+         *
+         * Default: anchor segments merge into the current ones. Positional segments
+         * (no `=`) replace the current positional ones, `k=v` segments override the
+         * current value of the same key, and a current `k=v` whose key the anchor
+         * never mentions is kept.
+         *
+         * That last rule is why a key set by one screen follows you into the next.
+         * Leaving `section=course/lesson=hello` through a link to
+         * `section=docs/page=views` lands on `lesson=hello/section=docs/page=views`,
+         * because no link in the top bar mentions `lesson`. An app that wants a link
+         * to mean exactly what it says overrides this in one line:
+         *
+         *     static override route_target( anchor_path: string ) { return anchor_path }
+         *
+         * Do not flip the default here. It was switched to href-following once
+         * (`2e4a474`) and reverted the same day (`73eb0d4`): four other apps ride on
+         * the merge, and the revert message spells out the rule — a shared module is
+         * not changed for the sake of one consumer. Anyone reopening that decision
+         * has to re-check journal, sample, forge and studio, not just their own app.
+         */
+        static route_target(anchor_path, current_path) {
+            const a_segments = anchor_path.split('/').filter(Boolean);
+            const a_positional = a_segments.filter(s => !s.includes('='));
+            const a_kv = a_segments.filter(s => s.includes('='));
+            const cur_segments = current_path.split('/').filter(Boolean);
+            const cur_positional = cur_segments.filter(s => !s.includes('='));
+            const cur_kv = cur_segments.filter(s => s.includes('='));
+            const a_kv_keys = new Set(a_kv.map(s => s.split('=')[0]));
+            const kept_kv = cur_kv.filter(s => !a_kv_keys.has(s.split('=')[0]));
+            const new_positional = a_positional.length > 0 ? a_positional : cur_positional;
+            return [...new_positional, ...kept_kv, ...a_kv].join('/');
+        }
         static on_click(e) {
             if (e.defaultPrevented)
                 return;
@@ -28261,20 +31441,7 @@ var $;
                 return;
             if (!decodeURIComponent(a.pathname).startsWith(this.mount))
                 return;
-            // Anchor segments: positional (no '=') replace current positional,
-            // k=v override matching current keys; unmatched current k=v preserved.
-            const a_segments = decodeURIComponent(a.pathname).slice(this.mount.length).split('/').filter(Boolean);
-            const a_positional = a_segments.filter(s => !s.includes('='));
-            const a_kv = a_segments.filter(s => s.includes('='));
-            const cur_path = decodeURIComponent($mol_dom.location.pathname).slice(this.mount.length);
-            const cur_segments = cur_path.split('/').filter(Boolean);
-            const cur_positional = cur_segments.filter(s => !s.includes('='));
-            const cur_kv = cur_segments.filter(s => s.includes('='));
-            const a_kv_keys = new Set(a_kv.map(s => s.split('=')[0]));
-            const kept_kv = cur_kv.filter(s => !a_kv_keys.has(s.split('=')[0]));
-            const new_positional = a_positional.length > 0 ? a_positional : cur_positional;
-            const new_segments = [...new_positional, ...kept_kv, ...a_kv];
-            const new_path = new_segments.join('/');
+            const new_path = this.route_target(decodeURIComponent(a.pathname).slice(this.mount.length), decodeURIComponent($mol_dom.location.pathname).slice(this.mount.length));
             const target = $mol_dom.location.origin + this.mount + new_path + (a.search || $mol_dom.location.search);
             const current = $mol_dom.location.href;
             if (target === current)
@@ -28291,6 +31458,16 @@ var $;
             // причём стрелки браузера работают: popstate идёт другим путём.
             //
             // Склейку ключей это не трогает — только адресата записи.
+            //
+            // ВНИМАНИЕ: починен только клик. Тот же промах по классу живёт в
+            // `go()`, в слушателе `popstate` и в обеих миграциях адреса на
+            // холодной загрузке — там адрес пишется в `this`, а не в активный
+            // роутер. Правка, которая закрывала все четыре места разом
+            // (`30bbd7a`), попала под общий откат `73eb0d4` и обратно не
+            // вернулась. Пока приложение поднимает один роутер, `this` и
+            // активный класс совпадают, поэтому баг не виден; он выстрелит на
+            // нескольких маунтах через `at()` — ровно тем же «адрес меняется,
+            // страница нет».
             const installed = $.$mol_state_arg;
             const router = typeof installed?.href === 'function' ? installed : this;
             router.href(target);
@@ -28309,6 +31486,46 @@ var $;
         $mol_action
     ], $bog_builderui_router, "go", null);
     $.$bog_builderui_router = $bog_builderui_router;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    /**
+     * The site's router: a link leads exactly where it points.
+     *
+     * `$bog_builderui_router` merges by default — segments of the current address
+     * whose key the link never mentions are carried into the next one. That suits
+     * apps whose screens share keys, and four of them rely on it, so the default
+     * stays as it is. This site is the other kind: every screen owns its own keys,
+     * and carrying them across is pure damage.
+     *
+     * What it fixed here. The course writes `lesson`, the comparison section writes
+     * `a` and `b`, and no link in the top bar names any of the three — so leaving
+     * either screen used to produce `lesson=hello/section=docs/page=views`. Three
+     * consequences: the address stopped matching the link the reader had just
+     * clicked; a shared link carried a stale key from wherever its author happened
+     * to be standing; and crawlers were handed endless spellings of one page, which
+     * is exactly what the canonical pair order in the sitemap exists to prevent.
+     *
+     * Nothing is lost by dropping the merge, because the link already carries the
+     * full target: `$mol_state_arg.link()` folds the current address in through
+     * `dict_cut()` while building the href. One caveat worth knowing — `dict_cut`
+     * stops at the first key the link mentions and drops everything after it in the
+     * address. Harmless here, since `section` leads every address and every link
+     * sets it, so the cut always lands at the start. A link that sets a later key
+     * while expecting still later ones to survive would need more care.
+     *
+     * @see bog/builderui/router/router.web.ts — the seam and why its default holds
+     * @see bog/builderui/router/router.web.test.ts — both behaviours, pinned
+     */
+    class $bog_smalljs_router extends $bog_builderui_router {
+        static route_target(anchor_path) {
+            return anchor_path;
+        }
+    }
+    $.$bog_smalljs_router = $bog_smalljs_router;
 })($ || ($ = {}));
 
 ;
@@ -28513,9 +31730,15 @@ var $;
              *  pathname already starts with `/smalljs/` (its own guard). On the mam dev
              *  server the path is `/bog/smalljs/app/-/test.html`, which does not — so this
              *  is a clean no-op there and the standard hash router stays active, keeping
-             *  local dev (and its non-SPA file server) working unchanged. */
+             *  local dev (and its non-SPA file server) working unchanged.
+             *
+             *  $bog_smalljs_router is that router with one behaviour changed: a click
+             *  goes exactly where the link points, instead of dragging along keys of the
+             *  current address that the link never mentions. Without it `lesson`, `a` and
+             *  `b` leak out of the course and the comparison section into every address
+             *  after them. See the class for the full reasoning. */
             static {
-                $bog_builderui_router.activate('/smalljs/');
+                $bog_smalljs_router.activate('/smalljs/');
             }
             section(next) {
                 return $mol_state_arg.value('section', next) ?? 'home';
@@ -28526,6 +31749,70 @@ var $;
             title() {
                 return this.meta().title ?? super.title();
             }
+            /** The two frameworks of a comparison, always alphabetical by id.
+             *
+             *  `a=react/b=vue` and `a=vue/b=react` are the same comparison, and a
+             *  search engine indexing both would split one page in two. So one order
+             *  is canonical, the address is corrected to it (see route_canonical),
+             *  and everything downstream — the page, the title, the canonical link —
+             *  reads the pair from here rather than from the raw args.
+             *
+             *  Null when only one side is named: `section=versus/a=react` is the
+             *  section front page with React already picked, not a comparison.
+             *
+             *  The comparison is by code unit, not by locale: framework ids are
+             *  lower-case ascii slugs, so no collation rule can reorder them and the
+             *  same URL is canonical in every language. */
+            versus_pair() {
+                if (this.section() !== 'versus')
+                    return null;
+                const a = this.$.$mol_state_arg.value('a') || '';
+                const b = this.$.$mol_state_arg.value('b') || '';
+                if (!a || !b || a === b)
+                    return null;
+                return a < b ? [a, b] : [b, a];
+            }
+            versus_a() {
+                return this.versus_pair()?.[0] ?? '';
+            }
+            versus_b() {
+                return this.versus_pair()?.[1] ?? '';
+            }
+            /** Keeps the address honest about which page is open.
+             *
+             *  Two corrections, both rewrites in place rather than navigations — the
+             *  user asked for this page, only its spelling changes, so there is no
+             *  extra entry to press Back through:
+             *
+             *  - a reversed pair (`a=vue/b=react`) is put back in canonical order;
+             *  - `a`/`b` are dropped outside the comparison section, where the
+             *    path router would otherwise carry them from link to link (it keeps
+             *    the keys a link does not mention) and leave `a=react` hanging in
+             *    the address of a documentation page.
+             *
+             *  Deferred through $mol_wire_async: setting one memoized cell from the
+             *  body of another is the invalidation loop $mol forbids. */
+            route_canonical() {
+                const arg = this.$.$mol_state_arg;
+                const a = arg.value('a');
+                const b = arg.value('b');
+                if (!a && !b)
+                    return null;
+                let next_a = a;
+                let next_b = b;
+                if (this.section() !== 'versus') {
+                    next_a = null;
+                    next_b = null;
+                }
+                else if (a && b && a > b) {
+                    next_a = b;
+                    next_b = a;
+                }
+                if (next_a === a && next_b === b)
+                    return null;
+                $mol_wire_async(arg).dict({ ...arg.dict(), a: next_a, b: next_b });
+                return null;
+            }
             /** Ordered arg pairs describing the current screen ($mol hash-router state). */
             route_args() {
                 switch (this.section()) {
@@ -28535,7 +31822,12 @@ var $;
                     }
                     case 'playground': return [['section', 'playground']];
                     case 'course': return [['section', 'course']];
-                    case 'versus': return [['section', 'versus']];
+                    case 'versus': {
+                        const pair = this.versus_pair();
+                        if (!pair)
+                            return [['section', 'versus']];
+                        return [['section', 'versus'], ['a', pair[0]], ['b', pair[1]]];
+                    }
                     default: return [];
                 }
             }
@@ -28574,10 +31866,22 @@ var $;
                         title = `Interactive Course — ${site_name}`;
                         description = 'Learn $mol step by step: reactive views, state, events, and routing, each in a live editor.';
                         break;
-                    case 'versus':
-                        title = `Compare — ${site_name}`;
-                        description = 'Run the same scenario in React, Vue and $mol side by side in your own browser, and see how each one behaves.';
+                    case 'versus': {
+                        const pair = this.versus_pair();
+                        if (pair) {
+                            // Names come from the data files, so the title says "$mol"
+                            // and "Vue.js" exactly as the framework spells itself.
+                            const left = this.Versus().framework_title(pair[0]);
+                            const right = this.Versus().framework_title(pair[1]);
+                            title = `${left} vs ${right} — ${site_name}`;
+                            description = `${left} vs ${right}: edge cases, code, weight and loading, speed, built-in features, ecosystem and cost of ownership. Every number carries the source it came from and the date it was measured.`;
+                        }
+                        else {
+                            title = `Compare — ${site_name}`;
+                            description = 'Pick two frameworks and compare them on code, weight, speed, built-in features, ecosystem and cost of ownership — plus crash tests that run in your own browser.';
+                        }
                         break;
+                    }
                 }
                 const alternates = meta_langs.map(code => ({
                     lang: hreflang_code(code),
@@ -28669,11 +31973,16 @@ var $;
                     case 'docs': return [this.Docs()];
                     case 'playground': return [this.Playground()];
                     case 'course': return [this.Course()];
-                    case 'versus': return [this.Versus()];
+                    // Both sides named — the comparison; one or none — the section
+                    // front page, with whatever was named already picked in a field.
+                    case 'versus': return this.versus_pair() ? [this.Pair()] : [this.Versus()];
                     default: return [this.Landing()];
                 }
             }
         }
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_app.prototype, "route_canonical", null);
         __decorate([
             $mol_mem
         ], $bog_smalljs_app.prototype, "locale_sync", null);
