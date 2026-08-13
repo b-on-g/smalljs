@@ -422,6 +422,49 @@ namespace $ {
 			color: $bog_builderui_tokens.shade,
 		},
 
+		// Narrower than the grids above it: this one is prose, and prose past a
+		// certain measure stops being read.
+		Method: {
+			flex: { direction: 'column' },
+			align: { items: 'flex-start' },
+			gap: rem( 0.75 ),
+			width: '100%',
+			maxWidth: prose,
+			padding: { top: rem( 2 ) },
+			border: { top: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+		},
+
+		Method_title: {
+			display: 'block',
+			font: { family: $bog_builderui_tokens.font_head, size: rem( 1.625 ), weight: 500 },
+			lineHeight: '1.2',
+			color: $bog_builderui_tokens.text,
+		},
+
+		Method_text: {
+			display: 'block',
+			font: { size: rem( 0.9375 ) },
+			lineHeight: '1.6',
+			color: $bog_builderui_tokens.shade,
+		},
+
+		Method_link: {
+			flex: { direction: 'row', grow: 0 },
+			align: { items: 'center' },
+			gap: rem( 0.4 ),
+			margin: { top: rem( 0.25 ) },
+			color: $bog_builderui_tokens.control,
+			font: { size: rem( 0.9375 ), weight: 600 },
+
+			':hover': { color: $bog_builderui_tokens.focus },
+		},
+
+		Method_link_icon: {
+			width: rem( 0.9 ),
+			height: rem( 0.9 ),
+			flex: { shrink: 0 },
+		},
+
 		'@media': {
 
 			'(max-width: 47.9375rem)': {
@@ -444,6 +487,8 @@ namespace $ {
 				Rating_head_mark: { display: 'none' },
 				Row: { gridTemplateColumns: rating_columns_narrow },
 				Row_mark: { display: 'none' },
+
+				Method: { padding: { top: rem( 1.5 ) } },
 			},
 
 		},

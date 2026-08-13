@@ -5,6 +5,21 @@
 	"since_source": "https://github.com/angular/angular",
 	"runner": false,
 	"metrics": {
+		"deps_direct": {
+			"value": 15,
+			"source": "https://angular.dev/installation",
+			"measured_at": "2026-08-13"
+		},
+		"deps_transitive": {
+			"value": 425,
+			"source": "https://angular.dev/installation",
+			"measured_at": "2026-08-13"
+		},
+		"node_modules_size": {
+			"value": 281.3,
+			"source": "https://angular.dev/installation",
+			"measured_at": "2026-08-13"
+		},
 		"startup_bytes": {
 			"value": 259.0,
 			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
@@ -63,6 +78,11 @@
 			"source": "https://angular.dev/guide/i18n",
 			"measured_at": "2026-08-13"
 		},
+		"themes": {
+			"value": true,
+			"source": "https://material.angular.dev/guide/theming",
+			"measured_at": "2026-08-13"
+		},
 		"virtual": {
 			"value": true,
 			"source": "https://material.angular.dev/cdk/scrolling/overview",
@@ -116,6 +136,12 @@
 			"source": "https://registry.npmjs.org/@angular/core",
 			"measured_at": "2026-08-13",
 			"method": "https://www.npmjs.com/package/@angular/core?activeTab=versions"
+		},
+		"cve_tree": {
+			"value": 0,
+			"source": "https://angular.dev/installation",
+			"measured_at": "2026-08-13",
+			"method": "https://docs.npmjs.com/cli/commands/npm-audit"
 		},
 		"breaking_3y": {
 			"value": 6,

@@ -6,18 +6,18 @@
 	"runner": true,
 	"metrics": {
 		"deps_direct": {
-			"value": 5,
-			"source": "https://www.npmjs.com/package/vue?activeTab=dependencies",
+			"value": 10,
+			"source": "https://vuejs.org/guide/quick-start.html",
 			"measured_at": "2026-08-13"
 		},
 		"deps_transitive": {
-			"value": 21,
-			"source": "https://www.npmjs.com/package/vue?activeTab=dependencies",
+			"value": 125,
+			"source": "https://vuejs.org/guide/quick-start.html",
 			"measured_at": "2026-08-13"
 		},
 		"node_modules_size": {
-			"value": 17.7,
-			"source": "https://www.npmjs.com/package/vue?activeTab=dependencies",
+			"value": 98.3,
+			"source": "https://vuejs.org/guide/quick-start.html",
 			"measured_at": "2026-08-13"
 		},
 		"startup_bytes": {
@@ -73,9 +73,19 @@
 			"source": "https://router.vuejs.org/",
 			"measured_at": "2026-08-13"
 		},
+		"themes": {
+			"value": false,
+			"source": "https://vuejs.org/api/",
+			"measured_at": "2026-08-13"
+		},
 		"ssr": {
 			"value": true,
 			"source": "https://vuejs.org/guide/scaling-up/ssr.html",
+			"measured_at": "2026-08-13"
+		},
+		"tests_nodom": {
+			"value": false,
+			"source": "https://vuejs.org/guide/scaling-up/testing.html",
 			"measured_at": "2026-08-13"
 		},
 		"typed_templates": {
@@ -109,7 +119,7 @@
 		},
 		"cve_tree": {
 			"value": 0,
-			"source": "https://github.com/npm/cli#readme",
+			"source": "https://vuejs.org/guide/quick-start.html",
 			"measured_at": "2026-08-13",
 			"method": "https://docs.npmjs.com/cli/commands/npm-audit"
 		},

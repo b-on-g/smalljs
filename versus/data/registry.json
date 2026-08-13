@@ -1,11 +1,11 @@
 {
 	"deps_direct": {
 		"category": "code",
-		"title": "Direct dependencies",
+		"title": "Dependencies declared",
 		"unit": "",
 		"better": "lower",
-		"human": "Packages the framework itself declares. Every one of them is code you did not choose but still ship.",
-		"method": "Sum of the `dependencies` fields of the packages installed by the framework's documented runtime install (react + react-dom, vue, svelte, solid-js). Frameworks with no documented bare npm runtime install are left blank."
+		"human": "Packages the starter project names in its own package.json. This is the list you inherit before writing a line of code.",
+		"method": "Entries in `dependencies` plus `devDependencies` of a fresh project, scaffolded on 2026-08-13 with: react `npm create vite@latest app -- --template react-ts`; vue `npm create vue@latest app -- --default`; svelte `npx sv create app --template minimal --types ts --no-add-ons --install npm`; solid `npm create solid@latest app -- --vanilla --ts --template basic`; angular `npx @angular/cli@21 new app --defaults --skip-git --package-manager=npm`; $mol `git clone --depth 1 https://github.com/hyoo-ru/mam.git app && npm install`."
 	},
 	"deps_transitive": {
 		"category": "code",
@@ -13,15 +13,15 @@
 		"unit": "",
 		"better": "lower",
 		"human": "How many separate packages end up in node_modules once npm is done resolving. Each one is a separate author you trust.",
-		"method": "`npm install --omit=dev` of the documented runtime packages into an empty project, then distinct name+version pairs in `npm ls --all --omit=dev`. Roots included."
+		"method": "Distinct name+version pairs in `npm ls --all` after scaffolding and installing the starter project. Same six commands as for the declared-dependency count."
 	},
 	"node_modules_size": {
 		"category": "code",
 		"title": "node_modules size",
 		"unit": "MB",
 		"better": "lower",
-		"human": "Disk footprint of a clean install. It is not what ships to the browser, but it is what every CI run downloads.",
-		"method": "`du -sk node_modules` after `npm install --omit=dev` of the documented runtime packages into an empty project."
+		"human": "Disk footprint of a fresh project. It is not what ships to the browser, but it is what every CI run downloads.",
+		"method": "`du -sk node_modules` after scaffolding and installing the starter project. Same six commands as for the declared-dependency count."
 	},
 	"startup_bytes": {
 		"category": "weight",
@@ -133,7 +133,15 @@
 		"unit": "",
 		"better": "boolean",
 		"human": "Components testable as plain objects, with no browser and no jsdom to boot up first.",
-		"method": "Yes when components can be instantiated and asserted on outside a document, using the framework's own test runner."
+		"method": "Yes when the framework's own test runner instantiates components and asserts on them outside a document. No when its official testing guide prescribes a DOM environment — jsdom, happy-dom or a real browser — to render a component at all."
+	},
+	"themes": {
+		"category": "builtin",
+		"title": "Theming",
+		"unit": "",
+		"better": "boolean",
+		"human": "Dark mode and brand colours without inventing your own CSS variable convention.",
+		"method": "Yes when the framework project publishes and documents a theming mechanism of its own. No when the word does not appear in its official API reference — the linked page is that reference, so the absence can be checked directly."
 	},
 	"di": {
 		"category": "builtin",
@@ -196,8 +204,8 @@
 		"title": "Known vulnerabilities",
 		"unit": "",
 		"better": "lower",
-		"human": "Advisories in the packages a clean install drags in. Someone has to triage each one of them.",
-		"method": "`npm audit --omit=dev` on a fresh install of the documented runtime packages in an empty project."
+		"human": "Advisories in the packages a fresh project drags in. Someone has to triage each one of them.",
+		"method": "Total reported by `npm audit` on the starter project, straight after scaffolding it. Same six commands as for the declared-dependency count."
 	},
 	"breaking_3y": {
 		"category": "cost",

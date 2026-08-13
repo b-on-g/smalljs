@@ -12,8 +12,12 @@ namespace $.$$ {
 	 *  shows up — appended after the known ones — so adding a measurement does
 	 *  not require touching this file. */
 	const metric_order: Readonly< Record< string, readonly string[] > > = {
-		code: [ 'loc_todomvc', 'files_todomvc', 'deps_direct', 'deps_transitive', 'node_modules_size' ],
-		weight: [ 'bundle_gzip', 'framework_gzip', 'app_gzip', 'startup_bytes', 'tti_3g', 'lighthouse' ],
+		// The ids here that the registry does not have yet are ones nobody has
+		// measured. `loc_todomvc` and `bundle_gzip` are deliberately not among
+		// them: they were withdrawn because only $mol had a reading, and listing
+		// them would read as a gap somebody should fill rather than a decision.
+		code: [ 'files_todomvc', 'deps_direct', 'deps_transitive', 'node_modules_size' ],
+		weight: [ 'framework_gzip', 'app_gzip', 'startup_bytes', 'tti_3g', 'lighthouse' ],
 		speed: [ 'create_1k', 'update_1k', 'swap_rows', 'remove_row', 'mem_ready', 'mem_1k', 'startup_tbt' ],
 		builtin: [ 'router', 'i18n', 'themes', 'virtual', 'offline', 'ssr', 'tests_nodom', 'di', 'forms', 'typed_templates' ],
 		market: [ 'stars', 'npm_downloads', 'so_questions', 'jobs', 'ui_kits', 'maintainers', 'release_rate' ],
@@ -511,19 +515,47 @@ namespace $.$$ {
 			return unit === '%' ? text + unit : text + ' ' + unit
 		}
 
+		/**
+		 * A metric only one side reports is a dash on **both** sides, not a number
+		 * against a dash.
+		 *
+		 * The number is real and printing it would feel like the honest thing to
+		 * do. It is not. Put "357" opposite a dash and the row reads "this side is
+		 * small, the other side is unknown" — a comparison the reader cannot help
+		 * making and that nobody measured. The true reading is "we measured
+		 * ourselves and did not measure them", and there is no way to tell those
+		 * two apart from the outside.
+		 *
+		 * The cost is real too: a measurement we have is withheld. It is the right
+		 * trade, because the alternative puts a thumb on the scale in whichever
+		 * direction our data happens to be fuller, and this section is worth
+		 * nothing the moment a reader finds one of those.
+		 */
 		metric_left_value( id: string ) {
+			if( !this.shared( id ) ) return no_value
 			const row = this.row( id )
 			return this.value_text( row?.left ?? null, row?.meta )
 		}
 
 		metric_right_value( id: string ) {
+			if( !this.shared( id ) ) return no_value
 			const row = this.row( id )
 			return this.value_text( row?.right ?? null, row?.meta )
 		}
 
-		/** Left's share of the bar, or null when this row has no honest bar. */
+		/** Left's share of the bar, or null when this row has no honest bar.
+		 *
+		 *  A reading of zero on one side is one of those cases. The proportion is
+		 *  real — one side holds all of it — but it draws as a single solid block
+		 *  spanning the whole track, and at that point the only thing left to read
+		 *  is the colour, which says "this row is good" rather than "this side
+		 *  is". The numbers are right there and the sentence names both sides, so
+		 *  the bar is dropped rather than drawn as something the eye misreads.
+		 *  Same reasoning as a yes/no metric, which is the same shape. */
 		metric_share( id: string ) {
-			return this.row( id )?.diff.share ?? null
+			const row = this.row( id )
+			if( !row || this.zero_side( row ) ) return null
+			return row.diff.share ?? null
 		}
 
 		metric_bar( id: string ) {
@@ -546,6 +578,21 @@ namespace $.$$ {
 			return share_text( 1 - ( this.metric_share( id ) ?? 0.5 ) )
 		}
 
+		/** The side whose numeric reading is exactly zero, when the other side's
+		 *  is not. Null for anything else, including two zeroes — that is a tie
+		 *  and reads as one. */
+		zero_side( row: Row ): 'left' | 'right' | null {
+
+			const left = row.left?.value
+			const right = row.right?.value
+			if( typeof left !== 'number' || typeof right !== 'number' ) return null
+
+			if( left === 0 && right !== 0 ) return 'left'
+			if( right === 0 && left !== 0 ) return 'right'
+
+			return null
+		}
+
 		/** The sentence next to the bar. Every wording states its own base — a
 		 *  percentage is always measured against the losing side — because "62%
 		 *  faster" is ambiguous about what it is 62% of, and an ambiguous number
@@ -559,11 +606,17 @@ namespace $.$$ {
 			const right_name = this.right_title()
 			const boolean = row.meta.better === 'boolean'
 
+			// Names the side that is *missing*, not the side that reported. "No
+			// data for Angular" cannot be misread as a verdict about Angular,
+			// where "only React reports this" sits one word away from "only React
+			// has it" and means the opposite of it — the first says we know
+			// nothing about the other side, the second says we know it lacks the
+			// thing. Both sentences land on the same metric of the same pair.
 			if( row.diff.side === 'none' ) {
 
 				if( row.left && row.right ) return ''
 
-				return fill( this.delta_partial(), { a: row.left ? left_name : right_name } )
+				return fill( this.delta_partial(), { a: row.left ? right_name : left_name } )
 			}
 
 			if( row.diff.side === 'tie' ) {
@@ -574,7 +627,25 @@ namespace $.$$ {
 			const winner = row.diff.side === 'left' ? left_name : right_name
 			const loser = row.diff.side === 'left' ? right_name : left_name
 
-			if( boolean ) return fill( this.delta_only(), { a: winner } )
+			// Names both sides, like the zero wording below: a yes/no metric that
+			// counted means we know what *both* of them do, and saying so is what
+			// keeps it apart from the uncounted line above.
+			if( boolean ) return fill( this.delta_only(), { a: winner, b: loser } )
+
+			// A reading of exactly zero, on either side. Percentages against zero
+			// come out as "100% below" or as no figure at all depending on which
+			// way the metric points, which is two different sentences for one
+			// situation. Naming both values says it once and says it plainly:
+			// "React has none, $mol has 3", "$mol has none, React has 473,925".
+			const zero = this.zero_side( row )
+
+			if( zero ) {
+				return fill( this.delta_zero(), {
+					a: zero === 'left' ? left_name : right_name,
+					b: zero === 'left' ? right_name : left_name,
+					p: this.value_text( zero === 'left' ? row.right : row.left, row.meta ),
+				} )
+			}
 
 			const { percent, times } = row.diff
 
@@ -596,13 +667,12 @@ namespace $.$$ {
 		 *  measurements taken on different days cannot hide that. */
 		metric_sources( id: string ) {
 
-			const row = this.row( id )
-			if( !row ) return []
+			// Nothing is on show for an uncounted row, so there is nothing to cite.
+			// A source line under two dashes would point at a value the row is
+			// deliberately not printing.
+			if( !this.shared( id ) ) return []
 
-			return [
-				... row.left ? [ this.Source( id + '/left' ) ] : [],
-				... row.right ? [ this.Source( id + '/right' ) ] : [],
-			]
+			return [ this.Source( id + '/left' ), this.Source( id + '/right' ) ]
 		}
 
 		source_measure( key: string ) {

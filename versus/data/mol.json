@@ -5,6 +5,21 @@
 	"since_source": "https://github.com/hyoo-ru/mam_mol",
 	"runner": true,
 	"metrics": {
+		"deps_direct": {
+			"value": 3,
+			"source": "https://github.com/hyoo-ru/mam",
+			"measured_at": "2026-08-13"
+		},
+		"deps_transitive": {
+			"value": 133,
+			"source": "https://github.com/hyoo-ru/mam",
+			"measured_at": "2026-08-13"
+		},
+		"node_modules_size": {
+			"value": 62.0,
+			"source": "https://github.com/hyoo-ru/mam",
+			"measured_at": "2026-08-13"
+		},
 		"startup_bytes": {
 			"value": 127.8,
 			"source": "https://nin-jin.github.io/js-framework-benchmark/webdriver-ts-results/table.html",
@@ -63,6 +78,11 @@
 			"source": "https://github.com/hyoo-ru/mam_mol/tree/master/locale",
 			"measured_at": "2026-08-13"
 		},
+		"themes": {
+			"value": true,
+			"source": "https://github.com/hyoo-ru/mam_mol/tree/master/theme",
+			"measured_at": "2026-08-13"
+		},
 		"virtual": {
 			"value": true,
 			"source": "https://github.com/hyoo-ru/mam_mol/tree/master/list",
@@ -110,11 +130,23 @@
 			"measured_at": "2026-08-13",
 			"method": "https://www.npmjs.com/package/mam"
 		},
+		"so_questions": {
+			"value": 0,
+			"source": "https://api.stackexchange.com/2.3/tags?site=stackoverflow&inname=mol",
+			"measured_at": "2026-08-13",
+			"method": "https://stackoverflow.com/tags"
+		},
 		"maintainers": {
 			"value": 1,
 			"source": "https://registry.npmjs.org/mam",
 			"measured_at": "2026-08-13",
 			"method": "https://www.npmjs.com/package/mam?activeTab=versions"
+		},
+		"cve_tree": {
+			"value": 3,
+			"source": "https://github.com/hyoo-ru/mam",
+			"measured_at": "2026-08-13",
+			"method": "https://docs.npmjs.com/cli/commands/npm-audit"
 		}
 	}
 }

@@ -396,7 +396,7 @@ namespace $ {
 		align: { items: 'baseline' },
 		gap: rem( 0.35 ),
 		minWidth: 0,
-		font: { size: rem( 0.75 ) },
+		font: { size: rem( 0.8125 ) },
 		lineHeight: '1.45',
 		color: $bog_builderui_tokens.shade,
 
@@ -421,9 +421,14 @@ namespace $ {
 			overflowWrap: 'break-word',
 		},
 
+		// Carries the same weight as the link rather than trailing off in grey.
+		// Some of these numbers are years old — the js-framework-benchmark run is
+		// from 2022 — and a reader who misses that is right to feel misled when
+		// they find out. The date has to be as easy to see as the source.
 		Taken: {
 			display: 'block',
-			font: { family: mono },
+			font: { family: mono, weight: 600 },
+			color: $bog_builderui_tokens.text,
 		},
 
 	} )

@@ -6,18 +6,18 @@
 	"runner": true,
 	"metrics": {
 		"deps_direct": {
-			"value": 1,
-			"source": "https://www.npmjs.com/package/react-dom?activeTab=dependencies",
+			"value": 9,
+			"source": "https://react.dev/learn/build-a-react-app-from-scratch",
 			"measured_at": "2026-08-13"
 		},
 		"deps_transitive": {
-			"value": 3,
-			"source": "https://www.npmjs.com/package/react-dom?activeTab=dependencies",
+			"value": 35,
+			"source": "https://react.dev/learn/build-a-react-app-from-scratch",
 			"measured_at": "2026-08-13"
 		},
 		"node_modules_size": {
-			"value": 7.5,
-			"source": "https://www.npmjs.com/package/react-dom?activeTab=dependencies",
+			"value": 80.9,
+			"source": "https://react.dev/learn/build-a-react-app-from-scratch",
 			"measured_at": "2026-08-13"
 		},
 		"startup_bytes": {
@@ -73,9 +73,19 @@
 			"source": "https://react.dev/learn/creating-a-react-app",
 			"measured_at": "2026-08-13"
 		},
+		"themes": {
+			"value": false,
+			"source": "https://react.dev/reference/react",
+			"measured_at": "2026-08-13"
+		},
 		"ssr": {
 			"value": true,
 			"source": "https://react.dev/reference/react-dom/server",
+			"measured_at": "2026-08-13"
+		},
+		"tests_nodom": {
+			"value": false,
+			"source": "https://react.dev/warnings/react-test-renderer",
 			"measured_at": "2026-08-13"
 		},
 		"typed_templates": {
@@ -109,7 +119,7 @@
 		},
 		"cve_tree": {
 			"value": 0,
-			"source": "https://github.com/npm/cli#readme",
+			"source": "https://react.dev/learn/build-a-react-app-from-scratch",
 			"measured_at": "2026-08-13",
 			"method": "https://docs.npmjs.com/cli/commands/npm-audit"
 		},

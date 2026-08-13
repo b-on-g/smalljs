@@ -6,18 +6,18 @@
 	"runner": false,
 	"metrics": {
 		"deps_direct": {
-			"value": 3,
-			"source": "https://www.npmjs.com/package/solid-js?activeTab=dependencies",
+			"value": 5,
+			"source": "https://docs.solidjs.com/quick-start",
 			"measured_at": "2026-08-13"
 		},
 		"deps_transitive": {
-			"value": 4,
-			"source": "https://www.npmjs.com/package/solid-js?activeTab=dependencies",
+			"value": 70,
+			"source": "https://docs.solidjs.com/quick-start",
 			"measured_at": "2026-08-13"
 		},
 		"node_modules_size": {
-			"value": 4.1,
-			"source": "https://www.npmjs.com/package/solid-js?activeTab=dependencies",
+			"value": 65.0,
+			"source": "https://docs.solidjs.com/quick-start",
 			"measured_at": "2026-08-13"
 		},
 		"startup_bytes": {
@@ -73,9 +73,19 @@
 			"source": "https://docs.solidjs.com/solid-router",
 			"measured_at": "2026-08-13"
 		},
+		"themes": {
+			"value": false,
+			"source": "https://docs.solidjs.com/",
+			"measured_at": "2026-08-13"
+		},
 		"ssr": {
 			"value": true,
 			"source": "https://docs.solidjs.com/reference/rendering/render-to-string",
+			"measured_at": "2026-08-13"
+		},
+		"tests_nodom": {
+			"value": false,
+			"source": "https://docs.solidjs.com/guides/testing",
 			"measured_at": "2026-08-13"
 		},
 		"typed_templates": {
@@ -109,7 +119,7 @@
 		},
 		"cve_tree": {
 			"value": 0,
-			"source": "https://github.com/npm/cli#readme",
+			"source": "https://docs.solidjs.com/quick-start",
 			"measured_at": "2026-08-13",
 			"method": "https://docs.npmjs.com/cli/commands/npm-audit"
 		},
