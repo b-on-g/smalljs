@@ -11427,6 +11427,460 @@ declare namespace $ {
 
 declare namespace $ {
 
+	type $mol_view__sub_bog_smalljs_lab_1 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_lab['race_options'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_lab_2 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_lab_3 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_lab_4 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_list__rows_bog_smalljs_lab_5 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_lab['virtual_rows'] >
+		,
+		ReturnType< $mol_list['rows'] >
+	>
+	type $mol_scroll__sub_bog_smalljs_lab_6 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_scroll['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_lab_7 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_lab_8 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_lab['leak_probes'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_lab_9 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_lab['crash_cards'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_scroll__sub_bog_smalljs_lab_10 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_scroll['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_lab_11 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $bog_smalljs_lab_option__click_bog_smalljs_lab_12 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_lab['race_option_click'] >
+		,
+		ReturnType< $bog_smalljs_lab_option['click'] >
+	>
+	type $bog_smalljs_lab_option__current_bog_smalljs_lab_13 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_lab['race_option_current'] >
+		,
+		ReturnType< $bog_smalljs_lab_option['current'] >
+	>
+	type $bog_smalljs_lab_option__title_bog_smalljs_lab_14 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_lab['race_option_label'] >
+		,
+		ReturnType< $bog_smalljs_lab_option['title'] >
+	>
+	type $mol_view__sub_bog_smalljs_lab_15 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_paragraph__title_bog_smalljs_lab_16 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_lab['virtual_row_text'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_view__sub_bog_smalljs_lab_17 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_lab_18 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $bog_smalljs_lab_probe__label_bog_smalljs_lab_19 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_lab['leak_probe_label'] >
+		,
+		ReturnType< $bog_smalljs_lab_probe['label'] >
+	>
+	type $mol_view__sub_bog_smalljs_lab_20 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $bog_smalljs_lab_card__name_bog_smalljs_lab_21 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_lab['crash_card_name'] >
+		,
+		ReturnType< $bog_smalljs_lab_card['name'] >
+	>
+	type $bog_smalljs_lab_card__text_bog_smalljs_lab_22 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_lab['crash_card_text'] >
+		,
+		ReturnType< $bog_smalljs_lab_card['text'] >
+	>
+	export class $bog_smalljs_lab extends $mol_view {
+		case_content( ): readonly(any)[]
+		race_options( ): readonly(any)[]
+		Race_options( ): $mol_view
+		race_panel_name( ): string
+		Race_panel_name( ): $mol_view
+		race_panel_descr( ): string
+		Race_panel_descr( ): $mol_view
+		Race_panel( ): $mol_view
+		race_option_click( id: any, next?: any ): any
+		race_option_current( id: any): boolean
+		race_option_label( id: any): string
+		virtual_rows( ): readonly(any)[]
+		Virtual_list( ): $mol_list
+		Virtual_scroll( ): $mol_scroll
+		virtual_row_text( id: any): string
+		virtual_placeholder( ): string
+		leak_hint( ): string
+		Leak_hint( ): $mol_view
+		leak_probes( ): readonly(any)[]
+		Leak_place( ): $mol_view
+		leak_probe_label( id: any): string
+		crash_cards( ): readonly(any)[]
+		Crash_list( ): $mol_view
+		Crash_scroll( ): $mol_scroll
+		crash_card_name( id: any): string
+		crash_card_text( id: any): string
+		sub( ): ReturnType< $bog_smalljs_lab['case_content'] >
+		Race( ): $mol_view
+		Race_option( id: any): $bog_smalljs_lab_option
+		Virtual( ): $mol_view
+		Virtual_row( id: any): $mol_paragraph
+		Virtual_placeholder( ): $mol_view
+		Leak( ): $mol_view
+		Leak_probe( id: any): $bog_smalljs_lab_probe
+		Crash( ): $mol_view
+		Crash_card( id: any): $bog_smalljs_lab_card
+	}
+	
+	export class $bog_smalljs_lab_option extends $mol_button_minor {
+		current( ): boolean
+		attr( ): ({ 
+			'versus_current': ReturnType< $bog_smalljs_lab_option['current'] >,
+		})  & ReturnType< $mol_button_minor['attr'] >
+	}
+	
+	export class $bog_smalljs_lab_probe extends $mol_view {
+		label( ): string
+		sub( ): readonly(any)[]
+	}
+	
+	export class $bog_smalljs_lab_card extends $mol_view {
+		name( ): string
+		text( ): string
+		attr( ): ({ 
+			'versus_card': string,
+		})  & ReturnType< $mol_view['attr'] >
+		sub( ): readonly(any)[]
+	}
+	
+}
+
+//# sourceMappingURL=lab.view.tree.d.ts.map
+declare namespace $ {
+    /**
+     * Shared store with a plain list of subscribers. Same shape in every runner
+     * of the comparison, so that `subscribers.length` means the same thing.
+     */
+    class $bog_smalljs_lab_store extends $mol_object {
+        subscribers: (() => void)[];
+        static shared(): $bog_smalljs_lab_store;
+        subscribe(handler: () => void): $bog_smalljs_lab_link;
+    }
+    /**
+     * Reports whether a node is inside the viewport. An observer with no root of
+     * its own measures against the top level viewport even from a nested frame,
+     * which is what makes a scrolled away frame detectable from the inside.
+     */
+    class $bog_smalljs_lab_watch extends $mol_object {
+        readonly observer: IntersectionObserver;
+        constructor(node: Element, handler: (visible: boolean) => void);
+        destructor(): void;
+    }
+    /**
+     * Handle of a single subscription. It is created inside a reactive cell of
+     * the subscribing component, so the engine drops it together with that
+     * component and the store forgets the handler without a manual call.
+     */
+    class $bog_smalljs_lab_link extends $mol_object {
+        readonly store: $bog_smalljs_lab_store;
+        readonly handler: () => void;
+        constructor(store: $bog_smalljs_lab_store, handler: () => void);
+        destructor(): void;
+    }
+}
+declare namespace $.$$ {
+    type Metric = {
+        name: string;
+        value: number;
+        unit: string;
+    };
+    type Status = 'ok' | 'warn' | 'fail';
+    export class $bog_smalljs_lab extends $.$bog_smalljs_lab {
+        /** Scenario to mount, taken from the query of the page the iframe loads. */
+        case_id(): string;
+        case_content(): readonly $mol_view[];
+        auto(): ($mol_after_tick | $mol_dom_listener | $bog_smalljs_lab_watch)[];
+        message_listener(): $mol_dom_listener;
+        hidden(): boolean;
+        visibility_listener(): $mol_dom_listener;
+        /** A frame scrolled out of the viewport stops being given animation
+         *  frames, which would otherwise look like the framework hanging. */
+        frame_watch(): $bog_smalljs_lab_watch;
+        /** Why the current run stopped being trustworthy, empty while it still
+         *  is. The first reason wins: it is the one that actually spoiled the
+         *  measurement, the rest are its consequences. */
+        spoil_reason(next?: string): string;
+        spoil(reason: string): void;
+        spoiled(): string;
+        /** Announces the mounted scenario once the first render is over. */
+        ready_beacon(): $mol_after_tick;
+        post(message: Record<string, unknown>): void;
+        message_receive(event: MessageEvent): void;
+        run(): Promise<void>;
+        reset(): null;
+        report(status: Status, observed: string, metrics?: readonly Metric[]): void;
+        /** Nothing measured is worth reporting, and the page should say why
+         *  rather than hold on to the verdict of an earlier run. */
+        report_invalid(reason: string): void;
+        sleep(delay: number): Promise<void>;
+        /** Waits for one animation frame. A hidden tab and a frame scrolled out of
+         *  the viewport are never given one, so the wait also ends once the run
+         *  is spoiled — otherwise it would hang forever and could not even report
+         *  why it gave up. */
+        frame(): Promise<void>;
+        race_ids(): number[];
+        race_selected(next?: number): number;
+        race_options(): readonly $mol_view[];
+        race_option_label(id: number): string;
+        race_option_current(id: number): boolean;
+        race_option_click(id: number, next?: unknown): null;
+        race_delay(id: number): number;
+        race_load(id: number): Promise<{
+            name: string;
+            descr: string;
+        }>;
+        /** The record is a value of the selected id. A record for an id nobody
+         *  looks at any more has no place to land. */
+        race_user(id: number): {
+            name: string;
+            descr: string;
+        };
+        race_panel_name(): string;
+        race_panel_descr(): string;
+        /** The two waits add up to 1600 ms. Past this the machine was stretching
+         *  timers, and stretched timers pull the 200 ms and 1000 ms answers
+         *  towards each other until the order of arrival is a coin toss. */
+        race_deadline(): number;
+        run_race(): Promise<void>;
+        virtual_count(): number;
+        virtual_filled(next?: boolean): boolean;
+        virtual_rows(): readonly $mol_view[];
+        virtual_row_text(index: number): string;
+        run_virtual(): Promise<void>;
+        leak_count(): number;
+        leak_cycle(next?: number): number;
+        leak_mounted(next?: boolean): boolean;
+        leak_probes(): readonly $mol_view[];
+        leak_probe_label(cycle: number): string;
+        run_leak(): Promise<void>;
+        crash_count(): number;
+        /** Zero based index of the card whose record is replaced with null. */
+        crash_broken_index(): number;
+        crash_broken(next?: boolean): boolean;
+        crash_records(): readonly ({
+            name: string;
+            text: string;
+        } | null)[];
+        crash_cards(): readonly $mol_view[];
+        crash_card_name(index: number): string;
+        crash_card_text(index: number): string;
+        run_crash(): Promise<void>;
+    }
+    export class $bog_smalljs_lab_probe extends $.$bog_smalljs_lab_probe {
+        /** Subscription lives in a cell of this component, so it is released
+         *  together with the component. There is no teardown hook to forget. */
+        subscription(): $bog_smalljs_lab_link;
+        auto(): $bog_smalljs_lab_link[];
+    }
+    export {};
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    /** One scenario as it is written in one runner. */
+    type $bog_smalljs_versus_code_snippet = {
+        readonly lang: string;
+        readonly file: string;
+        readonly text: string;
+    };
+    /**
+     * Source of every crash-test scenario, per case and per framework.
+     *
+     * Generated by `versus/code/gen.cjs` from the runners themselves — never
+     * edit by hand. The page shows this next to the frames that just ran, so a
+     * snippet that had drifted from the executed code would be worse than no
+     * snippet at all.
+     */
+    const $bog_smalljs_versus_code_data: Readonly<Record<string, Readonly<Record<string, $bog_smalljs_versus_code_snippet>>>>;
+}
+
+declare namespace $ {
+
+	type $mol_view__sub_bog_smalljs_versus_code_1 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_code_2 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_versus_code['columns'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_link__uri_bog_smalljs_versus_code_3 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_versus_code['column_uri'] >
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__sub_bog_smalljs_versus_code_4 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_code_5 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__dom_name_bog_smalljs_versus_code_6 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_view['dom_name'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_code_7 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_expander__title_bog_smalljs_versus_code_8 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_versus_code['title'] >
+		,
+		ReturnType< $mol_expander['title'] >
+	>
+	type $mol_expander__content_bog_smalljs_versus_code_9 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_expander['content'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_code_10 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_code_11 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	export class $bog_smalljs_versus_code extends $mol_view {
+		body( ): readonly(any)[]
+		Hint( ): $mol_view
+		columns( ): readonly(any)[]
+		Columns( ): $mol_view
+		column_name( id: any): string
+		column_uri( id: any): string
+		column_file( id: any): string
+		Column_file( id: any): $mol_link
+		Column_head( id: any): $mol_view
+		column_text( id: any): string
+		Column_code( id: any): $mol_view
+		missing_text( ): string
+		case_id( ): string
+		left( ): string
+		right( ): string
+		title( ): string
+		hint( ): string
+		missing( ): string
+		sub( ): ReturnType< $bog_smalljs_versus_code['body'] >
+		Expander( ): $mol_expander
+		Column( id: any): $mol_view
+		Missing( ): $mol_view
+	}
+	
+}
+
+//# sourceMappingURL=code.view.tree.d.ts.map
+declare namespace $.$$ {
+    /**
+     * The two implementations of one crash-test scenario, side by side, under the
+     * frames that just ran them.
+     *
+     * This is the whole answer to "readability" in the comparison, and it is
+     * deliberately not a number. Nobody can defend a readability score, and a
+     * reader who disagrees with one has no way to check it; two blocks of code
+     * next to each other need no defending, because the reader is looking at the
+     * evidence rather than at our reading of it.
+     *
+     * Collapsed by default. The section argues by behaviour first — the frames
+     * above have already shown what happens — and the code is there for whoever
+     * asks why, not as a wall to get past on the way down the page.
+     */
+    class $bog_smalljs_versus_code extends $.$bog_smalljs_versus_code {
+        snippets(): Readonly<Record<string, $bog_smalljs_versus_code_snippet>>;
+        /** Sides that actually have a runner, in the pair's own order. A framework
+         *  nobody wrote a scenario for is left out rather than shown empty: an
+         *  empty column reads as "this framework needs no code", which is the
+         *  opposite of the truth. */
+        sides(): string[];
+        columns(): $mol_view[];
+        snippet(id: string): $bog_smalljs_versus_code_snippet;
+        column_name(id: string): string;
+        column_text(id: string): string;
+        column_file(id: string): string;
+        /** Straight at the file the snippet was lifted from, so "generated from
+         *  the runners" is a claim the reader can check in one click. */
+        column_uri(id: string): string;
+        missing_text(): string;
+        /** What the block is made of. Built as a list rather than by returning
+         *  null from a factory: the tree is where a $mol component declares what
+         *  it can contain, and switching a child off by type fights that.
+         *
+         *  Nothing at all when neither side has a runner — a disclosure that
+         *  opens onto nothing is worse than no disclosure. */
+        body(): readonly $mol_view[];
+    }
+}
+
+declare namespace $.$$ {
+}
+
+declare namespace $ {
+
 	type $mol_view__sub_bog_smalljs_versus_case_1 = $mol_type_enforce<
 		readonly(any)[]
 		,
@@ -12205,6 +12659,66 @@ declare namespace $ {
 		,
 		ReturnType< $bog_smalljs_versus_pair_case['missing_note'] >
 	>
+	type $bog_smalljs_versus_code__case_id_bog_smalljs_versus_pair_69 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $bog_smalljs_versus_code['case_id'] >
+	>
+	type $bog_smalljs_versus_code__left_bog_smalljs_versus_pair_70 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_versus_pair['left'] >
+		,
+		ReturnType< $bog_smalljs_versus_code['left'] >
+	>
+	type $bog_smalljs_versus_code__right_bog_smalljs_versus_pair_71 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_versus_pair['right'] >
+		,
+		ReturnType< $bog_smalljs_versus_code['right'] >
+	>
+	type $bog_smalljs_versus_code__case_id_bog_smalljs_versus_pair_72 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $bog_smalljs_versus_code['case_id'] >
+	>
+	type $bog_smalljs_versus_code__left_bog_smalljs_versus_pair_73 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_versus_pair['left'] >
+		,
+		ReturnType< $bog_smalljs_versus_code['left'] >
+	>
+	type $bog_smalljs_versus_code__right_bog_smalljs_versus_pair_74 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_versus_pair['right'] >
+		,
+		ReturnType< $bog_smalljs_versus_code['right'] >
+	>
+	type $bog_smalljs_versus_code__case_id_bog_smalljs_versus_pair_75 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $bog_smalljs_versus_code['case_id'] >
+	>
+	type $bog_smalljs_versus_code__left_bog_smalljs_versus_pair_76 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_versus_pair['left'] >
+		,
+		ReturnType< $bog_smalljs_versus_code['left'] >
+	>
+	type $bog_smalljs_versus_code__right_bog_smalljs_versus_pair_77 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_versus_pair['right'] >
+		,
+		ReturnType< $bog_smalljs_versus_code['right'] >
+	>
+	type $bog_smalljs_versus_code__case_id_bog_smalljs_versus_pair_78 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $bog_smalljs_versus_code['case_id'] >
+	>
+	type $bog_smalljs_versus_code__left_bog_smalljs_versus_pair_79 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_versus_pair['left'] >
+		,
+		ReturnType< $bog_smalljs_versus_code['left'] >
+	>
+	type $bog_smalljs_versus_code__right_bog_smalljs_versus_pair_80 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_versus_pair['right'] >
+		,
+		ReturnType< $bog_smalljs_versus_code['right'] >
+	>
 	export class $bog_smalljs_versus_pair extends $mol_view {
 		head_content( ): readonly(any)[]
 		Head( ): $mol_view
@@ -12313,6 +12827,10 @@ declare namespace $ {
 		Case_virtual( ): $bog_smalljs_versus_pair_case
 		Case_leak( ): $bog_smalljs_versus_pair_case
 		Case_crash( ): $bog_smalljs_versus_pair_case
+		Code_race( ): $bog_smalljs_versus_code
+		Code_virtual( ): $bog_smalljs_versus_code
+		Code_leak( ): $bog_smalljs_versus_code
+		Code_crash( ): $bog_smalljs_versus_code
 	}
 	
 	type $mol_view__sub_bog_smalljs_versus_pair_case_1 = $mol_type_enforce<
@@ -12696,6 +13214,14 @@ declare namespace $.$$ {
         source_label(key: string): string;
         source_date(key: string): string;
         cases(): $.$bog_smalljs_versus_pair_case[];
+        /** What the edge-cases section renders: every case followed by its own
+         *  source, so "why did that happen" is answered where the question comes
+         *  up rather than in a separate section further down.
+         *
+         *  Kept apart from `cases()` because that list is also what the score is
+         *  counted from, and a code block is not a case that can be won or lost.
+         */
+        edge_content(): readonly $mol_view[];
         /** Said once, under the Run button of every case, when one of the pair has
          *  no runner. Written here rather than in the case block because only the
          *  page knows what the two are called. */

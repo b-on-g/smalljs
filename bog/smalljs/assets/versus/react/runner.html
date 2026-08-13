@@ -175,6 +175,7 @@
 
 
 	// ---------------------------------------------------------------- race
+	// versus:case race
 
 	// Idiomatic data loading: an effect starts a request whenever the selected
 	// id changes and writes whatever comes back into state. There is no
@@ -265,6 +266,7 @@
 
 
 	// ------------------------------------------------------------- virtual
+	// versus:case virtual
 
 	// A plain .map() over the whole data set, the way a list is written before
 	// its size becomes a problem. Every row sits in the DOM at once. Windowing
@@ -353,6 +355,7 @@
 
 
 	// ---------------------------------------------------------------- leak
+	// versus:case leak
 
 	// The effect subscribes on mount and returns nothing, so the subscription
 	// outlives the component that made it. The fix is
@@ -460,6 +463,7 @@
 
 
 	// --------------------------------------------------------------- crash
+	// versus:case crash
 
 	// No ErrorBoundary anywhere, which is what an app looks like until someone
 	// adds one. An exception thrown while rendering a single card is not
@@ -535,6 +539,7 @@
 	}
 
 
+	// versus:end
 	// -------------------------------------------------------------- runner
 
 	const SCENARIOS = { race: race, virtual: virtual, leak: leak, crash: crash }

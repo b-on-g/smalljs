@@ -2052,6 +2052,107 @@ $bog_smalljs_versus $mol_view
 $bog_smalljs_versus_pick $mol_link
 	uri_off <= uri
 
+$bog_smalljs_lab $mol_view
+	sub <= case_content /
+	-
+	- race
+	Race $mol_view
+		sub /
+			<= Race_options $mol_view
+				sub <= race_options /
+			<= Race_panel $mol_view
+				sub /
+					<= Race_panel_name $mol_view
+						sub / <= race_panel_name \
+					<= Race_panel_descr $mol_view
+						sub / <= race_panel_descr \
+	Race_option* $bog_smalljs_lab_option
+		click? <=> race_option_click*? null
+		current <= race_option_current* false
+		title <= race_option_label* \
+	-
+	- virtual
+	Virtual $mol_view
+		sub /
+			<= Virtual_scroll $mol_scroll
+				sub /
+					<= Virtual_list $mol_list
+						rows <= virtual_rows /
+	Virtual_row* $mol_paragraph
+		title <= virtual_row_text* \
+	Virtual_placeholder $mol_view
+		sub / <= virtual_placeholder @ \Press Run to load 10,000 rows
+	-
+	- leak
+	Leak $mol_view
+		sub /
+			<= Leak_hint $mol_view
+				sub / <= leak_hint @ \Press Run to mount and unmount 100 times
+			<= Leak_place $mol_view
+				sub <= leak_probes /
+	Leak_probe* $bog_smalljs_lab_probe
+		label <= leak_probe_label* \
+	-
+	- crash
+	Crash $mol_view
+		sub /
+			<= Crash_scroll $mol_scroll
+				sub /
+					<= Crash_list $mol_view
+						sub <= crash_cards /
+	Crash_card* $bog_smalljs_lab_card
+		name <= crash_card_name* \
+		text <= crash_card_text* \
+
+$bog_smalljs_lab_option $mol_button_minor
+	current false
+	attr *
+		^
+		versus_current <= current
+
+$bog_smalljs_lab_probe $mol_view
+	label \
+	sub / <= label
+
+$bog_smalljs_lab_card $mol_view
+	name \
+	text \
+	attr *
+		^
+		versus_card \
+	sub /
+		<= name
+		<= text
+
+$bog_smalljs_versus_code $mol_view
+	case_id \
+	left \
+	right \
+	title @ \Show the code
+	hint @ \The same scenario as each runner writes it. Generated from the runners, not retyped.
+	missing @ \No runner for {a} yet, so there is nothing to put beside this.
+	sub <= body /
+	Expander $mol_expander
+		title <= title
+		content /
+			<= Hint $mol_view
+				sub / <= hint
+			<= Columns $mol_view
+				sub <= columns /
+	Column* $mol_view
+		sub /
+			<= Column_head* $mol_view
+				sub /
+					<= column_name* \
+					<= Column_file* $mol_link
+						uri <= column_uri* \
+						sub / <= column_file* \
+			<= Column_code* $mol_view
+				dom_name \pre
+				sub / <= column_text* \
+	Missing $mol_view
+		sub / <= missing_text \
+
 $bog_smalljs_versus_case $mol_view
 	case_id \
 	title @ \
@@ -2296,6 +2397,22 @@ $bog_smalljs_versus_pair $mol_view
 		left <= left
 		right <= right
 		missing_note <= edge_missing_note \
+	Code_race $bog_smalljs_versus_code
+		case_id \race
+		left <= left
+		right <= right
+	Code_virtual $bog_smalljs_versus_code
+		case_id \virtual
+		left <= left
+		right <= right
+	Code_leak $bog_smalljs_versus_code
+		case_id \leak
+		left <= left
+		right <= right
+	Code_crash $bog_smalljs_versus_code
+		case_id \crash
+		left <= left
+		right <= right
 
 $bog_smalljs_versus_pair_case $bog_smalljs_versus_case
 	left \

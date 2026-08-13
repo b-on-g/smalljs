@@ -6141,6 +6141,7 @@ var $;
                 });
             }
             // ---------------------------------------------------------------- race
+            // versus:case race
             race_ids() {
                 return [1, 2, 3, 4, 5];
             }
@@ -6205,6 +6206,7 @@ var $;
                     : `Selected user 5, panel showed no user`);
             }
             // ------------------------------------------------------------- virtual
+            // versus:case virtual
             virtual_count() {
                 return 10000;
             }
@@ -6257,6 +6259,7 @@ var $;
                 ]);
             }
             // ---------------------------------------------------------------- leak
+            // versus:case leak
             leak_count() {
                 return 100;
             }
@@ -6298,6 +6301,7 @@ var $;
                 this.report(live === 0 ? 'ok' : 'fail', `${this.leak_count()} mount cycles left ${live} live subscribers`, metrics);
             }
             // --------------------------------------------------------------- crash
+            // versus:case crash
             crash_count() {
                 return 20;
             }

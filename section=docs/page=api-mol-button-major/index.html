@@ -4303,7 +4303,229 @@ h6[mol_text_header] {
 			min-width: 14rem;
 		}
 
-	</style><style id="$mol_style_attach:$bog_smalljs_versus_case">[bog_smalljs_versus_case] {
+	</style><style id="$mol_style_attach:$bog_smalljs_lab">[bog_smalljs_lab] {
+	flex-direction: column;
+	gap: 0.5rem;
+	height: 100%;
+	min-height: 0;
+	padding: 0.75rem;
+	overflow: hidden;
+	background-color: #ffffff;
+	color: #18181b;
+	font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+	font-size: 0.8125rem;
+}
+[bog_smalljs_lab_race] {
+	flex-direction: row;
+	flex-grow: 1;
+	flex-shrink: 1;
+	gap: 0.5rem;
+	min-height: 0;
+}
+[bog_smalljs_lab_race_options] {
+	flex-direction: column;
+	flex-shrink: 0;
+	gap: 0.25rem;
+	min-width: 6rem;
+}
+[bog_smalljs_lab_race_panel] {
+	flex-direction: column;
+	flex-grow: 1;
+	flex-shrink: 1;
+	min-height: 0;
+	min-width: 0;
+	gap: 0.25rem;
+	padding: 0.5rem;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #d4d4d8;
+	border-radius: 0.25rem;
+	background-color: #fafafa;
+}
+[bog_smalljs_lab_race_panel_name] {
+	min-height: 1.25rem;
+	font-weight: 600;
+}
+[bog_smalljs_lab_race_panel_descr] {
+	min-height: 1.25rem;
+	color: #71717a;
+}
+[bog_smalljs_lab_virtual] {
+	flex-direction: column;
+	flex-grow: 1;
+	flex-shrink: 1;
+	min-height: 0;
+	min-width: 0;
+}
+[bog_smalljs_lab_virtual_scroll] {
+	flex-grow: 1;
+	flex-shrink: 1;
+	min-height: 0;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #d4d4d8;
+	border-radius: 0.25rem;
+	background-color: #fafafa;
+}
+[bog_smalljs_lab_virtual_placeholder] {
+	padding-top: 0.25rem;
+	padding-bottom: 0.25rem;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #d4d4d8;
+	color: #71717a;
+}
+[bog_smalljs_lab_virtual_list] {
+	flex-direction: column;
+}
+[bog_smalljs_lab_virtual_row] {
+	padding-top: 0.25rem;
+	padding-bottom: 0.25rem;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #d4d4d8;
+}
+[bog_smalljs_lab_leak] {
+	flex-direction: column;
+	flex-grow: 1;
+	flex-shrink: 1;
+	min-height: 0;
+	min-width: 0;
+	gap: 0.5rem;
+}
+[bog_smalljs_lab_leak_hint] {
+	flex-shrink: 0;
+	color: #71717a;
+	font-size: 0.75rem;
+}
+[bog_smalljs_lab_leak_place] {
+	flex-direction: column;
+	flex-shrink: 0;
+	min-height: 2rem;
+	padding: 0.5rem;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #d4d4d8;
+	border-radius: 0.25rem;
+	background-color: #fafafa;
+}
+[bog_smalljs_lab_crash] {
+	flex-direction: column;
+	flex-grow: 1;
+	flex-shrink: 1;
+	min-height: 0;
+	min-width: 0;
+}
+[bog_smalljs_lab_crash_scroll] {
+	flex-grow: 1;
+	flex-shrink: 1;
+	min-height: 0;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #d4d4d8;
+	border-radius: 0.25rem;
+	background-color: #fafafa;
+}
+[bog_smalljs_lab_crash_list] {
+	flex-direction: column;
+	gap: 0.25rem;
+	padding: 0.25rem;
+}
+</style><style id="$mol_style_attach:$bog_smalljs_lab_option">[bog_smalljs_lab_option] {
+	flex-grow: 0;
+	flex-shrink: 0;
+	justify-content: flex-start;
+	min-height: 1.75rem;
+	padding-top: 0.25rem;
+	padding-bottom: 0.25rem;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+	border-radius: 0.25rem;
+	font-size: 0.8125rem;
+	color: #18181b;
+}
+[bog_smalljs_lab_option]:where([versus_current="true"]) {
+	background-color: #e0e7ff;
+	color: #3730a3;
+}
+</style><style id="$mol_style_attach:$bog_smalljs_lab_probe">[bog_smalljs_lab_probe] {
+	color: #71717a;
+}
+</style><style id="$mol_style_attach:$bog_smalljs_lab_card">[bog_smalljs_lab_card] {
+	flex-direction: column;
+	flex-shrink: 0;
+	min-height: 2.5rem;
+	padding-top: 0.25rem;
+	padding-bottom: 0.25rem;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #d4d4d8;
+	border-radius: 0.25rem;
+	background-color: #ffffff;
+}
+</style><style id="$mol_style_attach:$bog_smalljs_versus_code">[bog_smalljs_versus_code] {
+	flex-direction: column;
+	margin-top: -0.5rem;
+}
+[bog_smalljs_versus_code_hint] {
+	font-size: 0.8125rem;
+	color: var(--mol_theme_shade);
+	padding-bottom: 0.75rem;
+}
+[bog_smalljs_versus_code_columns] {
+	display: grid;
+	grid-template-columns: repeat( auto-fit, minmax( 20rem, 1fr ) );
+	gap: 1rem;
+	width: 100%;
+}
+[bog_smalljs_versus_code_column] {
+	flex-direction: column;
+	min-width: 0;
+	gap: 0.375rem;
+}
+[bog_smalljs_versus_code_column_head] {
+	justify-content: space-between;
+	align-items: baseline;
+	gap: 0.5rem;
+	font-size: 0.8125rem;
+}
+[bog_smalljs_versus_code_column_file] {
+	font-family: monospace;
+	font-size: 0.75rem;
+	color: var(--mol_theme_shade);
+	flex-shrink: 1;
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+[bog_smalljs_versus_code_column_code] {
+	display: block;
+	font-family: monospace;
+	font-size: 0.75rem;
+	line-height: 1.5;
+	white-space: pre;
+	overflow: auto;
+	max-height: 24rem;
+	background-color: var(--mol_theme_back);
+	border-radius: 0.5rem;
+	padding-top: 0.75rem;
+	padding-bottom: 0.75rem;
+	padding-left: 0.875rem;
+	padding-right: 0.875rem;
+}
+[bog_smalljs_versus_code_missing] {
+	font-size: 0.8125rem;
+	color: var(--mol_theme_shade);
+	padding-top: 0.5rem;
+}
+</style><style id="$mol_style_attach:$bog_smalljs_versus_case">[bog_smalljs_versus_case] {
 	flex-direction: column;
 	gap: 1rem;
 	padding: 1.25rem;

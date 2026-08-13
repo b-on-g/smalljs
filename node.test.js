@@ -26625,6 +26625,1234 @@ var $;
 })($ || ($ = {}));
 
 ;
+	($.$bog_smalljs_lab) = class $bog_smalljs_lab extends ($.$mol_view) {
+		case_content(){
+			return [];
+		}
+		race_options(){
+			return [];
+		}
+		Race_options(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.race_options()));
+			return obj;
+		}
+		race_panel_name(){
+			return "";
+		}
+		Race_panel_name(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.race_panel_name())]);
+			return obj;
+		}
+		race_panel_descr(){
+			return "";
+		}
+		Race_panel_descr(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.race_panel_descr())]);
+			return obj;
+		}
+		Race_panel(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Race_panel_name()), (this.Race_panel_descr())]);
+			return obj;
+		}
+		race_option_click(id, next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		race_option_current(id){
+			return false;
+		}
+		race_option_label(id){
+			return "";
+		}
+		virtual_rows(){
+			return [];
+		}
+		Virtual_list(){
+			const obj = new this.$.$mol_list();
+			(obj.rows) = () => ((this.virtual_rows()));
+			return obj;
+		}
+		Virtual_scroll(){
+			const obj = new this.$.$mol_scroll();
+			(obj.sub) = () => ([(this.Virtual_list())]);
+			return obj;
+		}
+		virtual_row_text(id){
+			return "";
+		}
+		virtual_placeholder(){
+			return (this.$.$mol_locale.text("$bog_smalljs_lab_virtual_placeholder"));
+		}
+		leak_hint(){
+			return (this.$.$mol_locale.text("$bog_smalljs_lab_leak_hint"));
+		}
+		Leak_hint(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.leak_hint())]);
+			return obj;
+		}
+		leak_probes(){
+			return [];
+		}
+		Leak_place(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.leak_probes()));
+			return obj;
+		}
+		leak_probe_label(id){
+			return "";
+		}
+		crash_cards(){
+			return [];
+		}
+		Crash_list(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.crash_cards()));
+			return obj;
+		}
+		Crash_scroll(){
+			const obj = new this.$.$mol_scroll();
+			(obj.sub) = () => ([(this.Crash_list())]);
+			return obj;
+		}
+		crash_card_name(id){
+			return "";
+		}
+		crash_card_text(id){
+			return "";
+		}
+		sub(){
+			return (this.case_content());
+		}
+		Race(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Race_options()), (this.Race_panel())]);
+			return obj;
+		}
+		Race_option(id){
+			const obj = new this.$.$bog_smalljs_lab_option();
+			(obj.click) = (next) => ((this.race_option_click(id, next)));
+			(obj.current) = () => ((this.race_option_current(id)));
+			(obj.title) = () => ((this.race_option_label(id)));
+			return obj;
+		}
+		Virtual(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Virtual_scroll())]);
+			return obj;
+		}
+		Virtual_row(id){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.virtual_row_text(id)));
+			return obj;
+		}
+		Virtual_placeholder(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.virtual_placeholder())]);
+			return obj;
+		}
+		Leak(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Leak_hint()), (this.Leak_place())]);
+			return obj;
+		}
+		Leak_probe(id){
+			const obj = new this.$.$bog_smalljs_lab_probe();
+			(obj.label) = () => ((this.leak_probe_label(id)));
+			return obj;
+		}
+		Crash(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Crash_scroll())]);
+			return obj;
+		}
+		Crash_card(id){
+			const obj = new this.$.$bog_smalljs_lab_card();
+			(obj.name) = () => ((this.crash_card_name(id)));
+			(obj.text) = () => ((this.crash_card_text(id)));
+			return obj;
+		}
+	};
+	($mol_mem(($.$bog_smalljs_lab.prototype), "Race_options"));
+	($mol_mem(($.$bog_smalljs_lab.prototype), "Race_panel_name"));
+	($mol_mem(($.$bog_smalljs_lab.prototype), "Race_panel_descr"));
+	($mol_mem(($.$bog_smalljs_lab.prototype), "Race_panel"));
+	($mol_mem_key(($.$bog_smalljs_lab.prototype), "race_option_click"));
+	($mol_mem(($.$bog_smalljs_lab.prototype), "Virtual_list"));
+	($mol_mem(($.$bog_smalljs_lab.prototype), "Virtual_scroll"));
+	($mol_mem(($.$bog_smalljs_lab.prototype), "Leak_hint"));
+	($mol_mem(($.$bog_smalljs_lab.prototype), "Leak_place"));
+	($mol_mem(($.$bog_smalljs_lab.prototype), "Crash_list"));
+	($mol_mem(($.$bog_smalljs_lab.prototype), "Crash_scroll"));
+	($mol_mem(($.$bog_smalljs_lab.prototype), "Race"));
+	($mol_mem_key(($.$bog_smalljs_lab.prototype), "Race_option"));
+	($mol_mem(($.$bog_smalljs_lab.prototype), "Virtual"));
+	($mol_mem_key(($.$bog_smalljs_lab.prototype), "Virtual_row"));
+	($mol_mem(($.$bog_smalljs_lab.prototype), "Virtual_placeholder"));
+	($mol_mem(($.$bog_smalljs_lab.prototype), "Leak"));
+	($mol_mem_key(($.$bog_smalljs_lab.prototype), "Leak_probe"));
+	($mol_mem(($.$bog_smalljs_lab.prototype), "Crash"));
+	($mol_mem_key(($.$bog_smalljs_lab.prototype), "Crash_card"));
+	($.$bog_smalljs_lab_option) = class $bog_smalljs_lab_option extends ($.$mol_button_minor) {
+		current(){
+			return false;
+		}
+		attr(){
+			return {...(super.attr()), "versus_current": (this.current())};
+		}
+	};
+	($.$bog_smalljs_lab_probe) = class $bog_smalljs_lab_probe extends ($.$mol_view) {
+		label(){
+			return "";
+		}
+		sub(){
+			return [(this.label())];
+		}
+	};
+	($.$bog_smalljs_lab_card) = class $bog_smalljs_lab_card extends ($.$mol_view) {
+		name(){
+			return "";
+		}
+		text(){
+			return "";
+		}
+		attr(){
+			return {...(super.attr()), "versus_card": ""};
+		}
+		sub(){
+			return [(this.name()), (this.text())];
+		}
+	};
+
+
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    /**
+     * Shared store with a plain list of subscribers. Same shape in every runner
+     * of the comparison, so that `subscribers.length` means the same thing.
+     */
+    class $bog_smalljs_lab_store extends $mol_object {
+        subscribers = [];
+        static shared() {
+            return new this;
+        }
+        subscribe(handler) {
+            this.subscribers.push(handler);
+            return new $bog_smalljs_lab_link(this, handler);
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $bog_smalljs_lab_store, "shared", null);
+    $.$bog_smalljs_lab_store = $bog_smalljs_lab_store;
+    /**
+     * Reports whether a node is inside the viewport. An observer with no root of
+     * its own measures against the top level viewport even from a nested frame,
+     * which is what makes a scrolled away frame detectable from the inside.
+     */
+    class $bog_smalljs_lab_watch extends $mol_object {
+        observer;
+        constructor(node, handler) {
+            super();
+            this.observer = new $mol_dom_context.IntersectionObserver(entries => handler(entries[entries.length - 1].isIntersecting), { threshold: 0 });
+            this.observer.observe(node);
+        }
+        destructor() {
+            this.observer.disconnect();
+        }
+    }
+    $.$bog_smalljs_lab_watch = $bog_smalljs_lab_watch;
+    /**
+     * Handle of a single subscription. It is created inside a reactive cell of
+     * the subscribing component, so the engine drops it together with that
+     * component and the store forgets the handler without a manual call.
+     */
+    class $bog_smalljs_lab_link extends $mol_object {
+        store;
+        handler;
+        constructor(store, handler) {
+            super();
+            this.store = store;
+            this.handler = handler;
+        }
+        destructor() {
+            const index = this.store.subscribers.indexOf(this.handler);
+            if (index >= 0)
+                this.store.subscribers.splice(index, 1);
+        }
+    }
+    $.$bog_smalljs_lab_link = $bog_smalljs_lab_link;
+})($ || ($ = {}));
+(function ($) {
+    var $$;
+    (function ($$) {
+        /** Filler text of the virtual list rows. Hoisted, so that building 10 000
+         *  rows does not rebuild it 10 000 times. */
+        const filler = 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ';
+        class $bog_smalljs_lab extends $.$bog_smalljs_lab {
+            /** Scenario to mount, taken from the query of the page the iframe loads. */
+            case_id() {
+                const href = this.$.$mol_dom_context.location.href;
+                return new URL(href).searchParams.get('case') ?? 'race';
+            }
+            case_content() {
+                switch (this.case_id()) {
+                    case 'virtual': return [this.Virtual()];
+                    case 'leak': return [this.Leak()];
+                    case 'crash': return [this.Crash()];
+                    default: return [this.Race()];
+                }
+            }
+            // The listeners and the ready beacon are returned from their own cells and
+            // held through auto(), otherwise the reactive engine would destroy them
+            // right after they were created.
+            auto() {
+                return [
+                    this.message_listener(),
+                    this.visibility_listener(),
+                    this.frame_watch(),
+                    this.ready_beacon(),
+                ];
+            }
+            message_listener() {
+                return new this.$.$mol_dom_listener(this.$.$mol_dom_context, 'message', (event) => this.message_receive(event));
+            }
+            // Checked through visibilityState rather than the `hidden` flag: inside a
+            // frame Chrome leaves `hidden` false while visibilityState already says
+            // the tab went away, which makes a check on the flag silently dead.
+            hidden() {
+                return this.$.$mol_dom_context.document.visibilityState !== 'visible';
+            }
+            visibility_listener() {
+                return new this.$.$mol_dom_listener(this.$.$mol_dom_context.document, 'visibilitychange', () => { if (this.hidden())
+                    this.spoil('tab-hidden'); });
+            }
+            /** A frame scrolled out of the viewport stops being given animation
+             *  frames, which would otherwise look like the framework hanging. */
+            frame_watch() {
+                return new this.$.$bog_smalljs_lab_watch(this.dom_node(), visible => { if (!visible)
+                    this.spoil('frame-offscreen'); });
+            }
+            /** Why the current run stopped being trustworthy, empty while it still
+             *  is. The first reason wins: it is the one that actually spoiled the
+             *  measurement, the rest are its consequences. */
+            spoil_reason(next) {
+                return next ?? '';
+            }
+            spoil(reason) {
+                if (!this.spoil_reason())
+                    this.spoil_reason(reason);
+            }
+            spoiled() {
+                if (this.hidden())
+                    this.spoil('tab-hidden');
+                return this.spoil_reason();
+            }
+            /** Announces the mounted scenario once the first render is over. */
+            ready_beacon() {
+                const case_id = this.case_id();
+                return new this.$.$mol_after_tick(() => this.post({ type: 'ready', case: case_id }));
+            }
+            post(message) {
+                this.$.$mol_dom_context.parent.postMessage({ ns: 'versus', ...message }, '*');
+            }
+            message_receive(event) {
+                const packet = event.data;
+                if (!packet || typeof packet !== 'object')
+                    return;
+                if (packet.ns !== 'versus')
+                    return;
+                if (packet.type === 'run')
+                    this.run();
+                if (packet.type === 'reset')
+                    this.reset();
+            }
+            async run() {
+                this.spoil_reason('');
+                this.spoiled();
+                try {
+                    switch (this.case_id()) {
+                        case 'virtual':
+                            await this.run_virtual();
+                            break;
+                        case 'leak':
+                            await this.run_leak();
+                            break;
+                        case 'crash':
+                            await this.run_crash();
+                            break;
+                        default:
+                            await this.run_race();
+                            break;
+                    }
+                }
+                catch (error) {
+                    this.post({ type: 'error', message: this.$.$mol_error_message(error) });
+                }
+            }
+            reset() {
+                this.race_selected(0);
+                this.virtual_filled(false);
+                this.leak_cycle(0);
+                this.leak_mounted(false);
+                this.crash_broken(false);
+                return null;
+            }
+            report(status, observed, metrics = []) {
+                const reason = this.spoiled();
+                if (reason)
+                    return this.report_invalid(reason);
+                this.post({
+                    type: 'result',
+                    case: this.case_id(),
+                    status,
+                    observed,
+                    metrics,
+                });
+            }
+            /** Nothing measured is worth reporting, and the page should say why
+             *  rather than hold on to the verdict of an earlier run. */
+            report_invalid(reason) {
+                this.post({
+                    type: 'invalid',
+                    case: this.case_id(),
+                    reason,
+                });
+            }
+            sleep(delay) {
+                return new Promise(done => new this.$.$mol_after_timeout(delay, () => done()));
+            }
+            /** Waits for one animation frame. A hidden tab and a frame scrolled out of
+             *  the viewport are never given one, so the wait also ends once the run
+             *  is spoiled — otherwise it would hang forever and could not even report
+             *  why it gave up. */
+            frame() {
+                return new Promise(done => {
+                    let settled = false;
+                    const finish = () => {
+                        if (settled)
+                            return;
+                        settled = true;
+                        done();
+                    };
+                    new this.$.$mol_after_frame(finish);
+                    const guard = () => {
+                        if (settled)
+                            return;
+                        if (this.spoiled())
+                            return finish();
+                        new this.$.$mol_after_timeout(100, guard);
+                    };
+                    new this.$.$mol_after_timeout(100, guard);
+                });
+            }
+            // ---------------------------------------------------------------- race
+            // versus:case race
+            race_ids() {
+                return [1, 2, 3, 4, 5];
+            }
+            race_selected(next) {
+                return next ?? 0;
+            }
+            race_options() {
+                return this.race_ids().map(id => this.Race_option(id));
+            }
+            race_option_label(id) {
+                return `User ${id}`;
+            }
+            race_option_current(id) {
+                return this.race_selected() === id;
+            }
+            race_option_click(id, next) {
+                this.race_selected(id);
+                return null;
+            }
+            race_delay(id) {
+                return 1000 - (id - 1) * 200;
+            }
+            async race_load(id) {
+                await this.sleep(this.race_delay(id));
+                return {
+                    name: `User ${id}`,
+                    descr: `Profile of user ${id}, answered in ${this.race_delay(id)} ms`,
+                };
+            }
+            /** The record is a value of the selected id. A record for an id nobody
+             *  looks at any more has no place to land. */
+            race_user(id) {
+                return $mol_wire_sync(this).race_load(id);
+            }
+            race_panel_name() {
+                const id = this.race_selected();
+                return id ? this.race_user(id).name : '';
+            }
+            race_panel_descr() {
+                const id = this.race_selected();
+                return id ? this.race_user(id).descr : '';
+            }
+            /** The two waits add up to 1600 ms. Past this the machine was stretching
+             *  timers, and stretched timers pull the 200 ms and 1000 ms answers
+             *  towards each other until the order of arrival is a coin toss. */
+            race_deadline() {
+                return 2200;
+            }
+            async run_race() {
+                const started = performance.now();
+                this.race_selected(1);
+                await this.sleep(100);
+                this.race_selected(5);
+                await this.sleep(1500);
+                if (performance.now() - started > this.race_deadline())
+                    this.spoil('timers-throttled');
+                const shown = this.Race_panel().dom_node().textContent ?? '';
+                const found = shown.match(/User (\d+)/);
+                const id = found ? Number(found[1]) : 0;
+                this.report(id === 5 ? 'ok' : 'fail', id
+                    ? `Selected user 5, panel showed user ${id}`
+                    : `Selected user 5, panel showed no user`);
+            }
+            // ------------------------------------------------------------- virtual
+            // versus:case virtual
+            virtual_count() {
+                return 10000;
+            }
+            virtual_filled(next) {
+                return next ?? false;
+            }
+            virtual_rows() {
+                if (!this.virtual_filled())
+                    return [this.Virtual_placeholder()];
+                const rows = [];
+                for (let index = 0; index < this.virtual_count(); ++index) {
+                    rows.push(this.Virtual_row(index));
+                }
+                return rows;
+            }
+            virtual_row_text(index) {
+                const size = 20 + (index * 37) % 400;
+                const head = `Row ${index + 1}. `;
+                const body = filler.repeat(Math.ceil(size / filler.length));
+                return (head + body).slice(0, size);
+            }
+            async run_virtual() {
+                const container = this.Virtual_scroll().dom_node();
+                // Back to an empty list first, so a repeated Run measures the same
+                // work over again instead of reading a list that is already there.
+                this.virtual_filled(false);
+                this.Virtual_scroll().scroll_top(0);
+                await this.sleep(16);
+                const started = performance.now();
+                this.virtual_filled(true);
+                await this.frame();
+                await this.frame();
+                // Reading the height makes the browser lay the rows out, so the
+                // measurement covers the frame the user actually waits for.
+                const height = container.scrollHeight;
+                const render_time = Math.round(performance.now() - started);
+                // Without frames the time above measured the wait, not the work, so
+                // the run stops here instead of spending two more seconds scrolling.
+                const spoiled = this.spoiled();
+                if (spoiled)
+                    return this.report_invalid(spoiled);
+                this.Virtual_scroll().scroll_top(Math.round((height - container.clientHeight) / 2));
+                await this.sleep(1000);
+                this.Virtual_scroll().scroll_top(0);
+                await this.sleep(1000);
+                const nodes = container.querySelectorAll('*').length;
+                this.report(nodes < 500 ? 'ok' : nodes > 5000 ? 'fail' : 'warn', `Rendered ${nodes} DOM nodes for ${this.virtual_count()} rows`, [
+                    { name: 'DOM nodes', value: nodes, unit: '' },
+                    { name: 'Render time', value: render_time, unit: 'ms' },
+                ]);
+            }
+            // ---------------------------------------------------------------- leak
+            // versus:case leak
+            leak_count() {
+                return 100;
+            }
+            leak_cycle(next) {
+                return next ?? 0;
+            }
+            leak_mounted(next) {
+                return next ?? false;
+            }
+            leak_probes() {
+                return this.leak_mounted() ? [this.Leak_probe(this.leak_cycle())] : [];
+            }
+            leak_probe_label(cycle) {
+                return `Subscribed component, mount ${cycle}`;
+            }
+            async run_leak() {
+                const store = this.$.$bog_smalljs_lab_store.shared();
+                const place = this.Leak_place();
+                // dom_tree() renders the place right here instead of on the next
+                // frame, so that every pass of the loop is a real mount and unmount.
+                for (let cycle = 1; cycle <= this.leak_count(); ++cycle) {
+                    this.leak_cycle(cycle);
+                    this.leak_mounted(true);
+                    place.dom_tree();
+                    this.leak_mounted(false);
+                    place.dom_tree();
+                }
+                // Cells left without subscribers are collected on the next tick.
+                await this.sleep(100);
+                const live = store.subscribers.length;
+                const metrics = [{ name: 'Live subscribers', value: live, unit: '' }];
+                const memory = performance.memory;
+                if (memory)
+                    metrics.push({
+                        name: 'Heap',
+                        value: Math.round(memory.usedJSHeapSize / 1048576),
+                        unit: 'MB',
+                    });
+                this.report(live === 0 ? 'ok' : 'fail', `${this.leak_count()} mount cycles left ${live} live subscribers`, metrics);
+            }
+            // --------------------------------------------------------------- crash
+            // versus:case crash
+            crash_count() {
+                return 20;
+            }
+            /** Zero based index of the card whose record is replaced with null. */
+            crash_broken_index() {
+                return 6;
+            }
+            crash_broken(next) {
+                return next ?? false;
+            }
+            crash_records() {
+                const broken = this.crash_broken();
+                const records = [];
+                for (let index = 0; index < this.crash_count(); ++index) {
+                    records.push(broken && index === this.crash_broken_index()
+                        ? null
+                        : { name: `Card ${index + 1}`, text: `Payload of card ${index + 1}` });
+                }
+                return records;
+            }
+            crash_cards() {
+                const cards = [];
+                for (let index = 0; index < this.crash_count(); ++index) {
+                    cards.push(this.Crash_card(index));
+                }
+                return cards;
+            }
+            crash_card_name(index) {
+                return this.crash_records()[index].name;
+            }
+            crash_card_text(index) {
+                return this.crash_records()[index].text;
+            }
+            async run_crash() {
+                // Whole records first, so a repeated Run swaps them out again.
+                this.crash_broken(false);
+                await this.sleep(16);
+                this.crash_broken(true);
+                await this.sleep(200);
+                const container = this.Crash_list().dom_node();
+                const alive = container.querySelectorAll('[versus_card]:not([mol_view_error])').length;
+                const broken = container.querySelector('[versus_card][mol_view_error]');
+                const placeholder = !!broken && (broken.textContent ?? '').trim().length > 0;
+                const number = this.crash_broken_index() + 1;
+                const status = alive === 0
+                    ? 'fail'
+                    : alive === this.crash_count() - 1 && placeholder
+                        ? 'ok'
+                        : 'warn';
+                const observed = alive === 0
+                    ? `0 of ${this.crash_count()} cards survived, the list disappeared`
+                    : placeholder
+                        ? `${alive} of ${this.crash_count()} cards survived, card ${number} showed an error placeholder`
+                        : `${alive} of ${this.crash_count()} cards survived, card ${number} disappeared without a placeholder`;
+                this.report(status, observed, [{ name: 'Surviving cards', value: alive, unit: '' }]);
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_lab.prototype, "case_id", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_lab.prototype, "case_content", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_lab.prototype, "message_listener", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_lab.prototype, "visibility_listener", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_lab.prototype, "frame_watch", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_lab.prototype, "spoil_reason", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_lab.prototype, "ready_beacon", null);
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_lab.prototype, "reset", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_lab.prototype, "race_selected", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_lab.prototype, "race_options", null);
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_lab.prototype, "race_option_click", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_smalljs_lab.prototype, "race_user", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_lab.prototype, "virtual_filled", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_lab.prototype, "virtual_rows", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_lab.prototype, "leak_cycle", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_lab.prototype, "leak_mounted", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_lab.prototype, "leak_probes", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_lab.prototype, "crash_broken", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_lab.prototype, "crash_records", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_lab.prototype, "crash_cards", null);
+        $$.$bog_smalljs_lab = $bog_smalljs_lab;
+        class $bog_smalljs_lab_probe extends $.$bog_smalljs_lab_probe {
+            /** Subscription lives in a cell of this component, so it is released
+             *  together with the component. There is no teardown hook to forget. */
+            subscription() {
+                return this.$.$bog_smalljs_lab_store.shared().subscribe(() => this.label());
+            }
+            auto() {
+                return [this.subscription()];
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_lab_probe.prototype, "subscription", null);
+        $$.$bog_smalljs_lab_probe = $bog_smalljs_lab_probe;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    const { rem } = $mol_style_unit;
+    // Plain neutral palette instead of theme tokens: the three runner pages of a
+    // case sit side by side and have to look the same, and the React and Vue
+    // pages have no theme to read from.
+    const text = '#18181b';
+    const shade = '#71717a';
+    const line_color = '#d4d4d8';
+    const card = '#ffffff';
+    const back = '#fafafa';
+    const current = '#e0e7ff';
+    const current_text = '#3730a3';
+    const line = { width: '1px', style: 'solid', color: line_color };
+    // mol_view ships with flex-shrink: 0, so every pane that has to fit the
+    // frame instead of growing past it says shrink: 1 on its own.
+    const pane = {
+        flex: { direction: 'column', grow: 1, shrink: 1 },
+        minHeight: 0,
+        minWidth: 0,
+    };
+    const scroller = {
+        flex: { grow: 1, shrink: 1 },
+        minHeight: 0,
+        border: { width: '1px', style: 'solid', color: line_color, radius: rem(0.25) },
+        background: { color: back },
+    };
+    const hint = {
+        flex: { shrink: 0 },
+        color: shade,
+        font: { size: rem(0.75) },
+    };
+    const row = {
+        padding: { top: rem(0.25), bottom: rem(0.25), left: rem(0.5), right: rem(0.5) },
+        border: { bottom: { width: '1px', style: 'solid', color: line_color } },
+    };
+    $mol_style_define($bog_smalljs_lab, {
+        flex: { direction: 'column' },
+        gap: rem(0.5),
+        height: '100%',
+        minHeight: 0,
+        padding: rem(0.75),
+        overflow: 'hidden',
+        background: { color: card },
+        color: text,
+        font: {
+            family: 'system-ui, -apple-system, "Segoe UI", Roboto, sans-serif',
+            size: rem(0.8125),
+        },
+        Race: {
+            flex: { direction: 'row', grow: 1, shrink: 1 },
+            gap: rem(0.5),
+            minHeight: 0,
+        },
+        Race_options: {
+            flex: { direction: 'column', shrink: 0 },
+            gap: rem(0.25),
+            minWidth: rem(6),
+        },
+        Race_panel: {
+            ...pane,
+            gap: rem(0.25),
+            padding: rem(0.5),
+            border: { ...line, radius: rem(0.25) },
+            background: { color: back },
+        },
+        Race_panel_name: {
+            minHeight: rem(1.25),
+            font: { weight: 600 },
+        },
+        Race_panel_descr: {
+            minHeight: rem(1.25),
+            color: shade,
+        },
+        Virtual: pane,
+        Virtual_scroll: scroller,
+        Virtual_placeholder: {
+            ...row,
+            color: shade,
+        },
+        Virtual_list: {
+            flex: { direction: 'column' },
+        },
+        Virtual_row: row,
+        Leak: {
+            ...pane,
+            gap: rem(0.5),
+        },
+        Leak_hint: hint,
+        Leak_place: {
+            flex: { direction: 'column', shrink: 0 },
+            minHeight: rem(2),
+            padding: rem(0.5),
+            border: { ...line, radius: rem(0.25) },
+            background: { color: back },
+        },
+        Crash: pane,
+        Crash_scroll: scroller,
+        Crash_list: {
+            flex: { direction: 'column' },
+            gap: rem(0.25),
+            padding: rem(0.25),
+        },
+    });
+    $mol_style_define($bog_smalljs_lab_option, {
+        flex: { grow: 0, shrink: 0 },
+        justify: { content: 'flex-start' },
+        minHeight: rem(1.75),
+        padding: { top: rem(0.25), bottom: rem(0.25), left: rem(0.5), right: rem(0.5) },
+        border: { radius: rem(0.25) },
+        font: { size: rem(0.8125) },
+        color: text,
+        '@': {
+            versus_current: {
+                true: {
+                    background: { color: current },
+                    color: current_text,
+                },
+            },
+        },
+    });
+    $mol_style_define($bog_smalljs_lab_probe, {
+        color: shade,
+    });
+    $mol_style_define($bog_smalljs_lab_card, {
+        flex: { direction: 'column', shrink: 0 },
+        minHeight: rem(2.5),
+        padding: { top: rem(0.25), bottom: rem(0.25), left: rem(0.5), right: rem(0.5) },
+        border: { ...line, radius: rem(0.25) },
+        background: { color: card },
+    });
+})($ || ($ = {}));
+
+;
+	($.$bog_smalljs_versus_code) = class $bog_smalljs_versus_code extends ($.$mol_view) {
+		body(){
+			return [];
+		}
+		Hint(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.hint())]);
+			return obj;
+		}
+		columns(){
+			return [];
+		}
+		Columns(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.columns()));
+			return obj;
+		}
+		column_name(id){
+			return "";
+		}
+		column_uri(id){
+			return "";
+		}
+		column_file(id){
+			return "";
+		}
+		Column_file(id){
+			const obj = new this.$.$mol_link();
+			(obj.uri) = () => ((this.column_uri(id)));
+			(obj.sub) = () => ([(this.column_file(id))]);
+			return obj;
+		}
+		Column_head(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.column_name(id)), (this.Column_file(id))]);
+			return obj;
+		}
+		column_text(id){
+			return "";
+		}
+		Column_code(id){
+			const obj = new this.$.$mol_view();
+			(obj.dom_name) = () => ("pre");
+			(obj.sub) = () => ([(this.column_text(id))]);
+			return obj;
+		}
+		missing_text(){
+			return "";
+		}
+		case_id(){
+			return "";
+		}
+		left(){
+			return "";
+		}
+		right(){
+			return "";
+		}
+		title(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_code_title"));
+		}
+		hint(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_code_hint"));
+		}
+		missing(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_code_missing"));
+		}
+		sub(){
+			return (this.body());
+		}
+		Expander(){
+			const obj = new this.$.$mol_expander();
+			(obj.title) = () => ((this.title()));
+			(obj.content) = () => ([(this.Hint()), (this.Columns())]);
+			return obj;
+		}
+		Column(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Column_head(id)), (this.Column_code(id))]);
+			return obj;
+		}
+		Missing(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.missing_text())]);
+			return obj;
+		}
+	};
+	($mol_mem(($.$bog_smalljs_versus_code.prototype), "Hint"));
+	($mol_mem(($.$bog_smalljs_versus_code.prototype), "Columns"));
+	($mol_mem_key(($.$bog_smalljs_versus_code.prototype), "Column_file"));
+	($mol_mem_key(($.$bog_smalljs_versus_code.prototype), "Column_head"));
+	($mol_mem_key(($.$bog_smalljs_versus_code.prototype), "Column_code"));
+	($mol_mem(($.$bog_smalljs_versus_code.prototype), "Expander"));
+	($mol_mem_key(($.$bog_smalljs_versus_code.prototype), "Column"));
+	($mol_mem(($.$bog_smalljs_versus_code.prototype), "Missing"));
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    /**
+     * Source of every crash-test scenario, per case and per framework.
+     *
+     * Generated by `versus/code/gen.cjs` from the runners themselves — never
+     * edit by hand. The page shows this next to the frames that just ran, so a
+     * snippet that had drifted from the executed code would be worse than no
+     * snippet at all.
+     */
+    $.$bog_smalljs_versus_code_data = {
+        crash: {
+            mol: {
+                lang: "ts",
+                file: "lab/lab.view.ts",
+                text: "crash_count() {\n\treturn 20\n}\n\n/** Zero based index of the card whose record is replaced with null. */\ncrash_broken_index() {\n\treturn 6\n}\n\n@ $mol_mem\ncrash_broken( next?: boolean ) {\n\treturn next ?? false\n}\n\n@ $mol_mem\ncrash_records(): readonly ( { name: string, text: string } | null )[] {\n\n\tconst broken = this.crash_broken()\n\tconst records = [] as ( { name: string, text: string } | null )[]\n\n\tfor( let index = 0; index < this.crash_count(); ++ index ) {\n\t\trecords.push(\n\t\t\tbroken && index === this.crash_broken_index()\n\t\t\t\t? null\n\t\t\t\t: { name: `Card ${ index + 1 }`, text: `Payload of card ${ index + 1 }` }\n\t\t)\n\t}\n\n\treturn records\n}\n\n@ $mol_mem\ncrash_cards(): readonly $mol_view[] {\n\n\tconst cards = [] as $mol_view[]\n\tfor( let index = 0; index < this.crash_count(); ++ index ) {\n\t\tcards.push( this.Crash_card( index ) )\n\t}\n\n\treturn cards\n}\n\ncrash_card_name( index: number ) {\n\treturn this.crash_records()[ index ]!.name\n}\n\ncrash_card_text( index: number ) {\n\treturn this.crash_records()[ index ]!.text\n}\n\nasync run_crash() {\n\n\t// Whole records first, so a repeated Run swaps them out again.\n\tthis.crash_broken( false )\n\tawait this.sleep( 16 )\n\n\tthis.crash_broken( true )\n\tawait this.sleep( 200 )\n\n\tconst container = this.Crash_list().dom_node()\n\tconst alive = container.querySelectorAll( '[versus_card]:not([mol_view_error])' ).length\n\tconst broken = container.querySelector( '[versus_card][mol_view_error]' )\n\tconst placeholder = !!broken && ( broken.textContent ?? '' ).trim().length > 0\n\n\tconst number = this.crash_broken_index() + 1\n\n\tconst status: Status = alive === 0\n\t\t? 'fail'\n\t\t: alive === this.crash_count() - 1 && placeholder\n\t\t\t? 'ok'\n\t\t\t: 'warn'\n\n\tconst observed = alive === 0\n\t\t? `0 of ${ this.crash_count() } cards survived, the list disappeared`\n\t\t: placeholder\n\t\t\t? `${ alive } of ${ this.crash_count() } cards survived, card ${ number } showed an error placeholder`\n\t\t\t: `${ alive } of ${ this.crash_count() } cards survived, card ${ number } disappeared without a placeholder`\n\n\tthis.report( status, observed, [ { name: 'Surviving cards', value: alive, unit: '' } ] )\n\n}",
+            },
+            react: {
+                lang: "js",
+                file: "assets/versus/react/runner.html",
+                text: "// No ErrorBoundary anywhere, which is what an app looks like until someone\n// adds one. An exception thrown while rendering a single card is not\n// contained: React unwinds to the root and unmounts the whole tree. The fix\n// is an ErrorBoundary class component placed around every part that has to\n// keep working on its own.\n\nconst CRASH_CARDS = []\nfor( let i = 1; i <= 20; ++i ) {\n\tCRASH_CARDS.push( { id: i, title: 'Card ' + i, text: 'Details for card ' + i } )\n}\n\nfunction CrashCard( props ) {\n\treturn h( 'div', { className: 'card' },\n\t\th( 'div', { className: 'card_title' }, props.item.title ),\n\t\th( 'div', { className: 'card_text' }, props.item.text ),\n\t)\n}\n\nlet crash_control = null\n\nfunction CrashApp() {\n\n\tconst [ items, set_items ] = React.useState( CRASH_CARDS )\n\n\t// Handle for the runner, which swaps the data from outside React.\n\tReact.useEffect( () => {\n\t\tcrash_control = { set_items: set_items }\n\t}, [] )\n\n\treturn h( 'div', { className: 'cards', 'data-role': 'cards' },\n\t\titems.map( ( item, index ) => h( CrashCard, { key: index, item: item } ) ),\n\t)\n}\n\nconst crash = {\n\n\tmount: root => render( root, h( CrashApp ) ),\n\n\trun: async () => {\n\n\t\tconst control = crash_control\n\t\tif( !control ) throw new Error( 'Crash scenario is not mounted' )\n\n\t\tconst broken = CRASH_CARDS.slice()\n\t\tbroken[ 6 ] = null\n\n\t\tmuted = true\n\t\ttry {\n\t\t\tReactDOM.flushSync( () => control.set_items( broken ) )\n\t\t} catch( error ) {\n\t\t\t// React rethrows the render error after unmounting the tree.\n\t\t}\n\n\t\tawait delay( 200 )\n\t\tmuted = false\n\n\t\tconst cards = document.querySelectorAll( '.card' ).length\n\t\t// Nothing renders this marker here — React has no error placeholder\n\t\t// without an ErrorBoundary. The check stays so all three runners\n\t\t// score the same way.\n\t\tconst placeholder = !!document.querySelector( '[data-role=\"card-error\"]' )\n\n\t\treturn {\n\t\t\tstatus: cards === 0 ? 'fail' : cards === 19 && placeholder ? 'ok' : 'warn',\n\t\t\tobserved: cards === 0\n\t\t\t\t? 'Card 7 threw during render, 0 of 20 cards remained'\n\t\t\t\t: cards + ' of 20 cards survived, card 7 '\n\t\t\t\t\t+ ( placeholder ? 'was replaced by an error placeholder' : 'disappeared without a placeholder' ),\n\t\t\tmetrics: [ { name: 'Surviving cards', value: cards, unit: '' } ],\n\t\t}\n\t},\n}",
+            },
+            vue: {
+                lang: "js",
+                file: "assets/versus/vue/runner.html",
+                text: "// Cards read fields off the item object straight in the template, the way every\n// list of cards is written. There is deliberately no onErrorCaptured hook and no\n// app.config.errorHandler, so nothing here reacts to a render failure. Error\n// boundaries are written by hand and wrapped around every part of the tree that\n// is supposed to survive on its own.\n\nfunction createCrash( root ) {\n\n\tfunction makeItems( broken ) {\n\t\tvar items = []\n\t\tfor ( var i = 0; i < 20; i++ ) {\n\t\t\titems.push( { id: i + 1, title: 'Card ' + ( i + 1 ), body: 'Item body ' + ( i + 1 ) } )\n\t\t}\n\t\tif ( broken ) items[ 6 ] = null\n\t\treturn items\n\t}\n\n\tvar Card = {\n\t\tprops: [ 'item' ],\n\t\ttemplate: `\n\t\t\t<div class=\"card\">\n\t\t\t\t<b>{{ item.title }}</b>\n\t\t\t\t<span>{{ item.body }}</span>\n\t\t\t</div>\n\t\t`,\n\t}\n\n\tvar app = createApp( {\n\t\tcomponents: { Card: Card },\n\t\ttemplate: `\n\t\t\t<div class=\"cards\">\n\t\t\t\t<Card v-for=\"( item, index ) in items\" :key=\"index\" :item=\"item\" />\n\t\t\t</div>\n\t\t`,\n\t\tsetup: function() {\n\t\t\treturn { items: ref( makeItems( false ) ) }\n\t\t},\n\t} )\n\n\tvar vm = app.mount( root )\n\n\treturn {\n\t\trun: async function() {\n\n\t\t\tvm.items = makeItems( true )\n\n\t\t\tawait nextTick()\n\t\t\tawait wait( 200 )\n\n\t\t\tvar survived = root.querySelectorAll( '.card' ).length\n\t\t\tvar placeholder = root.querySelectorAll( '[data-error]' ).length > 0\n\n\t\t\tvar status = survived === 0 ? 'fail'\n\t\t\t\t: survived === 19 && placeholder ? 'ok'\n\t\t\t\t: 'warn'\n\n\t\t\tvar observed = survived === 0\n\t\t\t\t? 'All 20 cards disappeared after card 7 broke'\n\t\t\t\t: placeholder\n\t\t\t\t? survived + ' of 20 cards survived, card 7 shows an error placeholder'\n\t\t\t\t: survived + ' of 20 cards survived, card 7 disappeared without a placeholder'\n\n\t\t\treturn {\n\t\t\t\tstatus: status,\n\t\t\t\tobserved: observed,\n\t\t\t\tmetrics: [ { name: 'Surviving cards', value: survived, unit: '' } ],\n\t\t\t}\n\t\t},\n\t}\n}",
+            }
+        },
+        leak: {
+            mol: {
+                lang: "ts",
+                file: "lab/lab.view.ts",
+                text: "leak_count() {\n\treturn 100\n}\n\n@ $mol_mem\nleak_cycle( next?: number ) {\n\treturn next ?? 0\n}\n\n@ $mol_mem\nleak_mounted( next?: boolean ) {\n\treturn next ?? false\n}\n\n@ $mol_mem\nleak_probes(): readonly $mol_view[] {\n\treturn this.leak_mounted() ? [ this.Leak_probe( this.leak_cycle() ) ] : []\n}\n\nleak_probe_label( cycle: number ) {\n\treturn `Subscribed component, mount ${ cycle }`\n}\n\nasync run_leak() {\n\n\tconst store = this.$.$bog_smalljs_lab_store.shared()\n\tconst place = this.Leak_place()\n\n\t// dom_tree() renders the place right here instead of on the next\n\t// frame, so that every pass of the loop is a real mount and unmount.\n\tfor( let cycle = 1; cycle <= this.leak_count(); ++ cycle ) {\n\t\tthis.leak_cycle( cycle )\n\t\tthis.leak_mounted( true )\n\t\tplace.dom_tree()\n\t\tthis.leak_mounted( false )\n\t\tplace.dom_tree()\n\t}\n\n\t// Cells left without subscribers are collected on the next tick.\n\tawait this.sleep( 100 )\n\n\tconst live = store.subscribers.length\n\n\tconst metrics = [ { name: 'Live subscribers', value: live, unit: '' } ] as Metric[]\n\n\tconst memory = ( performance as unknown as { memory?: { usedJSHeapSize: number } } ).memory\n\tif( memory ) metrics.push({\n\t\tname: 'Heap',\n\t\tvalue: Math.round( memory.usedJSHeapSize / 1048576 ),\n\t\tunit: 'MB',\n\t})\n\n\tthis.report(\n\t\tlive === 0 ? 'ok' : 'fail',\n\t\t`${ this.leak_count() } mount cycles left ${ live } live subscribers`,\n\t\tmetrics,\n\t)\n\n}\n\n// --------------------------------------------------------------- crash",
+            },
+            react: {
+                lang: "js",
+                file: "assets/versus/react/runner.html",
+                text: "// The effect subscribes on mount and returns nothing, so the subscription\n// outlives the component that made it. The fix is\n// `return () => store.unsubscribe( handler )` at the end of the effect,\n// written by hand for every subscription and invisible when forgotten.\n\nconst store = {\n\n\tvalue: 0,\n\tsubscribers: [],\n\n\tsubscribe( handler ) {\n\t\tthis.subscribers.push( handler )\n\t},\n\n\tunsubscribe( handler ) {\n\t\tconst index = this.subscribers.indexOf( handler )\n\t\tif( index >= 0 ) this.subscribers.splice( index, 1 )\n\t},\n\n\tset( value ) {\n\t\tthis.value = value\n\t\tthis.subscribers.forEach( handler => handler( value ) )\n\t},\n}\n\nlet store_ticker = 0\n\nfunction LeakWidget() {\n\n\tconst [ value, set_value ] = React.useState( store.value )\n\n\tReact.useEffect( () => {\n\t\tstore.subscribe( set_value )\n\t}, [] )\n\n\treturn h( 'div', null, 'Widget sees store value ' + value )\n}\n\nlet leak_control = null\n\nfunction LeakApp() {\n\n\tconst [ mounted, set_mounted ] = React.useState( false )\n\tconst [ cycles, set_cycles ] = React.useState( 0 )\n\tconst [ live, set_live ] = React.useState( store.subscribers.length )\n\n\t// Handle for the runner, which drives mount cycles from outside React.\n\tReact.useEffect( () => {\n\t\tleak_control = {\n\t\t\tset_mounted: set_mounted,\n\t\t\tset_cycles: set_cycles,\n\t\t\tset_live: set_live,\n\t\t}\n\t}, [] )\n\n\treturn h( 'div', { className: 'column' },\n\t\th( 'div', { className: 'stat' }, 'Mount cycles: ' + cycles ),\n\t\th( 'div', { className: 'stat' }, 'Live subscribers: ' + live ),\n\t\th( 'div', { className: 'slot' },\n\t\t\tmounted\n\t\t\t\t? h( LeakWidget )\n\t\t\t\t: h( 'div', { className: 'muted' }, 'Widget not mounted' ),\n\t\t),\n\t)\n}\n\nconst leak = {\n\n\tmount: root => {\n\t\t// The store outlives the tree, so every run starts from a known zero.\n\t\tstore.subscribers = []\n\t\tif( !store_ticker ) store_ticker = setInterval( () => store.set( store.value + 1 ), 500 )\n\t\treturn render( root, h( LeakApp ) )\n\t},\n\n\trun: async () => {\n\n\t\tconst control = leak_control\n\t\tif( !control ) throw new Error( 'Leak scenario is not mounted' )\n\n\t\tstore.subscribers = []\n\n\t\tfor( let i = 0; i < 100; ++i ) {\n\t\t\tReactDOM.flushSync( () => control.set_mounted( true ) )\n\t\t\tReactDOM.flushSync( () => control.set_mounted( false ) )\n\t\t}\n\n\t\tawait delay( 50 )\n\n\t\tconst live = store.subscribers.length\n\n\t\tReactDOM.flushSync( () => {\n\t\t\tcontrol.set_cycles( 100 )\n\t\t\tcontrol.set_live( live )\n\t\t} )\n\n\t\treturn {\n\t\t\tstatus: live === 0 ? 'ok' : 'fail',\n\t\t\tobserved: '100 mount cycles left ' + live + ' live subscribers',\n\t\t\tmetrics: [ { name: 'Live subscribers', value: live, unit: '' } ].concat( heap_metrics() ),\n\t\t}\n\t},\n}\n\n\n// --------------------------------------------------------------- crash",
+            },
+            vue: {
+                lang: "js",
+                file: "assets/versus/vue/runner.html",
+                text: "// The widget subscribes to an external store in onMounted and never lets go.\n// There is deliberately no onUnmounted( () => unsubscribe() ) — one line, written\n// by hand every time, nothing in the framework asks for it and nothing complains\n// when it is missing.\n\nfunction createLeak( root ) {\n\n\tvar store = {\n\t\tvalue: 0,\n\t\tsubscribers: [],\n\t\tsubscribe: function( handler ) {\n\t\t\tthis.subscribers.push( handler )\n\t\t},\n\t\tset: function( value ) {\n\t\t\tthis.value = value\n\t\t\tthis.subscribers.forEach( function( handler ) { handler( value ) } )\n\t\t},\n\t}\n\n\tvar Widget = {\n\t\ttemplate: `<div class=\"widget\">Store value: {{ value }}</div>`,\n\t\tsetup: function() {\n\n\t\t\tvar value = ref( store.value )\n\n\t\t\tonMounted( function() {\n\t\t\t\tstore.subscribe( function( next ) { value.value = next } )\n\t\t\t} )\n\n\t\t\treturn { value: value }\n\t\t},\n\t}\n\n\tvar app = createApp( {\n\t\tcomponents: { Widget: Widget },\n\t\ttemplate: `\n\t\t\t<Widget v-if=\"shown\" />\n\t\t\t<div v-else class=\"slot muted\">Widget is not mounted.</div>\n\t\t\t<p class=\"stat\">Mount cycles: {{ cycles }} · Live subscribers: {{ live }}</p>\n\t\t`,\n\t\tsetup: function() {\n\t\t\treturn { shown: ref( false ), cycles: ref( 0 ), live: ref( 0 ) }\n\t\t},\n\t} )\n\n\tvar vm = app.mount( root )\n\n\treturn {\n\t\trun: async function() {\n\n\t\t\t// a repeated Run has to measure its own 100 cycles, not add to the previous count\n\t\t\tstore.subscribers.length = 0\n\n\t\t\tfor ( var i = 0; i < 100; i++ ) {\n\t\t\t\tvm.shown = true\n\t\t\t\tawait nextTick()\n\t\t\t\tvm.shown = false\n\t\t\t\tawait nextTick()\n\t\t\t\tvm.cycles = i + 1\n\t\t\t\tvm.live = store.subscribers.length\n\t\t\t}\n\n\t\t\tvar live = store.subscribers.length\n\n\t\t\tvar metrics = [ { name: 'Live subscribers', value: live, unit: '' } ]\n\t\t\tif ( performance.memory ) {\n\t\t\t\tmetrics.push( {\n\t\t\t\t\tname: 'Heap',\n\t\t\t\t\tvalue: Math.round( performance.memory.usedJSHeapSize / 1048576 * 10 ) / 10,\n\t\t\t\t\tunit: 'MB',\n\t\t\t\t} )\n\t\t\t}\n\n\t\t\treturn {\n\t\t\t\tstatus: live === 0 ? 'ok' : 'fail',\n\t\t\t\tobserved: '100 mount cycles left ' + live + ' live subscriber' + ( live === 1 ? '' : 's' ),\n\t\t\t\tmetrics: metrics,\n\t\t\t}\n\t\t},\n\t}\n}\n\n\n// ── crash ─────────────────────────────────────────────────────────────",
+            }
+        },
+        race: {
+            mol: {
+                lang: "ts",
+                file: "lab/lab.view.ts",
+                text: "race_ids() {\n\treturn [ 1, 2, 3, 4, 5 ]\n}\n\n@ $mol_mem\nrace_selected( next?: number ) {\n\treturn next ?? 0\n}\n\n@ $mol_mem\nrace_options(): readonly $mol_view[] {\n\treturn this.race_ids().map( id => this.Race_option( id ) )\n}\n\nrace_option_label( id: number ) {\n\treturn `User ${ id }`\n}\n\nrace_option_current( id: number ) {\n\treturn this.race_selected() === id\n}\n\n@ $mol_action\nrace_option_click( id: number, next?: unknown ) {\n\tthis.race_selected( id )\n\treturn null\n}\n\nrace_delay( id: number ) {\n\treturn 1000 - ( id - 1 ) * 200\n}\n\nasync race_load( id: number ) {\n\tawait this.sleep( this.race_delay( id ) )\n\treturn {\n\t\tname: `User ${ id }`,\n\t\tdescr: `Profile of user ${ id }, answered in ${ this.race_delay( id ) } ms`,\n\t}\n}\n\n/** The record is a value of the selected id. A record for an id nobody\n *  looks at any more has no place to land. */\n@ $mol_mem_key\nrace_user( id: number ): { name: string, descr: string } {\n\treturn $mol_wire_sync( this ).race_load( id )\n}\n\nrace_panel_name() {\n\tconst id = this.race_selected()\n\treturn id ? this.race_user( id ).name : ''\n}\n\nrace_panel_descr() {\n\tconst id = this.race_selected()\n\treturn id ? this.race_user( id ).descr : ''\n}\n\n/** The two waits add up to 1600 ms. Past this the machine was stretching\n *  timers, and stretched timers pull the 200 ms and 1000 ms answers\n *  towards each other until the order of arrival is a coin toss. */\nrace_deadline() {\n\treturn 2200\n}\n\nasync run_race() {\n\n\tconst started = performance.now()\n\n\tthis.race_selected( 1 )\n\tawait this.sleep( 100 )\n\tthis.race_selected( 5 )\n\tawait this.sleep( 1500 )\n\n\tif( performance.now() - started > this.race_deadline() ) this.spoil( 'timers-throttled' )\n\n\tconst shown = this.Race_panel().dom_node().textContent ?? ''\n\tconst found = shown.match( /User (\\d+)/ )\n\tconst id = found ? Number( found[1] ) : 0\n\n\tthis.report(\n\t\tid === 5 ? 'ok' : 'fail',\n\t\tid\n\t\t\t? `Selected user 5, panel showed user ${ id }`\n\t\t\t: `Selected user 5, panel showed no user`,\n\t)\n\n}\n\n// ------------------------------------------------------------- virtual",
+            },
+            react: {
+                lang: "js",
+                file: "assets/versus/react/runner.html",
+                text: "// Idiomatic data loading: an effect starts a request whenever the selected\n// id changes and writes whatever comes back into state. There is no\n// cancellation flag and no AbortController here, so a slow earlier response\n// still lands after a fast later one. The usual fix is a `let stale = false`\n// guard released from the effect cleanup, written by hand for every effect\n// that loads something.\n\nconst RACE_USERS = [ 1, 2, 3, 4, 5 ].map( number => ( {\n\tid: number,\n\tname: 'User ' + number,\n\tabout: 'Profile details for user ' + number + '.',\n} ) )\n\nfunction fetch_user( id ) {\n\treturn new Promise( done => {\n\t\tsetTimeout( () => done( RACE_USERS[ id - 1 ] ), 1000 - ( id - 1 ) * 200 )\n\t} )\n}\n\nfunction RaceApp() {\n\n\tconst [ id, set_id ] = React.useState( null )\n\tconst [ user, set_user ] = React.useState( null )\n\tconst [ loading, set_loading ] = React.useState( false )\n\n\tReact.useEffect( () => {\n\t\tif( id === null ) return\n\t\tset_loading( true )\n\t\tfetch_user( id ).then( data => {\n\t\t\tset_user( data )\n\t\t\tset_loading( false )\n\t\t} )\n\t}, [ id ] )\n\n\treturn h( 'div', { className: 'row2' },\n\t\th( 'div', { className: 'side' },\n\t\t\tRACE_USERS.map( item => h( 'button', {\n\t\t\t\tkey: item.id,\n\t\t\t\tclassName: 'item' + ( item.id === id ? ' item_current' : '' ),\n\t\t\t\t'data-user': item.id,\n\t\t\t\tonClick: () => set_id( item.id ),\n\t\t\t}, item.name ) ),\n\t\t),\n\t\th( 'div', { className: 'main' },\n\t\t\tloading\n\t\t\t\t? h( 'div', { className: 'muted' }, 'Loading…' )\n\t\t\t\t: user\n\t\t\t\t\t? h( 'div', null,\n\t\t\t\t\t\th( 'div', { className: 'title', 'data-panel': 'name' }, user.name ),\n\t\t\t\t\t\th( 'div', { className: 'muted' }, user.about ),\n\t\t\t\t\t)\n\t\t\t\t\t: h( 'div', { className: 'muted' }, 'Pick a user' ),\n\t\t),\n\t)\n}\n\nconst race = {\n\n\tmount: root => render( root, h( RaceApp ) ),\n\n\trun: async () => {\n\n\t\tconst started = performance.now()\n\n\t\tclick( '[data-user=\"1\"]' )\n\t\tawait delay( 100 )\n\t\tclick( '[data-user=\"5\"]' )\n\t\tawait delay( 1500 )\n\n\t\t// Clamped timers collapse both responses into one wake-up and destroy\n\t\t// the order the scenario is built on. Expected here is ~1600 ms.\n\t\tif( performance.now() - started > 2200 ) throw new Invalid( 'timers-throttled' )\n\n\t\tconst panel = document.querySelector( '[data-panel=\"name\"]' )\n\t\tconst shown = panel ? panel.textContent : ''\n\t\tconst number = shown.replace( /\\D+/g, '' )\n\n\t\treturn {\n\t\t\tstatus: number === '5' ? 'ok' : 'fail',\n\t\t\tobserved: number\n\t\t\t\t? 'Selected user 5, panel shows user ' + number\n\t\t\t\t: 'Selected user 5, panel shows nothing',\n\t\t\tmetrics: [],\n\t\t}\n\t},\n}\n\n\n// ------------------------------------------------------------- virtual",
+            },
+            vue: {
+                lang: "js",
+                file: "assets/versus/vue/runner.html",
+                text: "// Textbook data fetching: a watcher awaits the request and assigns whatever\n// comes back. There is deliberately no cancellation and no check that the\n// resolved id is still the selected one — that check is what a stale response\n// has to get past. Written by hand with an AbortController, a request counter,\n// or delegated to a query cache library.\n\nfunction createRace( root ) {\n\n\tvar users = []\n\tfor ( var i = 0; i < 5; i++ ) {\n\t\tusers.push( { id: i + 1, name: 'User ' + ( i + 1 ), delay: 1000 - i * 200 } )\n\t}\n\n\tfunction fetchUser( id ) {\n\t\tvar user = users[ id - 1 ]\n\t\treturn new Promise( function( resolve ) {\n\t\t\tsetTimeout( function() {\n\t\t\t\tresolve( {\n\t\t\t\t\tid: user.id,\n\t\t\t\t\tname: user.name,\n\t\t\t\t\tdescription: 'Profile loaded in ' + user.delay + ' ms.',\n\t\t\t\t} )\n\t\t\t}, user.delay )\n\t\t} )\n\t}\n\n\tvar app = createApp( {\n\t\ttemplate: `\n\t\t\t<div class=\"split\">\n\t\t\t\t<div class=\"list\">\n\t\t\t\t\t<button\n\t\t\t\t\t\tv-for=\"user in users\"\n\t\t\t\t\t\t:key=\"user.id\"\n\t\t\t\t\t\t:class=\"{ active: user.id === selected }\"\n\t\t\t\t\t\t@click=\"selected = user.id\"\n\t\t\t\t\t>{{ user.name }}</button>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"panel\">\n\t\t\t\t\t<div v-if=\"loading\" class=\"muted\">Loading…</div>\n\t\t\t\t\t<template v-else-if=\"user\">\n\t\t\t\t\t\t<h2>{{ user.name }}</h2>\n\t\t\t\t\t\t<p>{{ user.description }}</p>\n\t\t\t\t\t</template>\n\t\t\t\t\t<div v-else class=\"muted\">Pick a user on the left.</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t`,\n\t\tsetup: function() {\n\n\t\t\tvar selected = ref( null )\n\t\t\tvar user = ref( null )\n\t\t\tvar loading = ref( false )\n\n\t\t\twatch( selected, async function( id ) {\n\t\t\t\tloading.value = true\n\t\t\t\tvar data = await fetchUser( id )\n\t\t\t\tuser.value = data\n\t\t\t\tloading.value = false\n\t\t\t} )\n\n\t\t\treturn { users: users, selected: selected, user: user, loading: loading }\n\t\t},\n\t} )\n\n\tvar vm = app.mount( root )\n\n\treturn {\n\n\t\t// two waits of 100 and 1500 ms, so a healthy run lands near 1600 ms; past this\n\t\t// the delays that the whole scenario rests on are no longer being honoured\n\t\tbudget: 2200,\n\n\t\trun: async function() {\n\n\t\t\tvm.selected = 1\n\t\t\tawait wait( 100 )\n\t\t\tvm.selected = 5\n\t\t\tawait wait( 1500 )\n\n\t\t\tvar shown = vm.user ? vm.user.id : null\n\n\t\t\treturn {\n\t\t\t\tstatus: shown === 5 ? 'ok' : 'fail',\n\t\t\t\tobserved: 'Selected user 5, panel shows ' + ( shown ? 'user ' + shown : 'nothing' ),\n\t\t\t\tmetrics: [],\n\t\t\t}\n\t\t},\n\t}\n}\n\n\n// ── virtual ───────────────────────────────────────────────────────────",
+            }
+        },
+        virtual: {
+            mol: {
+                lang: "ts",
+                file: "lab/lab.view.ts",
+                text: "virtual_count() {\n\treturn 10000\n}\n\n@ $mol_mem\nvirtual_filled( next?: boolean ) {\n\treturn next ?? false\n}\n\n@ $mol_mem\nvirtual_rows(): readonly $mol_view[] {\n\n\tif( !this.virtual_filled() ) return [ this.Virtual_placeholder() ]\n\n\tconst rows = [] as $mol_view[]\n\tfor( let index = 0; index < this.virtual_count(); ++ index ) {\n\t\trows.push( this.Virtual_row( index ) )\n\t}\n\n\treturn rows\n}\n\nvirtual_row_text( index: number ) {\n\tconst size = 20 + ( index * 37 ) % 400\n\tconst head = `Row ${ index + 1 }. `\n\tconst body = filler.repeat( Math.ceil( size / filler.length ) )\n\treturn ( head + body ).slice( 0, size )\n}\n\nasync run_virtual() {\n\n\tconst container = this.Virtual_scroll().dom_node()\n\n\t// Back to an empty list first, so a repeated Run measures the same\n\t// work over again instead of reading a list that is already there.\n\tthis.virtual_filled( false )\n\tthis.Virtual_scroll().scroll_top( 0 )\n\tawait this.sleep( 16 )\n\n\tconst started = performance.now()\n\n\tthis.virtual_filled( true )\n\n\tawait this.frame()\n\tawait this.frame()\n\n\t// Reading the height makes the browser lay the rows out, so the\n\t// measurement covers the frame the user actually waits for.\n\tconst height = container.scrollHeight\n\n\tconst render_time = Math.round( performance.now() - started )\n\n\t// Without frames the time above measured the wait, not the work, so\n\t// the run stops here instead of spending two more seconds scrolling.\n\tconst spoiled = this.spoiled()\n\tif( spoiled ) return this.report_invalid( spoiled )\n\n\tthis.Virtual_scroll().scroll_top( Math.round( ( height - container.clientHeight ) / 2 ) )\n\tawait this.sleep( 1000 )\n\tthis.Virtual_scroll().scroll_top( 0 )\n\tawait this.sleep( 1000 )\n\n\tconst nodes = container.querySelectorAll( '*' ).length\n\n\tthis.report(\n\t\tnodes < 500 ? 'ok' : nodes > 5000 ? 'fail' : 'warn',\n\t\t`Rendered ${ nodes } DOM nodes for ${ this.virtual_count() } rows`,\n\t\t[\n\t\t\t{ name: 'DOM nodes', value: nodes, unit: '' },\n\t\t\t{ name: 'Render time', value: render_time, unit: 'ms' },\n\t\t],\n\t)\n\n}\n\n// ---------------------------------------------------------------- leak",
+            },
+            react: {
+                lang: "js",
+                file: "assets/versus/react/runner.html",
+                text: "// A plain .map() over the whole data set, the way a list is written before\n// its size becomes a problem. Every row sits in the DOM at once. Windowing\n// is not part of React and gets added later with a separate library such as\n// react-window, which also means giving up on natural row heights or\n// measuring every row by hand.\n\nconst WORDS = 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua '\n\nconst VIRTUAL_ROWS = ( () => {\n\tconst rows = []\n\tfor( let i = 0; i < 10000; ++i ) {\n\t\tconst length = 20 + ( i * 37 ) % 400\n\t\tlet text = ''\n\t\twhile( text.length < length ) text += WORDS\n\t\trows.push( text.slice( 0, length ) )\n\t}\n\treturn rows\n} )()\n\nlet virtual_control = null\n\nfunction VirtualApp() {\n\n\tconst [ rows, set_rows ] = React.useState( [] )\n\n\t// Handle for the runner, which feeds the rows in when Run is pressed.\n\tReact.useEffect( () => {\n\t\tvirtual_control = { set_rows: set_rows }\n\t}, [] )\n\n\treturn h( 'div', { className: 'scroll', 'data-role': 'scroll' },\n\t\trows.length\n\t\t\t? rows.map( ( text, index ) => h( 'div', {\n\t\t\t\tkey: index,\n\t\t\t\tclassName: 'line',\n\t\t\t}, '#' + ( index + 1 ) + ' ' + text ) )\n\t\t\t: h( 'div', { className: 'hint muted' }, 'Press Run to load 10,000 rows' ),\n\t)\n}\n\nconst virtual = {\n\n\tmount: root => render( root, h( VirtualApp ) ),\n\n\trun: async () => {\n\n\t\tconst control = virtual_control\n\t\tif( !control ) throw new Error( 'Virtual scenario is not mounted' )\n\n\t\tconst box = document.querySelector( '[data-role=\"scroll\"]' )\n\t\tif( !box ) throw new Error( 'Scroll container is missing' )\n\n\t\t// Always start from the placeholder, so a repeated run times a real\n\t\t// render instead of a list that is already on screen.\n\t\tReactDOM.flushSync( () => control.set_rows( [] ) )\n\t\tbox.scrollTop = 0\n\n\t\tconst started = performance.now()\n\n\t\tcontrol.set_rows( VIRTUAL_ROWS )\n\n\t\tawait next_frame()\n\t\tawait next_frame()\n\n\t\t// Reading scrollHeight forces the layout the rows just made necessary.\n\t\tconst height = box.scrollHeight\n\t\tconst render_time = Math.round( performance.now() - started )\n\n\t\tconst middle = ( height - box.clientHeight ) / 2\n\t\tawait scroll_to( box, 0, middle, 1000 )\n\t\tawait scroll_to( box, middle, 0, 1000 )\n\n\t\tconst nodes = box.querySelectorAll( '*' ).length\n\n\t\treturn {\n\t\t\tstatus: nodes < 500 ? 'ok' : nodes > 5000 ? 'fail' : 'warn',\n\t\t\tobserved: 'Rendered ' + nodes + ' DOM nodes for 10000 rows',\n\t\t\tmetrics: [\n\t\t\t\t{ name: 'DOM nodes', value: nodes, unit: '' },\n\t\t\t\t{ name: 'Render time', value: render_time, unit: 'ms' },\n\t\t\t],\n\t\t}\n\t},\n}\n\n\n// ---------------------------------------------------------------- leak",
+            },
+            vue: {
+                lang: "js",
+                file: "assets/versus/vue/runner.html",
+                text: "// A plain v-for over the whole dataset, the default way to render a list.\n// No windowing: all 10 000 rows sit in the DOM at once. Virtualization comes\n// from a separate library ( vue-virtual-scroller, TanStack Virtual ) and rows\n// of irregular height need measurement on top of that.\n\nfunction createVirtual( root ) {\n\n\tvar lorem = 'the quick brown fox jumps over the lazy dog and keeps running through the open field '\n\n\tfunction textFor( i ) {\n\t\tvar length = 20 + ( i * 37 ) % 400\n\t\tvar text = ''\n\t\twhile ( text.length < length ) text += lorem\n\t\treturn text.slice( 0, length )\n\t}\n\n\tfunction makeRows() {\n\t\tvar rows = []\n\t\tfor ( var i = 0; i < 10000; i++ ) {\n\t\t\trows.push( { id: i, text: textFor( i ) } )\n\t\t}\n\t\treturn rows\n\t}\n\n\tvar app = createApp( {\n\t\ttemplate: `\n\t\t\t<div class=\"rows\">\n\t\t\t\t<div v-if=\"!rows.length\" class=\"placeholder muted\">Press Run to load 10,000 rows</div>\n\t\t\t\t<div class=\"row\" v-for=\"row in rows\" :key=\"row.id\">{{ row.id + 1 }}. {{ row.text }}</div>\n\t\t\t</div>\n\t\t`,\n\t\tsetup: function() {\n\t\t\treturn { rows: ref( [] ) }\n\t\t},\n\t} )\n\n\tvar vm = app.mount( root )\n\n\t// the rows are fixture data, built once up front: generating 10 000 strings is not\n\t// the framework's work and has no business inside the measured window\n\tvar data = makeRows()\n\n\t// Insurance, not the main path: a hidden tab is caught by the visibility check and\n\t// reported as invalid. This covers the rarer case where frames stop while the tab is\n\t// still visible — an iframe scrolled far out of view gets its frames throttled too.\n\t// A run that never receives a frame has nothing to time, so it drops the metric and\n\t// still reports the node count rather than hanging until the page times out.\n\tfunction twoFrames() {\n\t\treturn new Promise( function( done ) {\n\t\t\tvar guard = setTimeout( function() { done( false ) }, 3000 )\n\t\t\trequestAnimationFrame( function() {\n\t\t\t\trequestAnimationFrame( function() {\n\t\t\t\t\tclearTimeout( guard )\n\t\t\t\t\tdone( true )\n\t\t\t\t} )\n\t\t\t} )\n\t\t} )\n\t}\n\n\tfunction scrollTo( element, from, to, duration ) {\n\t\treturn new Promise( function( done ) {\n\t\t\tvar start = performance.now()\n\t\t\tvar guard = setTimeout( done, duration + 500 )\n\t\t\trequestAnimationFrame( function step( now ) {\n\t\t\t\tvar passed = Math.min( 1, ( now - start ) / duration )\n\t\t\t\telement.scrollTop = from + ( to - from ) * passed\n\t\t\t\tif ( passed < 1 ) return requestAnimationFrame( step )\n\t\t\t\tclearTimeout( guard )\n\t\t\t\tdone()\n\t\t\t} )\n\t\t} )\n\t}\n\n\treturn {\n\t\trun: async function() {\n\n\t\t\tvar container = root.querySelector( '.rows' )\n\n\t\t\t// a repeated Run has to measure the same empty-to-full transition as the first\n\t\t\tvm.rows = []\n\t\t\tawait nextTick()\n\n\t\t\tvar t0 = performance.now()\n\n\t\t\tvm.rows = data\n\n\t\t\tvar painted = await twoFrames()\n\n\t\t\t// forces layout, so the number covers the whole cost of putting the list on screen\n\t\t\tcontainer.scrollHeight\n\n\t\t\tvar renderTime = Math.round( performance.now() - t0 )\n\n\t\t\tvar half = ( container.scrollHeight - container.clientHeight ) / 2\n\n\t\t\tawait scrollTo( container, 0, half, 1000 )\n\t\t\tawait scrollTo( container, half, 0, 1000 )\n\n\t\t\tvar nodes = container.querySelectorAll( '*' ).length\n\n\t\t\tvar metrics = [ { name: 'DOM nodes', value: nodes, unit: '' } ]\n\t\t\tif ( painted ) {\n\t\t\t\tmetrics.push( { name: 'Render time', value: renderTime, unit: 'ms' } )\n\t\t\t}\n\n\t\t\treturn {\n\t\t\t\tstatus: nodes < 500 ? 'ok' : nodes > 5000 ? 'fail' : 'warn',\n\t\t\t\tobserved: 'Rendered ' + nodes + ' DOM nodes for ' + data.length + ' rows',\n\t\t\t\tmetrics: metrics,\n\t\t\t}\n\t\t},\n\t}\n}\n\n\n// ── leak ──────────────────────────────────────────────────────────────",
+            }
+        }
+    };
+})($ || ($ = {}));
+
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        const repo = 'https://github.com/b-on-g/smalljs/blob/main/';
+        function fill(template, values) {
+            return template.replace(/\{(\w+)\}/g, (whole, key) => values[key] ?? whole);
+        }
+        /**
+         * The two implementations of one crash-test scenario, side by side, under the
+         * frames that just ran them.
+         *
+         * This is the whole answer to "readability" in the comparison, and it is
+         * deliberately not a number. Nobody can defend a readability score, and a
+         * reader who disagrees with one has no way to check it; two blocks of code
+         * next to each other need no defending, because the reader is looking at the
+         * evidence rather than at our reading of it.
+         *
+         * Collapsed by default. The section argues by behaviour first — the frames
+         * above have already shown what happens — and the code is there for whoever
+         * asks why, not as a wall to get past on the way down the page.
+         */
+        class $bog_smalljs_versus_code extends $.$bog_smalljs_versus_code {
+            snippets() {
+                return this.$.$bog_smalljs_versus_code_data[this.case_id()] ?? {};
+            }
+            /** Sides that actually have a runner, in the pair's own order. A framework
+             *  nobody wrote a scenario for is left out rather than shown empty: an
+             *  empty column reads as "this framework needs no code", which is the
+             *  opposite of the truth. */
+            sides() {
+                return [this.left(), this.right()].filter(id => !!this.snippets()[id]);
+            }
+            columns() {
+                return this.sides().map(id => this.Column(id));
+            }
+            snippet(id) {
+                return this.snippets()[id];
+            }
+            column_name(id) {
+                return id === 'mol' ? '$mol' : id[0].toUpperCase() + id.slice(1);
+            }
+            column_text(id) {
+                return this.snippet(id)?.text ?? '';
+            }
+            column_file(id) {
+                return this.snippet(id)?.file ?? '';
+            }
+            /** Straight at the file the snippet was lifted from, so "generated from
+             *  the runners" is a claim the reader can check in one click. */
+            column_uri(id) {
+                const file = this.column_file(id);
+                return file ? repo + 'bog/smalljs/' + file : '';
+            }
+            missing_text() {
+                const absent = [this.left(), this.right()].filter(id => !this.snippets()[id]);
+                if (!absent.length)
+                    return '';
+                return fill(this.missing(), { a: this.column_name(absent[0]) });
+            }
+            /** What the block is made of. Built as a list rather than by returning
+             *  null from a factory: the tree is where a $mol component declares what
+             *  it can contain, and switching a child off by type fights that.
+             *
+             *  Nothing at all when neither side has a runner — a disclosure that
+             *  opens onto nothing is worse than no disclosure. */
+            body() {
+                const parts = [];
+                if (this.sides().length)
+                    parts.push(this.Expander());
+                if (this.sides().length < 2 && this.missing_text())
+                    parts.push(this.Missing());
+                return parts;
+            }
+        }
+        $$.$bog_smalljs_versus_code = $bog_smalljs_versus_code;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        $mol_style_define($bog_smalljs_versus_code, {
+            flex: {
+                direction: 'column',
+            },
+            margin: {
+                top: '-0.5rem',
+            },
+            Hint: {
+                font: {
+                    size: '0.8125rem',
+                },
+                color: $mol_theme.shade,
+                padding: {
+                    bottom: '0.75rem',
+                },
+            },
+            Columns: {
+                display: 'grid',
+                gridTemplateColumns: 'repeat( auto-fit, minmax( 20rem, 1fr ) )',
+                gap: '1rem',
+                width: '100%',
+            },
+            Column: {
+                flex: {
+                    direction: 'column',
+                },
+                // Without this a grid cell refuses to shrink below the width of its
+                // widest line, and one long line of code stretches the whole page.
+                minWidth: 0,
+                gap: '0.375rem',
+            },
+            Column_head: {
+                justifyContent: 'space-between',
+                alignItems: 'baseline',
+                gap: '0.5rem',
+                font: {
+                    size: '0.8125rem',
+                },
+            },
+            Column_file: {
+                font: {
+                    family: 'monospace',
+                    size: '0.75rem',
+                },
+                color: $mol_theme.shade,
+                flex: {
+                    shrink: 1,
+                },
+                minWidth: 0,
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
+            },
+            Column_code: {
+                display: 'block',
+                font: {
+                    family: 'monospace',
+                    size: '0.75rem',
+                },
+                lineHeight: '1.5',
+                whiteSpace: 'pre',
+                overflow: 'auto',
+                // Tall enough to read a scenario without the page turning into a
+                // scroll of code; the block scrolls inside itself past that.
+                maxHeight: '24rem',
+                background: {
+                    color: $mol_theme.back,
+                },
+                border: {
+                    radius: '0.5rem',
+                },
+                padding: {
+                    top: '0.75rem',
+                    bottom: '0.75rem',
+                    left: '0.875rem',
+                    right: '0.875rem',
+                },
+            },
+            Missing: {
+                font: {
+                    size: '0.8125rem',
+                },
+                color: $mol_theme.shade,
+                padding: {
+                    top: '0.5rem',
+                },
+            },
+        });
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
 	($.$bog_smalljs_versus_case) = class $bog_smalljs_versus_case extends ($.$mol_view) {
 		Title(){
 			const obj = new this.$.$mol_view();
@@ -27975,6 +29203,34 @@ var $;
 			(obj.missing_note) = () => ((this.edge_missing_note()));
 			return obj;
 		}
+		Code_race(){
+			const obj = new this.$.$bog_smalljs_versus_code();
+			(obj.case_id) = () => ("race");
+			(obj.left) = () => ((this.left()));
+			(obj.right) = () => ((this.right()));
+			return obj;
+		}
+		Code_virtual(){
+			const obj = new this.$.$bog_smalljs_versus_code();
+			(obj.case_id) = () => ("virtual");
+			(obj.left) = () => ((this.left()));
+			(obj.right) = () => ((this.right()));
+			return obj;
+		}
+		Code_leak(){
+			const obj = new this.$.$bog_smalljs_versus_code();
+			(obj.case_id) = () => ("leak");
+			(obj.left) = () => ((this.left()));
+			(obj.right) = () => ((this.right()));
+			return obj;
+		}
+		Code_crash(){
+			const obj = new this.$.$bog_smalljs_versus_code();
+			(obj.case_id) = () => ("crash");
+			(obj.left) = () => ((this.left()));
+			(obj.right) = () => ((this.right()));
+			return obj;
+		}
 	};
 	($mol_mem(($.$bog_smalljs_versus_pair.prototype), "Head"));
 	($mol_mem(($.$bog_smalljs_versus_pair.prototype), "Sections"));
@@ -28002,6 +29258,10 @@ var $;
 	($mol_mem(($.$bog_smalljs_versus_pair.prototype), "Case_virtual"));
 	($mol_mem(($.$bog_smalljs_versus_pair.prototype), "Case_leak"));
 	($mol_mem(($.$bog_smalljs_versus_pair.prototype), "Case_crash"));
+	($mol_mem(($.$bog_smalljs_versus_pair.prototype), "Code_race"));
+	($mol_mem(($.$bog_smalljs_versus_pair.prototype), "Code_virtual"));
+	($mol_mem(($.$bog_smalljs_versus_pair.prototype), "Code_leak"));
+	($mol_mem(($.$bog_smalljs_versus_pair.prototype), "Code_crash"));
 	($.$bog_smalljs_versus_pair_case) = class $bog_smalljs_versus_pair_case extends ($.$bog_smalljs_versus_case) {
 		left(){
 			return "";
@@ -28785,7 +30045,7 @@ var $;
             }
             section_content(category) {
                 if (category === 'edge')
-                    return this.cases();
+                    return this.edge_content();
                 const rows = this.rows(category);
                 if (!rows.length)
                     return [];
@@ -29007,6 +30267,21 @@ var $;
                     this.Case_virtual(),
                     this.Case_leak(),
                     this.Case_crash(),
+                ];
+            }
+            /** What the edge-cases section renders: every case followed by its own
+             *  source, so "why did that happen" is answered where the question comes
+             *  up rather than in a separate section further down.
+             *
+             *  Kept apart from `cases()` because that list is also what the score is
+             *  counted from, and a code block is not a case that can be won or lost.
+             */
+            edge_content() {
+                return [
+                    this.Case_race(), this.Code_race(),
+                    this.Case_virtual(), this.Code_virtual(),
+                    this.Case_leak(), this.Code_leak(),
+                    this.Case_crash(), this.Code_crash(),
                 ];
             }
             /** Said once, under the Run button of every case, when one of the pair has

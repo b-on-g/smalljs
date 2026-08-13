@@ -1083,7 +1083,7 @@ ${d.reverse().join("")}}
 [mol_string]::-ms-clear {
 	display: none;
 }
-`)})($||($={})),$.$bog_smalljs_search=class extends $.$mol_view{Escape(){const e=new this.$.$mol_hotkey;return e.key=()=>({escape:n=>this.close(n)}),e}Nav_down(){const e=new this.$.$mol_hotkey;return e.key=()=>({down:n=>this.select_next(n)}),e}Nav_up(){const e=new this.$.$mol_hotkey;return e.key=()=>({up:n=>this.select_prev(n)}),e}Backdrop(){const e=new this.$.$mol_view;return e.event=()=>({click:n=>this.close(n)}),e}Field(){const e=new this.$.$mol_string;return e.value=n=>this.query(n),e.hint=()=>this.$.$mol_locale.text("$bog_smalljs_search_Field_hint"),e.submit=n=>this.activate(n),e}Hint(){const e=new this.$.$mol_view;return e.sub=()=>[this.hint_text()],e}result_rows(){return[]}Results(){const e=new this.$.$mol_list;return e.rows=()=>this.result_rows(),e}Panel(){const e=new this.$.$mol_view;return e.sub=()=>[this.Field(),this.Hint(),this.Results()],e}result_arg(e){return{}}result_current(e){return!1}result_title(e){return""}Result_title(e){const n=new this.$.$mol_view;return n.sub=()=>[this.result_title(e)],n}result_snippet(e){return""}Result_snippet(e){const n=new this.$.$mol_view;return n.sub=()=>[this.result_snippet(e)],n}open(e){return e!==void 0?e:!1}query(e){return e!==void 0?e:""}anchor_key(){return""}close(e){return e!==void 0?e:null}focus(e){return e!==void 0?e:null}activate(e){return e!==void 0?e:null}select_next(e){return e!==void 0?e:null}select_prev(e){return e!==void 0?e:null}pick(e,n){return n!==void 0?n:null}attr(){return{bog_smalljs_search_open:this.open()}}plugins(){return[this.Escape(),this.Nav_down(),this.Nav_up()]}sub(){return[this.Backdrop(),this.Panel()]}Result(e){const n=new this.$.$mol_link;return n.arg=()=>this.result_arg(e),n.event_click=o=>this.pick(e,o),n.attr=()=>({...this.$.$mol_link.prototype.attr.call(n),bog_smalljs_search_current:this.result_current(e)}),n.sub=()=>[this.Result_title(e),this.Result_snippet(e)],n}},$mol_mem($.$bog_smalljs_search.prototype,"Escape"),$mol_mem($.$bog_smalljs_search.prototype,"Nav_down"),$mol_mem($.$bog_smalljs_search.prototype,"Nav_up"),$mol_mem($.$bog_smalljs_search.prototype,"Backdrop"),$mol_mem($.$bog_smalljs_search.prototype,"Field"),$mol_mem($.$bog_smalljs_search.prototype,"Hint"),$mol_mem($.$bog_smalljs_search.prototype,"Results"),$mol_mem($.$bog_smalljs_search.prototype,"Panel"),$mol_mem_key($.$bog_smalljs_search.prototype,"Result_title"),$mol_mem_key($.$bog_smalljs_search.prototype,"Result_snippet"),$mol_mem($.$bog_smalljs_search.prototype,"open"),$mol_mem($.$bog_smalljs_search.prototype,"query"),$mol_mem($.$bog_smalljs_search.prototype,"close"),$mol_mem($.$bog_smalljs_search.prototype,"focus"),$mol_mem($.$bog_smalljs_search.prototype,"activate"),$mol_mem($.$bog_smalljs_search.prototype,"select_next"),$mol_mem($.$bog_smalljs_search.prototype,"select_prev"),$mol_mem_key($.$bog_smalljs_search.prototype,"pick"),$mol_mem_key($.$bog_smalljs_search.prototype,"Result");var $;(function(a){class e extends Object{static[Symbol.toStringTag];static[$mol_key_handle](){return this.toString()}static toString(){return $$.$mol_func_name(this)}static check(o){try{return this.guard(o),!0}catch{return!1}}static[Symbol.hasInstance](o){return this.check(o)}static guard(o){return o}static cast(o){try{return this.guard(o),o}catch{return this.default}}static default=null}a.$mol_schema_any=e})($||($={}));var $;(function(a){class e extends $mol_schema_any{static guard(o){return typeof o=="number"?o:$mol_fail(new TypeError("Wrong type",{cause:{value:o,schema:this}}))}static default=Number.NaN}a.$mol_schema_float=e})($||($={}));var $;(function(a){class e extends $mol_schema_float{$mol_schema_integer=!0;static guard(o){const i=super.guard(o);return Number.isFinite(i)?Math.trunc(i)!==i?$mol_fail(new TypeError("Non integer",{cause:{value:o,schema:this}})):i:$mol_fail(new TypeError("Non finite",{cause:{value:o,schema:this}}))}static default=0}a.$mol_schema_integer=e})($||($={}));var $;(function(a){class e extends $mol_schema_any{static guard(o){return typeof o=="bigint"?o:$mol_fail(new TypeError("Wrong type",{cause:{value:o,schema:this}}))}static cast(o){return typeof o=="number"?BigInt($mol_schema_integer.cast(o)):super.cast(o)}static default=0n}a.$mol_schema_bigint=e})($||($={}));var $;(function(a){class e extends $mol_schema_any{static guard(o){return typeof o=="boolean"?o:$mol_fail(new TypeError("Wrong type",{cause:{value:o,schema:this}}))}static default=!1}a.$mol_schema_boolean=e})($||($={}));var $;(function(a){class e extends $mol_schema_any{static guard(o){return typeof o=="string"?o:$mol_fail(new TypeError("Wrong type",{cause:{value:o,schema:this}}))}static cast(o){return super.cast(o)}static default=""}a.$mol_schema_string=e})($||($={}));var $;(function(a){class e extends $mol_wrapper{static wrap(o){const i=new WeakMap,t=function(r,s){let l=i.get(this??t);l||i.set(this??t,l=new Map);const u=$mol_key(r);if(s===void 0&&l.has(u))return l.get(u);const m=o.call(this,r,s)??s;return l.set(u,m),m};return Reflect.defineProperty(t,"name",{value:o.name+" "}),t}}a.$mol_memo_key=e})($||($={}));var $;(function(a){a.$mol_schema_pattern=$mol_memo_key.func(function(n){return class H extends $mol_schema_string{static Pattern=n;static toString(){return this!==H?super.toString():"$mol_schema_pattern<"+$mol_key(n)+">"}static guard(i){return n.test(super.guard(i))?i:$mol_fail(new TypeError("Wrong string",{cause:{value:i,schema:this}}))}static cast(i){return super.cast(i)}static default=""}})})($||($={}));var $;(function(a){a.$mol_schema_instance=$mol_memo_key.func(function(n){class o extends $mol_schema_any{static Class=n;static toString(){return this!==o?super.toString():"$mol_schema_instance<"+$$.$mol_func_name(n)+">"}static guard(t){return t!=null&&Object(t)instanceof n?t:$mol_fail(new TypeError("Wrong class",{cause:{value:t,schema:this}}))}static cast(t){return this.guard(t)}static default}return n?.[Symbol.hasInstance]===$mol_schema_any[Symbol.hasInstance]?n:o})})($||($={}));var $;(function(a){function e(n){return class extends $mol_schema_any{static Schema=$mol_memo.func(n);static guard(i){return this.Schema().guard(i)}static cast(i){return this.Schema().cast(i)}static get default(){return this.Schema().default}}}a.$mol_schema_lazy=e})($||($={}));var $;(function(a){a.$mol_schema_some=$mol_memo_key.func(function(n){return class E extends $mol_schema_any{static Variants=n;static toString(){return this!==E?super.toString():"$mol_schema_some<"+$mol_key(n)+">"}static guard(i){const t=[];for(const r of n)try{return r.guard(i)}catch(s){t.push(s)}return $mol_fail(new AggregateError(t,"Wrong variant",{cause:{value:i,schema:this}}))}static cast(i){try{return this.guard(i)}catch{return n[0].cast(i)}}static default=n[0].default}})})($||($={}));var $;(function(a){a.$mol_schema_dict=$mol_memo_key.func(function(n){return class q extends $mol_schema_any{static Pair=n;static toString(){return this!==q?super.toString():"$mol_schema_dict<"+$mol_key(n)+">"}static guard(i){if(Object.getPrototypeOf(Object.getPrototypeOf(i)))return $mol_fail(new TypeError("Non dictionary",{cause:{value:i,schema:this}}));for(const t in i){try{n[0].guard(t)}catch(r){return $mol_fail(new TypeError("Wrong key",{cause:{key:t,error:r,value:i,schema:this}}))}try{n[1].guard(i[t])}catch(r){return $mol_fail(new TypeError("Wrong val",{cause:{key:t,error:r,value:i,schema:this}}))}}return i}static cast(i){if(Object.getPrototypeOf(Object.getPrototypeOf(i)))return this.default;const t={};for(const r in i)n[0].check(r)&&(t[r]=n[1].cast(i[r]));return t}static default={}}})})($||($={}));var $;(function(a){a.$mol_schema_enum=$mol_memo_key.func(function(n){return class P extends $mol_schema_any{static Options=n;static toString(){return this!==P?super.toString():"$mol_schema_enum<"+$mol_key(n)+">"}static guard(i){return n.some(t=>Object.is(t,i))?i:$mol_fail(new TypeError("Wrong option",{cause:{value:i,schema:this}}))}static cast(i){return this.check(i)?i:n[0]}static default=n[0]}})})($||($={}));var $;(function(a){a.$mol_schema_list=$mol_memo_key.func(function(n){return class G extends $mol_schema_any{static Item=n;static toString(){return this!==G?super.toString():"$mol_schema_list<"+$mol_key(n)+">"}static guard(i){if(!Array.isArray(i))return $mol_fail(new TypeError("Non array",{cause:{value:i,schema:this}}));for(const[t,r]of super.guard(i).entries())try{n.guard(r)}catch(s){return $mol_fail(new TypeError("Wrong item",{cause:{index:t,error:s,value:i,schema:this}}))}return i}static cast(i){return Array.isArray(i)?i.map(t=>n.cast(t)):this.default}static default=[]}})})($||($={}));var $;(function(a){class e extends $mol_schema_lazy(()=>$mol_schema_some([$mol_schema_dict([$mol_schema_string,e]),$mol_schema_enum([null]),$mol_schema_boolean,$mol_schema_float,$mol_schema_string,$mol_schema_list(e)])){}a.$mol_schema_json=e})($||($={}));var $;(function(a){a.$mol_schema_every=$mol_memo_key.func(function(n){return class U extends $mol_schema_any{static Schemas=n;static toString(){return this!==U?super.toString():"$mol_schema_every<"+$mol_key(n)+">"}static guard(i){for(const t of n)t.guard(i);return i}static cast(i){for(const t of n)i=t.cast(i);return i}static default=n.find(i=>this.check(i.default))}})})($||($={}));var $;(function(a){a.$mol_schema_range=$mol_memo_key.func(function(n){return class N extends $mol_schema_any{static Range=n;static toString(){return this!==N?super.toString():"$mol_schema_range<"+$mol_key(n)+">"}static guard(i){return typeof i!="number"&&typeof i!="bigint"?$mol_fail(new TypeError("Uncomparable type",{cause:{value:i,schema:this}})):i<=n[1]?i>=n[0]?i:$mol_fail(new TypeError("Too small",{cause:{value:i,schema:this}})):$mol_fail(new TypeError("Too large",{cause:{value:i,schema:this}}))}static cast(i){return i>n[1]?n[1]:i>=n[0]?i:n[0]}static default=n[0]}})})($||($={}));var $;(function(a){class e extends $mol_schema_range([0,Number.POSITIVE_INFINITY]){}a.$mol_schema_positive=e})($||($={}));var $;(function(a){class e extends $mol_schema_every([$mol_schema_integer,$mol_schema_positive]){}a.$mol_schema_natural=e})($||($={}));var $;(function(a){class e extends $mol_schema_range([Number.NEGATIVE_INFINITY,0]){}a.$mol_schema_negative=e})($||($={}));var $;(function(a){a.$mol_schema_maybe=$mol_memo_key.func(function(n){return class V extends $mol_schema_any{static Some=n;static toString(){return this!==V?super.toString():"$mol_schema_maybe<"+$mol_key(n)+">"}static guard(i){return i==null?i:n.guard(i)}static default=null}})})($||($={}));var $;(function(a){a.$mol_schema_record=$mol_memo_key.func(function(n){return class O extends $mol_schema_any{static Fields=n;static toString(){return this!==O?super.toString():"$mol_schema_record<"+$mol_key(n)+">"}static guard(i){if(Object.getPrototypeOf(Object.getPrototypeOf(i)))return $mol_fail(new TypeError("Non record",{cause:{value:i,schema:this}}));for(const t in n)try{n[t].guard(i[t])}catch(r){return $mol_fail(new TypeError("Wrong field",{cause:{field:t,error:r,value:i,schema:this}}))}return i}static cast(i){if(Object.getPrototypeOf(Object.getPrototypeOf(i)))return this.default;const t={};for(const r in n)t[r]=n[r].cast(i[r]);return t}static default=Object.fromEntries(Object.entries(n).map(([i,t])=>[i,t.default]))}})})($||($={}));var $;(function(a){function e(n){const o={};for(const i in n)o[i]=$mol_schema_maybe(n[i]);return class B extends $mol_schema_record(o){static Fields=n;static toString(){return this!==B?super.toString():"$mol_schema_partial<"+$mol_key(n)+">"}}}a.$mol_schema_partial=e})($||($={})),$.$mol_button_major=class extends $.$mol_button_minor{theme(){return"$mol_theme_base"}};var $;(function(a){$mol_style_attach("mol/button/major/major.view.css",`[mol_button_major] {
+`)})($||($={})),$.$bog_smalljs_search=class extends $.$mol_view{Escape(){const e=new this.$.$mol_hotkey;return e.key=()=>({escape:n=>this.close(n)}),e}Nav_down(){const e=new this.$.$mol_hotkey;return e.key=()=>({down:n=>this.select_next(n)}),e}Nav_up(){const e=new this.$.$mol_hotkey;return e.key=()=>({up:n=>this.select_prev(n)}),e}Backdrop(){const e=new this.$.$mol_view;return e.event=()=>({click:n=>this.close(n)}),e}Field(){const e=new this.$.$mol_string;return e.value=n=>this.query(n),e.hint=()=>this.$.$mol_locale.text("$bog_smalljs_search_Field_hint"),e.submit=n=>this.activate(n),e}Hint(){const e=new this.$.$mol_view;return e.sub=()=>[this.hint_text()],e}result_rows(){return[]}Results(){const e=new this.$.$mol_list;return e.rows=()=>this.result_rows(),e}Panel(){const e=new this.$.$mol_view;return e.sub=()=>[this.Field(),this.Hint(),this.Results()],e}result_arg(e){return{}}result_current(e){return!1}result_title(e){return""}Result_title(e){const n=new this.$.$mol_view;return n.sub=()=>[this.result_title(e)],n}result_snippet(e){return""}Result_snippet(e){const n=new this.$.$mol_view;return n.sub=()=>[this.result_snippet(e)],n}open(e){return e!==void 0?e:!1}query(e){return e!==void 0?e:""}anchor_key(){return""}close(e){return e!==void 0?e:null}focus(e){return e!==void 0?e:null}activate(e){return e!==void 0?e:null}select_next(e){return e!==void 0?e:null}select_prev(e){return e!==void 0?e:null}pick(e,n){return n!==void 0?n:null}attr(){return{bog_smalljs_search_open:this.open()}}plugins(){return[this.Escape(),this.Nav_down(),this.Nav_up()]}sub(){return[this.Backdrop(),this.Panel()]}Result(e){const n=new this.$.$mol_link;return n.arg=()=>this.result_arg(e),n.event_click=o=>this.pick(e,o),n.attr=()=>({...this.$.$mol_link.prototype.attr.call(n),bog_smalljs_search_current:this.result_current(e)}),n.sub=()=>[this.Result_title(e),this.Result_snippet(e)],n}},$mol_mem($.$bog_smalljs_search.prototype,"Escape"),$mol_mem($.$bog_smalljs_search.prototype,"Nav_down"),$mol_mem($.$bog_smalljs_search.prototype,"Nav_up"),$mol_mem($.$bog_smalljs_search.prototype,"Backdrop"),$mol_mem($.$bog_smalljs_search.prototype,"Field"),$mol_mem($.$bog_smalljs_search.prototype,"Hint"),$mol_mem($.$bog_smalljs_search.prototype,"Results"),$mol_mem($.$bog_smalljs_search.prototype,"Panel"),$mol_mem_key($.$bog_smalljs_search.prototype,"Result_title"),$mol_mem_key($.$bog_smalljs_search.prototype,"Result_snippet"),$mol_mem($.$bog_smalljs_search.prototype,"open"),$mol_mem($.$bog_smalljs_search.prototype,"query"),$mol_mem($.$bog_smalljs_search.prototype,"close"),$mol_mem($.$bog_smalljs_search.prototype,"focus"),$mol_mem($.$bog_smalljs_search.prototype,"activate"),$mol_mem($.$bog_smalljs_search.prototype,"select_next"),$mol_mem($.$bog_smalljs_search.prototype,"select_prev"),$mol_mem_key($.$bog_smalljs_search.prototype,"pick"),$mol_mem_key($.$bog_smalljs_search.prototype,"Result");var $;(function(a){class e extends Object{static[Symbol.toStringTag];static[$mol_key_handle](){return this.toString()}static toString(){return $$.$mol_func_name(this)}static check(o){try{return this.guard(o),!0}catch{return!1}}static[Symbol.hasInstance](o){return this.check(o)}static guard(o){return o}static cast(o){try{return this.guard(o),o}catch{return this.default}}static default=null}a.$mol_schema_any=e})($||($={}));var $;(function(a){class e extends $mol_schema_any{static guard(o){return typeof o=="number"?o:$mol_fail(new TypeError("Wrong type",{cause:{value:o,schema:this}}))}static default=Number.NaN}a.$mol_schema_float=e})($||($={}));var $;(function(a){class e extends $mol_schema_float{$mol_schema_integer=!0;static guard(o){const i=super.guard(o);return Number.isFinite(i)?Math.trunc(i)!==i?$mol_fail(new TypeError("Non integer",{cause:{value:o,schema:this}})):i:$mol_fail(new TypeError("Non finite",{cause:{value:o,schema:this}}))}static default=0}a.$mol_schema_integer=e})($||($={}));var $;(function(a){class e extends $mol_schema_any{static guard(o){return typeof o=="bigint"?o:$mol_fail(new TypeError("Wrong type",{cause:{value:o,schema:this}}))}static cast(o){return typeof o=="number"?BigInt($mol_schema_integer.cast(o)):super.cast(o)}static default=0n}a.$mol_schema_bigint=e})($||($={}));var $;(function(a){class e extends $mol_schema_any{static guard(o){return typeof o=="boolean"?o:$mol_fail(new TypeError("Wrong type",{cause:{value:o,schema:this}}))}static default=!1}a.$mol_schema_boolean=e})($||($={}));var $;(function(a){class e extends $mol_schema_any{static guard(o){return typeof o=="string"?o:$mol_fail(new TypeError("Wrong type",{cause:{value:o,schema:this}}))}static cast(o){return super.cast(o)}static default=""}a.$mol_schema_string=e})($||($={}));var $;(function(a){class e extends $mol_wrapper{static wrap(o){const i=new WeakMap,t=function(r,s){let l=i.get(this??t);l||i.set(this??t,l=new Map);const u=$mol_key(r);if(s===void 0&&l.has(u))return l.get(u);const m=o.call(this,r,s)??s;return l.set(u,m),m};return Reflect.defineProperty(t,"name",{value:o.name+" "}),t}}a.$mol_memo_key=e})($||($={}));var $;(function(a){a.$mol_schema_pattern=$mol_memo_key.func(function(n){return class H extends $mol_schema_string{static Pattern=n;static toString(){return this!==H?super.toString():"$mol_schema_pattern<"+$mol_key(n)+">"}static guard(i){return n.test(super.guard(i))?i:$mol_fail(new TypeError("Wrong string",{cause:{value:i,schema:this}}))}static cast(i){return super.cast(i)}static default=""}})})($||($={}));var $;(function(a){a.$mol_schema_instance=$mol_memo_key.func(function(n){class o extends $mol_schema_any{static Class=n;static toString(){return this!==o?super.toString():"$mol_schema_instance<"+$$.$mol_func_name(n)+">"}static guard(t){return t!=null&&Object(t)instanceof n?t:$mol_fail(new TypeError("Wrong class",{cause:{value:t,schema:this}}))}static cast(t){return this.guard(t)}static default}return n?.[Symbol.hasInstance]===$mol_schema_any[Symbol.hasInstance]?n:o})})($||($={}));var $;(function(a){function e(n){return class extends $mol_schema_any{static Schema=$mol_memo.func(n);static guard(i){return this.Schema().guard(i)}static cast(i){return this.Schema().cast(i)}static get default(){return this.Schema().default}}}a.$mol_schema_lazy=e})($||($={}));var $;(function(a){a.$mol_schema_some=$mol_memo_key.func(function(n){return class E extends $mol_schema_any{static Variants=n;static toString(){return this!==E?super.toString():"$mol_schema_some<"+$mol_key(n)+">"}static guard(i){const t=[];for(const r of n)try{return r.guard(i)}catch(s){t.push(s)}return $mol_fail(new AggregateError(t,"Wrong variant",{cause:{value:i,schema:this}}))}static cast(i){try{return this.guard(i)}catch{return n[0].cast(i)}}static default=n[0].default}})})($||($={}));var $;(function(a){a.$mol_schema_dict=$mol_memo_key.func(function(n){return class q extends $mol_schema_any{static Pair=n;static toString(){return this!==q?super.toString():"$mol_schema_dict<"+$mol_key(n)+">"}static guard(i){if(Object.getPrototypeOf(Object.getPrototypeOf(i)))return $mol_fail(new TypeError("Non dictionary",{cause:{value:i,schema:this}}));for(const t in i){try{n[0].guard(t)}catch(r){return $mol_fail(new TypeError("Wrong key",{cause:{key:t,error:r,value:i,schema:this}}))}try{n[1].guard(i[t])}catch(r){return $mol_fail(new TypeError("Wrong val",{cause:{key:t,error:r,value:i,schema:this}}))}}return i}static cast(i){if(Object.getPrototypeOf(Object.getPrototypeOf(i)))return this.default;const t={};for(const r in i)n[0].check(r)&&(t[r]=n[1].cast(i[r]));return t}static default={}}})})($||($={}));var $;(function(a){a.$mol_schema_enum=$mol_memo_key.func(function(n){return class P extends $mol_schema_any{static Options=n;static toString(){return this!==P?super.toString():"$mol_schema_enum<"+$mol_key(n)+">"}static guard(i){return n.some(t=>Object.is(t,i))?i:$mol_fail(new TypeError("Wrong option",{cause:{value:i,schema:this}}))}static cast(i){return this.check(i)?i:n[0]}static default=n[0]}})})($||($={}));var $;(function(a){a.$mol_schema_list=$mol_memo_key.func(function(n){return class U extends $mol_schema_any{static Item=n;static toString(){return this!==U?super.toString():"$mol_schema_list<"+$mol_key(n)+">"}static guard(i){if(!Array.isArray(i))return $mol_fail(new TypeError("Non array",{cause:{value:i,schema:this}}));for(const[t,r]of super.guard(i).entries())try{n.guard(r)}catch(s){return $mol_fail(new TypeError("Wrong item",{cause:{index:t,error:s,value:i,schema:this}}))}return i}static cast(i){return Array.isArray(i)?i.map(t=>n.cast(t)):this.default}static default=[]}})})($||($={}));var $;(function(a){class e extends $mol_schema_lazy(()=>$mol_schema_some([$mol_schema_dict([$mol_schema_string,e]),$mol_schema_enum([null]),$mol_schema_boolean,$mol_schema_float,$mol_schema_string,$mol_schema_list(e)])){}a.$mol_schema_json=e})($||($={}));var $;(function(a){a.$mol_schema_every=$mol_memo_key.func(function(n){return class G extends $mol_schema_any{static Schemas=n;static toString(){return this!==G?super.toString():"$mol_schema_every<"+$mol_key(n)+">"}static guard(i){for(const t of n)t.guard(i);return i}static cast(i){for(const t of n)i=t.cast(i);return i}static default=n.find(i=>this.check(i.default))}})})($||($={}));var $;(function(a){a.$mol_schema_range=$mol_memo_key.func(function(n){return class N extends $mol_schema_any{static Range=n;static toString(){return this!==N?super.toString():"$mol_schema_range<"+$mol_key(n)+">"}static guard(i){return typeof i!="number"&&typeof i!="bigint"?$mol_fail(new TypeError("Uncomparable type",{cause:{value:i,schema:this}})):i<=n[1]?i>=n[0]?i:$mol_fail(new TypeError("Too small",{cause:{value:i,schema:this}})):$mol_fail(new TypeError("Too large",{cause:{value:i,schema:this}}))}static cast(i){return i>n[1]?n[1]:i>=n[0]?i:n[0]}static default=n[0]}})})($||($={}));var $;(function(a){class e extends $mol_schema_range([0,Number.POSITIVE_INFINITY]){}a.$mol_schema_positive=e})($||($={}));var $;(function(a){class e extends $mol_schema_every([$mol_schema_integer,$mol_schema_positive]){}a.$mol_schema_natural=e})($||($={}));var $;(function(a){class e extends $mol_schema_range([Number.NEGATIVE_INFINITY,0]){}a.$mol_schema_negative=e})($||($={}));var $;(function(a){a.$mol_schema_maybe=$mol_memo_key.func(function(n){return class V extends $mol_schema_any{static Some=n;static toString(){return this!==V?super.toString():"$mol_schema_maybe<"+$mol_key(n)+">"}static guard(i){return i==null?i:n.guard(i)}static default=null}})})($||($={}));var $;(function(a){a.$mol_schema_record=$mol_memo_key.func(function(n){return class O extends $mol_schema_any{static Fields=n;static toString(){return this!==O?super.toString():"$mol_schema_record<"+$mol_key(n)+">"}static guard(i){if(Object.getPrototypeOf(Object.getPrototypeOf(i)))return $mol_fail(new TypeError("Non record",{cause:{value:i,schema:this}}));for(const t in n)try{n[t].guard(i[t])}catch(r){return $mol_fail(new TypeError("Wrong field",{cause:{field:t,error:r,value:i,schema:this}}))}return i}static cast(i){if(Object.getPrototypeOf(Object.getPrototypeOf(i)))return this.default;const t={};for(const r in n)t[r]=n[r].cast(i[r]);return t}static default=Object.fromEntries(Object.entries(n).map(([i,t])=>[i,t.default]))}})})($||($={}));var $;(function(a){function e(n){const o={};for(const i in n)o[i]=$mol_schema_maybe(n[i]);return class B extends $mol_schema_record(o){static Fields=n;static toString(){return this!==B?super.toString():"$mol_schema_partial<"+$mol_key(n)+">"}}}a.$mol_schema_partial=e})($||($={})),$.$mol_button_major=class extends $.$mol_button_minor{theme(){return"$mol_theme_base"}};var $;(function(a){$mol_style_attach("mol/button/major/major.view.css",`[mol_button_major] {
 	background-color: var(--mol_theme_back);
 	color: var(--mol_theme_text);
 }
@@ -22589,7 +22589,1018 @@ URL কেবল রিঅ্যাকটিভ স্টেট। \`$mol_state_
 			min-width: 14rem;
 		}
 
-	`)})($||($={})),$.$bog_smalljs_versus_case=class extends $.$mol_view{Title(){const e=new this.$.$mol_view;return e.sub=()=>[this.title()],e}Hint(){const e=new this.$.$mol_view;return e.sub=()=>[this.hint()],e}Head(){const e=new this.$.$mol_view;return e.sub=()=>[this.Title(),this.Hint()],e}controls_content(){return[]}Controls(){const e=new this.$.$mol_view;return e.sub=()=>this.controls_content(),e}columns(){return[]}Columns(){const e=new this.$.$mol_view;return e.sub=()=>this.columns(),e}run_enabled(){return!0}run(e){return e!==void 0?e:null}run_label(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_run_label")}run_hint(){return""}framework_name(e){return""}Label(e){const n=new this.$.$mol_view;return n.sub=()=>[this.framework_name(e)],n}frame_uri(e){return""}frame_title(e){return""}frame_loaded(e,n){return n!==void 0?n:null}Frame(e){const n=new this.$.$bog_smalljs_versus_case_frame;return n.uri=()=>this.frame_uri(e),n.frame_title=()=>this.frame_title(e),n.loaded=o=>this.frame_loaded(e,o),n}card_content(e){return[]}Card(e){const n=new this.$.$mol_view;return n.sub=()=>this.card_content(e),n}status(e){return""}status_icon(e){return""}status_text(e){return""}observed(e){return""}metric_rows(e){return[]}metric_name(e){return""}Metric_name(e){const n=new this.$.$mol_view;return n.sub=()=>[this.metric_name(e)],n}metric_value(e){return""}Metric_value(e){const n=new this.$.$mol_view;return n.sub=()=>[this.metric_value(e)],n}note(e){return""}case_id(){return""}title(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_title")}hint(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_hint")}status_idle(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_status_idle")}status_running(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_status_running")}status_ok(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_status_ok")}status_warn(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_status_warn")}status_fail(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_status_fail")}status_error(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_status_error")}status_invalid(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_status_invalid")}error_timeout(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_error_timeout")}error_not_loaded(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_error_not_loaded")}run_hint_broken(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_run_hint_broken")}invalid_tab_hidden(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_invalid_tab_hidden")}invalid_timers_throttled(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_invalid_timers_throttled")}invalid_frame_offscreen(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_invalid_frame_offscreen")}invalid_other(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_invalid_other")}run_hint_hidden(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_run_hint_hidden")}run_hint_loading(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_run_hint_loading")}sub(){return[this.Head(),this.Controls(),this.Columns()]}Run(){const e=new this.$.$mol_button_major;return e.enabled=()=>this.run_enabled(),e.click=n=>this.run(n),e.sub=()=>[this.run_label()],e}Run_hint(){const e=new this.$.$mol_view;return e.sub=()=>[this.run_hint()],e}Column(e){const n=new this.$.$mol_view;return n.sub=()=>[this.Label(e),this.Frame(e),this.Card(e)],n}Status(e){const n=new this.$.$bog_smalljs_versus_case_status;return n.status=()=>this.status(e),n.icon=()=>this.status_icon(e),n.text=()=>this.status_text(e),n}Observed(e){const n=new this.$.$mol_view;return n.sub=()=>[this.observed(e)],n}Metrics(e){const n=new this.$.$mol_view;return n.sub=()=>this.metric_rows(e),n}Metric(e){const n=new this.$.$mol_view;return n.sub=()=>[this.Metric_name(e),this.Metric_value(e)],n}Note(e){const n=new this.$.$mol_view;return n.sub=()=>[this.note(e)],n}},$mol_mem($.$bog_smalljs_versus_case.prototype,"Title"),$mol_mem($.$bog_smalljs_versus_case.prototype,"Hint"),$mol_mem($.$bog_smalljs_versus_case.prototype,"Head"),$mol_mem($.$bog_smalljs_versus_case.prototype,"Controls"),$mol_mem($.$bog_smalljs_versus_case.prototype,"Columns"),$mol_mem($.$bog_smalljs_versus_case.prototype,"run"),$mol_mem_key($.$bog_smalljs_versus_case.prototype,"Label"),$mol_mem_key($.$bog_smalljs_versus_case.prototype,"frame_loaded"),$mol_mem_key($.$bog_smalljs_versus_case.prototype,"Frame"),$mol_mem_key($.$bog_smalljs_versus_case.prototype,"Card"),$mol_mem_key($.$bog_smalljs_versus_case.prototype,"Metric_name"),$mol_mem_key($.$bog_smalljs_versus_case.prototype,"Metric_value"),$mol_mem($.$bog_smalljs_versus_case.prototype,"Run"),$mol_mem($.$bog_smalljs_versus_case.prototype,"Run_hint"),$mol_mem_key($.$bog_smalljs_versus_case.prototype,"Column"),$mol_mem_key($.$bog_smalljs_versus_case.prototype,"Status"),$mol_mem_key($.$bog_smalljs_versus_case.prototype,"Observed"),$mol_mem_key($.$bog_smalljs_versus_case.prototype,"Metrics"),$mol_mem_key($.$bog_smalljs_versus_case.prototype,"Metric"),$mol_mem_key($.$bog_smalljs_versus_case.prototype,"Note"),$.$bog_smalljs_versus_case_status=class extends $.$mol_view{Icon(){const e=new this.$.$mol_view;return e.sub=()=>[this.icon()],e}Text(){const e=new this.$.$mol_view;return e.sub=()=>[this.text()],e}status(){return"idle"}icon(){return""}text(){return""}attr(){return{...super.attr(),bog_smalljs_versus_status:this.status()}}sub(){return[this.Icon(),this.Text()]}},$mol_mem($.$bog_smalljs_versus_case_status.prototype,"Icon"),$mol_mem($.$bog_smalljs_versus_case_status.prototype,"Text"),$.$bog_smalljs_versus_case_frame=class extends $.$mol_view{loaded(e){return e!==void 0?e:null}dom_name(){return"iframe"}uri(){return""}frame_title(){return""}sub(){return[]}event(){return{...super.event(),load:e=>this.loaded(e)}}attr(){return{...super.attr(),src:this.uri(),title:this.frame_title(),loading:"lazy"}}},$mol_mem($.$bog_smalljs_versus_case_frame.prototype,"loaded");var $;(function(a){var e;(function(n){const o=["react","vue","mol"],i={react:"React",vue:"Vue",mol:"$mol"},t={status:"idle",observed:"",metrics:[]},r="—",s={idle:"○",running:"⏳",ok:"✅",warn:"⚠️",fail:"❌",error:"⛔",invalid:"↻"},l=15e3,u=5e3,m={react:"bog/smalljs/assets/versus/react/runner.html",vue:"bog/smalljs/assets/versus/vue/runner.html",mol:"bog/smalljs/lab/-/index.html"},d="/bog/smalljs/",c="/smalljs/",_={race:{react:"The effect calls setState with whatever the request returns, with no cancellation. Ignoring a response that is no longer current takes a cancel flag or an AbortController inside the effect.",vue:"The watcher assigns whatever the awaited request returns, with no cancellation. Ignoring a response that is no longer current takes a check after the await that the selected id has not changed.",mol:"The panel value is computed from the selected id, so a response for an earlier id is never assigned. Nothing is written by hand here."},virtual:{react:"Every row is rendered by a plain .map() over the data. Rendering only the rows on screen takes a virtualization library and a way to measure each row, since the heights differ.",vue:"Every row is rendered by a plain v-for over the data. Rendering only the rows on screen takes a virtualization library and a way to measure each row, since the heights differ.",mol:"The list keeps only the rows inside the viewport in the DOM and measures their heights as it scrolls. Nothing is written by hand here."},leak:{react:"The effect subscribes and returns nothing. Releasing the subscription takes a cleanup function returned from every effect that subscribes.",vue:"onMounted subscribes and there is no matching onUnmounted. Releasing the subscription takes a teardown hook in every component that subscribes.",mol:"The subscription belongs to the component's own reactive cell and is released together with the component. Nothing is written by hand here."},crash:{react:"With no ErrorBoundary above it, a throw during render takes the whole tree down. Keeping the rest of the list on screen takes an ErrorBoundary component around every part that may throw.",vue:"The production build drops the throwing component and leaves an empty comment node in its place, so the rest of the list stays and the page shows no sign that anything failed — the TypeError reaches the console only. Putting something visible where the card was takes an onErrorCaptured hook and markup to render in the failed slot.",mol:"A view that throws renders the error message in its own place and the rest of the tree keeps rendering. Nothing is written by hand here."}};function p(f){return f==="ok"||f==="warn"||f==="fail"?f:"error"}function h(f){return Array.isArray(f)?f.flatMap(y=>{if(!y||typeof y!="object")return[];const w=y.name;if(!w)return[];const x=y.value,M=y.unit;return x==null||x===""?[{name:String(w),value:r}]:[{name:String(w),value:String(x)+(M?" "+String(M):"")}]}):[]}class b extends a.$bog_smalljs_versus_case{frameworks(){return o}columns(){return this.frameworks().map(y=>this.Column(y))}framework_name(y){return i[y]??y}frame_title(y){return this.framework_name(y)+" — "+this.case_id()}location_path(){return this.$.$mol_dom_context.location?.pathname??""}site_base(){const y=this.location_path(),w=y.indexOf(d);if(w>=0)return y.slice(0,w)+"/";const x=y.indexOf(c);return x>=0?y.slice(0,x+c.length):"/"}frame_uri(y){return this.site_base()+m[y]+"?case="+encodeURIComponent(this.case_id())}result(y,w){return w??t}status(y){return this.result(y).status}status_icon(y){return s[this.status(y)]}status_text(y){switch(this.status(y)){case"running":return this.status_running();case"ok":return this.status_ok();case"warn":return this.status_warn();case"fail":return this.status_fail();case"error":return this.status_error();case"invalid":return this.status_invalid();default:return this.status_idle()}}observed(y){return this.result(y).observed}invalid_text(y){switch(y){case"tab-hidden":return this.invalid_tab_hidden();case"timers-throttled":return this.invalid_timers_throttled();case"frame-offscreen":return this.invalid_frame_offscreen();default:return this.invalid_other()}}note(y){return _[this.case_id()]?.[y]??""}metric_ids(y){return this.result(y).metrics.map((w,x)=>y+"/"+x)}metric_rows(y){return this.metric_ids(y).map(w=>this.Metric(w))}metric(y){const w=y.lastIndexOf("/");return this.result(y.slice(0,w)).metrics[Number(y.slice(w+1))]}metric_name(y){return this.metric(y)?.name??""}metric_value(y){return this.metric(y)?.value??r}card_content(y){return[this.Status(y),...this.observed(y)?[this.Observed(y)]:[],...this.metric_ids(y).length?[this.Metrics(y)]:[],...this.note(y)?[this.Note(y)]:[]]}controls_content(){return[this.Run(),...this.run_hint()?[this.Run_hint()]:[]]}ready(y,w){return w??!1}frames_ready(){return this.frameworks().every(y=>this.ready(y))}frame_settled(y,w){return w??!1}frame_loaded(y,w){return this.frame_settled(y,!0),null}ready_watchdog(y){return!this.frame_settled(y)||this.ready(y)?null:new this.$.$mol_after_timeout(u,()=>this.ready_expire(y))}ready_expire(y){return this.ready(y)||this.result(y,{status:"error",observed:this.error_not_loaded(),metrics:[]}),null}frames_broken(){return this.frameworks().some(y=>!this.ready(y)&&this.status(y)==="error")}page_visible(y){return y??!this.$.$mol_dom_context.document?.hidden}visibility_sync(){return this.page_visible(!this.$.$mol_dom_context.document.hidden),null}run_enabled(){return this.frames_ready()&&this.page_visible()}run_hint(){return this.page_visible()?this.frames_broken()?this.run_hint_broken():this.frames_ready()?"":this.run_hint_loading():this.run_hint_hidden()}run_id(y){return y??0}run(){if(!this.run_enabled())return null;const y=this.run_id()+1;this.run_id(y);for(const w of this.frameworks())this.result(w,{status:"running",observed:"",metrics:[]}),this.post(w,{ns:"versus",type:"run",case:this.case_id()});return null}watchdog(){const y=this.run_id();return y?new this.$.$mol_after_timeout(l,()=>this.expire(y)):null}expire(y){if(this.run_id()!==y)return null;for(const w of this.frameworks())this.status(w)==="running"&&this.result(w,{status:"error",observed:this.error_timeout(),metrics:[]});return null}frame_window(y){return this.Frame(y).dom_node().contentWindow}post(y,w){this.frame_window(y)?.postMessage(w,"*")}message_listener(){return new $mol_dom_listener(this.$.$mol_dom_context,"message",$mol_wire_async(this).message_receive)}visibility_listener(){return new $mol_dom_listener(this.$.$mol_dom_context.document,"visibilitychange",()=>this.visibility_sync())}auto(){return[this.message_listener(),this.visibility_listener(),this.watchdog(),...this.frameworks().map(y=>this.ready_watchdog(y))]}message_receive(y){if(!y)return;const w=y.data;if(!w||typeof w!="object"||w.ns!=="versus")return;const x=this.frameworks().find(M=>y.source===this.frame_window(M));if(x&&!(w.case!==void 0&&w.case!==this.case_id()))switch(w.type){case"ready":{if(this.ready(x,!0),this.status(x)==="running")return;this.result(x,t);return}case"result":{this.result(x,{status:p(w.status),observed:String(w.observed??""),metrics:h(w.metrics)});return}case"invalid":{this.result(x,{status:"invalid",observed:this.invalid_text(w.reason),metrics:[]});return}case"error":{this.result(x,{status:"error",observed:String(w.message??""),metrics:[]});return}}}}__decorate([$mol_mem_key],b.prototype,"frame_uri",null),__decorate([$mol_mem_key],b.prototype,"result",null),__decorate([$mol_mem_key],b.prototype,"ready",null),__decorate([$mol_mem_key],b.prototype,"frame_settled",null),__decorate([$mol_action],b.prototype,"frame_loaded",null),__decorate([$mol_mem_key],b.prototype,"ready_watchdog",null),__decorate([$mol_action],b.prototype,"ready_expire",null),__decorate([$mol_mem],b.prototype,"page_visible",null),__decorate([$mol_action],b.prototype,"visibility_sync",null),__decorate([$mol_mem],b.prototype,"run_id",null),__decorate([$mol_action],b.prototype,"run",null),__decorate([$mol_mem],b.prototype,"watchdog",null),__decorate([$mol_action],b.prototype,"expire",null),__decorate([$mol_mem],b.prototype,"message_listener",null),__decorate([$mol_mem],b.prototype,"visibility_listener",null),n.$bog_smalljs_versus_case=b})(e=a.$$||(a.$$={}))})($||($={}));var $;(function(a){const{rem:e,px:n}=$mol_style_unit,o={width:"1px",style:"solid",color:$bog_builderui_tokens.line},i="'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace",t="#3f9e57",r="#bb8218",s="#d2564f";$mol_style_define($bog_smalljs_versus_case,{flex:{direction:"column"},gap:e(1),padding:e(1.25),border:{radius:e(.75),...o},background:{color:$bog_builderui_tokens.card},Head:{flex:{direction:"column"},gap:e(.35)},Title:{display:"block",font:{family:$bog_builderui_tokens.font_head,size:e(1.25),weight:600},lineHeight:"1.25",color:$bog_builderui_tokens.text},Hint:{display:"block",font:{size:e(.9375)},lineHeight:"1.5",color:$bog_builderui_tokens.shade},Controls:{flex:{direction:"row",wrap:"wrap"},align:{items:"center"},gap:e(.75)},Run:{flex:{grow:0,shrink:0},padding:{top:e(.5),bottom:e(.5),left:e(1.25),right:e(1.25)},border:{radius:e(.375)},font:{weight:600},"@":{disabled:{true:{opacity:.45}}}},Run_hint:{display:"block",flex:{shrink:1},minWidth:0,font:{size:e(.8125)},lineHeight:"1.45",color:$bog_builderui_tokens.shade},Columns:{display:"grid",gridTemplateColumns:"repeat(3, minmax(0, 1fr))",gap:e(.75)},Column:{flex:{direction:"column"},minWidth:0,gap:e(.5),padding:e(.75),border:{radius:e(.5),...o},background:{color:$bog_builderui_tokens.back}},Label:{display:"block",font:{family:i,size:e(.6875),weight:600},letterSpacing:e(.06),textTransform:"uppercase",color:$bog_builderui_tokens.shade},Frame:{display:"block",width:"100%",height:n(320),minWidth:0,border:{radius:e(.375),...o},background:{color:"#ffffff"}},Card:{flex:{direction:"column"},minWidth:0,gap:e(.4)},Observed:{display:"block",font:{size:e(.875)},lineHeight:"1.45",color:$bog_builderui_tokens.text},Metrics:{flex:{direction:"column"},gap:e(.15)},Metric:{flex:{direction:"row",wrap:"wrap"},justify:{content:"space-between"},gap:e(.5),font:{size:e(.8125)}},Metric_name:{display:"block",color:$bog_builderui_tokens.shade},Metric_value:{display:"block",font:{family:i},color:$bog_builderui_tokens.text},Note:{display:"block",padding:{top:e(.4)},border:{top:o},font:{size:e(.75)},lineHeight:"1.45",color:$bog_builderui_tokens.shade},"@media":{"(max-width: 47.9375rem)":{Columns:{gridTemplateColumns:"1fr"}}}}),$mol_style_define($bog_smalljs_versus_case_status,{flex:{direction:"row",wrap:"wrap"},align:{items:"baseline"},gap:e(.4),font:{size:e(.875),weight:600},color:$bog_builderui_tokens.shade,Icon:{display:"block",flex:{shrink:0}},Text:{display:"block"},"@":{bog_smalljs_versus_status:{ok:{color:t},warn:{color:r},fail:{color:s},error:{color:s}}}})})($||($={})),$.$bog_smalljs_versus_pair=class extends $.$mol_view{head_content(){return[]}Head(){const e=new this.$.$mol_view;return e.sub=()=>this.head_content(),e}sections(){return[]}Sections(){const e=new this.$.$mol_view;return e.sub=()=>this.sections(),e}method_title_text(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_method_title_text")}Method_title(){const e=new this.$.$mol_view;return e.dom_name=()=>"h2",e.sub=()=>[this.method_title_text()],e}method_body(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_method_body")}Method_text(){const e=new this.$.$mol_view;return e.sub=()=>[this.method_body()],e}method_link_label(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_method_link_label")}Method_link_icon(){return new this.$.$mol_icon_open_in_new}Method_link(){const e=new this.$.$mol_link;return e.uri=()=>"https://github.com/b-on-g/smalljs/tree/master/versus",e.target=()=>"_blank",e.sub=()=>[this.method_link_label(),this.Method_link_icon()],e}Method(){const e=new this.$.$mol_view;return e.sub=()=>[this.Method_title(),this.Method_text(),this.Method_link()],e}suggest_title_text(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_suggest_title_text")}Suggest_title(){const e=new this.$.$mol_view;return e.dom_name=()=>"h2",e.sub=()=>[this.suggest_title_text()],e}suggest_body(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_suggest_body")}Suggest_text(){const e=new this.$.$mol_view;return e.sub=()=>[this.suggest_body()],e}suggest_name(e){return e!==void 0?e:""}Suggest_field(){const e=new this.$.$mol_string;return e.value=n=>this.suggest_name(n),e.hint=()=>this.$.$mol_locale.text("$bog_smalljs_versus_pair_Suggest_field_hint"),e}suggest_uri(){return""}suggest_send_label(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_suggest_send_label")}Suggest_send_icon(){return new this.$.$mol_icon_open_in_new}Suggest_send(){const e=new this.$.$mol_link;return e.uri=()=>this.suggest_uri(),e.target=()=>"_blank",e.sub=()=>[this.suggest_send_label(),this.Suggest_send_icon()],e}Suggest_form(){const e=new this.$.$mol_view;return e.sub=()=>[this.Suggest_field(),this.Suggest_send()],e}Suggest(){const e=new this.$.$mol_view;return e.sub=()=>[this.Suggest_title(),this.Suggest_text(),this.Suggest_form()],e}title_text(){return""}verdict_text(){return""}verdict_note_text(){return""}section_title(e){return""}section_score(e){return""}section_note(e){return""}section_content(e){return[]}metric_title(e){return""}metric_left_value(e){return""}metric_right_value(e){return""}metric_bar(e){return!1}metric_lead(e){return""}metric_left_share(e){return"50%"}metric_right_share(e){return"50%"}metric_delta(e){return""}metric_human(e){return""}metric_method(e){return""}metric_sources(e){return[]}source_name(e){return""}source_label(e){return""}source_uri(e){return""}source_date(e){return""}edge_missing_note(){return""}left(){return""}right(){return""}left_title(){return""}right_title(){return""}verdict_win(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_verdict_win")}verdict_draw(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_verdict_draw")}verdict_none(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_verdict_none")}verdict_note_edge(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_verdict_note_edge")}verdict_note_no_runner(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_verdict_note_no_runner")}verdict_note_no_runner_both(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_verdict_note_no_runner_both")}verdict_note_gap_one(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_verdict_note_gap_one")}verdict_note_gaps(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_verdict_note_gaps")}category_edge(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_category_edge")}category_code(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_category_code")}category_weight(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_category_weight")}category_speed(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_category_speed")}category_builtin(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_category_builtin")}category_market(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_category_market")}category_cost(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_category_cost")}note_edge(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_note_edge")}note_code(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_note_code")}note_weight(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_note_weight")}note_speed(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_note_speed")}note_builtin(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_note_builtin")}note_market(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_note_market")}note_cost(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_note_cost")}score_line(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_score_line")}score_ahead(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_score_ahead")}score_tied(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_score_tied")}score_empty(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_score_empty")}edge_score_line(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_edge_score_line")}edge_score_empty(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_edge_score_empty")}edge_score_no_runner(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_edge_score_no_runner")}edge_missing_one(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_edge_missing_one")}edge_missing_both(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_edge_missing_both")}delta_below(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_delta_below")}delta_above(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_delta_above")}delta_times(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_delta_times")}delta_ahead(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_delta_ahead")}delta_zero(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_delta_zero")}delta_tie(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_delta_tie")}delta_only(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_delta_only")}delta_both(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_delta_both")}delta_neither(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_delta_neither")}delta_partial(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_delta_partial")}value_yes(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_value_yes")}value_no(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_value_no")}no_data(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_no_data")}sub(){return[this.Head(),this.Sections(),this.Method(),this.Suggest()]}Title(){const e=new this.$.$mol_view;return e.dom_name=()=>"h1",e.sub=()=>[this.title_text()],e}Verdict(){const e=new this.$.$mol_view;return e.sub=()=>[this.verdict_text()],e}Verdict_note(){const e=new this.$.$mol_view;return e.sub=()=>[this.verdict_note_text()],e}Section(e){const n=new this.$.$bog_smalljs_versus_pair_section;return n.title=()=>this.section_title(e),n.score=()=>this.section_score(e),n.note=()=>this.section_note(e),n.content=()=>this.section_content(e),n}Names(e){const n=new this.$.$bog_smalljs_versus_pair_names;return n.left_name=()=>this.left_title(),n.right_name=()=>this.right_title(),n}Metric(e){const n=new this.$.$bog_smalljs_versus_pair_metric;return n.title=()=>this.metric_title(e),n.left_value=()=>this.metric_left_value(e),n.right_value=()=>this.metric_right_value(e),n.bar=()=>this.metric_bar(e),n.lead=()=>this.metric_lead(e),n.left_share=()=>this.metric_left_share(e),n.right_share=()=>this.metric_right_share(e),n.delta=()=>this.metric_delta(e),n.human=()=>this.metric_human(e),n.method=()=>this.metric_method(e),n.sources=()=>this.metric_sources(e),n}Source(e){const n=new this.$.$bog_smalljs_versus_pair_source;return n.name=()=>this.source_name(e),n.label=()=>this.source_label(e),n.uri=()=>this.source_uri(e),n.date=()=>this.source_date(e),n}Case_race(){const e=new this.$.$bog_smalljs_versus_pair_case;return e.case_id=()=>"race",e.title=()=>this.$.$mol_locale.text("$bog_smalljs_versus_pair_Case_race_title"),e.hint=()=>this.$.$mol_locale.text("$bog_smalljs_versus_pair_Case_race_hint"),e.left=()=>this.left(),e.right=()=>this.right(),e.missing_note=()=>this.edge_missing_note(),e}Case_virtual(){const e=new this.$.$bog_smalljs_versus_pair_case;return e.case_id=()=>"virtual",e.title=()=>this.$.$mol_locale.text("$bog_smalljs_versus_pair_Case_virtual_title"),e.hint=()=>this.$.$mol_locale.text("$bog_smalljs_versus_pair_Case_virtual_hint"),e.left=()=>this.left(),e.right=()=>this.right(),e.missing_note=()=>this.edge_missing_note(),e}Case_leak(){const e=new this.$.$bog_smalljs_versus_pair_case;return e.case_id=()=>"leak",e.title=()=>this.$.$mol_locale.text("$bog_smalljs_versus_pair_Case_leak_title"),e.hint=()=>this.$.$mol_locale.text("$bog_smalljs_versus_pair_Case_leak_hint"),e.left=()=>this.left(),e.right=()=>this.right(),e.missing_note=()=>this.edge_missing_note(),e}Case_crash(){const e=new this.$.$bog_smalljs_versus_pair_case;return e.case_id=()=>"crash",e.title=()=>this.$.$mol_locale.text("$bog_smalljs_versus_pair_Case_crash_title"),e.hint=()=>this.$.$mol_locale.text("$bog_smalljs_versus_pair_Case_crash_hint"),e.left=()=>this.left(),e.right=()=>this.right(),e.missing_note=()=>this.edge_missing_note(),e}},$mol_mem($.$bog_smalljs_versus_pair.prototype,"Head"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Sections"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Method_title"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Method_text"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Method_link_icon"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Method_link"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Method"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Suggest_title"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Suggest_text"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"suggest_name"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Suggest_field"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Suggest_send_icon"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Suggest_send"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Suggest_form"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Suggest"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Title"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Verdict"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Verdict_note"),$mol_mem_key($.$bog_smalljs_versus_pair.prototype,"Section"),$mol_mem_key($.$bog_smalljs_versus_pair.prototype,"Names"),$mol_mem_key($.$bog_smalljs_versus_pair.prototype,"Metric"),$mol_mem_key($.$bog_smalljs_versus_pair.prototype,"Source"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Case_race"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Case_virtual"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Case_leak"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Case_crash"),$.$bog_smalljs_versus_pair_case=class extends $.$bog_smalljs_versus_case{left(){return""}right(){return""}missing_note(){return""}columns_count(){return 2}attr(){return{...super.attr(),bog_smalljs_versus_pair_columns:this.columns_count()}}Missing_note(){const e=new this.$.$mol_view;return e.sub=()=>[this.missing_note()],e}},$mol_mem($.$bog_smalljs_versus_pair_case.prototype,"Missing_note"),$.$bog_smalljs_versus_pair_section=class extends $.$mol_view{section_content(){return[]}head_content(){return[]}content(){return[]}title(){return""}score(){return""}note(){return""}sub(){return this.section_content()}Head(){const e=new this.$.$mol_view;return e.sub=()=>this.head_content(),e}Title(){const e=new this.$.$mol_view;return e.dom_name=()=>"h2",e.sub=()=>[this.title()],e}Score(){const e=new this.$.$mol_view;return e.sub=()=>[this.score()],e}Note(){const e=new this.$.$mol_view;return e.sub=()=>[this.note()],e}Content(){const e=new this.$.$mol_view;return e.sub=()=>this.content(),e}},$mol_mem($.$bog_smalljs_versus_pair_section.prototype,"Head"),$mol_mem($.$bog_smalljs_versus_pair_section.prototype,"Title"),$mol_mem($.$bog_smalljs_versus_pair_section.prototype,"Score"),$mol_mem($.$bog_smalljs_versus_pair_section.prototype,"Note"),$mol_mem($.$bog_smalljs_versus_pair_section.prototype,"Content"),$.$bog_smalljs_versus_pair_names=class extends $.$mol_view{Left(){const e=new this.$.$mol_view;return e.sub=()=>[this.left_name()],e}Middle(){const e=new this.$.$mol_view;return e.sub=()=>[],e}Right(){const e=new this.$.$mol_view;return e.sub=()=>[this.right_name()],e}left_name(){return""}right_name(){return""}sub(){return[this.Left(),this.Middle(),this.Right()]}},$mol_mem($.$bog_smalljs_versus_pair_names.prototype,"Left"),$mol_mem($.$bog_smalljs_versus_pair_names.prototype,"Middle"),$mol_mem($.$bog_smalljs_versus_pair_names.prototype,"Right"),$.$bog_smalljs_versus_pair_metric=class extends $.$mol_view{metric_content(){return[]}row_content(){return[]}Bar_left(){const e=new this.$.$mol_view;return e.style=()=>({...this.$.$mol_view.prototype.style.call(e),width:this.left_share()}),e}Bar_right(){const e=new this.$.$mol_view;return e.style=()=>({...this.$.$mol_view.prototype.style.call(e),width:this.right_share()}),e}sources(){return[]}title(){return""}left_value(){return""}right_value(){return""}bar(){return!1}lead(){return""}left_share(){return"50%"}right_share(){return"50%"}attr(){return{...super.attr(),bog_smalljs_versus_pair_lead:this.lead()}}delta(){return""}human(){return""}method(){return""}sub(){return this.metric_content()}Title(){const e=new this.$.$mol_view;return e.sub=()=>[this.title()],e}Row(){const e=new this.$.$mol_view;return e.sub=()=>this.row_content(),e}Value_left(){const e=new this.$.$mol_view;return e.sub=()=>[this.left_value()],e}Value_right(){const e=new this.$.$mol_view;return e.sub=()=>[this.right_value()],e}Gap(){const e=new this.$.$mol_view;return e.sub=()=>[],e}Bar(){const e=new this.$.$mol_view;return e.sub=()=>[this.Bar_left(),this.Bar_right()],e}Delta(){const e=new this.$.$mol_view;return e.sub=()=>[this.delta()],e}Human(){const e=new this.$.$mol_view;return e.sub=()=>[this.human()],e}Method(){const e=new this.$.$mol_view;return e.sub=()=>[this.method()],e}Sources(){const e=new this.$.$mol_view;return e.sub=()=>this.sources(),e}},$mol_mem($.$bog_smalljs_versus_pair_metric.prototype,"Bar_left"),$mol_mem($.$bog_smalljs_versus_pair_metric.prototype,"Bar_right"),$mol_mem($.$bog_smalljs_versus_pair_metric.prototype,"Title"),$mol_mem($.$bog_smalljs_versus_pair_metric.prototype,"Row"),$mol_mem($.$bog_smalljs_versus_pair_metric.prototype,"Value_left"),$mol_mem($.$bog_smalljs_versus_pair_metric.prototype,"Value_right"),$mol_mem($.$bog_smalljs_versus_pair_metric.prototype,"Gap"),$mol_mem($.$bog_smalljs_versus_pair_metric.prototype,"Bar"),$mol_mem($.$bog_smalljs_versus_pair_metric.prototype,"Delta"),$mol_mem($.$bog_smalljs_versus_pair_metric.prototype,"Human"),$mol_mem($.$bog_smalljs_versus_pair_metric.prototype,"Method"),$mol_mem($.$bog_smalljs_versus_pair_metric.prototype,"Sources"),$.$bog_smalljs_versus_pair_source=class extends $.$mol_view{source_content(){return[]}name(){return""}label(){return""}uri(){return""}date(){return""}sub(){return this.source_content()}Name(){const e=new this.$.$mol_view;return e.sub=()=>[this.name()],e}Link(){const e=new this.$.$mol_link;return e.uri=()=>this.uri(),e.target=()=>"_blank",e.sub=()=>[this.label()],e}Text(){const e=new this.$.$mol_view;return e.sub=()=>[this.label()],e}Taken(){const e=new this.$.$mol_view;return e.sub=()=>[this.date()],e}},$mol_mem($.$bog_smalljs_versus_pair_source.prototype,"Name"),$mol_mem($.$bog_smalljs_versus_pair_source.prototype,"Link"),$mol_mem($.$bog_smalljs_versus_pair_source.prototype,"Text"),$mol_mem($.$bog_smalljs_versus_pair_source.prototype,"Taken");var $;(function(a){class e extends $mol_object2{static source(){return this.$.$bog_smalljs_versus_data}static known(o){return this.source().item(o)!==null}static framework(o){return this.source().item(o)??{id:o,title:o,runner:!1,metrics:{}}}static registry(){return this.source().registry()}static title(o){return this.framework(o).title}static measure(o,i){return this.framework(o).metrics[i]??null}static meta(o){return this.source().metric(o)}static category_metrics(o){return Object.entries(this.registry()).filter(([,i])=>i.category===o).map(([i])=>i)}}__decorate([$mol_mem_key],e,"framework",null),__decorate([$mol_mem_key],e,"category_metrics",null),a.$bog_smalljs_versus_pair_data=e})($||($={}));var $;(function(a){const e={side:"none",share:null,percent:null,times:null},n={side:"tie",share:.5,percent:null,times:null};class o extends $mol_object2{static rankable(t,r){return t==="boolean"?typeof r=="boolean":t!=="lower"&&t!=="higher"?!1:typeof r=="number"&&Number.isFinite(r)}static diff(t,r,s){if(!this.rankable(t,r)||!this.rankable(t,s))return e;if(t==="boolean")return r===s?{side:"tie",share:null,percent:null,times:null}:{side:r===!0?"left":"right",share:null,percent:null,times:null};const l=r,u=s;if(l===u)return n;const m=t==="lower";return{side:l<u===m?"left":"right",share:this.share(m,l,u),...this.distance(m,l,u)}}static share(t,r,s){if(r<0||s<0)return null;const l=r+s;return l===0?.5:t?s/l:r/l}static distance(t,r,s){const l=Math.min(r,s),u=Math.max(r,s);return t?u<=0?{percent:null,times:null}:{percent:(u-l)/u*100,times:null}:l<=0?{percent:null,times:null}:{percent:(u-l)/l*100,times:u/l}}}a.$bog_smalljs_versus_pair_compare=o})($||($={}));var $;(function(a){var e;(function(n){const o=["edge","code","weight","speed","builtin","market","cost"],i=["race","virtual","leak","crash"],r={ok:2,warn:1,fail:0},s=2,l="https://github.com/b-on-g/smalljs/issues/new",u=["none","one","two","three","four","five","six","seven","eight","nine","ten"];function m(z){return u[z]??String(z)}function d(z,g){return z.replace(/\{(\w+)\}/g,(v,j)=>{const S=g[j];return S===void 0?v:String(S)})}function c(z){const g=Math.abs(z),v=g>=100?Math.round(z):g>=10?Math.round(z*10)/10:Math.round(z*100)/100,[j,S]=String(v).split("."),T=j.replace(/\B(?=(\d{3})+$)/g,",");return S?T+"."+S:T}function _(z){return z>=10?String(Math.round(z)):String(Math.round(z*10)/10)}function p(z){return String(Math.round(z*10)/10)}function h(z){const v=z.replace(/^https?:\/\//,"").replace(/[?#].*$/,"").replace(/\/+$/,"").split("/");return v[0]=v[0].replace(/^www\./,""),v.length<=3?v.join("/"):v[0]+"/…/"+v[v.length-1]}function b(z){return Math.round(z*1e3)/10+"%"}const f={left:0,right:0,total:0};class y extends a.$bog_smalljs_versus_pair{data(){return this.$.$bog_smalljs_versus_pair_data}compare(){return this.$.$bog_smalljs_versus_pair_compare}meta(g){return this.data().meta(g)}measure(g,v){return this.data().measure(g,v)}registry_metrics(g){return this.data().category_metrics(g)}runner(g){return this.data().framework(g).runner===!0}left_title(){return this.data().title(this.left())}right_title(){return this.data().title(this.right())}title_text(){return this.left_title()+" vs "+this.right_title()}head_content(){return[this.Title(),this.Verdict(),...this.verdict_note_text()?[this.Verdict_note()]:[]]}rows(g){const v=this.left(),j=this.right();return this.registry_metrics(g).flatMap(S=>{const T=this.meta(S);if(!T)return[];const D=this.measure(v,S),C=this.measure(j,S);return!D&&!C?[]:[{id:S,meta:T,left:D,right:C,diff:this.compare().diff(T.better,D?.value,C?.value)}]})}row(g){const v=this.meta(g);return v?this.rows(v.category).find(j=>j.id===g)??null:null}score(g){if(g==="edge")return this.edge_score();let v=0,j=0,S=0;for(const T of this.rows(g))T.diff.side!=="none"&&(S+=1,T.diff.side==="left"&&(v+=1),T.diff.side==="right"&&(j+=1));return{left:v,right:j,total:S}}edge_score(){const g=this.left(),v=this.right();if(!this.edge_live())return f;let j=0,S=0,T=0;for(const D of this.cases()){const C=this.case_side(D.status(g),D.status(v));C!=="none"&&(T+=1,C==="left"&&(j+=1),C==="right"&&(S+=1))}return{left:j,right:S,total:T}}case_side(g,v){const j=r[g],S=r[v];return j===void 0||S===void 0?"none":j===S?"tie":j>S?"left":"right"}edge_live(){return this.runner(this.left())&&this.runner(this.right())}decided(){return o.filter(g=>this.score(g).total>0)}tally(){let g=0,v=0,j=0;for(const S of this.decided()){const T=this.score(S),D=T.left/T.total,C=T.right/T.total;D>C?g+=1:C>D?v+=1:j+=1}return{left:g,right:v,ties:j,total:g+v+j}}verdict_text(){const g=this.tally(),v=this.left_title(),j=this.right_title();if(!g.total)return d(this.verdict_none(),{a:v,b:j});if(g.left===g.right)return d(this.verdict_draw(),{a:v,b:j,x:g.left,total:g.total,ties:m(g.ties)});const S=g.left>g.right;return d(this.verdict_win(),{a:S?v:j,b:S?j:v,x:S?g.left:g.right,y:S?g.right:g.left,total:g.total,ties:m(g.ties)})}verdict_note_text(){const g=[];this.edge_live()?this.score("edge").total||g.push(this.verdict_note_edge()):g.push(this.runner(this.left())||this.runner(this.right())?d(this.verdict_note_no_runner(),{b:this.runner(this.left())?this.right_title():this.left_title()}):this.verdict_note_no_runner_both());const v=o.length-1-this.decided().filter(j=>j!=="edge").length;return v===1?g.push(this.verdict_note_gap_one()):v>1&&g.push(d(this.verdict_note_gaps(),{n:v})),g.join(" ")}sections(){return o.map(g=>this.Section(g))}section_title(g){switch(g){case"edge":return this.category_edge();case"code":return this.category_code();case"weight":return this.category_weight();case"speed":return this.category_speed();case"builtin":return this.category_builtin();case"market":return this.category_market();case"cost":return this.category_cost();default:return g}}section_note(g){switch(g){case"edge":return this.note_edge();case"code":return this.note_code();case"weight":return this.note_weight();case"speed":return this.note_speed();case"builtin":return this.note_builtin();case"market":return this.note_market();case"cost":return this.note_cost();default:return""}}section_score(g){const v=this.score(g),j=this.left_title(),S=this.right_title();if(!v.total)return g!=="edge"?this.score_empty():this.edge_live()?this.edge_score_empty():this.edge_score_no_runner();const T=d(g==="edge"?this.edge_score_line():this.score_line(),{a:j,b:S,x:v.left,y:v.right,n:v.total}),D=v.left===v.right?this.score_tied():d(this.score_ahead(),{a:v.left>v.right?j:S});return T+" · "+D}section_content(g){if(g==="edge")return this.cases();const v=this.rows(g);return v.length?[this.Names(g),...v.map(j=>this.Metric(j.id))]:[]}metric_title(g){return this.row(g)?.meta.title??g}metric_human(g){return this.row(g)?.meta.human??""}shared(g){const v=this.row(g);return!!v?.left&&!!v?.right}metric_method(g){return this.shared(g)?this.row(g)?.meta.method??"":""}value_text(g,v){if(!g)return"—";const j=g.value;if(typeof j=="boolean")return j?this.value_yes():this.value_no();if(typeof j=="string")return j;const S=v?.unit??"",T=c(j);return S?S==="%"?T+S:T+" "+S:T}metric_left_value(g){if(!this.shared(g))return"—";const v=this.row(g);return this.value_text(v?.left??null,v?.meta)}metric_right_value(g){if(!this.shared(g))return"—";const v=this.row(g);return this.value_text(v?.right??null,v?.meta)}metric_share(g){const v=this.row(g);return!v||this.zero_side(v)?null:v.diff.share??null}metric_bar(g){return this.metric_share(g)!==null}metric_lead(g){const v=this.row(g)?.diff.side;return v==="left"||v==="right"?v:""}metric_left_share(g){return b(this.metric_share(g)??.5)}metric_right_share(g){return b(1-(this.metric_share(g)??.5))}zero_side(g){const v=g.left?.value,j=g.right?.value;return typeof v!="number"||typeof j!="number"?null:v===0&&j!==0?"left":j===0&&v!==0?"right":null}metric_delta(g){const v=this.row(g);if(!v)return"";const j=this.left_title(),S=this.right_title(),T=v.meta.better==="boolean";if(v.diff.side==="none")return v.left&&v.right?"":d(this.delta_partial(),{a:v.left?S:j});if(v.diff.side==="tie")return T?v.left?.value===!0?this.delta_both():this.delta_neither():this.delta_tie();const D=v.diff.side==="left"?j:S,C=v.diff.side==="left"?S:j;if(T)return d(this.delta_only(),{a:D,b:C});const L=this.zero_side(v);if(L)return d(this.delta_zero(),{a:L==="left"?j:S,b:L==="left"?S:j,p:this.value_text(L==="left"?v.right:v.left,v.meta)});const{percent:R,times:A}=v.diff;if(A!==null&&R!==null&&A>=s)return d(this.delta_times(),{a:D,p:p(A),b:C});if(R===null)return d(this.delta_ahead(),{a:D});if(Math.round(R*10)===0)return"";const I=v.meta.better==="lower"?this.delta_below():this.delta_above();return d(I,{a:D,p:_(R),b:C})}metric_sources(g){return this.shared(g)?[this.Source(g+"/left"),this.Source(g+"/right")]:[]}source_measure(g){const v=g.lastIndexOf("/"),j=this.row(g.slice(0,v));return g.slice(v+1)==="left"?j?.left:j?.right}source_name(g){return g.endsWith("/left")?this.left_title():this.right_title()}source_uri(g){const v=this.source_measure(g);return v?/^https?:\/\//.test(v.source)?v.source:/^https?:\/\//.test(v.method??"")?v.method??"":"":""}source_label(g){const v=this.source_measure(g);if(!v)return"";const j=this.source_uri(g);return j?h(j):v.source||this.no_data()}source_date(g){return this.source_measure(g)?.measured_at??""}cases(){return[this.Case_race(),this.Case_virtual(),this.Case_leak(),this.Case_crash()]}edge_missing_note(){const g=this.runner(this.left()),v=this.runner(this.right());return g&&v?"":!g&&!v?this.edge_missing_both():d(this.edge_missing_one(),{b:g?this.right_title():this.left_title()})}suggest_uri(){const g=this.suggest_name().trim(),v="Add "+(g||"a framework")+" to the comparison",j=["Framework: "+(g||""),"Home page: ","","What it would take: a data file under versus/data/ with sources and dates for each metric,","and a runner page if the live edge cases should cover it too."].join(`
+	`)})($||($={})),$.$bog_smalljs_lab=class extends $.$mol_view{case_content(){return[]}race_options(){return[]}Race_options(){const e=new this.$.$mol_view;return e.sub=()=>this.race_options(),e}race_panel_name(){return""}Race_panel_name(){const e=new this.$.$mol_view;return e.sub=()=>[this.race_panel_name()],e}race_panel_descr(){return""}Race_panel_descr(){const e=new this.$.$mol_view;return e.sub=()=>[this.race_panel_descr()],e}Race_panel(){const e=new this.$.$mol_view;return e.sub=()=>[this.Race_panel_name(),this.Race_panel_descr()],e}race_option_click(e,n){return n!==void 0?n:null}race_option_current(e){return!1}race_option_label(e){return""}virtual_rows(){return[]}Virtual_list(){const e=new this.$.$mol_list;return e.rows=()=>this.virtual_rows(),e}Virtual_scroll(){const e=new this.$.$mol_scroll;return e.sub=()=>[this.Virtual_list()],e}virtual_row_text(e){return""}virtual_placeholder(){return this.$.$mol_locale.text("$bog_smalljs_lab_virtual_placeholder")}leak_hint(){return this.$.$mol_locale.text("$bog_smalljs_lab_leak_hint")}Leak_hint(){const e=new this.$.$mol_view;return e.sub=()=>[this.leak_hint()],e}leak_probes(){return[]}Leak_place(){const e=new this.$.$mol_view;return e.sub=()=>this.leak_probes(),e}leak_probe_label(e){return""}crash_cards(){return[]}Crash_list(){const e=new this.$.$mol_view;return e.sub=()=>this.crash_cards(),e}Crash_scroll(){const e=new this.$.$mol_scroll;return e.sub=()=>[this.Crash_list()],e}crash_card_name(e){return""}crash_card_text(e){return""}sub(){return this.case_content()}Race(){const e=new this.$.$mol_view;return e.sub=()=>[this.Race_options(),this.Race_panel()],e}Race_option(e){const n=new this.$.$bog_smalljs_lab_option;return n.click=o=>this.race_option_click(e,o),n.current=()=>this.race_option_current(e),n.title=()=>this.race_option_label(e),n}Virtual(){const e=new this.$.$mol_view;return e.sub=()=>[this.Virtual_scroll()],e}Virtual_row(e){const n=new this.$.$mol_paragraph;return n.title=()=>this.virtual_row_text(e),n}Virtual_placeholder(){const e=new this.$.$mol_view;return e.sub=()=>[this.virtual_placeholder()],e}Leak(){const e=new this.$.$mol_view;return e.sub=()=>[this.Leak_hint(),this.Leak_place()],e}Leak_probe(e){const n=new this.$.$bog_smalljs_lab_probe;return n.label=()=>this.leak_probe_label(e),n}Crash(){const e=new this.$.$mol_view;return e.sub=()=>[this.Crash_scroll()],e}Crash_card(e){const n=new this.$.$bog_smalljs_lab_card;return n.name=()=>this.crash_card_name(e),n.text=()=>this.crash_card_text(e),n}},$mol_mem($.$bog_smalljs_lab.prototype,"Race_options"),$mol_mem($.$bog_smalljs_lab.prototype,"Race_panel_name"),$mol_mem($.$bog_smalljs_lab.prototype,"Race_panel_descr"),$mol_mem($.$bog_smalljs_lab.prototype,"Race_panel"),$mol_mem_key($.$bog_smalljs_lab.prototype,"race_option_click"),$mol_mem($.$bog_smalljs_lab.prototype,"Virtual_list"),$mol_mem($.$bog_smalljs_lab.prototype,"Virtual_scroll"),$mol_mem($.$bog_smalljs_lab.prototype,"Leak_hint"),$mol_mem($.$bog_smalljs_lab.prototype,"Leak_place"),$mol_mem($.$bog_smalljs_lab.prototype,"Crash_list"),$mol_mem($.$bog_smalljs_lab.prototype,"Crash_scroll"),$mol_mem($.$bog_smalljs_lab.prototype,"Race"),$mol_mem_key($.$bog_smalljs_lab.prototype,"Race_option"),$mol_mem($.$bog_smalljs_lab.prototype,"Virtual"),$mol_mem_key($.$bog_smalljs_lab.prototype,"Virtual_row"),$mol_mem($.$bog_smalljs_lab.prototype,"Virtual_placeholder"),$mol_mem($.$bog_smalljs_lab.prototype,"Leak"),$mol_mem_key($.$bog_smalljs_lab.prototype,"Leak_probe"),$mol_mem($.$bog_smalljs_lab.prototype,"Crash"),$mol_mem_key($.$bog_smalljs_lab.prototype,"Crash_card"),$.$bog_smalljs_lab_option=class extends $.$mol_button_minor{current(){return!1}attr(){return{...super.attr(),versus_current:this.current()}}},$.$bog_smalljs_lab_probe=class extends $.$mol_view{label(){return""}sub(){return[this.label()]}},$.$bog_smalljs_lab_card=class extends $.$mol_view{name(){return""}text(){return""}attr(){return{...super.attr(),versus_card:""}}sub(){return[this.name(),this.text()]}};var $;(function(a){class e extends $mol_object{subscribers=[];static shared(){return new this}subscribe(t){return this.subscribers.push(t),new o(this,t)}}__decorate([$mol_mem],e,"shared",null),a.$bog_smalljs_lab_store=e;class n extends $mol_object{observer;constructor(t,r){super(),this.observer=new $mol_dom_context.IntersectionObserver(s=>r(s[s.length-1].isIntersecting),{threshold:0}),this.observer.observe(t)}destructor(){this.observer.disconnect()}}a.$bog_smalljs_lab_watch=n;class o extends $mol_object{store;handler;constructor(t,r){super(),this.store=t,this.handler=r}destructor(){const t=this.store.subscribers.indexOf(this.handler);t>=0&&this.store.subscribers.splice(t,1)}}a.$bog_smalljs_lab_link=o})($||($={})),(function(a){var e;(function(n){const o="lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ";class i extends a.$bog_smalljs_lab{case_id(){const s=this.$.$mol_dom_context.location.href;return new URL(s).searchParams.get("case")??"race"}case_content(){switch(this.case_id()){case"virtual":return[this.Virtual()];case"leak":return[this.Leak()];case"crash":return[this.Crash()];default:return[this.Race()]}}auto(){return[this.message_listener(),this.visibility_listener(),this.frame_watch(),this.ready_beacon()]}message_listener(){return new this.$.$mol_dom_listener(this.$.$mol_dom_context,"message",s=>this.message_receive(s))}hidden(){return this.$.$mol_dom_context.document.visibilityState!=="visible"}visibility_listener(){return new this.$.$mol_dom_listener(this.$.$mol_dom_context.document,"visibilitychange",()=>{this.hidden()&&this.spoil("tab-hidden")})}frame_watch(){return new this.$.$bog_smalljs_lab_watch(this.dom_node(),s=>{s||this.spoil("frame-offscreen")})}spoil_reason(s){return s??""}spoil(s){this.spoil_reason()||this.spoil_reason(s)}spoiled(){return this.hidden()&&this.spoil("tab-hidden"),this.spoil_reason()}ready_beacon(){const s=this.case_id();return new this.$.$mol_after_tick(()=>this.post({type:"ready",case:s}))}post(s){this.$.$mol_dom_context.parent.postMessage({ns:"versus",...s},"*")}message_receive(s){const l=s.data;!l||typeof l!="object"||l.ns==="versus"&&(l.type==="run"&&this.run(),l.type==="reset"&&this.reset())}async run(){this.spoil_reason(""),this.spoiled();try{switch(this.case_id()){case"virtual":await this.run_virtual();break;case"leak":await this.run_leak();break;case"crash":await this.run_crash();break;default:await this.run_race();break}}catch(s){this.post({type:"error",message:this.$.$mol_error_message(s)})}}reset(){return this.race_selected(0),this.virtual_filled(!1),this.leak_cycle(0),this.leak_mounted(!1),this.crash_broken(!1),null}report(s,l,u=[]){const m=this.spoiled();if(m)return this.report_invalid(m);this.post({type:"result",case:this.case_id(),status:s,observed:l,metrics:u})}report_invalid(s){this.post({type:"invalid",case:this.case_id(),reason:s})}sleep(s){return new Promise(l=>new this.$.$mol_after_timeout(s,()=>l()))}frame(){return new Promise(s=>{let l=!1;const u=()=>{l||(l=!0,s())};new this.$.$mol_after_frame(u);const m=()=>{if(!l){if(this.spoiled())return u();new this.$.$mol_after_timeout(100,m)}};new this.$.$mol_after_timeout(100,m)})}race_ids(){return[1,2,3,4,5]}race_selected(s){return s??0}race_options(){return this.race_ids().map(s=>this.Race_option(s))}race_option_label(s){return`User ${s}`}race_option_current(s){return this.race_selected()===s}race_option_click(s,l){return this.race_selected(s),null}race_delay(s){return 1e3-(s-1)*200}async race_load(s){return await this.sleep(this.race_delay(s)),{name:`User ${s}`,descr:`Profile of user ${s}, answered in ${this.race_delay(s)} ms`}}race_user(s){return $mol_wire_sync(this).race_load(s)}race_panel_name(){const s=this.race_selected();return s?this.race_user(s).name:""}race_panel_descr(){const s=this.race_selected();return s?this.race_user(s).descr:""}race_deadline(){return 2200}async run_race(){const s=performance.now();this.race_selected(1),await this.sleep(100),this.race_selected(5),await this.sleep(1500),performance.now()-s>this.race_deadline()&&this.spoil("timers-throttled");const u=(this.Race_panel().dom_node().textContent??"").match(/User (\d+)/),m=u?Number(u[1]):0;this.report(m===5?"ok":"fail",m?`Selected user 5, panel showed user ${m}`:"Selected user 5, panel showed no user")}virtual_count(){return 1e4}virtual_filled(s){return s??!1}virtual_rows(){if(!this.virtual_filled())return[this.Virtual_placeholder()];const s=[];for(let l=0;l<this.virtual_count();++l)s.push(this.Virtual_row(l));return s}virtual_row_text(s){const l=20+s*37%400,u=`Row ${s+1}. `,m=o.repeat(Math.ceil(l/o.length));return(u+m).slice(0,l)}async run_virtual(){const s=this.Virtual_scroll().dom_node();this.virtual_filled(!1),this.Virtual_scroll().scroll_top(0),await this.sleep(16);const l=performance.now();this.virtual_filled(!0),await this.frame(),await this.frame();const u=s.scrollHeight,m=Math.round(performance.now()-l),d=this.spoiled();if(d)return this.report_invalid(d);this.Virtual_scroll().scroll_top(Math.round((u-s.clientHeight)/2)),await this.sleep(1e3),this.Virtual_scroll().scroll_top(0),await this.sleep(1e3);const c=s.querySelectorAll("*").length;this.report(c<500?"ok":c>5e3?"fail":"warn",`Rendered ${c} DOM nodes for ${this.virtual_count()} rows`,[{name:"DOM nodes",value:c,unit:""},{name:"Render time",value:m,unit:"ms"}])}leak_count(){return 100}leak_cycle(s){return s??0}leak_mounted(s){return s??!1}leak_probes(){return this.leak_mounted()?[this.Leak_probe(this.leak_cycle())]:[]}leak_probe_label(s){return`Subscribed component, mount ${s}`}async run_leak(){const s=this.$.$bog_smalljs_lab_store.shared(),l=this.Leak_place();for(let c=1;c<=this.leak_count();++c)this.leak_cycle(c),this.leak_mounted(!0),l.dom_tree(),this.leak_mounted(!1),l.dom_tree();await this.sleep(100);const u=s.subscribers.length,m=[{name:"Live subscribers",value:u,unit:""}],d=performance.memory;d&&m.push({name:"Heap",value:Math.round(d.usedJSHeapSize/1048576),unit:"MB"}),this.report(u===0?"ok":"fail",`${this.leak_count()} mount cycles left ${u} live subscribers`,m)}crash_count(){return 20}crash_broken_index(){return 6}crash_broken(s){return s??!1}crash_records(){const s=this.crash_broken(),l=[];for(let u=0;u<this.crash_count();++u)l.push(s&&u===this.crash_broken_index()?null:{name:`Card ${u+1}`,text:`Payload of card ${u+1}`});return l}crash_cards(){const s=[];for(let l=0;l<this.crash_count();++l)s.push(this.Crash_card(l));return s}crash_card_name(s){return this.crash_records()[s].name}crash_card_text(s){return this.crash_records()[s].text}async run_crash(){this.crash_broken(!1),await this.sleep(16),this.crash_broken(!0),await this.sleep(200);const s=this.Crash_list().dom_node(),l=s.querySelectorAll("[versus_card]:not([mol_view_error])").length,u=s.querySelector("[versus_card][mol_view_error]"),m=!!u&&(u.textContent??"").trim().length>0,d=this.crash_broken_index()+1,c=l===0?"fail":l===this.crash_count()-1&&m?"ok":"warn",_=l===0?`0 of ${this.crash_count()} cards survived, the list disappeared`:m?`${l} of ${this.crash_count()} cards survived, card ${d} showed an error placeholder`:`${l} of ${this.crash_count()} cards survived, card ${d} disappeared without a placeholder`;this.report(c,_,[{name:"Surviving cards",value:l,unit:""}])}}__decorate([$mol_mem],i.prototype,"case_id",null),__decorate([$mol_mem],i.prototype,"case_content",null),__decorate([$mol_mem],i.prototype,"message_listener",null),__decorate([$mol_mem],i.prototype,"visibility_listener",null),__decorate([$mol_mem],i.prototype,"frame_watch",null),__decorate([$mol_mem],i.prototype,"spoil_reason",null),__decorate([$mol_mem],i.prototype,"ready_beacon",null),__decorate([$mol_action],i.prototype,"reset",null),__decorate([$mol_mem],i.prototype,"race_selected",null),__decorate([$mol_mem],i.prototype,"race_options",null),__decorate([$mol_action],i.prototype,"race_option_click",null),__decorate([$mol_mem_key],i.prototype,"race_user",null),__decorate([$mol_mem],i.prototype,"virtual_filled",null),__decorate([$mol_mem],i.prototype,"virtual_rows",null),__decorate([$mol_mem],i.prototype,"leak_cycle",null),__decorate([$mol_mem],i.prototype,"leak_mounted",null),__decorate([$mol_mem],i.prototype,"leak_probes",null),__decorate([$mol_mem],i.prototype,"crash_broken",null),__decorate([$mol_mem],i.prototype,"crash_records",null),__decorate([$mol_mem],i.prototype,"crash_cards",null),n.$bog_smalljs_lab=i;class t extends a.$bog_smalljs_lab_probe{subscription(){return this.$.$bog_smalljs_lab_store.shared().subscribe(()=>this.label())}auto(){return[this.subscription()]}}__decorate([$mol_mem],t.prototype,"subscription",null),n.$bog_smalljs_lab_probe=t})(e=a.$$||(a.$$={}))})($||($={}));var $;(function(a){const{rem:e}=$mol_style_unit,n="#18181b",o="#71717a",i="#d4d4d8",t="#ffffff",r="#fafafa",s="#e0e7ff",l="#3730a3",u={width:"1px",style:"solid",color:i},m={flex:{direction:"column",grow:1,shrink:1},minHeight:0,minWidth:0},d={flex:{grow:1,shrink:1},minHeight:0,border:{width:"1px",style:"solid",color:i,radius:e(.25)},background:{color:r}},c={flex:{shrink:0},color:o,font:{size:e(.75)}},_={padding:{top:e(.25),bottom:e(.25),left:e(.5),right:e(.5)},border:{bottom:{width:"1px",style:"solid",color:i}}};$mol_style_define($bog_smalljs_lab,{flex:{direction:"column"},gap:e(.5),height:"100%",minHeight:0,padding:e(.75),overflow:"hidden",background:{color:t},color:n,font:{family:'system-ui, -apple-system, "Segoe UI", Roboto, sans-serif',size:e(.8125)},Race:{flex:{direction:"row",grow:1,shrink:1},gap:e(.5),minHeight:0},Race_options:{flex:{direction:"column",shrink:0},gap:e(.25),minWidth:e(6)},Race_panel:{...m,gap:e(.25),padding:e(.5),border:{...u,radius:e(.25)},background:{color:r}},Race_panel_name:{minHeight:e(1.25),font:{weight:600}},Race_panel_descr:{minHeight:e(1.25),color:o},Virtual:m,Virtual_scroll:d,Virtual_placeholder:{..._,color:o},Virtual_list:{flex:{direction:"column"}},Virtual_row:_,Leak:{...m,gap:e(.5)},Leak_hint:c,Leak_place:{flex:{direction:"column",shrink:0},minHeight:e(2),padding:e(.5),border:{...u,radius:e(.25)},background:{color:r}},Crash:m,Crash_scroll:d,Crash_list:{flex:{direction:"column"},gap:e(.25),padding:e(.25)}}),$mol_style_define($bog_smalljs_lab_option,{flex:{grow:0,shrink:0},justify:{content:"flex-start"},minHeight:e(1.75),padding:{top:e(.25),bottom:e(.25),left:e(.5),right:e(.5)},border:{radius:e(.25)},font:{size:e(.8125)},color:n,"@":{versus_current:{true:{background:{color:s},color:l}}}}),$mol_style_define($bog_smalljs_lab_probe,{color:o}),$mol_style_define($bog_smalljs_lab_card,{flex:{direction:"column",shrink:0},minHeight:e(2.5),padding:{top:e(.25),bottom:e(.25),left:e(.5),right:e(.5)},border:{...u,radius:e(.25)},background:{color:t}})})($||($={})),$.$bog_smalljs_versus_code=class extends $.$mol_view{body(){return[]}Hint(){const e=new this.$.$mol_view;return e.sub=()=>[this.hint()],e}columns(){return[]}Columns(){const e=new this.$.$mol_view;return e.sub=()=>this.columns(),e}column_name(e){return""}column_uri(e){return""}column_file(e){return""}Column_file(e){const n=new this.$.$mol_link;return n.uri=()=>this.column_uri(e),n.sub=()=>[this.column_file(e)],n}Column_head(e){const n=new this.$.$mol_view;return n.sub=()=>[this.column_name(e),this.Column_file(e)],n}column_text(e){return""}Column_code(e){const n=new this.$.$mol_view;return n.dom_name=()=>"pre",n.sub=()=>[this.column_text(e)],n}missing_text(){return""}case_id(){return""}left(){return""}right(){return""}title(){return this.$.$mol_locale.text("$bog_smalljs_versus_code_title")}hint(){return this.$.$mol_locale.text("$bog_smalljs_versus_code_hint")}missing(){return this.$.$mol_locale.text("$bog_smalljs_versus_code_missing")}sub(){return this.body()}Expander(){const e=new this.$.$mol_expander;return e.title=()=>this.title(),e.content=()=>[this.Hint(),this.Columns()],e}Column(e){const n=new this.$.$mol_view;return n.sub=()=>[this.Column_head(e),this.Column_code(e)],n}Missing(){const e=new this.$.$mol_view;return e.sub=()=>[this.missing_text()],e}},$mol_mem($.$bog_smalljs_versus_code.prototype,"Hint"),$mol_mem($.$bog_smalljs_versus_code.prototype,"Columns"),$mol_mem_key($.$bog_smalljs_versus_code.prototype,"Column_file"),$mol_mem_key($.$bog_smalljs_versus_code.prototype,"Column_head"),$mol_mem_key($.$bog_smalljs_versus_code.prototype,"Column_code"),$mol_mem($.$bog_smalljs_versus_code.prototype,"Expander"),$mol_mem_key($.$bog_smalljs_versus_code.prototype,"Column"),$mol_mem($.$bog_smalljs_versus_code.prototype,"Missing");var $;(function(a){a.$bog_smalljs_versus_code_data={crash:{mol:{lang:"ts",file:"lab/lab.view.ts",text:`crash_count() {
+	return 20
+}
+
+/** Zero based index of the card whose record is replaced with null. */
+crash_broken_index() {
+	return 6
+}
+
+@ $mol_mem
+crash_broken( next?: boolean ) {
+	return next ?? false
+}
+
+@ $mol_mem
+crash_records(): readonly ( { name: string, text: string } | null )[] {
+
+	const broken = this.crash_broken()
+	const records = [] as ( { name: string, text: string } | null )[]
+
+	for( let index = 0; index < this.crash_count(); ++ index ) {
+		records.push(
+			broken && index === this.crash_broken_index()
+				? null
+				: { name: \`Card \${ index + 1 }\`, text: \`Payload of card \${ index + 1 }\` }
+		)
+	}
+
+	return records
+}
+
+@ $mol_mem
+crash_cards(): readonly $mol_view[] {
+
+	const cards = [] as $mol_view[]
+	for( let index = 0; index < this.crash_count(); ++ index ) {
+		cards.push( this.Crash_card( index ) )
+	}
+
+	return cards
+}
+
+crash_card_name( index: number ) {
+	return this.crash_records()[ index ]!.name
+}
+
+crash_card_text( index: number ) {
+	return this.crash_records()[ index ]!.text
+}
+
+async run_crash() {
+
+	// Whole records first, so a repeated Run swaps them out again.
+	this.crash_broken( false )
+	await this.sleep( 16 )
+
+	this.crash_broken( true )
+	await this.sleep( 200 )
+
+	const container = this.Crash_list().dom_node()
+	const alive = container.querySelectorAll( '[versus_card]:not([mol_view_error])' ).length
+	const broken = container.querySelector( '[versus_card][mol_view_error]' )
+	const placeholder = !!broken && ( broken.textContent ?? '' ).trim().length > 0
+
+	const number = this.crash_broken_index() + 1
+
+	const status: Status = alive === 0
+		? 'fail'
+		: alive === this.crash_count() - 1 && placeholder
+			? 'ok'
+			: 'warn'
+
+	const observed = alive === 0
+		? \`0 of \${ this.crash_count() } cards survived, the list disappeared\`
+		: placeholder
+			? \`\${ alive } of \${ this.crash_count() } cards survived, card \${ number } showed an error placeholder\`
+			: \`\${ alive } of \${ this.crash_count() } cards survived, card \${ number } disappeared without a placeholder\`
+
+	this.report( status, observed, [ { name: 'Surviving cards', value: alive, unit: '' } ] )
+
+}`},react:{lang:"js",file:"assets/versus/react/runner.html",text:`// No ErrorBoundary anywhere, which is what an app looks like until someone
+// adds one. An exception thrown while rendering a single card is not
+// contained: React unwinds to the root and unmounts the whole tree. The fix
+// is an ErrorBoundary class component placed around every part that has to
+// keep working on its own.
+
+const CRASH_CARDS = []
+for( let i = 1; i <= 20; ++i ) {
+	CRASH_CARDS.push( { id: i, title: 'Card ' + i, text: 'Details for card ' + i } )
+}
+
+function CrashCard( props ) {
+	return h( 'div', { className: 'card' },
+		h( 'div', { className: 'card_title' }, props.item.title ),
+		h( 'div', { className: 'card_text' }, props.item.text ),
+	)
+}
+
+let crash_control = null
+
+function CrashApp() {
+
+	const [ items, set_items ] = React.useState( CRASH_CARDS )
+
+	// Handle for the runner, which swaps the data from outside React.
+	React.useEffect( () => {
+		crash_control = { set_items: set_items }
+	}, [] )
+
+	return h( 'div', { className: 'cards', 'data-role': 'cards' },
+		items.map( ( item, index ) => h( CrashCard, { key: index, item: item } ) ),
+	)
+}
+
+const crash = {
+
+	mount: root => render( root, h( CrashApp ) ),
+
+	run: async () => {
+
+		const control = crash_control
+		if( !control ) throw new Error( 'Crash scenario is not mounted' )
+
+		const broken = CRASH_CARDS.slice()
+		broken[ 6 ] = null
+
+		muted = true
+		try {
+			ReactDOM.flushSync( () => control.set_items( broken ) )
+		} catch( error ) {
+			// React rethrows the render error after unmounting the tree.
+		}
+
+		await delay( 200 )
+		muted = false
+
+		const cards = document.querySelectorAll( '.card' ).length
+		// Nothing renders this marker here — React has no error placeholder
+		// without an ErrorBoundary. The check stays so all three runners
+		// score the same way.
+		const placeholder = !!document.querySelector( '[data-role="card-error"]' )
+
+		return {
+			status: cards === 0 ? 'fail' : cards === 19 && placeholder ? 'ok' : 'warn',
+			observed: cards === 0
+				? 'Card 7 threw during render, 0 of 20 cards remained'
+				: cards + ' of 20 cards survived, card 7 '
+					+ ( placeholder ? 'was replaced by an error placeholder' : 'disappeared without a placeholder' ),
+			metrics: [ { name: 'Surviving cards', value: cards, unit: '' } ],
+		}
+	},
+}`},vue:{lang:"js",file:"assets/versus/vue/runner.html",text:`// Cards read fields off the item object straight in the template, the way every
+// list of cards is written. There is deliberately no onErrorCaptured hook and no
+// app.config.errorHandler, so nothing here reacts to a render failure. Error
+// boundaries are written by hand and wrapped around every part of the tree that
+// is supposed to survive on its own.
+
+function createCrash( root ) {
+
+	function makeItems( broken ) {
+		var items = []
+		for ( var i = 0; i < 20; i++ ) {
+			items.push( { id: i + 1, title: 'Card ' + ( i + 1 ), body: 'Item body ' + ( i + 1 ) } )
+		}
+		if ( broken ) items[ 6 ] = null
+		return items
+	}
+
+	var Card = {
+		props: [ 'item' ],
+		template: \`
+			<div class="card">
+				<b>{{ item.title }}</b>
+				<span>{{ item.body }}</span>
+			</div>
+		\`,
+	}
+
+	var app = createApp( {
+		components: { Card: Card },
+		template: \`
+			<div class="cards">
+				<Card v-for="( item, index ) in items" :key="index" :item="item" />
+			</div>
+		\`,
+		setup: function() {
+			return { items: ref( makeItems( false ) ) }
+		},
+	} )
+
+	var vm = app.mount( root )
+
+	return {
+		run: async function() {
+
+			vm.items = makeItems( true )
+
+			await nextTick()
+			await wait( 200 )
+
+			var survived = root.querySelectorAll( '.card' ).length
+			var placeholder = root.querySelectorAll( '[data-error]' ).length > 0
+
+			var status = survived === 0 ? 'fail'
+				: survived === 19 && placeholder ? 'ok'
+				: 'warn'
+
+			var observed = survived === 0
+				? 'All 20 cards disappeared after card 7 broke'
+				: placeholder
+				? survived + ' of 20 cards survived, card 7 shows an error placeholder'
+				: survived + ' of 20 cards survived, card 7 disappeared without a placeholder'
+
+			return {
+				status: status,
+				observed: observed,
+				metrics: [ { name: 'Surviving cards', value: survived, unit: '' } ],
+			}
+		},
+	}
+}`}},leak:{mol:{lang:"ts",file:"lab/lab.view.ts",text:`leak_count() {
+	return 100
+}
+
+@ $mol_mem
+leak_cycle( next?: number ) {
+	return next ?? 0
+}
+
+@ $mol_mem
+leak_mounted( next?: boolean ) {
+	return next ?? false
+}
+
+@ $mol_mem
+leak_probes(): readonly $mol_view[] {
+	return this.leak_mounted() ? [ this.Leak_probe( this.leak_cycle() ) ] : []
+}
+
+leak_probe_label( cycle: number ) {
+	return \`Subscribed component, mount \${ cycle }\`
+}
+
+async run_leak() {
+
+	const store = this.$.$bog_smalljs_lab_store.shared()
+	const place = this.Leak_place()
+
+	// dom_tree() renders the place right here instead of on the next
+	// frame, so that every pass of the loop is a real mount and unmount.
+	for( let cycle = 1; cycle <= this.leak_count(); ++ cycle ) {
+		this.leak_cycle( cycle )
+		this.leak_mounted( true )
+		place.dom_tree()
+		this.leak_mounted( false )
+		place.dom_tree()
+	}
+
+	// Cells left without subscribers are collected on the next tick.
+	await this.sleep( 100 )
+
+	const live = store.subscribers.length
+
+	const metrics = [ { name: 'Live subscribers', value: live, unit: '' } ] as Metric[]
+
+	const memory = ( performance as unknown as { memory?: { usedJSHeapSize: number } } ).memory
+	if( memory ) metrics.push({
+		name: 'Heap',
+		value: Math.round( memory.usedJSHeapSize / 1048576 ),
+		unit: 'MB',
+	})
+
+	this.report(
+		live === 0 ? 'ok' : 'fail',
+		\`\${ this.leak_count() } mount cycles left \${ live } live subscribers\`,
+		metrics,
+	)
+
+}
+
+// --------------------------------------------------------------- crash`},react:{lang:"js",file:"assets/versus/react/runner.html",text:`// The effect subscribes on mount and returns nothing, so the subscription
+// outlives the component that made it. The fix is
+// \`return () => store.unsubscribe( handler )\` at the end of the effect,
+// written by hand for every subscription and invisible when forgotten.
+
+const store = {
+
+	value: 0,
+	subscribers: [],
+
+	subscribe( handler ) {
+		this.subscribers.push( handler )
+	},
+
+	unsubscribe( handler ) {
+		const index = this.subscribers.indexOf( handler )
+		if( index >= 0 ) this.subscribers.splice( index, 1 )
+	},
+
+	set( value ) {
+		this.value = value
+		this.subscribers.forEach( handler => handler( value ) )
+	},
+}
+
+let store_ticker = 0
+
+function LeakWidget() {
+
+	const [ value, set_value ] = React.useState( store.value )
+
+	React.useEffect( () => {
+		store.subscribe( set_value )
+	}, [] )
+
+	return h( 'div', null, 'Widget sees store value ' + value )
+}
+
+let leak_control = null
+
+function LeakApp() {
+
+	const [ mounted, set_mounted ] = React.useState( false )
+	const [ cycles, set_cycles ] = React.useState( 0 )
+	const [ live, set_live ] = React.useState( store.subscribers.length )
+
+	// Handle for the runner, which drives mount cycles from outside React.
+	React.useEffect( () => {
+		leak_control = {
+			set_mounted: set_mounted,
+			set_cycles: set_cycles,
+			set_live: set_live,
+		}
+	}, [] )
+
+	return h( 'div', { className: 'column' },
+		h( 'div', { className: 'stat' }, 'Mount cycles: ' + cycles ),
+		h( 'div', { className: 'stat' }, 'Live subscribers: ' + live ),
+		h( 'div', { className: 'slot' },
+			mounted
+				? h( LeakWidget )
+				: h( 'div', { className: 'muted' }, 'Widget not mounted' ),
+		),
+	)
+}
+
+const leak = {
+
+	mount: root => {
+		// The store outlives the tree, so every run starts from a known zero.
+		store.subscribers = []
+		if( !store_ticker ) store_ticker = setInterval( () => store.set( store.value + 1 ), 500 )
+		return render( root, h( LeakApp ) )
+	},
+
+	run: async () => {
+
+		const control = leak_control
+		if( !control ) throw new Error( 'Leak scenario is not mounted' )
+
+		store.subscribers = []
+
+		for( let i = 0; i < 100; ++i ) {
+			ReactDOM.flushSync( () => control.set_mounted( true ) )
+			ReactDOM.flushSync( () => control.set_mounted( false ) )
+		}
+
+		await delay( 50 )
+
+		const live = store.subscribers.length
+
+		ReactDOM.flushSync( () => {
+			control.set_cycles( 100 )
+			control.set_live( live )
+		} )
+
+		return {
+			status: live === 0 ? 'ok' : 'fail',
+			observed: '100 mount cycles left ' + live + ' live subscribers',
+			metrics: [ { name: 'Live subscribers', value: live, unit: '' } ].concat( heap_metrics() ),
+		}
+	},
+}
+
+
+// --------------------------------------------------------------- crash`},vue:{lang:"js",file:"assets/versus/vue/runner.html",text:`// The widget subscribes to an external store in onMounted and never lets go.
+// There is deliberately no onUnmounted( () => unsubscribe() ) — one line, written
+// by hand every time, nothing in the framework asks for it and nothing complains
+// when it is missing.
+
+function createLeak( root ) {
+
+	var store = {
+		value: 0,
+		subscribers: [],
+		subscribe: function( handler ) {
+			this.subscribers.push( handler )
+		},
+		set: function( value ) {
+			this.value = value
+			this.subscribers.forEach( function( handler ) { handler( value ) } )
+		},
+	}
+
+	var Widget = {
+		template: \`<div class="widget">Store value: {{ value }}</div>\`,
+		setup: function() {
+
+			var value = ref( store.value )
+
+			onMounted( function() {
+				store.subscribe( function( next ) { value.value = next } )
+			} )
+
+			return { value: value }
+		},
+	}
+
+	var app = createApp( {
+		components: { Widget: Widget },
+		template: \`
+			<Widget v-if="shown" />
+			<div v-else class="slot muted">Widget is not mounted.</div>
+			<p class="stat">Mount cycles: {{ cycles }} · Live subscribers: {{ live }}</p>
+		\`,
+		setup: function() {
+			return { shown: ref( false ), cycles: ref( 0 ), live: ref( 0 ) }
+		},
+	} )
+
+	var vm = app.mount( root )
+
+	return {
+		run: async function() {
+
+			// a repeated Run has to measure its own 100 cycles, not add to the previous count
+			store.subscribers.length = 0
+
+			for ( var i = 0; i < 100; i++ ) {
+				vm.shown = true
+				await nextTick()
+				vm.shown = false
+				await nextTick()
+				vm.cycles = i + 1
+				vm.live = store.subscribers.length
+			}
+
+			var live = store.subscribers.length
+
+			var metrics = [ { name: 'Live subscribers', value: live, unit: '' } ]
+			if ( performance.memory ) {
+				metrics.push( {
+					name: 'Heap',
+					value: Math.round( performance.memory.usedJSHeapSize / 1048576 * 10 ) / 10,
+					unit: 'MB',
+				} )
+			}
+
+			return {
+				status: live === 0 ? 'ok' : 'fail',
+				observed: '100 mount cycles left ' + live + ' live subscriber' + ( live === 1 ? '' : 's' ),
+				metrics: metrics,
+			}
+		},
+	}
+}
+
+
+// ── crash ─────────────────────────────────────────────────────────────`}},race:{mol:{lang:"ts",file:"lab/lab.view.ts",text:`race_ids() {
+	return [ 1, 2, 3, 4, 5 ]
+}
+
+@ $mol_mem
+race_selected( next?: number ) {
+	return next ?? 0
+}
+
+@ $mol_mem
+race_options(): readonly $mol_view[] {
+	return this.race_ids().map( id => this.Race_option( id ) )
+}
+
+race_option_label( id: number ) {
+	return \`User \${ id }\`
+}
+
+race_option_current( id: number ) {
+	return this.race_selected() === id
+}
+
+@ $mol_action
+race_option_click( id: number, next?: unknown ) {
+	this.race_selected( id )
+	return null
+}
+
+race_delay( id: number ) {
+	return 1000 - ( id - 1 ) * 200
+}
+
+async race_load( id: number ) {
+	await this.sleep( this.race_delay( id ) )
+	return {
+		name: \`User \${ id }\`,
+		descr: \`Profile of user \${ id }, answered in \${ this.race_delay( id ) } ms\`,
+	}
+}
+
+/** The record is a value of the selected id. A record for an id nobody
+ *  looks at any more has no place to land. */
+@ $mol_mem_key
+race_user( id: number ): { name: string, descr: string } {
+	return $mol_wire_sync( this ).race_load( id )
+}
+
+race_panel_name() {
+	const id = this.race_selected()
+	return id ? this.race_user( id ).name : ''
+}
+
+race_panel_descr() {
+	const id = this.race_selected()
+	return id ? this.race_user( id ).descr : ''
+}
+
+/** The two waits add up to 1600 ms. Past this the machine was stretching
+ *  timers, and stretched timers pull the 200 ms and 1000 ms answers
+ *  towards each other until the order of arrival is a coin toss. */
+race_deadline() {
+	return 2200
+}
+
+async run_race() {
+
+	const started = performance.now()
+
+	this.race_selected( 1 )
+	await this.sleep( 100 )
+	this.race_selected( 5 )
+	await this.sleep( 1500 )
+
+	if( performance.now() - started > this.race_deadline() ) this.spoil( 'timers-throttled' )
+
+	const shown = this.Race_panel().dom_node().textContent ?? ''
+	const found = shown.match( /User (\\d+)/ )
+	const id = found ? Number( found[1] ) : 0
+
+	this.report(
+		id === 5 ? 'ok' : 'fail',
+		id
+			? \`Selected user 5, panel showed user \${ id }\`
+			: \`Selected user 5, panel showed no user\`,
+	)
+
+}
+
+// ------------------------------------------------------------- virtual`},react:{lang:"js",file:"assets/versus/react/runner.html",text:`// Idiomatic data loading: an effect starts a request whenever the selected
+// id changes and writes whatever comes back into state. There is no
+// cancellation flag and no AbortController here, so a slow earlier response
+// still lands after a fast later one. The usual fix is a \`let stale = false\`
+// guard released from the effect cleanup, written by hand for every effect
+// that loads something.
+
+const RACE_USERS = [ 1, 2, 3, 4, 5 ].map( number => ( {
+	id: number,
+	name: 'User ' + number,
+	about: 'Profile details for user ' + number + '.',
+} ) )
+
+function fetch_user( id ) {
+	return new Promise( done => {
+		setTimeout( () => done( RACE_USERS[ id - 1 ] ), 1000 - ( id - 1 ) * 200 )
+	} )
+}
+
+function RaceApp() {
+
+	const [ id, set_id ] = React.useState( null )
+	const [ user, set_user ] = React.useState( null )
+	const [ loading, set_loading ] = React.useState( false )
+
+	React.useEffect( () => {
+		if( id === null ) return
+		set_loading( true )
+		fetch_user( id ).then( data => {
+			set_user( data )
+			set_loading( false )
+		} )
+	}, [ id ] )
+
+	return h( 'div', { className: 'row2' },
+		h( 'div', { className: 'side' },
+			RACE_USERS.map( item => h( 'button', {
+				key: item.id,
+				className: 'item' + ( item.id === id ? ' item_current' : '' ),
+				'data-user': item.id,
+				onClick: () => set_id( item.id ),
+			}, item.name ) ),
+		),
+		h( 'div', { className: 'main' },
+			loading
+				? h( 'div', { className: 'muted' }, 'Loading…' )
+				: user
+					? h( 'div', null,
+						h( 'div', { className: 'title', 'data-panel': 'name' }, user.name ),
+						h( 'div', { className: 'muted' }, user.about ),
+					)
+					: h( 'div', { className: 'muted' }, 'Pick a user' ),
+		),
+	)
+}
+
+const race = {
+
+	mount: root => render( root, h( RaceApp ) ),
+
+	run: async () => {
+
+		const started = performance.now()
+
+		click( '[data-user="1"]' )
+		await delay( 100 )
+		click( '[data-user="5"]' )
+		await delay( 1500 )
+
+		// Clamped timers collapse both responses into one wake-up and destroy
+		// the order the scenario is built on. Expected here is ~1600 ms.
+		if( performance.now() - started > 2200 ) throw new Invalid( 'timers-throttled' )
+
+		const panel = document.querySelector( '[data-panel="name"]' )
+		const shown = panel ? panel.textContent : ''
+		const number = shown.replace( /\\D+/g, '' )
+
+		return {
+			status: number === '5' ? 'ok' : 'fail',
+			observed: number
+				? 'Selected user 5, panel shows user ' + number
+				: 'Selected user 5, panel shows nothing',
+			metrics: [],
+		}
+	},
+}
+
+
+// ------------------------------------------------------------- virtual`},vue:{lang:"js",file:"assets/versus/vue/runner.html",text:`// Textbook data fetching: a watcher awaits the request and assigns whatever
+// comes back. There is deliberately no cancellation and no check that the
+// resolved id is still the selected one — that check is what a stale response
+// has to get past. Written by hand with an AbortController, a request counter,
+// or delegated to a query cache library.
+
+function createRace( root ) {
+
+	var users = []
+	for ( var i = 0; i < 5; i++ ) {
+		users.push( { id: i + 1, name: 'User ' + ( i + 1 ), delay: 1000 - i * 200 } )
+	}
+
+	function fetchUser( id ) {
+		var user = users[ id - 1 ]
+		return new Promise( function( resolve ) {
+			setTimeout( function() {
+				resolve( {
+					id: user.id,
+					name: user.name,
+					description: 'Profile loaded in ' + user.delay + ' ms.',
+				} )
+			}, user.delay )
+		} )
+	}
+
+	var app = createApp( {
+		template: \`
+			<div class="split">
+				<div class="list">
+					<button
+						v-for="user in users"
+						:key="user.id"
+						:class="{ active: user.id === selected }"
+						@click="selected = user.id"
+					>{{ user.name }}</button>
+				</div>
+				<div class="panel">
+					<div v-if="loading" class="muted">Loading…</div>
+					<template v-else-if="user">
+						<h2>{{ user.name }}</h2>
+						<p>{{ user.description }}</p>
+					</template>
+					<div v-else class="muted">Pick a user on the left.</div>
+				</div>
+			</div>
+		\`,
+		setup: function() {
+
+			var selected = ref( null )
+			var user = ref( null )
+			var loading = ref( false )
+
+			watch( selected, async function( id ) {
+				loading.value = true
+				var data = await fetchUser( id )
+				user.value = data
+				loading.value = false
+			} )
+
+			return { users: users, selected: selected, user: user, loading: loading }
+		},
+	} )
+
+	var vm = app.mount( root )
+
+	return {
+
+		// two waits of 100 and 1500 ms, so a healthy run lands near 1600 ms; past this
+		// the delays that the whole scenario rests on are no longer being honoured
+		budget: 2200,
+
+		run: async function() {
+
+			vm.selected = 1
+			await wait( 100 )
+			vm.selected = 5
+			await wait( 1500 )
+
+			var shown = vm.user ? vm.user.id : null
+
+			return {
+				status: shown === 5 ? 'ok' : 'fail',
+				observed: 'Selected user 5, panel shows ' + ( shown ? 'user ' + shown : 'nothing' ),
+				metrics: [],
+			}
+		},
+	}
+}
+
+
+// ── virtual ───────────────────────────────────────────────────────────`}},virtual:{mol:{lang:"ts",file:"lab/lab.view.ts",text:`virtual_count() {
+	return 10000
+}
+
+@ $mol_mem
+virtual_filled( next?: boolean ) {
+	return next ?? false
+}
+
+@ $mol_mem
+virtual_rows(): readonly $mol_view[] {
+
+	if( !this.virtual_filled() ) return [ this.Virtual_placeholder() ]
+
+	const rows = [] as $mol_view[]
+	for( let index = 0; index < this.virtual_count(); ++ index ) {
+		rows.push( this.Virtual_row( index ) )
+	}
+
+	return rows
+}
+
+virtual_row_text( index: number ) {
+	const size = 20 + ( index * 37 ) % 400
+	const head = \`Row \${ index + 1 }. \`
+	const body = filler.repeat( Math.ceil( size / filler.length ) )
+	return ( head + body ).slice( 0, size )
+}
+
+async run_virtual() {
+
+	const container = this.Virtual_scroll().dom_node()
+
+	// Back to an empty list first, so a repeated Run measures the same
+	// work over again instead of reading a list that is already there.
+	this.virtual_filled( false )
+	this.Virtual_scroll().scroll_top( 0 )
+	await this.sleep( 16 )
+
+	const started = performance.now()
+
+	this.virtual_filled( true )
+
+	await this.frame()
+	await this.frame()
+
+	// Reading the height makes the browser lay the rows out, so the
+	// measurement covers the frame the user actually waits for.
+	const height = container.scrollHeight
+
+	const render_time = Math.round( performance.now() - started )
+
+	// Without frames the time above measured the wait, not the work, so
+	// the run stops here instead of spending two more seconds scrolling.
+	const spoiled = this.spoiled()
+	if( spoiled ) return this.report_invalid( spoiled )
+
+	this.Virtual_scroll().scroll_top( Math.round( ( height - container.clientHeight ) / 2 ) )
+	await this.sleep( 1000 )
+	this.Virtual_scroll().scroll_top( 0 )
+	await this.sleep( 1000 )
+
+	const nodes = container.querySelectorAll( '*' ).length
+
+	this.report(
+		nodes < 500 ? 'ok' : nodes > 5000 ? 'fail' : 'warn',
+		\`Rendered \${ nodes } DOM nodes for \${ this.virtual_count() } rows\`,
+		[
+			{ name: 'DOM nodes', value: nodes, unit: '' },
+			{ name: 'Render time', value: render_time, unit: 'ms' },
+		],
+	)
+
+}
+
+// ---------------------------------------------------------------- leak`},react:{lang:"js",file:"assets/versus/react/runner.html",text:`// A plain .map() over the whole data set, the way a list is written before
+// its size becomes a problem. Every row sits in the DOM at once. Windowing
+// is not part of React and gets added later with a separate library such as
+// react-window, which also means giving up on natural row heights or
+// measuring every row by hand.
+
+const WORDS = 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua '
+
+const VIRTUAL_ROWS = ( () => {
+	const rows = []
+	for( let i = 0; i < 10000; ++i ) {
+		const length = 20 + ( i * 37 ) % 400
+		let text = ''
+		while( text.length < length ) text += WORDS
+		rows.push( text.slice( 0, length ) )
+	}
+	return rows
+} )()
+
+let virtual_control = null
+
+function VirtualApp() {
+
+	const [ rows, set_rows ] = React.useState( [] )
+
+	// Handle for the runner, which feeds the rows in when Run is pressed.
+	React.useEffect( () => {
+		virtual_control = { set_rows: set_rows }
+	}, [] )
+
+	return h( 'div', { className: 'scroll', 'data-role': 'scroll' },
+		rows.length
+			? rows.map( ( text, index ) => h( 'div', {
+				key: index,
+				className: 'line',
+			}, '#' + ( index + 1 ) + ' ' + text ) )
+			: h( 'div', { className: 'hint muted' }, 'Press Run to load 10,000 rows' ),
+	)
+}
+
+const virtual = {
+
+	mount: root => render( root, h( VirtualApp ) ),
+
+	run: async () => {
+
+		const control = virtual_control
+		if( !control ) throw new Error( 'Virtual scenario is not mounted' )
+
+		const box = document.querySelector( '[data-role="scroll"]' )
+		if( !box ) throw new Error( 'Scroll container is missing' )
+
+		// Always start from the placeholder, so a repeated run times a real
+		// render instead of a list that is already on screen.
+		ReactDOM.flushSync( () => control.set_rows( [] ) )
+		box.scrollTop = 0
+
+		const started = performance.now()
+
+		control.set_rows( VIRTUAL_ROWS )
+
+		await next_frame()
+		await next_frame()
+
+		// Reading scrollHeight forces the layout the rows just made necessary.
+		const height = box.scrollHeight
+		const render_time = Math.round( performance.now() - started )
+
+		const middle = ( height - box.clientHeight ) / 2
+		await scroll_to( box, 0, middle, 1000 )
+		await scroll_to( box, middle, 0, 1000 )
+
+		const nodes = box.querySelectorAll( '*' ).length
+
+		return {
+			status: nodes < 500 ? 'ok' : nodes > 5000 ? 'fail' : 'warn',
+			observed: 'Rendered ' + nodes + ' DOM nodes for 10000 rows',
+			metrics: [
+				{ name: 'DOM nodes', value: nodes, unit: '' },
+				{ name: 'Render time', value: render_time, unit: 'ms' },
+			],
+		}
+	},
+}
+
+
+// ---------------------------------------------------------------- leak`},vue:{lang:"js",file:"assets/versus/vue/runner.html",text:`// A plain v-for over the whole dataset, the default way to render a list.
+// No windowing: all 10 000 rows sit in the DOM at once. Virtualization comes
+// from a separate library ( vue-virtual-scroller, TanStack Virtual ) and rows
+// of irregular height need measurement on top of that.
+
+function createVirtual( root ) {
+
+	var lorem = 'the quick brown fox jumps over the lazy dog and keeps running through the open field '
+
+	function textFor( i ) {
+		var length = 20 + ( i * 37 ) % 400
+		var text = ''
+		while ( text.length < length ) text += lorem
+		return text.slice( 0, length )
+	}
+
+	function makeRows() {
+		var rows = []
+		for ( var i = 0; i < 10000; i++ ) {
+			rows.push( { id: i, text: textFor( i ) } )
+		}
+		return rows
+	}
+
+	var app = createApp( {
+		template: \`
+			<div class="rows">
+				<div v-if="!rows.length" class="placeholder muted">Press Run to load 10,000 rows</div>
+				<div class="row" v-for="row in rows" :key="row.id">{{ row.id + 1 }}. {{ row.text }}</div>
+			</div>
+		\`,
+		setup: function() {
+			return { rows: ref( [] ) }
+		},
+	} )
+
+	var vm = app.mount( root )
+
+	// the rows are fixture data, built once up front: generating 10 000 strings is not
+	// the framework's work and has no business inside the measured window
+	var data = makeRows()
+
+	// Insurance, not the main path: a hidden tab is caught by the visibility check and
+	// reported as invalid. This covers the rarer case where frames stop while the tab is
+	// still visible — an iframe scrolled far out of view gets its frames throttled too.
+	// A run that never receives a frame has nothing to time, so it drops the metric and
+	// still reports the node count rather than hanging until the page times out.
+	function twoFrames() {
+		return new Promise( function( done ) {
+			var guard = setTimeout( function() { done( false ) }, 3000 )
+			requestAnimationFrame( function() {
+				requestAnimationFrame( function() {
+					clearTimeout( guard )
+					done( true )
+				} )
+			} )
+		} )
+	}
+
+	function scrollTo( element, from, to, duration ) {
+		return new Promise( function( done ) {
+			var start = performance.now()
+			var guard = setTimeout( done, duration + 500 )
+			requestAnimationFrame( function step( now ) {
+				var passed = Math.min( 1, ( now - start ) / duration )
+				element.scrollTop = from + ( to - from ) * passed
+				if ( passed < 1 ) return requestAnimationFrame( step )
+				clearTimeout( guard )
+				done()
+			} )
+		} )
+	}
+
+	return {
+		run: async function() {
+
+			var container = root.querySelector( '.rows' )
+
+			// a repeated Run has to measure the same empty-to-full transition as the first
+			vm.rows = []
+			await nextTick()
+
+			var t0 = performance.now()
+
+			vm.rows = data
+
+			var painted = await twoFrames()
+
+			// forces layout, so the number covers the whole cost of putting the list on screen
+			container.scrollHeight
+
+			var renderTime = Math.round( performance.now() - t0 )
+
+			var half = ( container.scrollHeight - container.clientHeight ) / 2
+
+			await scrollTo( container, 0, half, 1000 )
+			await scrollTo( container, half, 0, 1000 )
+
+			var nodes = container.querySelectorAll( '*' ).length
+
+			var metrics = [ { name: 'DOM nodes', value: nodes, unit: '' } ]
+			if ( painted ) {
+				metrics.push( { name: 'Render time', value: renderTime, unit: 'ms' } )
+			}
+
+			return {
+				status: nodes < 500 ? 'ok' : nodes > 5000 ? 'fail' : 'warn',
+				observed: 'Rendered ' + nodes + ' DOM nodes for ' + data.length + ' rows',
+				metrics: metrics,
+			}
+		},
+	}
+}
+
+
+// ── leak ──────────────────────────────────────────────────────────────`}}}})($||($={}));var $;(function(a){var e;(function(n){const o="https://github.com/b-on-g/smalljs/blob/main/";function i(r,s){return r.replace(/\{(\w+)\}/g,(l,u)=>s[u]??l)}class t extends a.$bog_smalljs_versus_code{snippets(){return this.$.$bog_smalljs_versus_code_data[this.case_id()]??{}}sides(){return[this.left(),this.right()].filter(s=>!!this.snippets()[s])}columns(){return this.sides().map(s=>this.Column(s))}snippet(s){return this.snippets()[s]}column_name(s){return s==="mol"?"$mol":s[0].toUpperCase()+s.slice(1)}column_text(s){return this.snippet(s)?.text??""}column_file(s){return this.snippet(s)?.file??""}column_uri(s){const l=this.column_file(s);return l?o+"bog/smalljs/"+l:""}missing_text(){const s=[this.left(),this.right()].filter(l=>!this.snippets()[l]);return s.length?i(this.missing(),{a:this.column_name(s[0])}):""}body(){const s=[];return this.sides().length&&s.push(this.Expander()),this.sides().length<2&&this.missing_text()&&s.push(this.Missing()),s}}n.$bog_smalljs_versus_code=t})(e=a.$$||(a.$$={}))})($||($={}));var $;(function(a){var e;(function(n){$mol_style_define($bog_smalljs_versus_code,{flex:{direction:"column"},margin:{top:"-0.5rem"},Hint:{font:{size:"0.8125rem"},color:$mol_theme.shade,padding:{bottom:"0.75rem"}},Columns:{display:"grid",gridTemplateColumns:"repeat( auto-fit, minmax( 20rem, 1fr ) )",gap:"1rem",width:"100%"},Column:{flex:{direction:"column"},minWidth:0,gap:"0.375rem"},Column_head:{justifyContent:"space-between",alignItems:"baseline",gap:"0.5rem",font:{size:"0.8125rem"}},Column_file:{font:{family:"monospace",size:"0.75rem"},color:$mol_theme.shade,flex:{shrink:1},minWidth:0,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"},Column_code:{display:"block",font:{family:"monospace",size:"0.75rem"},lineHeight:"1.5",whiteSpace:"pre",overflow:"auto",maxHeight:"24rem",background:{color:$mol_theme.back},border:{radius:"0.5rem"},padding:{top:"0.75rem",bottom:"0.75rem",left:"0.875rem",right:"0.875rem"}},Missing:{font:{size:"0.8125rem"},color:$mol_theme.shade,padding:{top:"0.5rem"}}})})(e=a.$$||(a.$$={}))})($||($={})),$.$bog_smalljs_versus_case=class extends $.$mol_view{Title(){const e=new this.$.$mol_view;return e.sub=()=>[this.title()],e}Hint(){const e=new this.$.$mol_view;return e.sub=()=>[this.hint()],e}Head(){const e=new this.$.$mol_view;return e.sub=()=>[this.Title(),this.Hint()],e}controls_content(){return[]}Controls(){const e=new this.$.$mol_view;return e.sub=()=>this.controls_content(),e}columns(){return[]}Columns(){const e=new this.$.$mol_view;return e.sub=()=>this.columns(),e}run_enabled(){return!0}run(e){return e!==void 0?e:null}run_label(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_run_label")}run_hint(){return""}framework_name(e){return""}Label(e){const n=new this.$.$mol_view;return n.sub=()=>[this.framework_name(e)],n}frame_uri(e){return""}frame_title(e){return""}frame_loaded(e,n){return n!==void 0?n:null}Frame(e){const n=new this.$.$bog_smalljs_versus_case_frame;return n.uri=()=>this.frame_uri(e),n.frame_title=()=>this.frame_title(e),n.loaded=o=>this.frame_loaded(e,o),n}card_content(e){return[]}Card(e){const n=new this.$.$mol_view;return n.sub=()=>this.card_content(e),n}status(e){return""}status_icon(e){return""}status_text(e){return""}observed(e){return""}metric_rows(e){return[]}metric_name(e){return""}Metric_name(e){const n=new this.$.$mol_view;return n.sub=()=>[this.metric_name(e)],n}metric_value(e){return""}Metric_value(e){const n=new this.$.$mol_view;return n.sub=()=>[this.metric_value(e)],n}note(e){return""}case_id(){return""}title(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_title")}hint(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_hint")}status_idle(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_status_idle")}status_running(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_status_running")}status_ok(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_status_ok")}status_warn(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_status_warn")}status_fail(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_status_fail")}status_error(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_status_error")}status_invalid(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_status_invalid")}error_timeout(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_error_timeout")}error_not_loaded(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_error_not_loaded")}run_hint_broken(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_run_hint_broken")}invalid_tab_hidden(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_invalid_tab_hidden")}invalid_timers_throttled(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_invalid_timers_throttled")}invalid_frame_offscreen(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_invalid_frame_offscreen")}invalid_other(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_invalid_other")}run_hint_hidden(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_run_hint_hidden")}run_hint_loading(){return this.$.$mol_locale.text("$bog_smalljs_versus_case_run_hint_loading")}sub(){return[this.Head(),this.Controls(),this.Columns()]}Run(){const e=new this.$.$mol_button_major;return e.enabled=()=>this.run_enabled(),e.click=n=>this.run(n),e.sub=()=>[this.run_label()],e}Run_hint(){const e=new this.$.$mol_view;return e.sub=()=>[this.run_hint()],e}Column(e){const n=new this.$.$mol_view;return n.sub=()=>[this.Label(e),this.Frame(e),this.Card(e)],n}Status(e){const n=new this.$.$bog_smalljs_versus_case_status;return n.status=()=>this.status(e),n.icon=()=>this.status_icon(e),n.text=()=>this.status_text(e),n}Observed(e){const n=new this.$.$mol_view;return n.sub=()=>[this.observed(e)],n}Metrics(e){const n=new this.$.$mol_view;return n.sub=()=>this.metric_rows(e),n}Metric(e){const n=new this.$.$mol_view;return n.sub=()=>[this.Metric_name(e),this.Metric_value(e)],n}Note(e){const n=new this.$.$mol_view;return n.sub=()=>[this.note(e)],n}},$mol_mem($.$bog_smalljs_versus_case.prototype,"Title"),$mol_mem($.$bog_smalljs_versus_case.prototype,"Hint"),$mol_mem($.$bog_smalljs_versus_case.prototype,"Head"),$mol_mem($.$bog_smalljs_versus_case.prototype,"Controls"),$mol_mem($.$bog_smalljs_versus_case.prototype,"Columns"),$mol_mem($.$bog_smalljs_versus_case.prototype,"run"),$mol_mem_key($.$bog_smalljs_versus_case.prototype,"Label"),$mol_mem_key($.$bog_smalljs_versus_case.prototype,"frame_loaded"),$mol_mem_key($.$bog_smalljs_versus_case.prototype,"Frame"),$mol_mem_key($.$bog_smalljs_versus_case.prototype,"Card"),$mol_mem_key($.$bog_smalljs_versus_case.prototype,"Metric_name"),$mol_mem_key($.$bog_smalljs_versus_case.prototype,"Metric_value"),$mol_mem($.$bog_smalljs_versus_case.prototype,"Run"),$mol_mem($.$bog_smalljs_versus_case.prototype,"Run_hint"),$mol_mem_key($.$bog_smalljs_versus_case.prototype,"Column"),$mol_mem_key($.$bog_smalljs_versus_case.prototype,"Status"),$mol_mem_key($.$bog_smalljs_versus_case.prototype,"Observed"),$mol_mem_key($.$bog_smalljs_versus_case.prototype,"Metrics"),$mol_mem_key($.$bog_smalljs_versus_case.prototype,"Metric"),$mol_mem_key($.$bog_smalljs_versus_case.prototype,"Note"),$.$bog_smalljs_versus_case_status=class extends $.$mol_view{Icon(){const e=new this.$.$mol_view;return e.sub=()=>[this.icon()],e}Text(){const e=new this.$.$mol_view;return e.sub=()=>[this.text()],e}status(){return"idle"}icon(){return""}text(){return""}attr(){return{...super.attr(),bog_smalljs_versus_status:this.status()}}sub(){return[this.Icon(),this.Text()]}},$mol_mem($.$bog_smalljs_versus_case_status.prototype,"Icon"),$mol_mem($.$bog_smalljs_versus_case_status.prototype,"Text"),$.$bog_smalljs_versus_case_frame=class extends $.$mol_view{loaded(e){return e!==void 0?e:null}dom_name(){return"iframe"}uri(){return""}frame_title(){return""}sub(){return[]}event(){return{...super.event(),load:e=>this.loaded(e)}}attr(){return{...super.attr(),src:this.uri(),title:this.frame_title(),loading:"lazy"}}},$mol_mem($.$bog_smalljs_versus_case_frame.prototype,"loaded");var $;(function(a){var e;(function(n){const o=["react","vue","mol"],i={react:"React",vue:"Vue",mol:"$mol"},t={status:"idle",observed:"",metrics:[]},r="—",s={idle:"○",running:"⏳",ok:"✅",warn:"⚠️",fail:"❌",error:"⛔",invalid:"↻"},l=15e3,u=5e3,m={react:"bog/smalljs/assets/versus/react/runner.html",vue:"bog/smalljs/assets/versus/vue/runner.html",mol:"bog/smalljs/lab/-/index.html"},d="/bog/smalljs/",c="/smalljs/",_={race:{react:"The effect calls setState with whatever the request returns, with no cancellation. Ignoring a response that is no longer current takes a cancel flag or an AbortController inside the effect.",vue:"The watcher assigns whatever the awaited request returns, with no cancellation. Ignoring a response that is no longer current takes a check after the await that the selected id has not changed.",mol:"The panel value is computed from the selected id, so a response for an earlier id is never assigned. Nothing is written by hand here."},virtual:{react:"Every row is rendered by a plain .map() over the data. Rendering only the rows on screen takes a virtualization library and a way to measure each row, since the heights differ.",vue:"Every row is rendered by a plain v-for over the data. Rendering only the rows on screen takes a virtualization library and a way to measure each row, since the heights differ.",mol:"The list keeps only the rows inside the viewport in the DOM and measures their heights as it scrolls. Nothing is written by hand here."},leak:{react:"The effect subscribes and returns nothing. Releasing the subscription takes a cleanup function returned from every effect that subscribes.",vue:"onMounted subscribes and there is no matching onUnmounted. Releasing the subscription takes a teardown hook in every component that subscribes.",mol:"The subscription belongs to the component's own reactive cell and is released together with the component. Nothing is written by hand here."},crash:{react:"With no ErrorBoundary above it, a throw during render takes the whole tree down. Keeping the rest of the list on screen takes an ErrorBoundary component around every part that may throw.",vue:"The production build drops the throwing component and leaves an empty comment node in its place, so the rest of the list stays and the page shows no sign that anything failed — the TypeError reaches the console only. Putting something visible where the card was takes an onErrorCaptured hook and markup to render in the failed slot.",mol:"A view that throws renders the error message in its own place and the rest of the tree keeps rendering. Nothing is written by hand here."}};function p(f){return f==="ok"||f==="warn"||f==="fail"?f:"error"}function h(f){return Array.isArray(f)?f.flatMap(y=>{if(!y||typeof y!="object")return[];const w=y.name;if(!w)return[];const x=y.value,M=y.unit;return x==null||x===""?[{name:String(w),value:r}]:[{name:String(w),value:String(x)+(M?" "+String(M):"")}]}):[]}class b extends a.$bog_smalljs_versus_case{frameworks(){return o}columns(){return this.frameworks().map(y=>this.Column(y))}framework_name(y){return i[y]??y}frame_title(y){return this.framework_name(y)+" — "+this.case_id()}location_path(){return this.$.$mol_dom_context.location?.pathname??""}site_base(){const y=this.location_path(),w=y.indexOf(d);if(w>=0)return y.slice(0,w)+"/";const x=y.indexOf(c);return x>=0?y.slice(0,x+c.length):"/"}frame_uri(y){return this.site_base()+m[y]+"?case="+encodeURIComponent(this.case_id())}result(y,w){return w??t}status(y){return this.result(y).status}status_icon(y){return s[this.status(y)]}status_text(y){switch(this.status(y)){case"running":return this.status_running();case"ok":return this.status_ok();case"warn":return this.status_warn();case"fail":return this.status_fail();case"error":return this.status_error();case"invalid":return this.status_invalid();default:return this.status_idle()}}observed(y){return this.result(y).observed}invalid_text(y){switch(y){case"tab-hidden":return this.invalid_tab_hidden();case"timers-throttled":return this.invalid_timers_throttled();case"frame-offscreen":return this.invalid_frame_offscreen();default:return this.invalid_other()}}note(y){return _[this.case_id()]?.[y]??""}metric_ids(y){return this.result(y).metrics.map((w,x)=>y+"/"+x)}metric_rows(y){return this.metric_ids(y).map(w=>this.Metric(w))}metric(y){const w=y.lastIndexOf("/");return this.result(y.slice(0,w)).metrics[Number(y.slice(w+1))]}metric_name(y){return this.metric(y)?.name??""}metric_value(y){return this.metric(y)?.value??r}card_content(y){return[this.Status(y),...this.observed(y)?[this.Observed(y)]:[],...this.metric_ids(y).length?[this.Metrics(y)]:[],...this.note(y)?[this.Note(y)]:[]]}controls_content(){return[this.Run(),...this.run_hint()?[this.Run_hint()]:[]]}ready(y,w){return w??!1}frames_ready(){return this.frameworks().every(y=>this.ready(y))}frame_settled(y,w){return w??!1}frame_loaded(y,w){return this.frame_settled(y,!0),null}ready_watchdog(y){return!this.frame_settled(y)||this.ready(y)?null:new this.$.$mol_after_timeout(u,()=>this.ready_expire(y))}ready_expire(y){return this.ready(y)||this.result(y,{status:"error",observed:this.error_not_loaded(),metrics:[]}),null}frames_broken(){return this.frameworks().some(y=>!this.ready(y)&&this.status(y)==="error")}page_visible(y){return y??!this.$.$mol_dom_context.document?.hidden}visibility_sync(){return this.page_visible(!this.$.$mol_dom_context.document.hidden),null}run_enabled(){return this.frames_ready()&&this.page_visible()}run_hint(){return this.page_visible()?this.frames_broken()?this.run_hint_broken():this.frames_ready()?"":this.run_hint_loading():this.run_hint_hidden()}run_id(y){return y??0}run(){if(!this.run_enabled())return null;const y=this.run_id()+1;this.run_id(y);for(const w of this.frameworks())this.result(w,{status:"running",observed:"",metrics:[]}),this.post(w,{ns:"versus",type:"run",case:this.case_id()});return null}watchdog(){const y=this.run_id();return y?new this.$.$mol_after_timeout(l,()=>this.expire(y)):null}expire(y){if(this.run_id()!==y)return null;for(const w of this.frameworks())this.status(w)==="running"&&this.result(w,{status:"error",observed:this.error_timeout(),metrics:[]});return null}frame_window(y){return this.Frame(y).dom_node().contentWindow}post(y,w){this.frame_window(y)?.postMessage(w,"*")}message_listener(){return new $mol_dom_listener(this.$.$mol_dom_context,"message",$mol_wire_async(this).message_receive)}visibility_listener(){return new $mol_dom_listener(this.$.$mol_dom_context.document,"visibilitychange",()=>this.visibility_sync())}auto(){return[this.message_listener(),this.visibility_listener(),this.watchdog(),...this.frameworks().map(y=>this.ready_watchdog(y))]}message_receive(y){if(!y)return;const w=y.data;if(!w||typeof w!="object"||w.ns!=="versus")return;const x=this.frameworks().find(M=>y.source===this.frame_window(M));if(x&&!(w.case!==void 0&&w.case!==this.case_id()))switch(w.type){case"ready":{if(this.ready(x,!0),this.status(x)==="running")return;this.result(x,t);return}case"result":{this.result(x,{status:p(w.status),observed:String(w.observed??""),metrics:h(w.metrics)});return}case"invalid":{this.result(x,{status:"invalid",observed:this.invalid_text(w.reason),metrics:[]});return}case"error":{this.result(x,{status:"error",observed:String(w.message??""),metrics:[]});return}}}}__decorate([$mol_mem_key],b.prototype,"frame_uri",null),__decorate([$mol_mem_key],b.prototype,"result",null),__decorate([$mol_mem_key],b.prototype,"ready",null),__decorate([$mol_mem_key],b.prototype,"frame_settled",null),__decorate([$mol_action],b.prototype,"frame_loaded",null),__decorate([$mol_mem_key],b.prototype,"ready_watchdog",null),__decorate([$mol_action],b.prototype,"ready_expire",null),__decorate([$mol_mem],b.prototype,"page_visible",null),__decorate([$mol_action],b.prototype,"visibility_sync",null),__decorate([$mol_mem],b.prototype,"run_id",null),__decorate([$mol_action],b.prototype,"run",null),__decorate([$mol_mem],b.prototype,"watchdog",null),__decorate([$mol_action],b.prototype,"expire",null),__decorate([$mol_mem],b.prototype,"message_listener",null),__decorate([$mol_mem],b.prototype,"visibility_listener",null),n.$bog_smalljs_versus_case=b})(e=a.$$||(a.$$={}))})($||($={}));var $;(function(a){const{rem:e,px:n}=$mol_style_unit,o={width:"1px",style:"solid",color:$bog_builderui_tokens.line},i="'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace",t="#3f9e57",r="#bb8218",s="#d2564f";$mol_style_define($bog_smalljs_versus_case,{flex:{direction:"column"},gap:e(1),padding:e(1.25),border:{radius:e(.75),...o},background:{color:$bog_builderui_tokens.card},Head:{flex:{direction:"column"},gap:e(.35)},Title:{display:"block",font:{family:$bog_builderui_tokens.font_head,size:e(1.25),weight:600},lineHeight:"1.25",color:$bog_builderui_tokens.text},Hint:{display:"block",font:{size:e(.9375)},lineHeight:"1.5",color:$bog_builderui_tokens.shade},Controls:{flex:{direction:"row",wrap:"wrap"},align:{items:"center"},gap:e(.75)},Run:{flex:{grow:0,shrink:0},padding:{top:e(.5),bottom:e(.5),left:e(1.25),right:e(1.25)},border:{radius:e(.375)},font:{weight:600},"@":{disabled:{true:{opacity:.45}}}},Run_hint:{display:"block",flex:{shrink:1},minWidth:0,font:{size:e(.8125)},lineHeight:"1.45",color:$bog_builderui_tokens.shade},Columns:{display:"grid",gridTemplateColumns:"repeat(3, minmax(0, 1fr))",gap:e(.75)},Column:{flex:{direction:"column"},minWidth:0,gap:e(.5),padding:e(.75),border:{radius:e(.5),...o},background:{color:$bog_builderui_tokens.back}},Label:{display:"block",font:{family:i,size:e(.6875),weight:600},letterSpacing:e(.06),textTransform:"uppercase",color:$bog_builderui_tokens.shade},Frame:{display:"block",width:"100%",height:n(320),minWidth:0,border:{radius:e(.375),...o},background:{color:"#ffffff"}},Card:{flex:{direction:"column"},minWidth:0,gap:e(.4)},Observed:{display:"block",font:{size:e(.875)},lineHeight:"1.45",color:$bog_builderui_tokens.text},Metrics:{flex:{direction:"column"},gap:e(.15)},Metric:{flex:{direction:"row",wrap:"wrap"},justify:{content:"space-between"},gap:e(.5),font:{size:e(.8125)}},Metric_name:{display:"block",color:$bog_builderui_tokens.shade},Metric_value:{display:"block",font:{family:i},color:$bog_builderui_tokens.text},Note:{display:"block",padding:{top:e(.4)},border:{top:o},font:{size:e(.75)},lineHeight:"1.45",color:$bog_builderui_tokens.shade},"@media":{"(max-width: 47.9375rem)":{Columns:{gridTemplateColumns:"1fr"}}}}),$mol_style_define($bog_smalljs_versus_case_status,{flex:{direction:"row",wrap:"wrap"},align:{items:"baseline"},gap:e(.4),font:{size:e(.875),weight:600},color:$bog_builderui_tokens.shade,Icon:{display:"block",flex:{shrink:0}},Text:{display:"block"},"@":{bog_smalljs_versus_status:{ok:{color:t},warn:{color:r},fail:{color:s},error:{color:s}}}})})($||($={})),$.$bog_smalljs_versus_pair=class extends $.$mol_view{head_content(){return[]}Head(){const e=new this.$.$mol_view;return e.sub=()=>this.head_content(),e}sections(){return[]}Sections(){const e=new this.$.$mol_view;return e.sub=()=>this.sections(),e}method_title_text(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_method_title_text")}Method_title(){const e=new this.$.$mol_view;return e.dom_name=()=>"h2",e.sub=()=>[this.method_title_text()],e}method_body(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_method_body")}Method_text(){const e=new this.$.$mol_view;return e.sub=()=>[this.method_body()],e}method_link_label(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_method_link_label")}Method_link_icon(){return new this.$.$mol_icon_open_in_new}Method_link(){const e=new this.$.$mol_link;return e.uri=()=>"https://github.com/b-on-g/smalljs/tree/master/versus",e.target=()=>"_blank",e.sub=()=>[this.method_link_label(),this.Method_link_icon()],e}Method(){const e=new this.$.$mol_view;return e.sub=()=>[this.Method_title(),this.Method_text(),this.Method_link()],e}suggest_title_text(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_suggest_title_text")}Suggest_title(){const e=new this.$.$mol_view;return e.dom_name=()=>"h2",e.sub=()=>[this.suggest_title_text()],e}suggest_body(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_suggest_body")}Suggest_text(){const e=new this.$.$mol_view;return e.sub=()=>[this.suggest_body()],e}suggest_name(e){return e!==void 0?e:""}Suggest_field(){const e=new this.$.$mol_string;return e.value=n=>this.suggest_name(n),e.hint=()=>this.$.$mol_locale.text("$bog_smalljs_versus_pair_Suggest_field_hint"),e}suggest_uri(){return""}suggest_send_label(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_suggest_send_label")}Suggest_send_icon(){return new this.$.$mol_icon_open_in_new}Suggest_send(){const e=new this.$.$mol_link;return e.uri=()=>this.suggest_uri(),e.target=()=>"_blank",e.sub=()=>[this.suggest_send_label(),this.Suggest_send_icon()],e}Suggest_form(){const e=new this.$.$mol_view;return e.sub=()=>[this.Suggest_field(),this.Suggest_send()],e}Suggest(){const e=new this.$.$mol_view;return e.sub=()=>[this.Suggest_title(),this.Suggest_text(),this.Suggest_form()],e}title_text(){return""}verdict_text(){return""}verdict_note_text(){return""}section_title(e){return""}section_score(e){return""}section_note(e){return""}section_content(e){return[]}metric_title(e){return""}metric_left_value(e){return""}metric_right_value(e){return""}metric_bar(e){return!1}metric_lead(e){return""}metric_left_share(e){return"50%"}metric_right_share(e){return"50%"}metric_delta(e){return""}metric_human(e){return""}metric_method(e){return""}metric_sources(e){return[]}source_name(e){return""}source_label(e){return""}source_uri(e){return""}source_date(e){return""}edge_missing_note(){return""}left(){return""}right(){return""}left_title(){return""}right_title(){return""}verdict_win(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_verdict_win")}verdict_draw(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_verdict_draw")}verdict_none(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_verdict_none")}verdict_note_edge(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_verdict_note_edge")}verdict_note_no_runner(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_verdict_note_no_runner")}verdict_note_no_runner_both(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_verdict_note_no_runner_both")}verdict_note_gap_one(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_verdict_note_gap_one")}verdict_note_gaps(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_verdict_note_gaps")}category_edge(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_category_edge")}category_code(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_category_code")}category_weight(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_category_weight")}category_speed(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_category_speed")}category_builtin(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_category_builtin")}category_market(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_category_market")}category_cost(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_category_cost")}note_edge(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_note_edge")}note_code(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_note_code")}note_weight(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_note_weight")}note_speed(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_note_speed")}note_builtin(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_note_builtin")}note_market(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_note_market")}note_cost(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_note_cost")}score_line(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_score_line")}score_ahead(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_score_ahead")}score_tied(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_score_tied")}score_empty(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_score_empty")}edge_score_line(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_edge_score_line")}edge_score_empty(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_edge_score_empty")}edge_score_no_runner(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_edge_score_no_runner")}edge_missing_one(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_edge_missing_one")}edge_missing_both(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_edge_missing_both")}delta_below(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_delta_below")}delta_above(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_delta_above")}delta_times(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_delta_times")}delta_ahead(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_delta_ahead")}delta_zero(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_delta_zero")}delta_tie(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_delta_tie")}delta_only(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_delta_only")}delta_both(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_delta_both")}delta_neither(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_delta_neither")}delta_partial(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_delta_partial")}value_yes(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_value_yes")}value_no(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_value_no")}no_data(){return this.$.$mol_locale.text("$bog_smalljs_versus_pair_no_data")}sub(){return[this.Head(),this.Sections(),this.Method(),this.Suggest()]}Title(){const e=new this.$.$mol_view;return e.dom_name=()=>"h1",e.sub=()=>[this.title_text()],e}Verdict(){const e=new this.$.$mol_view;return e.sub=()=>[this.verdict_text()],e}Verdict_note(){const e=new this.$.$mol_view;return e.sub=()=>[this.verdict_note_text()],e}Section(e){const n=new this.$.$bog_smalljs_versus_pair_section;return n.title=()=>this.section_title(e),n.score=()=>this.section_score(e),n.note=()=>this.section_note(e),n.content=()=>this.section_content(e),n}Names(e){const n=new this.$.$bog_smalljs_versus_pair_names;return n.left_name=()=>this.left_title(),n.right_name=()=>this.right_title(),n}Metric(e){const n=new this.$.$bog_smalljs_versus_pair_metric;return n.title=()=>this.metric_title(e),n.left_value=()=>this.metric_left_value(e),n.right_value=()=>this.metric_right_value(e),n.bar=()=>this.metric_bar(e),n.lead=()=>this.metric_lead(e),n.left_share=()=>this.metric_left_share(e),n.right_share=()=>this.metric_right_share(e),n.delta=()=>this.metric_delta(e),n.human=()=>this.metric_human(e),n.method=()=>this.metric_method(e),n.sources=()=>this.metric_sources(e),n}Source(e){const n=new this.$.$bog_smalljs_versus_pair_source;return n.name=()=>this.source_name(e),n.label=()=>this.source_label(e),n.uri=()=>this.source_uri(e),n.date=()=>this.source_date(e),n}Case_race(){const e=new this.$.$bog_smalljs_versus_pair_case;return e.case_id=()=>"race",e.title=()=>this.$.$mol_locale.text("$bog_smalljs_versus_pair_Case_race_title"),e.hint=()=>this.$.$mol_locale.text("$bog_smalljs_versus_pair_Case_race_hint"),e.left=()=>this.left(),e.right=()=>this.right(),e.missing_note=()=>this.edge_missing_note(),e}Case_virtual(){const e=new this.$.$bog_smalljs_versus_pair_case;return e.case_id=()=>"virtual",e.title=()=>this.$.$mol_locale.text("$bog_smalljs_versus_pair_Case_virtual_title"),e.hint=()=>this.$.$mol_locale.text("$bog_smalljs_versus_pair_Case_virtual_hint"),e.left=()=>this.left(),e.right=()=>this.right(),e.missing_note=()=>this.edge_missing_note(),e}Case_leak(){const e=new this.$.$bog_smalljs_versus_pair_case;return e.case_id=()=>"leak",e.title=()=>this.$.$mol_locale.text("$bog_smalljs_versus_pair_Case_leak_title"),e.hint=()=>this.$.$mol_locale.text("$bog_smalljs_versus_pair_Case_leak_hint"),e.left=()=>this.left(),e.right=()=>this.right(),e.missing_note=()=>this.edge_missing_note(),e}Case_crash(){const e=new this.$.$bog_smalljs_versus_pair_case;return e.case_id=()=>"crash",e.title=()=>this.$.$mol_locale.text("$bog_smalljs_versus_pair_Case_crash_title"),e.hint=()=>this.$.$mol_locale.text("$bog_smalljs_versus_pair_Case_crash_hint"),e.left=()=>this.left(),e.right=()=>this.right(),e.missing_note=()=>this.edge_missing_note(),e}Code_race(){const e=new this.$.$bog_smalljs_versus_code;return e.case_id=()=>"race",e.left=()=>this.left(),e.right=()=>this.right(),e}Code_virtual(){const e=new this.$.$bog_smalljs_versus_code;return e.case_id=()=>"virtual",e.left=()=>this.left(),e.right=()=>this.right(),e}Code_leak(){const e=new this.$.$bog_smalljs_versus_code;return e.case_id=()=>"leak",e.left=()=>this.left(),e.right=()=>this.right(),e}Code_crash(){const e=new this.$.$bog_smalljs_versus_code;return e.case_id=()=>"crash",e.left=()=>this.left(),e.right=()=>this.right(),e}},$mol_mem($.$bog_smalljs_versus_pair.prototype,"Head"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Sections"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Method_title"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Method_text"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Method_link_icon"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Method_link"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Method"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Suggest_title"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Suggest_text"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"suggest_name"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Suggest_field"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Suggest_send_icon"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Suggest_send"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Suggest_form"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Suggest"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Title"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Verdict"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Verdict_note"),$mol_mem_key($.$bog_smalljs_versus_pair.prototype,"Section"),$mol_mem_key($.$bog_smalljs_versus_pair.prototype,"Names"),$mol_mem_key($.$bog_smalljs_versus_pair.prototype,"Metric"),$mol_mem_key($.$bog_smalljs_versus_pair.prototype,"Source"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Case_race"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Case_virtual"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Case_leak"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Case_crash"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Code_race"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Code_virtual"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Code_leak"),$mol_mem($.$bog_smalljs_versus_pair.prototype,"Code_crash"),$.$bog_smalljs_versus_pair_case=class extends $.$bog_smalljs_versus_case{left(){return""}right(){return""}missing_note(){return""}columns_count(){return 2}attr(){return{...super.attr(),bog_smalljs_versus_pair_columns:this.columns_count()}}Missing_note(){const e=new this.$.$mol_view;return e.sub=()=>[this.missing_note()],e}},$mol_mem($.$bog_smalljs_versus_pair_case.prototype,"Missing_note"),$.$bog_smalljs_versus_pair_section=class extends $.$mol_view{section_content(){return[]}head_content(){return[]}content(){return[]}title(){return""}score(){return""}note(){return""}sub(){return this.section_content()}Head(){const e=new this.$.$mol_view;return e.sub=()=>this.head_content(),e}Title(){const e=new this.$.$mol_view;return e.dom_name=()=>"h2",e.sub=()=>[this.title()],e}Score(){const e=new this.$.$mol_view;return e.sub=()=>[this.score()],e}Note(){const e=new this.$.$mol_view;return e.sub=()=>[this.note()],e}Content(){const e=new this.$.$mol_view;return e.sub=()=>this.content(),e}},$mol_mem($.$bog_smalljs_versus_pair_section.prototype,"Head"),$mol_mem($.$bog_smalljs_versus_pair_section.prototype,"Title"),$mol_mem($.$bog_smalljs_versus_pair_section.prototype,"Score"),$mol_mem($.$bog_smalljs_versus_pair_section.prototype,"Note"),$mol_mem($.$bog_smalljs_versus_pair_section.prototype,"Content"),$.$bog_smalljs_versus_pair_names=class extends $.$mol_view{Left(){const e=new this.$.$mol_view;return e.sub=()=>[this.left_name()],e}Middle(){const e=new this.$.$mol_view;return e.sub=()=>[],e}Right(){const e=new this.$.$mol_view;return e.sub=()=>[this.right_name()],e}left_name(){return""}right_name(){return""}sub(){return[this.Left(),this.Middle(),this.Right()]}},$mol_mem($.$bog_smalljs_versus_pair_names.prototype,"Left"),$mol_mem($.$bog_smalljs_versus_pair_names.prototype,"Middle"),$mol_mem($.$bog_smalljs_versus_pair_names.prototype,"Right"),$.$bog_smalljs_versus_pair_metric=class extends $.$mol_view{metric_content(){return[]}row_content(){return[]}Bar_left(){const e=new this.$.$mol_view;return e.style=()=>({...this.$.$mol_view.prototype.style.call(e),width:this.left_share()}),e}Bar_right(){const e=new this.$.$mol_view;return e.style=()=>({...this.$.$mol_view.prototype.style.call(e),width:this.right_share()}),e}sources(){return[]}title(){return""}left_value(){return""}right_value(){return""}bar(){return!1}lead(){return""}left_share(){return"50%"}right_share(){return"50%"}attr(){return{...super.attr(),bog_smalljs_versus_pair_lead:this.lead()}}delta(){return""}human(){return""}method(){return""}sub(){return this.metric_content()}Title(){const e=new this.$.$mol_view;return e.sub=()=>[this.title()],e}Row(){const e=new this.$.$mol_view;return e.sub=()=>this.row_content(),e}Value_left(){const e=new this.$.$mol_view;return e.sub=()=>[this.left_value()],e}Value_right(){const e=new this.$.$mol_view;return e.sub=()=>[this.right_value()],e}Gap(){const e=new this.$.$mol_view;return e.sub=()=>[],e}Bar(){const e=new this.$.$mol_view;return e.sub=()=>[this.Bar_left(),this.Bar_right()],e}Delta(){const e=new this.$.$mol_view;return e.sub=()=>[this.delta()],e}Human(){const e=new this.$.$mol_view;return e.sub=()=>[this.human()],e}Method(){const e=new this.$.$mol_view;return e.sub=()=>[this.method()],e}Sources(){const e=new this.$.$mol_view;return e.sub=()=>this.sources(),e}},$mol_mem($.$bog_smalljs_versus_pair_metric.prototype,"Bar_left"),$mol_mem($.$bog_smalljs_versus_pair_metric.prototype,"Bar_right"),$mol_mem($.$bog_smalljs_versus_pair_metric.prototype,"Title"),$mol_mem($.$bog_smalljs_versus_pair_metric.prototype,"Row"),$mol_mem($.$bog_smalljs_versus_pair_metric.prototype,"Value_left"),$mol_mem($.$bog_smalljs_versus_pair_metric.prototype,"Value_right"),$mol_mem($.$bog_smalljs_versus_pair_metric.prototype,"Gap"),$mol_mem($.$bog_smalljs_versus_pair_metric.prototype,"Bar"),$mol_mem($.$bog_smalljs_versus_pair_metric.prototype,"Delta"),$mol_mem($.$bog_smalljs_versus_pair_metric.prototype,"Human"),$mol_mem($.$bog_smalljs_versus_pair_metric.prototype,"Method"),$mol_mem($.$bog_smalljs_versus_pair_metric.prototype,"Sources"),$.$bog_smalljs_versus_pair_source=class extends $.$mol_view{source_content(){return[]}name(){return""}label(){return""}uri(){return""}date(){return""}sub(){return this.source_content()}Name(){const e=new this.$.$mol_view;return e.sub=()=>[this.name()],e}Link(){const e=new this.$.$mol_link;return e.uri=()=>this.uri(),e.target=()=>"_blank",e.sub=()=>[this.label()],e}Text(){const e=new this.$.$mol_view;return e.sub=()=>[this.label()],e}Taken(){const e=new this.$.$mol_view;return e.sub=()=>[this.date()],e}},$mol_mem($.$bog_smalljs_versus_pair_source.prototype,"Name"),$mol_mem($.$bog_smalljs_versus_pair_source.prototype,"Link"),$mol_mem($.$bog_smalljs_versus_pair_source.prototype,"Text"),$mol_mem($.$bog_smalljs_versus_pair_source.prototype,"Taken");var $;(function(a){class e extends $mol_object2{static source(){return this.$.$bog_smalljs_versus_data}static known(o){return this.source().item(o)!==null}static framework(o){return this.source().item(o)??{id:o,title:o,runner:!1,metrics:{}}}static registry(){return this.source().registry()}static title(o){return this.framework(o).title}static measure(o,i){return this.framework(o).metrics[i]??null}static meta(o){return this.source().metric(o)}static category_metrics(o){return Object.entries(this.registry()).filter(([,i])=>i.category===o).map(([i])=>i)}}__decorate([$mol_mem_key],e,"framework",null),__decorate([$mol_mem_key],e,"category_metrics",null),a.$bog_smalljs_versus_pair_data=e})($||($={}));var $;(function(a){const e={side:"none",share:null,percent:null,times:null},n={side:"tie",share:.5,percent:null,times:null};class o extends $mol_object2{static rankable(t,r){return t==="boolean"?typeof r=="boolean":t!=="lower"&&t!=="higher"?!1:typeof r=="number"&&Number.isFinite(r)}static diff(t,r,s){if(!this.rankable(t,r)||!this.rankable(t,s))return e;if(t==="boolean")return r===s?{side:"tie",share:null,percent:null,times:null}:{side:r===!0?"left":"right",share:null,percent:null,times:null};const l=r,u=s;if(l===u)return n;const m=t==="lower";return{side:l<u===m?"left":"right",share:this.share(m,l,u),...this.distance(m,l,u)}}static share(t,r,s){if(r<0||s<0)return null;const l=r+s;return l===0?.5:t?s/l:r/l}static distance(t,r,s){const l=Math.min(r,s),u=Math.max(r,s);return t?u<=0?{percent:null,times:null}:{percent:(u-l)/u*100,times:null}:l<=0?{percent:null,times:null}:{percent:(u-l)/l*100,times:u/l}}}a.$bog_smalljs_versus_pair_compare=o})($||($={}));var $;(function(a){var e;(function(n){const o=["edge","code","weight","speed","builtin","market","cost"],i=["race","virtual","leak","crash"],r={ok:2,warn:1,fail:0},s=2,l="https://github.com/b-on-g/smalljs/issues/new",u=["none","one","two","three","four","five","six","seven","eight","nine","ten"];function m(z){return u[z]??String(z)}function d(z,g){return z.replace(/\{(\w+)\}/g,(v,j)=>{const S=g[j];return S===void 0?v:String(S)})}function c(z){const g=Math.abs(z),v=g>=100?Math.round(z):g>=10?Math.round(z*10)/10:Math.round(z*100)/100,[j,S]=String(v).split("."),T=j.replace(/\B(?=(\d{3})+$)/g,",");return S?T+"."+S:T}function _(z){return z>=10?String(Math.round(z)):String(Math.round(z*10)/10)}function p(z){return String(Math.round(z*10)/10)}function h(z){const v=z.replace(/^https?:\/\//,"").replace(/[?#].*$/,"").replace(/\/+$/,"").split("/");return v[0]=v[0].replace(/^www\./,""),v.length<=3?v.join("/"):v[0]+"/…/"+v[v.length-1]}function b(z){return Math.round(z*1e3)/10+"%"}const f={left:0,right:0,total:0};class y extends a.$bog_smalljs_versus_pair{data(){return this.$.$bog_smalljs_versus_pair_data}compare(){return this.$.$bog_smalljs_versus_pair_compare}meta(g){return this.data().meta(g)}measure(g,v){return this.data().measure(g,v)}registry_metrics(g){return this.data().category_metrics(g)}runner(g){return this.data().framework(g).runner===!0}left_title(){return this.data().title(this.left())}right_title(){return this.data().title(this.right())}title_text(){return this.left_title()+" vs "+this.right_title()}head_content(){return[this.Title(),this.Verdict(),...this.verdict_note_text()?[this.Verdict_note()]:[]]}rows(g){const v=this.left(),j=this.right();return this.registry_metrics(g).flatMap(S=>{const T=this.meta(S);if(!T)return[];const D=this.measure(v,S),C=this.measure(j,S);return!D&&!C?[]:[{id:S,meta:T,left:D,right:C,diff:this.compare().diff(T.better,D?.value,C?.value)}]})}row(g){const v=this.meta(g);return v?this.rows(v.category).find(j=>j.id===g)??null:null}score(g){if(g==="edge")return this.edge_score();let v=0,j=0,S=0;for(const T of this.rows(g))T.diff.side!=="none"&&(S+=1,T.diff.side==="left"&&(v+=1),T.diff.side==="right"&&(j+=1));return{left:v,right:j,total:S}}edge_score(){const g=this.left(),v=this.right();if(!this.edge_live())return f;let j=0,S=0,T=0;for(const D of this.cases()){const C=this.case_side(D.status(g),D.status(v));C!=="none"&&(T+=1,C==="left"&&(j+=1),C==="right"&&(S+=1))}return{left:j,right:S,total:T}}case_side(g,v){const j=r[g],S=r[v];return j===void 0||S===void 0?"none":j===S?"tie":j>S?"left":"right"}edge_live(){return this.runner(this.left())&&this.runner(this.right())}decided(){return o.filter(g=>this.score(g).total>0)}tally(){let g=0,v=0,j=0;for(const S of this.decided()){const T=this.score(S),D=T.left/T.total,C=T.right/T.total;D>C?g+=1:C>D?v+=1:j+=1}return{left:g,right:v,ties:j,total:g+v+j}}verdict_text(){const g=this.tally(),v=this.left_title(),j=this.right_title();if(!g.total)return d(this.verdict_none(),{a:v,b:j});if(g.left===g.right)return d(this.verdict_draw(),{a:v,b:j,x:g.left,total:g.total,ties:m(g.ties)});const S=g.left>g.right;return d(this.verdict_win(),{a:S?v:j,b:S?j:v,x:S?g.left:g.right,y:S?g.right:g.left,total:g.total,ties:m(g.ties)})}verdict_note_text(){const g=[];this.edge_live()?this.score("edge").total||g.push(this.verdict_note_edge()):g.push(this.runner(this.left())||this.runner(this.right())?d(this.verdict_note_no_runner(),{b:this.runner(this.left())?this.right_title():this.left_title()}):this.verdict_note_no_runner_both());const v=o.length-1-this.decided().filter(j=>j!=="edge").length;return v===1?g.push(this.verdict_note_gap_one()):v>1&&g.push(d(this.verdict_note_gaps(),{n:v})),g.join(" ")}sections(){return o.map(g=>this.Section(g))}section_title(g){switch(g){case"edge":return this.category_edge();case"code":return this.category_code();case"weight":return this.category_weight();case"speed":return this.category_speed();case"builtin":return this.category_builtin();case"market":return this.category_market();case"cost":return this.category_cost();default:return g}}section_note(g){switch(g){case"edge":return this.note_edge();case"code":return this.note_code();case"weight":return this.note_weight();case"speed":return this.note_speed();case"builtin":return this.note_builtin();case"market":return this.note_market();case"cost":return this.note_cost();default:return""}}section_score(g){const v=this.score(g),j=this.left_title(),S=this.right_title();if(!v.total)return g!=="edge"?this.score_empty():this.edge_live()?this.edge_score_empty():this.edge_score_no_runner();const T=d(g==="edge"?this.edge_score_line():this.score_line(),{a:j,b:S,x:v.left,y:v.right,n:v.total}),D=v.left===v.right?this.score_tied():d(this.score_ahead(),{a:v.left>v.right?j:S});return T+" · "+D}section_content(g){if(g==="edge")return this.edge_content();const v=this.rows(g);return v.length?[this.Names(g),...v.map(j=>this.Metric(j.id))]:[]}metric_title(g){return this.row(g)?.meta.title??g}metric_human(g){return this.row(g)?.meta.human??""}shared(g){const v=this.row(g);return!!v?.left&&!!v?.right}metric_method(g){return this.shared(g)?this.row(g)?.meta.method??"":""}value_text(g,v){if(!g)return"—";const j=g.value;if(typeof j=="boolean")return j?this.value_yes():this.value_no();if(typeof j=="string")return j;const S=v?.unit??"",T=c(j);return S?S==="%"?T+S:T+" "+S:T}metric_left_value(g){if(!this.shared(g))return"—";const v=this.row(g);return this.value_text(v?.left??null,v?.meta)}metric_right_value(g){if(!this.shared(g))return"—";const v=this.row(g);return this.value_text(v?.right??null,v?.meta)}metric_share(g){const v=this.row(g);return!v||this.zero_side(v)?null:v.diff.share??null}metric_bar(g){return this.metric_share(g)!==null}metric_lead(g){const v=this.row(g)?.diff.side;return v==="left"||v==="right"?v:""}metric_left_share(g){return b(this.metric_share(g)??.5)}metric_right_share(g){return b(1-(this.metric_share(g)??.5))}zero_side(g){const v=g.left?.value,j=g.right?.value;return typeof v!="number"||typeof j!="number"?null:v===0&&j!==0?"left":j===0&&v!==0?"right":null}metric_delta(g){const v=this.row(g);if(!v)return"";const j=this.left_title(),S=this.right_title(),T=v.meta.better==="boolean";if(v.diff.side==="none")return v.left&&v.right?"":d(this.delta_partial(),{a:v.left?S:j});if(v.diff.side==="tie")return T?v.left?.value===!0?this.delta_both():this.delta_neither():this.delta_tie();const D=v.diff.side==="left"?j:S,C=v.diff.side==="left"?S:j;if(T)return d(this.delta_only(),{a:D,b:C});const R=this.zero_side(v);if(R)return d(this.delta_zero(),{a:R==="left"?j:S,b:R==="left"?S:j,p:this.value_text(R==="left"?v.right:v.left,v.meta)});const{percent:L,times:A}=v.diff;if(A!==null&&L!==null&&A>=s)return d(this.delta_times(),{a:D,p:p(A),b:C});if(L===null)return d(this.delta_ahead(),{a:D});if(Math.round(L*10)===0)return"";const I=v.meta.better==="lower"?this.delta_below():this.delta_above();return d(I,{a:D,p:_(L),b:C})}metric_sources(g){return this.shared(g)?[this.Source(g+"/left"),this.Source(g+"/right")]:[]}source_measure(g){const v=g.lastIndexOf("/"),j=this.row(g.slice(0,v));return g.slice(v+1)==="left"?j?.left:j?.right}source_name(g){return g.endsWith("/left")?this.left_title():this.right_title()}source_uri(g){const v=this.source_measure(g);return v?/^https?:\/\//.test(v.source)?v.source:/^https?:\/\//.test(v.method??"")?v.method??"":"":""}source_label(g){const v=this.source_measure(g);if(!v)return"";const j=this.source_uri(g);return j?h(j):v.source||this.no_data()}source_date(g){return this.source_measure(g)?.measured_at??""}cases(){return[this.Case_race(),this.Case_virtual(),this.Case_leak(),this.Case_crash()]}edge_content(){return[this.Case_race(),this.Code_race(),this.Case_virtual(),this.Code_virtual(),this.Case_leak(),this.Code_leak(),this.Case_crash(),this.Code_crash()]}edge_missing_note(){const g=this.runner(this.left()),v=this.runner(this.right());return g&&v?"":!g&&!v?this.edge_missing_both():d(this.edge_missing_one(),{b:g?this.right_title():this.left_title()})}suggest_uri(){const g=this.suggest_name().trim(),v="Add "+(g||"a framework")+" to the comparison",j=["Framework: "+(g||""),"Home page: ","","What it would take: a data file under versus/data/ with sources and dates for each metric,","and a runner page if the live edge cases should cover it too."].join(`
 `);return l+"?title="+encodeURIComponent(v)+"&body="+encodeURIComponent(j)}}__decorate([$mol_mem_key],y.prototype,"rows",null),__decorate([$mol_mem_key],y.prototype,"score",null),__decorate([$mol_mem],y.prototype,"edge_score",null),__decorate([$mol_mem],y.prototype,"tally",null),n.$bog_smalljs_versus_pair=y;class w extends a.$bog_smalljs_versus_pair_case{frameworks(){return[this.left(),this.right()].filter(g=>g?this.$.$bog_smalljs_versus_pair_data.framework(g).runner:!1)}columns_count(){return this.frameworks().length}controls_content(){const g=this.missing_note()?[this.Missing_note()]:[];return this.frameworks().length?[...super.controls_content(),...g]:g}}n.$bog_smalljs_versus_pair_case=w;class x extends a.$bog_smalljs_versus_pair_section{head_content(){return[this.Title(),...this.score()?[this.Score()]:[]]}section_content(){return[this.Head(),...this.note()?[this.Note()]:[],...this.content().length?[this.Content()]:[]]}}n.$bog_smalljs_versus_pair_section=x;class M extends a.$bog_smalljs_versus_pair_metric{row_content(){return[this.Value_left(),this.bar()?this.Bar():this.Gap(),this.Value_right()]}metric_content(){return[this.Title(),this.Row(),...this.delta()?[this.Delta()]:[],...this.human()?[this.Human()]:[],...this.method()?[this.Method()]:[],...this.sources().length?[this.Sources()]:[]]}}n.$bog_smalljs_versus_pair_metric=M;class k extends a.$bog_smalljs_versus_pair_source{source_content(){return[this.Name(),this.uri()?this.Link():this.Text(),...this.date()?[this.Taken()]:[]]}}n.$bog_smalljs_versus_pair_source=k})(e=a.$$||(a.$$={}))})($||($={}));var $;(function(a){const{rem:e}=$mol_style_unit,n={width:"1px",style:"solid",color:$bog_builderui_tokens.line},o="'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace",i=e(48),t=e(76),r="#3f9e57",s="#8a8f98";$mol_style_define($bog_smalljs_versus_pair,{flex:{direction:"column",grow:1},align:{items:"center"},gap:e(3),minWidth:0,padding:{top:e(3.5),bottom:e(4),left:$mol_gap.block,right:$mol_gap.block},background:{color:$bog_builderui_tokens.back},Head:{flex:{direction:"column"},gap:e(.75),width:"100%",maxWidth:i},Title:{display:"block",font:{family:$bog_builderui_tokens.font_head,size:e(2.75),weight:500},lineHeight:"1.14",letterSpacing:"-0.02em",color:$bog_builderui_tokens.text,maxWidth:"100%",overflowWrap:"break-word"},Verdict:{display:"block",font:{size:e(1.125),weight:600},lineHeight:"1.5",color:$bog_builderui_tokens.text},Verdict_note:{display:"block",font:{size:e(.9375)},lineHeight:"1.6",color:$bog_builderui_tokens.shade},Sections:{flex:{direction:"column"},gap:e(3),width:"100%",maxWidth:t,minWidth:0},Method:{flex:{direction:"column"},align:{items:"flex-start"},gap:e(.75),width:"100%",maxWidth:i,padding:{top:e(2)},border:{top:n}},Method_title:{display:"block",font:{family:$bog_builderui_tokens.font_head,size:e(1.625),weight:500},lineHeight:"1.2",color:$bog_builderui_tokens.text},Method_text:{display:"block",font:{size:e(.9375)},lineHeight:"1.6",color:$bog_builderui_tokens.shade},Method_link:{flex:{direction:"row",grow:0},align:{items:"center"},gap:e(.4),margin:{top:e(.25)},color:$bog_builderui_tokens.control,font:{size:e(.9375),weight:600},":hover":{color:$bog_builderui_tokens.focus}},Method_link_icon:{width:e(.9),height:e(.9),flex:{shrink:0}},Suggest:{flex:{direction:"column"},align:{items:"flex-start"},gap:e(.75),width:"100%",maxWidth:i,padding:{top:e(2)},border:{top:n}},Suggest_title:{display:"block",font:{family:$bog_builderui_tokens.font_head,size:e(1.625),weight:500},lineHeight:"1.2",color:$bog_builderui_tokens.text},Suggest_text:{display:"block",font:{size:e(.9375)},lineHeight:"1.6",color:$bog_builderui_tokens.shade},Suggest_form:{flex:{direction:"row",wrap:"wrap"},align:{items:"center"},gap:e(.5),margin:{top:e(.25)},width:"100%"},Suggest_field:{flex:{grow:1,shrink:1},minWidth:e(12),maxWidth:e(20),padding:{top:e(.4),bottom:e(.4),left:e(.6),right:e(.6)},border:{radius:e(.375),...n},background:{color:$bog_builderui_tokens.field},color:$bog_builderui_tokens.text},Suggest_send:{flex:{direction:"row",grow:0,shrink:0},align:{items:"center"},gap:e(.4),padding:{top:e(.45),bottom:e(.45),left:e(.9),right:e(.9)},border:{radius:e(.375),...n},color:$bog_builderui_tokens.control,font:{size:e(.9375),weight:600},":hover":{color:$bog_builderui_tokens.focus}},Suggest_send_icon:{width:e(.9),height:e(.9),flex:{shrink:0}},"@media":{"(max-width: 47.9375rem)":{gap:e(2.25),padding:{top:e(2),bottom:e(2.5),left:e(1.25),right:e(1.25)},Title:{font:{size:e(2)}},Sections:{gap:e(2.25)},Method:{padding:{top:e(1.5)}},Suggest:{padding:{top:e(1.5)}}}}}),$mol_style_define($bog_smalljs_versus_pair_section,{flex:{direction:"column"},gap:e(.75),minWidth:0,Head:{flex:{direction:"row",wrap:"wrap"},align:{items:"baseline"},justify:{content:"space-between"},gap:e(.5)},Title:{display:"block",font:{family:$bog_builderui_tokens.font_head,size:e(1.625),weight:500},lineHeight:"1.2",color:$bog_builderui_tokens.text},Score:{display:"block",font:{size:e(.875),weight:600},lineHeight:"1.4",color:$bog_builderui_tokens.shade},Note:{display:"block",font:{size:e(.9375)},lineHeight:"1.6",maxWidth:e(42),color:$bog_builderui_tokens.shade},Content:{flex:{direction:"column"},gap:e(.75),minWidth:0}}),$mol_style_define($bog_smalljs_versus_pair_names,{display:"grid",gridTemplateColumns:"minmax(0, 1fr) minmax(0, 1.6fr) minmax(0, 1fr)",align:{items:"baseline"},gap:e(.75),padding:{bottom:e(.15),left:e(.8125),right:e(.8125)},Left:{display:"block",textAlign:"right",font:{family:o,size:e(.6875),weight:600},letterSpacing:e(.06),textTransform:"uppercase",color:$bog_builderui_tokens.shade,overflowWrap:"break-word"},Middle:{display:"block"},Right:{display:"block",font:{family:o,size:e(.6875),weight:600},letterSpacing:e(.06),textTransform:"uppercase",color:$bog_builderui_tokens.shade,overflowWrap:"break-word"},"@media":{"(max-width: 47.9375rem)":{gridTemplateColumns:"minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr)"}}}),$mol_style_define($bog_smalljs_versus_pair_metric,{flex:{direction:"column"},gap:e(.3),minWidth:0,padding:e(.75),border:{radius:e(.5),...n},background:{color:$bog_builderui_tokens.card},Title:{display:"block",font:{size:e(.9375),weight:600},lineHeight:"1.35",color:$bog_builderui_tokens.text},Row:{display:"grid",gridTemplateColumns:"minmax(0, 1fr) minmax(0, 1.6fr) minmax(0, 1fr)",align:{items:"center"},gap:e(.75),padding:{top:e(.15),bottom:e(.15)}},Value_left:{display:"block",textAlign:"right",font:{family:o,size:e(1)},color:$bog_builderui_tokens.text,overflowWrap:"break-word"},Value_right:{display:"block",font:{family:o,size:e(1)},color:$bog_builderui_tokens.text,overflowWrap:"break-word"},Gap:{display:"block"},Bar:{display:"flex",flex:{direction:"row"},height:e(.5),minWidth:0,border:{radius:e(.25)},overflow:"hidden",background:{color:$bog_builderui_tokens.line}},Bar_left:{display:"block",flex:{shrink:0},background:{color:s}},Bar_right:{display:"block",flex:{shrink:0},background:{color:s}},"@":{bog_smalljs_versus_pair_lead:{left:{Bar_left:{background:{color:r}}},right:{Bar_right:{background:{color:r}}}}},Delta:{display:"block",font:{size:e(.875),weight:600},lineHeight:"1.45",color:$bog_builderui_tokens.text},Human:{display:"block",font:{size:e(.875)},lineHeight:"1.5",color:$bog_builderui_tokens.shade},Method:{display:"block",font:{size:e(.75)},lineHeight:"1.5",color:$bog_builderui_tokens.shade,opacity:.85},Sources:{flex:{direction:"row",wrap:"wrap"},gap:[e(.15),e(1)],padding:{top:e(.35)},margin:{top:e(.15)},border:{top:n}},"@media":{"(max-width: 47.9375rem)":{Row:{gridTemplateColumns:"minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr)"},Value_left:{font:{size:e(.9375)}},Value_right:{font:{size:e(.9375)}}}}}),$mol_style_define($bog_smalljs_versus_pair_source,{flex:{direction:"row",wrap:"wrap"},align:{items:"baseline"},gap:e(.35),minWidth:0,font:{size:e(.8125)},lineHeight:"1.45",color:$bog_builderui_tokens.shade,Name:{display:"block",font:{weight:600}},Link:{display:"inline",minWidth:0,color:$bog_builderui_tokens.control,overflowWrap:"break-word",":hover":{color:$bog_builderui_tokens.focus}},Text:{display:"block",minWidth:0,font:{family:o},overflowWrap:"break-word"},Taken:{display:"block",font:{family:o,weight:600},color:$bog_builderui_tokens.text}}),$mol_style_define($bog_smalljs_versus_pair_case,{"@":{bog_smalljs_versus_pair_columns:{1:{Columns:{gridTemplateColumns:"minmax(0, 1fr)"}},2:{Columns:{gridTemplateColumns:"repeat(2, minmax(0, 1fr))"}}}},Missing_note:{display:"block",flex:{shrink:1},minWidth:0,font:{size:e(.8125)},lineHeight:"1.45",color:$bog_builderui_tokens.shade},"@media":{"(max-width: 47.9375rem)":{"@":{bog_smalljs_versus_pair_columns:{1:{Columns:{gridTemplateColumns:"minmax(0, 1fr)"}},2:{Columns:{gridTemplateColumns:"minmax(0, 1fr)"}}}}}}})})($||($={})),$.$bog_builderui_card=class extends $.$bog_builderui_div{};var $;(function(a){$mol_style_define($bog_builderui_card,{background:{color:$bog_builderui_tokens.card},color:$bog_builderui_tokens.text,border:{radius:$bog_builderui_tokens.radius,width:"1px",style:"solid",color:$bog_builderui_tokens.line},padding:{top:"1rem",bottom:"1rem",left:"1.25rem",right:"1.25rem"},box:{shadow:[{x:0,y:"1px",blur:"3px",spread:0,color:"#0000001a"}]},gap:"0.75rem",flex:{direction:"column"},breakInside:"avoid",margin:{bottom:"1rem"}})})($||($={})),$.$bog_builderui_field=class extends $.$mol_string{minimal_height(){return 36}};var $;(function(a){$mol_style_define($bog_builderui_field,{font:{family:$bog_builderui_tokens.font_body},color:$bog_builderui_tokens.text,background:{color:$bog_builderui_tokens.field},border:{radius:$bog_builderui_tokens.radius,width:"1px",style:"solid",color:$bog_builderui_tokens.line},padding:{top:"0.5rem",bottom:"0.5rem",left:"0.75rem",right:"0.75rem"},flex:{grow:0,shrink:1},align:{self:"stretch"},minWidth:0,maxWidth:"100%",boxSizing:"border-box"})})($||($={})),$.$mol_gallery=class extends $.$mol_view{items(){return[]}side_size(e){return"1"}side_items(e){return[]}sub(){return this.items()}Side(e){const n=new this.$.$mol_gallery;return n.style=()=>({flexGrow:this.side_size(e)}),n.items=()=>this.side_items(e),n}},$mol_mem_key($.$mol_gallery.prototype,"Side");var $;(function(a){var e;(function(n){class o extends a.$mol_gallery{sub(){const t=this.items();return t.length<=3?t:[this.Side(0),this.Side(1)]}side_items(t){const r=this.items(),s=r.length%2?Math.ceil(r.length/3):r.length/2;return t?r.slice(s):r.slice(0,s)}side_size(t){return String(this.side_items(t).length)}}__decorate([$mol_mem],o.prototype,"sub",null),__decorate([$mol_mem_key],o.prototype,"side_items",null),n.$mol_gallery=o})(e=a.$$||(a.$$={}))})($||($={}));var $;(function(a){$mol_style_attach("mol/gallery/gallery.view.css",`[mol_gallery] {
 	flex-wrap: wrap;
 	flex: 1 1 auto;

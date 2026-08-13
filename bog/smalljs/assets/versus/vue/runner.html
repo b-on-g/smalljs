@@ -136,6 +136,7 @@
 
 
 	// ── race ──────────────────────────────────────────────────────────────
+	// versus:case race
 	// Textbook data fetching: a watcher awaits the request and assigns whatever
 	// comes back. There is deliberately no cancellation and no check that the
 	// resolved id is still the selected one — that check is what a stale response
@@ -228,6 +229,7 @@
 
 
 	// ── virtual ───────────────────────────────────────────────────────────
+	// versus:case virtual
 	// A plain v-for over the whole dataset, the default way to render a list.
 	// No windowing: all 10 000 rows sit in the DOM at once. Virtualization comes
 	// from a separate library ( vue-virtual-scroller, TanStack Virtual ) and rows
@@ -344,6 +346,7 @@
 
 
 	// ── leak ──────────────────────────────────────────────────────────────
+	// versus:case leak
 	// The widget subscribes to an external store in onMounted and never lets go.
 	// There is deliberately no onUnmounted( () => unsubscribe() ) — one line, written
 	// by hand every time, nothing in the framework asks for it and nothing complains
@@ -428,6 +431,7 @@
 
 
 	// ── crash ─────────────────────────────────────────────────────────────
+	// versus:case crash
 	// Cards read fields off the item object straight in the template, the way every
 	// list of cards is written. There is deliberately no onErrorCaptured hook and no
 	// app.config.errorHandler, so nothing here reacts to a render failure. Error
@@ -500,6 +504,7 @@
 	}
 
 
+	// versus:end
 	// ── protocol ──────────────────────────────────────────────────────────
 
 	var cases = {
