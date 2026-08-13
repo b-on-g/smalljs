@@ -37,7 +37,7 @@ $mol_link $mol_view
 	external false
 	attr *
 		^
-		href <= uri_toggle \
+		href <= uri_unsafe <= uri_toggle \
 		title <= hint_safe <= hint \
 		target <= target \_self
 		download <= file_name \
@@ -362,6 +362,11 @@ $bog_smalljs_top $mol_view
 					arg *
 						section \playground
 						page \
+				<= Nav_versus $mol_link
+					title @ \Compare
+					arg *
+						section \versus
+						page \
 				<= Ecosystem_pick $mol_pick
 					hint @ \Ecosystem
 					align \bottom_left
@@ -445,6 +450,12 @@ $bog_smalljs_top $mol_view
 							title @ \Playground
 							arg *
 								section \playground
+								page \
+							event_click? <=> nav_pick?
+						<= Mobile_versus $mol_link
+							title @ \Compare
+							arg *
+								section \versus
 								page \
 							event_click? <=> nav_pick?
 						<= Docs_group $mol_expander
@@ -1840,6 +1851,142 @@ $bog_smalljs_course $mol_view
 		seed_tree <= editor_seed_tree*
 		seed_ts <= editor_seed_ts*
 
+$bog_smalljs_versus_case $mol_view
+	case_id \
+	title @ \
+	hint @ \
+	status_idle @ \Not run yet
+	status_running @ \Running…
+	status_ok @ \Expected behaviour
+	status_warn @ \Works, with a caveat
+	status_fail @ \Artifact observed
+	status_error @ \No result
+	status_invalid @ \Measurement interrupted
+	error_timeout @ \The runner did not answer within 15 seconds.
+	error_not_loaded @ \The runner page did not load, so this framework cannot take part in the comparison.
+	run_hint_broken @ \One of the frames did not load, so the three cannot be compared on this machine right now.
+	invalid_tab_hidden @ \The tab went to the background during the run, so the timings measured waiting rather than work. Run it again with this tab in front.
+	invalid_timers_throttled @ \The run took noticeably longer than the scenario expects: the machine was busy and the timers were squeezed. Run it again when things are quieter.
+	invalid_frame_offscreen @ \This frame scrolled out of view while it was working, and a browser stops drawing frames it cannot see. Run it again and stay on this case until it finishes.
+	invalid_other @ \This run could not be measured honestly. Run it again.
+	run_hint_hidden @ \Runs start only while this tab is in front: a background tab throttles timers and stops painting frames, which would make the numbers meaningless.
+	run_hint_loading @ \Waiting for all three frames to finish loading.
+	sub /
+		<= Head $mol_view
+			sub /
+				<= Title $mol_view
+					sub / <= title
+				<= Hint $mol_view
+					sub / <= hint
+		<= Controls $mol_view
+			sub <= controls_content /
+		<= Columns $mol_view
+			sub <= columns /
+	Run $mol_button_major
+		enabled <= run_enabled true
+		click? <=> run? null
+		sub / <= run_label @ \Run
+	Run_hint $mol_view
+		sub / <= run_hint \
+	Column* $mol_view
+		sub /
+			<= Label* $mol_view
+				sub / <= framework_name* \
+			<= Frame* $bog_smalljs_versus_case_frame
+				uri <= frame_uri* \
+				frame_title <= frame_title* \
+				loaded? <=> frame_loaded*? null
+			<= Card* $mol_view
+				sub <= card_content* /
+	Status* $bog_smalljs_versus_case_status
+		status <= status* \
+		icon <= status_icon* \
+		text <= status_text* \
+	Observed* $mol_view
+		sub / <= observed* \
+	Metrics* $mol_view
+		sub <= metric_rows* /
+	Metric* $mol_view
+		sub /
+			<= Metric_name* $mol_view
+				sub / <= metric_name* \
+			<= Metric_value* $mol_view
+				sub / <= metric_value* \
+	Note* $mol_view
+		sub / <= note* \
+
+$bog_smalljs_versus_case_status $mol_view
+	status \idle
+	icon \
+	text \
+	attr *
+		^
+		bog_smalljs_versus_status <= status
+	sub /
+		<= Icon $mol_view
+			sub / <= icon
+		<= Text $mol_view
+			sub / <= text
+
+$bog_smalljs_versus_case_frame $mol_view
+	dom_name \iframe
+	uri \
+	frame_title \
+	loaded? null
+	sub /
+	event *
+		^
+		load? <=> loaded? null
+	attr *
+		^
+		src <= uri
+		title <= frame_title
+		loading \lazy
+
+$bog_smalljs_versus $mol_view
+	sub /
+		<= Head $mol_view
+			sub /
+				<= Title $mol_view
+					dom_name \h1
+					sub /
+						<= title_text @ \Same code, different behaviour
+				<= Intro $mol_view
+					sub /
+						<= intro_text @ \Four everyday situations, each running side by side in React, Vue and $mol. Press Run on a case and watch all three frames at once: the code executes in your browser, nothing here is recorded in advance. The React and Vue versions are written the way their default templates are written, and every frame notes what you would add by hand to avoid what you just saw.
+		<= Cases $mol_view
+			sub <= cases /
+		<= Method $mol_view
+			sub /
+				<= Method_title $mol_view
+					dom_name \h2
+					sub /
+						<= method_title_text @ \How this is measured
+				<= Method_text $mol_view
+					sub /
+						<= method_body @ \Every case is one scenario written three times, with the same steps and the same timings in each frame. Counters are read inside the frame right after the run and reported as they come, without rounding or averaging across attempts. The sources of every scenario live in the repository, so you can read them, run them locally, or open an issue if a case looks unfair.
+				<= Method_link $mol_link
+					uri \https://github.com/b-on-g/smalljs/tree/master/versus
+					sub /
+						<= method_link_label @ \Scenario sources on GitHub
+						<= Method_link_icon $mol_icon_open_in_new
+	Case_race $bog_smalljs_versus_case
+		case_id \race
+		title @ \Stale response overwrites fresh one
+		hint @ \Click through a list faster than the server answers.
+	Case_virtual $bog_smalljs_versus_case
+		case_id \virtual
+		title @ \10,000 rows of irregular height
+		hint @ \Scroll a long list where every row has a different height.
+	Case_leak $bog_smalljs_versus_case
+		case_id \leak
+		title @ \Subscriptions after 100 mount cycles
+		hint @ \Mount and unmount a subscribed component a hundred times.
+	Case_crash $bog_smalljs_versus_case
+		case_id \crash
+		title @ \One broken item takes down the tree
+		hint @ \Put malformed data into one card out of twenty.
+
 $bog_builderui_card $bog_builderui_div
 
 $bog_builderui_field $mol_string
@@ -1986,9 +2133,9 @@ $mol_touch $mol_plugin
 	swipe_to_left? null
 	swipe_to_top? null
 	-
-	draw_start?event null
-	draw?event null
-	draw_end?event null
+	draw_start? null
+	draw? null
+	draw_end? null
 	-
 	style *
 		^
@@ -1997,11 +2144,11 @@ $mol_touch $mol_plugin
 	-
 	event *
 		^
-		pointerdown?event <=> event_start?event null
-		pointermove?event <=> event_move?event null
-		pointerup?event <=> event_end?event null
-		pointerleave?event <=> event_leave?event null
-		wheel?event <=> event_wheel?event null
+		pointerdown? <=> event_start? null
+		pointermove? <=> event_move? null
+		pointerup? <=> event_end? null
+		pointerleave? <=> event_leave? null
+		wheel? <=> event_wheel? null
 
 $mol_plot_pane $mol_svg_root
 	aspect \none
@@ -2086,12 +2233,12 @@ $mol_plot_pane $mol_svg_root
 			allow_zoom <= allow_zoom true
 			action_type => action_type
 			action_point => action_point
-			draw_start?event <=> draw_start?event null
-			draw?event <=> draw?event null
-			draw_end?event <=> draw_end?event null
+			draw_start? <=> draw_start? null
+			draw? <=> draw? null
+			draw_end? <=> draw_end? null
 	- event *
 		^
-		dblclick?event <=> reset?event null
+		dblclick? <=> reset? null
 
 $mol_chart $mol_view
 	gap_hor 48
@@ -2172,3 +2319,4 @@ $bog_smalljs_app $bog_builderui_div
 	Docs $bog_smalljs_docs
 	Playground $bog_smalljs_playground
 	Course $bog_smalljs_course
+	Versus $bog_smalljs_versus

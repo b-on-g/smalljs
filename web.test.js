@@ -2946,6 +2946,34 @@ var $;
 
 ;
 "use strict";
+/** @jsx $mol_jsx */
+/** @jsxFrag $mol_jsx_frag */
+var $;
+(function ($) {
+    $mol_test({
+        'safe tag'() {
+            $mol_assert_equal($mol_dom_serialize($$.$mol_dom_safe([$mol_jsx("div", null, "foo")])[0]), $mol_dom_serialize($mol_jsx("div", null, "foo")));
+        },
+        'bad tag'() {
+            $mol_assert_equal($mol_dom_serialize($$.$mol_dom_safe([$mol_jsx("script", null, "alert('ahtung!')")])[0]), $mol_dom_serialize($mol_jsx($mol_jsx_frag, null, "alert('ahtung!')")));
+        },
+        'common attr'() {
+            $mol_assert_equal($mol_dom_serialize($$.$mol_dom_safe([$mol_jsx("a", { id: "foo" }, "foo")])[0]), $mol_dom_serialize($mol_jsx("a", { id: "foo" }, "foo")));
+        },
+        'safe attr'() {
+            $mol_assert_equal($mol_dom_serialize($$.$mol_dom_safe([$mol_jsx("a", { href: "https://example.org/" }, "foo")])[0]), $mol_dom_serialize($mol_jsx("a", { href: "https://example.org/" }, "foo")));
+        },
+        'bad attr'() {
+            $mol_assert_equal($mol_dom_serialize($$.$mol_dom_safe([$mol_jsx("a", { onclick: "alert('ahtung!')" }, "foo")])[0]), $mol_dom_serialize($mol_jsx("a", null, "foo")));
+        },
+        'danger attr'() {
+            $mol_assert_equal($mol_dom_serialize($$.$mol_dom_safe([$mol_jsx("a", { href: "javascript:alert('ahtung!')" }, "foo")])[0]), $mol_dom_serialize($mol_jsx("a", { href: "about:blank#javascript:alert('ahtung!')" }, "foo")));
+        },
+    });
+})($ || ($ = {}));
+
+;
+"use strict";
 
 ;
 "use strict";
@@ -4338,7 +4366,7 @@ var $;
 						needle <= query? \\
 						key * escape? <=> clear? null
 					Clear ${d}mol_button_minor
-						click?event <=> clear?event null
+						click? <=> clear? null
 			`;
                 const dest = `
 				query? \\
@@ -4364,7 +4392,7 @@ var $;
 								<= title
 						<= Close ${d}mol_button
 							title \\close
-							click?event <=> close?event null
+							click? <=> close? null
 			`;
                 const dest = `
 				Close_icon ${d}mol_icon_cross
@@ -4429,13 +4457,13 @@ var $;
 					Suggest_label ${d}mol_dimmer
 						clear => clear
 					Clear ${d}mol_button_minor
-						click?event <=> clear?event null
+						click? <=> clear? null
 			`;
-                $mol_assert_fail(() => normalize($, src).input, `Need an equal default values at \`/mol/view/tree2/class/props.test.ts#4:16/5\` vs \`/mol/view/tree2/class/props.test.ts#6:23/11\`
+                $mol_assert_fail(() => normalize($, src).input, `Need an equal default values at \`/mol/view/tree2/class/props.test.ts#4:16/5\` vs \`/mol/view/tree2/class/props.test.ts#6:18/6\`
 <=>
-/mol/view/tree2/class/props.test.ts#6:19/3
+/mol/view/tree2/class/props.test.ts#6:14/3
 click?
-/mol/view/tree2/class/props.test.ts#6:7/11
+/mol/view/tree2/class/props.test.ts#6:7/6
 $mol_button_minor
 /mol/view/tree2/class/props.test.ts#5:12/17
 Clear
@@ -6343,6 +6371,57 @@ var $;
             });
         }
     });
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        function case_at(pathname) {
+            const view = new $bog_smalljs_versus_case();
+            view.location_path = () => pathname;
+            view.case_id = () => 'race';
+            return view;
+        }
+        $mol_test({
+            'runner uris on the mam dev server'() {
+                const view = case_at('/bog/smalljs/app/-/test.html');
+                $mol_assert_equal(view.frame_uri('react'), '/bog/smalljs/assets/versus/react/runner.html?case=race');
+                // the $mol runner is a module of its own, not a copy under assets
+                $mol_assert_equal(view.frame_uri('mol'), '/bog/smalljs/versus/runner/-/index.html?case=race');
+            },
+            'runner uris on the deploy, from any route depth'() {
+                const vue = '/smalljs/bog/smalljs/assets/versus/vue/runner.html?case=race';
+                $mol_assert_equal(case_at('/smalljs/').frame_uri('vue'), vue);
+                $mol_assert_equal(case_at('/smalljs/section=versus').frame_uri('vue'), vue);
+                // prerendered routes are served as /<route>/index.html
+                $mol_assert_equal(case_at('/smalljs/section=versus/').frame_uri('vue'), vue);
+                $mol_assert_equal(case_at('/smalljs/section=versus').frame_uri('mol'), '/smalljs/bog/smalljs/versus/runner/-/index.html?case=race');
+            },
+            'a dev path is not mistaken for the deploy mount it contains'() {
+                // '/bog/smalljs/app/-/' contains '/smalljs/' as a substring
+                $mol_assert_equal(case_at('/bog/smalljs/app/-/index.html').site_base(), '/');
+            },
+            'runner uris when the app is served from the root'() {
+                $mol_assert_equal(case_at('/').frame_uri('mol'), '/bog/smalljs/versus/runner/-/index.html?case=race');
+            },
+            'every invalid reason gets its own line, and an unknown one still gets a line'() {
+                const view = case_at('/');
+                view.invalid_tab_hidden = () => 'hidden';
+                view.invalid_timers_throttled = () => 'throttled';
+                view.invalid_frame_offscreen = () => 'offscreen';
+                view.invalid_other = () => 'general';
+                $mol_assert_equal(view.invalid_text('tab-hidden'), 'hidden');
+                $mol_assert_equal(view.invalid_text('timers-throttled'), 'throttled');
+                $mol_assert_equal(view.invalid_text('frame-offscreen'), 'offscreen');
+                // a reason added to the protocol later must not fall through to an error
+                $mol_assert_equal(view.invalid_text('gpu-asleep'), 'general');
+                $mol_assert_equal(view.invalid_text(undefined), 'general');
+            },
+        });
+    })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
 
 ;

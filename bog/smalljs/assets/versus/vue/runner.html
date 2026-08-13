@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vue runner</title>
+<style>
+
+	* { box-sizing: border-box }
+
+	html, body { height: 100%; margin: 0 }
+
+	body {
+		font: 13px/1.45 system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+		color: #1c1c1c;
+		background: #fff;
+	}
+
+	.runner {
+		height: 100%;
+		width: 100%;
+		padding: 10px;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		overflow: auto;
+	}
+
+	.muted { color: #8a8a8a }
+
+	.stat { margin: 0; color: #555 }
+
+	/* race */
+
+	.split { display: flex; gap: 10px; flex: 1; min-height: 0 }
+
+	.list {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		width: 96px;
+		flex: none;
+		overflow-y: auto;
+	}
+
+	.list button {
+		font: inherit;
+		text-align: left;
+		padding: 4px 8px;
+		border: 1px solid #d5d5d5;
+		border-radius: 4px;
+		background: #fafafa;
+		cursor: pointer;
+	}
+
+	.list button.active { background: #1c1c1c; color: #fff; border-color: #1c1c1c }
+
+	.panel {
+		flex: 1;
+		min-width: 0;
+		overflow-y: auto;
+		border: 1px solid #e2e2e2;
+		border-radius: 4px;
+		padding: 10px;
+	}
+
+	.panel h2 { font-size: 15px; margin: 0 0 4px }
+
+	.panel p { margin: 0; color: #555 }
+
+	/* virtual */
+
+	.rows {
+		flex: 1;
+		min-height: 0;
+		overflow-y: auto;
+		border: 1px solid #e2e2e2;
+		border-radius: 4px;
+	}
+
+	.row { padding: 4px 8px; border-bottom: 1px solid #f0f0f0 }
+
+	.placeholder { padding: 10px }
+
+	/* leak */
+
+	.slot, .widget {
+		border: 1px solid #e2e2e2;
+		border-radius: 4px;
+		padding: 10px;
+	}
+
+	/* crash */
+
+	.cards {
+		flex: 1;
+		min-height: 0;
+		overflow-y: auto;
+		display: grid;
+		grid-template-columns: repeat( auto-fill, minmax( 120px, 1fr ) );
+		align-content: start;
+		gap: 6px;
+	}
+
+	.card {
+		border: 1px solid #e2e2e2;
+		border-radius: 4px;
+		padding: 6px 8px;
+	}
+
+	.card b { display: block }
+
+	.card span { color: #666; font-size: 12px }
+
+</style>
+</head>
+<body>
+
+<div id="app" class="runner"></div>
+
+<script src="../vendor/vue.global.prod.js"></script>
+<script>
+;( function() {
+
+	'use strict'
+
+	var createApp = Vue.createApp
+	var ref = Vue.ref
+	var watch = Vue.watch
+	var onMounted = Vue.onMounted
+	var nextTick = Vue.nextTick
+
+	function wait( ms ) {
+		return new Promise( function( done ) { setTimeout( done, ms ) } )
+	}
+
+
+	// ── race ──────────────────────────────────────────────────────────────
+	// Textbook data fetching: a watcher awaits the request and assigns whatever
+	// comes back. There is deliberately no cancellation and no check that the
+	// resolved id is still the selected one — that check is what a stale response
+	// has to get past. Written by hand with an AbortController, a request counter,
+	// or delegated to a query cache library.
+
+	function createRace( root ) {
+
+		var users = []
+		for ( var i = 0; i < 5; i++ ) {
+			users.push( { id: i + 1, name: 'User ' + ( i + 1 ), delay: 1000 - i * 200 } )
+		}
+
+		function fetchUser( id ) {
+			var user = users[ id - 1 ]
+			return new Promise( function( resolve ) {
+				setTimeout( function() {
+					resolve( {
+						id: user.id,
+						name: user.name,
+						description: 'Profile loaded in ' + user.delay + ' ms.',
+					} )
+				}, user.delay )
+			} )
+		}
+
+		var app = createApp( {
+			template: `
+				<div class="split">
+					<div class="list">
+						<button
+							v-for="user in users"
+							:key="user.id"
+							:class="{ active: user.id === selected }"
+							@click="selected = user.id"
+						>{{ user.name }}</button>
+					</div>
+					<div class="panel">
+						<div v-if="loading" class="muted">Loading…</div>
+						<template v-else-if="user">
+							<h2>{{ user.name }}</h2>
+							<p>{{ user.description }}</p>
+						</template>
+						<div v-else class="muted">Pick a user on the left.</div>
+					</div>
+				</div>
+			`,
+			setup: function() {
+
+				var selected = ref( null )
+				var user = ref( null )
+				var loading = ref( false )
+
+				watch( selected, async function( id ) {
+					loading.value = true
+					var data = await fetchUser( id )
+					user.value = data
+					loading.value = false
+				} )
+
+				return { users: users, selected: selected, user: user, loading: loading }
+			},
+		} )
+
+		var vm = app.mount( root )
+
+		return {
+
+			// two waits of 100 and 1500 ms, so a healthy run lands near 1600 ms; past this
+			// the delays that the whole scenario rests on are no longer being honoured
+			budget: 2200,
+
+			run: async function() {
+
+				vm.selected = 1
+				await wait( 100 )
+				vm.selected = 5
+				await wait( 1500 )
+
+				var shown = vm.user ? vm.user.id : null
+
+				return {
+					status: shown === 5 ? 'ok' : 'fail',
+					observed: 'Selected user 5, panel shows ' + ( shown ? 'user ' + shown : 'nothing' ),
+					metrics: [],
+				}
+			},
+		}
+	}
+
+
+	// ── virtual ───────────────────────────────────────────────────────────
+	// A plain v-for over the whole dataset, the default way to render a list.
+	// No windowing: all 10 000 rows sit in the DOM at once. Virtualization comes
+	// from a separate library ( vue-virtual-scroller, TanStack Virtual ) and rows
+	// of irregular height need measurement on top of that.
+
+	function createVirtual( root ) {
+
+		var lorem = 'the quick brown fox jumps over the lazy dog and keeps running through the open field '
+
+		function textFor( i ) {
+			var length = 20 + ( i * 37 ) % 400
+			var text = ''
+			while ( text.length < length ) text += lorem
+			return text.slice( 0, length )
+		}
+
+		function makeRows() {
+			var rows = []
+			for ( var i = 0; i < 10000; i++ ) {
+				rows.push( { id: i, text: textFor( i ) } )
+			}
+			return rows
+		}
+
+		var app = createApp( {
+			template: `
+				<div class="rows">
+					<div v-if="!rows.length" class="placeholder muted">Press Run to load 10,000 rows</div>
+					<div class="row" v-for="row in rows" :key="row.id">{{ row.id + 1 }}. {{ row.text }}</div>
+				</div>
+			`,
+			setup: function() {
+				return { rows: ref( [] ) }
+			},
+		} )
+
+		var vm = app.mount( root )
+
+		// the rows are fixture data, built once up front: generating 10 000 strings is not
+		// the framework's work and has no business inside the measured window
+		var data = makeRows()
+
+		// Insurance, not the main path: a hidden tab is caught by the visibility check and
+		// reported as invalid. This covers the rarer case where frames stop while the tab is
+		// still visible — an iframe scrolled far out of view gets its frames throttled too.
+		// A run that never receives a frame has nothing to time, so it drops the metric and
+		// still reports the node count rather than hanging until the page times out.
+		function twoFrames() {
+			return new Promise( function( done ) {
+				var guard = setTimeout( function() { done( false ) }, 3000 )
+				requestAnimationFrame( function() {
+					requestAnimationFrame( function() {
+						clearTimeout( guard )
+						done( true )
+					} )
+				} )
+			} )
+		}
+
+		function scrollTo( element, from, to, duration ) {
+			return new Promise( function( done ) {
+				var start = performance.now()
+				var guard = setTimeout( done, duration + 500 )
+				requestAnimationFrame( function step( now ) {
+					var passed = Math.min( 1, ( now - start ) / duration )
+					element.scrollTop = from + ( to - from ) * passed
+					if ( passed < 1 ) return requestAnimationFrame( step )
+					clearTimeout( guard )
+					done()
+				} )
+			} )
+		}
+
+		return {
+			run: async function() {
+
+				var container = root.querySelector( '.rows' )
+
+				// a repeated Run has to measure the same empty-to-full transition as the first
+				vm.rows = []
+				await nextTick()
+
+				var t0 = performance.now()
+
+				vm.rows = data
+
+				var painted = await twoFrames()
+
+				// forces layout, so the number covers the whole cost of putting the list on screen
+				container.scrollHeight
+
+				var renderTime = Math.round( performance.now() - t0 )
+
+				var half = ( container.scrollHeight - container.clientHeight ) / 2
+
+				await scrollTo( container, 0, half, 1000 )
+				await scrollTo( container, half, 0, 1000 )
+
+				var nodes = container.querySelectorAll( '*' ).length
+
+				var metrics = [ { name: 'DOM nodes', value: nodes, unit: '' } ]
+				if ( painted ) {
+					metrics.push( { name: 'Render time', value: renderTime, unit: 'ms' } )
+				}
+
+				return {
+					status: nodes < 500 ? 'ok' : nodes > 5000 ? 'fail' : 'warn',
+					observed: 'Rendered ' + nodes + ' DOM nodes for ' + data.length + ' rows',
+					metrics: metrics,
+				}
+			},
+		}
+	}
+
+
+	// ── leak ──────────────────────────────────────────────────────────────
+	// The widget subscribes to an external store in onMounted and never lets go.
+	// There is deliberately no onUnmounted( () => unsubscribe() ) — one line, written
+	// by hand every time, nothing in the framework asks for it and nothing complains
+	// when it is missing.
+
+	function createLeak( root ) {
+
+		var store = {
+			value: 0,
+			subscribers: [],
+			subscribe: function( handler ) {
+				this.subscribers.push( handler )
+			},
+			set: function( value ) {
+				this.value = value
+				this.subscribers.forEach( function( handler ) { handler( value ) } )
+			},
+		}
+
+		var Widget = {
+			template: `<div class="widget">Store value: {{ value }}</div>`,
+			setup: function() {
+
+				var value = ref( store.value )
+
+				onMounted( function() {
+					store.subscribe( function( next ) { value.value = next } )
+				} )
+
+				return { value: value }
+			},
+		}
+
+		var app = createApp( {
+			components: { Widget: Widget },
+			template: `
+				<Widget v-if="shown" />
+				<div v-else class="slot muted">Widget is not mounted.</div>
+				<p class="stat">Mount cycles: {{ cycles }} · Live subscribers: {{ live }}</p>
+			`,
+			setup: function() {
+				return { shown: ref( false ), cycles: ref( 0 ), live: ref( 0 ) }
+			},
+		} )
+
+		var vm = app.mount( root )
+
+		return {
+			run: async function() {
+
+				// a repeated Run has to measure its own 100 cycles, not add to the previous count
+				store.subscribers.length = 0
+
+				for ( var i = 0; i < 100; i++ ) {
+					vm.shown = true
+					await nextTick()
+					vm.shown = false
+					await nextTick()
+					vm.cycles = i + 1
+					vm.live = store.subscribers.length
+				}
+
+				var live = store.subscribers.length
+
+				var metrics = [ { name: 'Live subscribers', value: live, unit: '' } ]
+				if ( performance.memory ) {
+					metrics.push( {
+						name: 'Heap',
+						value: Math.round( performance.memory.usedJSHeapSize / 1048576 * 10 ) / 10,
+						unit: 'MB',
+					} )
+				}
+
+				return {
+					status: live === 0 ? 'ok' : 'fail',
+					observed: '100 mount cycles left ' + live + ' live subscriber' + ( live === 1 ? '' : 's' ),
+					metrics: metrics,
+				}
+			},
+		}
+	}
+
+
+	// ── crash ─────────────────────────────────────────────────────────────
+	// Cards read fields off the item object straight in the template, the way every
+	// list of cards is written. There is deliberately no onErrorCaptured hook and no
+	// app.config.errorHandler, so nothing here reacts to a render failure. Error
+	// boundaries are written by hand and wrapped around every part of the tree that
+	// is supposed to survive on its own.
+
+	function createCrash( root ) {
+
+		function makeItems( broken ) {
+			var items = []
+			for ( var i = 0; i < 20; i++ ) {
+				items.push( { id: i + 1, title: 'Card ' + ( i + 1 ), body: 'Item body ' + ( i + 1 ) } )
+			}
+			if ( broken ) items[ 6 ] = null
+			return items
+		}
+
+		var Card = {
+			props: [ 'item' ],
+			template: `
+				<div class="card">
+					<b>{{ item.title }}</b>
+					<span>{{ item.body }}</span>
+				</div>
+			`,
+		}
+
+		var app = createApp( {
+			components: { Card: Card },
+			template: `
+				<div class="cards">
+					<Card v-for="( item, index ) in items" :key="index" :item="item" />
+				</div>
+			`,
+			setup: function() {
+				return { items: ref( makeItems( false ) ) }
+			},
+		} )
+
+		var vm = app.mount( root )
+
+		return {
+			run: async function() {
+
+				vm.items = makeItems( true )
+
+				await nextTick()
+				await wait( 200 )
+
+				var survived = root.querySelectorAll( '.card' ).length
+				var placeholder = root.querySelectorAll( '[data-error]' ).length > 0
+
+				var status = survived === 0 ? 'fail'
+					: survived === 19 && placeholder ? 'ok'
+					: 'warn'
+
+				var observed = survived === 0
+					? 'All 20 cards disappeared after card 7 broke'
+					: placeholder
+					? survived + ' of 20 cards survived, card 7 shows an error placeholder'
+					: survived + ' of 20 cards survived, card 7 disappeared without a placeholder'
+
+				return {
+					status: status,
+					observed: observed,
+					metrics: [ { name: 'Surviving cards', value: survived, unit: '' } ],
+				}
+			},
+		}
+	}
+
+
+	// ── protocol ──────────────────────────────────────────────────────────
+
+	var cases = {
+		race: createRace,
+		virtual: createVirtual,
+		leak: createLeak,
+		crash: createCrash,
+	}
+
+	var caseId = new URLSearchParams( location.search ).get( 'case' ) || 'race'
+
+	function send( message ) {
+		message.ns = 'versus'
+		window.parent.postMessage( message, '*' )
+	}
+
+	var scenario = null
+	var running = false
+
+	// Three ways a run stops being a measurement, all reported as the same neutral state.
+	//
+	// tab-hidden: a background tab clamps setTimeout to about a second and schedules no
+	//   frames at all, which reorders the race delays and stalls anything awaiting a frame.
+	// frame-offscreen: the tab stays visible but the iframe scrolls out of the viewport and
+	//   the browser stops giving it frames — the reader pressing Run and scrolling on to the
+	//   next case is the ordinary way this happens, not an edge case.
+	// timers-throttled: nothing looks wrong, yet a loaded machine stretched the run well
+	//   past its budget, which is the same clamping artifact in a milder form.
+	//
+	// A stalled run never resolves on its own, so whatever spoiled it also has to be what
+	// ends the wait. Nothing partial is sent.
+	function execute() {
+
+		var spoiled = null
+		var interrupt = null
+		var interrupted = new Promise( function( done ) { interrupt = done } )
+
+		function spoil( reason ) {
+			if ( spoiled ) return
+			spoiled = reason
+			interrupt()
+		}
+
+		// visibilityState rather than the document.hidden shorthand, purely so all three
+		// runners spell the check the same way. The state is read once at the start and
+		// then on every change: the event alone would miss a tab that was already hidden
+		// when Run was pressed, and the start read alone would miss it leaving mid-run.
+		function watch() {
+			if ( document.visibilityState !== 'visible' ) spoil( 'tab-hidden' )
+		}
+
+		document.addEventListener( 'visibilitychange', watch )
+		watch()
+
+		// root: null clips the intersection through the whole frame chain, so an observer
+		// sitting inside the iframe ends up watching the parent page's viewport
+		var observer = new IntersectionObserver( function( entries ) {
+			if ( !entries[ entries.length - 1 ].isIntersecting ) spoil( 'frame-offscreen' )
+		} )
+		observer.observe( document.documentElement )
+
+		var started = performance.now()
+
+		function finish( send_result ) {
+			document.removeEventListener( 'visibilitychange', watch )
+			observer.disconnect()
+			running = false
+			if ( spoiled ) return send( { type: 'invalid', case: caseId, reason: spoiled } )
+			send_result()
+		}
+
+		Promise.race( [ scenario.run(), interrupted ] ).then( function( result ) {
+			if ( scenario.budget && performance.now() - started > scenario.budget ) {
+				spoil( 'timers-throttled' )
+			}
+			finish( function() {
+				send( {
+					type: 'result',
+					case: caseId,
+					status: result.status,
+					observed: result.observed,
+					metrics: result.metrics,
+				} )
+			} )
+		}, function( error ) {
+			finish( function() {
+				send( { type: 'error', message: String( error && error.message || error ) } )
+			} )
+		} )
+	}
+
+	window.addEventListener( 'message', function( event ) {
+
+		var data = event.data
+		if ( !data || data.ns !== 'versus' ) return
+
+		if ( data.type === 'reset' ) {
+			location.reload()
+			return
+		}
+
+		if ( data.type !== 'run' ) return
+		if ( running || !scenario ) return
+
+		running = true
+		execute()
+	} )
+
+	var root = document.getElementById( 'app' )
+
+	try {
+		var factory = cases[ caseId ]
+		if ( !factory ) throw new Error( 'Unknown case: ' + caseId )
+		scenario = factory( root )
+		nextTick( function() { send( { type: 'ready', case: caseId } ) } )
+	} catch ( error ) {
+		send( { type: 'error', message: String( error && error.message || error ) } )
+	}
+
+} )()
+</script>
+
+</body>
+</html>

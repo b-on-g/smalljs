@@ -1,0 +1,678 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>React runner</title>
+<style>
+
+	:root { color-scheme: light }
+
+	* { box-sizing: border-box }
+
+	html, body { height: 100% }
+
+	body {
+		margin: 0;
+		font: 14px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+		color: #1b1b1b;
+		background: #fff;
+	}
+
+	#host, .app { width: 100%; height: 100% }
+
+	.muted { color: #6b6b6b }
+
+	.row2 { display: flex; height: 100%; align-items: stretch }
+
+	.side {
+		width: 40%;
+		min-width: 0;
+		padding: 8px;
+		overflow: auto;
+		border-right: 1px solid #e4e4e4;
+	}
+
+	.main { flex: 1; min-width: 0; padding: 12px; overflow: auto }
+
+	.item {
+		display: block;
+		width: 100%;
+		margin-bottom: 2px;
+		padding: 6px 8px;
+		border: 0;
+		border-radius: 4px;
+		background: transparent;
+		font: inherit;
+		color: inherit;
+		text-align: left;
+		cursor: pointer;
+	}
+
+	.item:hover { background: #f1f1f1 }
+
+	.item_current { background: #dfe8f6 }
+
+	.title { font-weight: 600; margin-bottom: 4px }
+
+	.column { height: 100%; padding: 12px; overflow: auto }
+
+	.stat { margin-bottom: 4px }
+
+	.slot {
+		margin-top: 8px;
+		padding: 8px;
+		min-height: 48px;
+		border: 1px solid #e4e4e4;
+		border-radius: 6px;
+	}
+
+	.scroll { height: 100%; padding: 8px; overflow: auto }
+
+	.line { padding: 6px 8px; border-bottom: 1px solid #efefef; overflow-wrap: anywhere }
+
+	.hint { padding: 6px 8px }
+
+	.cards {
+		display: grid;
+		grid-template-columns: repeat( auto-fill, minmax( 120px, 1fr ) );
+		gap: 8px;
+		height: 100%;
+		padding: 8px;
+		overflow: auto;
+		align-content: start;
+	}
+
+	.card { padding: 8px; border: 1px solid #e4e4e4; border-radius: 6px }
+
+	.card_title { font-weight: 600 }
+
+	.card_text { color: #6b6b6b }
+
+	.standalone {
+		position: fixed;
+		right: 8px;
+		bottom: 8px;
+		padding: 6px 12px;
+		border: 1px solid #c9c9c9;
+		border-radius: 6px;
+		background: #fff;
+		font: inherit;
+		cursor: pointer;
+	}
+
+</style>
+</head>
+<body>
+
+<div id="host"></div>
+
+<script src="../vendor/react.production.min.js"></script>
+<script src="../vendor/react-dom.production.min.js"></script>
+<script>
+;( function () {
+	'use strict'
+
+	const h = React.createElement
+
+	const NS = 'versus'
+	const CASE = new URLSearchParams( location.search ).get( 'case' ) || 'race'
+
+	const delay = ms => new Promise( done => setTimeout( done, ms ) )
+
+	function send( message ) {
+		message.ns = NS
+		parent.postMessage( message, '*' )
+	}
+
+	// Thrown when the numbers would describe the browser's scheduler instead of
+	// the framework, so the run is dropped rather than reported.
+	function Invalid( reason ) {
+		this.reason = reason
+	}
+
+	// Resolves once React has committed the tree to the DOM.
+	function Ready( props ) {
+		React.useLayoutEffect( () => { props.done() }, [] )
+		return props.children
+	}
+
+	function render( root, element ) {
+		return new Promise( done => root.render( h( Ready, { done: done }, element ) ) )
+	}
+
+	function click( selector ) {
+		const node = document.querySelector( selector )
+		if( !node ) throw new Error( 'No element matching ' + selector )
+		node.click()
+	}
+
+	// No timer fallback on purpose: a background tab produces no frames at all,
+	// and a run that stalls here is ended by the visibility watch instead.
+	function next_frame() {
+		return new Promise( done => requestAnimationFrame( () => done() ) )
+	}
+
+	async function scroll_to( box, from, to, duration ) {
+		const start = performance.now()
+		for( ;; ) {
+			const part = Math.min( 1, ( performance.now() - start ) / duration )
+			box.scrollTop = from + ( to - from ) * part
+			if( part >= 1 ) return
+			await next_frame()
+		}
+	}
+
+	function heap_metrics() {
+		const memory = performance.memory
+		if( !memory ) return []
+		return [ {
+			name: 'Heap',
+			value: Math.round( memory.usedJSHeapSize / 1048576 ),
+			unit: 'MB',
+		} ]
+	}
+
+
+	// ---------------------------------------------------------------- race
+
+	// Idiomatic data loading: an effect starts a request whenever the selected
+	// id changes and writes whatever comes back into state. There is no
+	// cancellation flag and no AbortController here, so a slow earlier response
+	// still lands after a fast later one. The usual fix is a `let stale = false`
+	// guard released from the effect cleanup, written by hand for every effect
+	// that loads something.
+
+	const RACE_USERS = [ 1, 2, 3, 4, 5 ].map( number => ( {
+		id: number,
+		name: 'User ' + number,
+		about: 'Profile details for user ' + number + '.',
+	} ) )
+
+	function fetch_user( id ) {
+		return new Promise( done => {
+			setTimeout( () => done( RACE_USERS[ id - 1 ] ), 1000 - ( id - 1 ) * 200 )
+		} )
+	}
+
+	function RaceApp() {
+
+		const [ id, set_id ] = React.useState( null )
+		const [ user, set_user ] = React.useState( null )
+		const [ loading, set_loading ] = React.useState( false )
+
+		React.useEffect( () => {
+			if( id === null ) return
+			set_loading( true )
+			fetch_user( id ).then( data => {
+				set_user( data )
+				set_loading( false )
+			} )
+		}, [ id ] )
+
+		return h( 'div', { className: 'row2' },
+			h( 'div', { className: 'side' },
+				RACE_USERS.map( item => h( 'button', {
+					key: item.id,
+					className: 'item' + ( item.id === id ? ' item_current' : '' ),
+					'data-user': item.id,
+					onClick: () => set_id( item.id ),
+				}, item.name ) ),
+			),
+			h( 'div', { className: 'main' },
+				loading
+					? h( 'div', { className: 'muted' }, 'Loading…' )
+					: user
+						? h( 'div', null,
+							h( 'div', { className: 'title', 'data-panel': 'name' }, user.name ),
+							h( 'div', { className: 'muted' }, user.about ),
+						)
+						: h( 'div', { className: 'muted' }, 'Pick a user' ),
+			),
+		)
+	}
+
+	const race = {
+
+		mount: root => render( root, h( RaceApp ) ),
+
+		run: async () => {
+
+			const started = performance.now()
+
+			click( '[data-user="1"]' )
+			await delay( 100 )
+			click( '[data-user="5"]' )
+			await delay( 1500 )
+
+			// Clamped timers collapse both responses into one wake-up and destroy
+			// the order the scenario is built on. Expected here is ~1600 ms.
+			if( performance.now() - started > 2200 ) throw new Invalid( 'timers-throttled' )
+
+			const panel = document.querySelector( '[data-panel="name"]' )
+			const shown = panel ? panel.textContent : ''
+			const number = shown.replace( /\D+/g, '' )
+
+			return {
+				status: number === '5' ? 'ok' : 'fail',
+				observed: number
+					? 'Selected user 5, panel shows user ' + number
+					: 'Selected user 5, panel shows nothing',
+				metrics: [],
+			}
+		},
+	}
+
+
+	// ------------------------------------------------------------- virtual
+
+	// A plain .map() over the whole data set, the way a list is written before
+	// its size becomes a problem. Every row sits in the DOM at once. Windowing
+	// is not part of React and gets added later with a separate library such as
+	// react-window, which also means giving up on natural row heights or
+	// measuring every row by hand.
+
+	const WORDS = 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua '
+
+	const VIRTUAL_ROWS = ( () => {
+		const rows = []
+		for( let i = 0; i < 10000; ++i ) {
+			const length = 20 + ( i * 37 ) % 400
+			let text = ''
+			while( text.length < length ) text += WORDS
+			rows.push( text.slice( 0, length ) )
+		}
+		return rows
+	} )()
+
+	let virtual_control = null
+
+	function VirtualApp() {
+
+		const [ rows, set_rows ] = React.useState( [] )
+
+		// Handle for the runner, which feeds the rows in when Run is pressed.
+		React.useEffect( () => {
+			virtual_control = { set_rows: set_rows }
+		}, [] )
+
+		return h( 'div', { className: 'scroll', 'data-role': 'scroll' },
+			rows.length
+				? rows.map( ( text, index ) => h( 'div', {
+					key: index,
+					className: 'line',
+				}, '#' + ( index + 1 ) + ' ' + text ) )
+				: h( 'div', { className: 'hint muted' }, 'Press Run to load 10,000 rows' ),
+		)
+	}
+
+	const virtual = {
+
+		mount: root => render( root, h( VirtualApp ) ),
+
+		run: async () => {
+
+			const control = virtual_control
+			if( !control ) throw new Error( 'Virtual scenario is not mounted' )
+
+			const box = document.querySelector( '[data-role="scroll"]' )
+			if( !box ) throw new Error( 'Scroll container is missing' )
+
+			// Always start from the placeholder, so a repeated run times a real
+			// render instead of a list that is already on screen.
+			ReactDOM.flushSync( () => control.set_rows( [] ) )
+			box.scrollTop = 0
+
+			const started = performance.now()
+
+			control.set_rows( VIRTUAL_ROWS )
+
+			await next_frame()
+			await next_frame()
+
+			// Reading scrollHeight forces the layout the rows just made necessary.
+			const height = box.scrollHeight
+			const render_time = Math.round( performance.now() - started )
+
+			const middle = ( height - box.clientHeight ) / 2
+			await scroll_to( box, 0, middle, 1000 )
+			await scroll_to( box, middle, 0, 1000 )
+
+			const nodes = box.querySelectorAll( '*' ).length
+
+			return {
+				status: nodes < 500 ? 'ok' : nodes > 5000 ? 'fail' : 'warn',
+				observed: 'Rendered ' + nodes + ' DOM nodes for 10000 rows',
+				metrics: [
+					{ name: 'DOM nodes', value: nodes, unit: '' },
+					{ name: 'Render time', value: render_time, unit: 'ms' },
+				],
+			}
+		},
+	}
+
+
+	// ---------------------------------------------------------------- leak
+
+	// The effect subscribes on mount and returns nothing, so the subscription
+	// outlives the component that made it. The fix is
+	// `return () => store.unsubscribe( handler )` at the end of the effect,
+	// written by hand for every subscription and invisible when forgotten.
+
+	const store = {
+
+		value: 0,
+		subscribers: [],
+
+		subscribe( handler ) {
+			this.subscribers.push( handler )
+		},
+
+		unsubscribe( handler ) {
+			const index = this.subscribers.indexOf( handler )
+			if( index >= 0 ) this.subscribers.splice( index, 1 )
+		},
+
+		set( value ) {
+			this.value = value
+			this.subscribers.forEach( handler => handler( value ) )
+		},
+	}
+
+	let store_ticker = 0
+
+	function LeakWidget() {
+
+		const [ value, set_value ] = React.useState( store.value )
+
+		React.useEffect( () => {
+			store.subscribe( set_value )
+		}, [] )
+
+		return h( 'div', null, 'Widget sees store value ' + value )
+	}
+
+	let leak_control = null
+
+	function LeakApp() {
+
+		const [ mounted, set_mounted ] = React.useState( false )
+		const [ cycles, set_cycles ] = React.useState( 0 )
+		const [ live, set_live ] = React.useState( store.subscribers.length )
+
+		// Handle for the runner, which drives mount cycles from outside React.
+		React.useEffect( () => {
+			leak_control = {
+				set_mounted: set_mounted,
+				set_cycles: set_cycles,
+				set_live: set_live,
+			}
+		}, [] )
+
+		return h( 'div', { className: 'column' },
+			h( 'div', { className: 'stat' }, 'Mount cycles: ' + cycles ),
+			h( 'div', { className: 'stat' }, 'Live subscribers: ' + live ),
+			h( 'div', { className: 'slot' },
+				mounted
+					? h( LeakWidget )
+					: h( 'div', { className: 'muted' }, 'Widget not mounted' ),
+			),
+		)
+	}
+
+	const leak = {
+
+		mount: root => {
+			// The store outlives the tree, so every run starts from a known zero.
+			store.subscribers = []
+			if( !store_ticker ) store_ticker = setInterval( () => store.set( store.value + 1 ), 500 )
+			return render( root, h( LeakApp ) )
+		},
+
+		run: async () => {
+
+			const control = leak_control
+			if( !control ) throw new Error( 'Leak scenario is not mounted' )
+
+			store.subscribers = []
+
+			for( let i = 0; i < 100; ++i ) {
+				ReactDOM.flushSync( () => control.set_mounted( true ) )
+				ReactDOM.flushSync( () => control.set_mounted( false ) )
+			}
+
+			await delay( 50 )
+
+			const live = store.subscribers.length
+
+			ReactDOM.flushSync( () => {
+				control.set_cycles( 100 )
+				control.set_live( live )
+			} )
+
+			return {
+				status: live === 0 ? 'ok' : 'fail',
+				observed: '100 mount cycles left ' + live + ' live subscribers',
+				metrics: [ { name: 'Live subscribers', value: live, unit: '' } ].concat( heap_metrics() ),
+			}
+		},
+	}
+
+
+	// --------------------------------------------------------------- crash
+
+	// No ErrorBoundary anywhere, which is what an app looks like until someone
+	// adds one. An exception thrown while rendering a single card is not
+	// contained: React unwinds to the root and unmounts the whole tree. The fix
+	// is an ErrorBoundary class component placed around every part that has to
+	// keep working on its own.
+
+	const CRASH_CARDS = []
+	for( let i = 1; i <= 20; ++i ) {
+		CRASH_CARDS.push( { id: i, title: 'Card ' + i, text: 'Details for card ' + i } )
+	}
+
+	function CrashCard( props ) {
+		return h( 'div', { className: 'card' },
+			h( 'div', { className: 'card_title' }, props.item.title ),
+			h( 'div', { className: 'card_text' }, props.item.text ),
+		)
+	}
+
+	let crash_control = null
+
+	function CrashApp() {
+
+		const [ items, set_items ] = React.useState( CRASH_CARDS )
+
+		// Handle for the runner, which swaps the data from outside React.
+		React.useEffect( () => {
+			crash_control = { set_items: set_items }
+		}, [] )
+
+		return h( 'div', { className: 'cards', 'data-role': 'cards' },
+			items.map( ( item, index ) => h( CrashCard, { key: index, item: item } ) ),
+		)
+	}
+
+	const crash = {
+
+		mount: root => render( root, h( CrashApp ) ),
+
+		run: async () => {
+
+			const control = crash_control
+			if( !control ) throw new Error( 'Crash scenario is not mounted' )
+
+			const broken = CRASH_CARDS.slice()
+			broken[ 6 ] = null
+
+			muted = true
+			try {
+				ReactDOM.flushSync( () => control.set_items( broken ) )
+			} catch( error ) {
+				// React rethrows the render error after unmounting the tree.
+			}
+
+			await delay( 200 )
+			muted = false
+
+			const cards = document.querySelectorAll( '.card' ).length
+			// Nothing renders this marker here — React has no error placeholder
+			// without an ErrorBoundary. The check stays so all three runners
+			// score the same way.
+			const placeholder = !!document.querySelector( '[data-role="card-error"]' )
+
+			return {
+				status: cards === 0 ? 'fail' : cards === 19 && placeholder ? 'ok' : 'warn',
+				observed: cards === 0
+					? 'Card 7 threw during render, 0 of 20 cards remained'
+					: cards + ' of 20 cards survived, card 7 '
+						+ ( placeholder ? 'was replaced by an error placeholder' : 'disappeared without a placeholder' ),
+				metrics: [ { name: 'Surviving cards', value: cards, unit: '' } ],
+			}
+		},
+	}
+
+
+	// -------------------------------------------------------------- runner
+
+	const SCENARIOS = { race: race, virtual: virtual, leak: leak, crash: crash }
+
+	const host = document.getElementById( 'host' )
+
+	let scenario = null
+	let root = null
+	let running = false
+	let muted = false
+
+	function fresh_container() {
+		host.innerHTML = ''
+		const node = document.createElement( 'div' )
+		node.className = 'app'
+		host.appendChild( node )
+		return node
+	}
+
+	async function boot() {
+
+		scenario = SCENARIOS[ CASE ]
+
+		if( !scenario ) {
+			send( { type: 'error', message: 'Unknown case: ' + CASE } )
+			return
+		}
+
+		if( root ) {
+			muted = true
+			try { root.unmount() } catch( error ) {}
+			muted = false
+		}
+
+		root = ReactDOM.createRoot( fresh_container() )
+		await scenario.mount( root )
+
+		send( { type: 'ready', case: CASE } )
+	}
+
+	// visibilityState rather than document.hidden: the two agree in every browser
+	// that follows the spec, and this one is also correct for the states that are
+	// not plain 'visible'. All three runners check it the same way.
+	function tab_hidden() {
+		return document.visibilityState !== 'visible'
+	}
+
+	// A hidden tab clamps timers to a common wake-up, and a frame scrolled out of
+	// the viewport stops getting frames at all. Both make the run say more about
+	// the browser than about the framework, so watch for them the whole way
+	// through and drop the run the moment either happens.
+	function run_watch() {
+
+		let abort = null
+		const alarm = new Promise( ( done, fail ) => { abort = fail } )
+
+		const on_visibility = () => {
+			if( tab_hidden() ) abort( new Invalid( 'tab-hidden' ) )
+		}
+		document.addEventListener( 'visibilitychange', on_visibility )
+
+		// Inside an iframe this reports the intersection with the parent page's
+		// viewport, so it fires when the reader scrolls the case out of sight.
+		const observer = new IntersectionObserver( entries => {
+			if( !entries[ entries.length - 1 ].isIntersecting ) abort( new Invalid( 'frame-offscreen' ) )
+		} )
+		observer.observe( document.documentElement )
+
+		if( tab_hidden() ) abort( new Invalid( 'tab-hidden' ) )
+
+		return {
+			alarm: alarm,
+			stop: () => {
+				document.removeEventListener( 'visibilitychange', on_visibility )
+				observer.disconnect()
+			},
+		}
+	}
+
+	async function start() {
+
+		if( running || !scenario ) return
+		running = true
+
+		const watch = run_watch()
+
+		try {
+			const result = await Promise.race( [ scenario.run(), watch.alarm ] )
+			send( {
+				type: 'result',
+				case: CASE,
+				status: result.status,
+				observed: result.observed,
+				metrics: result.metrics || [],
+			} )
+		} catch( error ) {
+			if( error instanceof Invalid ) send( { type: 'invalid', case: CASE, reason: error.reason } )
+			else send( { type: 'error', message: error && error.message || String( error ) } )
+		} finally {
+			watch.stop()
+			running = false
+		}
+	}
+
+	window.addEventListener( 'message', event => {
+		const data = event.data
+		if( !data || data.ns !== NS ) return
+		if( data.type === 'run' ) start()
+		else if( data.type === 'reset' ) boot()
+	} )
+
+	window.addEventListener( 'error', event => {
+		if( muted ) return
+		send( { type: 'error', message: String( event.message || event.error ) } )
+	} )
+
+	window.addEventListener( 'unhandledrejection', event => {
+		if( muted ) return
+		send( { type: 'error', message: String( event.reason ) } )
+	} )
+
+	// Standalone check: when the page is opened outside an iframe it gets its
+	// own Run button and prints the result to the console.
+	if( window.parent === window ) {
+		window.addEventListener( 'message', event => {
+			if( event.data && event.data.ns === NS ) console.log( event.data )
+		} )
+		const button = document.createElement( 'button' )
+		button.className = 'standalone'
+		button.textContent = 'Run'
+		button.onclick = start
+		document.body.appendChild( button )
+	}
+
+	boot()
+
+} )()
+</script>
+
+</body>
+</html>

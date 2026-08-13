@@ -5571,6 +5571,9 @@ var $;
 		uri_toggle(){
 			return "";
 		}
+		uri_unsafe(){
+			return (this.uri_toggle());
+		}
 		hint(){
 			return "";
 		}
@@ -5614,7 +5617,7 @@ var $;
 		attr(){
 			return {
 				...(super.attr()), 
-				"href": (this.uri_toggle()), 
+				"href": (this.uri_unsafe()), 
 				"title": (this.hint_safe()), 
 				"target": (this.target()), 
 				"download": (this.file_name()), 
@@ -5634,6 +5637,85 @@ var $;
 	};
 	($mol_mem(($.$mol_link.prototype), "event_click"));
 
+
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_dom_safe_uri(uri) {
+        return uri.replace(/^(?=\w+script+:)/, 'about:blank#');
+    }
+    $.$mol_dom_safe_uri = $mol_dom_safe_uri;
+    function $mol_dom_safe_attr(val) {
+        return val;
+    }
+    $.$mol_dom_safe_attr = $mol_dom_safe_attr;
+    $.$mol_dom_safe_rules = {
+        // defaults
+        '': { id: $mol_dom_safe_attr },
+        // special
+        a: { href: $mol_dom_safe_uri },
+        img: { src: $mol_dom_safe_uri },
+        object: { src: $mol_dom_safe_uri },
+        // blocks
+        div: {},
+        p: {},
+        h1: {},
+        h2: {},
+        h3: {},
+        h4: {},
+        h5: {},
+        h6: {},
+        blockquote: {},
+        pre: {},
+        ul: {},
+        ol: {},
+        li: {},
+        details: {},
+        summary: {},
+        hr: {},
+        table: {},
+        tr: {},
+        td: {},
+        // inlines
+        span: {},
+        strong: {},
+        em: {},
+        br: {},
+        ins: {},
+        del: {},
+        code: {},
+    };
+    function $mol_dom_safe(nodes) {
+        const res = [];
+        for (const node of nodes) {
+            if (node.nodeType === node.TEXT_NODE) {
+                res.push(node);
+                continue;
+            }
+            if (node.nodeType === node.ELEMENT_NODE) {
+                const kids = this.$mol_dom_safe([...node.childNodes]);
+                const allowed = this.$mol_dom_safe_rules[node.localName];
+                if (!allowed) {
+                    res.push(...kids);
+                    continue;
+                }
+                for (const attr of [...node.attributes]) {
+                    const proc = allowed[attr.localName] ?? this.$mol_dom_safe_rules[''][attr.localName];
+                    if (proc)
+                        attr.nodeValue = proc(attr.nodeValue);
+                    else
+                        node.removeAttribute(attr.nodeName);
+                }
+                $mol_dom_render_children(node, kids);
+                res.push(node);
+                continue;
+            }
+        }
+        return res;
+    }
+    $.$mol_dom_safe = $mol_dom_safe;
+})($ || ($ = {}));
 
 ;
 "use strict";
@@ -5703,6 +5785,9 @@ var $;
                         return '💥' + error.message;
                     return '';
                 }
+            }
+            uri_unsafe() {
+                return $mol_dom_safe_uri(super.uri_unsafe());
             }
         }
         __decorate([
@@ -7834,6 +7919,12 @@ var $;
 			(obj.arg) = () => ({"section": "playground", "page": ""});
 			return obj;
 		}
+		Nav_versus(){
+			const obj = new this.$.$mol_link();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Nav_versus_title")));
+			(obj.arg) = () => ({"section": "versus", "page": ""});
+			return obj;
+		}
 		Ecosystem_label(){
 			return (this.$.$mol_locale.text("$bog_smalljs_top_Ecosystem_label"));
 		}
@@ -7978,6 +8069,7 @@ var $;
 			(obj.sub) = () => ([
 				(this.Docs_pick()), 
 				(this.Nav_playground()), 
+				(this.Nav_versus()), 
 				(this.Ecosystem_pick()), 
 				(this.About_pick())
 			]);
@@ -7991,6 +8083,13 @@ var $;
 			const obj = new this.$.$mol_link();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Mobile_playground_title")));
 			(obj.arg) = () => ({"section": "playground", "page": ""});
+			(obj.event_click) = (next) => ((this.nav_pick(next)));
+			return obj;
+		}
+		Mobile_versus(){
+			const obj = new this.$.$mol_link();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Mobile_versus_title")));
+			(obj.arg) = () => ({"section": "versus", "page": ""});
 			(obj.event_click) = (next) => ((this.nav_pick(next)));
 			return obj;
 		}
@@ -8156,6 +8255,7 @@ var $;
 			const obj = new this.$.$mol_view();
 			(obj.sub) = () => ([
 				(this.Mobile_playground()), 
+				(this.Mobile_versus()), 
 				(this.Docs_group()), 
 				(this.Ecosystem_group()), 
 				(this.About_group())
@@ -8268,6 +8368,7 @@ var $;
 	($mol_mem(($.$bog_smalljs_top.prototype), "Docs_menu"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Docs_pick"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Nav_playground"));
+	($mol_mem(($.$bog_smalljs_top.prototype), "Nav_versus"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Ecosystem_chevron"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Eco_components"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Eco_libs_title"));
@@ -8289,6 +8390,7 @@ var $;
 	($mol_mem(($.$bog_smalljs_top.prototype), "Nav"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Burger_icon"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "Mobile_playground"));
+	($mol_mem(($.$bog_smalljs_top.prototype), "Mobile_versus"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "M_docs_quickstart"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "M_docs_guide"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "M_docs_tutorial"));
@@ -8441,6 +8543,15 @@ var $;
             },
         },
     };
+    // A section link sitting directly in the mobile menu, next to the expander
+    // headers. Without this it would pick up the nested-link style of the menu's
+    // $mol_link rule and read as an item of some group above it.
+    const mobile_entry = {
+        padding: { top: rem(0.5), bottom: rem(0.5), left: rem(0.625), right: rem(0.625) },
+        border: { radius: rem(0.375) },
+        font: { size: rem(0.9375), weight: 600 },
+        color: $bog_builderui_tokens.text,
+    };
     $mol_style_define($bog_smalljs_top, {
         flex: { direction: 'row' },
         align: { items: 'center' },
@@ -8552,12 +8663,8 @@ var $;
                 },
             },
         },
-        Mobile_playground: {
-            padding: { top: rem(0.5), bottom: rem(0.5), left: rem(0.625), right: rem(0.625) },
-            border: { radius: rem(0.375) },
-            font: { size: rem(0.9375), weight: 600 },
-            color: $bog_builderui_tokens.text,
-        },
+        Mobile_playground: mobile_entry,
+        Mobile_versus: mobile_entry,
         M_eco_libs_title: {
             padding: { top: rem(0.5), bottom: rem(0.25), left: rem(1.25), right: rem(0.625) },
             font: { size: rem(0.6875), weight: 600 },
@@ -24882,6 +24989,1173 @@ var $;
 })($ || ($ = {}));
 
 ;
+	($.$bog_smalljs_versus_case) = class $bog_smalljs_versus_case extends ($.$mol_view) {
+		Title(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.title())]);
+			return obj;
+		}
+		Hint(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.hint())]);
+			return obj;
+		}
+		Head(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Title()), (this.Hint())]);
+			return obj;
+		}
+		controls_content(){
+			return [];
+		}
+		Controls(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.controls_content()));
+			return obj;
+		}
+		columns(){
+			return [];
+		}
+		Columns(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.columns()));
+			return obj;
+		}
+		run_enabled(){
+			return true;
+		}
+		run(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		run_label(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_case_run_label"));
+		}
+		run_hint(){
+			return "";
+		}
+		framework_name(id){
+			return "";
+		}
+		Label(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.framework_name(id))]);
+			return obj;
+		}
+		frame_uri(id){
+			return "";
+		}
+		frame_title(id){
+			return "";
+		}
+		frame_loaded(id, next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Frame(id){
+			const obj = new this.$.$bog_smalljs_versus_case_frame();
+			(obj.uri) = () => ((this.frame_uri(id)));
+			(obj.frame_title) = () => ((this.frame_title(id)));
+			(obj.loaded) = (next) => ((this.frame_loaded(id, next)));
+			return obj;
+		}
+		card_content(id){
+			return [];
+		}
+		Card(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.card_content(id)));
+			return obj;
+		}
+		status(id){
+			return "";
+		}
+		status_icon(id){
+			return "";
+		}
+		status_text(id){
+			return "";
+		}
+		observed(id){
+			return "";
+		}
+		metric_rows(id){
+			return [];
+		}
+		metric_name(id){
+			return "";
+		}
+		Metric_name(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.metric_name(id))]);
+			return obj;
+		}
+		metric_value(id){
+			return "";
+		}
+		Metric_value(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.metric_value(id))]);
+			return obj;
+		}
+		note(id){
+			return "";
+		}
+		case_id(){
+			return "";
+		}
+		title(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_case_title"));
+		}
+		hint(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_case_hint"));
+		}
+		status_idle(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_case_status_idle"));
+		}
+		status_running(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_case_status_running"));
+		}
+		status_ok(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_case_status_ok"));
+		}
+		status_warn(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_case_status_warn"));
+		}
+		status_fail(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_case_status_fail"));
+		}
+		status_error(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_case_status_error"));
+		}
+		status_invalid(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_case_status_invalid"));
+		}
+		error_timeout(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_case_error_timeout"));
+		}
+		error_not_loaded(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_case_error_not_loaded"));
+		}
+		run_hint_broken(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_case_run_hint_broken"));
+		}
+		invalid_tab_hidden(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_case_invalid_tab_hidden"));
+		}
+		invalid_timers_throttled(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_case_invalid_timers_throttled"));
+		}
+		invalid_frame_offscreen(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_case_invalid_frame_offscreen"));
+		}
+		invalid_other(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_case_invalid_other"));
+		}
+		run_hint_hidden(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_case_run_hint_hidden"));
+		}
+		run_hint_loading(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_case_run_hint_loading"));
+		}
+		sub(){
+			return [
+				(this.Head()), 
+				(this.Controls()), 
+				(this.Columns())
+			];
+		}
+		Run(){
+			const obj = new this.$.$mol_button_major();
+			(obj.enabled) = () => ((this.run_enabled()));
+			(obj.click) = (next) => ((this.run(next)));
+			(obj.sub) = () => ([(this.run_label())]);
+			return obj;
+		}
+		Run_hint(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.run_hint())]);
+			return obj;
+		}
+		Column(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([
+				(this.Label(id)), 
+				(this.Frame(id)), 
+				(this.Card(id))
+			]);
+			return obj;
+		}
+		Status(id){
+			const obj = new this.$.$bog_smalljs_versus_case_status();
+			(obj.status) = () => ((this.status(id)));
+			(obj.icon) = () => ((this.status_icon(id)));
+			(obj.text) = () => ((this.status_text(id)));
+			return obj;
+		}
+		Observed(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.observed(id))]);
+			return obj;
+		}
+		Metrics(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.metric_rows(id)));
+			return obj;
+		}
+		Metric(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Metric_name(id)), (this.Metric_value(id))]);
+			return obj;
+		}
+		Note(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.note(id))]);
+			return obj;
+		}
+	};
+	($mol_mem(($.$bog_smalljs_versus_case.prototype), "Title"));
+	($mol_mem(($.$bog_smalljs_versus_case.prototype), "Hint"));
+	($mol_mem(($.$bog_smalljs_versus_case.prototype), "Head"));
+	($mol_mem(($.$bog_smalljs_versus_case.prototype), "Controls"));
+	($mol_mem(($.$bog_smalljs_versus_case.prototype), "Columns"));
+	($mol_mem(($.$bog_smalljs_versus_case.prototype), "run"));
+	($mol_mem_key(($.$bog_smalljs_versus_case.prototype), "Label"));
+	($mol_mem_key(($.$bog_smalljs_versus_case.prototype), "frame_loaded"));
+	($mol_mem_key(($.$bog_smalljs_versus_case.prototype), "Frame"));
+	($mol_mem_key(($.$bog_smalljs_versus_case.prototype), "Card"));
+	($mol_mem_key(($.$bog_smalljs_versus_case.prototype), "Metric_name"));
+	($mol_mem_key(($.$bog_smalljs_versus_case.prototype), "Metric_value"));
+	($mol_mem(($.$bog_smalljs_versus_case.prototype), "Run"));
+	($mol_mem(($.$bog_smalljs_versus_case.prototype), "Run_hint"));
+	($mol_mem_key(($.$bog_smalljs_versus_case.prototype), "Column"));
+	($mol_mem_key(($.$bog_smalljs_versus_case.prototype), "Status"));
+	($mol_mem_key(($.$bog_smalljs_versus_case.prototype), "Observed"));
+	($mol_mem_key(($.$bog_smalljs_versus_case.prototype), "Metrics"));
+	($mol_mem_key(($.$bog_smalljs_versus_case.prototype), "Metric"));
+	($mol_mem_key(($.$bog_smalljs_versus_case.prototype), "Note"));
+	($.$bog_smalljs_versus_case_status) = class $bog_smalljs_versus_case_status extends ($.$mol_view) {
+		Icon(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.icon())]);
+			return obj;
+		}
+		Text(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.text())]);
+			return obj;
+		}
+		status(){
+			return "idle";
+		}
+		icon(){
+			return "";
+		}
+		text(){
+			return "";
+		}
+		attr(){
+			return {...(super.attr()), "bog_smalljs_versus_status": (this.status())};
+		}
+		sub(){
+			return [(this.Icon()), (this.Text())];
+		}
+	};
+	($mol_mem(($.$bog_smalljs_versus_case_status.prototype), "Icon"));
+	($mol_mem(($.$bog_smalljs_versus_case_status.prototype), "Text"));
+	($.$bog_smalljs_versus_case_frame) = class $bog_smalljs_versus_case_frame extends ($.$mol_view) {
+		loaded(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		dom_name(){
+			return "iframe";
+		}
+		uri(){
+			return "";
+		}
+		frame_title(){
+			return "";
+		}
+		sub(){
+			return [];
+		}
+		event(){
+			return {...(super.event()), "load": (next) => (this.loaded(next))};
+		}
+		attr(){
+			return {
+				...(super.attr()), 
+				"src": (this.uri()), 
+				"title": (this.frame_title()), 
+				"loading": "lazy"
+			};
+		}
+	};
+	($mol_mem(($.$bog_smalljs_versus_case_frame.prototype), "loaded"));
+
+
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        /** Frameworks in column order. */
+        const frameworks = ['react', 'vue', 'mol'];
+        const framework_titles = {
+            react: 'React',
+            vue: 'Vue',
+            mol: '$mol',
+        };
+        const result_idle = { status: 'idle', observed: '', metrics: [] };
+        /** Shown for a metric the runner could not measure honestly. Never a zero:
+         *  a zero is a reading, this is the absence of one. */
+        const no_value = '—';
+        const status_icons = {
+            idle: '○',
+            running: '⏳',
+            ok: '✅',
+            warn: '⚠️',
+            fail: '❌',
+            error: '⛔',
+            invalid: '↻',
+        };
+        /** How long a runner gets to answer a `run` before its column reports no result. */
+        const answer_timeout = 15000;
+        /** How long after its page finishes loading a runner gets to say `ready`.
+         *  The load event fires once the document and its scripts are in, so the
+         *  greeting should follow almost immediately; anything past this is a page
+         *  that is not a runner at all — a 404 body, most likely. */
+        const ready_timeout = 5000;
+        // Where each runner is served from, relative to the site root. React and Vue
+        // are static files under the assets deploy; the $mol one is a MAM module of
+        // its own, which CI copies into the output at the same path it has on the dev
+        // server — so there is no assets/versus/mol/ folder.
+        const runner_paths = {
+            react: 'bog/smalljs/assets/versus/react/runner.html',
+            vue: 'bog/smalljs/assets/versus/vue/runner.html',
+            mol: 'bog/smalljs/versus/runner/-/index.html',
+        };
+        // The mam dev server serves the repo root, so the page path carries this.
+        const repo_prefix = '/bog/smalljs/';
+        // Path the site is mounted at on the deploy — the same mount the path router
+        // is activated with in app/app.view.ts.
+        const site_mount = '/smalljs/';
+        /** Per case, per framework: what the runner leaves out and what has to be
+         *  written by hand in that framework for the observed behaviour to change.
+         *  Kept in TS rather than in the tree: the text is selected by case id at
+         *  runtime and is not part of the component's public interface. */
+        const notes = {
+            race: {
+                react: 'The effect calls setState with whatever the request returns, with no cancellation. Ignoring a response that is no longer current takes a cancel flag or an AbortController inside the effect.',
+                vue: 'The watcher assigns whatever the awaited request returns, with no cancellation. Ignoring a response that is no longer current takes a check after the await that the selected id has not changed.',
+                mol: 'The panel value is computed from the selected id, so a response for an earlier id is never assigned. Nothing is written by hand here.',
+            },
+            virtual: {
+                react: 'Every row is rendered by a plain .map() over the data. Rendering only the rows on screen takes a virtualization library and a way to measure each row, since the heights differ.',
+                vue: 'Every row is rendered by a plain v-for over the data. Rendering only the rows on screen takes a virtualization library and a way to measure each row, since the heights differ.',
+                mol: 'The list keeps only the rows inside the viewport in the DOM and measures their heights as it scrolls. Nothing is written by hand here.',
+            },
+            leak: {
+                react: 'The effect subscribes and returns nothing. Releasing the subscription takes a cleanup function returned from every effect that subscribes.',
+                vue: 'onMounted subscribes and there is no matching onUnmounted. Releasing the subscription takes a teardown hook in every component that subscribes.',
+                mol: 'The subscription belongs to the component\'s own reactive cell and is released together with the component. Nothing is written by hand here.',
+            },
+            crash: {
+                react: 'With no ErrorBoundary above it, a throw during render takes the whole tree down. Keeping the rest of the list on screen takes an ErrorBoundary component around every part that may throw.',
+                vue: 'The production build drops the throwing component and leaves an empty comment node in its place, so the rest of the list stays and the page shows no sign that anything failed — the TypeError reaches the console only. Putting something visible where the card was takes an onErrorCaptured hook and markup to render in the failed slot.',
+                mol: 'A view that throws renders the error message in its own place and the rest of the tree keeps rendering. Nothing is written by hand here.',
+            },
+        };
+        function status_parse(raw) {
+            return raw === 'ok' || raw === 'warn' || raw === 'fail' ? raw : 'error';
+        }
+        /** Runners omit a metric they could not measure honestly rather than sending
+         *  a zero, so an absent entry simply has no row. An entry that arrives without
+         *  a value gets a dash for the same reason. Order is the runner's — the first
+         *  metric is the one the status is derived from — so it is never re-sorted. */
+        function metrics_parse(raw) {
+            if (!Array.isArray(raw))
+                return [];
+            return raw.flatMap(item => {
+                if (!item || typeof item !== 'object')
+                    return [];
+                const name = item.name;
+                if (!name)
+                    return [];
+                const value = item.value;
+                const unit = item.unit;
+                if (value === null || value === undefined || value === '') {
+                    return [{ name: String(name), value: no_value }];
+                }
+                return [{ name: String(name), value: String(value) + (unit ? ' ' + String(unit) : '') }];
+            });
+        }
+        class $bog_smalljs_versus_case extends $.$bog_smalljs_versus_case {
+            frameworks() {
+                return frameworks;
+            }
+            columns() {
+                return this.frameworks().map(id => this.Column(id));
+            }
+            framework_name(id) {
+                return framework_titles[id] ?? id;
+            }
+            frame_title(id) {
+                return this.framework_name(id) + ' — ' + this.case_id();
+            }
+            /** Path of the page itself. Split out so the base below can be checked
+             *  without a browser. */
+            location_path() {
+                return this.$.$mol_dom_context.location?.pathname ?? '';
+            }
+            /** Site root the runner paths hang off. The page lives at two very
+             *  different paths and the runners have to be addressed from both:
+             *
+             *      dev     /bog/smalljs/app/-/test.html  (repo root is the server root)
+             *      deploy  /smalljs/section=versus       (app/-/ is the site root)
+             *
+             *  so the base is derived from the current path rather than written down.
+             *  A relative URI would not survive here: prerendered routes are served
+             *  as /<route>/index.html, which shifts what a relative path resolves
+             *  against. The dev check has to come first — a dev path contains the
+             *  deploy mount as a substring, but not the other way round. */
+            site_base() {
+                const pathname = this.location_path();
+                const repo_at = pathname.indexOf(repo_prefix);
+                if (repo_at >= 0)
+                    return pathname.slice(0, repo_at) + '/';
+                const mount_at = pathname.indexOf(site_mount);
+                if (mount_at >= 0)
+                    return pathname.slice(0, mount_at + site_mount.length);
+                return '/';
+            }
+            frame_uri(id) {
+                return this.site_base() + runner_paths[id] + '?case=' + encodeURIComponent(this.case_id());
+            }
+            /** Latest thing every column has to say. Written by run(), by the message
+             *  handler and by the countdown, read by everything below. */
+            result(id, next) {
+                return next ?? result_idle;
+            }
+            status(id) {
+                return this.result(id).status;
+            }
+            status_icon(id) {
+                return status_icons[this.status(id)];
+            }
+            status_text(id) {
+                switch (this.status(id)) {
+                    case 'running': return this.status_running();
+                    case 'ok': return this.status_ok();
+                    case 'warn': return this.status_warn();
+                    case 'fail': return this.status_fail();
+                    case 'error': return this.status_error();
+                    case 'invalid': return this.status_invalid();
+                    default: return this.status_idle();
+                }
+            }
+            observed(id) {
+                return this.result(id).observed;
+            }
+            /** One neutral state, one line per reason. A reason this build has never
+             *  heard of gets the general wording rather than being pushed into an
+             *  error: the protocol is expected to grow, and a runner reporting an
+             *  unmeasurable run is doing its job, not failing at it. */
+            invalid_text(reason) {
+                switch (reason) {
+                    case 'tab-hidden': return this.invalid_tab_hidden();
+                    case 'timers-throttled': return this.invalid_timers_throttled();
+                    case 'frame-offscreen': return this.invalid_frame_offscreen();
+                    default: return this.invalid_other();
+                }
+            }
+            note(id) {
+                return notes[this.case_id()]?.[id] ?? '';
+            }
+            metric_ids(id) {
+                return this.result(id).metrics.map((_, index) => id + '/' + index);
+            }
+            metric_rows(id) {
+                return this.metric_ids(id).map(key => this.Metric(key));
+            }
+            metric(key) {
+                const slash = key.lastIndexOf('/');
+                return this.result(key.slice(0, slash)).metrics[Number(key.slice(slash + 1))];
+            }
+            metric_name(key) {
+                return this.metric(key)?.name ?? '';
+            }
+            metric_value(key) {
+                return this.metric(key)?.value ?? no_value;
+            }
+            /** Rows of the result card, skipping the ones with nothing to show —
+             *  an empty view would still take a gap in the column. */
+            card_content(id) {
+                return [
+                    this.Status(id),
+                    ...this.observed(id) ? [this.Observed(id)] : [],
+                    ...this.metric_ids(id).length ? [this.Metrics(id)] : [],
+                    ...this.note(id) ? [this.Note(id)] : [],
+                ];
+            }
+            controls_content() {
+                return [
+                    this.Run(),
+                    ...this.run_hint() ? [this.Run_hint()] : [],
+                ];
+            }
+            /** Every runner reports `ready` once its scenario is mounted. Until all
+             *  three have, a run would post into a frame that cannot answer. */
+            ready(id, next) {
+                return next ?? false;
+            }
+            frames_ready() {
+                return this.frameworks().every(id => this.ready(id));
+            }
+            /** Whether the frame's document finished loading, whatever it turned out
+             *  to be. A 404 is still a document, so this fires for a missing runner
+             *  too — which is exactly what makes it usable as the starting gun for
+             *  the greeting countdown below. */
+            frame_settled(id, next) {
+                return next ?? false;
+            }
+            frame_loaded(id, next) {
+                this.frame_settled(id, true);
+                return null;
+            }
+            /** Grades a frame that loaded something but never introduced itself.
+             *  Without this the column would sit on "Not run yet" for good and Run
+             *  would stay disabled with no hint of which frame is holding it up —
+             *  the 15 s answer timeout never gets a chance, because a run cannot
+             *  start in the first place. Disarms itself the moment `ready` lands. */
+            ready_watchdog(id) {
+                if (!this.frame_settled(id))
+                    return null;
+                if (this.ready(id))
+                    return null;
+                return new this.$.$mol_after_timeout(ready_timeout, () => this.ready_expire(id));
+            }
+            ready_expire(id) {
+                if (this.ready(id))
+                    return null;
+                this.result(id, { status: 'error', observed: this.error_not_loaded(), metrics: [] });
+                return null;
+            }
+            /** Frames that answered with nothing runnable. */
+            frames_broken() {
+                return this.frameworks().some(id => !this.ready(id) && this.status(id) === 'error');
+            }
+            /** Whether the tab is in front. A background tab clamps setTimeout to
+             *  about a second and never fires requestAnimationFrame, which turns every
+             *  scenario here into a coin toss, so runs do not start in one. */
+            page_visible(next) {
+                return next ?? !this.$.$mol_dom_context.document?.hidden;
+            }
+            visibility_sync() {
+                this.page_visible(!this.$.$mol_dom_context.document.hidden);
+                return null;
+            }
+            run_enabled() {
+                return this.frames_ready() && this.page_visible();
+            }
+            /** Why Run is not available, when it is not. The broken case comes before
+             *  the loading one: a frame that will never load is still "not ready",
+             *  and telling the reader to wait for it would be a lie. */
+            run_hint() {
+                if (!this.page_visible())
+                    return this.run_hint_hidden();
+                if (this.frames_broken())
+                    return this.run_hint_broken();
+                if (!this.frames_ready())
+                    return this.run_hint_loading();
+                return '';
+            }
+            /** Bumped on every Run, so a countdown armed by an earlier run cannot
+             *  touch the results of a later one. */
+            run_id(next) {
+                return next ?? 0;
+            }
+            run() {
+                if (!this.run_enabled())
+                    return null;
+                const run_id = this.run_id() + 1;
+                this.run_id(run_id);
+                for (const id of this.frameworks()) {
+                    this.result(id, { status: 'running', observed: '', metrics: [] });
+                    this.post(id, { ns: 'versus', type: 'run', case: this.case_id() });
+                }
+                return null;
+            }
+            /** Countdown for the answers of the current run. It lives in a cell of its
+             *  own rather than being started from run(): a fiber spawned inside an
+             *  action is owned by that action and dies with it, taking its timer along.
+             *  Re-arming needs no code — the cell depends on run_id, so the next Run
+             *  drops this timer and creates the next one. Returned from the cell and
+             *  read through auto(), otherwise it would be destroyed on creation. */
+            watchdog() {
+                const run_id = this.run_id();
+                if (!run_id)
+                    return null;
+                return new this.$.$mol_after_timeout(answer_timeout, () => this.expire(run_id));
+            }
+            expire(run_id) {
+                if (this.run_id() !== run_id)
+                    return null;
+                for (const id of this.frameworks()) {
+                    if (this.status(id) !== 'running')
+                        continue;
+                    this.result(id, { status: 'error', observed: this.error_timeout(), metrics: [] });
+                }
+                return null;
+            }
+            frame_window(id) {
+                return this.Frame(id).dom_node().contentWindow;
+            }
+            post(id, message) {
+                this.frame_window(id)?.postMessage(message, '*');
+            }
+            // One listener per case block on the window, not per frame: a frame that
+            // has not finished loading has no contentWindow to listen on yet. The
+            // sender is resolved by comparing event.source with each frame's window —
+            // origins differ between dev and deploy, so they are not filtered on.
+            // Returned from a cell and kept alive through auto(), otherwise the
+            // reactive engine would drop the object right after creating it.
+            message_listener() {
+                return new $mol_dom_listener(this.$.$mol_dom_context, 'message', $mol_wire_async(this).message_receive);
+            }
+            visibility_listener() {
+                return new $mol_dom_listener(this.$.$mol_dom_context.document, 'visibilitychange', () => this.visibility_sync());
+            }
+            auto() {
+                return [
+                    this.message_listener(),
+                    this.visibility_listener(),
+                    this.watchdog(),
+                    ...this.frameworks().map(id => this.ready_watchdog(id)),
+                ];
+            }
+            message_receive(event) {
+                if (!event)
+                    return;
+                const packet = event.data;
+                if (!packet || typeof packet !== 'object')
+                    return;
+                if (packet.ns !== 'versus')
+                    return;
+                const id = this.frameworks().find(id => event.source === this.frame_window(id));
+                if (!id)
+                    return;
+                if (packet.case !== undefined && packet.case !== this.case_id())
+                    return;
+                switch (packet.type) {
+                    // A remount invalidates whatever the previous run left on the card,
+                    // unless a run is in flight and this is the frame answering it.
+                    case 'ready': {
+                        this.ready(id, true);
+                        if (this.status(id) === 'running')
+                            return;
+                        this.result(id, result_idle);
+                        return;
+                    }
+                    case 'result': {
+                        this.result(id, {
+                            status: status_parse(packet.status),
+                            observed: String(packet.observed ?? ''),
+                            metrics: metrics_parse(packet.metrics),
+                        });
+                        return;
+                    }
+                    // Not a verdict and not a breakage: the run happened under
+                    // conditions that make its numbers meaningless. The previous
+                    // verdict goes away with it rather than staying up next to the
+                    // explanation, where it would read as still standing.
+                    case 'invalid': {
+                        this.result(id, {
+                            status: 'invalid',
+                            observed: this.invalid_text(packet.reason),
+                            metrics: [],
+                        });
+                        return;
+                    }
+                    case 'error': {
+                        this.result(id, {
+                            status: 'error',
+                            observed: String(packet.message ?? ''),
+                            metrics: [],
+                        });
+                        return;
+                    }
+                }
+            }
+        }
+        __decorate([
+            $mol_mem_key
+        ], $bog_smalljs_versus_case.prototype, "frame_uri", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_smalljs_versus_case.prototype, "result", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_smalljs_versus_case.prototype, "ready", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_smalljs_versus_case.prototype, "frame_settled", null);
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_versus_case.prototype, "frame_loaded", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_smalljs_versus_case.prototype, "ready_watchdog", null);
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_versus_case.prototype, "ready_expire", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus_case.prototype, "page_visible", null);
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_versus_case.prototype, "visibility_sync", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus_case.prototype, "run_id", null);
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_versus_case.prototype, "run", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus_case.prototype, "watchdog", null);
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_versus_case.prototype, "expire", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus_case.prototype, "message_listener", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus_case.prototype, "visibility_listener", null);
+        $$.$bog_smalljs_versus_case = $bog_smalljs_versus_case;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    const { rem, px } = $mol_style_unit;
+    const line = { width: '1px', style: 'solid', color: $bog_builderui_tokens.line };
+    const mono = "'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace";
+    // Verdict colours. Not theme tokens: the palette has no ok/warn/fail slots,
+    // and these mid-tones stay legible on both the light and the dark card.
+    const verdict_ok = '#3f9e57';
+    const verdict_warn = '#bb8218';
+    const verdict_fail = '#d2564f';
+    $mol_style_define($bog_smalljs_versus_case, {
+        flex: { direction: 'column' },
+        gap: rem(1),
+        padding: rem(1.25),
+        border: { radius: rem(0.75), ...line },
+        background: { color: $bog_builderui_tokens.card },
+        Head: {
+            flex: { direction: 'column' },
+            gap: rem(0.35),
+        },
+        Title: {
+            display: 'block',
+            font: { family: $bog_builderui_tokens.font_head, size: rem(1.25), weight: 600 },
+            lineHeight: '1.25',
+            color: $bog_builderui_tokens.text,
+        },
+        Hint: {
+            display: 'block',
+            font: { size: rem(0.9375) },
+            lineHeight: '1.5',
+            color: $bog_builderui_tokens.shade,
+        },
+        Controls: {
+            flex: { direction: 'row', wrap: 'wrap' },
+            align: { items: 'center' },
+            gap: rem(0.75),
+        },
+        Run: {
+            flex: { grow: 0, shrink: 0 },
+            padding: { top: rem(0.5), bottom: rem(0.5), left: rem(1.25), right: rem(1.25) },
+            border: { radius: rem(0.375) },
+            font: { weight: 600 },
+            // $mol_button renders a custom tag, not <button>, so :disabled never
+            // matches and the base sheet leaves a disabled button looking active.
+            '@': {
+                disabled: {
+                    true: { opacity: 0.45 },
+                },
+            },
+        },
+        Run_hint: {
+            display: 'block',
+            flex: { shrink: 1 },
+            minWidth: 0,
+            font: { size: rem(0.8125) },
+            lineHeight: '1.45',
+            color: $bog_builderui_tokens.shade,
+        },
+        Columns: {
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+            gap: rem(0.75),
+        },
+        Column: {
+            flex: { direction: 'column' },
+            // without it the frame's intrinsic width wins over the grid track
+            minWidth: 0,
+            gap: rem(0.5),
+            padding: rem(0.75),
+            border: { radius: rem(0.5), ...line },
+            background: { color: $bog_builderui_tokens.back },
+        },
+        Label: {
+            display: 'block',
+            font: { family: mono, size: rem(0.6875), weight: 600 },
+            letterSpacing: rem(0.06),
+            textTransform: 'uppercase',
+            color: $bog_builderui_tokens.shade,
+        },
+        Frame: {
+            display: 'block',
+            width: '100%',
+            height: px(320),
+            minWidth: 0,
+            border: { radius: rem(0.375), ...line },
+            // the runner pages paint a light surface of their own
+            background: { color: '#ffffff' },
+        },
+        Card: {
+            flex: { direction: 'column' },
+            minWidth: 0,
+            gap: rem(0.4),
+        },
+        Observed: {
+            display: 'block',
+            font: { size: rem(0.875) },
+            lineHeight: '1.45',
+            color: $bog_builderui_tokens.text,
+        },
+        Metrics: {
+            flex: { direction: 'column' },
+            gap: rem(0.15),
+        },
+        Metric: {
+            flex: { direction: 'row', wrap: 'wrap' },
+            justify: { content: 'space-between' },
+            gap: rem(0.5),
+            font: { size: rem(0.8125) },
+        },
+        Metric_name: {
+            display: 'block',
+            color: $bog_builderui_tokens.shade,
+        },
+        Metric_value: {
+            display: 'block',
+            font: { family: mono },
+            color: $bog_builderui_tokens.text,
+        },
+        Note: {
+            display: 'block',
+            padding: { top: rem(0.4) },
+            border: { top: line },
+            font: { size: rem(0.75) },
+            lineHeight: '1.45',
+            color: $bog_builderui_tokens.shade,
+        },
+        '@media': {
+            // same breakpoint the other sections of the site fold at
+            '(max-width: 47.9375rem)': {
+                Columns: {
+                    gridTemplateColumns: '1fr',
+                },
+            },
+        },
+    });
+    $mol_style_define($bog_smalljs_versus_case_status, {
+        flex: { direction: 'row', wrap: 'wrap' },
+        align: { items: 'baseline' },
+        gap: rem(0.4),
+        font: { size: rem(0.875), weight: 600 },
+        color: $bog_builderui_tokens.shade,
+        Icon: {
+            display: 'block',
+            flex: { shrink: 0 },
+        },
+        Text: {
+            display: 'block',
+        },
+        // ok / warn / fail are peer verdicts and get equal weight — warn is the
+        // whole band between the two thresholds, not a rare edge. error is a
+        // breakage, so it borrows the same red; invalid stays uncoloured on
+        // purpose, since nothing was decided and the reader is only asked to
+        // run it again.
+        '@': {
+            bog_smalljs_versus_status: {
+                ok: { color: verdict_ok },
+                warn: { color: verdict_warn },
+                fail: { color: verdict_fail },
+                error: { color: verdict_fail },
+            },
+        },
+    });
+})($ || ($ = {}));
+
+;
+	($.$bog_smalljs_versus) = class $bog_smalljs_versus extends ($.$mol_view) {
+		title_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_title_text"));
+		}
+		Title(){
+			const obj = new this.$.$mol_view();
+			(obj.dom_name) = () => ("h1");
+			(obj.sub) = () => ([(this.title_text())]);
+			return obj;
+		}
+		intro_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_intro_text"));
+		}
+		Intro(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.intro_text())]);
+			return obj;
+		}
+		Head(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Title()), (this.Intro())]);
+			return obj;
+		}
+		cases(){
+			return [];
+		}
+		Cases(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.cases()));
+			return obj;
+		}
+		method_title_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_method_title_text"));
+		}
+		Method_title(){
+			const obj = new this.$.$mol_view();
+			(obj.dom_name) = () => ("h2");
+			(obj.sub) = () => ([(this.method_title_text())]);
+			return obj;
+		}
+		method_body(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_method_body"));
+		}
+		Method_text(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.method_body())]);
+			return obj;
+		}
+		method_link_label(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_method_link_label"));
+		}
+		Method_link_icon(){
+			const obj = new this.$.$mol_icon_open_in_new();
+			return obj;
+		}
+		Method_link(){
+			const obj = new this.$.$mol_link();
+			(obj.uri) = () => ("https://github.com/b-on-g/smalljs/tree/master/versus");
+			(obj.sub) = () => ([(this.method_link_label()), (this.Method_link_icon())]);
+			return obj;
+		}
+		Method(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([
+				(this.Method_title()), 
+				(this.Method_text()), 
+				(this.Method_link())
+			]);
+			return obj;
+		}
+		sub(){
+			return [
+				(this.Head()), 
+				(this.Cases()), 
+				(this.Method())
+			];
+		}
+		Case_race(){
+			const obj = new this.$.$bog_smalljs_versus_case();
+			(obj.case_id) = () => ("race");
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_versus_Case_race_title")));
+			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_smalljs_versus_Case_race_hint")));
+			return obj;
+		}
+		Case_virtual(){
+			const obj = new this.$.$bog_smalljs_versus_case();
+			(obj.case_id) = () => ("virtual");
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_versus_Case_virtual_title")));
+			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_smalljs_versus_Case_virtual_hint")));
+			return obj;
+		}
+		Case_leak(){
+			const obj = new this.$.$bog_smalljs_versus_case();
+			(obj.case_id) = () => ("leak");
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_versus_Case_leak_title")));
+			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_smalljs_versus_Case_leak_hint")));
+			return obj;
+		}
+		Case_crash(){
+			const obj = new this.$.$bog_smalljs_versus_case();
+			(obj.case_id) = () => ("crash");
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_versus_Case_crash_title")));
+			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_smalljs_versus_Case_crash_hint")));
+			return obj;
+		}
+	};
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Title"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Intro"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Head"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Cases"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Method_title"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Method_text"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Method_link_icon"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Method_link"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Method"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Case_race"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Case_virtual"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Case_leak"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Case_crash"));
+
+
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $bog_smalljs_versus extends $.$bog_smalljs_versus {
+            /** Crash-test cases in reading order. Each one is a $bog_smalljs_versus_case
+             *  declared in the tree with its own `case_id`; the id is what the case passes
+             *  to every runner iframe as `runner.html?case=<id>`. Adding a case means one
+             *  declaration there plus one line here — the page itself stays static. */
+            cases() {
+                return [
+                    this.Case_race(),
+                    this.Case_virtual(),
+                    this.Case_leak(),
+                    this.Case_crash(),
+                ];
+            }
+        }
+        $$.$bog_smalljs_versus = $bog_smalljs_versus;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    const { rem } = $mol_style_unit;
+    // One editorial column for prose (heading, intro, methodology) and a wider one for
+    // the cases, which hold three side-by-side runner frames and need the room.
+    const prose = rem(48);
+    const wide = rem(76);
+    $mol_style_define($bog_smalljs_versus, {
+        flex: { direction: 'column', grow: 1 },
+        align: { items: 'center' },
+        gap: rem(3),
+        minWidth: 0,
+        padding: { top: rem(3.5), bottom: rem(4), left: $mol_gap.block, right: $mol_gap.block },
+        background: { color: $bog_builderui_tokens.back },
+        Head: {
+            flex: { direction: 'column' },
+            gap: rem(1),
+            // width:100% (not just max-width) so the column never collapses to its
+            // max-content width and pushes the page sideways on a phone.
+            width: '100%',
+            maxWidth: prose,
+        },
+        Title: {
+            display: 'block',
+            font: { family: $bog_builderui_tokens.font_head, size: rem(2.75), weight: 500 },
+            lineHeight: '1.14',
+            letterSpacing: '-0.02em',
+            color: $bog_builderui_tokens.text,
+            maxWidth: '100%',
+            overflowWrap: 'break-word',
+        },
+        Intro: {
+            display: 'block',
+            font: { size: rem(1.0625) },
+            lineHeight: '1.6',
+            maxWidth: rem(42),
+            color: $bog_builderui_tokens.shade,
+        },
+        // Cases style themselves ($bog_smalljs_versus_case owns its layout); the page
+        // only decides how wide the column is and how far apart the blocks sit.
+        Cases: {
+            flex: { direction: 'column' },
+            gap: rem(3),
+            width: '100%',
+            maxWidth: wide,
+            minWidth: 0,
+        },
+        Method: {
+            flex: { direction: 'column' },
+            align: { items: 'flex-start' },
+            gap: rem(0.75),
+            width: '100%',
+            maxWidth: prose,
+            padding: { top: rem(2) },
+            border: { top: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+        },
+        Method_title: {
+            display: 'block',
+            font: { family: $bog_builderui_tokens.font_head, size: rem(1.625), weight: 500 },
+            lineHeight: '1.2',
+            color: $bog_builderui_tokens.text,
+        },
+        Method_text: {
+            display: 'block',
+            font: { size: rem(0.9375) },
+            lineHeight: '1.6',
+            color: $bog_builderui_tokens.shade,
+        },
+        Method_link: {
+            flex: { direction: 'row', grow: 0 },
+            align: { items: 'center' },
+            gap: rem(0.4),
+            margin: { top: rem(0.25) },
+            color: $bog_builderui_tokens.control,
+            font: { size: rem(0.9375), weight: 600 },
+            ':hover': { color: $bog_builderui_tokens.focus },
+        },
+        Method_link_icon: {
+            width: rem(0.9),
+            height: rem(0.9),
+            flex: { shrink: 0 },
+        },
+        '@media': {
+            '(max-width: 47.9375rem)': {
+                gap: rem(2.25),
+                padding: { top: rem(2), bottom: rem(2.5), left: rem(1.25), right: rem(1.25) },
+                Title: { font: { size: rem(2) } },
+                Cases: { gap: rem(2.25) },
+                Method: { padding: { top: rem(1.5) } },
+            },
+        },
+    });
+})($ || ($ = {}));
+
+;
 	($.$bog_builderui_card) = class $bog_builderui_card extends ($.$bog_builderui_div) {};
 
 
@@ -26794,6 +28068,10 @@ var $;
 			const obj = new this.$.$bog_smalljs_course();
 			return obj;
 		}
+		Versus(){
+			const obj = new this.$.$bog_smalljs_versus();
+			return obj;
+		}
 	};
 	($mol_mem(($.$bog_smalljs_app.prototype), "Theme"));
 	($mol_mem(($.$bog_smalljs_app.prototype), "Top"));
@@ -26806,6 +28084,7 @@ var $;
 	($mol_mem(($.$bog_smalljs_app.prototype), "Docs"));
 	($mol_mem(($.$bog_smalljs_app.prototype), "Playground"));
 	($mol_mem(($.$bog_smalljs_app.prototype), "Course"));
+	($mol_mem(($.$bog_smalljs_app.prototype), "Versus"));
 
 
 ;
@@ -27256,6 +28535,7 @@ var $;
                     }
                     case 'playground': return [['section', 'playground']];
                     case 'course': return [['section', 'course']];
+                    case 'versus': return [['section', 'versus']];
                     default: return [];
                 }
             }
@@ -27293,6 +28573,10 @@ var $;
                     case 'course':
                         title = `Interactive Course — ${site_name}`;
                         description = 'Learn $mol step by step: reactive views, state, events, and routing, each in a live editor.';
+                        break;
+                    case 'versus':
+                        title = `Compare — ${site_name}`;
+                        description = 'Run the same scenario in React, Vue and $mol side by side in your own browser, and see how each one behaves.';
                         break;
                 }
                 const alternates = meta_langs.map(code => ({
@@ -27385,6 +28669,7 @@ var $;
                     case 'docs': return [this.Docs()];
                     case 'playground': return [this.Playground()];
                     case 'course': return [this.Course()];
+                    case 'versus': return [this.Versus()];
                     default: return [this.Landing()];
                 }
             }
