@@ -266,6 +266,7 @@ namespace $.$$ {
 		}
 
 		// ---------------------------------------------------------------- race
+		// versus:case race
 
 		race_ids() {
 			return [ 1, 2, 3, 4, 5 ]
@@ -356,6 +357,7 @@ namespace $.$$ {
 		}
 
 		// ------------------------------------------------------------- virtual
+		// versus:case virtual
 
 		virtual_count() {
 			return 10000
@@ -433,6 +435,7 @@ namespace $.$$ {
 		}
 
 		// ---------------------------------------------------------------- leak
+		// versus:case leak
 
 		leak_count() {
 			return 100
@@ -495,6 +498,7 @@ namespace $.$$ {
 		}
 
 		// --------------------------------------------------------------- crash
+		// versus:case crash
 
 		crash_count() {
 			return 20
@@ -578,6 +582,7 @@ namespace $.$$ {
 
 		}
 
+	// versus:end
 	}
 
 	export class $bog_smalljs_lab_probe extends $.$bog_smalljs_lab_probe {

@@ -150,6 +150,22 @@ $bog_smalljs_versus_pair $mol_view
 		left <= left
 		right <= right
 		missing_note <= edge_missing_note \
+	Code_race $bog_smalljs_versus_code
+		case_id \race
+		left <= left
+		right <= right
+	Code_virtual $bog_smalljs_versus_code
+		case_id \virtual
+		left <= left
+		right <= right
+	Code_leak $bog_smalljs_versus_code
+		case_id \leak
+		left <= left
+		right <= right
+	Code_crash $bog_smalljs_versus_code
+		case_id \crash
+		left <= left
+		right <= right
 
 $bog_smalljs_versus_pair_case $bog_smalljs_versus_case
 	left \

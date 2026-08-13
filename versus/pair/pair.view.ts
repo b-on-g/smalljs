@@ -444,7 +444,7 @@ namespace $.$$ {
 
 		section_content( category: string ): readonly $mol_view[] {
 
-			if( category === 'edge' ) return this.cases()
+			if( category === 'edge' ) return this.edge_content()
 
 			const rows = this.rows( category )
 			if( !rows.length ) return []
@@ -700,6 +700,22 @@ namespace $.$$ {
 				this.Case_virtual(),
 				this.Case_leak(),
 				this.Case_crash(),
+			]
+		}
+
+		/** What the edge-cases section renders: every case followed by its own
+		 *  source, so "why did that happen" is answered where the question comes
+		 *  up rather than in a separate section further down.
+		 *
+		 *  Kept apart from `cases()` because that list is also what the score is
+		 *  counted from, and a code block is not a case that can be won or lost.
+		 */
+		edge_content(): readonly $mol_view[] {
+			return [
+				this.Case_race(), this.Code_race(),
+				this.Case_virtual(), this.Code_virtual(),
+				this.Case_leak(), this.Code_leak(),
+				this.Case_crash(), this.Code_crash(),
 			]
 		}
 

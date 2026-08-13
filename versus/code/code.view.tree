@@ -1,0 +1,28 @@
+$bog_smalljs_versus_code $mol_view
+	case_id \
+	left \
+	right \
+	title @ \Show the code
+	hint @ \The same scenario as each runner writes it. Generated from the runners, not retyped.
+	missing @ \No runner for {a} yet, so there is nothing to put beside this.
+	sub <= body /
+	Expander $mol_expander
+		title <= title
+		content /
+			<= Hint $mol_view
+				sub / <= hint
+			<= Columns $mol_view
+				sub <= columns /
+	Column* $mol_view
+		sub /
+			<= Column_head* $mol_view
+				sub /
+					<= column_name* \
+					<= Column_file* $mol_link
+						uri <= column_uri* \
+						sub / <= column_file* \
+			<= Column_code* $mol_view
+				dom_name \pre
+				sub / <= column_text* \
+	Missing $mol_view
+		sub / <= missing_text \
