@@ -1,27 +1,51 @@
 {
-	"deps_direct": {
+	"loc_todomvc": {
 		"category": "code",
-		"title": "Dependencies declared",
+		"title": "Lines of code (TodoMVC)",
 		"unit": "",
 		"better": "lower",
-		"human": "Packages the starter project names in its own package.json. This is the list you inherit before writing a line of code.",
-		"method": "Entries in `dependencies` plus `devDependencies` of a fresh project, scaffolded on 2026-08-13 with: react `npm create vite@latest app -- --template react-ts`; vue `npm create vue@latest app -- --default`; svelte `npx sv create app --template minimal --types ts --no-add-ons --install npm`; solid `npm create solid@latest app -- --vanilla --ts --template basic`; angular `npx @angular/cli@21 new app --defaults --skip-git --package-manager=npm`; $mol `git clone --depth 1 https://github.com/hyoo-ru/mam.git app && npm install`."
+		"human": "Fewer lines to read when someone else picks the project up. Counts the code you write and maintain yourself, not a stylesheet you installed from npm.",
+		"method": "Official TodoMVC implementation from github.com/tastejs/todomvc, plus the $mol one from the todomvc-compare repository. Every line of every source file under `src/`, tests, build config and the HTML shell excluded. Styles are excluded for every framework, because TodoMVC renders one fixed layout and its CSS is the same work regardless of framework: the tastejs examples install that stylesheet as the `todomvc-app-css` package and keep a small override sheet, while the $mol implementation writes its own. Counting styles would compare that packaging choice rather than the frameworks. The counting rule is the one published in todomvc-compare and reproduces its $mol figure to the line."
+	},
+	"deps_runtime": {
+		"category": "code",
+		"title": "npm packages shipped",
+		"unit": "",
+		"better": "lower",
+		"human": "How many npm packages end up inside the bundle the browser downloads. This is code your users execute, not code your build machine reads.",
+		"method": "Distinct `node_modules/<package>` paths in the `sources` of the production build sourcemaps. Scaffolded on 2026-08-13 with each framework's own getting-started command: react `npm create vite@latest app -- --template react-ts`; vue `npm create vue@latest app -- --default`; svelte `npx sv create app --template minimal --types ts --no-add-ons --install npm`; solid `npm create solid@latest app -- --vanilla --ts --template basic`; angular `npx @angular/cli@21 new app --defaults --skip-git --package-manager=npm`; $mol `git clone --depth 1 https://github.com/hyoo-ru/mam.git app && npm install`. For $mol, the sourcemap of the deployed todomvc.hyoo.ru bundle."
+	},
+	"deps_direct": {
+		"category": "code",
+		"title": "Dev dependencies declared",
+		"unit": "",
+		"better": "lower",
+		"human": "Packages the starter project names in its own package.json. Build-time tooling included: this is the list your development environment inherits, not what reaches the browser.",
+		"method": "Entries in `dependencies` plus `devDependencies` of a fresh starter project. Scaffolded on 2026-08-13 with each framework's own getting-started command: react `npm create vite@latest app -- --template react-ts`; vue `npm create vue@latest app -- --default`; svelte `npx sv create app --template minimal --types ts --no-add-ons --install npm`; solid `npm create solid@latest app -- --vanilla --ts --template basic`; angular `npx @angular/cli@21 new app --defaults --skip-git --package-manager=npm`; $mol `git clone --depth 1 https://github.com/hyoo-ru/mam.git app && npm install`."
 	},
 	"deps_transitive": {
 		"category": "code",
-		"title": "Packages installed",
+		"title": "Dev packages installed",
 		"unit": "",
 		"better": "lower",
-		"human": "How many separate packages end up in node_modules once npm is done resolving. Each one is a separate author you trust.",
-		"method": "Distinct name+version pairs in `npm ls --all` after scaffolding and installing the starter project. Same six commands as for the declared-dependency count."
+		"human": "How many separate packages npm resolves into node_modules on a clean checkout. Each one is an author your build trusts, and every CI run downloads all of them.",
+		"method": "Distinct name+version pairs in `npm ls --all` after scaffolding and installing the starter project. Scaffolded on 2026-08-13 with each framework's own getting-started command: react `npm create vite@latest app -- --template react-ts`; vue `npm create vue@latest app -- --default`; svelte `npx sv create app --template minimal --types ts --no-add-ons --install npm`; solid `npm create solid@latest app -- --vanilla --ts --template basic`; angular `npx @angular/cli@21 new app --defaults --skip-git --package-manager=npm`; $mol `git clone --depth 1 https://github.com/hyoo-ru/mam.git app && npm install`."
 	},
 	"node_modules_size": {
 		"category": "code",
 		"title": "node_modules size",
 		"unit": "MB",
 		"better": "lower",
-		"human": "Disk footprint of a fresh project. It is not what ships to the browser, but it is what every CI run downloads.",
-		"method": "`du -sk node_modules` after scaffolding and installing the starter project. Same six commands as for the declared-dependency count."
+		"human": "Disk footprint of a fresh checkout. None of it ships to the browser, but all of it is downloaded by every CI run and every new machine on the team.",
+		"method": "`du -sk node_modules` after scaffolding and installing the starter project. Scaffolded on 2026-08-13 with each framework's own getting-started command: react `npm create vite@latest app -- --template react-ts`; vue `npm create vue@latest app -- --default`; svelte `npx sv create app --template minimal --types ts --no-add-ons --install npm`; solid `npm create solid@latest app -- --vanilla --ts --template basic`; angular `npx @angular/cli@21 new app --defaults --skip-git --package-manager=npm`; $mol `git clone --depth 1 https://github.com/hyoo-ru/mam.git app && npm install`."
+	},
+	"bundle_gzip": {
+		"category": "weight",
+		"title": "TodoMVC bundle, gzip",
+		"unit": "KB",
+		"better": "lower",
+		"human": "What the browser actually downloads for a small but complete application, compressed the way a server would send it.",
+		"method": "Every JavaScript and CSS asset referenced by the production `index.html`, gzipped at level 9 and summed. Unlike the line count, styling is included everywhere and is comparable: the shared `todomvc-app-css` is compiled into each tastejs example’s shipped CSS, and $mol compiles its styles into the JavaScript bundle, leaving its `web.css` a 38-byte comment. The `base.js` page furniture from `todomvc-common` is excluded everywhere, including its Angular equivalent. Built artifacts come from the tastejs repository; the $mol bundle from the deployed todomvc.hyoo.ru."
 	},
 	"startup_bytes": {
 		"category": "weight",
@@ -103,6 +127,14 @@
 		"human": "Translating an application is rarely planned at the start and always arrives later.",
 		"method": "Yes when the framework project publishes and documents localization support of its own."
 	},
+	"themes": {
+		"category": "builtin",
+		"title": "Theming",
+		"unit": "",
+		"better": "boolean",
+		"human": "Dark mode and brand colours without inventing your own CSS variable convention.",
+		"method": "Yes when the framework project publishes and documents a theming mechanism of its own. No when the word does not appear in its official API reference — the linked page is that reference, so the absence can be checked directly."
+	},
 	"virtual": {
 		"category": "builtin",
 		"title": "List virtualization",
@@ -134,14 +166,6 @@
 		"better": "boolean",
 		"human": "Components testable as plain objects, with no browser and no jsdom to boot up first.",
 		"method": "Yes when the framework's own test runner instantiates components and asserts on them outside a document. No when its official testing guide prescribes a DOM environment — jsdom, happy-dom or a real browser — to render a component at all."
-	},
-	"themes": {
-		"category": "builtin",
-		"title": "Theming",
-		"unit": "",
-		"better": "boolean",
-		"human": "Dark mode and brand colours without inventing your own CSS variable convention.",
-		"method": "Yes when the framework project publishes and documents a theming mechanism of its own. No when the word does not appear in its official API reference — the linked page is that reference, so the absence can be checked directly."
 	},
 	"di": {
 		"category": "builtin",
@@ -199,13 +223,21 @@
 		"human": "How many people can publish a release. A low number is a bus factor.",
 		"method": "Length of the `maintainers` array in the npm registry metadata of the framework's primary package."
 	},
-	"cve_tree": {
+	"cve_runtime": {
 		"category": "cost",
-		"title": "Known vulnerabilities",
+		"title": "Advisories in shipped packages",
 		"unit": "",
 		"better": "lower",
-		"human": "Advisories in the packages a fresh project drags in. Someone has to triage each one of them.",
-		"method": "Total reported by `npm audit` on the starter project, straight after scaffolding it. Same six commands as for the declared-dependency count."
+		"human": "Known vulnerabilities in the packages that reach the browser. These execute on your users’ machines, which makes them a different class of risk from anything in the build toolchain.",
+		"method": "Each shipped package, at its installed version, queried against the OSV database. Counts packages carrying at least one advisory."
+	},
+	"cve_tree": {
+		"category": "cost",
+		"title": "Advisories in the dev tree",
+		"unit": "",
+		"better": "lower",
+		"human": "Known vulnerabilities in the packages a fresh checkout installs. These run on developer and CI machines rather than in the browser, but somebody still has to triage every one.",
+		"method": "Total reported by `npm audit` on the starter project, straight after scaffolding it. Scaffolded on 2026-08-13 with each framework's own getting-started command: react `npm create vite@latest app -- --template react-ts`; vue `npm create vue@latest app -- --default`; svelte `npx sv create app --template minimal --types ts --no-add-ons --install npm`; solid `npm create solid@latest app -- --vanilla --ts --template basic`; angular `npx @angular/cli@21 new app --defaults --skip-git --package-manager=npm`; $mol `git clone --depth 1 https://github.com/hyoo-ru/mam.git app && npm install`."
 	},
 	"breaking_3y": {
 		"category": "cost",

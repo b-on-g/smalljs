@@ -5,6 +5,11 @@
 	"since_source": "https://github.com/solidjs/solid",
 	"runner": false,
 	"metrics": {
+		"deps_runtime": {
+			"value": 1,
+			"source": "https://docs.solidjs.com/quick-start",
+			"measured_at": "2026-08-13"
+		},
 		"deps_direct": {
 			"value": 5,
 			"source": "https://docs.solidjs.com/quick-start",
@@ -116,6 +121,12 @@
 			"source": "https://registry.npmjs.org/solid-js",
 			"measured_at": "2026-08-13",
 			"method": "https://www.npmjs.com/package/solid-js?activeTab=versions"
+		},
+		"cve_runtime": {
+			"value": 0,
+			"source": "https://docs.solidjs.com/quick-start",
+			"measured_at": "2026-08-13",
+			"method": "https://osv.dev/"
 		},
 		"cve_tree": {
 			"value": 0,

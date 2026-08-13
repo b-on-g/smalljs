@@ -5,25 +5,6 @@ namespace $.$$ {
 	 *  them is a table. */
 	const categories = [ 'edge', 'code', 'weight', 'speed', 'builtin', 'market', 'cost' ] as const
 
-	/** Canonical order of the metrics inside a category. The registry decides
-	 *  which category a metric belongs to; this decides what comes first, so the
-	 *  same comparison reads the same way whatever order the JSON happens to be
-	 *  written in. A metric the registry knows and this list does not still
-	 *  shows up — appended after the known ones — so adding a measurement does
-	 *  not require touching this file. */
-	const metric_order: Readonly< Record< string, readonly string[] > > = {
-		// The ids here that the registry does not have yet are ones nobody has
-		// measured. `loc_todomvc` and `bundle_gzip` are deliberately not among
-		// them: they were withdrawn because only $mol had a reading, and listing
-		// them would read as a gap somebody should fill rather than a decision.
-		code: [ 'files_todomvc', 'deps_direct', 'deps_transitive', 'node_modules_size' ],
-		weight: [ 'framework_gzip', 'app_gzip', 'startup_bytes', 'tti_3g', 'lighthouse' ],
-		speed: [ 'create_1k', 'update_1k', 'swap_rows', 'remove_row', 'mem_ready', 'mem_1k', 'startup_tbt' ],
-		builtin: [ 'router', 'i18n', 'themes', 'virtual', 'offline', 'ssr', 'tests_nodom', 'di', 'forms', 'typed_templates' ],
-		market: [ 'stars', 'npm_downloads', 'so_questions', 'jobs', 'ui_kits', 'maintainers', 'release_rate' ],
-		cost: [ 'cve_tree', 'breaking_3y' ],
-	}
-
 	/** Live crash tests, in the order they run on the section page. */
 	const case_ids = [ 'race', 'virtual', 'leak', 'crash' ] as const
 
@@ -165,6 +146,8 @@ namespace $.$$ {
 			return this.data().measure( id, metric )
 		}
 
+		/** Metric ids of a category, in the order the registry lists them. That
+		 *  order is curated, so it is the one the page renders. */
 		registry_metrics( category: string ) {
 			return this.data().category_metrics( category )
 		}
@@ -198,17 +181,6 @@ namespace $.$$ {
 
 		// ---- metrics ------------------------------------------------------
 
-		/** Metric ids of a category: the canonical order first, then anything the
-		 *  registry lists that this build has never heard of. */
-		metric_ids( category: string ): readonly string[] {
-
-			const known = metric_order[ category ] ?? []
-			const listed = this.registry_metrics( category )
-			const rest = listed.filter( id => !known.includes( id ) )
-
-			return [ ... known.filter( id => listed.includes( id ) ), ... rest ]
-		}
-
 		/** Rows of a category. A metric neither side reports is dropped: a wall
 		 *  of dashes says nothing that the category score does not already say,
 		 *  and it buries the rows that do carry a reading. A metric only one side
@@ -220,7 +192,13 @@ namespace $.$$ {
 			const left = this.left()
 			const right = this.right()
 
-			return this.metric_ids( category ).flatMap( id => {
+			// Order is the registry's, not this file's. It used to be a list here,
+			// on the theory that the JSON order was incidental. It is not: the
+			// registry now groups by meaning — what ships to the browser before
+			// what a developer installs, and the same for advisories — and a
+			// second ordering kept in the page could only ever drift away from
+			// that one, silently putting the wrong two rows next to each other.
+			return this.registry_metrics( category ).flatMap( id => {
 
 				const meta = this.meta( id )
 				if( !meta ) return []

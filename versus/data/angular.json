@@ -5,6 +5,16 @@
 	"since_source": "https://github.com/angular/angular",
 	"runner": false,
 	"metrics": {
+		"loc_todomvc": {
+			"value": 307,
+			"source": "https://github.com/tastejs/todomvc/tree/master/examples/angular",
+			"measured_at": "2026-08-13"
+		},
+		"deps_runtime": {
+			"value": 6,
+			"source": "https://angular.dev/installation",
+			"measured_at": "2026-08-13"
+		},
 		"deps_direct": {
 			"value": 15,
 			"source": "https://angular.dev/installation",
@@ -18,6 +28,11 @@
 		"node_modules_size": {
 			"value": 281.3,
 			"source": "https://angular.dev/installation",
+			"measured_at": "2026-08-13"
+		},
+		"bundle_gzip": {
+			"value": 87.7,
+			"source": "https://github.com/tastejs/todomvc/tree/master/examples/angular",
 			"measured_at": "2026-08-13"
 		},
 		"startup_bytes": {
@@ -136,6 +151,12 @@
 			"source": "https://registry.npmjs.org/@angular/core",
 			"measured_at": "2026-08-13",
 			"method": "https://www.npmjs.com/package/@angular/core?activeTab=versions"
+		},
+		"cve_runtime": {
+			"value": 0,
+			"source": "https://angular.dev/installation",
+			"measured_at": "2026-08-13",
+			"method": "https://osv.dev/"
 		},
 		"cve_tree": {
 			"value": 0,

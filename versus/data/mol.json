@@ -5,6 +5,16 @@
 	"since_source": "https://github.com/hyoo-ru/mam_mol",
 	"runner": true,
 	"metrics": {
+		"loc_todomvc": {
+			"value": 194,
+			"source": "https://github.com/b-on-g/todomvc-compare/tree/master/mol",
+			"measured_at": "2026-08-13"
+		},
+		"deps_runtime": {
+			"value": 0,
+			"source": "https://todomvc.hyoo.ru/web.js.map",
+			"measured_at": "2026-08-13"
+		},
 		"deps_direct": {
 			"value": 3,
 			"source": "https://github.com/hyoo-ru/mam",
@@ -18,6 +28,11 @@
 		"node_modules_size": {
 			"value": 62.0,
 			"source": "https://github.com/hyoo-ru/mam",
+			"measured_at": "2026-08-13"
+		},
+		"bundle_gzip": {
+			"value": 36.0,
+			"source": "https://todomvc.hyoo.ru/",
 			"measured_at": "2026-08-13"
 		},
 		"startup_bytes": {
@@ -141,6 +156,12 @@
 			"source": "https://registry.npmjs.org/mam",
 			"measured_at": "2026-08-13",
 			"method": "https://www.npmjs.com/package/mam?activeTab=versions"
+		},
+		"cve_runtime": {
+			"value": 0,
+			"source": "https://todomvc.hyoo.ru/web.js.map",
+			"measured_at": "2026-08-13",
+			"method": "https://osv.dev/"
 		},
 		"cve_tree": {
 			"value": 3,

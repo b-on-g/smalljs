@@ -5,6 +5,16 @@
 	"since_source": "https://github.com/vuejs/vue",
 	"runner": true,
 	"metrics": {
+		"loc_todomvc": {
+			"value": 247,
+			"source": "https://github.com/tastejs/todomvc/tree/master/examples/vue",
+			"measured_at": "2026-08-13"
+		},
+		"deps_runtime": {
+			"value": 4,
+			"source": "https://vuejs.org/guide/quick-start.html",
+			"measured_at": "2026-08-13"
+		},
 		"deps_direct": {
 			"value": 10,
 			"source": "https://vuejs.org/guide/quick-start.html",
@@ -18,6 +28,11 @@
 		"node_modules_size": {
 			"value": 98.3,
 			"source": "https://vuejs.org/guide/quick-start.html",
+			"measured_at": "2026-08-13"
+		},
+		"bundle_gzip": {
+			"value": 36.6,
+			"source": "https://github.com/tastejs/todomvc/tree/master/examples/vue",
 			"measured_at": "2026-08-13"
 		},
 		"startup_bytes": {
@@ -116,6 +131,12 @@
 			"source": "https://registry.npmjs.org/vue",
 			"measured_at": "2026-08-13",
 			"method": "https://www.npmjs.com/package/vue?activeTab=versions"
+		},
+		"cve_runtime": {
+			"value": 0,
+			"source": "https://vuejs.org/guide/quick-start.html",
+			"measured_at": "2026-08-13",
+			"method": "https://osv.dev/"
 		},
 		"cve_tree": {
 			"value": 0,

@@ -5,6 +5,16 @@
 	"since_source": "https://github.com/sveltejs/svelte",
 	"runner": false,
 	"metrics": {
+		"loc_todomvc": {
+			"value": 193,
+			"source": "https://github.com/tastejs/todomvc/tree/master/examples/svelte",
+			"measured_at": "2026-08-13"
+		},
+		"deps_runtime": {
+			"value": 2,
+			"source": "https://svelte.dev/docs/kit/creating-a-project",
+			"measured_at": "2026-08-13"
+		},
 		"deps_direct": {
 			"value": 7,
 			"source": "https://svelte.dev/docs/kit/creating-a-project",
@@ -18,6 +28,11 @@
 		"node_modules_size": {
 			"value": 68.0,
 			"source": "https://svelte.dev/docs/kit/creating-a-project",
+			"measured_at": "2026-08-13"
+		},
+		"bundle_gzip": {
+			"value": 18.2,
+			"source": "https://github.com/tastejs/todomvc/tree/master/examples/svelte",
 			"measured_at": "2026-08-13"
 		},
 		"startup_bytes": {
@@ -121,6 +136,12 @@
 			"source": "https://registry.npmjs.org/svelte",
 			"measured_at": "2026-08-13",
 			"method": "https://www.npmjs.com/package/svelte?activeTab=versions"
+		},
+		"cve_runtime": {
+			"value": 0,
+			"source": "https://svelte.dev/docs/kit/creating-a-project",
+			"measured_at": "2026-08-13",
+			"method": "https://osv.dev/"
 		},
 		"cve_tree": {
 			"value": 3,
