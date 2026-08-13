@@ -3244,8 +3244,8 @@ declare namespace $ {
 	>
 	type $mol_link__arg_bog_smalljs_top_4 = $mol_type_enforce<
 		({ 
-			'section': string,
-			'page': string,
+			'section': any,
+			'page': any,
 		}) 
 		,
 		ReturnType< $mol_link['arg'] >
@@ -10718,6 +10718,614 @@ declare namespace $ {
 
 declare namespace $ {
 
+	type $mol_view__dom_name_bog_smalljs_versus_1 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_view['dom_name'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_2 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_3 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_4 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_search__hint_bog_smalljs_versus_5 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_search['hint'] >
+	>
+	type $mol_search__query_bog_smalljs_versus_6 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_versus['query_a'] >
+		,
+		ReturnType< $mol_search['query'] >
+	>
+	type $mol_search__suggests_bog_smalljs_versus_7 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_versus['suggests_a'] >
+		,
+		ReturnType< $mol_search['suggests'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_8 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_search__hint_bog_smalljs_versus_9 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_search['hint'] >
+	>
+	type $mol_search__query_bog_smalljs_versus_10 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_versus['query_b'] >
+		,
+		ReturnType< $mol_search['query'] >
+	>
+	type $mol_search__suggests_bog_smalljs_versus_11 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_versus['suggests_b'] >
+		,
+		ReturnType< $mol_search['suggests'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_12 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__dom_name_bog_smalljs_versus_13 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_view['dom_name'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_14 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_15 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_versus['popular_links'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_16 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__dom_name_bog_smalljs_versus_17 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_view['dom_name'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_18 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_19 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_20 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_versus['top_apps_content'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_21 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__dom_name_bog_smalljs_versus_22 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_view['dom_name'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_23 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_24 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_25 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_versus['top_sites_content'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_26 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__dom_name_bog_smalljs_versus_27 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_view['dom_name'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_28 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_29 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_30 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_31 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_32 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_33 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_34 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_35 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_versus['rating_content'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_36 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_versus['pager_content'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_37 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__dom_name_bog_smalljs_versus_38 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_view['dom_name'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_39 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_40 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_link__uri_bog_smalljs_versus_41 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__sub_bog_smalljs_versus_42 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_43 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__dom_name_bog_smalljs_versus_44 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_view['dom_name'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_45 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_46 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__dom_name_bog_smalljs_versus_47 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_view['dom_name'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_48 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_49 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_50 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__style_bog_smalljs_versus_51 = $mol_type_enforce<
+		({ 
+			'width': ReturnType< $bog_smalljs_versus['row_fill_width'] >,
+		}) 
+		,
+		ReturnType< $mol_view['style'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_52 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_53 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_link__arg_bog_smalljs_versus_54 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_versus['pair_arg'] >
+		,
+		ReturnType< $mol_link['arg'] >
+	>
+	type $mol_link__sub_bog_smalljs_versus_55 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	type $bog_smalljs_versus_pick__arg_bog_smalljs_versus_56 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_versus['card_arg'] >
+		,
+		ReturnType< $bog_smalljs_versus_pick['arg'] >
+	>
+	type $bog_smalljs_versus_pick__sub_bog_smalljs_versus_57 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $bog_smalljs_versus_pick['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_58 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_versus['row_content'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_59 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_60 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_61 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_versus['row_name_content'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $bog_smalljs_versus_pick__arg_bog_smalljs_versus_62 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_versus['row_arg'] >
+		,
+		ReturnType< $bog_smalljs_versus_pick['arg'] >
+	>
+	type $bog_smalljs_versus_pick__sub_bog_smalljs_versus_63 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $bog_smalljs_versus_pick['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_64 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_65 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_66 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_button_minor__click_bog_smalljs_versus_67 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_versus['page_click'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_button_minor__attr_bog_smalljs_versus_68 = $mol_type_enforce<
+		({ 
+			'bog_smalljs_versus_page_current': ReturnType< $bog_smalljs_versus['page_current'] >,
+		})  & ReturnType< $mol_button_minor['attr'] >
+		,
+		ReturnType< $mol_button_minor['attr'] >
+	>
+	type $mol_button_minor__sub_bog_smalljs_versus_69 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_button_minor['sub'] >
+	>
+	type $mol_button_minor__hint_bog_smalljs_versus_70 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_versus['page_next_hint'] >
+		,
+		ReturnType< $mol_button_minor['hint'] >
+	>
+	type $mol_button_minor__click_bog_smalljs_versus_71 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_versus['page_next'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_button_minor__sub_bog_smalljs_versus_72 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_button_minor['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_versus_73 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	export class $bog_smalljs_versus extends $mol_view {
+		pick_sync( ): any
+		title_text( ): string
+		Title( ): $mol_view
+		intro_text( ): string
+		Intro( ): $mol_view
+		Head( ): $mol_view
+		query_a( next?: string ): string
+		suggests_a( ): readonly(any)[]
+		Pick_a( ): $mol_search
+		Vs( ): $mol_view
+		query_b( next?: string ): string
+		suggests_b( ): readonly(any)[]
+		Pick_b( ): $mol_search
+		Picker( ): $mol_view
+		popular_title( ): string
+		Popular_title( ): $mol_view
+		popular_links( ): readonly(any)[]
+		Popular_list( ): $mol_view
+		Popular( ): $mol_view
+		top_apps_title( ): string
+		Top_apps_title( ): $mol_view
+		top_apps_note( ): string
+		Top_apps_note( ): $mol_view
+		top_apps_content( ): readonly(any)[]
+		Top_apps_list( ): $mol_view
+		Top_apps( ): $mol_view
+		top_sites_title( ): string
+		Top_sites_title( ): $mol_view
+		top_sites_note( ): string
+		Top_sites_note( ): $mol_view
+		top_sites_content( ): readonly(any)[]
+		Top_sites_list( ): $mol_view
+		Top_sites( ): $mol_view
+		rating_title( ): string
+		Rating_title( ): $mol_view
+		rating_note( ): string
+		Rating_note( ): $mol_view
+		rating_head_rank( ): string
+		Rating_head_rank( ): $mol_view
+		Rating_head_mark( ): $mol_view
+		rating_head_name( ): string
+		Rating_head_name( ): $mol_view
+		rating_head_score( ): string
+		Rating_head_score( ): $mol_view
+		rating_head_since( ): string
+		Rating_head_since( ): $mol_view
+		Rating_head( ): $mol_view
+		rating_content( ): readonly(any)[]
+		Rating_list( ): $mol_view
+		pager_content( ): readonly(any)[]
+		Pager( ): $mol_view
+		Rating( ): $mol_view
+		method_title_text( ): string
+		Method_title( ): $mol_view
+		method_body( ): string
+		Method_text( ): $mol_view
+		method_link_label( ): string
+		Method_link_icon( ): $mol_icon_open_in_new
+		Method_link( ): $mol_link
+		Method( ): $mol_view
+		pair_arg( id: any): Record<string, any>
+		pair_left( id: any): string
+		Popular_left( id: any): $mol_view
+		Popular_mid( id: any): $mol_view
+		pair_right( id: any): string
+		Popular_right( id: any): $mol_view
+		card_arg( id: any): Record<string, any>
+		card_mark( id: any): string
+		Card_mark( id: any): $mol_view
+		card_name( id: any): string
+		Card_name( id: any): $mol_view
+		row_content( id: any): readonly(any)[]
+		rank( id: any): string
+		row_mark( id: any): string
+		row_name_content( id: any): readonly(any)[]
+		row_arg( id: any): Record<string, any>
+		row_title( id: any): string
+		row_partial_text( id: any): string
+		row_fill_width( id: any): string
+		Row_fill( id: any): $mol_view
+		Row_track( id: any): $mol_view
+		row_score_text( id: any): string
+		Row_value( id: any): $mol_view
+		row_since_text( id: any): string
+		page_click( id: any, next?: any ): any
+		page_current( id: any): boolean
+		page_label( id: any): string
+		page_next_hint( ): string
+		page_next( next?: any ): any
+		page_next_label( ): string
+		empty_text( ): string
+		framework_title( id: any): string
+		vs_text( ): string
+		row_partial_template( ): string
+		auto( ): readonly(any)[]
+		sub( ): readonly(any)[]
+		Popular_link( id: any): $mol_link
+		Card( id: any): $bog_smalljs_versus_pick
+		Row( id: any): $mol_view
+		Rank( id: any): $mol_view
+		Row_mark( id: any): $mol_view
+		Row_name( id: any): $mol_view
+		Row_link( id: any): $bog_smalljs_versus_pick
+		Row_partial( id: any): $mol_view
+		Row_score( id: any): $mol_view
+		Row_since( id: any): $mol_view
+		Page( id: any): $mol_button_minor
+		Page_next( ): $mol_button_minor
+		Empty( id: any): $mol_view
+	}
+	
+	export class $bog_smalljs_versus_pick extends $mol_link {
+		uri_off( ): ReturnType< $bog_smalljs_versus_pick['uri'] >
+	}
+	
+}
+
+//# sourceMappingURL=versus.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $bog_smalljs_versus extends $.$bog_smalljs_versus {
+        data(): typeof $bog_smalljs_versus_data;
+        /** Every framework in the catalogue. */
+        frameworks(): readonly $bog_smalljs_versus_data_framework[];
+        /** Metric descriptions, keyed by metric id. */
+        registry(): Readonly<Record<string, $bog_smalljs_versus_data_metric>>;
+        /** Human name of a framework id. Also used by the app shell for the
+         *  `React vs Vue — $mol` page title, which is why it is declared in the
+         *  tree rather than kept private here.
+         *
+         *  An id nobody wrote a file for is shown capitalized rather than mapped
+         *  through a table of hand-written names: a second place where a
+         *  framework is named is a second place to keep in step with the data. */
+        framework_title(id: string): string;
+        metrics_by_category(): Readonly<Record<string, readonly string[]>>;
+        categories(): readonly string[];
+        /** +1 when `a` is better, -1 when `b` is, 0 when tied or when either side
+         *  does not publish the metric — the rule from the section's spec, and
+         *  the same one the comparison page scores a category by. */
+        compare_metric(metric: string, a: $bog_smalljs_versus_data_framework, b: $bog_smalljs_versus_data_framework): 0 | 1 | -1;
+        /** +1 / -1 / 0 for one category of one duel. */
+        category_winner(a: $bog_smalljs_versus_data_framework, b: $bog_smalljs_versus_data_framework, category: string): number;
+        /** Categories won by each framework against every other one. `key` is a
+         *  comma-separated category filter; empty means all of them. */
+        scores(key: string): Readonly<Record<string, number>>;
+        /** Frameworks ordered by `scores( key )`, ties broken by name so the
+         *  order never wobbles between renders. */
+        ranked(key: string): readonly $bog_smalljs_versus_data_framework[];
+        /** How many of the registry's metrics this framework actually publishes. */
+        coverage(id: string): number;
+        /** Whether the row deserves a word about how thin its table is. Every
+         *  file is missing something, so flagging "incomplete" everywhere would
+         *  say nothing; the note appears once less than half the registry is
+         *  filled in, where the placing really is standing on little. */
+        partial(id: string): boolean;
+        row_partial_text(id: string): string;
+        /** Field text defaults to whatever the address preselects, so a link like
+         *  `section=versus/a=react` opens the section with React already in the
+         *  left field. Typing overrides it. */
+        query_a(next?: string): string;
+        query_b(next?: string): string;
+        /** Id behind the text typed in a field, or '' while it matches nothing. */
+        query_id(text: string): string;
+        /** Titles offered under a field: everything the text is a substring of,
+         *  minus whatever the other field already holds. */
+        suggest_titles(query: string, exclude: string): string[];
+        suggests_a(): string[];
+        suggests_b(): string[];
+        /** Both fields resolved to different frameworks — open their page. The
+         *  reference site has no Compare button either: choosing the second one
+         *  is the action.
+         *
+         *  This cell only *notices*; the address is written by the action below,
+         *  reached through `$mol_wire_async` so the write lands outside this
+         *  memoized body. Writing `$mol_state_arg` from inside one is the
+         *  invalidation loop $mol forbids. The check against the current address
+         *  is what keeps a page that renders these very fields from re-triggering
+         *  itself once the address already says this. */
+        pick_sync(): null;
+        /** Navigation proper: a history entry the reader can step back out of. */
+        pair_open(a: string, b: string): null;
+        popular_links(): $.$mol_link[];
+        pair_arg(key: string): {
+            section: string;
+            a: string;
+            b: string;
+        };
+        pair_left(key: string): string;
+        pair_right(key: string): string;
+        /** Cards of one top block. The key of a card carries its block, because
+         *  the same framework can lead both lists and one view cannot hang in two
+         *  places at once. */
+        top_content(block: string, categories: readonly string[]): $mol_view[];
+        top_apps_content(): $mol_view[];
+        top_sites_content(): $mol_view[];
+        card_id(key: string): string;
+        card_name(key: string): string;
+        card_mark(key: string): string;
+        /** A card preselects its framework in the left field: there is no page
+         *  for a single framework, the section is about pairs. */
+        card_arg(key: string): {
+            section: string;
+            a: string;
+            b: null;
+        };
+        rating_rows(): readonly $bog_smalljs_versus_data_framework[];
+        ranks(): Readonly<Record<string, number>>;
+        rating_content(): $mol_view[];
+        row_content(id: string): $mol_view[];
+        row_name_content(id: string): $mol_view[];
+        rank(id: string): string;
+        row_mark(id: string): string;
+        row_title(id: string): string;
+        row_arg(id: string): {
+            section: string;
+            a: string;
+            b: null;
+        };
+        row_score_text(id: string): string;
+        row_fill_width(id: string): string;
+        row_since_text(id: string): string;
+        page(next?: number): number;
+        pages(): number;
+        /** Clamped, so shrinking data cannot leave the view on a page that is no
+         *  longer there. */
+        page_current_index(): number;
+        pager_content(): readonly $mol_view[];
+        page_label(key: string): string;
+        page_current(key: string): boolean;
+        page_click(key: string, event?: Event): null;
+        page_next(event?: Event): null;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+
 	type $mol_view__sub_bog_smalljs_versus_case_1 = $mol_type_enforce<
 		readonly(any)[]
 		,
@@ -11576,6 +12184,7 @@ declare namespace $ {
 		score_empty( ): string
 		edge_score_line( ): string
 		edge_score_empty( ): string
+		edge_score_no_runner( ): string
 		edge_missing_one( ): string
 		edge_missing_both( ): string
 		delta_below( ): string
@@ -11921,6 +12530,9 @@ declare namespace $.$$ {
         section_content(category: string): readonly $mol_view[];
         metric_title(id: string): string;
         metric_human(id: string): string;
+        /** Whether both sides have a reading. Only a shared metric is ever printed
+         *  as a pair of values; see `metric_left_value` for why. */
+        shared(id: string): boolean;
         /** How the number was obtained — the same procedure for both sides, which
          *  is what makes the two comparable at all. Printed next to the row rather
          *  than hidden behind the methodology link at the bottom: a reader who
@@ -11997,566 +12609,6 @@ declare namespace $.$$ {
         source_content(): $mol_view[];
     }
     export {};
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-
-	type $mol_view__dom_name_bog_smalljs_versus_1 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_view['dom_name'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_2 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_3 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_4 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_search__hint_bog_smalljs_versus_5 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_search['hint'] >
-	>
-	type $mol_search__query_bog_smalljs_versus_6 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_versus['query_a'] >
-		,
-		ReturnType< $mol_search['query'] >
-	>
-	type $mol_search__suggests_bog_smalljs_versus_7 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_versus['suggests_a'] >
-		,
-		ReturnType< $mol_search['suggests'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_8 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_search__hint_bog_smalljs_versus_9 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_search['hint'] >
-	>
-	type $mol_search__query_bog_smalljs_versus_10 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_versus['query_b'] >
-		,
-		ReturnType< $mol_search['query'] >
-	>
-	type $mol_search__suggests_bog_smalljs_versus_11 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_versus['suggests_b'] >
-		,
-		ReturnType< $mol_search['suggests'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_12 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__dom_name_bog_smalljs_versus_13 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_view['dom_name'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_14 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_15 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_versus['popular_links'] >
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_16 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__dom_name_bog_smalljs_versus_17 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_view['dom_name'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_18 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_19 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_20 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_versus['top_apps_content'] >
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_21 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__dom_name_bog_smalljs_versus_22 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_view['dom_name'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_23 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_24 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_25 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_versus['top_sites_content'] >
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_26 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__dom_name_bog_smalljs_versus_27 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_view['dom_name'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_28 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_29 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_30 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_31 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_32 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_33 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_34 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_35 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_versus['rating_content'] >
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_36 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_versus['pager_content'] >
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_37 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__dom_name_bog_smalljs_versus_38 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_view['dom_name'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_39 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_40 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__dom_name_bog_smalljs_versus_41 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_view['dom_name'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_42 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_43 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_44 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__style_bog_smalljs_versus_45 = $mol_type_enforce<
-		({ 
-			'width': ReturnType< $bog_smalljs_versus['row_fill_width'] >,
-		}) 
-		,
-		ReturnType< $mol_view['style'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_46 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_47 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_link__arg_bog_smalljs_versus_48 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_versus['pair_arg'] >
-		,
-		ReturnType< $mol_link['arg'] >
-	>
-	type $mol_link__sub_bog_smalljs_versus_49 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_link['sub'] >
-	>
-	type $mol_link__arg_bog_smalljs_versus_50 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_versus['card_arg'] >
-		,
-		ReturnType< $mol_link['arg'] >
-	>
-	type $mol_link__sub_bog_smalljs_versus_51 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_link['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_52 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_versus['row_content'] >
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_53 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_54 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_55 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_versus['row_name_content'] >
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_link__arg_bog_smalljs_versus_56 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_versus['row_arg'] >
-		,
-		ReturnType< $mol_link['arg'] >
-	>
-	type $mol_link__sub_bog_smalljs_versus_57 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_link['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_58 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_59 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_60 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_button_minor__click_bog_smalljs_versus_61 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_versus['page_click'] >
-		,
-		ReturnType< $mol_button_minor['click'] >
-	>
-	type $mol_button_minor__attr_bog_smalljs_versus_62 = $mol_type_enforce<
-		({ 
-			'bog_smalljs_versus_page_current': ReturnType< $bog_smalljs_versus['page_current'] >,
-		})  & ReturnType< $mol_button_minor['attr'] >
-		,
-		ReturnType< $mol_button_minor['attr'] >
-	>
-	type $mol_button_minor__sub_bog_smalljs_versus_63 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_button_minor['sub'] >
-	>
-	type $mol_button_minor__hint_bog_smalljs_versus_64 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_versus['page_next_hint'] >
-		,
-		ReturnType< $mol_button_minor['hint'] >
-	>
-	type $mol_button_minor__click_bog_smalljs_versus_65 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_versus['page_next'] >
-		,
-		ReturnType< $mol_button_minor['click'] >
-	>
-	type $mol_button_minor__sub_bog_smalljs_versus_66 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_button_minor['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_versus_67 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	export class $bog_smalljs_versus extends $mol_view {
-		pick_sync( ): any
-		title_text( ): string
-		Title( ): $mol_view
-		intro_text( ): string
-		Intro( ): $mol_view
-		Head( ): $mol_view
-		query_a( next?: string ): string
-		suggests_a( ): readonly(any)[]
-		Pick_a( ): $mol_search
-		Vs( ): $mol_view
-		query_b( next?: string ): string
-		suggests_b( ): readonly(any)[]
-		Pick_b( ): $mol_search
-		Picker( ): $mol_view
-		popular_title( ): string
-		Popular_title( ): $mol_view
-		popular_links( ): readonly(any)[]
-		Popular_list( ): $mol_view
-		Popular( ): $mol_view
-		top_apps_title( ): string
-		Top_apps_title( ): $mol_view
-		top_apps_note( ): string
-		Top_apps_note( ): $mol_view
-		top_apps_content( ): readonly(any)[]
-		Top_apps_list( ): $mol_view
-		Top_apps( ): $mol_view
-		top_sites_title( ): string
-		Top_sites_title( ): $mol_view
-		top_sites_note( ): string
-		Top_sites_note( ): $mol_view
-		top_sites_content( ): readonly(any)[]
-		Top_sites_list( ): $mol_view
-		Top_sites( ): $mol_view
-		rating_title( ): string
-		Rating_title( ): $mol_view
-		rating_note( ): string
-		Rating_note( ): $mol_view
-		rating_head_rank( ): string
-		Rating_head_rank( ): $mol_view
-		Rating_head_mark( ): $mol_view
-		rating_head_name( ): string
-		Rating_head_name( ): $mol_view
-		rating_head_score( ): string
-		Rating_head_score( ): $mol_view
-		rating_head_since( ): string
-		Rating_head_since( ): $mol_view
-		Rating_head( ): $mol_view
-		rating_content( ): readonly(any)[]
-		Rating_list( ): $mol_view
-		pager_content( ): readonly(any)[]
-		Pager( ): $mol_view
-		Rating( ): $mol_view
-		pair_arg( id: any): Record<string, any>
-		pair_left( id: any): string
-		Popular_left( id: any): $mol_view
-		Popular_mid( id: any): $mol_view
-		pair_right( id: any): string
-		Popular_right( id: any): $mol_view
-		card_arg( id: any): Record<string, any>
-		card_mark( id: any): string
-		Card_mark( id: any): $mol_view
-		card_name( id: any): string
-		Card_name( id: any): $mol_view
-		row_content( id: any): readonly(any)[]
-		rank( id: any): string
-		row_mark( id: any): string
-		row_name_content( id: any): readonly(any)[]
-		row_arg( id: any): Record<string, any>
-		row_title( id: any): string
-		row_partial_text( id: any): string
-		row_fill_width( id: any): string
-		Row_fill( id: any): $mol_view
-		Row_track( id: any): $mol_view
-		row_score_text( id: any): string
-		Row_value( id: any): $mol_view
-		row_since_text( id: any): string
-		page_click( id: any, next?: any ): any
-		page_current( id: any): boolean
-		page_label( id: any): string
-		page_next_hint( ): string
-		page_next( next?: any ): any
-		page_next_label( ): string
-		empty_text( ): string
-		framework_title( id: any): string
-		vs_text( ): string
-		row_partial_template( ): string
-		auto( ): readonly(any)[]
-		sub( ): readonly(any)[]
-		Popular_link( id: any): $mol_link
-		Card( id: any): $mol_link
-		Row( id: any): $mol_view
-		Rank( id: any): $mol_view
-		Row_mark( id: any): $mol_view
-		Row_name( id: any): $mol_view
-		Row_link( id: any): $mol_link
-		Row_partial( id: any): $mol_view
-		Row_score( id: any): $mol_view
-		Row_since( id: any): $mol_view
-		Page( id: any): $mol_button_minor
-		Page_next( ): $mol_button_minor
-		Empty( id: any): $mol_view
-	}
-	
-}
-
-//# sourceMappingURL=versus.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $bog_smalljs_versus extends $.$bog_smalljs_versus {
-        data(): typeof $bog_smalljs_versus_pair_data;
-        /** Every framework whose data file could be read. */
-        frameworks(): readonly $bog_smalljs_versus_pair_framework[];
-        /** Metric descriptions, keyed by metric id. */
-        registry(): Readonly<Record<string, $bog_smalljs_versus_pair_meta>>;
-        by_id(): Map<string, $bog_smalljs_versus_data_framework>;
-        /** Human name of a framework id. Also used by the app shell for the
-         *  `React vs Vue — $mol` page title, which is why it is declared in the
-         *  tree rather than kept private here. */
-        framework_title(id: string): string;
-        metrics_by_category(): Readonly<Record<string, readonly string[]>>;
-        categories(): readonly string[];
-        /** +1 when `a` is better, -1 when `b` is, 0 when tied or when either side
-         *  does not publish the metric. Decided by the same comparison the pair
-         *  page draws its bars from, so the rating cannot disagree with the page
-         *  it links to. */
-        compare_metric(metric: string, a: $bog_smalljs_versus_pair_framework, b: $bog_smalljs_versus_pair_framework): 0 | 1 | -1;
-        /** +1 / -1 / 0 for one category of one duel. */
-        category_winner(a: $bog_smalljs_versus_pair_framework, b: $bog_smalljs_versus_pair_framework, category: string): number;
-        /** Categories won by each framework against every other one. `key` is a
-         *  comma-separated category filter; empty means all of them. */
-        scores(key: string): Readonly<Record<string, number>>;
-        /** Frameworks ordered by `scores( key )`, ties broken by name so the
-         *  order never wobbles between renders. */
-        ranked(key: string): readonly $bog_smalljs_versus_pair_framework[];
-        /** How many of the registry's metrics this framework actually publishes. */
-        coverage(id: string): number;
-        /** Whether the row deserves a word about how thin its table is. Every
-         *  file is missing something, so flagging "incomplete" everywhere would
-         *  say nothing; the note appears once less than half the registry is
-         *  filled in, where the placing really is standing on little. */
-        partial(id: string): boolean;
-        row_partial_text(id: string): string;
-        /** Field text defaults to whatever the address preselects, so a link like
-         *  `section=versus/a=react` opens the section with React already in the
-         *  left field. Typing overrides it. */
-        query_a(next?: string): string;
-        query_b(next?: string): string;
-        /** Id behind the text typed in a field, or '' while it matches nothing. */
-        query_id(text: string): string;
-        /** Titles offered under a field: everything the text is a substring of,
-         *  minus whatever the other field already holds. */
-        suggest_titles(query: string, exclude: string): string[];
-        suggests_a(): string[];
-        suggests_b(): string[];
-        /** Both fields resolved to different frameworks — open their page. The
-         *  reference site has no Compare button either: choosing the second one
-         *  is the action.
-         *
-         *  The address is written through `$mol_wire_async` because setting one
-         *  memoized cell from the body of another is exactly the loop $mol
-         *  forbids; and it is skipped when the address already says this, so a
-         *  pair page that renders these very fields cannot re-trigger itself. */
-        pick_sync(): null;
-        popular_links(): $.$mol_link[];
-        pair_arg(key: string): {
-            section: string;
-            a: string;
-            b: string;
-        };
-        pair_left(key: string): string;
-        pair_right(key: string): string;
-        /** Cards of one top block. The key of a card carries its block, because
-         *  the same framework can lead both lists and one view cannot hang in two
-         *  places at once. */
-        top_content(block: string, categories: readonly string[]): $mol_view[];
-        top_apps_content(): $mol_view[];
-        top_sites_content(): $mol_view[];
-        card_id(key: string): string;
-        card_name(key: string): string;
-        card_mark(key: string): string;
-        /** A card preselects its framework in the left field: there is no page
-         *  for a single framework, the section is about pairs. */
-        card_arg(key: string): {
-            section: string;
-            a: string;
-            b: null;
-        };
-        rating_rows(): readonly $bog_smalljs_versus_data_framework[];
-        ranks(): Readonly<Record<string, number>>;
-        rating_content(): $mol_view[];
-        row_content(id: string): $mol_view[];
-        row_name_content(id: string): $mol_view[];
-        rank(id: string): string;
-        row_mark(id: string): string;
-        row_title(id: string): string;
-        row_arg(id: string): {
-            section: string;
-            a: string;
-            b: null;
-        };
-        row_score_text(id: string): string;
-        row_fill_width(id: string): string;
-        row_since_text(id: string): string;
-        page(next?: number): number;
-        pages(): number;
-        /** Clamped, so shrinking data cannot leave the view on a page that is no
-         *  longer there. */
-        page_current_index(): number;
-        pager_content(): readonly $mol_view[];
-        page_label(key: string): string;
-        page_current(key: string): boolean;
-        page_click(key: string, event?: Event): null;
-        page_next(event?: Event): null;
-    }
 }
 
 declare namespace $ {
@@ -13617,9 +13669,14 @@ declare namespace $.$$ {
          *    the keys a link does not mention) and leave `a=react` hanging in
          *    the address of a documentation page.
          *
-         *  Deferred through $mol_wire_async: setting one memoized cell from the
-         *  body of another is the invalidation loop $mol forbids. */
+         *  This cell only decides what the address should say. The writing itself
+         *  happens in the action below, reached through $mol_wire_async so it
+         *  lands outside this memoized body: setting $mol_state_arg from inside
+         *  one is the invalidation loop $mol forbids. */
         route_canonical(): null;
+        /** Rewrites `a`/`b` in place — no history entry, because this corrects
+         *  the spelling of the address the reader already asked for. */
+        route_rewrite(a: string | null, b: string | null): null;
         /** Ordered arg pairs describing the current screen ($mol hash-router state). */
         route_args(): [string, string][];
         /** Serialize arg pairs into a router pathname segment (`section=docs/page=views`),

@@ -297,8 +297,8 @@ $bog_smalljs_top $mol_view
 	sub /
 		<= Logo $mol_link
 			arg *
-				section \
-				page \
+				section null
+				page null
 			sub /
 				<= Logo_image $mol_image
 					uri <= logo_uri
@@ -1938,6 +1938,20 @@ $bog_smalljs_versus $mol_view
 					sub <= rating_content /
 				<= Pager $mol_view
 					sub <= pager_content /
+		<= Method $mol_view
+			sub /
+				<= Method_title $mol_view
+					dom_name \h2
+					sub /
+						<= method_title_text @ \How this is measured
+				<= Method_text $mol_view
+					sub /
+						<= method_body @ \Every number on a comparison page carries the source it came from and the date it was taken, and a metric nobody measured is absent rather than guessed. The live cases are one scenario written once per framework, with the same steps and the same timings, read inside the frame right after the run. The sources of all of it live in the repository, so you can read them, run them locally, or open an issue if something looks unfair.
+				<= Method_link $mol_link
+					uri \https://github.com/b-on-g/smalljs/tree/master/versus
+					sub /
+						<= method_link_label @ \Method and sources on GitHub
+						<= Method_link_icon $mol_icon_open_in_new
 	Popular_link* $mol_link
 		arg <= pair_arg* *
 		sub /
@@ -1952,7 +1966,7 @@ $bog_smalljs_versus $mol_view
 				dom_name \strong
 				sub /
 					<= pair_right* \
-	Card* $mol_link
+	Card* $bog_smalljs_versus_pick
 		arg <= card_arg* *
 		sub /
 			<= Card_mark* $mol_view
@@ -1971,7 +1985,7 @@ $bog_smalljs_versus $mol_view
 			<= row_mark* \
 	Row_name* $mol_view
 		sub <= row_name_content* /
-	Row_link* $mol_link
+	Row_link* $bog_smalljs_versus_pick
 		arg <= row_arg* *
 		sub /
 			<= row_title* \
@@ -2006,6 +2020,9 @@ $bog_smalljs_versus $mol_view
 	Empty* $mol_view
 		sub /
 			<= empty_text @ \No measurements published yet. Every row here waits for a real number with a source and a date behind it.
+
+$bog_smalljs_versus_pick $mol_link
+	uri_off <= uri
 
 $bog_smalljs_versus_case $mol_view
 	case_id \
@@ -2132,6 +2149,7 @@ $bog_smalljs_versus_pair $mol_view
 	score_empty @ \No metric both of them report yet
 	edge_score_line @ \{a} {x} of {n} cases, {b} {y} of {n}
 	edge_score_empty @ \Not run yet
+	edge_score_no_runner @ \Nothing to run against yet
 	edge_missing_one @ \There are no live tests for {b} yet, so these cases run in one column.
 	edge_missing_both @ \There are no live tests for either of these two yet.
 	delta_below @ \{a} is {p}% below {b}

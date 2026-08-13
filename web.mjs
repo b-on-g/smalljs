@@ -7818,7 +7818,7 @@ var $;
 		}
 		Logo(){
 			const obj = new this.$.$mol_link();
-			(obj.arg) = () => ({"section": "", "page": ""});
+			(obj.arg) = () => ({"section": null, "page": null});
 			(obj.sub) = () => ([(this.Logo_image()), (this.Logo_text_box())]);
 			return obj;
 		}
@@ -25238,6 +25238,45 @@ var $;
 			]);
 			return obj;
 		}
+		method_title_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_method_title_text"));
+		}
+		Method_title(){
+			const obj = new this.$.$mol_view();
+			(obj.dom_name) = () => ("h2");
+			(obj.sub) = () => ([(this.method_title_text())]);
+			return obj;
+		}
+		method_body(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_method_body"));
+		}
+		Method_text(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.method_body())]);
+			return obj;
+		}
+		method_link_label(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_method_link_label"));
+		}
+		Method_link_icon(){
+			const obj = new this.$.$mol_icon_open_in_new();
+			return obj;
+		}
+		Method_link(){
+			const obj = new this.$.$mol_link();
+			(obj.uri) = () => ("https://github.com/b-on-g/smalljs/tree/master/versus");
+			(obj.sub) = () => ([(this.method_link_label()), (this.Method_link_icon())]);
+			return obj;
+		}
+		Method(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([
+				(this.Method_title()), 
+				(this.Method_text()), 
+				(this.Method_link())
+			]);
+			return obj;
+		}
 		pair_arg(id){
 			return {};
 		}
@@ -25370,7 +25409,8 @@ var $;
 				(this.Popular()), 
 				(this.Top_apps()), 
 				(this.Top_sites()), 
-				(this.Rating())
+				(this.Rating()), 
+				(this.Method())
 			];
 		}
 		Popular_link(id){
@@ -25384,7 +25424,7 @@ var $;
 			return obj;
 		}
 		Card(id){
-			const obj = new this.$.$mol_link();
+			const obj = new this.$.$bog_smalljs_versus_pick();
 			(obj.arg) = () => ((this.card_arg(id)));
 			(obj.sub) = () => ([(this.Card_mark(id)), (this.Card_name(id))]);
 			return obj;
@@ -25410,7 +25450,7 @@ var $;
 			return obj;
 		}
 		Row_link(id){
-			const obj = new this.$.$mol_link();
+			const obj = new this.$.$bog_smalljs_versus_pick();
 			(obj.arg) = () => ((this.row_arg(id)));
 			(obj.sub) = () => ([(this.row_title(id))]);
 			return obj;
@@ -25481,6 +25521,11 @@ var $;
 	($mol_mem(($.$bog_smalljs_versus.prototype), "Rating_list"));
 	($mol_mem(($.$bog_smalljs_versus.prototype), "Pager"));
 	($mol_mem(($.$bog_smalljs_versus.prototype), "Rating"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Method_title"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Method_text"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Method_link_icon"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Method_link"));
+	($mol_mem(($.$bog_smalljs_versus.prototype), "Method"));
 	($mol_mem_key(($.$bog_smalljs_versus.prototype), "Popular_left"));
 	($mol_mem_key(($.$bog_smalljs_versus.prototype), "Popular_mid"));
 	($mol_mem_key(($.$bog_smalljs_versus.prototype), "Popular_right"));
@@ -25504,6 +25549,11 @@ var $;
 	($mol_mem_key(($.$bog_smalljs_versus.prototype), "Page"));
 	($mol_mem(($.$bog_smalljs_versus.prototype), "Page_next"));
 	($mol_mem_key(($.$bog_smalljs_versus.prototype), "Empty"));
+	($.$bog_smalljs_versus_pick) = class $bog_smalljs_versus_pick extends ($.$mol_link) {
+		uri_off(){
+			return (this.uri());
+		}
+	};
 
 
 ;
@@ -25579,6 +25629,853 @@ var $;
         }
     }
     $.$bog_smalljs_versus_data = $bog_smalljs_versus_data;
+})($ || ($ = {}));
+
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        /** Rows of the rating shown at once, as on the reference site. */
+        const page_size = 10;
+        /** The two top blocks are not an editorial opinion: each one counts wins in
+         *  the categories named under its heading, so the order can be recomputed by
+         *  anyone from the same JSON. */
+        const top_apps_categories = ['speed', 'code'];
+        const top_sites_categories = ['weight', 'builtin'];
+        /** The nine comparisons the section leads with. Which pairs are worth
+         *  featuring is a choice, not a measurement — so it lives here in the open
+         *  rather than pretending to be derived from traffic we do not have. Ids are
+         *  written in canonical (alphabetical) order, the same one the URL uses. */
+        const popular_pairs = [
+            ['react', 'vue'],
+            ['angular', 'react'],
+            ['react', 'svelte'],
+            ['svelte', 'vue'],
+            ['react', 'solid'],
+            ['solid', 'svelte'],
+            ['angular', 'vue'],
+            ['mol', 'react'],
+            ['mol', 'vue'],
+        ];
+        /** Canonical order of a pair: alphabetical by id, so `react`/`vue` and
+         *  `vue`/`react` are one address and one page. Plain code-unit comparison —
+         *  ids are lower-case ascii slugs, so locale rules cannot reorder them. */
+        function pair_order(a, b) {
+            return a < b ? [a, b] : [b, a];
+        }
+        function pair_key(a, b) {
+            return pair_order(a, b).join('/');
+        }
+        /** Letter shown in the square tile that stands in for a logo. */
+        function mark_of(title) {
+            const letter = /[\p{L}\p{N}]/u.exec(title);
+            return (letter ? letter[0] : title.slice(0, 1)).toUpperCase();
+        }
+        class $bog_smalljs_versus extends $.$bog_smalljs_versus {
+            // ——— Data ———————————————————————————————————————————————————————————
+            //
+            // The catalogue is compiled into the bundle by versus/data/gen.cjs, so
+            // there is nothing to fetch and no loading state: `list()` is always the
+            // full roster. Which frameworks exist is the data module's business, not
+            // this page's — nothing here keeps its own list of ids.
+            data() {
+                return this.$.$bog_smalljs_versus_data;
+            }
+            /** Every framework in the catalogue. */
+            frameworks() {
+                return this.data().list();
+            }
+            /** Metric descriptions, keyed by metric id. */
+            registry() {
+                return this.data().registry();
+            }
+            /** Human name of a framework id. Also used by the app shell for the
+             *  `React vs Vue — $mol` page title, which is why it is declared in the
+             *  tree rather than kept private here.
+             *
+             *  An id nobody wrote a file for is shown capitalized rather than mapped
+             *  through a table of hand-written names: a second place where a
+             *  framework is named is a second place to keep in step with the data. */
+            framework_title(id) {
+                if (!id)
+                    return '';
+                return this.data().item(id)?.title ?? id[0].toUpperCase() + id.slice(1);
+            }
+            // ——— Scoring ————————————————————————————————————————————————————————
+            //
+            // A category is won by whoever is better on more of its metrics. Only
+            // metrics *both* sides publish are counted, so a framework with a fuller
+            // file cannot win on paperwork alone. The rating score is the number of
+            // categories won across all pairwise duels; there is no overall grade.
+            metrics_by_category() {
+                const map = {};
+                const registry = this.registry();
+                for (const id of Object.keys(registry)) {
+                    const cat = registry[id].category;
+                    (map[cat] ??= []).push(id);
+                }
+                return map;
+            }
+            categories() {
+                return Object.keys(this.metrics_by_category());
+            }
+            /** +1 when `a` is better, -1 when `b` is, 0 when tied or when either side
+             *  does not publish the metric — the rule from the section's spec, and
+             *  the same one the comparison page scores a category by. */
+            compare_metric(metric, a, b) {
+                const meta = this.registry()[metric];
+                const left = a.metrics[metric];
+                const right = b.metrics[metric];
+                if (!meta || !left || !right)
+                    return 0;
+                const x = Number(left.value);
+                const y = Number(right.value);
+                if (!Number.isFinite(x) || !Number.isFinite(y) || x === y)
+                    return 0;
+                // `boolean` rides the higher-is-better branch: true (1) beats false (0).
+                return meta.better === 'lower' ? (x < y ? 1 : -1) : (x > y ? 1 : -1);
+            }
+            /** +1 / -1 / 0 for one category of one duel. */
+            category_winner(a, b, category) {
+                let wins = 0;
+                let losses = 0;
+                for (const metric of this.metrics_by_category()[category] ?? []) {
+                    const cmp = this.compare_metric(metric, a, b);
+                    if (cmp > 0)
+                        ++wins;
+                    else if (cmp < 0)
+                        ++losses;
+                }
+                return Math.sign(wins - losses);
+            }
+            /** Categories won by each framework against every other one. `key` is a
+             *  comma-separated category filter; empty means all of them. */
+            scores(key) {
+                const categories = key ? key.split(',') : this.categories();
+                const list = this.frameworks();
+                const result = {};
+                for (const fw of list) {
+                    let won = 0;
+                    for (const other of list) {
+                        if (other.id === fw.id)
+                            continue;
+                        for (const category of categories) {
+                            if (this.category_winner(fw, other, category) > 0)
+                                ++won;
+                        }
+                    }
+                    result[fw.id] = won;
+                }
+                return result;
+            }
+            /** Frameworks ordered by `scores( key )`, ties broken by name so the
+             *  order never wobbles between renders. */
+            ranked(key) {
+                const scores = this.scores(key);
+                return [...this.frameworks()].sort((x, y) => (scores[y.id] ?? 0) - (scores[x.id] ?? 0) || x.title.localeCompare(y.title));
+            }
+            /** How many of the registry's metrics this framework actually publishes. */
+            coverage(id) {
+                return Object.keys(this.data().item(id)?.metrics ?? {}).length;
+            }
+            /** Whether the row deserves a word about how thin its table is. Every
+             *  file is missing something, so flagging "incomplete" everywhere would
+             *  say nothing; the note appears once less than half the registry is
+             *  filled in, where the placing really is standing on little. */
+            partial(id) {
+                const total = Object.keys(this.registry()).length;
+                if (!total)
+                    return false;
+                return this.coverage(id) * 2 < total;
+            }
+            row_partial_text(id) {
+                return this.row_partial_template()
+                    .replace('{n}', String(this.coverage(id)))
+                    .replace('{total}', String(Object.keys(this.registry()).length));
+            }
+            // ——— Picking a pair —————————————————————————————————————————————————
+            /** Field text defaults to whatever the address preselects, so a link like
+             *  `section=versus/a=react` opens the section with React already in the
+             *  left field. Typing overrides it. */
+            query_a(next) {
+                if (next !== undefined)
+                    return next;
+                return this.framework_title(this.$.$mol_state_arg.value('a') ?? '');
+            }
+            query_b(next) {
+                if (next !== undefined)
+                    return next;
+                return this.framework_title(this.$.$mol_state_arg.value('b') ?? '');
+            }
+            /** Id behind the text typed in a field, or '' while it matches nothing. */
+            query_id(text) {
+                const norm = text.trim().toLowerCase();
+                if (!norm)
+                    return '';
+                for (const fw of this.frameworks()) {
+                    if (fw.id === norm || fw.title.toLowerCase() === norm)
+                        return fw.id;
+                }
+                return '';
+            }
+            /** Titles offered under a field: everything the text is a substring of,
+             *  minus whatever the other field already holds. */
+            suggest_titles(query, exclude) {
+                const norm = query.trim().toLowerCase();
+                return this.frameworks()
+                    .filter(fw => fw.id !== exclude)
+                    .filter(fw => !norm || fw.title.toLowerCase().includes(norm) || fw.id.includes(norm))
+                    .map(fw => fw.title)
+                    .slice(0, 8);
+            }
+            suggests_a() {
+                return this.suggest_titles(this.query_a(), this.query_id(this.query_b()));
+            }
+            suggests_b() {
+                return this.suggest_titles(this.query_b(), this.query_id(this.query_a()));
+            }
+            /** Both fields resolved to different frameworks — open their page. The
+             *  reference site has no Compare button either: choosing the second one
+             *  is the action.
+             *
+             *  This cell only *notices*; the address is written by the action below,
+             *  reached through `$mol_wire_async` so the write lands outside this
+             *  memoized body. Writing `$mol_state_arg` from inside one is the
+             *  invalidation loop $mol forbids. The check against the current address
+             *  is what keeps a page that renders these very fields from re-triggering
+             *  itself once the address already says this. */
+            pick_sync() {
+                const a = this.query_id(this.query_a());
+                const b = this.query_id(this.query_b());
+                if (!a || !b || a === b)
+                    return null;
+                const [first, second] = pair_order(a, b);
+                const arg = this.$.$mol_state_arg;
+                if (arg.value('a') === first && arg.value('b') === second)
+                    return null;
+                $mol_wire_async(this).pair_open(first, second);
+                return null;
+            }
+            /** Navigation proper: a history entry the reader can step back out of. */
+            pair_open(a, b) {
+                this.$.$mol_state_arg.go({ section: 'versus', a, b });
+                return null;
+            }
+            // ——— Popular comparisons ————————————————————————————————————————————
+            popular_links() {
+                return popular_pairs.map(([a, b]) => this.Popular_link(pair_key(a, b)));
+            }
+            pair_arg(key) {
+                const [a, b] = key.split('/');
+                return { section: 'versus', a, b };
+            }
+            pair_left(key) {
+                return this.framework_title(key.split('/')[0]);
+            }
+            pair_right(key) {
+                return this.framework_title(key.split('/')[1]);
+            }
+            // ——— Top blocks —————————————————————————————————————————————————————
+            /** Cards of one top block. The key of a card carries its block, because
+             *  the same framework can lead both lists and one view cannot hang in two
+             *  places at once. */
+            top_content(block, categories) {
+                const ranked = this.ranked(categories.join(',')).slice(0, 6);
+                if (!ranked.length)
+                    return [this.Empty(block)];
+                return ranked.map(fw => this.Card(block + '/' + fw.id));
+            }
+            top_apps_content() {
+                return this.top_content('apps', top_apps_categories);
+            }
+            top_sites_content() {
+                return this.top_content('sites', top_sites_categories);
+            }
+            card_id(key) {
+                return key.split('/')[1];
+            }
+            card_name(key) {
+                return this.framework_title(this.card_id(key));
+            }
+            card_mark(key) {
+                return mark_of(this.card_name(key));
+            }
+            /** A card preselects its framework in the left field: there is no page
+             *  for a single framework, the section is about pairs. */
+            card_arg(key) {
+                return { section: 'versus', a: this.card_id(key), b: null };
+            }
+            // ——— Rating —————————————————————————————————————————————————————————
+            rating_rows() {
+                return this.ranked('');
+            }
+            ranks() {
+                const map = {};
+                this.rating_rows().forEach((fw, index) => map[fw.id] = index + 1);
+                return map;
+            }
+            rating_content() {
+                const rows = this.rating_rows();
+                if (!rows.length)
+                    return [this.Empty('rating')];
+                const from = this.page_current_index() * page_size;
+                return rows.slice(from, from + page_size).map(fw => this.Row(fw.id));
+            }
+            row_content(id) {
+                return [
+                    this.Rank(id),
+                    this.Row_mark(id),
+                    this.Row_name(id),
+                    this.Row_score(id),
+                    this.Row_since(id),
+                ];
+            }
+            row_name_content(id) {
+                return [
+                    this.Row_link(id),
+                    ...this.partial(id) ? [this.Row_partial(id)] : [],
+                ];
+            }
+            rank(id) {
+                return String(this.ranks()[id] ?? '');
+            }
+            row_mark(id) {
+                return mark_of(this.framework_title(id));
+            }
+            row_title(id) {
+                return this.framework_title(id);
+            }
+            row_arg(id) {
+                return { section: 'versus', a: id, b: null };
+            }
+            row_score_text(id) {
+                return String(this.scores('')[id] ?? 0);
+            }
+            row_fill_width(id) {
+                const scores = this.scores('');
+                const top = Math.max(0, ...Object.values(scores));
+                if (!top)
+                    return '0%';
+                return Math.round((scores[id] ?? 0) / top * 100) + '%';
+            }
+            row_since_text(id) {
+                const since = this.data().item(id)?.since;
+                return since ? String(since) : '—';
+            }
+            // ——— Pagination —————————————————————————————————————————————————————
+            //
+            // Kept out of the address on purpose: page 2 of the rating is the same
+            // page for a crawler, and a second URL for it would only split it.
+            page(next) {
+                return next ?? 0;
+            }
+            pages() {
+                return Math.ceil(this.rating_rows().length / page_size);
+            }
+            /** Clamped, so shrinking data cannot leave the view on a page that is no
+             *  longer there. */
+            page_current_index() {
+                return Math.max(0, Math.min(this.page(), this.pages() - 1));
+            }
+            pager_content() {
+                const pages = this.pages();
+                if (pages <= 1)
+                    return [];
+                const list = [
+                    ...Array.from({ length: pages }, (_, index) => this.Page(String(index))),
+                    ...this.page_current_index() < pages - 1 ? [this.Page_next()] : [],
+                ];
+                return list;
+            }
+            page_label(key) {
+                return String(Number(key) + 1);
+            }
+            page_current(key) {
+                return Number(key) === this.page_current_index();
+            }
+            page_click(key, event) {
+                this.page(Number(key));
+                return null;
+            }
+            page_next(event) {
+                this.page(Math.min(this.page_current_index() + 1, this.pages() - 1));
+                return null;
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus.prototype, "metrics_by_category", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus.prototype, "categories", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_smalljs_versus.prototype, "scores", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_smalljs_versus.prototype, "ranked", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus.prototype, "query_a", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus.prototype, "query_b", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus.prototype, "suggests_a", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus.prototype, "suggests_b", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus.prototype, "pick_sync", null);
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_versus.prototype, "pair_open", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus.prototype, "top_apps_content", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus.prototype, "top_sites_content", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus.prototype, "rating_rows", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus.prototype, "ranks", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus.prototype, "rating_content", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus.prototype, "page", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus.prototype, "pages", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_versus.prototype, "pager_content", null);
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_versus.prototype, "page_click", null);
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_versus.prototype, "page_next", null);
+        $$.$bog_smalljs_versus = $bog_smalljs_versus;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    const { rem } = $mol_style_unit;
+    // One editorial column for prose (heading, intro) and a wider one for the
+    // grids: nine featured pairs, six-card tops and the rating all want room.
+    const prose = rem(48);
+    const wide = rem(64);
+    // Rank | logo tile | name | score bar | year. Head and rows share the track
+    // list, so the columns line up without a <table>.
+    const rating_columns = '2.5rem 2.25rem minmax( 0, 1fr ) minmax( 7rem, 12rem ) 4rem';
+    const rating_columns_narrow = '2rem minmax( 0, 1fr ) 4.5rem 3.5rem';
+    $mol_style_define($bog_smalljs_versus, {
+        flex: { direction: 'column', grow: 1 },
+        align: { items: 'center' },
+        gap: rem(3.5),
+        minWidth: 0,
+        padding: { top: rem(3.5), bottom: rem(4), left: $mol_gap.block, right: $mol_gap.block },
+        background: { color: $bog_builderui_tokens.back },
+        Head: {
+            flex: { direction: 'column' },
+            gap: rem(1),
+            // width:100% (not just max-width) so the column never collapses to its
+            // max-content width and pushes the page sideways on a phone. The
+            // measure of the prose is set on the paragraph, not here: every block
+            // on the page has to start at the same left edge.
+            width: '100%',
+            maxWidth: wide,
+        },
+        Title: {
+            display: 'block',
+            font: { family: $bog_builderui_tokens.font_head, size: rem(2.75), weight: 500 },
+            lineHeight: '1.14',
+            letterSpacing: '-0.02em',
+            color: $bog_builderui_tokens.text,
+            maxWidth: '100%',
+            overflowWrap: 'break-word',
+        },
+        Intro: {
+            display: 'block',
+            font: { size: rem(1.0625) },
+            lineHeight: '1.6',
+            maxWidth: rem(42),
+            color: $bog_builderui_tokens.shade,
+        },
+        // Above the fold: two fields and the word between them, nothing else.
+        Picker: {
+            flex: { direction: 'row', wrap: 'nowrap' },
+            align: { items: 'center' },
+            gap: rem(1),
+            width: '100%',
+            maxWidth: wide,
+            minWidth: 0,
+        },
+        Pick_a: {
+            flex: { grow: 1, shrink: 1, basis: 0 },
+            align: { self: 'stretch' },
+            minWidth: 0,
+            background: { color: $bog_builderui_tokens.field },
+            border: { radius: $bog_builderui_tokens.radius, width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
+            padding: { top: rem(0.35), bottom: rem(0.35), left: rem(0.5), right: rem(0.5) },
+            ':focus-within': {
+                border: { color: $bog_builderui_tokens.control },
+            },
+        },
+        Pick_b: {
+            flex: { grow: 1, shrink: 1, basis: 0 },
+            align: { self: 'stretch' },
+            minWidth: 0,
+            background: { color: $bog_builderui_tokens.field },
+            border: { radius: $bog_builderui_tokens.radius, width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
+            padding: { top: rem(0.35), bottom: rem(0.35), left: rem(0.5), right: rem(0.5) },
+            ':focus-within': {
+                border: { color: $bog_builderui_tokens.control },
+            },
+        },
+        Vs: {
+            flex: { shrink: 0 },
+            font: { family: $bog_builderui_tokens.font_head, size: rem(1.25), weight: 500 },
+            color: $bog_builderui_tokens.shade,
+        },
+        Popular: {
+            flex: { direction: 'column' },
+            gap: rem(1),
+            width: '100%',
+            maxWidth: wide,
+            minWidth: 0,
+        },
+        Popular_title: {
+            display: 'block',
+            font: { family: $bog_builderui_tokens.font_head, size: rem(1.625), weight: 500 },
+            lineHeight: '1.2',
+            color: $bog_builderui_tokens.text,
+        },
+        Popular_list: {
+            display: 'grid',
+            gridTemplateColumns: 'repeat( auto-fill, minmax( 19rem, 1fr ) )',
+            gap: rem(0.5),
+            minWidth: 0,
+        },
+        Popular_link: {
+            flex: { direction: 'row' },
+            align: { items: 'center' },
+            justify: { content: 'center' },
+            gap: rem(0.4),
+            minWidth: 0,
+            padding: { top: rem(0.7), bottom: rem(0.7), left: rem(0.75), right: rem(0.75) },
+            background: { color: $bog_builderui_tokens.card },
+            border: { radius: $bog_builderui_tokens.radius, width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
+            font: { size: rem(0.9375) },
+            color: $bog_builderui_tokens.text,
+            ':hover': {
+                border: { color: $bog_builderui_tokens.control },
+                color: $bog_builderui_tokens.control,
+            },
+        },
+        Popular_left: {
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            font: { weight: 600 },
+        },
+        Popular_mid: {
+            flex: { shrink: 0 },
+            color: $bog_builderui_tokens.shade,
+        },
+        Popular_right: {
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            font: { weight: 600 },
+        },
+        Top_apps: {
+            flex: { direction: 'column' },
+            gap: rem(0.4),
+            width: '100%',
+            maxWidth: wide,
+            minWidth: 0,
+        },
+        Top_apps_title: {
+            display: 'block',
+            font: { family: $bog_builderui_tokens.font_head, size: rem(1.625), weight: 500 },
+            lineHeight: '1.2',
+            color: $bog_builderui_tokens.text,
+        },
+        Top_apps_note: {
+            display: 'block',
+            font: { size: rem(0.875) },
+            lineHeight: '1.5',
+            color: $bog_builderui_tokens.shade,
+            margin: { bottom: rem(0.6) },
+        },
+        Top_apps_list: {
+            display: 'grid',
+            gridTemplateColumns: 'repeat( auto-fill, minmax( 19rem, 1fr ) )',
+            gap: rem(0.5),
+            minWidth: 0,
+        },
+        Top_sites: {
+            flex: { direction: 'column' },
+            gap: rem(0.4),
+            width: '100%',
+            maxWidth: wide,
+            minWidth: 0,
+        },
+        Top_sites_title: {
+            display: 'block',
+            font: { family: $bog_builderui_tokens.font_head, size: rem(1.625), weight: 500 },
+            lineHeight: '1.2',
+            color: $bog_builderui_tokens.text,
+        },
+        Top_sites_note: {
+            display: 'block',
+            font: { size: rem(0.875) },
+            lineHeight: '1.5',
+            color: $bog_builderui_tokens.shade,
+            margin: { bottom: rem(0.6) },
+        },
+        Top_sites_list: {
+            display: 'grid',
+            gridTemplateColumns: 'repeat( auto-fill, minmax( 19rem, 1fr ) )',
+            gap: rem(0.5),
+            minWidth: 0,
+        },
+        Card: {
+            flex: { direction: 'row' },
+            align: { items: 'center' },
+            gap: rem(0.6),
+            minWidth: 0,
+            padding: { top: rem(0.6), bottom: rem(0.6), left: rem(0.6), right: rem(0.75) },
+            background: { color: $bog_builderui_tokens.card },
+            border: { radius: $bog_builderui_tokens.radius, width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
+            color: $bog_builderui_tokens.text,
+            ':hover': {
+                border: { color: $bog_builderui_tokens.control },
+                color: $bog_builderui_tokens.control,
+            },
+        },
+        Card_mark: {
+            flex: { shrink: 0 },
+            align: { items: 'center' },
+            justify: { content: 'center' },
+            width: rem(2),
+            height: rem(2),
+            border: { radius: $bog_builderui_tokens.radius },
+            background: { color: $bog_builderui_tokens.hover },
+            font: { family: $bog_builderui_tokens.font_head, size: rem(1), weight: 600 },
+            color: $bog_builderui_tokens.special,
+        },
+        Card_name: {
+            minWidth: 0,
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            font: { size: rem(0.9375), weight: 600 },
+        },
+        Rating: {
+            flex: { direction: 'column' },
+            gap: rem(0.4),
+            width: '100%',
+            maxWidth: wide,
+            minWidth: 0,
+        },
+        Rating_title: {
+            display: 'block',
+            font: { family: $bog_builderui_tokens.font_head, size: rem(1.625), weight: 500 },
+            lineHeight: '1.2',
+            color: $bog_builderui_tokens.text,
+        },
+        Rating_note: {
+            display: 'block',
+            font: { size: rem(0.875) },
+            lineHeight: '1.5',
+            maxWidth: rem(42),
+            color: $bog_builderui_tokens.shade,
+            margin: { bottom: rem(0.6) },
+        },
+        Rating_head: {
+            display: 'grid',
+            gridTemplateColumns: rating_columns,
+            align: { items: 'center' },
+            gap: rem(0.75),
+            padding: { top: rem(0.4), bottom: rem(0.4), left: rem(0.6), right: rem(0.6) },
+            font: { size: rem(0.75), weight: 600 },
+            letterSpacing: '0.04em',
+            textTransform: 'uppercase',
+            color: $bog_builderui_tokens.shade,
+            border: { bottom: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+        },
+        Rating_head_since: {
+            justify: { content: 'flex-end' },
+        },
+        Rating_list: {
+            flex: { direction: 'column' },
+            minWidth: 0,
+        },
+        Row: {
+            display: 'grid',
+            gridTemplateColumns: rating_columns,
+            align: { items: 'center' },
+            gap: rem(0.75),
+            minWidth: 0,
+            padding: { top: rem(0.5), bottom: rem(0.5), left: rem(0.6), right: rem(0.6) },
+            border: { bottom: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+            ':hover': {
+                background: { color: $bog_builderui_tokens.hover },
+            },
+        },
+        Rank: {
+            font: { size: rem(0.875), weight: 600 },
+            color: $bog_builderui_tokens.shade,
+        },
+        Row_mark: {
+            align: { items: 'center' },
+            justify: { content: 'center' },
+            width: rem(2),
+            height: rem(2),
+            border: { radius: $bog_builderui_tokens.radius },
+            background: { color: $bog_builderui_tokens.hover },
+            font: { family: $bog_builderui_tokens.font_head, size: rem(1), weight: 600 },
+            color: $bog_builderui_tokens.special,
+        },
+        Row_name: {
+            flex: { direction: 'column' },
+            align: { items: 'flex-start' },
+            gap: rem(0.1),
+            minWidth: 0,
+        },
+        Row_link: {
+            maxWidth: '100%',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            font: { size: rem(0.9375), weight: 600 },
+            color: $bog_builderui_tokens.text,
+            ':hover': { color: $bog_builderui_tokens.control },
+        },
+        Row_partial: {
+            font: { size: rem(0.75) },
+            color: $bog_builderui_tokens.shade,
+        },
+        Row_score: {
+            flex: { direction: 'row' },
+            align: { items: 'center' },
+            gap: rem(0.5),
+            minWidth: 0,
+        },
+        Row_track: {
+            flex: { grow: 1 },
+            minWidth: 0,
+            height: rem(0.375),
+            border: { radius: rem(0.25) },
+            background: { color: $bog_builderui_tokens.hover },
+            overflow: 'hidden',
+        },
+        Row_fill: {
+            height: '100%',
+            border: { radius: rem(0.25) },
+            background: { color: $bog_builderui_tokens.control },
+        },
+        Row_value: {
+            flex: { shrink: 0 },
+            justify: { content: 'flex-end' },
+            minWidth: rem(1.5),
+            font: { size: rem(0.875), weight: 600 },
+            color: $bog_builderui_tokens.text,
+        },
+        Row_since: {
+            justify: { content: 'flex-end' },
+            font: { size: rem(0.875) },
+            color: $bog_builderui_tokens.shade,
+        },
+        Pager: {
+            flex: { direction: 'row', wrap: 'wrap' },
+            align: { items: 'center' },
+            gap: rem(0.25),
+            margin: { top: rem(0.75) },
+        },
+        Page: {
+            justify: { content: 'center' },
+            minWidth: rem(2),
+            padding: { top: rem(0.3), bottom: rem(0.3), left: rem(0.5), right: rem(0.5) },
+            border: { radius: $bog_builderui_tokens.radius },
+            font: { size: rem(0.875) },
+            color: $bog_builderui_tokens.control,
+            '[bog_smalljs_versus_page_current]': {
+                true: {
+                    background: { color: $bog_builderui_tokens.control },
+                    color: $bog_builderui_tokens.back,
+                },
+            },
+        },
+        Page_next: {
+            justify: { content: 'center' },
+            minWidth: rem(2),
+            padding: { top: rem(0.3), bottom: rem(0.3), left: rem(0.5), right: rem(0.5) },
+            border: { radius: $bog_builderui_tokens.radius },
+            font: { size: rem(1) },
+            color: $bog_builderui_tokens.control,
+        },
+        Empty: {
+            display: 'block',
+            padding: { top: rem(1), bottom: rem(1) },
+            font: { size: rem(0.9375) },
+            lineHeight: '1.6',
+            color: $bog_builderui_tokens.shade,
+        },
+        '@media': {
+            '(max-width: 47.9375rem)': {
+                gap: rem(2.5),
+                padding: { top: rem(2), bottom: rem(2.5), left: rem(1.25), right: rem(1.25) },
+                Title: { font: { size: rem(2) } },
+                Picker: {
+                    flex: { direction: 'column' },
+                    align: { items: 'stretch' },
+                    gap: rem(0.5),
+                },
+                Vs: { align: { self: 'center' } },
+                // The logo tile is the first thing to go: on a phone the name,
+                // the score and the year are what the column is for.
+                Rating_head: { gridTemplateColumns: rating_columns_narrow },
+                Rating_head_mark: { display: 'none' },
+                Row: { gridTemplateColumns: rating_columns_narrow },
+                Row_mark: { display: 'none' },
+            },
+        },
+    });
+    // The two picker fields are $mol_search instances, so their input and their
+    // suggest list belong to $mol_search, not to this page. Restyling them
+    // through $mol_style_define( $mol_search ) would repaint every search box in
+    // the app; scoping raw CSS under our own block keeps the change local.
+    $mol_style_attach('$bog_smalljs_versus.picker', `
+
+		[bog_smalljs_versus_picker] [mol_search_query] {
+			font-size: 1.0625rem;
+			padding: 0.5rem 0.6rem;
+		}
+
+		[bog_smalljs_versus_picker] [mol_search_menu] {
+			min-width: 14rem;
+		}
+
+	`);
 })($ || ($ = {}));
 
 ;
@@ -26783,6 +27680,9 @@ var $;
 		edge_score_empty(){
 			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_edge_score_empty"));
 		}
+		edge_score_no_runner(){
+			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_edge_score_no_runner"));
+		}
 		edge_missing_one(){
 			return (this.$.$mol_locale.text("$bog_smalljs_versus_pair_edge_missing_one"));
 		}
@@ -27681,7 +28581,13 @@ var $;
             verdict_note_text() {
                 const parts = [];
                 if (!this.edge_live()) {
-                    parts.push(this.edge_missing_note());
+                    // Says what the missing runner means for the count. The case blocks
+                    // below carry their own line about what it means for them.
+                    parts.push(this.runner(this.left()) || this.runner(this.right())
+                        ? fill(this.verdict_note_no_runner(), {
+                            b: this.runner(this.left()) ? this.right_title() : this.left_title(),
+                        })
+                        : this.verdict_note_no_runner_both());
                 }
                 else if (!this.score('edge').total) {
                     parts.push(this.verdict_note_edge());
@@ -27726,7 +28632,9 @@ var $;
                 const left_name = this.left_title();
                 const right_name = this.right_title();
                 if (!score.total) {
-                    return category === 'edge' && this.edge_live() ? this.edge_score_empty() : this.score_empty();
+                    if (category !== 'edge')
+                        return this.score_empty();
+                    return this.edge_live() ? this.edge_score_empty() : this.edge_score_no_runner();
                 }
                 const line = fill(category === 'edge' ? this.edge_score_line() : this.score_line(), {
                     a: left_name,
@@ -27755,12 +28663,18 @@ var $;
             metric_human(id) {
                 return this.row(id)?.meta.human ?? '';
             }
+            /** Whether both sides have a reading. Only a shared metric is ever printed
+             *  as a pair of values; see `metric_left_value` for why. */
+            shared(id) {
+                const row = this.row(id);
+                return !!row?.left && !!row?.right;
+            }
             /** How the number was obtained — the same procedure for both sides, which
              *  is what makes the two comparable at all. Printed next to the row rather
              *  than hidden behind the methodology link at the bottom: a reader who
              *  doubts one number should not have to go looking for what it means. */
             metric_method(id) {
-                return this.row(id)?.meta.method ?? '';
+                return this.shared(id) ? this.row(id)?.meta.method ?? '' : '';
             }
             value_text(measure, meta) {
                 if (!measure)
@@ -28408,877 +29322,6 @@ var $;
             },
         },
     });
-})($ || ($ = {}));
-
-;
-"use strict";
-
-
-;
-"use strict";
-var $;
-(function ($) {
-    var $$;
-    (function ($$) {
-        /** Rows of the rating shown at once, as on the reference site. */
-        const page_size = 10;
-        /** The roster of the section. `versus/data/` is one JSON per framework with
-         *  no index to enumerate, so the list of ids lives here; an id whose file is
-         *  missing or unreadable simply drops out of every block on the page. */
-        const framework_ids = [
-            'angular',
-            'mol',
-            'react',
-            'solid',
-            'svelte',
-            'vue',
-        ];
-        /** The two top blocks are not an editorial opinion: each one counts wins in
-         *  the categories named under its heading, so the order can be recomputed by
-         *  anyone from the same JSON. */
-        const top_apps_categories = ['speed', 'code'];
-        const top_sites_categories = ['weight', 'builtin'];
-        /** The nine comparisons the section leads with. Which pairs are worth
-         *  featuring is a choice, not a measurement — so it lives here in the open
-         *  rather than pretending to be derived from traffic we do not have. Ids are
-         *  written in canonical (alphabetical) order, the same one the URL uses. */
-        const popular_pairs = [
-            ['react', 'vue'],
-            ['angular', 'react'],
-            ['react', 'svelte'],
-            ['svelte', 'vue'],
-            ['react', 'solid'],
-            ['solid', 'svelte'],
-            ['angular', 'vue'],
-            ['mol', 'react'],
-            ['mol', 'vue'],
-        ];
-        /** Display names for ids the page can mention before the data files land
-         *  (the featured pairs above are static). Data always wins over this table. */
-        const title_fallback = {
-            angular: 'Angular',
-            mol: '$mol',
-            react: 'React',
-            solid: 'Solid',
-            svelte: 'Svelte',
-            vue: 'Vue',
-        };
-        /** Canonical order of a pair: alphabetical by id, so `react`/`vue` and
-         *  `vue`/`react` are one address and one page. Plain code-unit comparison —
-         *  ids are lower-case ascii slugs, so locale rules cannot reorder them. */
-        function pair_order(a, b) {
-            return a < b ? [a, b] : [b, a];
-        }
-        function pair_key(a, b) {
-            return pair_order(a, b).join('/');
-        }
-        /** Letter shown in the square tile that stands in for a logo. */
-        function mark_of(title) {
-            const letter = /[\p{L}\p{N}]/u.exec(title);
-            return (letter ? letter[0] : title.slice(0, 1)).toUpperCase();
-        }
-        class $bog_smalljs_versus extends $.$bog_smalljs_versus {
-            // ——— Data ———————————————————————————————————————————————————————————
-            //
-            // `versus/data/*.json` is read through the same loader the comparison
-            // page uses, so a framework has one set of numbers on the site and not
-            // two. A file that is missing or unreadable is not an error here: the
-            // framework drops out of the lists and the blocks say they have nothing
-            // to show, which beats filling the gap with a plausible number.
-            data() {
-                return this.$.$bog_smalljs_versus_pair_data;
-            }
-            /** Every framework whose data file could be read. */
-            frameworks() {
-                return framework_ids
-                    .filter(id => this.data().known(id))
-                    .map(id => this.data().framework(id));
-            }
-            /** Metric descriptions, keyed by metric id. */
-            registry() {
-                return this.data().registry();
-            }
-            by_id() {
-                const map = new Map();
-                for (const fw of this.frameworks())
-                    map.set(fw.id, fw);
-                return map;
-            }
-            /** Human name of a framework id. Also used by the app shell for the
-             *  `React vs Vue — $mol` page title, which is why it is declared in the
-             *  tree rather than kept private here. */
-            framework_title(id) {
-                if (!id)
-                    return '';
-                // One file, not the whole roster: the app shell asks this for the
-                // browser title of a comparison, and that should not wait on five
-                // requests it has no use for.
-                if (this.data().known(id))
-                    return this.data().framework(id).title;
-                return title_fallback[id] ?? id[0].toUpperCase() + id.slice(1);
-            }
-            // ——— Scoring ————————————————————————————————————————————————————————
-            //
-            // A category is won by whoever is better on more of its metrics. Only
-            // metrics *both* sides publish are counted, so a framework with a fuller
-            // file cannot win on paperwork alone. The rating score is the number of
-            // categories won across all pairwise duels; there is no overall grade.
-            metrics_by_category() {
-                const map = {};
-                const registry = this.registry();
-                for (const id of Object.keys(registry)) {
-                    const cat = registry[id].category;
-                    (map[cat] ??= []).push(id);
-                }
-                return map;
-            }
-            categories() {
-                return Object.keys(this.metrics_by_category());
-            }
-            /** +1 when `a` is better, -1 when `b` is, 0 when tied or when either side
-             *  does not publish the metric. Decided by the same comparison the pair
-             *  page draws its bars from, so the rating cannot disagree with the page
-             *  it links to. */
-            compare_metric(metric, a, b) {
-                const meta = this.registry()[metric];
-                const left = a.metrics[metric];
-                const right = b.metrics[metric];
-                if (!meta || !left || !right)
-                    return 0;
-                const side = this.$.$bog_smalljs_versus_pair_compare.diff(meta.better, left.value, right.value).side;
-                return side === 'left' ? 1 : side === 'right' ? -1 : 0;
-            }
-            /** +1 / -1 / 0 for one category of one duel. */
-            category_winner(a, b, category) {
-                let wins = 0;
-                let losses = 0;
-                for (const metric of this.metrics_by_category()[category] ?? []) {
-                    const cmp = this.compare_metric(metric, a, b);
-                    if (cmp > 0)
-                        ++wins;
-                    else if (cmp < 0)
-                        ++losses;
-                }
-                return Math.sign(wins - losses);
-            }
-            /** Categories won by each framework against every other one. `key` is a
-             *  comma-separated category filter; empty means all of them. */
-            scores(key) {
-                const categories = key ? key.split(',') : this.categories();
-                const list = this.frameworks();
-                const result = {};
-                for (const fw of list) {
-                    let won = 0;
-                    for (const other of list) {
-                        if (other.id === fw.id)
-                            continue;
-                        for (const category of categories) {
-                            if (this.category_winner(fw, other, category) > 0)
-                                ++won;
-                        }
-                    }
-                    result[fw.id] = won;
-                }
-                return result;
-            }
-            /** Frameworks ordered by `scores( key )`, ties broken by name so the
-             *  order never wobbles between renders. */
-            ranked(key) {
-                const scores = this.scores(key);
-                return [...this.frameworks()].sort((x, y) => (scores[y.id] ?? 0) - (scores[x.id] ?? 0) || x.title.localeCompare(y.title));
-            }
-            /** How many of the registry's metrics this framework actually publishes. */
-            coverage(id) {
-                return Object.keys(this.by_id().get(id)?.metrics ?? {}).length;
-            }
-            /** Whether the row deserves a word about how thin its table is. Every
-             *  file is missing something, so flagging "incomplete" everywhere would
-             *  say nothing; the note appears once less than half the registry is
-             *  filled in, where the placing really is standing on little. */
-            partial(id) {
-                const total = Object.keys(this.registry()).length;
-                if (!total)
-                    return false;
-                return this.coverage(id) * 2 < total;
-            }
-            row_partial_text(id) {
-                return this.row_partial_template()
-                    .replace('{n}', String(this.coverage(id)))
-                    .replace('{total}', String(Object.keys(this.registry()).length));
-            }
-            // ——— Picking a pair —————————————————————————————————————————————————
-            /** Field text defaults to whatever the address preselects, so a link like
-             *  `section=versus/a=react` opens the section with React already in the
-             *  left field. Typing overrides it. */
-            query_a(next) {
-                if (next !== undefined)
-                    return next;
-                return this.framework_title(this.$.$mol_state_arg.value('a') ?? '');
-            }
-            query_b(next) {
-                if (next !== undefined)
-                    return next;
-                return this.framework_title(this.$.$mol_state_arg.value('b') ?? '');
-            }
-            /** Id behind the text typed in a field, or '' while it matches nothing. */
-            query_id(text) {
-                const norm = text.trim().toLowerCase();
-                if (!norm)
-                    return '';
-                for (const fw of this.frameworks()) {
-                    if (fw.id === norm || fw.title.toLowerCase() === norm)
-                        return fw.id;
-                }
-                return '';
-            }
-            /** Titles offered under a field: everything the text is a substring of,
-             *  minus whatever the other field already holds. */
-            suggest_titles(query, exclude) {
-                const norm = query.trim().toLowerCase();
-                return this.frameworks()
-                    .filter(fw => fw.id !== exclude)
-                    .filter(fw => !norm || fw.title.toLowerCase().includes(norm) || fw.id.includes(norm))
-                    .map(fw => fw.title)
-                    .slice(0, 8);
-            }
-            suggests_a() {
-                return this.suggest_titles(this.query_a(), this.query_id(this.query_b()));
-            }
-            suggests_b() {
-                return this.suggest_titles(this.query_b(), this.query_id(this.query_a()));
-            }
-            /** Both fields resolved to different frameworks — open their page. The
-             *  reference site has no Compare button either: choosing the second one
-             *  is the action.
-             *
-             *  The address is written through `$mol_wire_async` because setting one
-             *  memoized cell from the body of another is exactly the loop $mol
-             *  forbids; and it is skipped when the address already says this, so a
-             *  pair page that renders these very fields cannot re-trigger itself. */
-            pick_sync() {
-                const a = this.query_id(this.query_a());
-                const b = this.query_id(this.query_b());
-                if (!a || !b || a === b)
-                    return null;
-                const [first, second] = pair_order(a, b);
-                const arg = this.$.$mol_state_arg;
-                if (arg.value('a') === first && arg.value('b') === second)
-                    return null;
-                $mol_wire_async(arg).go({ section: 'versus', a: first, b: second });
-                return null;
-            }
-            // ——— Popular comparisons ————————————————————————————————————————————
-            popular_links() {
-                return popular_pairs.map(([a, b]) => this.Popular_link(pair_key(a, b)));
-            }
-            pair_arg(key) {
-                const [a, b] = key.split('/');
-                return { section: 'versus', a, b };
-            }
-            pair_left(key) {
-                return this.framework_title(key.split('/')[0]);
-            }
-            pair_right(key) {
-                return this.framework_title(key.split('/')[1]);
-            }
-            // ——— Top blocks —————————————————————————————————————————————————————
-            /** Cards of one top block. The key of a card carries its block, because
-             *  the same framework can lead both lists and one view cannot hang in two
-             *  places at once. */
-            top_content(block, categories) {
-                const ranked = this.ranked(categories.join(',')).slice(0, 6);
-                if (!ranked.length)
-                    return [this.Empty(block)];
-                return ranked.map(fw => this.Card(block + '/' + fw.id));
-            }
-            top_apps_content() {
-                return this.top_content('apps', top_apps_categories);
-            }
-            top_sites_content() {
-                return this.top_content('sites', top_sites_categories);
-            }
-            card_id(key) {
-                return key.split('/')[1];
-            }
-            card_name(key) {
-                return this.framework_title(this.card_id(key));
-            }
-            card_mark(key) {
-                return mark_of(this.card_name(key));
-            }
-            /** A card preselects its framework in the left field: there is no page
-             *  for a single framework, the section is about pairs. */
-            card_arg(key) {
-                return { section: 'versus', a: this.card_id(key), b: null };
-            }
-            // ——— Rating —————————————————————————————————————————————————————————
-            rating_rows() {
-                return this.ranked('');
-            }
-            ranks() {
-                const map = {};
-                this.rating_rows().forEach((fw, index) => map[fw.id] = index + 1);
-                return map;
-            }
-            rating_content() {
-                const rows = this.rating_rows();
-                if (!rows.length)
-                    return [this.Empty('rating')];
-                const from = this.page_current_index() * page_size;
-                return rows.slice(from, from + page_size).map(fw => this.Row(fw.id));
-            }
-            row_content(id) {
-                return [
-                    this.Rank(id),
-                    this.Row_mark(id),
-                    this.Row_name(id),
-                    this.Row_score(id),
-                    this.Row_since(id),
-                ];
-            }
-            row_name_content(id) {
-                return [
-                    this.Row_link(id),
-                    ...this.partial(id) ? [this.Row_partial(id)] : [],
-                ];
-            }
-            rank(id) {
-                return String(this.ranks()[id] ?? '');
-            }
-            row_mark(id) {
-                return mark_of(this.framework_title(id));
-            }
-            row_title(id) {
-                return this.framework_title(id);
-            }
-            row_arg(id) {
-                return { section: 'versus', a: id, b: null };
-            }
-            row_score_text(id) {
-                return String(this.scores('')[id] ?? 0);
-            }
-            row_fill_width(id) {
-                const scores = this.scores('');
-                const top = Math.max(0, ...Object.values(scores));
-                if (!top)
-                    return '0%';
-                return Math.round((scores[id] ?? 0) / top * 100) + '%';
-            }
-            row_since_text(id) {
-                const since = this.by_id().get(id)?.since;
-                return since ? String(since) : '—';
-            }
-            // ——— Pagination —————————————————————————————————————————————————————
-            //
-            // Kept out of the address on purpose: page 2 of the rating is the same
-            // page for a crawler, and a second URL for it would only split it.
-            page(next) {
-                return next ?? 0;
-            }
-            pages() {
-                return Math.ceil(this.rating_rows().length / page_size);
-            }
-            /** Clamped, so shrinking data cannot leave the view on a page that is no
-             *  longer there. */
-            page_current_index() {
-                return Math.max(0, Math.min(this.page(), this.pages() - 1));
-            }
-            pager_content() {
-                const pages = this.pages();
-                if (pages <= 1)
-                    return [];
-                const list = [
-                    ...Array.from({ length: pages }, (_, index) => this.Page(String(index))),
-                    ...this.page_current_index() < pages - 1 ? [this.Page_next()] : [],
-                ];
-                return list;
-            }
-            page_label(key) {
-                return String(Number(key) + 1);
-            }
-            page_current(key) {
-                return Number(key) === this.page_current_index();
-            }
-            page_click(key, event) {
-                this.page(Number(key));
-                return null;
-            }
-            page_next(event) {
-                this.page(Math.min(this.page_current_index() + 1, this.pages() - 1));
-                return null;
-            }
-        }
-        __decorate([
-            $mol_mem
-        ], $bog_smalljs_versus.prototype, "frameworks", null);
-        __decorate([
-            $mol_mem
-        ], $bog_smalljs_versus.prototype, "by_id", null);
-        __decorate([
-            $mol_mem
-        ], $bog_smalljs_versus.prototype, "metrics_by_category", null);
-        __decorate([
-            $mol_mem
-        ], $bog_smalljs_versus.prototype, "categories", null);
-        __decorate([
-            $mol_mem_key
-        ], $bog_smalljs_versus.prototype, "scores", null);
-        __decorate([
-            $mol_mem_key
-        ], $bog_smalljs_versus.prototype, "ranked", null);
-        __decorate([
-            $mol_mem
-        ], $bog_smalljs_versus.prototype, "query_a", null);
-        __decorate([
-            $mol_mem
-        ], $bog_smalljs_versus.prototype, "query_b", null);
-        __decorate([
-            $mol_mem
-        ], $bog_smalljs_versus.prototype, "suggests_a", null);
-        __decorate([
-            $mol_mem
-        ], $bog_smalljs_versus.prototype, "suggests_b", null);
-        __decorate([
-            $mol_mem
-        ], $bog_smalljs_versus.prototype, "pick_sync", null);
-        __decorate([
-            $mol_mem
-        ], $bog_smalljs_versus.prototype, "top_apps_content", null);
-        __decorate([
-            $mol_mem
-        ], $bog_smalljs_versus.prototype, "top_sites_content", null);
-        __decorate([
-            $mol_mem
-        ], $bog_smalljs_versus.prototype, "rating_rows", null);
-        __decorate([
-            $mol_mem
-        ], $bog_smalljs_versus.prototype, "ranks", null);
-        __decorate([
-            $mol_mem
-        ], $bog_smalljs_versus.prototype, "rating_content", null);
-        __decorate([
-            $mol_mem
-        ], $bog_smalljs_versus.prototype, "page", null);
-        __decorate([
-            $mol_mem
-        ], $bog_smalljs_versus.prototype, "pages", null);
-        __decorate([
-            $mol_mem
-        ], $bog_smalljs_versus.prototype, "pager_content", null);
-        __decorate([
-            $mol_action
-        ], $bog_smalljs_versus.prototype, "page_click", null);
-        __decorate([
-            $mol_action
-        ], $bog_smalljs_versus.prototype, "page_next", null);
-        $$.$bog_smalljs_versus = $bog_smalljs_versus;
-    })($$ = $.$$ || ($.$$ = {}));
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    const { rem } = $mol_style_unit;
-    // One editorial column for prose (heading, intro) and a wider one for the
-    // grids: nine featured pairs, six-card tops and the rating all want room.
-    const prose = rem(48);
-    const wide = rem(64);
-    // Rank | logo tile | name | score bar | year. Head and rows share the track
-    // list, so the columns line up without a <table>.
-    const rating_columns = '2.5rem 2.25rem minmax( 0, 1fr ) minmax( 7rem, 12rem ) 4rem';
-    const rating_columns_narrow = '2rem minmax( 0, 1fr ) 4.5rem 3.5rem';
-    $mol_style_define($bog_smalljs_versus, {
-        flex: { direction: 'column', grow: 1 },
-        align: { items: 'center' },
-        gap: rem(3.5),
-        minWidth: 0,
-        padding: { top: rem(3.5), bottom: rem(4), left: $mol_gap.block, right: $mol_gap.block },
-        background: { color: $bog_builderui_tokens.back },
-        Head: {
-            flex: { direction: 'column' },
-            gap: rem(1),
-            // width:100% (not just max-width) so the column never collapses to its
-            // max-content width and pushes the page sideways on a phone. The
-            // measure of the prose is set on the paragraph, not here: every block
-            // on the page has to start at the same left edge.
-            width: '100%',
-            maxWidth: wide,
-        },
-        Title: {
-            display: 'block',
-            font: { family: $bog_builderui_tokens.font_head, size: rem(2.75), weight: 500 },
-            lineHeight: '1.14',
-            letterSpacing: '-0.02em',
-            color: $bog_builderui_tokens.text,
-            maxWidth: '100%',
-            overflowWrap: 'break-word',
-        },
-        Intro: {
-            display: 'block',
-            font: { size: rem(1.0625) },
-            lineHeight: '1.6',
-            maxWidth: rem(42),
-            color: $bog_builderui_tokens.shade,
-        },
-        // Above the fold: two fields and the word between them, nothing else.
-        Picker: {
-            flex: { direction: 'row', wrap: 'nowrap' },
-            align: { items: 'center' },
-            gap: rem(1),
-            width: '100%',
-            maxWidth: wide,
-            minWidth: 0,
-        },
-        Pick_a: {
-            flex: { grow: 1, shrink: 1, basis: 0 },
-            align: { self: 'stretch' },
-            minWidth: 0,
-            background: { color: $bog_builderui_tokens.field },
-            border: { radius: $bog_builderui_tokens.radius, width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
-            padding: { top: rem(0.35), bottom: rem(0.35), left: rem(0.5), right: rem(0.5) },
-            ':focus-within': {
-                border: { color: $bog_builderui_tokens.control },
-            },
-        },
-        Pick_b: {
-            flex: { grow: 1, shrink: 1, basis: 0 },
-            align: { self: 'stretch' },
-            minWidth: 0,
-            background: { color: $bog_builderui_tokens.field },
-            border: { radius: $bog_builderui_tokens.radius, width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
-            padding: { top: rem(0.35), bottom: rem(0.35), left: rem(0.5), right: rem(0.5) },
-            ':focus-within': {
-                border: { color: $bog_builderui_tokens.control },
-            },
-        },
-        Vs: {
-            flex: { shrink: 0 },
-            font: { family: $bog_builderui_tokens.font_head, size: rem(1.25), weight: 500 },
-            color: $bog_builderui_tokens.shade,
-        },
-        Popular: {
-            flex: { direction: 'column' },
-            gap: rem(1),
-            width: '100%',
-            maxWidth: wide,
-            minWidth: 0,
-        },
-        Popular_title: {
-            display: 'block',
-            font: { family: $bog_builderui_tokens.font_head, size: rem(1.625), weight: 500 },
-            lineHeight: '1.2',
-            color: $bog_builderui_tokens.text,
-        },
-        Popular_list: {
-            display: 'grid',
-            gridTemplateColumns: 'repeat( auto-fill, minmax( 19rem, 1fr ) )',
-            gap: rem(0.5),
-            minWidth: 0,
-        },
-        Popular_link: {
-            flex: { direction: 'row' },
-            align: { items: 'center' },
-            justify: { content: 'center' },
-            gap: rem(0.4),
-            minWidth: 0,
-            padding: { top: rem(0.7), bottom: rem(0.7), left: rem(0.75), right: rem(0.75) },
-            background: { color: $bog_builderui_tokens.card },
-            border: { radius: $bog_builderui_tokens.radius, width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
-            font: { size: rem(0.9375) },
-            color: $bog_builderui_tokens.text,
-            ':hover': {
-                border: { color: $bog_builderui_tokens.control },
-                color: $bog_builderui_tokens.control,
-            },
-        },
-        Popular_left: {
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            whiteSpace: 'nowrap',
-            font: { weight: 600 },
-        },
-        Popular_mid: {
-            flex: { shrink: 0 },
-            color: $bog_builderui_tokens.shade,
-        },
-        Popular_right: {
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            whiteSpace: 'nowrap',
-            font: { weight: 600 },
-        },
-        Top_apps: {
-            flex: { direction: 'column' },
-            gap: rem(0.4),
-            width: '100%',
-            maxWidth: wide,
-            minWidth: 0,
-        },
-        Top_apps_title: {
-            display: 'block',
-            font: { family: $bog_builderui_tokens.font_head, size: rem(1.625), weight: 500 },
-            lineHeight: '1.2',
-            color: $bog_builderui_tokens.text,
-        },
-        Top_apps_note: {
-            display: 'block',
-            font: { size: rem(0.875) },
-            lineHeight: '1.5',
-            color: $bog_builderui_tokens.shade,
-            margin: { bottom: rem(0.6) },
-        },
-        Top_apps_list: {
-            display: 'grid',
-            gridTemplateColumns: 'repeat( auto-fill, minmax( 19rem, 1fr ) )',
-            gap: rem(0.5),
-            minWidth: 0,
-        },
-        Top_sites: {
-            flex: { direction: 'column' },
-            gap: rem(0.4),
-            width: '100%',
-            maxWidth: wide,
-            minWidth: 0,
-        },
-        Top_sites_title: {
-            display: 'block',
-            font: { family: $bog_builderui_tokens.font_head, size: rem(1.625), weight: 500 },
-            lineHeight: '1.2',
-            color: $bog_builderui_tokens.text,
-        },
-        Top_sites_note: {
-            display: 'block',
-            font: { size: rem(0.875) },
-            lineHeight: '1.5',
-            color: $bog_builderui_tokens.shade,
-            margin: { bottom: rem(0.6) },
-        },
-        Top_sites_list: {
-            display: 'grid',
-            gridTemplateColumns: 'repeat( auto-fill, minmax( 19rem, 1fr ) )',
-            gap: rem(0.5),
-            minWidth: 0,
-        },
-        Card: {
-            flex: { direction: 'row' },
-            align: { items: 'center' },
-            gap: rem(0.6),
-            minWidth: 0,
-            padding: { top: rem(0.6), bottom: rem(0.6), left: rem(0.6), right: rem(0.75) },
-            background: { color: $bog_builderui_tokens.card },
-            border: { radius: $bog_builderui_tokens.radius, width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
-            color: $bog_builderui_tokens.text,
-            ':hover': {
-                border: { color: $bog_builderui_tokens.control },
-                color: $bog_builderui_tokens.control,
-            },
-        },
-        Card_mark: {
-            flex: { shrink: 0 },
-            align: { items: 'center' },
-            justify: { content: 'center' },
-            width: rem(2),
-            height: rem(2),
-            border: { radius: $bog_builderui_tokens.radius },
-            background: { color: $bog_builderui_tokens.hover },
-            font: { family: $bog_builderui_tokens.font_head, size: rem(1), weight: 600 },
-            color: $bog_builderui_tokens.special,
-        },
-        Card_name: {
-            minWidth: 0,
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            whiteSpace: 'nowrap',
-            font: { size: rem(0.9375), weight: 600 },
-        },
-        Rating: {
-            flex: { direction: 'column' },
-            gap: rem(0.4),
-            width: '100%',
-            maxWidth: wide,
-            minWidth: 0,
-        },
-        Rating_title: {
-            display: 'block',
-            font: { family: $bog_builderui_tokens.font_head, size: rem(1.625), weight: 500 },
-            lineHeight: '1.2',
-            color: $bog_builderui_tokens.text,
-        },
-        Rating_note: {
-            display: 'block',
-            font: { size: rem(0.875) },
-            lineHeight: '1.5',
-            maxWidth: rem(42),
-            color: $bog_builderui_tokens.shade,
-            margin: { bottom: rem(0.6) },
-        },
-        Rating_head: {
-            display: 'grid',
-            gridTemplateColumns: rating_columns,
-            align: { items: 'center' },
-            gap: rem(0.75),
-            padding: { top: rem(0.4), bottom: rem(0.4), left: rem(0.6), right: rem(0.6) },
-            font: { size: rem(0.75), weight: 600 },
-            letterSpacing: '0.04em',
-            textTransform: 'uppercase',
-            color: $bog_builderui_tokens.shade,
-            border: { bottom: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
-        },
-        Rating_head_since: {
-            justify: { content: 'flex-end' },
-        },
-        Rating_list: {
-            flex: { direction: 'column' },
-            minWidth: 0,
-        },
-        Row: {
-            display: 'grid',
-            gridTemplateColumns: rating_columns,
-            align: { items: 'center' },
-            gap: rem(0.75),
-            minWidth: 0,
-            padding: { top: rem(0.5), bottom: rem(0.5), left: rem(0.6), right: rem(0.6) },
-            border: { bottom: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
-            ':hover': {
-                background: { color: $bog_builderui_tokens.hover },
-            },
-        },
-        Rank: {
-            font: { size: rem(0.875), weight: 600 },
-            color: $bog_builderui_tokens.shade,
-        },
-        Row_mark: {
-            align: { items: 'center' },
-            justify: { content: 'center' },
-            width: rem(2),
-            height: rem(2),
-            border: { radius: $bog_builderui_tokens.radius },
-            background: { color: $bog_builderui_tokens.hover },
-            font: { family: $bog_builderui_tokens.font_head, size: rem(1), weight: 600 },
-            color: $bog_builderui_tokens.special,
-        },
-        Row_name: {
-            flex: { direction: 'column' },
-            align: { items: 'flex-start' },
-            gap: rem(0.1),
-            minWidth: 0,
-        },
-        Row_link: {
-            maxWidth: '100%',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            whiteSpace: 'nowrap',
-            font: { size: rem(0.9375), weight: 600 },
-            color: $bog_builderui_tokens.text,
-            ':hover': { color: $bog_builderui_tokens.control },
-        },
-        Row_partial: {
-            font: { size: rem(0.75) },
-            color: $bog_builderui_tokens.shade,
-        },
-        Row_score: {
-            flex: { direction: 'row' },
-            align: { items: 'center' },
-            gap: rem(0.5),
-            minWidth: 0,
-        },
-        Row_track: {
-            flex: { grow: 1 },
-            minWidth: 0,
-            height: rem(0.375),
-            border: { radius: rem(0.25) },
-            background: { color: $bog_builderui_tokens.hover },
-            overflow: 'hidden',
-        },
-        Row_fill: {
-            height: '100%',
-            border: { radius: rem(0.25) },
-            background: { color: $bog_builderui_tokens.control },
-        },
-        Row_value: {
-            flex: { shrink: 0 },
-            justify: { content: 'flex-end' },
-            minWidth: rem(1.5),
-            font: { size: rem(0.875), weight: 600 },
-            color: $bog_builderui_tokens.text,
-        },
-        Row_since: {
-            justify: { content: 'flex-end' },
-            font: { size: rem(0.875) },
-            color: $bog_builderui_tokens.shade,
-        },
-        Pager: {
-            flex: { direction: 'row', wrap: 'wrap' },
-            align: { items: 'center' },
-            gap: rem(0.25),
-            margin: { top: rem(0.75) },
-        },
-        Page: {
-            justify: { content: 'center' },
-            minWidth: rem(2),
-            padding: { top: rem(0.3), bottom: rem(0.3), left: rem(0.5), right: rem(0.5) },
-            border: { radius: $bog_builderui_tokens.radius },
-            font: { size: rem(0.875) },
-            color: $bog_builderui_tokens.control,
-            '[bog_smalljs_versus_page_current]': {
-                true: {
-                    background: { color: $bog_builderui_tokens.control },
-                    color: $bog_builderui_tokens.back,
-                },
-            },
-        },
-        Page_next: {
-            justify: { content: 'center' },
-            minWidth: rem(2),
-            padding: { top: rem(0.3), bottom: rem(0.3), left: rem(0.5), right: rem(0.5) },
-            border: { radius: $bog_builderui_tokens.radius },
-            font: { size: rem(1) },
-            color: $bog_builderui_tokens.control,
-        },
-        Empty: {
-            display: 'block',
-            padding: { top: rem(1), bottom: rem(1) },
-            font: { size: rem(0.9375) },
-            lineHeight: '1.6',
-            color: $bog_builderui_tokens.shade,
-        },
-        '@media': {
-            '(max-width: 47.9375rem)': {
-                gap: rem(2.5),
-                padding: { top: rem(2), bottom: rem(2.5), left: rem(1.25), right: rem(1.25) },
-                Title: { font: { size: rem(2) } },
-                Picker: {
-                    flex: { direction: 'column' },
-                    align: { items: 'stretch' },
-                    gap: rem(0.5),
-                },
-                Vs: { align: { self: 'center' } },
-                // The logo tile is the first thing to go: on a phone the name,
-                // the score and the year are what the column is for.
-                Rating_head: { gridTemplateColumns: rating_columns_narrow },
-                Rating_head_mark: { display: 'none' },
-                Row: { gridTemplateColumns: rating_columns_narrow },
-                Row_mark: { display: 'none' },
-            },
-        },
-    });
-    // The two picker fields are $mol_search instances, so their input and their
-    // suggest list belong to $mol_search, not to this page. Restyling them
-    // through $mol_style_define( $mol_search ) would repaint every search box in
-    // the app; scoping raw CSS under our own block keeps the change local.
-    $mol_style_attach('$bog_smalljs_versus.picker', `
-
-		[bog_smalljs_versus_picker] [mol_search_query] {
-			font-size: 1.0625rem;
-			padding: 0.5rem 0.6rem;
-		}
-
-		[bog_smalljs_versus_picker] [mol_search_menu] {
-			min-width: 14rem;
-		}
-
-	`);
 })($ || ($ = {}));
 
 ;
@@ -31790,8 +31833,10 @@ var $;
              *    the keys a link does not mention) and leave `a=react` hanging in
              *    the address of a documentation page.
              *
-             *  Deferred through $mol_wire_async: setting one memoized cell from the
-             *  body of another is the invalidation loop $mol forbids. */
+             *  This cell only decides what the address should say. The writing itself
+             *  happens in the action below, reached through $mol_wire_async so it
+             *  lands outside this memoized body: setting $mol_state_arg from inside
+             *  one is the invalidation loop $mol forbids. */
             route_canonical() {
                 const arg = this.$.$mol_state_arg;
                 const a = arg.value('a');
@@ -31810,7 +31855,14 @@ var $;
                 }
                 if (next_a === a && next_b === b)
                     return null;
-                $mol_wire_async(arg).dict({ ...arg.dict(), a: next_a, b: next_b });
+                $mol_wire_async(this).route_rewrite(next_a, next_b);
+                return null;
+            }
+            /** Rewrites `a`/`b` in place — no history entry, because this corrects
+             *  the spelling of the address the reader already asked for. */
+            route_rewrite(a, b) {
+                const arg = this.$.$mol_state_arg;
+                arg.dict({ ...arg.dict(), a, b });
                 return null;
             }
             /** Ordered arg pairs describing the current screen ($mol hash-router state). */
@@ -31983,6 +32035,9 @@ var $;
         __decorate([
             $mol_mem
         ], $bog_smalljs_app.prototype, "route_canonical", null);
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_app.prototype, "route_rewrite", null);
         __decorate([
             $mol_mem
         ], $bog_smalljs_app.prototype, "locale_sync", null);
