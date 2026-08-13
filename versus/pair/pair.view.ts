@@ -13,7 +13,7 @@ namespace $.$$ {
 	 *  not require touching this file. */
 	const metric_order: Readonly< Record< string, readonly string[] > > = {
 		code: [ 'loc_todomvc', 'files_todomvc', 'deps_direct', 'deps_transitive', 'node_modules_size' ],
-		weight: [ 'bundle_gzip', 'framework_gzip', 'app_gzip', 'tti_3g', 'lighthouse' ],
+		weight: [ 'bundle_gzip', 'framework_gzip', 'app_gzip', 'startup_bytes', 'tti_3g', 'lighthouse' ],
 		speed: [ 'create_1k', 'update_1k', 'swap_rows', 'remove_row', 'mem_ready', 'mem_1k', 'startup_tbt' ],
 		builtin: [ 'router', 'i18n', 'themes', 'virtual', 'offline', 'ssr', 'tests_nodom', 'di', 'forms', 'typed_templates' ],
 		market: [ 'stars', 'npm_downloads', 'so_questions', 'jobs', 'ui_kits', 'maintainers', 'release_rate' ],
@@ -81,6 +81,25 @@ namespace $.$$ {
 		return String( Math.round( value * 10 ) / 10 )
 	}
 
+	/** Readable stand-in for a source URL. The full address stays in the href —
+	 *  this is only what the eye reads, and a line of benchmark rows each ending
+	 *  in a hundred-character URL is a line nobody reads at all. Short paths are
+	 *  kept whole, since that is usually the part that identifies the source. */
+	function link_label( uri: string ) {
+
+		const bare = uri
+			.replace( /^https?:\/\//, '' )
+			.replace( /[?#].*$/, '' )
+			.replace( /\/+$/, '' )
+
+		const parts = bare.split( '/' )
+		parts[ 0 ] = parts[ 0 ].replace( /^www\./, '' )
+
+		if( parts.length <= 3 ) return parts.join( '/' )
+
+		return parts[ 0 ] + '/…/' + parts[ parts.length - 1 ]
+	}
+
 	/** A 0..1 share as a CSS width. Rounded before it reaches the style, so a
 	 *  division that lands on 62.50000000000001 does not end up in the DOM. */
 	function share_text( share: number ) {
@@ -130,6 +149,26 @@ namespace $.$$ {
 			return this.$.$bog_smalljs_versus_pair_compare
 		}
 
+		// Every read of the data set goes through one of these four, so the page
+		// can be exercised against a made-up data set without a data set being
+		// present, and so a change in where the numbers live touches four lines.
+
+		meta( metric: string ) {
+			return this.data().meta( metric )
+		}
+
+		measure( id: string, metric: string ) {
+			return this.data().measure( id, metric )
+		}
+
+		registry_metrics( category: string ) {
+			return this.data().category_metrics( category )
+		}
+
+		runner( id: string ) {
+			return this.data().framework( id ).runner === true
+		}
+
 		/** Display names come from the data files. Before a file exists the id is
 		 *  shown as it stands rather than being prettied up into a name nobody
 		 *  wrote down. */
@@ -160,7 +199,7 @@ namespace $.$$ {
 		metric_ids( category: string ): readonly string[] {
 
 			const known = metric_order[ category ] ?? []
-			const listed = this.data().category_metrics( category )
+			const listed = this.registry_metrics( category )
 			const rest = listed.filter( id => !known.includes( id ) )
 
 			return [ ... known.filter( id => listed.includes( id ) ), ... rest ]
@@ -179,11 +218,11 @@ namespace $.$$ {
 
 			return this.metric_ids( category ).flatMap( id => {
 
-				const meta = this.data().meta( id )
+				const meta = this.meta( id )
 				if( !meta ) return []
 
-				const left_measure = this.data().measure( left, id )
-				const right_measure = this.data().measure( right, id )
+				const left_measure = this.measure( left, id )
+				const right_measure = this.measure( right, id )
 				if( !left_measure && !right_measure ) return []
 
 				return [ {
@@ -201,7 +240,7 @@ namespace $.$$ {
 		}
 
 		row( id: string ): Row | null {
-			const meta = this.data().meta( id )
+			const meta = this.meta( id )
 			if( !meta ) return null
 			return this.rows( meta.category ).find( row => row.id === id ) ?? null
 		}
@@ -246,28 +285,40 @@ namespace $.$$ {
 
 			for( const block of this.cases() ) {
 
-				const left_rank = case_rank[ block.status( left ) ]
-				const right_rank = case_rank[ block.status( right ) ]
-				if( left_rank === undefined || right_rank === undefined ) continue
+				const side = this.case_side( block.status( left ), block.status( right ) )
+				if( side === 'none' ) continue
 
 				total += 1
-				if( left_rank > right_rank ) left_wins += 1
-				if( right_rank > left_rank ) right_wins += 1
+				if( side === 'left' ) left_wins += 1
+				if( side === 'right' ) right_wins += 1
 			}
 
 			return { left: left_wins, right: right_wins, total }
 		}
 
+		/** Which side one live case went to. Unrunnable outcomes on either side —
+		 *  not started, broken, measured under conditions that void the run — make
+		 *  the case count for nobody, exactly as a metric only one side reports
+		 *  counts for nobody. */
+		case_side( left_status: string, right_status: string ): $bog_smalljs_versus_pair_side {
+
+			const left = case_rank[ left_status ]
+			const right = case_rank[ right_status ]
+			if( left === undefined || right === undefined ) return 'none'
+
+			if( left === right ) return 'tie'
+			return left > right ? 'left' : 'right'
+		}
+
 		/** Whether the live tests can decide anything for this pair at all. */
 		edge_live() {
-			return this.data().framework( this.left() ).runner
-				&& this.data().framework( this.right() ).runner
+			return this.runner( this.left() ) && this.runner( this.right() )
 		}
 
 		/** Categories that have something to say. A category with no metric both
 		 *  sides report is not a draw — nothing was compared — so it stays out of
 		 *  the count instead of quietly padding it. */
-		decided() {
+		decided(): readonly string[] {
 			return categories.filter( id => this.score( id ).total > 0 )
 		}
 
@@ -420,6 +471,14 @@ namespace $.$$ {
 			return this.row( id )?.meta.human ?? ''
 		}
 
+		/** How the number was obtained — the same procedure for both sides, which
+		 *  is what makes the two comparable at all. Printed next to the row rather
+		 *  than hidden behind the methodology link at the bottom: a reader who
+		 *  doubts one number should not have to go looking for what it means. */
+		metric_method( id: string ) {
+			return this.row( id )?.meta.method ?? ''
+		}
+
 		value_text( measure: Measure | null, meta: $bog_smalljs_versus_pair_meta | undefined ) {
 
 			if( !measure ) return no_value
@@ -453,6 +512,14 @@ namespace $.$$ {
 
 		metric_bar( id: string ) {
 			return this.metric_share( id ) !== null
+		}
+
+		/** Which half of the bar is the better one. The length already says it,
+		 *  but the colour has to agree: a fixed green on the left would read as
+		 *  "left is good" and would be wrong on every row the right side wins. */
+		metric_lead( id: string ) {
+			const side = this.row( id )?.diff.side
+			return side === 'left' || side === 'right' ? side : ''
 		}
 
 		metric_left_share( id: string ) {
@@ -541,14 +608,19 @@ namespace $.$$ {
 			if( !measure ) return ''
 
 			if( /^https?:\/\//.test( measure.source ) ) return measure.source
-			if( /^https?:\/\//.test( measure.method ) ) return measure.method
+			if( /^https?:\/\//.test( measure.method ?? '' ) ) return measure.method ?? ''
 
 			return ''
 		}
 
 		source_label( key: string ) {
+
 			const measure = this.source_measure( key )
 			if( !measure ) return ''
+
+			const uri = this.source_uri( key )
+			if( uri ) return link_label( uri )
+
 			return measure.source || this.no_data()
 		}
 
@@ -572,8 +644,8 @@ namespace $.$$ {
 		 *  page knows what the two are called. */
 		edge_missing_note() {
 
-			const left_runner = this.data().framework( this.left() ).runner
-			const right_runner = this.data().framework( this.right() ).runner
+			const left_runner = this.runner( this.left() )
+			const right_runner = this.runner( this.right() )
 
 			if( left_runner && right_runner ) return ''
 			if( !left_runner && !right_runner ) return this.edge_missing_both()
@@ -618,6 +690,15 @@ namespace $.$$ {
 			return [ this.left(), this.right() ].filter( id => {
 				return id ? this.$.$bog_smalljs_versus_pair_data.framework( id ).runner : false
 			} )
+		}
+
+		/** The section page always has three columns and says so in its stylesheet.
+		 *  Here the count depends on how many of the pair have a runner, so it has
+		 *  to reach the stylesheet as an attribute — otherwise a pair with one
+		 *  runner leaves two thirds of the block empty and reads as two frames
+		 *  that failed to load. */
+		columns_count() {
+			return this.frameworks().length
 		}
 
 		/** With no runnable column there is nothing to run, so the button goes
@@ -670,6 +751,7 @@ namespace $.$$ {
 				this.Row(),
 				... this.delta() ? [ this.Delta() ] : [],
 				... this.human() ? [ this.Human() ] : [],
+				... this.method() ? [ this.Method() ] : [],
 				... this.sources().length ? [ this.Sources() ] : [],
 			]
 		}

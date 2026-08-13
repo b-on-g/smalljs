@@ -327,16 +327,25 @@ namespace $ {
 			background: { color: $bog_builderui_tokens.line },
 		},
 
+		// Both halves start neutral; the leading one is coloured by the attribute
+		// below. A tie keeps them both neutral, which is what a tie looks like.
 		Bar_left: {
 			display: 'block',
 			flex: { shrink: 0 },
-			background: { color: bar_ahead },
+			background: { color: bar_behind },
 		},
 
 		Bar_right: {
 			display: 'block',
 			flex: { shrink: 0 },
 			background: { color: bar_behind },
+		},
+
+		'@': {
+			bog_smalljs_versus_pair_lead: {
+				left: { Bar_left: { background: { color: bar_ahead } } },
+				right: { Bar_right: { background: { color: bar_ahead } } },
+			},
 		},
 
 		Delta: {
@@ -351,6 +360,14 @@ namespace $ {
 			font: { size: rem( 0.875 ) },
 			lineHeight: '1.5',
 			color: $bog_builderui_tokens.shade,
+		},
+
+		Method: {
+			display: 'block',
+			font: { size: rem( 0.75 ) },
+			lineHeight: '1.5',
+			color: $bog_builderui_tokens.shade,
+			opacity: 0.85,
 		},
 
 		Sources: {
@@ -413,6 +430,13 @@ namespace $ {
 
 	$mol_style_define( $bog_smalljs_versus_pair_case, {
 
+		'@': {
+			bog_smalljs_versus_pair_columns: {
+				1: { Columns: { gridTemplateColumns: 'minmax(0, 1fr)' } },
+				2: { Columns: { gridTemplateColumns: 'repeat(2, minmax(0, 1fr))' } },
+			},
+		},
+
 		Missing_note: {
 			display: 'block',
 			flex: { shrink: 1 },
@@ -420,6 +444,21 @@ namespace $ {
 			font: { size: rem( 0.8125 ) },
 			lineHeight: '1.45',
 			color: $bog_builderui_tokens.shade,
+		},
+
+		// The case block folds its columns into one at the same width the section
+		// page does. Repeated here rather than left to the base sheet: the rules
+		// above are written for this subclass, so they are attached after it and
+		// would otherwise keep two columns on a phone.
+		'@media': {
+			'(max-width: 47.9375rem)': {
+				'@': {
+					bog_smalljs_versus_pair_columns: {
+						1: { Columns: { gridTemplateColumns: 'minmax(0, 1fr)' } },
+						2: { Columns: { gridTemplateColumns: 'minmax(0, 1fr)' } },
+					},
+				},
+			},
 		},
 
 	} )

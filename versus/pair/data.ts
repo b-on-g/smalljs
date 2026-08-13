@@ -1,194 +1,59 @@
 namespace $ {
 
-	/** One entry of `versus/data/registry.json`: what a metric is called, which
-	 *  direction is better, and the sentence that turns the number into something
-	 *  a reader can act on. */
-	export type $bog_smalljs_versus_pair_meta = {
-		readonly category: string
-		readonly title: string
-		readonly unit: string
-		/** `lower` and `higher` are numeric; `boolean` is the has-it / has-it-not
-		 *  matrix. Anything else is kept as-is and simply never scored. */
-		readonly better: string
-		readonly human: string
-	}
+	/** One entry of the metric registry: what a metric is called, which direction
+	 *  is better, the sentence that turns the number into something a reader can
+	 *  act on, and how the number was obtained. */
+	export type $bog_smalljs_versus_pair_meta = $bog_smalljs_versus_data_metric
 
-	/** One measurement out of `versus/data/<framework>.json`. There is no entry
-	 *  for a metric nobody measured — absence is the way "we do not know" is
-	 *  written down, so nothing here is ever a placeholder zero. */
-	export type $bog_smalljs_versus_pair_measure = {
-		readonly value: number | boolean | string
-		readonly source: string
-		readonly measured_at: string
-		readonly method: string
-	}
+	/** One measurement. There is no entry for a metric nobody measured — absence
+	 *  is how "we do not know" is written down, so nothing here is ever a
+	 *  placeholder zero. */
+	export type $bog_smalljs_versus_pair_measure = $bog_smalljs_versus_data_value
 
-	export type $bog_smalljs_versus_pair_framework = {
-		readonly id: string
-		readonly title: string
-		readonly since: number | null
-		/** Whether a live crash-test runner exists for it. False means the edge
-		 *  cases block shows one column and says so. */
-		readonly runner: boolean
-		readonly metrics: Readonly< Record< string, $bog_smalljs_versus_pair_measure > >
-	}
-
-	// Where the data files are served from, relative to the site root.
-	const data_dir = 'bog/smalljs/versus/data/'
-
-	// The mam dev server serves the repo root, so the page path carries this.
-	const repo_prefix = '/bog/smalljs/'
-
-	// Path the site is mounted at on the deploy.
-	const site_mount = '/smalljs/'
-
-	function text_of( raw: unknown ) {
-		return typeof raw === 'string' ? raw : ''
-	}
-
-	function record_of( raw: unknown ): Readonly< Record< string, unknown > > {
-		if( !raw || typeof raw !== 'object' || Array.isArray( raw ) ) return {}
-		return raw as Record< string, unknown >
-	}
-
-	/** A metric is present only when it carries a usable value. `null`, a missing
-	 *  field and a NaN all mean the same thing here — nobody measured it — and all
-	 *  three end up as no entry at all. A zero, on the other hand, is a reading
-	 *  like any other and is kept. */
-	function measure_of( raw: unknown ): $bog_smalljs_versus_pair_measure | null {
-
-		const rec = record_of( raw )
-		const value = rec.value
-
-		if( typeof value === 'number' ) {
-			if( !Number.isFinite( value ) ) return null
-		} else if( typeof value !== 'boolean' && typeof value !== 'string' ) {
-			return null
-		}
-
-		return {
-			value,
-			source: text_of( rec.source ),
-			measured_at: text_of( rec.measured_at ),
-			method: text_of( rec.method ),
-		}
-	}
-
-	function framework_of( id: string, raw: unknown ): $bog_smalljs_versus_pair_framework {
-
-		const rec = record_of( raw )
-		const metrics: Record< string, $bog_smalljs_versus_pair_measure > = {}
-
-		for( const [ key, value ] of Object.entries( record_of( rec.metrics ) ) ) {
-			const measure = measure_of( value )
-			if( measure ) metrics[ key ] = measure
-		}
-
-		return {
-			id: text_of( rec.id ) || id,
-			title: text_of( rec.title ) || id,
-			since: typeof rec.since === 'number' && Number.isFinite( rec.since ) ? rec.since : null,
-			runner: rec.runner === true,
-			metrics,
-		}
-	}
-
-	function registry_of( raw: unknown ): Readonly< Record< string, $bog_smalljs_versus_pair_meta > > {
-
-		const out: Record< string, $bog_smalljs_versus_pair_meta > = {}
-
-		for( const [ key, value ] of Object.entries( record_of( raw ) ) ) {
-
-			const rec = record_of( value )
-			const category = text_of( rec.category )
-			if( !category ) continue
-
-			out[ key ] = {
-				category,
-				title: text_of( rec.title ) || key,
-				unit: text_of( rec.unit ),
-				better: text_of( rec.better ),
-				human: text_of( rec.human ),
-			}
-		}
-
-		return out
-	}
+	export type $bog_smalljs_versus_pair_framework = $bog_smalljs_versus_data_framework
 
 	/**
-	 * Reads `versus/data/*.json` and hands the page parsed, defensive values.
+	 * Reading side of `versus/data`.
 	 *
-	 * A file that is not there yet, a metric nobody measured and a field somebody
-	 * left out are all normal states of this section, not errors: the data is
-	 * filled in over time and the page has to render at every stage of that. So a
-	 * failed request resolves to an empty framework rather than throwing, and the
-	 * page shows the same dash it shows for a metric that was never measured.
+	 * The measurements themselves live in `$bog_smalljs_versus_data`, generated
+	 * from the JSON files next to it and compiled into the bundle. This sits in
+	 * front of them and answers the questions a page actually asks — what is this
+	 * framework called, what does it report for this metric, which metrics belong
+	 * to this category — with answers that hold even when the id is one nobody
+	 * has written a file for.
 	 *
-	 * The one thing that is re-thrown is the suspend signal of the reactive
-	 * engine — swallowing it would turn a pending request into permanent "no
-	 * data" instead of a loading state.
+	 * That last part is the whole point of the layer. A framework with no data is
+	 * a normal state of this section, not an error: ids arrive from the URL, and
+	 * the roster grows one file at a time. So an unknown id resolves to a
+	 * framework with no metrics rather than to null, and every page above renders
+	 * the same dash it renders for a metric that was never measured.
 	 */
 	export class $bog_smalljs_versus_pair_data extends $mol_object2 {
 
-		/** Path of the page itself. Split out so the base below can be checked
-		 *  without a browser. */
-		static location_path() {
-			return this.$.$mol_dom_context.location?.pathname ?? ''
+		static source() {
+			return this.$.$bog_smalljs_versus_data
 		}
 
-		/** Site root the data files hang off. Derived the same way, and for the
-		 *  same reason, as the runner paths in `$bog_smalljs_versus_case`: the
-		 *  page lives at `/bog/smalljs/app/-/test.html` on the dev server and at
-		 *  `/smalljs/...` on the deploy. The dev check comes first, because a dev
-		 *  path contains the deploy mount as a substring but not the other way
-		 *  round. */
-		static site_base() {
-
-			const pathname = this.location_path()
-
-			const repo_at = pathname.indexOf( repo_prefix )
-			if( repo_at >= 0 ) return pathname.slice( 0, repo_at ) + '/'
-
-			const mount_at = pathname.indexOf( site_mount )
-			if( mount_at >= 0 ) return pathname.slice( 0, mount_at + site_mount.length )
-
-			return '/'
+		/** Whether anything at all is on file for this id. Tells "we have no file
+		 *  for this framework" apart from "we have a file and it is thin". */
+		static known( id: string ) {
+			return this.source().item( id ) !== null
 		}
 
-		static uri( name: string ) {
-			return this.site_base() + data_dir + name + '.json'
-		}
-
-		/** Raw JSON, or null when there is nothing to read. */
-		@ $mol_mem_key
-		static json( name: string ): unknown {
-			if( !name ) return null
-			try {
-				return this.$.$mol_fetch.json( this.uri( name ) )
-			} catch( error ) {
-				if( $mol_promise_like( error ) ) $mol_fail_hidden( error )
-				return null
-			}
-		}
-
-		@ $mol_mem
-		static registry() {
-			return registry_of( this.json( 'registry' ) )
-		}
-
-		/** Never null: a framework with no file is a framework with no metrics,
-		 *  which is exactly how the page has to treat it anyway. */
+		/** Never null, so nothing above has to branch on an id it got from a URL.
+		 *  An unknown one comes back with no metrics and no runner, which is the
+		 *  truth about it. */
 		@ $mol_mem_key
 		static framework( id: string ): $bog_smalljs_versus_pair_framework {
-			return framework_of( id, this.json( id ) )
+			return this.source().item( id ) ?? { id, title: id, runner: false, metrics: {} }
 		}
 
-		/** Whether anything at all was read for this id. Used to tell "we have no
-		 *  file for this framework" apart from "we have a file and it is thin". */
-		static known( id: string ) {
-			return this.json( id ) !== null
+		static registry() {
+			return this.source().registry()
 		}
 
+		/** Display name. An id with no file keeps the id: a name nobody wrote
+		 *  down is as made up as a number nobody measured. */
 		static title( id: string ) {
 			return this.framework( id ).title
 		}
@@ -198,13 +63,13 @@ namespace $ {
 		}
 
 		static meta( metric: string ): $bog_smalljs_versus_pair_meta | null {
-			return this.registry()[ metric ] ?? null
+			return this.source().metric( metric )
 		}
 
-		/** Metric ids of a category, in the order the registry lists them. The
-		 *  page reorders them by its own canonical list and appends whatever it
-		 *  does not know about, so a metric added to the registry alone still
-		 *  reaches the page. */
+		/** Metric ids of a category, in the order the registry lists them. Pages
+		 *  reorder them by their own canonical list and append whatever they do
+		 *  not know about, so a metric added to the registry alone still reaches
+		 *  the reader. */
 		@ $mol_mem_key
 		static category_metrics( category: string ): readonly string[] {
 			return Object.entries( this.registry() )

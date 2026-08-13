@@ -1,6 +1,7 @@
 $bog_smalljs_versus $mol_view
 	framework_title* \
 	vs_text @ \vs
+	row_partial_template @ \Ranked on {n} of {total} metrics
 	auto /
 		<= pick_sync null
 	sub /
@@ -123,7 +124,7 @@ $bog_smalljs_versus $mol_view
 			<= row_title* \
 	Row_partial* $mol_view
 		sub /
-			<= row_partial_text @ \partial data
+			<= row_partial_text* \
 	Row_score* $mol_view
 		sub /
 			<= Row_track* $mol_view

@@ -198,12 +198,25 @@ namespace $.$$ {
 			)
 		}
 
-		/** The framework publishes fewer metrics than the registry describes, so
-		 *  its place in the rating rests on an incomplete table. */
+		/** How many of the registry's metrics this framework actually publishes. */
+		coverage( id: string ) {
+			return Object.keys( this.by_id().get( id )?.metrics ?? {} ).length
+		}
+
+		/** Whether the row deserves a word about how thin its table is. Every
+		 *  file is missing something, so flagging "incomplete" everywhere would
+		 *  say nothing; the note appears once less than half the registry is
+		 *  filled in, where the placing really is standing on little. */
 		partial( id: string ) {
 			const total = Object.keys( this.registry() ).length
 			if( !total ) return false
-			return Object.keys( this.by_id().get( id )?.metrics ?? {} ).length < total
+			return this.coverage( id ) * 2 < total
+		}
+
+		row_partial_text( id: string ) {
+			return this.row_partial_template()
+				.replace( '{n}', String( this.coverage( id ) ) )
+				.replace( '{total}', String( Object.keys( this.registry() ).length ) )
 		}
 
 		// ——— Picking a pair —————————————————————————————————————————————————

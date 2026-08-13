@@ -25,9 +25,11 @@ namespace $ {
 			flex: { direction: 'column' },
 			gap: rem( 1 ),
 			// width:100% (not just max-width) so the column never collapses to its
-			// max-content width and pushes the page sideways on a phone.
+			// max-content width and pushes the page sideways on a phone. The
+			// measure of the prose is set on the paragraph, not here: every block
+			// on the page has to start at the same left edge.
 			width: '100%',
-			maxWidth: prose,
+			maxWidth: wide,
 		},
 
 		Title: {
@@ -59,7 +61,7 @@ namespace $ {
 		},
 
 		Pick_a: {
-			flex: { grow: 1, shrink: 1, basis: '0' },
+			flex: { grow: 1, shrink: 1, basis: 0 },
 			align: { self: 'stretch' },
 			minWidth: 0,
 			background: { color: $bog_builderui_tokens.field },
@@ -72,7 +74,7 @@ namespace $ {
 		},
 
 		Pick_b: {
-			flex: { grow: 1, shrink: 1, basis: '0' },
+			flex: { grow: 1, shrink: 1, basis: 0 },
 			align: { self: 'stretch' },
 			minWidth: 0,
 			background: { color: $bog_builderui_tokens.field },
@@ -107,7 +109,7 @@ namespace $ {
 
 		Popular_list: {
 			display: 'grid',
-			gridTemplateColumns: 'repeat( auto-fill, minmax( 15rem, 1fr ) )',
+			gridTemplateColumns: 'repeat( auto-fill, minmax( 19rem, 1fr ) )',
 			gap: rem( 0.5 ),
 			minWidth: 0,
 		},
@@ -174,7 +176,7 @@ namespace $ {
 
 		Top_apps_list: {
 			display: 'grid',
-			gridTemplateColumns: 'repeat( auto-fill, minmax( 12rem, 1fr ) )',
+			gridTemplateColumns: 'repeat( auto-fill, minmax( 19rem, 1fr ) )',
 			gap: rem( 0.5 ),
 			minWidth: 0,
 		},
@@ -204,7 +206,7 @@ namespace $ {
 
 		Top_sites_list: {
 			display: 'grid',
-			gridTemplateColumns: 'repeat( auto-fill, minmax( 12rem, 1fr ) )',
+			gridTemplateColumns: 'repeat( auto-fill, minmax( 19rem, 1fr ) )',
 			gap: rem( 0.5 ),
 			minWidth: 0,
 		},
@@ -231,7 +233,7 @@ namespace $ {
 			justify: { content: 'center' },
 			width: rem( 2 ),
 			height: rem( 2 ),
-			borderRadius: $bog_builderui_tokens.radius,
+			border: { radius: $bog_builderui_tokens.radius },
 			background: { color: $bog_builderui_tokens.hover },
 			font: { family: $bog_builderui_tokens.font_head, size: rem( 1 ), weight: 600 },
 			color: $bog_builderui_tokens.special,
@@ -315,7 +317,7 @@ namespace $ {
 			justify: { content: 'center' },
 			width: rem( 2 ),
 			height: rem( 2 ),
-			borderRadius: $bog_builderui_tokens.radius,
+			border: { radius: $bog_builderui_tokens.radius },
 			background: { color: $bog_builderui_tokens.hover },
 			font: { family: $bog_builderui_tokens.font_head, size: rem( 1 ), weight: 600 },
 			color: $bog_builderui_tokens.special,
@@ -355,14 +357,14 @@ namespace $ {
 			flex: { grow: 1 },
 			minWidth: 0,
 			height: rem( 0.375 ),
-			borderRadius: rem( 0.25 ),
+			border: { radius: rem( 0.25 ) },
 			background: { color: $bog_builderui_tokens.hover },
 			overflow: 'hidden',
 		},
 
 		Row_fill: {
 			height: '100%',
-			borderRadius: rem( 0.25 ),
+			border: { radius: rem( 0.25 ) },
 			background: { color: $bog_builderui_tokens.control },
 		},
 
@@ -391,7 +393,7 @@ namespace $ {
 			justify: { content: 'center' },
 			minWidth: rem( 2 ),
 			padding: { top: rem( 0.3 ), bottom: rem( 0.3 ), left: rem( 0.5 ), right: rem( 0.5 ) },
-			borderRadius: $bog_builderui_tokens.radius,
+			border: { radius: $bog_builderui_tokens.radius },
 			font: { size: rem( 0.875 ) },
 			color: $bog_builderui_tokens.control,
 
@@ -407,7 +409,7 @@ namespace $ {
 			justify: { content: 'center' },
 			minWidth: rem( 2 ),
 			padding: { top: rem( 0.3 ), bottom: rem( 0.3 ), left: rem( 0.5 ), right: rem( 0.5 ) },
-			borderRadius: $bog_builderui_tokens.radius,
+			border: { radius: $bog_builderui_tokens.radius },
 			font: { size: rem( 1 ) },
 			color: $bog_builderui_tokens.control,
 		},

@@ -108,10 +108,12 @@ $bog_smalljs_versus_pair $mol_view
 		left_value <= metric_left_value* \
 		right_value <= metric_right_value* \
 		bar <= metric_bar* false
+		lead <= metric_lead* \
 		left_share <= metric_left_share* \50%
 		right_share <= metric_right_share* \50%
 		delta <= metric_delta* \
 		human <= metric_human* \
+		method <= metric_method* \
 		sources <= metric_sources* /
 	Source* $bog_smalljs_versus_pair_source
 		name <= source_name* \
@@ -151,6 +153,10 @@ $bog_smalljs_versus_pair_case $bog_smalljs_versus_case
 	left \
 	right \
 	missing_note \
+	columns_count 2
+	attr *
+		^
+		bog_smalljs_versus_pair_columns <= columns_count
 	Missing_note $mol_view
 		sub /
 			<= missing_note
@@ -194,10 +200,15 @@ $bog_smalljs_versus_pair_metric $mol_view
 	left_value \
 	right_value \
 	bar false
+	lead \
 	left_share \50%
 	right_share \50%
+	attr *
+		^
+		bog_smalljs_versus_pair_lead <= lead
 	delta \
 	human \
+	method \
 	sources /
 	sub <= metric_content /
 	Title $mol_view
@@ -229,6 +240,9 @@ $bog_smalljs_versus_pair_metric $mol_view
 	Human $mol_view
 		sub /
 			<= human
+	Method $mol_view
+		sub /
+			<= method
 	Sources $mol_view
 		sub <= sources /
 
