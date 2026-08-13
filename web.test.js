@@ -6492,6 +6492,17 @@ var $;
                 $mol_assert_equal(score.left, 0);
                 $mol_assert_equal(score.right, 1);
             },
+            'rows come out in the order the registry lists them'() {
+                // The registry groups by meaning — what ships to the browser before
+                // what a developer installs — and putting the wrong two rows next to
+                // each other is how a reader ends up comparing unlike numbers.
+                const view = pair_over({
+                    shipped: { meta: meta('lower'), left: 0, right: 3 },
+                    installed: { meta: meta('lower'), left: 133, right: 35 },
+                    disk: { meta: meta('lower'), left: 62, right: 80.9 },
+                });
+                $mol_assert_equal(view.rows('code').map(row => row.id).join(), 'shipped,installed,disk');
+            },
             'a metric neither side reports is not shown at all'() {
                 const view = pair_over({
                     known: { meta: meta('lower'), left: 10, right: 20 },
