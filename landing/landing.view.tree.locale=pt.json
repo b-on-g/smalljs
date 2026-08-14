@@ -42,5 +42,9 @@
 	"$bog_smalljs_landing_Footer_link_router_title": "$mol_state_arg",
 	"$bog_smalljs_landing_Footer_link_crowd_title": "$hyoo_crowd",
 	"$bog_smalljs_landing_Footer_link_baza_title": "Giper Baza",
-	"$bog_smalljs_landing_Footer_copy_line2_text": "Copyright © 2026 smalljs"
+	"$bog_smalljs_landing_Footer_copy_line2_text": "Copyright © 2026 smalljs",
+	"$bog_smalljs_landing_versus_eyebrow_text": "Comparar",
+	"$bog_smalljs_landing_versus_line_text": "Um cenário, rodando lado a lado em React, Vue e $mol, ao vivo no seu próprio navegador.",
+	"$bog_smalljs_landing_versus_open_label": "Abrir a comparação",
+	"$bog_smalljs_landing_versus_pair_label": "Começar por $mol vs React"
 }

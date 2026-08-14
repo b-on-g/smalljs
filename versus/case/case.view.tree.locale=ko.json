@@ -1,0 +1,19 @@
+{
+	"$bog_smalljs_versus_case_run_label": "실행",
+	"$bog_smalljs_versus_case_status_idle": "아직 실행하지 않았습니다",
+	"$bog_smalljs_versus_case_status_running": "실행 중…",
+	"$bog_smalljs_versus_case_status_ok": "예상대로 동작",
+	"$bog_smalljs_versus_case_status_warn": "동작하지만 유의점 있음",
+	"$bog_smalljs_versus_case_status_fail": "이상 동작 관찰됨",
+	"$bog_smalljs_versus_case_status_error": "결과 없음",
+	"$bog_smalljs_versus_case_status_invalid": "측정이 중단됨",
+	"$bog_smalljs_versus_case_error_timeout": "러너가 15초 안에 응답하지 않았습니다.",
+	"$bog_smalljs_versus_case_error_not_loaded": "러너 페이지가 로드되지 않아 이 프레임워크는 비교에 참여할 수 없습니다.",
+	"$bog_smalljs_versus_case_run_hint_broken": "프레임 중 하나가 로드되지 않아 지금 이 컴퓨터에서는 셋을 비교할 수 없습니다.",
+	"$bog_smalljs_versus_case_invalid_tab_hidden": "실행 중에 탭이 백그라운드로 내려가서, 잰 시간이 작업이 아니라 대기를 재고 말았습니다. 이 탭을 앞에 둔 채로 다시 실행해 주세요.",
+	"$bog_smalljs_versus_case_invalid_timers_throttled": "시나리오가 예상하는 것보다 실행이 눈에 띄게 오래 걸렸습니다. 컴퓨터가 바빠 타이머가 밀렸습니다. 조금 한가할 때 다시 실행해 주세요.",
+	"$bog_smalljs_versus_case_invalid_frame_offscreen": "이 프레임이 동작하는 동안 화면 밖으로 스크롤되었고, 브라우저는 보이지 않는 프레임을 그리지 않습니다. 다시 실행하고 끝날 때까지 이 케이스에 머물러 주세요.",
+	"$bog_smalljs_versus_case_invalid_other": "이번 실행은 정확하게 측정하지 못했습니다. 다시 실행해 주세요.",
+	"$bog_smalljs_versus_case_run_hint_hidden": "실행은 이 탭이 앞에 있을 때만 시작됩니다. 백그라운드 탭에서는 타이머가 느려지고 화면도 그리지 않아 수치가 의미를 잃습니다.",
+	"$bog_smalljs_versus_case_run_hint_loading": "프레임 세 개가 모두 로드되기를 기다리는 중입니다."
+}

@@ -1,0 +1,19 @@
+{
+	"$bog_smalljs_versus_case_run_label": "运行",
+	"$bog_smalljs_versus_case_status_idle": "尚未运行",
+	"$bog_smalljs_versus_case_status_running": "运行中…",
+	"$bog_smalljs_versus_case_status_ok": "符合预期",
+	"$bog_smalljs_versus_case_status_warn": "可用，但有保留",
+	"$bog_smalljs_versus_case_status_fail": "观察到异常",
+	"$bog_smalljs_versus_case_status_error": "没有结果",
+	"$bog_smalljs_versus_case_status_invalid": "测量被打断",
+	"$bog_smalljs_versus_case_error_timeout": "runner 在 15 秒内没有响应。",
+	"$bog_smalljs_versus_case_error_not_loaded": "runner 页面没有加载成功，因此这个框架无法参与本次对比。",
+	"$bog_smalljs_versus_case_run_hint_broken": "其中一个 iframe 没有加载成功，所以现在这台机器上无法比较这三者。",
+	"$bog_smalljs_versus_case_invalid_tab_hidden": "运行期间标签页切到了后台，计时量到的是等待而不是工作。请把这个标签页放在前台再运行一次。",
+	"$bog_smalljs_versus_case_invalid_timers_throttled": "本次运行明显比场景预期的更久：机器很忙，定时器被压缩了。等空闲一些再运行一次。",
+	"$bog_smalljs_versus_case_invalid_frame_offscreen": "这个 iframe 在工作时滚出了可视区域，而浏览器不会为看不见的 iframe 绘制画面。请再运行一次，并停留在这个用例上直到结束。",
+	"$bog_smalljs_versus_case_invalid_other": "这次运行无法被诚实地测量。请再运行一次。",
+	"$bog_smalljs_versus_case_run_hint_hidden": "只有这个标签页在前台时才会开始运行：后台标签页会限制定时器并停止绘制帧，那样得到的数字就没有意义了。",
+	"$bog_smalljs_versus_case_run_hint_loading": "正在等待三个 iframe 全部加载完成。"
+}

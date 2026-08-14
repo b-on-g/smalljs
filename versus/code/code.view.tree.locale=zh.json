@@ -1,0 +1,5 @@
+{
+	"$bog_smalljs_versus_code_title": "查看代码",
+	"$bog_smalljs_versus_code_hint": "同一个场景，按每个 runner 各自写出的样子呈现。由 runner 生成，不是手工抄写的。",
+	"$bog_smalljs_versus_code_missing": "{a} 还没有 runner，所以旁边没有可以放的东西。"
+}

@@ -1,0 +1,19 @@
+{
+	"$bog_smalljs_versus_case_run_label": "Uruchom",
+	"$bog_smalljs_versus_case_status_idle": "Jeszcze nie uruchamiane",
+	"$bog_smalljs_versus_case_status_running": "Trwa…",
+	"$bog_smalljs_versus_case_status_ok": "Oczekiwane zachowanie",
+	"$bog_smalljs_versus_case_status_warn": "Działa, z zastrzeżeniem",
+	"$bog_smalljs_versus_case_status_fail": "Zaobserwowano artefakt",
+	"$bog_smalljs_versus_case_status_error": "Brak wyniku",
+	"$bog_smalljs_versus_case_status_invalid": "Pomiar przerwany",
+	"$bog_smalljs_versus_case_error_timeout": "Runner nie odpowiedział w ciągu 15 sekund.",
+	"$bog_smalljs_versus_case_error_not_loaded": "Strona runnera się nie załadowała, więc ten framework nie może wziąć udziału w porównaniu.",
+	"$bog_smalljs_versus_case_run_hint_broken": "Jedna z ramek się nie załadowała, więc tej trójki nie da się teraz porównać na tej maszynie.",
+	"$bog_smalljs_versus_case_invalid_tab_hidden": "Karta przeszła w tło w trakcie przebiegu, więc pomiary zmierzyły czekanie, a nie pracę. Uruchom jeszcze raz, trzymając tę kartę na wierzchu.",
+	"$bog_smalljs_versus_case_invalid_timers_throttled": "Przebieg trwał zauważalnie dłużej, niż zakłada scenariusz: maszyna była zajęta, a timery zostały ściśnięte. Uruchom jeszcze raz, gdy zrobi się spokojniej.",
+	"$bog_smalljs_versus_case_invalid_frame_offscreen": "Ta ramka wyjechała poza widok w trakcie pracy, a przeglądarka przestaje rysować ramki, których nie widzi. Uruchom jeszcze raz i zostań przy tym przypadku do końca.",
+	"$bog_smalljs_versus_case_invalid_other": "Tego przebiegu nie dało się zmierzyć uczciwie. Uruchom jeszcze raz.",
+	"$bog_smalljs_versus_case_run_hint_hidden": "Przebiegi startują tylko wtedy, gdy ta karta jest na wierzchu: karta w tle spowalnia timery i przestaje rysować klatki, przez co liczby straciłyby sens.",
+	"$bog_smalljs_versus_case_run_hint_loading": "Czekamy, aż wszystkie trzy ramki się załadują."
+}

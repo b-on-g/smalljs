@@ -1,0 +1,19 @@
+{
+	"$bog_smalljs_versus_case_run_label": "Esegui",
+	"$bog_smalljs_versus_case_status_idle": "Non ancora eseguito",
+	"$bog_smalljs_versus_case_status_running": "In esecuzione…",
+	"$bog_smalljs_versus_case_status_ok": "Comportamento atteso",
+	"$bog_smalljs_versus_case_status_warn": "Funziona, con una riserva",
+	"$bog_smalljs_versus_case_status_fail": "Artefatto osservato",
+	"$bog_smalljs_versus_case_status_error": "Nessun risultato",
+	"$bog_smalljs_versus_case_status_invalid": "Misurazione interrotta",
+	"$bog_smalljs_versus_case_error_timeout": "Il runner non ha risposto entro 15 secondi.",
+	"$bog_smalljs_versus_case_error_not_loaded": "La pagina del runner non si è caricata, quindi questo framework non può partecipare al confronto.",
+	"$bog_smalljs_versus_case_run_hint_broken": "Uno dei frame non si è caricato, quindi al momento i tre non si possono confrontare su questa macchina.",
+	"$bog_smalljs_versus_case_invalid_tab_hidden": "Durante l’esecuzione la scheda è passata in secondo piano, quindi i tempi hanno misurato l’attesa e non il lavoro. Esegui di nuovo tenendo questa scheda in primo piano.",
+	"$bog_smalljs_versus_case_invalid_timers_throttled": "L’esecuzione ha richiesto molto più tempo di quanto lo scenario preveda: la macchina era occupata e i timer sono stati compressi. Esegui di nuovo quando le cose sono più tranquille.",
+	"$bog_smalljs_versus_case_invalid_frame_offscreen": "Questo frame è uscito dalla vista mentre lavorava, e il browser smette di disegnare i frame che non vede. Esegui di nuovo e resta su questo caso fino alla fine.",
+	"$bog_smalljs_versus_case_invalid_other": "Questa esecuzione non si è potuta misurare in modo onesto. Eseguila di nuovo.",
+	"$bog_smalljs_versus_case_run_hint_hidden": "Le esecuzioni partono solo mentre questa scheda è in primo piano: una scheda in secondo piano rallenta i timer e smette di disegnare i fotogrammi, il che renderebbe i numeri privi di senso.",
+	"$bog_smalljs_versus_case_run_hint_loading": "In attesa che tutti e tre i frame finiscano di caricare."
+}

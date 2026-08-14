@@ -42,5 +42,9 @@
 	"$bog_smalljs_landing_Footer_link_router_title": "$mol_state_arg",
 	"$bog_smalljs_landing_Footer_link_crowd_title": "$hyoo_crowd",
 	"$bog_smalljs_landing_Footer_link_baza_title": "Giper Baza",
-	"$bog_smalljs_landing_Footer_copy_line2_text": "Copyright © 2026 smalljs"
+	"$bog_smalljs_landing_Footer_copy_line2_text": "Copyright © 2026 smalljs",
+	"$bog_smalljs_landing_versus_eyebrow_text": "비교",
+	"$bog_smalljs_landing_versus_line_text": "하나의 시나리오를 React, Vue, $mol에서 나란히, 여러분의 브라우저에서 바로 실행합니다.",
+	"$bog_smalljs_landing_versus_open_label": "비교 열기",
+	"$bog_smalljs_landing_versus_pair_label": "$mol vs React부터 보기"
 }

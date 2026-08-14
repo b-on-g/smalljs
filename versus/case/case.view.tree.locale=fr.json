@@ -1,0 +1,19 @@
+{
+	"$bog_smalljs_versus_case_run_label": "Lancer",
+	"$bog_smalljs_versus_case_status_idle": "Pas encore lancé",
+	"$bog_smalljs_versus_case_status_running": "En cours…",
+	"$bog_smalljs_versus_case_status_ok": "Comportement attendu",
+	"$bog_smalljs_versus_case_status_warn": "Fonctionne, avec une réserve",
+	"$bog_smalljs_versus_case_status_fail": "Artefact observé",
+	"$bog_smalljs_versus_case_status_error": "Aucun résultat",
+	"$bog_smalljs_versus_case_status_invalid": "Mesure interrompue",
+	"$bog_smalljs_versus_case_error_timeout": "Le runner n’a pas répondu en 15 secondes.",
+	"$bog_smalljs_versus_case_error_not_loaded": "La page du runner ne s’est pas chargée, ce framework ne peut donc pas participer à la comparaison.",
+	"$bog_smalljs_versus_case_run_hint_broken": "L’un des frames ne s’est pas chargé, les trois ne peuvent donc pas être comparés sur cette machine pour le moment.",
+	"$bog_smalljs_versus_case_invalid_tab_hidden": "L’onglet est passé en arrière-plan pendant l’exécution : les temps ont mesuré l’attente plutôt que le travail. Relancez avec cet onglet au premier plan.",
+	"$bog_smalljs_versus_case_invalid_timers_throttled": "L’exécution a pris nettement plus de temps que le scénario ne le prévoit : la machine était occupée et les minuteurs ont été comprimés. Relancez quand ce sera plus calme.",
+	"$bog_smalljs_versus_case_invalid_frame_offscreen": "Ce frame est sorti de la vue pendant qu’il travaillait, et un navigateur cesse de dessiner les frames qu’il ne voit pas. Relancez et restez sur ce cas jusqu’à la fin.",
+	"$bog_smalljs_versus_case_invalid_other": "Cette exécution n’a pas pu être mesurée honnêtement. Relancez-la.",
+	"$bog_smalljs_versus_case_run_hint_hidden": "Les exécutions ne démarrent que si cet onglet est au premier plan : en arrière-plan, le navigateur ralentit les minuteurs et cesse de dessiner les images, ce qui rendrait les chiffres dénués de sens.",
+	"$bog_smalljs_versus_case_run_hint_loading": "En attente du chargement des trois frames."
+}

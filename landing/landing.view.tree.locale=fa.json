@@ -42,5 +42,9 @@
 	"$bog_smalljs_landing_Footer_link_compare_title": "$mol_compare_deep",
 	"$bog_smalljs_landing_Footer_link_router_title": "$mol_state_arg",
 	"$bog_smalljs_landing_Footer_link_crowd_title": "$hyoo_crowd",
-	"$bog_smalljs_landing_Footer_copy_line2_text": "Copyright © 2026 smalljs"
+	"$bog_smalljs_landing_Footer_copy_line2_text": "Copyright © 2026 smalljs",
+	"$bog_smalljs_landing_versus_eyebrow_text": "مقایسه",
+	"$bog_smalljs_landing_versus_line_text": "یک سناریو، کنار هم در React، Vue و $mol، زنده در مرورگر خودتان.",
+	"$bog_smalljs_landing_versus_open_label": "باز کردن مقایسه",
+	"$bog_smalljs_landing_versus_pair_label": "شروع با $mol vs React"
 }

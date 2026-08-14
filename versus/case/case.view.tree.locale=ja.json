@@ -1,0 +1,19 @@
+{
+	"$bog_smalljs_versus_case_run_label": "実行",
+	"$bog_smalljs_versus_case_status_idle": "まだ実行していません",
+	"$bog_smalljs_versus_case_status_running": "実行中…",
+	"$bog_smalljs_versus_case_status_ok": "想定どおりの挙動",
+	"$bog_smalljs_versus_case_status_warn": "動くが注意あり",
+	"$bog_smalljs_versus_case_status_fail": "アーティファクトを観測",
+	"$bog_smalljs_versus_case_status_error": "結果なし",
+	"$bog_smalljs_versus_case_status_invalid": "計測が中断されました",
+	"$bog_smalljs_versus_case_error_timeout": "ランナーが15秒以内に応答しませんでした。",
+	"$bog_smalljs_versus_case_error_not_loaded": "ランナーのページが読み込まれなかったため、このフレームワークは比較に参加できません。",
+	"$bog_smalljs_versus_case_run_hint_broken": "フレームの1つが読み込まれなかったため、いまこのマシンでは3つを比較できません。",
+	"$bog_smalljs_versus_case_invalid_tab_hidden": "実行中にタブがバックグラウンドに移ったため、計測したのは作業ではなく待ち時間です。このタブを前面にしたまま、もう一度実行してください。",
+	"$bog_smalljs_versus_case_invalid_timers_throttled": "シナリオの想定よりも実行がかなり長くかかりました。マシンが混んでいてタイマーが詰められています。落ち着いてからもう一度実行してください。",
+	"$bog_smalljs_versus_case_invalid_frame_offscreen": "このフレームは動作中に画面外へスクロールしました。ブラウザは見えていないフレームの描画をやめます。もう一度実行して、終わるまでこのケースに留まってください。",
+	"$bog_smalljs_versus_case_invalid_other": "この実行は正確に計測できませんでした。もう一度実行してください。",
+	"$bog_smalljs_versus_case_run_hint_hidden": "実行が始まるのはこのタブが前面にあるあいだだけです。バックグラウンドのタブではタイマーが絞られ、描画も止まるため、数値が意味を持たなくなります。",
+	"$bog_smalljs_versus_case_run_hint_loading": "3つのフレームの読み込みが終わるのを待っています。"
+}

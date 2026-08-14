@@ -1,0 +1,5 @@
+{
+	"$bog_smalljs_versus_code_title": "نمایش کد",
+	"$bog_smalljs_versus_code_hint": "همان سناریو، همان‌طور که هر runner آن را می‌نویسد. از خود runnerها تولید شده، نه دوباره تایپ‌شده.",
+	"$bog_smalljs_versus_code_missing": "هنوز برای {a} runner نداریم، پس چیزی نیست که کنارش گذاشته شود."
+}

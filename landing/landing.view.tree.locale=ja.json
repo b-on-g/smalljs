@@ -42,5 +42,9 @@
 	"$bog_smalljs_landing_Footer_link_router_title": "$mol_state_arg",
 	"$bog_smalljs_landing_Footer_link_crowd_title": "$hyoo_crowd",
 	"$bog_smalljs_landing_Footer_link_baza_title": "Giper Baza",
-	"$bog_smalljs_landing_Footer_copy_line2_text": "Copyright © 2026 smalljs"
+	"$bog_smalljs_landing_Footer_copy_line2_text": "Copyright © 2026 smalljs",
+	"$bog_smalljs_landing_versus_eyebrow_text": "比較",
+	"$bog_smalljs_landing_versus_line_text": "1つのシナリオを、React・Vue・$mol で並べて、あなた自身のブラウザでその場で動かします。",
+	"$bog_smalljs_landing_versus_open_label": "比較を開く",
+	"$bog_smalljs_landing_versus_pair_label": "まずは $mol vs React から"
 }

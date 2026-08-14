@@ -1,0 +1,19 @@
+{
+	"$bog_smalljs_versus_case_run_label": "Ausführen",
+	"$bog_smalljs_versus_case_status_idle": "Noch nicht ausgeführt",
+	"$bog_smalljs_versus_case_status_running": "Läuft…",
+	"$bog_smalljs_versus_case_status_ok": "Erwartetes Verhalten",
+	"$bog_smalljs_versus_case_status_warn": "Funktioniert, mit Einschränkung",
+	"$bog_smalljs_versus_case_status_fail": "Artefakt beobachtet",
+	"$bog_smalljs_versus_case_status_error": "Kein Ergebnis",
+	"$bog_smalljs_versus_case_status_invalid": "Messung unterbrochen",
+	"$bog_smalljs_versus_case_error_timeout": "Der Runner hat innerhalb von 15 Sekunden nicht geantwortet.",
+	"$bog_smalljs_versus_case_error_not_loaded": "Die Runner-Seite wurde nicht geladen, deshalb kann dieses Framework am Vergleich nicht teilnehmen.",
+	"$bog_smalljs_versus_case_run_hint_broken": "Einer der Frames wurde nicht geladen, deshalb lassen sich die drei auf diesem Rechner gerade nicht vergleichen.",
+	"$bog_smalljs_versus_case_invalid_tab_hidden": "Der Tab ist während des Laufs in den Hintergrund gegangen, die Zeiten haben also Warten statt Arbeit gemessen. Führe ihn noch einmal aus, mit diesem Tab im Vordergrund.",
+	"$bog_smalljs_versus_case_invalid_timers_throttled": "Der Lauf hat spürbar länger gedauert, als das Szenario erwartet: Der Rechner war ausgelastet und die Timer wurden zusammengedrückt. Führe ihn noch einmal aus, wenn es ruhiger ist.",
+	"$bog_smalljs_versus_case_invalid_frame_offscreen": "Dieser Frame ist während der Arbeit aus dem sichtbaren Bereich gescrollt, und ein Browser zeichnet Frames nicht mehr, die er nicht sehen kann. Führe ihn noch einmal aus und bleib bis zum Ende bei diesem Fall.",
+	"$bog_smalljs_versus_case_invalid_other": "Dieser Lauf ließ sich nicht ehrlich messen. Führe ihn noch einmal aus.",
+	"$bog_smalljs_versus_case_run_hint_hidden": "Läufe starten nur, solange dieser Tab im Vordergrund ist: Ein Tab im Hintergrund drosselt die Timer und hört auf, Bilder zu zeichnen, was die Zahlen bedeutungslos machen würde.",
+	"$bog_smalljs_versus_case_run_hint_loading": "Warten, bis alle drei Frames fertig geladen sind."
+}

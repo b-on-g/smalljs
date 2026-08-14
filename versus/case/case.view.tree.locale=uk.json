@@ -1,0 +1,19 @@
+{
+	"$bog_smalljs_versus_case_run_label": "Запустити",
+	"$bog_smalljs_versus_case_status_idle": "Ще не запускали",
+	"$bog_smalljs_versus_case_status_running": "Виконується…",
+	"$bog_smalljs_versus_case_status_ok": "Очікувана поведінка",
+	"$bog_smalljs_versus_case_status_warn": "Працює, із застереженням",
+	"$bog_smalljs_versus_case_status_fail": "Видно артефакт",
+	"$bog_smalljs_versus_case_status_error": "Немає результату",
+	"$bog_smalljs_versus_case_status_invalid": "Вимірювання перервано",
+	"$bog_smalljs_versus_case_error_timeout": "Runner не відповів за 15 секунд.",
+	"$bog_smalljs_versus_case_error_not_loaded": "Сторінка runner-а не завантажилася, тому цей фреймворк не може брати участь у порівнянні.",
+	"$bog_smalljs_versus_case_run_hint_broken": "Один із фреймів не завантажився, тому порівняти всі три на цій машині зараз не вийде.",
+	"$bog_smalljs_versus_case_invalid_tab_hidden": "Під час прогону вкладка пішла у фон, і заміри показали очікування, а не роботу. Запустіть ще раз, тримаючи цю вкладку на передньому плані.",
+	"$bog_smalljs_versus_case_invalid_timers_throttled": "Прогін зайняв помітно більше, ніж очікує сценарій: машина була зайнята і таймери підтисло. Запустіть ще раз, коли стане спокійніше.",
+	"$bog_smalljs_versus_case_invalid_frame_offscreen": "Цей фрейм пішов із видимої області, поки працював, а браузер перестає малювати фрейми, яких не бачить. Запустіть ще раз і залишайтеся на цьому кейсі до кінця прогону.",
+	"$bog_smalljs_versus_case_invalid_other": "Цей прогін не вдалося виміряти чесно. Запустіть ще раз.",
+	"$bog_smalljs_versus_case_run_hint_hidden": "Прогін стартує, лише поки ця вкладка на передньому плані: у фоні браузер гальмує таймери й перестає малювати кадри, і числа втрачають сенс.",
+	"$bog_smalljs_versus_case_run_hint_loading": "Чекаємо, поки завантажаться всі три фрейми."
+}

@@ -1,0 +1,19 @@
+{
+	"$bog_smalljs_versus_case_run_label": "Executar",
+	"$bog_smalljs_versus_case_status_idle": "Ainda não executado",
+	"$bog_smalljs_versus_case_status_running": "Executando…",
+	"$bog_smalljs_versus_case_status_ok": "Comportamento esperado",
+	"$bog_smalljs_versus_case_status_warn": "Funciona, com uma ressalva",
+	"$bog_smalljs_versus_case_status_fail": "Artefato observado",
+	"$bog_smalljs_versus_case_status_error": "Sem resultado",
+	"$bog_smalljs_versus_case_status_invalid": "Medição interrompida",
+	"$bog_smalljs_versus_case_error_timeout": "O runner não respondeu em 15 segundos.",
+	"$bog_smalljs_versus_case_error_not_loaded": "A página do runner não carregou, então este framework não pode participar da comparação.",
+	"$bog_smalljs_versus_case_run_hint_broken": "Um dos frames não carregou, então os três não podem ser comparados nesta máquina agora.",
+	"$bog_smalljs_versus_case_invalid_tab_hidden": "A aba foi para segundo plano durante a execução, então os tempos mediram espera e não trabalho. Execute de novo com esta aba na frente.",
+	"$bog_smalljs_versus_case_invalid_timers_throttled": "A execução demorou bem mais do que o cenário espera: a máquina estava ocupada e os timers foram espremidos. Execute de novo quando estiver mais tranquilo.",
+	"$bog_smalljs_versus_case_invalid_frame_offscreen": "Este frame saiu da vista enquanto trabalhava, e o navegador para de desenhar frames que não consegue ver. Execute de novo e fique neste caso até o fim.",
+	"$bog_smalljs_versus_case_invalid_other": "Esta execução não pôde ser medida com honestidade. Execute de novo.",
+	"$bog_smalljs_versus_case_run_hint_hidden": "As execuções só começam enquanto esta aba está na frente: uma aba em segundo plano limita os timers e para de pintar quadros, o que deixaria os números sem sentido.",
+	"$bog_smalljs_versus_case_run_hint_loading": "Esperando os três frames terminarem de carregar."
+}

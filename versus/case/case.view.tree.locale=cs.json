@@ -1,0 +1,19 @@
+{
+	"$bog_smalljs_versus_case_run_label": "Spustit",
+	"$bog_smalljs_versus_case_status_idle": "Zatím nespuštěno",
+	"$bog_smalljs_versus_case_status_running": "Probíhá…",
+	"$bog_smalljs_versus_case_status_ok": "Očekávané chování",
+	"$bog_smalljs_versus_case_status_warn": "Funguje, s výhradou",
+	"$bog_smalljs_versus_case_status_fail": "Pozorován artefakt",
+	"$bog_smalljs_versus_case_status_error": "Bez výsledku",
+	"$bog_smalljs_versus_case_status_invalid": "Měření přerušeno",
+	"$bog_smalljs_versus_case_error_timeout": "Runner neodpověděl do 15 sekund.",
+	"$bog_smalljs_versus_case_error_not_loaded": "Stránka runneru se nenačetla, takže se tento framework nemůže porovnání zúčastnit.",
+	"$bog_smalljs_versus_case_run_hint_broken": "Jeden z rámů se nenačetl, takže ty tři teď na tomto stroji nelze porovnat.",
+	"$bog_smalljs_versus_case_invalid_tab_hidden": "Karta během běhu přešla do pozadí, takže časy měřily čekání, a ne práci. Spusťte to znovu s touto kartou vepředu.",
+	"$bog_smalljs_versus_case_invalid_timers_throttled": "Běh trval znatelně déle, než scénář očekává: stroj byl vytížený a časovače se stlačily. Spusťte to znovu, až bude klid.",
+	"$bog_smalljs_versus_case_invalid_frame_offscreen": "Tento rám během práce vyjel mimo viditelnou oblast a prohlížeč přestává vykreslovat rámy, které nevidí. Spusťte to znovu a zůstaňte u tohoto případu až do konce.",
+	"$bog_smalljs_versus_case_invalid_other": "Tento běh se nepodařilo změřit poctivě. Spusťte ho znovu.",
+	"$bog_smalljs_versus_case_run_hint_hidden": "Běhy se spouštějí jen tehdy, když je tato karta vepředu: karta na pozadí přiškrtí časovače a přestane vykreslovat snímky, což by čísla připravilo o smysl.",
+	"$bog_smalljs_versus_case_run_hint_loading": "Čekáme, až se načtou všechny tři rámy."
+}

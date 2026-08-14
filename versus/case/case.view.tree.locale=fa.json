@@ -1,0 +1,19 @@
+{
+	"$bog_smalljs_versus_case_run_label": "اجرا",
+	"$bog_smalljs_versus_case_status_idle": "هنوز اجرا نشده",
+	"$bog_smalljs_versus_case_status_running": "در حال اجرا…",
+	"$bog_smalljs_versus_case_status_ok": "رفتار مورد انتظار",
+	"$bog_smalljs_versus_case_status_warn": "کار می‌کند، با یک ملاحظه",
+	"$bog_smalljs_versus_case_status_fail": "آرتیفکت دیده شد",
+	"$bog_smalljs_versus_case_status_error": "بدون نتیجه",
+	"$bog_smalljs_versus_case_status_invalid": "اندازه‌گیری قطع شد",
+	"$bog_smalljs_versus_case_error_timeout": "runner در 15 ثانیه پاسخ نداد.",
+	"$bog_smalljs_versus_case_error_not_loaded": "صفحه‌ی runner بارگذاری نشد، پس این فریم‌ورک نمی‌تواند در مقایسه شرکت کند.",
+	"$bog_smalljs_versus_case_run_hint_broken": "یکی از فریم‌ها بارگذاری نشد، پس همین حالا نمی‌توان این سه را روی این دستگاه مقایسه کرد.",
+	"$bog_smalljs_versus_case_invalid_tab_hidden": "در حین اجرا زبانه به پس‌زمینه رفت، پس زمان‌ها به‌جای کار، انتظار را اندازه گرفتند. با همین زبانه در جلو دوباره اجرا کنید.",
+	"$bog_smalljs_versus_case_invalid_timers_throttled": "اجرا به‌طور محسوسی بیشتر از آنچه سناریو انتظار دارد طول کشید: دستگاه مشغول بود و تایمرها فشرده شدند. وقتی اوضاع آرام‌تر شد دوباره اجرا کنید.",
+	"$bog_smalljs_versus_case_invalid_frame_offscreen": "این فریم حین کار از دید بیرون رفت، و مرورگر فریمی را که نمی‌بیند دیگر نمی‌کشد. دوباره اجرا کنید و تا پایان روی همین کِیس بمانید.",
+	"$bog_smalljs_versus_case_invalid_other": "این اجرا را نشد صادقانه اندازه گرفت. دوباره اجرا کنید.",
+	"$bog_smalljs_versus_case_run_hint_hidden": "اجرا فقط وقتی شروع می‌شود که این زبانه جلو باشد: زبانه‌ی پس‌زمینه تایمرها را کند می‌کند و از ترسیم تصویر باز می‌ماند، و آن‌وقت اعداد بی‌معنا می‌شوند.",
+	"$bog_smalljs_versus_case_run_hint_loading": "در انتظار پایان بارگذاری هر سه فریم."
+}

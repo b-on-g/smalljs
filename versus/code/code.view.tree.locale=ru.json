@@ -1,0 +1,5 @@
+{
+	"$bog_smalljs_versus_code_title": "Показать код",
+	"$bog_smalljs_versus_code_hint": "Тот же сценарий в том виде, как его пишет каждый runner. Сгенерировано из runner-ов, а не перепечатано руками.",
+	"$bog_smalljs_versus_code_missing": "Runner-а для {a} пока нет, поэтому рядом положить нечего."
+}

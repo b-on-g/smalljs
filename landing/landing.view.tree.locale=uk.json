@@ -42,5 +42,9 @@
 	"$bog_smalljs_landing_Footer_link_compare_title": "$mol_compare_deep",
 	"$bog_smalljs_landing_Footer_link_router_title": "$mol_state_arg",
 	"$bog_smalljs_landing_Footer_link_crowd_title": "$hyoo_crowd",
-	"$bog_smalljs_landing_Footer_copy_line2_text": "Copyright © 2026 smalljs"
+	"$bog_smalljs_landing_Footer_copy_line2_text": "Copyright © 2026 smalljs",
+	"$bog_smalljs_landing_versus_eyebrow_text": "Порівняння",
+	"$bog_smalljs_landing_versus_line_text": "Один сценарій, запущений пліч-о-пліч у React, Vue і $mol, наживо у вашому браузері.",
+	"$bog_smalljs_landing_versus_open_label": "Відкрити порівняння",
+	"$bog_smalljs_landing_versus_pair_label": "Почати з $mol vs React"
 }

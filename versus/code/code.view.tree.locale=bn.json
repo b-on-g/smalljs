@@ -1,0 +1,5 @@
+{
+	"$bog_smalljs_versus_code_title": "কোড দেখুন",
+	"$bog_smalljs_versus_code_hint": "একই পরিস্থিতি, যেভাবে প্রতিটি runner সেটি লেখে। runner থেকেই তৈরি, হাতে টাইপ করা নয়।",
+	"$bog_smalljs_versus_code_missing": "{a}-এর জন্য এখনও কোনো runner নেই, তাই পাশে রাখার মতো কিছু নেই।"
+}

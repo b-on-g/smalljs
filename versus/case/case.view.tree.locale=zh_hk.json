@@ -1,0 +1,19 @@
+{
+	"$bog_smalljs_versus_case_run_label": "執行",
+	"$bog_smalljs_versus_case_status_idle": "尚未執行",
+	"$bog_smalljs_versus_case_status_running": "執行中…",
+	"$bog_smalljs_versus_case_status_ok": "符合預期",
+	"$bog_smalljs_versus_case_status_warn": "可用，但有保留",
+	"$bog_smalljs_versus_case_status_fail": "觀察到異常",
+	"$bog_smalljs_versus_case_status_error": "沒有結果",
+	"$bog_smalljs_versus_case_status_invalid": "測量被打斷",
+	"$bog_smalljs_versus_case_error_timeout": "runner 在 15 秒內沒有回應。",
+	"$bog_smalljs_versus_case_error_not_loaded": "runner 頁面沒有載入成功，因此這個框架無法參與這次比較。",
+	"$bog_smalljs_versus_case_run_hint_broken": "其中一個 iframe 沒有載入成功，所以現在這部機器上無法比較這三者。",
+	"$bog_smalljs_versus_case_invalid_tab_hidden": "執行期間分頁切到了背景，計時量到的是等待而不是工作。請把這個分頁放在前面再執行一次。",
+	"$bog_smalljs_versus_case_invalid_timers_throttled": "這次執行明顯比情境預期的更久：機器很忙，計時器被壓縮了。等空閒一些再執行一次。",
+	"$bog_smalljs_versus_case_invalid_frame_offscreen": "這個 iframe 在運作時捲出了可視範圍，而瀏覽器不會為看不見的 iframe 繪製畫面。請再執行一次，並停留在這個個案上直到結束。",
+	"$bog_smalljs_versus_case_invalid_other": "這次執行無法被誠實地測量。請再執行一次。",
+	"$bog_smalljs_versus_case_run_hint_hidden": "只有這個分頁在前面時才會開始執行：背景分頁會限制計時器並停止繪製畫格，那樣得到的數字就沒有意義了。",
+	"$bog_smalljs_versus_case_run_hint_loading": "正在等待三個 iframe 全部載入完成。"
+}

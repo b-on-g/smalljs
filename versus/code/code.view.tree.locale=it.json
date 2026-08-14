@@ -1,0 +1,5 @@
+{
+	"$bog_smalljs_versus_code_title": "Mostra il codice",
+	"$bog_smalljs_versus_code_hint": "Lo stesso scenario, così come lo scrive ogni runner. Generato dai runner, non ribattuto a mano.",
+	"$bog_smalljs_versus_code_missing": "Per {a} non c’è ancora un runner, quindi qui accanto non c’è nulla da mettere."
+}

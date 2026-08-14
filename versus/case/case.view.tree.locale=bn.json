@@ -1,0 +1,19 @@
+{
+	"$bog_smalljs_versus_case_run_label": "চালান",
+	"$bog_smalljs_versus_case_status_idle": "এখনও চালানো হয়নি",
+	"$bog_smalljs_versus_case_status_running": "চলছে…",
+	"$bog_smalljs_versus_case_status_ok": "প্রত্যাশিত আচরণ",
+	"$bog_smalljs_versus_case_status_warn": "কাজ করে, তবে একটি শর্তসহ",
+	"$bog_smalljs_versus_case_status_fail": "আর্টিফ্যাক্ট দেখা গেছে",
+	"$bog_smalljs_versus_case_status_error": "কোনো ফল নেই",
+	"$bog_smalljs_versus_case_status_invalid": "মাপজোক থেমে গেছে",
+	"$bog_smalljs_versus_case_error_timeout": "runner 15 সেকেন্ডের মধ্যে সাড়া দেয়নি।",
+	"$bog_smalljs_versus_case_error_not_loaded": "runner পাতাটি লোড হয়নি, তাই এই ফ্রেমওয়ার্ক তুলনায় অংশ নিতে পারছে না।",
+	"$bog_smalljs_versus_case_run_hint_broken": "ফ্রেমগুলোর একটি লোড হয়নি, তাই এই মেশিনে এখন তিনটিকে তুলনা করা যাচ্ছে না।",
+	"$bog_smalljs_versus_case_invalid_tab_hidden": "চালানোর সময় ট্যাবটি পেছনে চলে গিয়েছিল, তাই সময়ের হিসাব কাজের বদলে অপেক্ষা মেপেছে। এই ট্যাবটি সামনে রেখে আবার চালান।",
+	"$bog_smalljs_versus_case_invalid_timers_throttled": "পরিস্থিতি যতটা আশা করে তার চেয়ে চালানোটা লক্ষণীয়ভাবে বেশি সময় নিয়েছে: মেশিন ব্যস্ত ছিল আর টাইমারগুলো চেপে গিয়েছিল। একটু শান্ত সময়ে আবার চালান।",
+	"$bog_smalljs_versus_case_invalid_frame_offscreen": "এই ফ্রেমটি কাজ করার সময় দেখার সীমা ছাড়িয়ে সরে গিয়েছিল, আর ব্রাউজার যে ফ্রেম দেখতে পায় না তা আঁকা বন্ধ করে দেয়। আবার চালান আর শেষ না হওয়া পর্যন্ত এই কেসেই থাকুন।",
+	"$bog_smalljs_versus_case_invalid_other": "এই চালানোটি সৎভাবে মাপা যায়নি। আবার চালান।",
+	"$bog_smalljs_versus_case_run_hint_hidden": "এই ট্যাব সামনে থাকলে তবেই চালানো শুরু হয়: পেছনের ট্যাবে ব্রাউজার টাইমার ধীর করে দেয় আর পর্দা আঁকা বন্ধ করে দেয়, তাতে সংখ্যাগুলো অর্থহীন হয়ে পড়ত।",
+	"$bog_smalljs_versus_case_run_hint_loading": "তিনটি ফ্রেম লোড শেষ হওয়ার অপেক্ষা চলছে।"
+}
