@@ -315,9 +315,12 @@ namespace $.$$ {
 			return $mol_wire_sync( this ).race_load( id )
 		}
 
+		/** The empty state carries the same words as the React and Vue runners.
+		 *  The three frames are read side by side, and a column that is silent
+		 *  where the others speak looks like a column that failed to load. */
 		race_panel_name() {
 			const id = this.race_selected()
-			return id ? this.race_user( id ).name : ''
+			return id ? this.race_user( id ).name : 'Pick a user'
 		}
 
 		race_panel_descr() {

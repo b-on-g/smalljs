@@ -91,6 +91,16 @@ namespace $ {
 			color: $bog_builderui_tokens.shade,
 		},
 
+		// The plain nav links, subclassed so a click on the active item does not
+		// toggle the section off. The name matters: calling it $bog_smalljs_top_nav
+		// gave it the very attribute the Nav container already carries, so every
+		// link inherited the container's own rule below — flex-grow and all — and
+		// the two text links ate 370px each while the dropdown triggers stayed at
+		// their content width.
+		$bog_smalljs_top_item: {
+			flex: { grow: 0, shrink: 0 },
+		},
+
 		Nav: {
 			flex: { direction: 'row', grow: 1, wrap: 'nowrap' },
 			align: { items: 'center' },
