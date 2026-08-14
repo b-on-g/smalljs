@@ -339,7 +339,7 @@ $bog_smalljs_top $mol_view
 										section \docs
 										page \views
 									event_click? <=> nav_pick?
-								<= Docs_tutorial $bog_smalljs_top_nav
+								<= Docs_tutorial $bog_smalljs_top_item
 									title @ \Tutorial
 									arg *
 										section \course
@@ -357,12 +357,12 @@ $bog_smalljs_top $mol_view
 										section \docs
 										page \api-mol-string
 									event_click? <=> nav_pick?
-				<= Nav_playground $bog_smalljs_top_nav
+				<= Nav_playground $bog_smalljs_top_item
 					title @ \Playground
 					arg *
 						section \playground
 						page null
-				<= Nav_versus $bog_smalljs_top_nav
+				<= Nav_versus $bog_smalljs_top_item
 					title @ \Compare
 					arg *
 						section \versus
@@ -446,13 +446,13 @@ $bog_smalljs_top $mol_view
 			bubble_content /
 				<= Mobile_menu $mol_view
 					sub /
-						<= Mobile_playground $bog_smalljs_top_nav
+						<= Mobile_playground $bog_smalljs_top_item
 							title @ \Playground
 							arg *
 								section \playground
 								page null
 							event_click? <=> nav_pick?
-						<= Mobile_versus $bog_smalljs_top_nav
+						<= Mobile_versus $bog_smalljs_top_item
 							title @ \Compare
 							arg *
 								section \versus
@@ -473,7 +473,7 @@ $bog_smalljs_top $mol_view
 										section \docs
 										page \views
 									event_click? <=> nav_pick?
-								<= M_docs_tutorial $bog_smalljs_top_nav
+								<= M_docs_tutorial $bog_smalljs_top_item
 									title @ \Tutorial
 									arg *
 										section \course
@@ -569,7 +569,7 @@ $bog_smalljs_top $mol_view
 			<= lang_option_label* \
 			<= Lang_option_check* $mol_icon_check
 
-$bog_smalljs_top_nav $mol_link
+$bog_smalljs_top_item $mol_link
 	uri_off <= uri
 
 $mol_hotkey $mol_plugin

@@ -7874,7 +7874,7 @@ var $;
 			return obj;
 		}
 		Docs_tutorial(){
-			const obj = new this.$.$bog_smalljs_top_nav();
+			const obj = new this.$.$bog_smalljs_top_item();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Docs_tutorial_title")));
 			(obj.arg) = () => ({"section": "course", "page": null});
 			(obj.event_click) = (next) => ((this.nav_pick(next)));
@@ -7914,13 +7914,13 @@ var $;
 			return obj;
 		}
 		Nav_playground(){
-			const obj = new this.$.$bog_smalljs_top_nav();
+			const obj = new this.$.$bog_smalljs_top_item();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Nav_playground_title")));
 			(obj.arg) = () => ({"section": "playground", "page": null});
 			return obj;
 		}
 		Nav_versus(){
-			const obj = new this.$.$bog_smalljs_top_nav();
+			const obj = new this.$.$bog_smalljs_top_item();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Nav_versus_title")));
 			(obj.arg) = () => ({"section": "versus", "page": null});
 			return obj;
@@ -8080,14 +8080,14 @@ var $;
 			return obj;
 		}
 		Mobile_playground(){
-			const obj = new this.$.$bog_smalljs_top_nav();
+			const obj = new this.$.$bog_smalljs_top_item();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Mobile_playground_title")));
 			(obj.arg) = () => ({"section": "playground", "page": null});
 			(obj.event_click) = (next) => ((this.nav_pick(next)));
 			return obj;
 		}
 		Mobile_versus(){
-			const obj = new this.$.$bog_smalljs_top_nav();
+			const obj = new this.$.$bog_smalljs_top_item();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_Mobile_versus_title")));
 			(obj.arg) = () => ({"section": "versus", "page": null});
 			(obj.event_click) = (next) => ((this.nav_pick(next)));
@@ -8108,7 +8108,7 @@ var $;
 			return obj;
 		}
 		M_docs_tutorial(){
-			const obj = new this.$.$bog_smalljs_top_nav();
+			const obj = new this.$.$bog_smalljs_top_item();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_smalljs_top_M_docs_tutorial_title")));
 			(obj.arg) = () => ({"section": "course", "page": null});
 			(obj.event_click) = (next) => ((this.nav_pick(next)));
@@ -8423,7 +8423,7 @@ var $;
 	($mol_mem(($.$bog_smalljs_top.prototype), "search_click"));
 	($mol_mem(($.$bog_smalljs_top.prototype), "nav_pick"));
 	($mol_mem_key(($.$bog_smalljs_top.prototype), "Lang_option"));
-	($.$bog_smalljs_top_nav) = class $bog_smalljs_top_nav extends ($.$mol_link) {
+	($.$bog_smalljs_top_item) = class $bog_smalljs_top_item extends ($.$mol_link) {
 		uri_off(){
 			return (this.uri());
 		}
@@ -8603,6 +8603,15 @@ var $;
             border: { radius: rem(0.25), width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
             font: { size: rem(0.75) },
             color: $bog_builderui_tokens.shade,
+        },
+        // The plain nav links, subclassed so a click on the active item does not
+        // toggle the section off. The name matters: calling it $bog_smalljs_top_nav
+        // gave it the very attribute the Nav container already carries, so every
+        // link inherited the container's own rule below — flex-grow and all — and
+        // the two text links ate 370px each while the dropdown triggers stayed at
+        // their content width.
+        $bog_smalljs_top_item: {
+            flex: { grow: 0, shrink: 0 },
         },
         Nav: {
             flex: { direction: 'row', grow: 1, wrap: 'nowrap' },
@@ -17769,14 +17778,14 @@ var $;
                     funcs.push(this.patterns[token]);
                 return str;
             });
-            return this.patterns[pattern] = (arg) => {
-                return funcs.reduce((res, func) => res + func(arg), '');
+            return this.patterns[pattern] = (arg, lang) => {
+                return funcs.reduce((res, func) => res + func(arg, lang), '');
             };
         }
-        toString(pattern) {
+        toString(pattern, lang) {
             const Base = this.constructor;
             const formatter = Base.formatter(pattern);
-            return formatter(this);
+            return formatter(this, lang);
         }
     }
     $.$mol_time_base = $mol_time_base;
@@ -18184,8 +18193,8 @@ var $;
         }
         valueOf() { return this.native.getTime(); }
         toJSON() { return this.toString(); }
-        toString(pattern = 'YYYY-MM-DDThh:mm:ss.sssZ') {
-            return super.toString(pattern);
+        toString(pattern = 'YYYY-MM-DDThh:mm:ss.sssZ', lang) {
+            return super.toString(pattern, lang);
         }
         toArray() {
             return [this.year, this.month, this.day, this.hour, this.minute, this.second, this.offset?.count('PT1m')];
@@ -18195,6 +18204,12 @@ var $;
         }
         [$mol_dev_format_head]() {
             return $mol_dev_format_span({}, $mol_dev_format_native(this), ' ', $mol_dev_format_accent(this.toString('YYYY-MM-DD hh:mm:ss.sss Z')));
+        }
+        static formatters = {};
+        static intl(lang, pattern, options) {
+            const group = this.formatters[lang ?? ''] ?? (this.formatters[lang ?? ''] = {});
+            group[pattern] = group[pattern] ?? new Intl.DateTimeFormat(lang, options);
+            return group[pattern];
         }
         /// Mnemonics:
         ///  * single letter for numbers: M - month number, D - day of month.
@@ -18218,12 +18233,12 @@ var $;
                     return '';
                 return String(moment.year % 100);
             },
-            'Month': (pattern => (moment) => {
+            'Month': (moment, lang) => {
                 if (moment.month == null)
                     return '';
-                return pattern.format(moment.native);
-            })(new Intl.DateTimeFormat(undefined, { month: 'long' })),
-            'DD Month': (pattern => (moment) => {
+                return $mol_time_moment.intl(lang, 'Month', { month: 'long' }).format(moment.native);
+            },
+            'DD Month': (moment, lang) => {
                 if (moment.month == null) {
                     if (moment.day == null) {
                         return '';
@@ -18234,14 +18249,14 @@ var $;
                 }
                 else {
                     if (moment.day == null) {
-                        return $mol_time_moment.patterns['Month'](moment);
+                        return $mol_time_moment.patterns['Month'](moment, lang);
                     }
                     else {
-                        return pattern.format(moment.native);
+                        return $mol_time_moment.intl(lang, 'DD Month', { day: '2-digit', month: 'long' }).format(moment.native);
                     }
                 }
-            })(new Intl.DateTimeFormat(undefined, { day: '2-digit', month: 'long' })),
-            'D Month': (pattern => (moment) => {
+            },
+            'D Month': (moment, lang) => {
                 if (moment.month == null) {
                     if (moment.day == null) {
                         return '';
@@ -18255,16 +18270,16 @@ var $;
                         return $mol_time_moment.patterns['Month'](moment);
                     }
                     else {
-                        return pattern.format(moment.native);
+                        return $mol_time_moment.intl(lang, 'D Month', { day: 'numeric', month: 'long' }).format(moment.native);
                     }
                 }
-            })(new Intl.DateTimeFormat(undefined, { day: 'numeric', month: 'long' })),
-            'Mon': (pattern => (moment) => {
+            },
+            'Mon': (moment, lang) => {
                 if (moment.month == null)
                     return '';
-                return pattern.format(moment.native);
-            })(new Intl.DateTimeFormat(undefined, { month: 'short' })),
-            'DD Mon': (pattern => (moment) => {
+                return $mol_time_moment.intl(lang, 'Mon', { month: 'short' }).format(moment.native);
+            },
+            'DD Mon': (moment, lang) => {
                 if (moment.month == null) {
                     if (moment.day == null) {
                         return '';
@@ -18275,14 +18290,14 @@ var $;
                 }
                 else {
                     if (moment.day == null) {
-                        return $mol_time_moment.patterns['Mon'](moment);
+                        return $mol_time_moment.patterns['Mon'](moment, lang);
                     }
                     else {
-                        return pattern.format(moment.native);
+                        return $mol_time_moment.intl(lang, 'DD Mon', { day: '2-digit', month: 'short' }).format(moment.native);
                     }
                 }
-            })(new Intl.DateTimeFormat(undefined, { day: '2-digit', month: 'short' })),
-            'D Mon': (pattern => (moment) => {
+            },
+            'D Mon': (moment, lang) => {
                 if (moment.month == null) {
                     if (moment.day == null) {
                         return '';
@@ -18293,13 +18308,13 @@ var $;
                 }
                 else {
                     if (moment.day == null) {
-                        return $mol_time_moment.patterns['Mon'](moment);
+                        return $mol_time_moment.patterns['Mon'](moment, lang);
                     }
                     else {
-                        return pattern.format(moment.native);
+                        return $mol_time_moment.intl(lang, 'D Mon', { day: 'numeric', month: 'short' }).format(moment.native);
                     }
                 }
-            })(new Intl.DateTimeFormat(undefined, { day: 'numeric', month: 'short' })),
+            },
             '-MM': (moment) => {
                 if (moment.month == null)
                     return '';
@@ -18315,24 +18330,24 @@ var $;
                     return '';
                 return String(moment.month + 1);
             },
-            'WeekDay': (pattern => (moment) => {
+            'WeekDay': (moment, lang) => {
                 if (moment.day == null)
                     return '';
                 if (moment.month == null)
                     return '';
                 if (moment.year == null)
                     return '';
-                return pattern.format(moment.native);
-            })(new Intl.DateTimeFormat(undefined, { weekday: 'long' })),
-            'WD': (pattern => (moment) => {
+                return $mol_time_moment.intl(lang, 'WeekDay', { weekday: 'long' }).format(moment.native);
+            },
+            'WD': (moment, lang) => {
                 if (moment.day == null)
                     return '';
                 if (moment.month == null)
                     return '';
                 if (moment.year == null)
                     return '';
-                return pattern.format(moment.native);
-            })(new Intl.DateTimeFormat(undefined, { weekday: 'short' })),
+                return $mol_time_moment.intl(lang, 'WD', { weekday: 'short' }).format(moment.native);
+            },
             '-DD': (moment) => {
                 if (moment.day == null)
                     return '';
@@ -18628,8 +18643,9 @@ var $;
                 const moment = new $mol_time_moment(this.month_string() || undefined);
                 return new $mol_time_moment({ year: moment.year, month: moment.month });
             }
+            lang() { return this.$.$mol_locale.lang(); }
             title() {
-                return this.month_moment().toString('Month YYYY');
+                return this.month_moment().toString('Month YYYY', this.lang());
             }
             day_first() {
                 return this.month_moment().merge({ day: 0 });
@@ -18649,7 +18665,7 @@ var $;
                 return next;
             }
             weekday(index) {
-                return this.day_draw_from().shift({ day: index }).toString('WD');
+                return this.day_draw_from().shift({ day: index }).toString('WD', this.lang());
             }
             weekend(index) {
                 return [5, 6].indexOf(index) >= 0;
@@ -18677,7 +18693,7 @@ var $;
                 return days;
             }
             day_text(day) {
-                return new $mol_time_moment(day).toString("D");
+                return new $mol_time_moment(day).toString('D', this.lang());
             }
             day_holiday(day) {
                 return this.weekend(new $mol_time_moment(day).weekday);
@@ -27116,9 +27132,12 @@ var $;
             race_user(id) {
                 return $mol_wire_sync(this).race_load(id);
             }
+            /** The empty state carries the same words as the React and Vue runners.
+             *  The three frames are read side by side, and a column that is silent
+             *  where the others speak looks like a column that failed to load. */
             race_panel_name() {
                 const id = this.race_selected();
-                return id ? this.race_user(id).name : '';
+                return id ? this.race_user(id).name : 'Pick a user';
             }
             race_panel_descr() {
                 const id = this.race_selected();
@@ -27661,7 +27680,7 @@ var $;
             mol: {
                 lang: "ts",
                 file: "lab/lab.view.ts",
-                text: "race_ids() {\n\treturn [ 1, 2, 3, 4, 5 ]\n}\n\n@ $mol_mem\nrace_selected( next?: number ) {\n\treturn next ?? 0\n}\n\n@ $mol_mem\nrace_options(): readonly $mol_view[] {\n\treturn this.race_ids().map( id => this.Race_option( id ) )\n}\n\nrace_option_label( id: number ) {\n\treturn `User ${ id }`\n}\n\nrace_option_current( id: number ) {\n\treturn this.race_selected() === id\n}\n\n@ $mol_action\nrace_option_click( id: number, next?: unknown ) {\n\tthis.race_selected( id )\n\treturn null\n}\n\nrace_delay( id: number ) {\n\treturn 1000 - ( id - 1 ) * 200\n}\n\nasync race_load( id: number ) {\n\tawait this.sleep( this.race_delay( id ) )\n\treturn {\n\t\tname: `User ${ id }`,\n\t\tdescr: `Profile of user ${ id }, answered in ${ this.race_delay( id ) } ms`,\n\t}\n}\n\n/** The record is a value of the selected id. A record for an id nobody\n *  looks at any more has no place to land. */\n@ $mol_mem_key\nrace_user( id: number ): { name: string, descr: string } {\n\treturn $mol_wire_sync( this ).race_load( id )\n}\n\nrace_panel_name() {\n\tconst id = this.race_selected()\n\treturn id ? this.race_user( id ).name : ''\n}\n\nrace_panel_descr() {\n\tconst id = this.race_selected()\n\treturn id ? this.race_user( id ).descr : ''\n}\n\n/** The two waits add up to 1600 ms. Past this the machine was stretching\n *  timers, and stretched timers pull the 200 ms and 1000 ms answers\n *  towards each other until the order of arrival is a coin toss. */\nrace_deadline() {\n\treturn 2200\n}\n\nasync run_race() {\n\n\tconst started = performance.now()\n\n\tthis.race_selected( 1 )\n\tawait this.sleep( 100 )\n\tthis.race_selected( 5 )\n\tawait this.sleep( 1500 )\n\n\tif( performance.now() - started > this.race_deadline() ) this.spoil( 'timers-throttled' )\n\n\tconst shown = this.Race_panel().dom_node().textContent ?? ''\n\tconst found = shown.match( /User (\\d+)/ )\n\tconst id = found ? Number( found[1] ) : 0\n\n\tthis.report(\n\t\tid === 5 ? 'ok' : 'fail',\n\t\tid\n\t\t\t? `Selected user 5, panel showed user ${ id }`\n\t\t\t: `Selected user 5, panel showed no user`,\n\t)\n\n}\n\n// ------------------------------------------------------------- virtual",
+                text: "race_ids() {\n\treturn [ 1, 2, 3, 4, 5 ]\n}\n\n@ $mol_mem\nrace_selected( next?: number ) {\n\treturn next ?? 0\n}\n\n@ $mol_mem\nrace_options(): readonly $mol_view[] {\n\treturn this.race_ids().map( id => this.Race_option( id ) )\n}\n\nrace_option_label( id: number ) {\n\treturn `User ${ id }`\n}\n\nrace_option_current( id: number ) {\n\treturn this.race_selected() === id\n}\n\n@ $mol_action\nrace_option_click( id: number, next?: unknown ) {\n\tthis.race_selected( id )\n\treturn null\n}\n\nrace_delay( id: number ) {\n\treturn 1000 - ( id - 1 ) * 200\n}\n\nasync race_load( id: number ) {\n\tawait this.sleep( this.race_delay( id ) )\n\treturn {\n\t\tname: `User ${ id }`,\n\t\tdescr: `Profile of user ${ id }, answered in ${ this.race_delay( id ) } ms`,\n\t}\n}\n\n/** The record is a value of the selected id. A record for an id nobody\n *  looks at any more has no place to land. */\n@ $mol_mem_key\nrace_user( id: number ): { name: string, descr: string } {\n\treturn $mol_wire_sync( this ).race_load( id )\n}\n\n/** The empty state carries the same words as the React and Vue runners.\n *  The three frames are read side by side, and a column that is silent\n *  where the others speak looks like a column that failed to load. */\nrace_panel_name() {\n\tconst id = this.race_selected()\n\treturn id ? this.race_user( id ).name : 'Pick a user'\n}\n\nrace_panel_descr() {\n\tconst id = this.race_selected()\n\treturn id ? this.race_user( id ).descr : ''\n}\n\n/** The two waits add up to 1600 ms. Past this the machine was stretching\n *  timers, and stretched timers pull the 200 ms and 1000 ms answers\n *  towards each other until the order of arrival is a coin toss. */\nrace_deadline() {\n\treturn 2200\n}\n\nasync run_race() {\n\n\tconst started = performance.now()\n\n\tthis.race_selected( 1 )\n\tawait this.sleep( 100 )\n\tthis.race_selected( 5 )\n\tawait this.sleep( 1500 )\n\n\tif( performance.now() - started > this.race_deadline() ) this.spoil( 'timers-throttled' )\n\n\tconst shown = this.Race_panel().dom_node().textContent ?? ''\n\tconst found = shown.match( /User (\\d+)/ )\n\tconst id = found ? Number( found[1] ) : 0\n\n\tthis.report(\n\t\tid === 5 ? 'ok' : 'fail',\n\t\tid\n\t\t\t? `Selected user 5, panel showed user ${ id }`\n\t\t\t: `Selected user 5, panel showed no user`,\n\t)\n\n}\n\n// ------------------------------------------------------------- virtual",
             },
             react: {
                 lang: "js",

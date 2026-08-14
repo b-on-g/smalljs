@@ -3311,23 +3311,23 @@ declare namespace $ {
 		,
 		ReturnType< $mol_link['event_click'] >
 	>
-	type $bog_smalljs_top_nav__title_bog_smalljs_top_16 = $mol_type_enforce<
+	type $bog_smalljs_top_item__title_bog_smalljs_top_16 = $mol_type_enforce<
 		string
 		,
-		ReturnType< $bog_smalljs_top_nav['title'] >
+		ReturnType< $bog_smalljs_top_item['title'] >
 	>
-	type $bog_smalljs_top_nav__arg_bog_smalljs_top_17 = $mol_type_enforce<
+	type $bog_smalljs_top_item__arg_bog_smalljs_top_17 = $mol_type_enforce<
 		({ 
 			'section': string,
 			'page': any,
 		}) 
 		,
-		ReturnType< $bog_smalljs_top_nav['arg'] >
+		ReturnType< $bog_smalljs_top_item['arg'] >
 	>
-	type $bog_smalljs_top_nav__event_click_bog_smalljs_top_18 = $mol_type_enforce<
+	type $bog_smalljs_top_item__event_click_bog_smalljs_top_18 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_top['nav_pick'] >
 		,
-		ReturnType< $bog_smalljs_top_nav['event_click'] >
+		ReturnType< $bog_smalljs_top_item['event_click'] >
 	>
 	type $mol_link__title_bog_smalljs_top_19 = $mol_type_enforce<
 		string
@@ -3390,31 +3390,31 @@ declare namespace $ {
 		,
 		ReturnType< $mol_pick['bubble_content'] >
 	>
-	type $bog_smalljs_top_nav__title_bog_smalljs_top_30 = $mol_type_enforce<
+	type $bog_smalljs_top_item__title_bog_smalljs_top_30 = $mol_type_enforce<
 		string
 		,
-		ReturnType< $bog_smalljs_top_nav['title'] >
+		ReturnType< $bog_smalljs_top_item['title'] >
 	>
-	type $bog_smalljs_top_nav__arg_bog_smalljs_top_31 = $mol_type_enforce<
+	type $bog_smalljs_top_item__arg_bog_smalljs_top_31 = $mol_type_enforce<
 		({ 
 			'section': string,
 			'page': any,
 		}) 
 		,
-		ReturnType< $bog_smalljs_top_nav['arg'] >
+		ReturnType< $bog_smalljs_top_item['arg'] >
 	>
-	type $bog_smalljs_top_nav__title_bog_smalljs_top_32 = $mol_type_enforce<
+	type $bog_smalljs_top_item__title_bog_smalljs_top_32 = $mol_type_enforce<
 		string
 		,
-		ReturnType< $bog_smalljs_top_nav['title'] >
+		ReturnType< $bog_smalljs_top_item['title'] >
 	>
-	type $bog_smalljs_top_nav__arg_bog_smalljs_top_33 = $mol_type_enforce<
+	type $bog_smalljs_top_item__arg_bog_smalljs_top_33 = $mol_type_enforce<
 		({ 
 			'section': string,
 			'page': any,
 		}) 
 		,
-		ReturnType< $bog_smalljs_top_nav['arg'] >
+		ReturnType< $bog_smalljs_top_item['arg'] >
 	>
 	type $mol_link__title_bog_smalljs_top_34 = $mol_type_enforce<
 		string
@@ -3650,41 +3650,41 @@ declare namespace $ {
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $bog_smalljs_top_nav__title_bog_smalljs_top_79 = $mol_type_enforce<
+	type $bog_smalljs_top_item__title_bog_smalljs_top_79 = $mol_type_enforce<
 		string
 		,
-		ReturnType< $bog_smalljs_top_nav['title'] >
+		ReturnType< $bog_smalljs_top_item['title'] >
 	>
-	type $bog_smalljs_top_nav__arg_bog_smalljs_top_80 = $mol_type_enforce<
+	type $bog_smalljs_top_item__arg_bog_smalljs_top_80 = $mol_type_enforce<
 		({ 
 			'section': string,
 			'page': any,
 		}) 
 		,
-		ReturnType< $bog_smalljs_top_nav['arg'] >
+		ReturnType< $bog_smalljs_top_item['arg'] >
 	>
-	type $bog_smalljs_top_nav__event_click_bog_smalljs_top_81 = $mol_type_enforce<
+	type $bog_smalljs_top_item__event_click_bog_smalljs_top_81 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_top['nav_pick'] >
 		,
-		ReturnType< $bog_smalljs_top_nav['event_click'] >
+		ReturnType< $bog_smalljs_top_item['event_click'] >
 	>
-	type $bog_smalljs_top_nav__title_bog_smalljs_top_82 = $mol_type_enforce<
+	type $bog_smalljs_top_item__title_bog_smalljs_top_82 = $mol_type_enforce<
 		string
 		,
-		ReturnType< $bog_smalljs_top_nav['title'] >
+		ReturnType< $bog_smalljs_top_item['title'] >
 	>
-	type $bog_smalljs_top_nav__arg_bog_smalljs_top_83 = $mol_type_enforce<
+	type $bog_smalljs_top_item__arg_bog_smalljs_top_83 = $mol_type_enforce<
 		({ 
 			'section': string,
 			'page': any,
 		}) 
 		,
-		ReturnType< $bog_smalljs_top_nav['arg'] >
+		ReturnType< $bog_smalljs_top_item['arg'] >
 	>
-	type $bog_smalljs_top_nav__event_click_bog_smalljs_top_84 = $mol_type_enforce<
+	type $bog_smalljs_top_item__event_click_bog_smalljs_top_84 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_top['nav_pick'] >
 		,
-		ReturnType< $bog_smalljs_top_nav['event_click'] >
+		ReturnType< $bog_smalljs_top_item['event_click'] >
 	>
 	type $mol_link__title_bog_smalljs_top_85 = $mol_type_enforce<
 		string
@@ -3722,23 +3722,23 @@ declare namespace $ {
 		,
 		ReturnType< $mol_link['event_click'] >
 	>
-	type $bog_smalljs_top_nav__title_bog_smalljs_top_91 = $mol_type_enforce<
+	type $bog_smalljs_top_item__title_bog_smalljs_top_91 = $mol_type_enforce<
 		string
 		,
-		ReturnType< $bog_smalljs_top_nav['title'] >
+		ReturnType< $bog_smalljs_top_item['title'] >
 	>
-	type $bog_smalljs_top_nav__arg_bog_smalljs_top_92 = $mol_type_enforce<
+	type $bog_smalljs_top_item__arg_bog_smalljs_top_92 = $mol_type_enforce<
 		({ 
 			'section': string,
 			'page': any,
 		}) 
 		,
-		ReturnType< $bog_smalljs_top_nav['arg'] >
+		ReturnType< $bog_smalljs_top_item['arg'] >
 	>
-	type $bog_smalljs_top_nav__event_click_bog_smalljs_top_93 = $mol_type_enforce<
+	type $bog_smalljs_top_item__event_click_bog_smalljs_top_93 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_top['nav_pick'] >
 		,
-		ReturnType< $bog_smalljs_top_nav['event_click'] >
+		ReturnType< $bog_smalljs_top_item['event_click'] >
 	>
 	type $mol_link__title_bog_smalljs_top_94 = $mol_type_enforce<
 		string
@@ -4065,13 +4065,13 @@ declare namespace $ {
 		Docs_chevron( ): $mol_icon_chevron_down
 		Docs_quickstart( ): $mol_link
 		Docs_guide( ): $mol_link
-		Docs_tutorial( ): $bog_smalljs_top_nav
+		Docs_tutorial( ): $bog_smalljs_top_item
 		Docs_examples( ): $mol_link
 		Docs_api( ): $mol_link
 		Docs_menu( ): $mol_view
 		Docs_pick( ): $mol_pick
-		Nav_playground( ): $bog_smalljs_top_nav
-		Nav_versus( ): $bog_smalljs_top_nav
+		Nav_playground( ): $bog_smalljs_top_item
+		Nav_versus( ): $bog_smalljs_top_item
 		Ecosystem_label( ): string
 		Ecosystem_chevron( ): $mol_icon_chevron_down
 		Eco_components( ): $mol_link
@@ -4095,11 +4095,11 @@ declare namespace $ {
 		About_pick( ): $mol_pick
 		Nav( ): $mol_view
 		Burger_icon( ): $mol_icon_hamburger
-		Mobile_playground( ): $bog_smalljs_top_nav
-		Mobile_versus( ): $bog_smalljs_top_nav
+		Mobile_playground( ): $bog_smalljs_top_item
+		Mobile_versus( ): $bog_smalljs_top_item
 		M_docs_quickstart( ): $mol_link
 		M_docs_guide( ): $mol_link
-		M_docs_tutorial( ): $bog_smalljs_top_nav
+		M_docs_tutorial( ): $bog_smalljs_top_item
 		M_docs_examples( ): $mol_link
 		M_docs_api( ): $mol_link
 		Docs_group( ): $mol_expander
@@ -4139,8 +4139,8 @@ declare namespace $ {
 		Lang_option( id: any): $mol_button_minor
 	}
 	
-	export class $bog_smalljs_top_nav extends $mol_link {
-		uri_off( ): ReturnType< $bog_smalljs_top_nav['uri'] >
+	export class $bog_smalljs_top_item extends $mol_link {
+		uri_off( ): ReturnType< $bog_smalljs_top_item['uri'] >
 	}
 	
 }
@@ -8080,8 +8080,8 @@ declare namespace $ {
 declare namespace $ {
     class $mol_time_base {
         static patterns: Record<string, (arg: any) => string>;
-        static formatter(pattern: string): (arg: any) => string;
-        toString(pattern: string): string;
+        static formatter(pattern: string): (arg: any, lang?: string) => string;
+        toString(pattern: string, lang?: string): string;
     }
 }
 
@@ -8183,25 +8183,27 @@ declare namespace $ {
         toOffset(config?: $mol_time_duration_config): $mol_time_moment;
         valueOf(): number;
         toJSON(): string;
-        toString(pattern?: string): string;
+        toString(pattern?: string, lang?: string): string;
         toArray(): readonly [number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined];
         [Symbol.toPrimitive](mode: 'default' | 'number' | 'string'): string | number;
         [$mol_dev_format_head](): any[];
+        protected static formatters: Record<string, Record<string, Intl.DateTimeFormat>>;
+        static intl(lang: string | undefined, pattern: string, options: Intl.DateTimeFormatOptions): Intl.DateTimeFormat;
         static patterns: {
             YYYY: (moment: $mol_time_moment) => string;
             AD: (moment: $mol_time_moment) => string;
             YY: (moment: $mol_time_moment) => string;
-            Month: (moment: $mol_time_moment) => string;
-            'DD Month': (moment: $mol_time_moment) => string;
-            'D Month': (moment: $mol_time_moment) => string;
-            Mon: (moment: $mol_time_moment) => string;
-            'DD Mon': (moment: $mol_time_moment) => string;
-            'D Mon': (moment: $mol_time_moment) => string;
+            Month: (moment: $mol_time_moment, lang?: string) => string;
+            'DD Month': (moment: $mol_time_moment, lang?: string) => string;
+            'D Month': (moment: $mol_time_moment, lang?: string) => string;
+            Mon: (moment: $mol_time_moment, lang?: string) => string;
+            'DD Mon': (moment: $mol_time_moment, lang?: string) => string;
+            'D Mon': (moment: $mol_time_moment, lang?: string) => string;
             '-MM': (moment: $mol_time_moment) => string;
             MM: (moment: $mol_time_moment) => string;
             M: (moment: $mol_time_moment) => string;
-            WeekDay: (moment: $mol_time_moment) => string;
-            WD: (moment: $mol_time_moment) => string;
+            WeekDay: (moment: $mol_time_moment, lang?: string) => string;
+            WD: (moment: $mol_time_moment, lang?: string) => string;
             '-DD': (moment: $mol_time_moment) => string;
             DD: (moment: $mol_time_moment) => string;
             D: (moment: $mol_time_moment) => string;
@@ -8360,6 +8362,7 @@ declare namespace $.$$ {
      */
     class $mol_calendar extends $.$mol_calendar {
         month_moment(): $mol_time_moment;
+        lang(): string;
         title(): string;
         day_first(): $mol_time_moment;
         day_last(): $mol_time_moment;
@@ -11651,6 +11654,9 @@ declare namespace $.$$ {
             name: string;
             descr: string;
         };
+        /** The empty state carries the same words as the React and Vue runners.
+         *  The three frames are read side by side, and a column that is silent
+         *  where the others speak looks like a column that failed to load. */
         race_panel_name(): string;
         race_panel_descr(): string;
         /** The two waits add up to 1600 ms. Past this the machine was stretching
