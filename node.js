@@ -32964,6 +32964,30 @@ var $;
              *  after them. See the class for the full reasoning. */
             static {
                 $bog_smalljs_router.activate('/smalljs/');
+                /** Focus that goes nowhere.
+                 *
+                 *  $mol tracks the focused element from a capture listener on `focus`,
+                 *  and refreshes its cell only when that fires. Clicking blank space
+                 *  moves the document's active element to <body> without raising
+                 *  `focus` on anything, so nothing invalidates the cell and it keeps
+                 *  naming whatever held focus before the click.
+                 *
+                 *  What that looks like here: type into either picker on the comparison
+                 *  page, then click the background. The suggestion list stays open,
+                 *  because $mol_search only shows it while `focused()` is true — and it
+                 *  is still true. Clicking another field closes it, clicking nothing
+                 *  does not.
+                 *
+                 *  `focusout` carries `relatedTarget`: the element about to take focus,
+                 *  null when none will, which is exactly what the cell should hold. The
+                 *  same fix is open upstream as hyoo-ru/mam_mol#877; once it lands this
+                 *  listener notifies the cell with the value it already has and can go.
+                 */
+                const doc = $mol_dom_context.document;
+                doc?.addEventListener('focusout', (event) => {
+                    const next = event.relatedTarget;
+                    $mol_view_selection.focused($mol_maybe(next), 'notify');
+                }, true);
             }
             section(next) {
                 return $mol_state_arg.value('section', next) ?? 'home';
