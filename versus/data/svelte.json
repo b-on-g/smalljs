@@ -88,10 +88,20 @@
 			"source": "https://svelte.dev/docs/kit/routing",
 			"measured_at": "2026-08-13"
 		},
+		"i18n": {
+			"value": false,
+			"source": "https://svelte.dev/docs/cli/paraglide",
+			"measured_at": "2026-08-14"
+		},
 		"themes": {
 			"value": false,
 			"source": "https://svelte.dev/docs/svelte/overview",
 			"measured_at": "2026-08-13"
+		},
+		"virtual": {
+			"value": false,
+			"source": "https://svelte.dev/docs/svelte/overview",
+			"measured_at": "2026-08-14"
 		},
 		"offline": {
 			"value": true,
@@ -107,6 +117,16 @@
 			"value": false,
 			"source": "https://svelte.dev/docs/svelte/testing",
 			"measured_at": "2026-08-13"
+		},
+		"di": {
+			"value": true,
+			"source": "https://svelte.dev/docs/svelte/context",
+			"measured_at": "2026-08-14"
+		},
+		"forms": {
+			"value": true,
+			"source": "https://svelte.dev/docs/kit/form-actions",
+			"measured_at": "2026-08-14"
 		},
 		"typed_templates": {
 			"value": true,

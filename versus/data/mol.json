@@ -95,8 +95,9 @@
 		},
 		"themes": {
 			"value": true,
-			"source": "https://github.com/hyoo-ru/mam_mol/tree/master/theme",
-			"measured_at": "2026-08-13"
+			"source": "https://github.com/hyoo-ru/mam_mol/tree/master/lights",
+			"measured_at": "2026-08-14",
+			"method": "https://github.com/hyoo-ru/mam_mol/tree/master/theme"
 		},
 		"virtual": {
 			"value": true,
@@ -110,13 +111,14 @@
 		},
 		"ssr": {
 			"value": false,
-			"source": "https://github.com/hyoo-ru/mam_mol",
-			"measured_at": "2026-08-13"
+			"source": "https://github.com/hyoo-ru/mam_mol#modules",
+			"measured_at": "2026-08-14"
 		},
 		"tests_nodom": {
-			"value": true,
-			"source": "https://github.com/hyoo-ru/mam_mol/tree/master/test",
-			"measured_at": "2026-08-13"
+			"value": false,
+			"source": "https://github.com/hyoo-ru/mam_mol/blob/master/dom/context/context.node.ts",
+			"measured_at": "2026-08-14",
+			"method": "https://github.com/hyoo-ru/mam_mol/blob/master/button/button.test.ts"
 		},
 		"di": {
 			"value": true,
@@ -126,12 +128,14 @@
 		"forms": {
 			"value": true,
 			"source": "https://github.com/hyoo-ru/mam_mol/tree/master/form",
-			"measured_at": "2026-08-13"
+			"measured_at": "2026-08-14",
+			"method": "https://github.com/hyoo-ru/mam_mol/tree/master/form/draft"
 		},
 		"typed_templates": {
 			"value": true,
-			"source": "https://github.com/hyoo-ru/mam_mol/tree/master/view/tree2",
-			"measured_at": "2026-08-13"
+			"source": "https://github.com/hyoo-ru/mam_mol/tree/master/view",
+			"measured_at": "2026-08-14",
+			"method": "https://github.com/hyoo-ru/mam_mol/tree/master/view/tree2"
 		},
 		"stars": {
 			"value": 743,

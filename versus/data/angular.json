@@ -113,6 +113,11 @@
 			"source": "https://angular.dev/guide/ssr",
 			"measured_at": "2026-08-13"
 		},
+		"tests_nodom": {
+			"value": false,
+			"source": "https://angular.dev/guide/testing/components-basics",
+			"measured_at": "2026-08-14"
+		},
 		"di": {
 			"value": true,
 			"source": "https://angular.dev/guide/di",

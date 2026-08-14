@@ -117,7 +117,7 @@
 		"unit": "",
 		"better": "boolean",
 		"human": "Whether URLs and navigation come from the framework project itself, or you go pick a library and own that choice forever.",
-		"method": "Yes when the framework project publishes and documents a routing solution of its own. No when its own official docs send you to a third-party project instead. Blank when neither is stated anywhere official."
+		"method": "Built in means the framework project ships it itself: its own package, or one the same team maintains and publishes as official. A library from anyone else counts as no, however popular or de-facto standard it has become, which is why routing is a yes for Angular and a no for React. The same cut is applied to all six frameworks, and every value links to the official page it was read from. Yes when that project publishes and documents a routing solution of its own. No when its own docs send you to a third-party project instead."
 	},
 	"i18n": {
 		"category": "builtin",
@@ -125,7 +125,7 @@
 		"unit": "",
 		"better": "boolean",
 		"human": "Translating an application is rarely planned at the start and always arrives later.",
-		"method": "Yes when the framework project publishes and documents localization support of its own."
+		"method": "Built in means the framework project ships it itself: its own package, or one the same team maintains and publishes as official. A library from anyone else counts as no, however popular or de-facto standard it has become, which is why routing is a yes for Angular and a no for React. The same cut is applied to all six frameworks, and every value links to the official page it was read from. Yes when that project publishes and documents localization of its own. An official CLI add-on that wires up somebody else’s i18n library is a no, because the library is still somebody else’s."
 	},
 	"themes": {
 		"category": "builtin",
@@ -133,7 +133,7 @@
 		"unit": "",
 		"better": "boolean",
 		"human": "Dark mode and brand colours without inventing your own CSS variable convention.",
-		"method": "Yes when the framework project publishes and documents a theming mechanism of its own. No when the word does not appear in its official API reference — the linked page is that reference, so the absence can be checked directly."
+		"method": "Built in means the framework project ships it itself: its own package, or one the same team maintains and publishes as official. A library from anyone else counts as no, however popular or de-facto standard it has become, which is why routing is a yes for Angular and a no for React. The same cut is applied to all six frameworks, and every value links to the official page it was read from. Yes when that project publishes and documents a theming mechanism of its own. No when the word does not appear in its official API reference, which is the page linked, so the absence can be checked directly."
 	},
 	"virtual": {
 		"category": "builtin",
@@ -141,7 +141,7 @@
 		"unit": "",
 		"better": "boolean",
 		"human": "Long lists stay smooth because off-screen rows are never rendered. Without it, someone eventually bolts a library onto a list that already shipped.",
-		"method": "Yes when the framework project publishes and documents virtual scrolling of its own."
+		"method": "Built in means the framework project ships it itself: its own package, or one the same team maintains and publishes as official. A library from anyone else counts as no, however popular or de-facto standard it has become, which is why routing is a yes for Angular and a no for React. The same cut is applied to all six frameworks, and every value links to the official page it was read from. Yes when that project publishes and documents lazy or virtual rendering of long lists. No when no such component appears in its API reference."
 	},
 	"offline": {
 		"category": "builtin",
@@ -149,7 +149,7 @@
 		"unit": "",
 		"better": "boolean",
 		"human": "A service worker set up by the framework rather than copied from a blog post.",
-		"method": "Yes when the framework project publishes and documents service worker support of its own."
+		"method": "Built in means the framework project ships it itself: its own package, or one the same team maintains and publishes as official. A library from anyone else counts as no, however popular or de-facto standard it has become, which is why routing is a yes for Angular and a no for React. The same cut is applied to all six frameworks, and every value links to the official page it was read from. Yes when that project ships the service worker integration: a module it builds and registers for you. No when the docs only show where to drop your own sw.js and how to register it with the browser API, because that is the browser’s feature rather than the framework’s."
 	},
 	"ssr": {
 		"category": "builtin",
@@ -157,7 +157,7 @@
 		"unit": "",
 		"better": "boolean",
 		"human": "Rendering to HTML on the server, for search engines and for the first paint.",
-		"method": "Yes when the framework project publishes and documents a server rendering API of its own. No when its published module list contains no such module."
+		"method": "Built in means the framework project ships it itself: its own package, or one the same team maintains and publishes as official. A library from anyone else counts as no, however popular or de-facto standard it has become, which is why routing is a yes for Angular and a no for React. The same cut is applied to all six frameworks, and every value links to the official page it was read from. Yes when that project publishes and documents a server rendering API of its own. No when its published module list contains no such module."
 	},
 	"tests_nodom": {
 		"category": "builtin",
@@ -165,7 +165,7 @@
 		"unit": "",
 		"better": "boolean",
 		"human": "Components testable as plain objects, with no browser and no jsdom to boot up first.",
-		"method": "Yes when the framework's own test runner instantiates components and asserts on them outside a document. No when its official testing guide prescribes a DOM environment — jsdom, happy-dom or a real browser — to render a component at all."
+		"method": "Built in means the framework project ships it itself: its own package, or one the same team maintains and publishes as official. A library from anyone else counts as no, however popular or de-facto standard it has become, which is why routing is a yes for Angular and a no for React. The same cut is applied to all six frameworks, and every value links to the official page it was read from. Yes when components can be instantiated and asserted on with no document in play. No when a DOM has to exist before a component renders at all, whether because the official testing guide prescribes jsdom, happy-dom or a browser, or because the framework’s own test runtime boots one."
 	},
 	"di": {
 		"category": "builtin",
@@ -173,7 +173,7 @@
 		"unit": "",
 		"better": "boolean",
 		"human": "Swapping a real service for a fake one in a test without touching the component that uses it.",
-		"method": "Yes when the framework project documents a dependency injection mechanism of its own."
+		"method": "Built in means the framework project ships it itself: its own package, or one the same team maintains and publishes as official. A library from anyone else counts as no, however popular or de-facto standard it has become, which is why routing is a yes for Angular and a no for React. The same cut is applied to all six frameworks, and every value links to the official page it was read from. Yes when that project documents a way to hand a component a value from outside it and replace that value later, in a test or in another host. Context APIs count: the bar is a documented mechanism, not a particular shape of container."
 	},
 	"forms": {
 		"category": "builtin",
@@ -181,7 +181,7 @@
 		"unit": "",
 		"better": "boolean",
 		"human": "Validation, dirty state and submission handled by the framework instead of a fourth form library per team.",
-		"method": "Yes when the framework project publishes and documents form handling of its own."
+		"method": "Built in means the framework project ships it itself: its own package, or one the same team maintains and publishes as official. A library from anyone else counts as no, however popular or de-facto standard it has become, which is why routing is a yes for Angular and a no for React. The same cut is applied to all six frameworks, and every value links to the official page it was read from. Yes when that project documents a form API that goes past binding one input to one variable, covering at least submission handling or validation state. Two-way binding on its own is a no."
 	},
 	"typed_templates": {
 		"category": "builtin",
@@ -189,7 +189,7 @@
 		"unit": "",
 		"better": "boolean",
 		"human": "A typo in a template is caught by the compiler, not by a user.",
-		"method": "Yes when the framework's official TypeScript documentation covers type checking of its template or view layer."
+		"method": "Built in means the framework project ships it itself: its own package, or one the same team maintains and publishes as official. A library from anyone else counts as no, however popular or de-facto standard it has become, which is why routing is a yes for Angular and a no for React. The same cut is applied to all six frameworks, and every value links to the official page it was read from. Yes when the framework’s official TypeScript documentation covers type checking of its template or view layer."
 	},
 	"stars": {
 		"category": "market",
