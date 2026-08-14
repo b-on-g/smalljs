@@ -165,7 +165,7 @@
 		"unit": "",
 		"better": "boolean",
 		"human": "Components testable as plain objects, with no browser and no jsdom to boot up first.",
-		"method": "Built in means the framework project ships it itself: its own package, or one the same team maintains and publishes as official. A library from anyone else counts as no, however popular or de-facto standard it has become, which is why routing is a yes for Angular and a no for React. The same cut is applied to all six frameworks, and every value links to the official page it was read from. Yes when components can be instantiated and asserted on with no document in play. No when a DOM has to exist before a component renders at all, whether because the official testing guide prescribes jsdom, happy-dom or a browser, or because the framework’s own test runtime boots one."
+		"method": "Built in means the framework project ships it itself: its own package, or one the same team maintains and publishes as official. The same cut is applied to all six frameworks, and every value links to the official page it was read from. Yes when a component can be instantiated and asserted on with no document in play — the test never reaches for one. No when a DOM has to exist before a component can render at all, which is what every official testing guide here prescribes when it tells you to install jsdom, happy-dom or a browser. The question is whether a DOM is required, not whether the runtime happens to have one available: a runtime that provides a document nobody asks for does not make the test a DOM test."
 	},
 	"di": {
 		"category": "builtin",

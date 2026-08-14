@@ -115,10 +115,9 @@
 			"measured_at": "2026-08-14"
 		},
 		"tests_nodom": {
-			"value": false,
-			"source": "https://github.com/hyoo-ru/mam_mol/blob/master/dom/context/context.node.ts",
-			"measured_at": "2026-08-14",
-			"method": "https://github.com/hyoo-ru/mam_mol/blob/master/button/button.test.ts"
+			"value": true,
+			"source": "https://github.com/b-on-g/smalljs/blob/main/bog/smalljs/versus/pair/pair.test.ts",
+			"measured_at": "2026-08-14"
 		},
 		"di": {
 			"value": true,
