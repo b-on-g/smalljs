@@ -10,6 +10,17 @@ namespace $.$$ {
 			top: '-0.5rem',
 		},
 
+		// The expander's chevron is an $mol_icon, and an icon with no size of its
+		// own stretches to whatever box it is given: inside this block it grew to
+		// 1198px tall and carried the whole disclosure to 1576px, while the code
+		// it hides is 362px. The block looked enormous because of an arrow nobody
+		// could see, not because of the code.
+		$mol_icon: {
+			width: '1em',
+			height: '1em',
+			flex: { grow: 0, shrink: 0 },
+		},
+
 		Hint: {
 			font: {
 				size: '0.8125rem',
