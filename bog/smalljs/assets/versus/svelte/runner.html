@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Svelte runner</title>
+
+<!--
+	Svelte is a compiler, so a .svelte component cannot run as it is written. This
+	page compiles its components in the browser: the vendored compiler turns each
+	source into a module when the page loads, and the modules are mounted from
+	blob URLs. There is no build step and no bundler output here — what the
+	comparison page shows as the source is the very text that got compiled.
+
+	The compiler runs before the runner reports `ready`, so nothing it does falls
+	inside a measured window: `Render time` starts at the Run click.
+
+	Weights, so the compiler is not mistaken for what a Svelte app ships:
+	svelte-compiler.js is 831 KB ( 216 KB gzipped ) and exists only for this page,
+	while svelte-runtime.js is 104 KB ( 37 KB gzipped ) and is the part a real
+	build would leave in the bundle.
+-->
+
+<script type="importmap">
+{
+	"imports": {
+		"svelte": "../vendor/svelte-runtime.js",
+		"svelte/internal/client": "../vendor/svelte-runtime.js",
+		"svelte/internal/disclose-version": "../vendor/svelte-runtime.js"
+	}
+}
+</script>
+
+<style>
+
+	:root { color-scheme: light }
+
+	* { box-sizing: border-box }
+
+	html, body { height: 100% }
+
+	body {
+		margin: 0;
+		font: 14px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+		color: #1b1b1b;
+		background: #fff;
+	}
+
+	#host, .app { width: 100%; height: 100% }
+
+	.muted { color: #6b6b6b }
+
+	.row2 { display: flex; height: 100%; align-items: stretch }
+
+	.side {
+		width: 40%;
+		min-width: 0;
+		padding: 8px;
+		overflow: auto;
+		border-right: 1px solid #e4e4e4;
+	}
+
+	.main { flex: 1; min-width: 0; padding: 12px; overflow: auto }
+
+	.item {
+		display: block;
+		width: 100%;
+		margin-bottom: 2px;
+		padding: 6px 8px;
+		border: 0;
+		border-radius: 4px;
+		background: transparent;
+		font: inherit;
+		color: inherit;
+		text-align: left;
+		cursor: pointer;
+	}
+
+	.item:hover { background: #f1f1f1 }
+
+	.item_current { background: #dfe8f6 }
+
+	.title { font-weight: 600; margin-bottom: 4px }
+
+	.column { height: 100%; padding: 12px; overflow: auto }
+
+	.stat { margin-bottom: 4px }
+
+	.slot {
+		margin-top: 8px;
+		padding: 8px;
+		min-height: 48px;
+		border: 1px solid #e4e4e4;
+		border-radius: 6px;
+	}
+
+	.scroll { height: 100%; padding: 8px; overflow: auto }
+
+	.line { padding: 6px 8px; border-bottom: 1px solid #efefef; overflow-wrap: anywhere }
+
+	.hint { padding: 6px 8px }
+
+	.cards {
+		display: grid;
+		grid-template-columns: repeat( auto-fill, minmax( 120px, 1fr ) );
+		gap: 8px;
+		height: 100%;
+		padding: 8px;
+		overflow: auto;
+		align-content: start;
+	}
+
+	.card { padding: 8px; border: 1px solid #e4e4e4; border-radius: 6px }
+
+	.card_title { font-weight: 600 }
+
+	.card_text { color: #6b6b6b }
+
+	.standalone {
+		position: fixed;
+		right: 8px;
+		bottom: 8px;
+		padding: 6px 12px;
+		border: 1px solid #c9c9c9;
+		border-radius: 6px;
+		background: #fff;
+		font: inherit;
+		cursor: pointer;
+	}
+
+</style>
+</head>
+<body>
+
+<div id="host"></div>
+
+<script src="../vendor/svelte-compiler.js"></script>
+<!--
+	The runner sits in its own file rather than inline: component sources contain
+	a closing script tag, and the HTML parser would end this element on the first
+	one it finds inside a string.
+-->
+<script type="module" src="./runner.js"></script>
+
+</body>
+</html>

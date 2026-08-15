@@ -1,0 +1,790 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Angular runner</title>
+<style>
+
+	:root { color-scheme: light }
+
+	* { box-sizing: border-box }
+
+	html, body { height: 100% }
+
+	body {
+		margin: 0;
+		font: 14px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+		color: #1b1b1b;
+		background: #fff;
+	}
+
+	#host, versus-app { display: block; width: 100%; height: 100% }
+
+	.muted { color: #6b6b6b }
+
+	.row2 { display: flex; height: 100%; align-items: stretch }
+
+	.side {
+		width: 40%;
+		min-width: 0;
+		padding: 8px;
+		overflow: auto;
+		border-right: 1px solid #e4e4e4;
+	}
+
+	.main { flex: 1; min-width: 0; padding: 12px; overflow: auto }
+
+	.item {
+		display: block;
+		width: 100%;
+		margin-bottom: 2px;
+		padding: 6px 8px;
+		border: 0;
+		border-radius: 4px;
+		background: transparent;
+		font: inherit;
+		color: inherit;
+		text-align: left;
+		cursor: pointer;
+	}
+
+	.item:hover { background: #f1f1f1 }
+
+	.item_current { background: #dfe8f6 }
+
+	.title { font-weight: 600; margin-bottom: 4px }
+
+	.column { height: 100%; padding: 12px; overflow: auto }
+
+	.stat { margin-bottom: 4px }
+
+	.slot {
+		margin-top: 8px;
+		padding: 8px;
+		min-height: 48px;
+		border: 1px solid #e4e4e4;
+		border-radius: 6px;
+	}
+
+	.scroll { height: 100%; padding: 8px; overflow: auto }
+
+	.line { padding: 6px 8px; border-bottom: 1px solid #efefef; overflow-wrap: anywhere }
+
+	.hint { padding: 6px 8px }
+
+	.cards {
+		display: grid;
+		grid-template-columns: repeat( auto-fill, minmax( 120px, 1fr ) );
+		gap: 8px;
+		height: 100%;
+		padding: 8px;
+		overflow: auto;
+		align-content: start;
+	}
+
+	.card { padding: 8px; border: 1px solid #e4e4e4; border-radius: 6px }
+
+	.card_title { font-weight: 600 }
+
+	.card_text { color: #6b6b6b }
+
+	.standalone {
+		position: fixed;
+		right: 8px;
+		bottom: 8px;
+		padding: 6px 12px;
+		border: 1px solid #c9c9c9;
+		border-radius: 6px;
+		background: #fff;
+		font: inherit;
+		cursor: pointer;
+	}
+
+</style>
+</head>
+<body>
+
+<div id="host"></div>
+
+<script src="../vendor/angular.jit.js"></script>
+<script>
+;( function () {
+	'use strict'
+
+	// ===================================================================
+	// This column runs Angular compiled in the browser ( JIT ), not built
+	// ahead of time ( AOT ). Read it knowing that, because it is the way
+	// this column differs from how Angular is normally shipped.
+	//
+	// Why. Every page here has to stay a static file that a copy step can
+	// put on the server, and an Angular app normally is not one: its
+	// templates are compiled by the Angular compiler during `ng build`,
+	// which means a toolchain, a config and an output folder. So
+	// `@angular/compiler` is vendored alongside the runtime and the
+	// templates are compiled when the page loads. Vue is in the same
+	// position and solves it the same way: the `vue.global.prod.js` in the
+	// next column is the build that carries Vue's template compiler and
+	// runs it in the browser. React needs no compiler at all, because its
+	// runner calls `createElement` instead of writing templates.
+	//
+	// Why the numbers still stand. Compilation happens once, while these
+	// component classes are being declared, which is before the frame is
+	// even reported as ready. `Render time` is measured from the moment
+	// Run is pressed, so no compiler work falls inside the window. The
+	// code Angular executes afterwards is the same code an AOT build
+	// executes: AOT runs this compiler earlier, not a different one.
+	//
+	// What JIT does change, so nothing here is read as more than it is:
+	//
+	//   - Weight. Runtime plus compiler is 886 KB minified ( 256 KB
+	//     gzipped ); the runtime alone is 414 KB ( 131 KB ). An AOT build
+	//     ships only the runtime, and tree-shakes it further against the
+	//     app, so a real Angular app of this size downloads a fraction of
+	//     what this page does. The frames here are not a size benchmark
+	//     of anything, and the weight of this column is not Angular's
+	//     answer to that question.
+	//   - Startup. The templates below are parsed and compiled on load,
+	//     which an AOT build does on the build machine instead.
+	//   - Template errors that AOT would catch at build time surface at
+	//     runtime here. None of these four templates has one.
+	//   - Decorators are applied as ordinary calls — `Component( {...} )
+	//     ( class {...} )` — since there is no TypeScript step to run
+	//     decorator syntax through. Angular's decorators are functions
+	//     either way, and the metadata they attach is identical.
+	//   - Strict templates, `input()` typing and the like are compile-time
+	//     checks. They are simply absent, not failing.
+	//
+	// The app is zoneless, which is the default for a new Angular app
+	// since 20.2 and the reason zone.js is not vendored here. Change
+	// detection is driven by signals rather than by patched globals —
+	// a real difference from a zone.js app, and one worth ruling out
+	// before trusting the column. The same four scenarios were run
+	// against a zone.js build of this file, with `provideZoneChangeDetection()`
+	// in place of the zoneless provider, and returned the same status
+	// and the same `observed` sentence in all four.
+	//
+	// The vendored bundle is @angular/core, /common, /compiler and
+	// /platform-browser 21.2.20 with rxjs 7.8.2 and tslib 2.8.1. Its entry
+	// imports `@angular/compiler` for the side effect and re-exports the
+	// symbols used below; it is built with
+	//
+	//   esbuild entry.js --bundle --format=iife --global-name=NG --minify
+	//     --target=es2022 --define:ngDevMode=false
+	//     --define:ngI18nClosureMode=false --define:ngJitMode=true
+	//     --outfile=../vendor/angular.jit.js
+	//
+	// The global is `NG` and not `ng` on purpose: `@angular/compiler`
+	// publishes its JIT facade onto `window.ng`, and a bundle exporting
+	// itself under that name wipes it the moment it finishes loading.
+	// ===================================================================
+
+	const NS = 'versus'
+	const CASE = new URLSearchParams( location.search ).get( 'case' ) || 'race'
+
+	const Component = NG.Component
+	const signal = NG.signal
+	const effect = NG.effect
+
+	const delay = ms => new Promise( done => setTimeout( done, ms ) )
+
+	function send( message ) {
+		message.ns = NS
+		parent.postMessage( message, '*' )
+	}
+
+	// Thrown when the numbers would describe the browser's scheduler instead of
+	// the framework, so the run is dropped rather than reported.
+	function Invalid( reason ) {
+		this.reason = reason
+	}
+
+	function click( selector ) {
+		const node = document.querySelector( selector )
+		if( !node ) throw new Error( 'No element matching ' + selector )
+		node.click()
+	}
+
+	// No timer fallback on purpose: a background tab produces no frames at all,
+	// and a run that stalls here is ended by the visibility watch instead.
+	function next_frame() {
+		return new Promise( done => requestAnimationFrame( () => done() ) )
+	}
+
+	async function scroll_to( box, from, to, duration ) {
+		const start = performance.now()
+		for( ;; ) {
+			const part = Math.min( 1, ( performance.now() - start ) / duration )
+			box.scrollTop = from + ( to - from ) * part
+			if( part >= 1 ) return
+			await next_frame()
+		}
+	}
+
+	function heap_metrics() {
+		const memory = performance.memory
+		if( !memory ) return []
+		return [ {
+			name: 'Heap',
+			value: Math.round( memory.usedJSHeapSize / 1048576 ),
+			unit: 'MB',
+		} ]
+	}
+
+	// Every scenario hands the runner its component instance here, the same way
+	// the React and Vue runners keep a control handle: Run is pressed outside
+	// the app and has to reach into it.
+	let view = null
+
+
+	// ---------------------------------------------------------------- race
+	// versus:case race
+
+	// Idiomatic data loading: an effect reads the selected id, starts a request
+	// and writes whatever comes back into a signal. There is no cancellation and
+	// no check that the id it started with is still the selected one, so a slow
+	// earlier response still lands after a fast later one. The usual fixes are a
+	// stale flag released from the effect's onCleanup, an AbortController, or
+	// `resource()`, which does the cancelling for you — each of them written in
+	// by hand, and each of them absent until someone notices they are needed.
+
+	const RACE_USERS = [ 1, 2, 3, 4, 5 ].map( number => ( {
+		id: number,
+		name: 'User ' + number,
+		about: 'Profile details for user ' + number + '.',
+	} ) )
+
+	function fetch_user( id ) {
+		return new Promise( done => {
+			setTimeout( () => done( RACE_USERS[ id - 1 ] ), 1000 - ( id - 1 ) * 200 )
+		} )
+	}
+
+	const RaceApp = Component( {
+		selector: 'versus-app',
+		template: `
+			<div class="row2">
+				<div class="side">
+					@for ( item of users; track item.id ) {
+						<button
+							class="item"
+							[class.item_current]="item.id === id()"
+							[attr.data-user]="item.id"
+							(click)="id.set( item.id )"
+						>{{ item.name }}</button>
+					}
+				</div>
+				<div class="main">
+					@if ( loading() ) {
+						<div class="muted">Loading…</div>
+					} @else if ( user() ) {
+						<div>
+							<div class="title" data-panel="name">{{ user().name }}</div>
+							<div class="muted">{{ user().about }}</div>
+						</div>
+					} @else {
+						<div class="muted">Pick a user</div>
+					}
+				</div>
+			</div>
+		`,
+	} )( class {
+
+		users = RACE_USERS
+		id = signal( null )
+		user = signal( null )
+		loading = signal( false )
+
+		constructor() {
+			view = this
+			effect( () => {
+				const id = this.id()
+				if( id === null ) return
+				this.loading.set( true )
+				fetch_user( id ).then( data => {
+					this.user.set( data )
+					this.loading.set( false )
+				} )
+			} )
+		}
+	} )
+
+	const race = {
+
+		component: RaceApp,
+
+		run: async () => {
+
+			const started = performance.now()
+
+			click( '[data-user="1"]' )
+			await delay( 100 )
+			click( '[data-user="5"]' )
+			await delay( 1500 )
+
+			// Clamped timers collapse both responses into one wake-up and destroy
+			// the order the scenario is built on. Expected here is ~1600 ms.
+			if( performance.now() - started > 2200 ) throw new Invalid( 'timers-throttled' )
+
+			const panel = document.querySelector( '[data-panel="name"]' )
+			const shown = panel ? panel.textContent : ''
+			const number = shown.replace( /\D+/g, '' )
+
+			return {
+				status: number === '5' ? 'ok' : 'fail',
+				observed: number
+					? 'Selected user 5, panel shows user ' + number
+					: 'Selected user 5, panel shows nothing',
+				metrics: [],
+			}
+		},
+	}
+
+
+	// ------------------------------------------------------------- virtual
+	// versus:case virtual
+
+	// A plain @for over the whole data set, the way a list is written before its
+	// size becomes a problem. Every row sits in the DOM at once. Windowing is not
+	// part of the template syntax: it comes from `cdk-virtual-scroll-viewport` in
+	// the Angular CDK, a separate package, and rows of irregular height need a
+	// custom strategy on top of that because the stock one assumes a fixed size.
+
+	const WORDS = 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua '
+
+	const VIRTUAL_ROWS = ( () => {
+		const rows = []
+		for( let i = 0; i < 10000; ++i ) {
+			const length = 20 + ( i * 37 ) % 400
+			let text = ''
+			while( text.length < length ) text += WORDS
+			rows.push( text.slice( 0, length ) )
+		}
+		return rows
+	} )()
+
+	const VirtualApp = Component( {
+		selector: 'versus-app',
+		template: `
+			<div class="scroll" data-role="scroll">
+				@for ( text of rows(); track $index ) {
+					<div class="line">#{{ $index + 1 }} {{ text }}</div>
+				} @empty {
+					<div class="hint muted">Press Run to load 10,000 rows</div>
+				}
+			</div>
+		`,
+	} )( class {
+
+		rows = signal( [] )
+
+		constructor() {
+			view = this
+		}
+	} )
+
+	const virtual = {
+
+		component: VirtualApp,
+
+		run: async () => {
+
+			const box = document.querySelector( '[data-role="scroll"]' )
+			if( !box ) throw new Error( 'Scroll container is missing' )
+
+			// Always start from the placeholder, so a repeated run times a real
+			// render instead of a list that is already on screen.
+			view.rows.set( [] )
+			app.tick()
+			box.scrollTop = 0
+
+			const started = performance.now()
+
+			view.rows.set( VIRTUAL_ROWS )
+
+			await next_frame()
+			await next_frame()
+
+			// Reading scrollHeight forces the layout the rows just made necessary.
+			const height = box.scrollHeight
+			const render_time = Math.round( performance.now() - started )
+
+			const middle = ( height - box.clientHeight ) / 2
+			await scroll_to( box, 0, middle, 1000 )
+			await scroll_to( box, middle, 0, 1000 )
+
+			const nodes = box.querySelectorAll( '*' ).length
+
+			return {
+				status: nodes < 500 ? 'ok' : nodes > 5000 ? 'fail' : 'warn',
+				observed: 'Rendered ' + nodes + ' DOM nodes for 10000 rows',
+				metrics: [
+					{ name: 'DOM nodes', value: nodes, unit: '' },
+					{ name: 'Render time', value: render_time, unit: 'ms' },
+				],
+			}
+		},
+	}
+
+
+	// ---------------------------------------------------------------- leak
+	// versus:case leak
+
+	// The widget subscribes to a store in ngOnInit and never lets go. The missing
+	// half is an ngOnDestroy calling `store.unsubscribe( handler )`, or the same
+	// line through `inject( DestroyRef ).onDestroy()`: written by hand for every
+	// subscription, and silent when it is left out. Angular does clean up an
+	// `| async` pipe and a `takeUntilDestroyed()` for you, but only for things
+	// that are Observables. A plain callback store like this one is on you.
+
+	const store = {
+
+		value: 0,
+		subscribers: [],
+
+		subscribe( handler ) {
+			this.subscribers.push( handler )
+		},
+
+		unsubscribe( handler ) {
+			const index = this.subscribers.indexOf( handler )
+			if( index >= 0 ) this.subscribers.splice( index, 1 )
+		},
+
+		set( value ) {
+			this.value = value
+			this.subscribers.forEach( handler => handler( value ) )
+		},
+	}
+
+	let store_ticker = 0
+
+	const LeakWidget = Component( {
+		selector: 'versus-widget',
+		template: `<div>Widget sees store value {{ value() }}</div>`,
+	} )( class {
+
+		value = signal( store.value )
+
+		ngOnInit() {
+			store.subscribe( next => this.value.set( next ) )
+		}
+	} )
+
+	const LeakApp = Component( {
+		selector: 'versus-app',
+		imports: [ LeakWidget ],
+		template: `
+			<div class="column">
+				<div class="stat">Mount cycles: {{ cycles() }}</div>
+				<div class="stat">Live subscribers: {{ live() }}</div>
+				<div class="slot">
+					@if ( mounted() ) {
+						<versus-widget />
+					} @else {
+						<div class="muted">Widget not mounted</div>
+					}
+				</div>
+			</div>
+		`,
+	} )( class {
+
+		mounted = signal( false )
+		cycles = signal( 0 )
+		live = signal( store.subscribers.length )
+
+		constructor() {
+			view = this
+		}
+	} )
+
+	const leak = {
+
+		component: LeakApp,
+
+		mounted: () => {
+			// The store outlives the tree, so every run starts from a known zero.
+			store.subscribers = []
+			if( !store_ticker ) store_ticker = setInterval( () => store.set( store.value + 1 ), 500 )
+		},
+
+		run: async () => {
+
+			store.subscribers = []
+
+			for( let i = 0; i < 100; ++i ) {
+				view.mounted.set( true )
+				app.tick()
+				view.mounted.set( false )
+				app.tick()
+			}
+
+			await delay( 50 )
+
+			const live = store.subscribers.length
+
+			view.cycles.set( 100 )
+			view.live.set( live )
+			app.tick()
+
+			return {
+				status: live === 0 ? 'ok' : 'fail',
+				observed: '100 mount cycles left ' + live + ' live subscribers',
+				metrics: [ { name: 'Live subscribers', value: live, unit: '' } ].concat( heap_metrics() ),
+			}
+		},
+	}
+
+
+	// --------------------------------------------------------------- crash
+	// versus:case crash
+
+	// A card reads fields off its input straight in the template, the way a list
+	// of cards is written. Nothing here reacts to a render failure: there is no
+	// custom ErrorHandler and no try/catch, because the default template has
+	// neither.
+	//
+	// Angular hands render errors to its built-in ErrorHandler instead of letting
+	// them escape, so the DOM is left standing. What it does not do is finish the
+	// pass: change detection is abandoned at the component that threw, and that
+	// view plus every view after it keeps whatever the previous pass had put
+	// there. The tree stays, the data on screen stops being the data in the app,
+	// and nothing in the interface says so. Making the broken part show something
+	// of its own is still code somebody has to write.
+
+	const CRASH_CARDS = []
+	for( let i = 1; i <= 20; ++i ) {
+		CRASH_CARDS.push( { id: i, title: 'Card ' + i, text: 'Details for card ' + i } )
+	}
+
+	const CrashCard = Component( {
+		selector: 'versus-card',
+		inputs: [ 'item' ],
+		template: `
+			<div class="card">
+				<div class="card_title">{{ item.title }}</div>
+				<div class="card_text">{{ item.text }}</div>
+			</div>
+		`,
+	} )( class {
+
+		item = null
+	} )
+
+	const CrashApp = Component( {
+		selector: 'versus-app',
+		imports: [ CrashCard ],
+		template: `
+			<div class="cards" data-role="cards">
+				@for ( item of items(); track $index ) {
+					<versus-card [item]="item" />
+				}
+			</div>
+		`,
+	} )( class {
+
+		items = signal( CRASH_CARDS )
+
+		constructor() {
+			view = this
+		}
+	} )
+
+	const crash = {
+
+		component: CrashApp,
+
+		run: async () => {
+
+			const broken = CRASH_CARDS.slice()
+			broken[ 6 ] = null
+
+			// Only the signal is written here, and change detection is left to
+			// Angular's own scheduler. Calling ApplicationRef.tick() by hand would
+			// rethrow the render error to this line instead of routing it through
+			// ErrorHandler, and the runner would be measuring its own call rather
+			// than what the framework does on its own.
+			muted = true
+			view.items.set( broken )
+
+			await delay( 200 )
+			muted = false
+
+			const list = document.querySelectorAll( '.card' )
+			const cards = list.length
+			// Nothing renders this marker here — Angular has no error placeholder
+			// of its own. The check stays so all runners score the same way.
+			const placeholder = !!document.querySelector( '[data-role="card-error"]' )
+			// The pass is abandoned where it threw, so card 7 and everything after
+			// it keep the markup the previous pass left. Here only card 7 had new
+			// data, so it is the only one whose staleness is visible.
+			const stale = cards > 6 && /Card 7/.test( list[ 6 ].textContent )
+
+			return {
+				status: cards === 0 ? 'fail' : cards === 19 && placeholder ? 'ok' : 'warn',
+				observed: cards === 0
+					? 'Card 7 threw during render, 0 of 20 cards remained'
+					: cards + ' of 20 cards survived, card 7 '
+						+ ( placeholder ? 'was replaced by an error placeholder'
+							: stale ? 'kept showing its previous content'
+								: 'disappeared without a placeholder' ),
+				metrics: [ { name: 'Surviving cards', value: cards, unit: '' } ],
+			}
+		},
+	}
+
+
+	// versus:end
+	// -------------------------------------------------------------- runner
+
+	const SCENARIOS = { race: race, virtual: virtual, leak: leak, crash: crash }
+
+	const host = document.getElementById( 'host' )
+
+	let scenario = null
+	let app = null
+	let running = false
+	let muted = false
+
+	// bootstrapApplication looks the root component up by its selector, so the
+	// element has to be in the document before it is called.
+	function fresh_container() {
+		host.innerHTML = ''
+		host.appendChild( document.createElement( 'versus-app' ) )
+	}
+
+	async function boot() {
+
+		scenario = SCENARIOS[ CASE ]
+
+		if( !scenario ) {
+			send( { type: 'error', message: 'Unknown case: ' + CASE } )
+			return
+		}
+
+		if( app ) {
+			muted = true
+			try { app.destroy() } catch( error ) {}
+			muted = false
+			app = null
+		}
+
+		view = null
+		fresh_container()
+
+		if( scenario.mounted ) scenario.mounted()
+
+		// The providers a new Angular app is generated with today: zoneless
+		// change detection, and the global error listeners that hand uncaught
+		// errors to Angular's ErrorHandler.
+		app = await NG.bootstrapApplication( scenario.component, {
+			providers: [
+				NG.provideBrowserGlobalErrorListeners(),
+				NG.provideZonelessChangeDetection(),
+			],
+		} )
+
+		send( { type: 'ready', case: CASE } )
+	}
+
+	// visibilityState rather than document.hidden: the two agree in every browser
+	// that follows the spec, and this one is also correct for the states that are
+	// not plain 'visible'. All runners check it the same way.
+	function tab_hidden() {
+		return document.visibilityState !== 'visible'
+	}
+
+	// A hidden tab clamps timers to a common wake-up, and a frame scrolled out of
+	// the viewport stops getting frames at all. Both make the run say more about
+	// the browser than about the framework, so watch for them the whole way
+	// through and drop the run the moment either happens.
+	function run_watch() {
+
+		let abort = null
+		const alarm = new Promise( ( done, fail ) => { abort = fail } )
+
+		const on_visibility = () => {
+			if( tab_hidden() ) abort( new Invalid( 'tab-hidden' ) )
+		}
+		document.addEventListener( 'visibilitychange', on_visibility )
+
+		// Inside an iframe this reports the intersection with the parent page's
+		// viewport, so it fires when the reader scrolls the case out of sight.
+		const observer = new IntersectionObserver( entries => {
+			if( !entries[ entries.length - 1 ].isIntersecting ) abort( new Invalid( 'frame-offscreen' ) )
+		} )
+		observer.observe( document.documentElement )
+
+		if( tab_hidden() ) abort( new Invalid( 'tab-hidden' ) )
+
+		return {
+			alarm: alarm,
+			stop: () => {
+				document.removeEventListener( 'visibilitychange', on_visibility )
+				observer.disconnect()
+			},
+		}
+	}
+
+	async function start() {
+
+		if( running || !scenario ) return
+		running = true
+
+		const watch = run_watch()
+
+		try {
+			const result = await Promise.race( [ scenario.run(), watch.alarm ] )
+			send( {
+				type: 'result',
+				case: CASE,
+				status: result.status,
+				observed: result.observed,
+				metrics: result.metrics || [],
+			} )
+		} catch( error ) {
+			if( error instanceof Invalid ) send( { type: 'invalid', case: CASE, reason: error.reason } )
+			else send( { type: 'error', message: error && error.message || String( error ) } )
+		} finally {
+			watch.stop()
+			running = false
+		}
+	}
+
+	window.addEventListener( 'message', event => {
+		const data = event.data
+		if( !data || data.ns !== NS ) return
+		if( data.type === 'run' ) start()
+		else if( data.type === 'reset' ) boot()
+	} )
+
+	window.addEventListener( 'error', event => {
+		if( muted ) return
+		send( { type: 'error', message: String( event.message || event.error ) } )
+	} )
+
+	window.addEventListener( 'unhandledrejection', event => {
+		if( muted ) return
+		send( { type: 'error', message: String( event.reason ) } )
+	} )
+
+	// Standalone check: when the page is opened outside an iframe it gets its
+	// own Run button and prints the result to the console.
+	if( window.parent === window ) {
+		window.addEventListener( 'message', event => {
+			if( event.data && event.data.ns === NS ) console.log( event.data )
+		} )
+		const button = document.createElement( 'button' )
+		button.className = 'standalone'
+		button.textContent = 'Run'
+		button.onclick = start
+		document.body.appendChild( button )
+	}
+
+	boot()
+
+} )()
+</script>
+
+</body>
+</html>

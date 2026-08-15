@@ -1,0 +1,697 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solid runner</title>
+<style>
+
+	:root { color-scheme: light }
+
+	* { box-sizing: border-box }
+
+	html, body { height: 100% }
+
+	body {
+		margin: 0;
+		font: 14px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+		color: #1b1b1b;
+		background: #fff;
+	}
+
+	#host, .app { width: 100%; height: 100% }
+
+	.muted { color: #6b6b6b }
+
+	.row2 { display: flex; height: 100%; align-items: stretch }
+
+	.side {
+		width: 40%;
+		min-width: 0;
+		padding: 8px;
+		overflow: auto;
+		border-right: 1px solid #e4e4e4;
+	}
+
+	.main { flex: 1; min-width: 0; padding: 12px; overflow: auto }
+
+	.item {
+		display: block;
+		width: 100%;
+		margin-bottom: 2px;
+		padding: 6px 8px;
+		border: 0;
+		border-radius: 4px;
+		background: transparent;
+		font: inherit;
+		color: inherit;
+		text-align: left;
+		cursor: pointer;
+	}
+
+	.item:hover { background: #f1f1f1 }
+
+	.item_current { background: #dfe8f6 }
+
+	.title { font-weight: 600; margin-bottom: 4px }
+
+	.column { height: 100%; padding: 12px; overflow: auto }
+
+	.stat { margin-bottom: 4px }
+
+	.slot {
+		margin-top: 8px;
+		padding: 8px;
+		min-height: 48px;
+		border: 1px solid #e4e4e4;
+		border-radius: 6px;
+	}
+
+	.scroll { height: 100%; padding: 8px; overflow: auto }
+
+	.line { padding: 6px 8px; border-bottom: 1px solid #efefef; overflow-wrap: anywhere }
+
+	.hint { padding: 6px 8px }
+
+	.cards {
+		display: grid;
+		grid-template-columns: repeat( auto-fill, minmax( 120px, 1fr ) );
+		gap: 8px;
+		height: 100%;
+		padding: 8px;
+		overflow: auto;
+		align-content: start;
+	}
+
+	.card { padding: 8px; border: 1px solid #e4e4e4; border-radius: 6px }
+
+	.card_title { font-weight: 600 }
+
+	.card_text { color: #6b6b6b }
+
+	.standalone {
+		position: fixed;
+		right: 8px;
+		bottom: 8px;
+		padding: 6px 12px;
+		border: 1px solid #c9c9c9;
+		border-radius: 6px;
+		background: #fff;
+		font: inherit;
+		cursor: pointer;
+	}
+
+</style>
+</head>
+<body>
+
+<div id="host"></div>
+
+<script src="../vendor/solid.global.prod.js"></script>
+<script>
+;( function () {
+	'use strict'
+
+	const createSignal = Solid.createSignal
+	const createResource = Solid.createResource
+	const onMount = Solid.onMount
+	const For = Solid.For
+	const Show = Solid.Show
+
+	const render = Solid.web.render
+
+	// Tagged templates instead of JSX, because this page ships without a build
+	// step. Same runtime underneath: every `${ ... }` that is a function becomes
+	// its own reactive binding, exactly as the JSX compiler would emit.
+	const html = Solid.html
+
+	const NS = 'versus'
+	const CASE = new URLSearchParams( location.search ).get( 'case' ) || 'race'
+
+	const delay = ms => new Promise( done => setTimeout( done, ms ) )
+
+	function send( message ) {
+		message.ns = NS
+		parent.postMessage( message, '*' )
+	}
+
+	// Thrown when the numbers would describe the browser's scheduler instead of
+	// the framework, so the run is dropped rather than reported.
+	function Invalid( reason ) {
+		this.reason = reason
+	}
+
+	function click( selector ) {
+		const node = document.querySelector( selector )
+		if( !node ) throw new Error( 'No element matching ' + selector )
+		node.click()
+	}
+
+	// No timer fallback on purpose: a background tab produces no frames at all,
+	// and a run that stalls here is ended by the visibility watch instead.
+	function next_frame() {
+		return new Promise( done => requestAnimationFrame( () => done() ) )
+	}
+
+	async function scroll_to( box, from, to, duration ) {
+		const start = performance.now()
+		for( ;; ) {
+			const part = Math.min( 1, ( performance.now() - start ) / duration )
+			box.scrollTop = from + ( to - from ) * part
+			if( part >= 1 ) return
+			await next_frame()
+		}
+	}
+
+	function heap_metrics() {
+		const memory = performance.memory
+		if( !memory ) return []
+		return [ {
+			name: 'Heap',
+			value: Math.round( memory.usedJSHeapSize / 1048576 ),
+			unit: 'MB',
+		} ]
+	}
+
+
+	// ---------------------------------------------------------------- race
+	// versus:case race
+
+	// Data loading as the Solid docs teach it: createResource takes the selected
+	// id as its source and re-runs the fetcher whenever that id changes. There is
+	// no cancellation flag and no AbortController here — the request itself is
+	// never cut short, and aborting it for real still means wiring an
+	// AbortController through onCleanup by hand. What the resource does do
+	// without being asked is keep only the request it started last, so an answer
+	// that arrives for an id nobody is looking at any more is dropped instead of
+	// being written into the panel.
+
+	const RACE_USERS = [ 1, 2, 3, 4, 5 ].map( number => ( {
+		id: number,
+		name: 'User ' + number,
+		about: 'Profile details for user ' + number + '.',
+	} ) )
+
+	function fetch_user( id ) {
+		return new Promise( done => {
+			setTimeout( () => done( RACE_USERS[ id - 1 ] ), 1000 - ( id - 1 ) * 200 )
+		} )
+	}
+
+	function RaceApp() {
+
+		const [ id, set_id ] = createSignal( null )
+		const [ user ] = createResource( id, fetch_user )
+
+		return html`
+			<div class="row2">
+				<div class="side">
+					<${ For } each=${ RACE_USERS }>${ item => html`
+						<button
+							class=${ () => 'item' + ( item.id === id() ? ' item_current' : '' ) }
+							data-user=${ item.id }
+							onClick=${ () => set_id( item.id ) }
+						>${ item.name }</button>
+					` }<//>
+				</div>
+				<div class="main">
+					<${ Show }
+						when=${ () => !user.loading }
+						fallback=${ () => html`<div class="muted">Loading…</div>` }
+					>
+						<${ Show }
+							when=${ () => user() }
+							fallback=${ () => html`<div class="muted">Pick a user</div>` }
+						>
+							<div>
+								<div class="title" data-panel="name">${ () => user().name }</div>
+								<div class="muted">${ () => user().about }</div>
+							</div>
+						<//>
+					<//>
+				</div>
+			</div>
+		`
+	}
+
+	const race = {
+
+		mount: container => render( RaceApp, container ),
+
+		run: async () => {
+
+			const started = performance.now()
+
+			click( '[data-user="1"]' )
+			await delay( 100 )
+			click( '[data-user="5"]' )
+			await delay( 1500 )
+
+			// Clamped timers collapse both responses into one wake-up and destroy
+			// the order the scenario is built on. Expected here is ~1600 ms.
+			if( performance.now() - started > 2200 ) throw new Invalid( 'timers-throttled' )
+
+			const panel = document.querySelector( '[data-panel="name"]' )
+			const shown = panel ? panel.textContent : ''
+			const number = shown.replace( /\D+/g, '' )
+
+			return {
+				status: number === '5' ? 'ok' : 'fail',
+				observed: number
+					? 'Selected user 5, panel shows user ' + number
+					: 'Selected user 5, panel shows nothing',
+				metrics: [],
+			}
+		},
+	}
+
+
+	// ------------------------------------------------------------- virtual
+	// versus:case virtual
+
+	// A plain <For> over the whole data set, the way a list is written before its
+	// size becomes a problem. Every row sits in the DOM at once. Windowing is not
+	// part of Solid and gets added later with a separate library such as
+	// @tanstack/solid-virtual, which also means giving up on natural row heights
+	// or measuring every row by hand.
+
+	const WORDS = 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua '
+
+	const VIRTUAL_ROWS = ( () => {
+		const rows = []
+		for( let i = 0; i < 10000; ++i ) {
+			const length = 20 + ( i * 37 ) % 400
+			let text = ''
+			while( text.length < length ) text += WORDS
+			rows.push( { id: i, text: text.slice( 0, length ) } )
+		}
+		return rows
+	} )()
+
+	let virtual_control = null
+
+	function VirtualApp() {
+
+		const [ rows, set_rows ] = createSignal( [] )
+
+		// Handle for the runner, which feeds the rows in when Run is pressed.
+		virtual_control = { set_rows: set_rows }
+
+		return html`
+			<div class="scroll" data-role="scroll">
+				<${ Show }
+					when=${ () => rows().length }
+					fallback=${ () => html`<div class="hint muted">Press Run to load 10,000 rows</div>` }
+				>
+					<${ For } each=${ rows }>${ row => html`
+						<div class="line">${ '#' + ( row.id + 1 ) + ' ' + row.text }</div>
+					` }<//>
+				<//>
+			</div>
+		`
+	}
+
+	const virtual = {
+
+		mount: container => render( VirtualApp, container ),
+
+		run: async () => {
+
+			const control = virtual_control
+			if( !control ) throw new Error( 'Virtual scenario is not mounted' )
+
+			const box = document.querySelector( '[data-role="scroll"]' )
+			if( !box ) throw new Error( 'Scroll container is missing' )
+
+			// Always start from the placeholder, so a repeated run times a real
+			// render instead of a list that is already on screen.
+			control.set_rows( [] )
+			box.scrollTop = 0
+
+			const started = performance.now()
+
+			control.set_rows( VIRTUAL_ROWS )
+
+			await next_frame()
+			await next_frame()
+
+			// Reading scrollHeight forces the layout the rows just made necessary.
+			const height = box.scrollHeight
+			const render_time = Math.round( performance.now() - started )
+
+			const middle = ( height - box.clientHeight ) / 2
+			await scroll_to( box, 0, middle, 1000 )
+			await scroll_to( box, middle, 0, 1000 )
+
+			const nodes = box.querySelectorAll( '*' ).length
+
+			return {
+				status: nodes < 500 ? 'ok' : nodes > 5000 ? 'fail' : 'warn',
+				observed: 'Rendered ' + nodes + ' DOM nodes for 10000 rows',
+				metrics: [
+					{ name: 'DOM nodes', value: nodes, unit: '' },
+					{ name: 'Render time', value: render_time, unit: 'ms' },
+				],
+			}
+		},
+	}
+
+
+	// ---------------------------------------------------------------- leak
+	// versus:case leak
+
+	// The widget subscribes in onMount and hands nothing back, so the
+	// subscription outlives the component that made it. The fix is
+	// `onCleanup( () => store.unsubscribe( set_value ) )` next to the subscribe
+	// call, written by hand for every subscription and invisible when forgotten.
+
+	const store = {
+
+		value: 0,
+		subscribers: [],
+
+		subscribe( handler ) {
+			this.subscribers.push( handler )
+		},
+
+		unsubscribe( handler ) {
+			const index = this.subscribers.indexOf( handler )
+			if( index >= 0 ) this.subscribers.splice( index, 1 )
+		},
+
+		set( value ) {
+			this.value = value
+			this.subscribers.forEach( handler => handler( value ) )
+		},
+	}
+
+	let store_ticker = 0
+
+	function LeakWidget() {
+
+		const [ value, set_value ] = createSignal( store.value )
+
+		onMount( () => {
+			store.subscribe( set_value )
+		} )
+
+		return html`<div>Widget sees store value ${ value }</div>`
+	}
+
+	let leak_control = null
+
+	function LeakApp() {
+
+		const [ mounted, set_mounted ] = createSignal( false )
+		const [ cycles, set_cycles ] = createSignal( 0 )
+		const [ live, set_live ] = createSignal( store.subscribers.length )
+
+		// Handle for the runner, which drives mount cycles from outside the view.
+		leak_control = {
+			set_mounted: set_mounted,
+			set_cycles: set_cycles,
+			set_live: set_live,
+		}
+
+		return html`
+			<div class="column">
+				<div class="stat">Mount cycles: ${ cycles }</div>
+				<div class="stat">Live subscribers: ${ live }</div>
+				<div class="slot">
+					<${ Show }
+						when=${ mounted }
+						fallback=${ () => html`<div class="muted">Widget not mounted</div>` }
+					>
+						<${ LeakWidget } />
+					<//>
+				</div>
+			</div>
+		`
+	}
+
+	const leak = {
+
+		mount: container => {
+			// The store outlives the tree, so every run starts from a known zero.
+			store.subscribers = []
+			if( !store_ticker ) store_ticker = setInterval( () => store.set( store.value + 1 ), 500 )
+			return render( LeakApp, container )
+		},
+
+		run: async () => {
+
+			const control = leak_control
+			if( !control ) throw new Error( 'Leak scenario is not mounted' )
+
+			store.subscribers = []
+
+			for( let i = 0; i < 100; ++i ) {
+				control.set_mounted( true )
+				control.set_mounted( false )
+			}
+
+			await delay( 50 )
+
+			const live = store.subscribers.length
+
+			control.set_cycles( 100 )
+			control.set_live( live )
+
+			return {
+				status: live === 0 ? 'ok' : 'fail',
+				observed: '100 mount cycles left ' + live + ' live subscribers',
+				metrics: [ { name: 'Live subscribers', value: live, unit: '' } ].concat( heap_metrics() ),
+			}
+		},
+	}
+
+
+	// --------------------------------------------------------------- crash
+	// versus:case crash
+
+	// No ErrorBoundary anywhere, which is what an app looks like until someone
+	// adds one. Every card reads its fields straight off the item, so the card
+	// holding null throws while the list is being rebuilt. The fix is an
+	// <ErrorBoundary> wrapped around every part of the tree that has to keep
+	// working on its own, written by hand at each boundary.
+
+	const CRASH_CARDS = []
+	for( let i = 1; i <= 20; ++i ) {
+		CRASH_CARDS.push( { id: i, title: 'Card ' + i, text: 'Details for card ' + i } )
+	}
+
+	function CrashCard( props ) {
+		return html`
+			<div class="card">
+				<div class="card_title">${ () => props.item.title }</div>
+				<div class="card_text">${ () => props.item.text }</div>
+			</div>
+		`
+	}
+
+	let crash_control = null
+
+	function CrashApp() {
+
+		const [ items, set_items ] = createSignal( CRASH_CARDS )
+
+		// Handle for the runner, which swaps the data from outside the view.
+		crash_control = { set_items: set_items }
+
+		return html`
+			<div class="cards" data-role="cards">
+				<${ For } each=${ items }>${ item => html`
+					<${ CrashCard } item=${ item } />
+				` }<//>
+			</div>
+		`
+	}
+
+	const crash = {
+
+		mount: container => render( CrashApp, container ),
+
+		run: async () => {
+
+			const control = crash_control
+			if( !control ) throw new Error( 'Crash scenario is not mounted' )
+
+			const broken = CRASH_CARDS.slice()
+			broken[ 6 ] = null
+
+			muted = true
+			try {
+				control.set_items( broken )
+			} catch( error ) {
+				// The render error travels back out to whoever wrote the signal.
+			}
+
+			await delay( 200 )
+			muted = false
+
+			const cards = document.querySelectorAll( '.card' ).length
+			// Nothing renders this marker here — there is no error placeholder
+			// without an ErrorBoundary. The check stays so all runners score the
+			// same way.
+			const placeholder = !!document.querySelector( '[data-role="card-error"]' )
+			// Card 7 is the one whose data went null, so its old title still
+			// being on screen is how the run tells that the list was never
+			// updated at all — a third outcome next to a dead tree and a hole.
+			const seventh = document.querySelectorAll( '.card' )[ 6 ]
+			const stale = !!seventh && seventh.textContent.indexOf( 'Card 7' ) === 0
+
+			return {
+				status: cards === 0 ? 'fail' : cards === 19 && placeholder ? 'ok' : 'warn',
+				observed: cards === 0
+					? 'Card 7 threw during render, 0 of 20 cards remained'
+					: stale
+						? 'Card 7 threw during render, the list kept the previous ' + cards + ' cards'
+						: cards + ' of 20 cards survived, card 7 '
+							+ ( placeholder ? 'was replaced by an error placeholder' : 'disappeared without a placeholder' ),
+				metrics: [ { name: 'Surviving cards', value: cards, unit: '' } ],
+			}
+		},
+	}
+
+
+	// versus:end
+	// -------------------------------------------------------------- runner
+
+	const SCENARIOS = { race: race, virtual: virtual, leak: leak, crash: crash }
+
+	const host = document.getElementById( 'host' )
+
+	let scenario = null
+	let dispose = null
+	let running = false
+	let muted = false
+
+	function fresh_container() {
+		host.innerHTML = ''
+		const node = document.createElement( 'div' )
+		node.className = 'app'
+		host.appendChild( node )
+		return node
+	}
+
+	function boot() {
+
+		scenario = SCENARIOS[ CASE ]
+
+		if( !scenario ) {
+			send( { type: 'error', message: 'Unknown case: ' + CASE } )
+			return
+		}
+
+		if( dispose ) {
+			muted = true
+			try { dispose() } catch( error ) {}
+			muted = false
+		}
+
+		dispose = scenario.mount( fresh_container() )
+
+		send( { type: 'ready', case: CASE } )
+	}
+
+	// visibilityState rather than document.hidden: the two agree in every browser
+	// that follows the spec, and this one is also correct for the states that are
+	// not plain 'visible'. All runners check it the same way.
+	function tab_hidden() {
+		return document.visibilityState !== 'visible'
+	}
+
+	// A hidden tab clamps timers to a common wake-up, and a frame scrolled out of
+	// the viewport stops getting frames at all. Both make the run say more about
+	// the browser than about the framework, so watch for them the whole way
+	// through and drop the run the moment either happens.
+	function run_watch() {
+
+		let abort = null
+		const alarm = new Promise( ( done, fail ) => { abort = fail } )
+
+		const on_visibility = () => {
+			if( tab_hidden() ) abort( new Invalid( 'tab-hidden' ) )
+		}
+		document.addEventListener( 'visibilitychange', on_visibility )
+
+		// Inside an iframe this reports the intersection with the parent page's
+		// viewport, so it fires when the reader scrolls the case out of sight.
+		const observer = new IntersectionObserver( entries => {
+			if( !entries[ entries.length - 1 ].isIntersecting ) abort( new Invalid( 'frame-offscreen' ) )
+		} )
+		observer.observe( document.documentElement )
+
+		if( tab_hidden() ) abort( new Invalid( 'tab-hidden' ) )
+
+		return {
+			alarm: alarm,
+			stop: () => {
+				document.removeEventListener( 'visibilitychange', on_visibility )
+				observer.disconnect()
+			},
+		}
+	}
+
+	async function start() {
+
+		if( running || !scenario ) return
+		running = true
+
+		const watch = run_watch()
+
+		try {
+			const result = await Promise.race( [ scenario.run(), watch.alarm ] )
+			send( {
+				type: 'result',
+				case: CASE,
+				status: result.status,
+				observed: result.observed,
+				metrics: result.metrics || [],
+			} )
+		} catch( error ) {
+			if( error instanceof Invalid ) send( { type: 'invalid', case: CASE, reason: error.reason } )
+			else send( { type: 'error', message: error && error.message || String( error ) } )
+		} finally {
+			watch.stop()
+			running = false
+		}
+	}
+
+	window.addEventListener( 'message', event => {
+		const data = event.data
+		if( !data || data.ns !== NS ) return
+		if( data.type === 'run' ) start()
+		else if( data.type === 'reset' ) boot()
+	} )
+
+	window.addEventListener( 'error', event => {
+		if( muted ) return
+		send( { type: 'error', message: String( event.message || event.error ) } )
+	} )
+
+	window.addEventListener( 'unhandledrejection', event => {
+		if( muted ) return
+		send( { type: 'error', message: String( event.reason ) } )
+	} )
+
+	// Standalone check: when the page is opened outside an iframe it gets its
+	// own Run button and prints the result to the console.
+	if( window.parent === window ) {
+		window.addEventListener( 'message', event => {
+			if( event.data && event.data.ns === NS ) console.log( event.data )
+		} )
+		const button = document.createElement( 'button' )
+		button.className = 'standalone'
+		button.textContent = 'Run'
+		button.onclick = start
+		document.body.appendChild( button )
+	}
+
+	boot()
+
+} )()
+</script>
+
+</body>
+</html>
