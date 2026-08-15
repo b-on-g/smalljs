@@ -1064,8 +1064,11 @@ body, :where([mol_theme]) {
 	align-items: stretch;
 	align-content: stretch; */
 	transition: none;
-	min-height: 1.5rem;
 	/* will-change: contents; */
+}
+
+[mol_list]:where([mol_view_error]) {
+	min-height: 1.5rem;
 }
 
 [mol_list_gap_before] ,
@@ -4480,7 +4483,7 @@ h6[mol_text_header] {
 }
 [bog_smalljs_versus_code_hint] {
 	font-size: 0.8125rem;
-	color: var(--mol_theme_shade);
+	color: var(--bog_builderui_shade);
 	padding-bottom: 0.75rem;
 }
 [bog_smalljs_versus_code_columns] {
@@ -4503,7 +4506,7 @@ h6[mol_text_header] {
 [bog_smalljs_versus_code_column_file] {
 	font-family: monospace;
 	font-size: 0.75rem;
-	color: var(--mol_theme_shade);
+	color: var(--bog_builderui_shade);
 	flex-shrink: 1;
 	min-width: 0;
 	overflow: hidden;
@@ -4517,9 +4520,13 @@ h6[mol_text_header] {
 	line-height: 1.5;
 	white-space: pre;
 	overflow: auto;
-	max-height: 24rem;
-	background-color: var(--mol_theme_back);
+	max-height: 16rem;
+	color: var(--bog_builderui_text);
+	background-color: var(--bog_builderui_field);
 	border-radius: 0.5rem;
+	border-width: 1px;
+	border-style: solid;
+	border-color: var(--bog_builderui_line);
 	padding-top: 0.75rem;
 	padding-bottom: 0.75rem;
 	padding-left: 0.875rem;
@@ -4527,7 +4534,7 @@ h6[mol_text_header] {
 }
 [bog_smalljs_versus_code_missing] {
 	font-size: 0.8125rem;
-	color: var(--mol_theme_shade);
+	color: var(--bog_builderui_shade);
 	padding-top: 0.5rem;
 }
 </style><style id="$mol_style_attach:$bog_smalljs_versus_case">[bog_smalljs_versus_case] {

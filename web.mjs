@@ -7355,7 +7355,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_attach("mol/list/list.view.css", "[mol_list] {\n\twill-change: contents;\n\tdisplay: flex;\n\tflex-direction: column;\n\tflex-shrink: 0;\n\tmax-width: 100%;\n\t/* display: flex;\n\talign-items: stretch;\n\talign-content: stretch; */\n\ttransition: none;\n\tmin-height: 1.5rem;\n\t/* will-change: contents; */\n}\n\n[mol_list_gap_before] ,\n[mol_list_gap_after] {\n\tdisplay: block !important;\n\tflex: none;\n\ttransition: none;\n\toverflow-anchor: none;\n}\n");
+    $mol_style_attach("mol/list/list.view.css", "[mol_list] {\n\twill-change: contents;\n\tdisplay: flex;\n\tflex-direction: column;\n\tflex-shrink: 0;\n\tmax-width: 100%;\n\t/* display: flex;\n\talign-items: stretch;\n\talign-content: stretch; */\n\ttransition: none;\n\t/* will-change: contents; */\n}\n\n[mol_list]:where([mol_view_error]) {\n\tmin-height: 1.5rem;\n}\n\n[mol_list_gap_before] ,\n[mol_list_gap_after] {\n\tdisplay: block !important;\n\tflex: none;\n\ttransition: none;\n\toverflow-anchor: none;\n}\n");
 })($ || ($ = {}));
 
 ;
@@ -27881,7 +27881,7 @@ var $;
                 font: {
                     size: '0.8125rem',
                 },
-                color: $mol_theme.shade,
+                color: $bog_builderui_tokens.shade,
                 padding: {
                     bottom: '0.75rem',
                 },
@@ -27914,7 +27914,7 @@ var $;
                     family: 'monospace',
                     size: '0.75rem',
                 },
-                color: $mol_theme.shade,
+                color: $bog_builderui_tokens.shade,
                 flex: {
                     shrink: 1,
                 },
@@ -27932,14 +27932,20 @@ var $;
                 lineHeight: '1.5',
                 whiteSpace: 'pre',
                 overflow: 'auto',
-                // Tall enough to read a scenario without the page turning into a
-                // scroll of code; the block scrolls inside itself past that.
-                maxHeight: '24rem',
+                // A scenario is a hundred lines and more, so this pane is a window
+                // onto it rather than the whole of it. 24rem filled half a laptop
+                // screen twice over once both columns opened, which reads as the page
+                // having been taken over by code the reader only asked to glance at.
+                maxHeight: '16rem',
+                color: $bog_builderui_tokens.text,
                 background: {
-                    color: $mol_theme.back,
+                    color: $bog_builderui_tokens.field,
                 },
                 border: {
                     radius: '0.5rem',
+                    width: '1px',
+                    style: 'solid',
+                    color: $bog_builderui_tokens.line,
                 },
                 padding: {
                     top: '0.75rem',
@@ -27952,7 +27958,7 @@ var $;
                 font: {
                     size: '0.8125rem',
                 },
-                color: $mol_theme.shade,
+                color: $bog_builderui_tokens.shade,
                 padding: {
                     top: '0.5rem',
                 },
