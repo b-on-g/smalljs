@@ -3,7 +3,7 @@
 	"title": "Svelte",
 	"since": 2016,
 	"since_source": "https://github.com/sveltejs/svelte",
-	"runner": false,
+	"runner": true,
 	"metrics": {
 		"loc_todomvc": {
 			"value": 193,

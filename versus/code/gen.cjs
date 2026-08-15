@@ -26,7 +26,7 @@ const sources = [
 	{ id: 'mol', file: 'lab/lab.view.ts', lang: 'ts' },
 	{ id: 'angular', file: 'assets/versus/angular/runner.html', lang: 'ts' },
 	{ id: 'solid', file: 'assets/versus/solid/runner.html', lang: 'js' },
-	{ id: 'svelte', file: 'assets/versus/svelte/runner.html', lang: 'js' },
+	{ id: 'svelte', file: 'assets/versus/svelte/runner.js', lang: 'js' },
 ]
 
 const begin = /^\s*\/\/ versus:case (\w+)\s*$/
