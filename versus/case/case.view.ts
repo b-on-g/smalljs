@@ -7,6 +7,9 @@ namespace $.$$ {
 		react: 'React',
 		vue: 'Vue',
 		mol: '$mol',
+		angular: 'Angular',
+		solid: 'Solid',
+		svelte: 'Svelte',
 	}
 
 	/** `idle` and `running` are states of the block, the rest come off the wire.
@@ -56,6 +59,9 @@ namespace $.$$ {
 		react: 'bog/smalljs/assets/versus/react/runner.html',
 		vue: 'bog/smalljs/assets/versus/vue/runner.html',
 		mol: 'bog/smalljs/lab/-/index.html',
+		angular: 'bog/smalljs/assets/versus/angular/runner.html',
+		solid: 'bog/smalljs/assets/versus/solid/runner.html',
+		svelte: 'bog/smalljs/assets/versus/svelte/runner.html',
 	}
 
 	// The mam dev server serves the repo root, so the page path carries this.

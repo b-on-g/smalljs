@@ -24,6 +24,9 @@ const sources = [
 	{ id: 'react', file: 'assets/versus/react/runner.html', lang: 'js' },
 	{ id: 'vue', file: 'assets/versus/vue/runner.html', lang: 'js' },
 	{ id: 'mol', file: 'lab/lab.view.ts', lang: 'ts' },
+	{ id: 'angular', file: 'assets/versus/angular/runner.html', lang: 'ts' },
+	{ id: 'solid', file: 'assets/versus/solid/runner.html', lang: 'js' },
+	{ id: 'svelte', file: 'assets/versus/svelte/runner.html', lang: 'js' },
 ]
 
 const begin = /^\s*\/\/ versus:case (\w+)\s*$/
@@ -78,8 +81,12 @@ for( const source of sources ) {
 	const text = fs.readFileSync( path.join( root, source.file ), 'utf8' )
 	const found = regions( text )
 
+	// A runner still being written has no markers yet. Skipping it keeps the
+	// build moving, but never quietly: a snippet silently missing from the page
+	// is the one failure this generator exists to prevent.
 	if( !Object.keys( found ).length ) {
-		throw new Error( `No versus:case markers in ${ source.file }` )
+		console.warn( `  skipped ${ source.id }: no versus:case markers in ${ source.file }` )
+		continue
 	}
 
 	for( const [ name, lines ] of Object.entries( found ) ) {

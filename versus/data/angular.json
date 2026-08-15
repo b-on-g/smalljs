@@ -3,7 +3,7 @@
 	"title": "Angular",
 	"since": 2014,
 	"since_source": "https://github.com/angular/angular",
-	"runner": false,
+	"runner": true,
 	"metrics": {
 		"loc_todomvc": {
 			"value": 307,

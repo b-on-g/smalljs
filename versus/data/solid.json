@@ -3,7 +3,7 @@
 	"title": "Solid",
 	"since": 2018,
 	"since_source": "https://github.com/solidjs/solid",
-	"runner": false,
+	"runner": true,
 	"metrics": {
 		"deps_runtime": {
 			"value": 1,
