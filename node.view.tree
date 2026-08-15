@@ -2053,6 +2053,11 @@ $bog_smalljs_versus_pick $mol_link
 	uri_off <= uri
 
 $bog_smalljs_lab $mol_view
+	lights? \light
+	attr *
+		^
+		versus_lights <= lights
+		mol_theme <= mol_theme \$mol_theme_light
 	sub <= case_content /
 	-
 	- race
@@ -2155,6 +2160,7 @@ $bog_smalljs_versus_code $mol_view
 
 $bog_smalljs_versus_case $mol_view
 	case_id \
+	lights \light
 	title @ \
 	hint @ \
 	status_idle @ \Not run yet
@@ -2250,6 +2256,7 @@ $bog_smalljs_versus_pair $mol_view
 	right \
 	left_title \
 	right_title \
+	lights \light
 	verdict_win @ \{a} wins {x} of {total} categories, {b} {y}, {ties} tied
 	verdict_draw @ \{a} and {b} take {x} categories each of {total}, {ties} tied
 	verdict_none @ \Nothing is decided yet: no category has a metric that both {a} and {b} report.
@@ -2375,6 +2382,7 @@ $bog_smalljs_versus_pair $mol_view
 		hint @ \Click through a list faster than the server answers.
 		left <= left
 		right <= right
+		lights <= lights
 		missing_note <= edge_missing_note \
 	Case_virtual $bog_smalljs_versus_pair_case
 		case_id \virtual
@@ -2382,6 +2390,7 @@ $bog_smalljs_versus_pair $mol_view
 		hint @ \Scroll a long list where every row has a different height.
 		left <= left
 		right <= right
+		lights <= lights
 		missing_note <= edge_missing_note \
 	Case_leak $bog_smalljs_versus_pair_case
 		case_id \leak
@@ -2389,6 +2398,7 @@ $bog_smalljs_versus_pair $mol_view
 		hint @ \Mount and unmount a subscribed component a hundred times.
 		left <= left
 		right <= right
+		lights <= lights
 		missing_note <= edge_missing_note \
 	Case_crash $bog_smalljs_versus_pair_case
 		case_id \crash
@@ -2396,6 +2406,7 @@ $bog_smalljs_versus_pair $mol_view
 		hint @ \Put malformed data into one card out of twenty.
 		left <= left
 		right <= right
+		lights <= lights
 		missing_note <= edge_missing_note \
 	Code_race $bog_smalljs_versus_code
 		case_id \race
@@ -2869,3 +2880,4 @@ $bog_smalljs_app $bog_builderui_div
 	Pair $bog_smalljs_versus_pair
 		left <= versus_a \
 		right <= versus_b \
+		lights <= lights

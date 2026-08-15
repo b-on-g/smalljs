@@ -4318,10 +4318,26 @@ h6[mol_text_header] {
 	min-height: 0;
 	padding: 0.75rem;
 	overflow: hidden;
-	background-color: #ffffff;
-	color: #18181b;
+	background-color: var(--versus_back);
+	color: var(--versus_text);
 	font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 	font-size: 0.8125rem;
+	--versus_back: #ffffff;
+	--versus_text: #18181b;
+	--versus_shade: #71717a;
+	--versus_line: #d4d4d8;
+	--versus_line_soft: #e4e4e7;
+	--versus_current: #dbeafe;
+	--versus_current_text: #1e40af;
+}
+[bog_smalljs_lab]:where([versus_lights="dark"]) {
+	--versus_back: #18181b;
+	--versus_text: #d4d4d8;
+	--versus_shade: #a1a1aa;
+	--versus_line: #3f3f46;
+	--versus_line_soft: #2f2f35;
+	--versus_current: #1e40af;
+	--versus_current_text: #dbeafe;
 }
 [bog_smalljs_lab_race] {
 	flex-direction: row;
@@ -4346,9 +4362,9 @@ h6[mol_text_header] {
 	padding: 0.5rem;
 	border-width: 1px;
 	border-style: solid;
-	border-color: #d4d4d8;
+	border-color: var(--versus_line);
 	border-radius: 0.25rem;
-	background-color: #fafafa;
+	background-color: var(--versus_back);
 }
 [bog_smalljs_lab_race_panel_name] {
 	min-height: 1.25rem;
@@ -4356,7 +4372,7 @@ h6[mol_text_header] {
 }
 [bog_smalljs_lab_race_panel_descr] {
 	min-height: 1.25rem;
-	color: #71717a;
+	color: var(--versus_shade);
 }
 [bog_smalljs_lab_virtual] {
 	flex-direction: column;
@@ -4371,9 +4387,9 @@ h6[mol_text_header] {
 	min-height: 0;
 	border-width: 1px;
 	border-style: solid;
-	border-color: #d4d4d8;
+	border-color: var(--versus_line);
 	border-radius: 0.25rem;
-	background-color: #fafafa;
+	background-color: var(--versus_back);
 }
 [bog_smalljs_lab_virtual_placeholder] {
 	padding-top: 0.25rem;
@@ -4382,8 +4398,8 @@ h6[mol_text_header] {
 	padding-right: 0.5rem;
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
-	border-bottom-color: #d4d4d8;
-	color: #71717a;
+	border-bottom-color: var(--versus_line_soft);
+	color: var(--versus_shade);
 }
 [bog_smalljs_lab_virtual_list] {
 	flex-direction: column;
@@ -4395,7 +4411,7 @@ h6[mol_text_header] {
 	padding-right: 0.5rem;
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
-	border-bottom-color: #d4d4d8;
+	border-bottom-color: var(--versus_line_soft);
 }
 [bog_smalljs_lab_leak] {
 	flex-direction: column;
@@ -4407,7 +4423,7 @@ h6[mol_text_header] {
 }
 [bog_smalljs_lab_leak_hint] {
 	flex-shrink: 0;
-	color: #71717a;
+	color: var(--versus_shade);
 	font-size: 0.75rem;
 }
 [bog_smalljs_lab_leak_place] {
@@ -4417,9 +4433,9 @@ h6[mol_text_header] {
 	padding: 0.5rem;
 	border-width: 1px;
 	border-style: solid;
-	border-color: #d4d4d8;
+	border-color: var(--versus_line);
 	border-radius: 0.25rem;
-	background-color: #fafafa;
+	background-color: var(--versus_back);
 }
 [bog_smalljs_lab_crash] {
 	flex-direction: column;
@@ -4434,9 +4450,9 @@ h6[mol_text_header] {
 	min-height: 0;
 	border-width: 1px;
 	border-style: solid;
-	border-color: #d4d4d8;
+	border-color: var(--versus_line);
 	border-radius: 0.25rem;
-	background-color: #fafafa;
+	background-color: var(--versus_back);
 }
 [bog_smalljs_lab_crash_list] {
 	flex-direction: column;
@@ -4454,14 +4470,14 @@ h6[mol_text_header] {
 	padding-right: 0.5rem;
 	border-radius: 0.25rem;
 	font-size: 0.8125rem;
-	color: #18181b;
+	color: var(--versus_text);
 }
 [bog_smalljs_lab_option]:where([versus_current="true"]) {
-	background-color: #e0e7ff;
-	color: #3730a3;
+	background-color: var(--versus_current);
+	color: var(--versus_current_text);
 }
 </style><style id="$mol_style_attach:$bog_smalljs_lab_probe">[bog_smalljs_lab_probe] {
-	color: #71717a;
+	color: var(--versus_shade);
 }
 </style><style id="$mol_style_attach:$bog_smalljs_lab_card">[bog_smalljs_lab_card] {
 	flex-direction: column;
@@ -4473,9 +4489,9 @@ h6[mol_text_header] {
 	padding-right: 0.5rem;
 	border-width: 1px;
 	border-style: solid;
-	border-color: #d4d4d8;
+	border-color: var(--versus_line);
 	border-radius: 0.25rem;
-	background-color: #ffffff;
+	background-color: var(--versus_back);
 }
 </style><style id="$mol_style_attach:$bog_smalljs_versus_code">[bog_smalljs_versus_code] {
 	flex-direction: column;
@@ -4626,7 +4642,7 @@ h6[mol_text_header] {
 	border-width: 1px;
 	border-style: solid;
 	border-color: var(--bog_builderui_line);
-	background-color: #ffffff;
+	background-color: var(--bog_builderui_card);
 }
 [bog_smalljs_versus_case_card] {
 	flex-direction: column;

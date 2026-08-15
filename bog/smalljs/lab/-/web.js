@@ -5716,6 +5716,9 @@ var $;
 
 ;
 	($.$bog_smalljs_lab) = class $bog_smalljs_lab extends ($.$mol_view) {
+		mol_theme(){
+			return "$mol_theme_light";
+		}
 		case_content(){
 			return [];
 		}
@@ -5815,6 +5818,17 @@ var $;
 		crash_card_text(id){
 			return "";
 		}
+		lights(next){
+			if(next !== undefined) return next;
+			return "light";
+		}
+		attr(){
+			return {
+				...(super.attr()), 
+				"versus_lights": (this.lights()), 
+				"mol_theme": (this.mol_theme())
+			};
+		}
 		sub(){
 			return (this.case_content());
 		}
@@ -5878,6 +5892,7 @@ var $;
 	($mol_mem(($.$bog_smalljs_lab.prototype), "Leak_place"));
 	($mol_mem(($.$bog_smalljs_lab.prototype), "Crash_list"));
 	($mol_mem(($.$bog_smalljs_lab.prototype), "Crash_scroll"));
+	($mol_mem(($.$bog_smalljs_lab.prototype), "lights"));
 	($mol_mem(($.$bog_smalljs_lab.prototype), "Race"));
 	($mol_mem_key(($.$bog_smalljs_lab.prototype), "Race_option"));
 	($mol_mem(($.$bog_smalljs_lab.prototype), "Virtual"));
@@ -6066,6 +6081,24 @@ var $;
                     this.run();
                 if (packet.type === 'reset')
                     this.reset();
+                if (packet.type === 'theme')
+                    this.theme_receive(packet);
+            }
+            /** The page hands its theme over instead of putting it in the query: a
+             *  different src reloads the runner and throws away the result of a run
+             *  already made, while the reader may switch themes at any moment,
+             *  including after Run. Anything other than `dark` reads as light, so an
+             *  unknown value leaves the frame legible rather than blank. */
+            theme_receive(packet) {
+                this.lights(packet.lights === 'dark' ? 'dark' : 'light');
+            }
+            /** Pins the built-in $mol parts — hover, focus ring, scrollbars — to the
+             *  same side of the theme as the runner's own palette. Without it they
+             *  follow the operating system rather than the site, and a reader with a
+             *  light system reading the site in dark gets pale scrollbars on a dark
+             *  list. */
+            mol_theme() {
+                return this.lights() === 'dark' ? '$mol_theme_dark' : '$mol_theme_light';
             }
             async run() {
                 this.spoil_reason('');
@@ -6451,16 +6484,42 @@ var $;
 var $;
 (function ($) {
     const { rem } = $mol_style_unit;
-    // Plain neutral palette instead of theme tokens: the three runner pages of a
-    // case sit side by side and have to look the same, and the React and Vue
-    // pages have no theme to read from.
-    const text = '#18181b';
-    const shade = '#71717a';
-    const line_color = '#d4d4d8';
-    const card = '#ffffff';
-    const back = '#fafafa';
-    const current = '#e0e7ff';
-    const current_text = '#3730a3';
+    // Palette shared by all six runners, named here as variables so the dark set
+    // can replace the light one in place. The values are written out rather than
+    // taken from the site's tokens: a runner is its own document inside a frame
+    // and the site's variables do not cross that boundary. The columns are read
+    // side by side, so a difference in hue between them would be read as a
+    // difference between the frameworks. The raised surface the other five
+    // define has no counterpart here: nothing in this runner is filled apart
+    // from the page itself, and giving one column a fill the rest lack would
+    // show up as exactly that kind of difference.
+    const palette_light = {
+        '--versus_back': '#ffffff',
+        '--versus_text': '#18181b',
+        '--versus_shade': '#71717a',
+        '--versus_line': '#d4d4d8',
+        '--versus_line_soft': '#e4e4e7',
+        '--versus_current': '#dbeafe',
+        '--versus_current_text': '#1e40af',
+    };
+    const palette_dark = {
+        '--versus_back': '#18181b',
+        '--versus_text': '#d4d4d8',
+        '--versus_shade': '#a1a1aa',
+        '--versus_line': '#3f3f46',
+        '--versus_line_soft': '#2f2f35',
+        '--versus_current': '#1e40af',
+        '--versus_current_text': '#dbeafe',
+    };
+    const { back, text, shade, line: line_color, line_soft, current, current_text, } = $mol_style_prop('versus', [
+        'back',
+        'text',
+        'shade',
+        'line',
+        'line_soft',
+        'current',
+        'current_text',
+    ]);
     const line = { width: '1px', style: 'solid', color: line_color };
     // mol_view ships with flex-shrink: 0, so every pane that has to fit the
     // frame instead of growing past it says shrink: 1 on its own.
@@ -6482,7 +6541,7 @@ var $;
     };
     const row = {
         padding: { top: rem(0.25), bottom: rem(0.25), left: rem(0.5), right: rem(0.5) },
-        border: { bottom: { width: '1px', style: 'solid', color: line_color } },
+        border: { bottom: { width: '1px', style: 'solid', color: line_soft } },
     };
     $mol_style_define($bog_smalljs_lab, {
         flex: { direction: 'column' },
@@ -6491,11 +6550,20 @@ var $;
         minHeight: 0,
         padding: rem(0.75),
         overflow: 'hidden',
-        background: { color: card },
+        background: { color: back },
         color: text,
         font: {
             family: 'system-ui, -apple-system, "Segoe UI", Roboto, sans-serif',
             size: rem(0.8125),
+        },
+        // The palette lives on the root element, so every part below it — the
+        // options, the probes, the crash cards, each defined in its own block —
+        // inherits the switch without repeating it.
+        ...palette_light,
+        '@': {
+            versus_lights: {
+                dark: palette_dark,
+            },
         },
         Race: {
             flex: { direction: 'row', grow: 1, shrink: 1 },
@@ -6577,7 +6645,7 @@ var $;
         minHeight: rem(2.5),
         padding: { top: rem(0.25), bottom: rem(0.25), left: rem(0.5), right: rem(0.5) },
         border: { ...line, radius: rem(0.25) },
-        background: { color: card },
+        background: { color: back },
     });
 })($ || ($ = {}));
 

@@ -11508,6 +11508,7 @@ declare namespace $ {
 		ReturnType< $bog_smalljs_lab_card['text'] >
 	>
 	export class $bog_smalljs_lab extends $mol_view {
+		mol_theme( ): string
 		case_content( ): readonly(any)[]
 		race_options( ): readonly(any)[]
 		Race_options( ): $mol_view
@@ -11534,6 +11535,11 @@ declare namespace $ {
 		Crash_scroll( ): $mol_scroll
 		crash_card_name( id: any): string
 		crash_card_text( id: any): string
+		lights( next?: string ): string
+		attr( ): ({ 
+			'versus_lights': ReturnType< $bog_smalljs_lab['lights'] >,
+			'mol_theme': ReturnType< $bog_smalljs_lab['mol_theme'] >,
+		})  & ReturnType< $mol_view['attr'] >
 		sub( ): ReturnType< $bog_smalljs_lab['case_content'] >
 		Race( ): $mol_view
 		Race_option( id: any): $bog_smalljs_lab_option
@@ -11630,6 +11636,20 @@ declare namespace $.$$ {
         ready_beacon(): $mol_after_tick;
         post(message: Record<string, unknown>): void;
         message_receive(event: MessageEvent): void;
+        /** The page hands its theme over instead of putting it in the query: a
+         *  different src reloads the runner and throws away the result of a run
+         *  already made, while the reader may switch themes at any moment,
+         *  including after Run. Anything other than `dark` reads as light, so an
+         *  unknown value leaves the frame legible rather than blank. */
+        theme_receive(packet: {
+            lights?: unknown;
+        }): void;
+        /** Pins the built-in $mol parts — hover, focus ring, scrollbars — to the
+         *  same side of the theme as the runner's own palette. Without it they
+         *  follow the operating system rather than the site, and a reader with a
+         *  light system reading the site in dark gets pale scrollbars on a dark
+         *  list. */
+        mol_theme(): "$mol_theme_light" | "$mol_theme_dark";
         run(): Promise<void>;
         reset(): null;
         report(status: Status, observed: string, metrics?: readonly Metric[]): void;
@@ -12005,6 +12025,7 @@ declare namespace $ {
 		Metric_value( id: any): $mol_view
 		note( id: any): string
 		case_id( ): string
+		lights( ): string
 		title( ): string
 		hint( ): string
 		status_idle( ): string
@@ -12176,6 +12197,20 @@ declare namespace $.$$ {
         expire(run_id: number): null;
         frame_window(id: string): Window | null;
         post(id: string, message: unknown): void;
+        /** Theme the frames have to paint themselves in, normalised to the two
+         *  values the protocol carries. */
+        frame_lights(): "light" | "dark";
+        /** Hands the site's theme to every frame that has already introduced
+         *  itself. Sent as a message and never as a query parameter: changing a
+         *  frame's src reloads the runner and throws away the result of a run
+         *  already made, while the reader is free to flip the theme long after
+         *  pressing Run.
+         *
+         *  Reading ready() per frame is what makes the late ones work — a frame
+         *  that finishes loading after a theme switch is caught up the moment it
+         *  says hello, instead of staying in whatever theme the page had when it
+         *  started loading. */
+        theme_broadcast(): null;
         message_listener(): $mol_dom_listener;
         visibility_listener(): $mol_dom_listener;
         auto(): ($mol_after_timeout | $mol_dom_listener | null)[];
@@ -12537,157 +12572,177 @@ declare namespace $ {
 		,
 		ReturnType< $bog_smalljs_versus_pair_case['right'] >
 	>
-	type $bog_smalljs_versus_pair_case__missing_note_bog_smalljs_versus_pair_50 = $mol_type_enforce<
+	type $bog_smalljs_versus_pair_case__lights_bog_smalljs_versus_pair_50 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_versus_pair['lights'] >
+		,
+		ReturnType< $bog_smalljs_versus_pair_case['lights'] >
+	>
+	type $bog_smalljs_versus_pair_case__missing_note_bog_smalljs_versus_pair_51 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_versus_pair['edge_missing_note'] >
 		,
 		ReturnType< $bog_smalljs_versus_pair_case['missing_note'] >
 	>
-	type $bog_smalljs_versus_pair_case__case_id_bog_smalljs_versus_pair_51 = $mol_type_enforce<
+	type $bog_smalljs_versus_pair_case__case_id_bog_smalljs_versus_pair_52 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_smalljs_versus_pair_case['case_id'] >
 	>
-	type $bog_smalljs_versus_pair_case__title_bog_smalljs_versus_pair_52 = $mol_type_enforce<
+	type $bog_smalljs_versus_pair_case__title_bog_smalljs_versus_pair_53 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_smalljs_versus_pair_case['title'] >
 	>
-	type $bog_smalljs_versus_pair_case__hint_bog_smalljs_versus_pair_53 = $mol_type_enforce<
+	type $bog_smalljs_versus_pair_case__hint_bog_smalljs_versus_pair_54 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_smalljs_versus_pair_case['hint'] >
 	>
-	type $bog_smalljs_versus_pair_case__left_bog_smalljs_versus_pair_54 = $mol_type_enforce<
+	type $bog_smalljs_versus_pair_case__left_bog_smalljs_versus_pair_55 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_versus_pair['left'] >
 		,
 		ReturnType< $bog_smalljs_versus_pair_case['left'] >
 	>
-	type $bog_smalljs_versus_pair_case__right_bog_smalljs_versus_pair_55 = $mol_type_enforce<
+	type $bog_smalljs_versus_pair_case__right_bog_smalljs_versus_pair_56 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_versus_pair['right'] >
 		,
 		ReturnType< $bog_smalljs_versus_pair_case['right'] >
 	>
-	type $bog_smalljs_versus_pair_case__missing_note_bog_smalljs_versus_pair_56 = $mol_type_enforce<
+	type $bog_smalljs_versus_pair_case__lights_bog_smalljs_versus_pair_57 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_versus_pair['lights'] >
+		,
+		ReturnType< $bog_smalljs_versus_pair_case['lights'] >
+	>
+	type $bog_smalljs_versus_pair_case__missing_note_bog_smalljs_versus_pair_58 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_versus_pair['edge_missing_note'] >
 		,
 		ReturnType< $bog_smalljs_versus_pair_case['missing_note'] >
 	>
-	type $bog_smalljs_versus_pair_case__case_id_bog_smalljs_versus_pair_57 = $mol_type_enforce<
+	type $bog_smalljs_versus_pair_case__case_id_bog_smalljs_versus_pair_59 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_smalljs_versus_pair_case['case_id'] >
 	>
-	type $bog_smalljs_versus_pair_case__title_bog_smalljs_versus_pair_58 = $mol_type_enforce<
+	type $bog_smalljs_versus_pair_case__title_bog_smalljs_versus_pair_60 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_smalljs_versus_pair_case['title'] >
 	>
-	type $bog_smalljs_versus_pair_case__hint_bog_smalljs_versus_pair_59 = $mol_type_enforce<
+	type $bog_smalljs_versus_pair_case__hint_bog_smalljs_versus_pair_61 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_smalljs_versus_pair_case['hint'] >
 	>
-	type $bog_smalljs_versus_pair_case__left_bog_smalljs_versus_pair_60 = $mol_type_enforce<
+	type $bog_smalljs_versus_pair_case__left_bog_smalljs_versus_pair_62 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_versus_pair['left'] >
 		,
 		ReturnType< $bog_smalljs_versus_pair_case['left'] >
 	>
-	type $bog_smalljs_versus_pair_case__right_bog_smalljs_versus_pair_61 = $mol_type_enforce<
+	type $bog_smalljs_versus_pair_case__right_bog_smalljs_versus_pair_63 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_versus_pair['right'] >
 		,
 		ReturnType< $bog_smalljs_versus_pair_case['right'] >
 	>
-	type $bog_smalljs_versus_pair_case__missing_note_bog_smalljs_versus_pair_62 = $mol_type_enforce<
+	type $bog_smalljs_versus_pair_case__lights_bog_smalljs_versus_pair_64 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_versus_pair['lights'] >
+		,
+		ReturnType< $bog_smalljs_versus_pair_case['lights'] >
+	>
+	type $bog_smalljs_versus_pair_case__missing_note_bog_smalljs_versus_pair_65 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_versus_pair['edge_missing_note'] >
 		,
 		ReturnType< $bog_smalljs_versus_pair_case['missing_note'] >
 	>
-	type $bog_smalljs_versus_pair_case__case_id_bog_smalljs_versus_pair_63 = $mol_type_enforce<
+	type $bog_smalljs_versus_pair_case__case_id_bog_smalljs_versus_pair_66 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_smalljs_versus_pair_case['case_id'] >
 	>
-	type $bog_smalljs_versus_pair_case__title_bog_smalljs_versus_pair_64 = $mol_type_enforce<
+	type $bog_smalljs_versus_pair_case__title_bog_smalljs_versus_pair_67 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_smalljs_versus_pair_case['title'] >
 	>
-	type $bog_smalljs_versus_pair_case__hint_bog_smalljs_versus_pair_65 = $mol_type_enforce<
+	type $bog_smalljs_versus_pair_case__hint_bog_smalljs_versus_pair_68 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_smalljs_versus_pair_case['hint'] >
 	>
-	type $bog_smalljs_versus_pair_case__left_bog_smalljs_versus_pair_66 = $mol_type_enforce<
+	type $bog_smalljs_versus_pair_case__left_bog_smalljs_versus_pair_69 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_versus_pair['left'] >
 		,
 		ReturnType< $bog_smalljs_versus_pair_case['left'] >
 	>
-	type $bog_smalljs_versus_pair_case__right_bog_smalljs_versus_pair_67 = $mol_type_enforce<
+	type $bog_smalljs_versus_pair_case__right_bog_smalljs_versus_pair_70 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_versus_pair['right'] >
 		,
 		ReturnType< $bog_smalljs_versus_pair_case['right'] >
 	>
-	type $bog_smalljs_versus_pair_case__missing_note_bog_smalljs_versus_pair_68 = $mol_type_enforce<
+	type $bog_smalljs_versus_pair_case__lights_bog_smalljs_versus_pair_71 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_versus_pair['lights'] >
+		,
+		ReturnType< $bog_smalljs_versus_pair_case['lights'] >
+	>
+	type $bog_smalljs_versus_pair_case__missing_note_bog_smalljs_versus_pair_72 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_versus_pair['edge_missing_note'] >
 		,
 		ReturnType< $bog_smalljs_versus_pair_case['missing_note'] >
 	>
-	type $bog_smalljs_versus_code__case_id_bog_smalljs_versus_pair_69 = $mol_type_enforce<
+	type $bog_smalljs_versus_code__case_id_bog_smalljs_versus_pair_73 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_smalljs_versus_code['case_id'] >
 	>
-	type $bog_smalljs_versus_code__left_bog_smalljs_versus_pair_70 = $mol_type_enforce<
+	type $bog_smalljs_versus_code__left_bog_smalljs_versus_pair_74 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_versus_pair['left'] >
 		,
 		ReturnType< $bog_smalljs_versus_code['left'] >
 	>
-	type $bog_smalljs_versus_code__right_bog_smalljs_versus_pair_71 = $mol_type_enforce<
+	type $bog_smalljs_versus_code__right_bog_smalljs_versus_pair_75 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_versus_pair['right'] >
 		,
 		ReturnType< $bog_smalljs_versus_code['right'] >
 	>
-	type $bog_smalljs_versus_code__case_id_bog_smalljs_versus_pair_72 = $mol_type_enforce<
+	type $bog_smalljs_versus_code__case_id_bog_smalljs_versus_pair_76 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_smalljs_versus_code['case_id'] >
 	>
-	type $bog_smalljs_versus_code__left_bog_smalljs_versus_pair_73 = $mol_type_enforce<
+	type $bog_smalljs_versus_code__left_bog_smalljs_versus_pair_77 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_versus_pair['left'] >
 		,
 		ReturnType< $bog_smalljs_versus_code['left'] >
 	>
-	type $bog_smalljs_versus_code__right_bog_smalljs_versus_pair_74 = $mol_type_enforce<
+	type $bog_smalljs_versus_code__right_bog_smalljs_versus_pair_78 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_versus_pair['right'] >
 		,
 		ReturnType< $bog_smalljs_versus_code['right'] >
 	>
-	type $bog_smalljs_versus_code__case_id_bog_smalljs_versus_pair_75 = $mol_type_enforce<
+	type $bog_smalljs_versus_code__case_id_bog_smalljs_versus_pair_79 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_smalljs_versus_code['case_id'] >
 	>
-	type $bog_smalljs_versus_code__left_bog_smalljs_versus_pair_76 = $mol_type_enforce<
+	type $bog_smalljs_versus_code__left_bog_smalljs_versus_pair_80 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_versus_pair['left'] >
 		,
 		ReturnType< $bog_smalljs_versus_code['left'] >
 	>
-	type $bog_smalljs_versus_code__right_bog_smalljs_versus_pair_77 = $mol_type_enforce<
+	type $bog_smalljs_versus_code__right_bog_smalljs_versus_pair_81 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_versus_pair['right'] >
 		,
 		ReturnType< $bog_smalljs_versus_code['right'] >
 	>
-	type $bog_smalljs_versus_code__case_id_bog_smalljs_versus_pair_78 = $mol_type_enforce<
+	type $bog_smalljs_versus_code__case_id_bog_smalljs_versus_pair_82 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_smalljs_versus_code['case_id'] >
 	>
-	type $bog_smalljs_versus_code__left_bog_smalljs_versus_pair_79 = $mol_type_enforce<
+	type $bog_smalljs_versus_code__left_bog_smalljs_versus_pair_83 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_versus_pair['left'] >
 		,
 		ReturnType< $bog_smalljs_versus_code['left'] >
 	>
-	type $bog_smalljs_versus_code__right_bog_smalljs_versus_pair_80 = $mol_type_enforce<
+	type $bog_smalljs_versus_code__right_bog_smalljs_versus_pair_84 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_versus_pair['right'] >
 		,
 		ReturnType< $bog_smalljs_versus_code['right'] >
@@ -12744,6 +12799,7 @@ declare namespace $ {
 		right( ): string
 		left_title( ): string
 		right_title( ): string
+		lights( ): string
 		verdict_win( ): string
 		verdict_draw( ): string
 		verdict_none( ): string
@@ -14218,6 +14274,11 @@ declare namespace $ {
 		ReturnType< $bog_smalljs_app['versus_b'] >
 		,
 		ReturnType< $bog_smalljs_versus_pair['right'] >
+	>
+	type $bog_smalljs_versus_pair__lights_bog_smalljs_app_12 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_app['lights'] >
+		,
+		ReturnType< $bog_smalljs_versus_pair['lights'] >
 	>
 	export class $bog_smalljs_app extends $bog_builderui_div {
 		dir( ): string
