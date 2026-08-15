@@ -43,3 +43,4 @@ $bog_smalljs_app $bog_builderui_div
 	Pair $bog_smalljs_versus_pair
 		left <= versus_a \
 		right <= versus_b \
+		lights <= lights

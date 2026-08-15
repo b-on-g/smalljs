@@ -37,6 +37,14 @@ function send( message ) {
 	parent.postMessage( message, '*' )
 }
 
+// The site's theme does not cross into a frame, so the page hands it over
+// with a message. Applied by flipping an attribute rather than by reloading
+// under a different query: a reload would throw away the result of a run
+// already made, and the reader is free to switch themes after pressing Run.
+function theme_apply( lights ) {
+	document.documentElement.setAttribute( 'data-lights', lights === 'dark' ? 'dark' : 'light' )
+}
+
 // Thrown when the numbers would describe the browser's scheduler instead of
 // the framework, so the run is dropped rather than reported.
 function Invalid( reason ) {
@@ -605,6 +613,7 @@ window.addEventListener( 'message', event => {
 	if( !data || data.ns !== NS ) return
 	if( data.type === 'run' ) start()
 	else if( data.type === 'reset' ) boot()
+	else if( data.type === 'theme' ) theme_apply( data.lights )
 } )
 
 window.addEventListener( 'error', event => {

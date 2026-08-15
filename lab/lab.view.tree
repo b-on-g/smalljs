@@ -1,4 +1,9 @@
 $bog_smalljs_lab $mol_view
+	lights? \light
+	attr *
+		^
+		versus_lights <= lights
+		mol_theme <= mol_theme \$mol_theme_light
 	sub <= case_content /
 	-
 	- race

@@ -6,14 +6,47 @@
 <title>Vue runner</title>
 <style>
 
+	/* Palette shared by all six runners. Written out here rather than taken
+	   from the site's tokens: a frame is its own document and the site's CSS
+	   variables do not cross into it. The columns are read side by side, so a
+	   difference in hue between them would be read as a difference between the
+	   frameworks. The page hands its theme over with a `theme` message and the
+	   runner flips the attribute below, which costs neither a reload nor the
+	   result of a run already made. */
+	:root {
+		color-scheme: light;
+		--versus_back: #ffffff;
+		--versus_surface: #fafafa;
+		--versus_text: #18181b;
+		--versus_shade: #71717a;
+		--versus_line: #d4d4d8;
+		--versus_line_soft: #e4e4e7;
+		--versus_hover: #f4f4f5;
+		--versus_current: #dbeafe;
+		--versus_current_text: #1e40af;
+	}
+
+	:root[data-lights="dark"] {
+		color-scheme: dark;
+		--versus_back: #18181b;
+		--versus_surface: #27272a;
+		--versus_text: #d4d4d8;
+		--versus_shade: #a1a1aa;
+		--versus_line: #3f3f46;
+		--versus_line_soft: #2f2f35;
+		--versus_hover: #3f3f46;
+		--versus_current: #1e40af;
+		--versus_current_text: #dbeafe;
+	}
+
 	* { box-sizing: border-box }
 
 	html, body { height: 100%; margin: 0 }
 
 	body {
 		font: 13px/1.45 system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-		color: #1c1c1c;
-		background: #fff;
+		color: var(--versus_text);
+		background: var(--versus_back);
 	}
 
 	.runner {
@@ -26,9 +59,9 @@
 		overflow: auto;
 	}
 
-	.muted { color: #8a8a8a }
+	.muted { color: var(--versus_shade) }
 
-	.stat { margin: 0; color: #555 }
+	.stat { margin: 0; color: var(--versus_shade) }
 
 	/* race */
 
@@ -47,26 +80,27 @@
 		font: inherit;
 		text-align: left;
 		padding: 4px 8px;
-		border: 1px solid #d5d5d5;
+		border: 1px solid var(--versus_line);
 		border-radius: 4px;
-		background: #fafafa;
+		background: var(--versus_surface);
+		color: var(--versus_text);
 		cursor: pointer;
 	}
 
-	.list button.active { background: #1c1c1c; color: #fff; border-color: #1c1c1c }
+	.list button.active { background: var(--versus_current); color: var(--versus_current_text); border-color: var(--versus_current) }
 
 	.panel {
 		flex: 1;
 		min-width: 0;
 		overflow-y: auto;
-		border: 1px solid #e2e2e2;
+		border: 1px solid var(--versus_line);
 		border-radius: 4px;
 		padding: 10px;
 	}
 
 	.panel h2 { font-size: 15px; margin: 0 0 4px }
 
-	.panel p { margin: 0; color: #555 }
+	.panel p { margin: 0; color: var(--versus_shade) }
 
 	/* virtual */
 
@@ -74,18 +108,18 @@
 		flex: 1;
 		min-height: 0;
 		overflow-y: auto;
-		border: 1px solid #e2e2e2;
+		border: 1px solid var(--versus_line);
 		border-radius: 4px;
 	}
 
-	.row { padding: 4px 8px; border-bottom: 1px solid #f0f0f0 }
+	.row { padding: 4px 8px; border-bottom: 1px solid var(--versus_line_soft) }
 
 	.placeholder { padding: 10px }
 
 	/* leak */
 
 	.slot, .widget {
-		border: 1px solid #e2e2e2;
+		border: 1px solid var(--versus_line);
 		border-radius: 4px;
 		padding: 10px;
 	}
@@ -103,14 +137,14 @@
 	}
 
 	.card {
-		border: 1px solid #e2e2e2;
+		border: 1px solid var(--versus_line);
 		border-radius: 4px;
 		padding: 6px 8px;
 	}
 
 	.card b { display: block }
 
-	.card span { color: #666; font-size: 12px }
+	.card span { color: var(--versus_shade); font-size: 12px }
 
 </style>
 </head>
@@ -521,6 +555,14 @@
 		window.parent.postMessage( message, '*' )
 	}
 
+	// The site's theme does not cross into a frame, so the page hands it over
+	// with a message. Applied by flipping an attribute rather than by reloading
+	// under a different query: a reload would throw away the result of a run
+	// already made, and the reader is free to switch themes after pressing Run.
+	function themeApply( lights ) {
+		document.documentElement.setAttribute( 'data-lights', lights === 'dark' ? 'dark' : 'light' )
+	}
+
 	var scenario = null
 	var running = false
 
@@ -603,6 +645,11 @@
 
 		if ( data.type === 'reset' ) {
 			location.reload()
+			return
+		}
+
+		if ( data.type === 'theme' ) {
+			themeApply( data.lights )
 			return
 		}
 

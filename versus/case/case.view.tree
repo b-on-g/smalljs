@@ -1,5 +1,6 @@
 $bog_smalljs_versus_case $mol_view
 	case_id \
+	lights \light
 	title @ \
 	hint @ \
 	status_idle @ \Not run yet

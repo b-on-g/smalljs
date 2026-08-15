@@ -99,8 +99,11 @@ namespace $ {
 			height: px( 320 ),
 			minWidth: 0,
 			border: { radius: rem( 0.375 ), ... line },
-			// the runner pages paint a light surface of their own
-			background: { color: '#ffffff' },
+			// Shows only until the runner's own document paints. The runners
+			// follow the site theme, so the frame has to start from the same
+			// side of it, otherwise switching to dark leaves white rectangles
+			// standing here for the whole load.
+			background: { color: $bog_builderui_tokens.card },
 		},
 
 		Card: {

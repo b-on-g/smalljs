@@ -401,6 +401,35 @@ namespace $.$$ {
 			this.frame_window( id )?.postMessage( message, '*' )
 		}
 
+		/** Theme the frames have to paint themselves in, normalised to the two
+		 *  values the protocol carries. */
+		frame_lights() {
+			return this.lights() === 'dark' ? 'dark' : 'light'
+		}
+
+		/** Hands the site's theme to every frame that has already introduced
+		 *  itself. Sent as a message and never as a query parameter: changing a
+		 *  frame's src reloads the runner and throws away the result of a run
+		 *  already made, while the reader is free to flip the theme long after
+		 *  pressing Run.
+		 *
+		 *  Reading ready() per frame is what makes the late ones work — a frame
+		 *  that finishes loading after a theme switch is caught up the moment it
+		 *  says hello, instead of staying in whatever theme the page had when it
+		 *  started loading. */
+		@ $mol_mem
+		theme_broadcast() {
+
+			const lights = this.frame_lights()
+
+			for( const id of this.frameworks() ) {
+				if( !this.ready( id ) ) continue
+				this.post( id, { ns: 'versus', type: 'theme', lights } )
+			}
+
+			return null
+		}
+
 		// One listener per case block on the window, not per frame: a frame that
 		// has not finished loading has no contentWindow to listen on yet. The
 		// sender is resolved by comparing event.source with each frame's window —
@@ -429,6 +458,7 @@ namespace $.$$ {
 			return [
 				this.message_listener(),
 				this.visibility_listener(),
+				this.theme_broadcast(),
 				this.watchdog(),
 				... this.frameworks().map( id => this.ready_watchdog( id ) ),
 			]
@@ -462,7 +492,18 @@ namespace $.$$ {
 				// A remount invalidates whatever the previous run left on the card,
 				// unless a run is in flight and this is the frame answering it.
 				case 'ready': {
+
 					this.ready( id, true )
+
+					// Answered here rather than left to theme_broadcast alone. That
+					// cell only re-runs when ready() or the theme actually changes
+					// value, so a frame that reloads and says hello a second time —
+					// after a reset, or after the reader hard-reloads it — finds
+					// ready() already true, nothing invalidated, and comes back
+					// wearing whatever theme its own markup ships with. Greeting is
+					// an event, so it is answered as one.
+					this.post( id, { ns: 'versus', type: 'theme', lights: this.frame_lights() } )
+
 					if( this.status( id ) === 'running' ) return
 					this.result( id, result_idle )
 					return

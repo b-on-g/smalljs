@@ -176,14 +176,33 @@ namespace $.$$ {
 
 		message_receive( event: MessageEvent ) {
 
-			const packet = event.data as { ns?: unknown, type?: unknown } | null
+			const packet = event.data as { ns?: unknown, type?: unknown, lights?: unknown } | null
 
 			if( !packet || typeof packet !== 'object' ) return
 			if( packet.ns !== 'versus' ) return
 
 			if( packet.type === 'run' ) this.run()
 			if( packet.type === 'reset' ) this.reset()
+			if( packet.type === 'theme' ) this.theme_receive( packet )
 
+		}
+
+		/** The page hands its theme over instead of putting it in the query: a
+		 *  different src reloads the runner and throws away the result of a run
+		 *  already made, while the reader may switch themes at any moment,
+		 *  including after Run. Anything other than `dark` reads as light, so an
+		 *  unknown value leaves the frame legible rather than blank. */
+		theme_receive( packet: { lights?: unknown } ) {
+			this.lights( packet.lights === 'dark' ? 'dark' : 'light' )
+		}
+
+		/** Pins the built-in $mol parts — hover, focus ring, scrollbars — to the
+		 *  same side of the theme as the runner's own palette. Without it they
+		 *  follow the operating system rather than the site, and a reader with a
+		 *  light system reading the site in dark gets pale scrollbars on a dark
+		 *  list. */
+		mol_theme() {
+			return this.lights() === 'dark' ? '$mol_theme_dark' : '$mol_theme_light'
 		}
 
 		async run() {
