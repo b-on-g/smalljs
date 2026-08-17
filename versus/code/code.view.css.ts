@@ -10,12 +10,17 @@ namespace $.$$ {
 			top: '-0.5rem',
 		},
 
-		// The expander's chevron is an $mol_icon, and an icon with no size of its
-		// own stretches to whatever box it is given: inside this block it grew to
-		// 1198px tall and carried the whole disclosure to 1576px, while the code
-		// it hides is 362px. The block looked enormous because of an arrow nobody
-		// could see, not because of the code.
-		$mol_icon: {
+		// The expander's chevron. Keyed on $mol_icon_chevron because that is what
+		// the element actually is: its attributes are mol_check_expand_icon,
+		// mol_expander_trigger_icon, mol_icon_chevron, mol_svg, mol_view — there is
+		// no mol_icon among them, so a rule written for $mol_icon matched nothing.
+		//
+		// Unsized, an svg takes the box it is given. Collapsed, the trigger is the
+		// only thing in the block and the chevron stretched to 1198px, carrying the
+		// whole disclosure to 1214px before a line of code was even shown. Expanded
+		// it looked fine, because the code below it left nothing to stretch into —
+		// which is why checking only the open state missed this twice.
+		$mol_icon_chevron: {
 			width: '1em',
 			height: '1em',
 			flex: { grow: 0, shrink: 0 },
