@@ -9,6 +9,7 @@ This reference is generated from the component's typed `.view.tree` interface.
 | Property | Access | Type |
 |---|---|---|
 | `uri_toggle` | read | `string` |
+| `uri_unsafe` | read | `as 'uri_toggle'` |
 | `hint` | read | `string` |
 | `hint_safe` | read | `as 'hint'` |
 | `target` | read | `string` |
