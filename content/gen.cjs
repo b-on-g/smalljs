@@ -430,10 +430,27 @@ const versus_pairs = versus_pairs_of( versus_ids().sort() )
 // The raw Markdown endpoints (/docs/<slug>.md) remain published and indexed via
 // llms.txt for LLM citation; the sitemap points crawlers at the real app URLs.
 const lastmod = new Date().toISOString().slice( 0, 10 )
-const sitemap_urls = [ prod_base + '/' ]
-	.concat( slugs.map( slug => `${ prod_base }/section=docs/page=${ slug }` ) )
-	.concat( [ `${ prod_base }/section=playground`, `${ prod_base }/section=course`, `${ prod_base }/section=versus` ] )
-	.concat( versus_pairs.map( ( [ a, b ] ) => `${ prod_base }/section=versus/a=${ a }/b=${ b }` ) )
+
+// Маршруты без хоста: '' — главная, остальные — `section=…/…`.
+const base_routes = [ '' ]
+	.concat( slugs.map( slug => `section=docs/page=${ slug }` ) )
+	.concat( [ 'section=playground', 'section=course', 'section=versus' ] )
+	.concat( versus_pairs.map( ( [ a, b ] ) => `section=versus/a=${ a }/b=${ b }` ) )
+
+// Языковые варианты каждого маршрута. Приложение уже объявляет их в hreflang
+// (app.view.ts, meta_langs + route_path([['mol_locale', code]])), и роутер их
+// понимает — но без записи в sitemap пререндер не делал для них статики, и
+// краулер на каждой заявленной альтернате получал 404. Список обязан совпадать
+// с meta_langs в app.view.ts, иначе hreflang и sitemap разойдутся.
+const meta_langs = [ 'en', 'ru', 'zh', 'zh_hk', 'ja', 'ko', 'fr', 'de', 'pt', 'it', 'uk', 'pl', 'cs', 'fa', 'bn' ]
+const localized_route = ( lang, route ) => route
+	? `mol_locale=${ lang }/${ route }`
+	: `mol_locale=${ lang }`
+
+const sitemap_urls = base_routes.map( route => `${ prod_base }/${ route }` )
+	.concat( meta_langs.flatMap( lang =>
+		base_routes.map( route => `${ prod_base }/${ localized_route( lang, route ) }` )
+	) )
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n`
 	+ `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`
 	+ sitemap_urls.map( loc =>
@@ -660,4 +677,4 @@ const lessons_dir = path.join( root, '..', 'lessons' )
 fs.mkdirSync( lessons_dir, { recursive: true } )
 fs.writeFileSync( path.join( lessons_dir, 'lessons.ts' ), lessons_ts )
 
-console.log( `generated: content.ts (${ slugs.length } pages, incl. ${ api_count } API, ${ translated_count } translated) + llms.txt + lessons.ts (${ lessons.length } lessons, ${ lessons_translated } translated) + sitemap.xml (${ sitemap_urls.length } routes, incl. ${ versus_pairs.length } versus pairs)` )
+console.log( `generated: content.ts (${ slugs.length } pages, incl. ${ api_count } API, ${ translated_count } translated) + llms.txt + lessons.ts (${ lessons.length } lessons, ${ lessons_translated } translated) + sitemap.xml (${ sitemap_urls.length } routes = ${ base_routes.length } base + ${ meta_langs.length } langs, incl. ${ versus_pairs.length } versus pairs)` )
