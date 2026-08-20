@@ -33655,7 +33655,18 @@ var $;
              *  <head> as <title>/<meta>/<link> for bots and social unfurls. */
             meta() {
                 const lang = this.$.$mol_locale.lang();
-                const canonical = prod_base + this.route_path();
+                // Безъязыкий адрес страницы: канонический для английской версии и
+                // один на весь hreflang-кластер как x-default.
+                const bare = prod_base + this.route_path();
+                // Каноническая ссылка обязана быть само-ссылающейся: страница
+                // /mol_locale=ru/… указывает на себя. Иначе поисковик считает все
+                // пятнадцать языков дублями английской версии, схлопывает кластер
+                // на неё и языковые страницы в индекс просто не попадают — то есть
+                // пререндер языков оказывается выброшенным впустую.
+                const url_locale = this.$.$mol_state_arg.value('mol_locale');
+                const canonical = url_locale
+                    ? prod_base + this.route_path([['mol_locale', url_locale]])
+                    : bare;
                 let title = `${site_name} — the reactive micromodule framework`;
                 let description = default_description;
                 // Generic brand card by default; docs pages get a per-slug card below.
@@ -33698,7 +33709,7 @@ var $;
                     lang: hreflang_code(code),
                     href: prod_base + this.route_path([['mol_locale', code]]),
                 }));
-                alternates.push({ lang: 'x-default', href: canonical });
+                alternates.push({ lang: 'x-default', href: bare });
                 return {
                     title,
                     description,
