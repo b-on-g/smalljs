@@ -23,23 +23,27 @@ Kilka elementów jest natomiast opcjonalnych:
 
 Generator to cienka nakładka na CLI serwera języka, więc `npx view-tree-lsp create bog/myapp` robi to samo bezpośrednio.
 
-## Rozdzielanie tłumaczeń
+## Tłumaczenia
 
-Tłumacz chce jednego pliku, nie trzydziestu. Zbudowana aplikacja już go ma: `<app>/-/web.locale=<lang>.json` zawiera wszystkie teksty wszystkich modułów, które aplikacja pakuje. Wyślij go, odbierz przetłumaczony i rozdziel z powrotem na moduły:
+Tłumaczenia leżą obok swojego modułu, w `<moduł>/<nazwa>.locale=<lang>.json`. Kodowi jest tak wygodnie, tłumaczowi już mniej: zamiast jednej listy zdań dostaje trzydzieści małych plików.
+
+**[$yuf_localizer](https://zerkalica.github.io/yuf/#!demo=yuf_localizer_demo)** zasypuje tę przepaść. Podaj mu adresy projektów i kody języków, a pokaże wszystkie klucze na jednej liście z wyszukiwaniem, oznaczając to, co jeszcze zostało: klucze istniejące tylko po angielsku, zmienione, ale niezatwierdzone, oraz przeterminowane, których projekt już nie ma. Tłumaczenia trzymają się w przeglądarce do czasu eksportu, więc nic nie ginie między sesjami.
+
+Gdy tłumacz skończy, wyeksportuj wynik i rozdziel go z powrotem na moduły:
 
 ```bash
 # z katalogu głównego MAM
 npx view-tree-lsp locale bog/myapp/app/- --exclude=mol --update
 ```
 
-Każdy klucz niesie ścieżkę swojego modułu, więc `$my_page_greeting` trafi do `my/page/page.locale=<lang>.json` — obok źródeł, do których należy. Argumentem może być katalog albo pojedynczy plik lokalizacji.
+Argumentem jest katalog albo pojedynczy plik lokalizacji. Flagi:
 
-- `--include=<fragment>` — tylko moduły, których ścieżka zawiera fragment; można powtarzać
-- `--exclude=<fragment>` — pomiń takie; `--exclude=mol` zostawia pakiety samego frameworka nietknięte
-- `--update` — scal z istniejącymi plikami: wartości ze źródła wygrywają, klucze nieobecne w źródle zostają
-- `--dry` — pokaż plan i nic nie zapisuj
+- `--include=` przyjmuje fragment ścieżki i zostawia tylko moduły, których ścieżka go zawiera; można powtarzać dowolnie wiele razy
+- `--exclude=` przeciwnie, pomija takie — `--exclude=mol` zostawia pakiety samego frameworka nietknięte
+- `--update` scala z istniejącymi plikami: wartości ze źródła wygrywają, a klucze nieobecne w źródle zostają
+- `--dry` pokazuje plan i nic nie zapisuje
 
-Ustalenie modułu po kluczu jest subtelniejsze, niż wygląda. `_` rozdziela zarówno katalogi, jak i słowa, więc najdłuższa pasująca ścieżka nie jest odpowiedzią: w `$my_page_lang_hint` właściwość zaczyna się od `lang`, a prawdziwy sąsiedni podmoduł `my/page/lang` połknąłby klucz. Dlatego polecenie pyta każdy moduł-kandydat, jakie klucze deklaruje — MAM zapisuje dokładnie te do `<moduł>/-view.tree/*.locale=en.json` — i oddaje klucz właścicielowi.
+Każdy klucz niesie ścieżkę swojego modułu, więc `$my_page_greeting` trafi do `my/page/page.locale=ru.json` — obok źródeł, do których należy. Ustalenie tego modułu jest jednak subtelniejsze, niż wygląda: `_` rozdziela zarówno katalogi, jak i słowa, więc najdłuższa pasująca ścieżka to zła odpowiedź. W `$my_page_lang_hint` właściwość zaczyna się od `lang`, a prawdziwy sąsiedni podmoduł `my/page/lang` połknąłby klucz. Dlatego polecenie pyta każdy moduł-kandydat, jakie klucze deklaruje — MAM zapisuje dokładnie te w jego pliku lokalizacji w `-view.tree` — i oddaje klucz właścicielowi.
 
 ## Ciągła integracja
 

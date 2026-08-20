@@ -23,23 +23,27 @@ A few pieces are opt-in instead:
 
 The scaffolder is a thin wrapper over the CLI in the language server, so `npx view-tree-lsp create bog/myapp` does the same thing directly.
 
-## Merge translations
+## Translations
 
-Translators want one file, not thirty. A built app already has it: `<app>/-/web.locale=<lang>.json` holds every string of every module the app bundles. Send that out, get it back translated, then split it back into per-module files:
+Translations live next to their module, in `<module>/<name>.locale=<lang>.json`. That is convenient for the code and awkward for a translator: thirty small files instead of one list of phrases.
+
+**[$yuf_localizer](https://zerkalica.github.io/yuf/#!demo=yuf_localizer_demo)** closes that gap. Point it at your project URLs and language codes, and it shows every key in one searchable list, marking the ones that still need work: keys that exist only in English, keys you changed but have not committed, and stale keys that the project no longer has. Translations are kept in the browser until you export them, so nothing is lost between sessions.
+
+When the translator is done, export the result and spread it back across the modules:
 
 ```bash
 # from the MAM root
 npx view-tree-lsp locale bog/myapp/app/- --exclude=mol --update
 ```
 
-Every key carries its own module path, so `$my_page_greeting` lands in `my/page/page.locale=<lang>.json`, next to the sources it belongs to. The argument is either a folder or a single locale file.
+The argument is a folder or a single locale file. Flags:
 
-- `--include=<fragment>` — only modules whose path contains the fragment; repeatable
-- `--exclude=<fragment>` — skip them; `--exclude=mol` leaves the framework's own packages untouched
-- `--update` — merge into existing files: incoming values win, keys missing from the input stay
-- `--dry` — print the plan and write nothing
+- `--include=` takes a path fragment and keeps only modules whose path contains it; repeat it as often as you like
+- `--exclude=` skips them instead — `--exclude=mol` leaves the framework's own packages untouched
+- `--update` merges into existing files: incoming values win, and keys missing from the input stay
+- `--dry` prints the plan and writes nothing
 
-Resolving a key is subtler than it looks. `_` separates folders and words alike, so the longest matching folder path is not the answer: in `$my_page_lang_hint` the property starts with `lang`, and a real `my/page/lang` submodule next door would swallow the key. So the command asks each candidate module which keys it declares — MAM writes exactly those into `<module>/-view.tree/*.locale=en.json` — and gives the key to the module that owns it.
+Every key carries its own module path, so `$my_page_greeting` lands in `my/page/page.locale=ru.json`, next to the sources it belongs to. Working out which module that is, though, is subtler than it looks: `_` separates folders and words alike, so the longest matching folder path is the wrong answer. In `$my_page_lang_hint` the property starts with `lang`, and a real `my/page/lang` submodule next door would swallow the key. So the command asks each candidate module which keys it declares — MAM writes exactly those into its `-view.tree` locale file — and gives the key to the module that owns it.
 
 ## Continuous integration
 

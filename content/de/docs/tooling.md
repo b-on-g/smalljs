@@ -23,23 +23,27 @@ Ein paar Bestandteile sind stattdessen optional:
 
 Der Scaffolder ist ein dünner Wrapper über der CLI im Language Server, sodass `npx view-tree-lsp create bog/myapp` dasselbe direkt erledigt.
 
-## Übersetzungen aufteilen
+## Übersetzungen
 
-Übersetzer wollen eine Datei, nicht dreißig. Eine gebaute App hat sie bereits: `<app>/-/web.locale=<lang>.json` enthält alle Texte aller Module, die die App bündelt. Schicken Sie diese Datei raus, holen Sie sie übersetzt zurück und teilen Sie sie wieder auf die Module auf:
+Übersetzungen liegen neben ihrem Modul, in `<Modul>/<Name>.locale=<lang>.json`. Dem Code kommt das entgegen, dem Übersetzer nicht: Statt einer Liste von Sätzen bekommt er dreißig kleine Dateien.
+
+**[$yuf_localizer](https://zerkalica.github.io/yuf/#!demo=yuf_localizer_demo)** schließt diese Lücke. Geben Sie ihm die Projekt-URLs und Sprachcodes, und er zeigt alle Schlüssel in einer durchsuchbaren Liste — samt Markierungen für alles, was noch offen ist: Schlüssel, die es nur auf Englisch gibt, geänderte, aber noch nicht festgeschriebene, und veraltete, die das Projekt gar nicht mehr kennt. Die Übersetzungen bleiben im Browser, bis Sie sie exportieren, zwischen zwei Sitzungen geht also nichts verloren.
+
+Ist der Übersetzer fertig, exportieren Sie das Ergebnis und verteilen es zurück auf die Module:
 
 ```bash
 # aus dem MAM-Wurzelverzeichnis
 npx view-tree-lsp locale bog/myapp/app/- --exclude=mol --update
 ```
 
-Jeder Schlüssel trägt seinen Modulpfad in sich, also landet `$my_page_greeting` in `my/page/page.locale=<lang>.json` — direkt neben den Quellen, zu denen er gehört. Als Argument dient ein Ordner oder eine einzelne Locale-Datei.
+Als Argument dient ein Ordner oder eine einzelne Locale-Datei. Flags:
 
-- `--include=<Pfadfragment>` — nur Module, deren Pfad das Fragment enthält; mehrfach angebbar
-- `--exclude=<Pfadfragment>` — solche überspringen; `--exclude=mol` lässt die Pakete des Frameworks unangetastet
-- `--update` — in bestehende Dateien einmischen: eingehende Werte gewinnen, im Input fehlende Schlüssel bleiben erhalten
-- `--dry` — den Plan ausgeben und nichts schreiben
+- `--include=` nimmt ein Pfadfragment und behält nur Module, deren Pfad es enthält; beliebig oft wiederholbar
+- `--exclude=` überspringt sie stattdessen — `--exclude=mol` lässt die Pakete des Frameworks unangetastet
+- `--update` mischt in bestehende Dateien ein: eingehende Werte gewinnen, im Input fehlende Schlüssel bleiben erhalten
+- `--dry` gibt den Plan aus und schreibt nichts
 
-Einen Schlüssel aufzulösen ist heikler, als es aussieht. `_` trennt Ordner und Wörter gleichermaßen, der längste passende Pfad ist also nicht die Antwort: In `$my_page_lang_hint` beginnt die Eigenschaft mit `lang`, und ein echtes Submodul `my/page/lang` nebenan würde den Schlüssel verschlucken. Deshalb fragt der Befehl jedes Kandidatenmodul, welche Schlüssel es deklariert — MAM schreibt genau diese in `<Modul>/-view.tree/*.locale=en.json` — und gibt den Schlüssel dem Modul, dem er gehört.
+Jeder Schlüssel trägt seinen Modulpfad in sich, also landet `$my_page_greeting` in `my/page/page.locale=ru.json` — direkt neben den Quellen, zu denen er gehört. Dieses Modul zu bestimmen ist allerdings heikler, als es aussieht: `_` trennt Ordner und Wörter gleichermaßen, der längste passende Pfad ist also die falsche Antwort. In `$my_page_lang_hint` beginnt die Eigenschaft mit `lang`, und ein echtes Submodul `my/page/lang` nebenan würde den Schlüssel verschlucken. Deshalb fragt der Befehl jedes Kandidatenmodul, welche Schlüssel es deklariert — MAM schreibt genau diese in dessen `-view.tree`-Locale-Datei — und gibt den Schlüssel dem Modul, dem er gehört.
 
 ## Kontinuierliche Integration
 

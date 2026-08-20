@@ -23,23 +23,27 @@ Několik částí je naopak volitelných:
 
 Generátor je tenká obálka nad CLI jazykového serveru, takže `npx view-tree-lsp create bog/myapp` udělá totéž přímo.
 
-## Rozdělení překladů
+## Překlady
 
-Překladatel chce jeden soubor, ne třicet. Sestavená aplikace ho už má: `<app>/-/web.locale=<lang>.json` obsahuje všechny texty všech modulů, které aplikace balí. Pošlete ho, dostaňte zpět přeložený a rozdělte zase po modulech:
+Překlady leží vedle svého modulu, v `<modul>/<jméno>.locale=<lang>.json`. Kódu to vyhovuje, překladateli už méně: místo jednoho seznamu vět dostane třicet drobných souborů.
+
+**[$yuf_localizer](https://zerkalica.github.io/yuf/#!demo=yuf_localizer_demo)** tuhle mezeru zaceluje. Zadejte mu adresy projektů a kódy jazyků a ukáže všechny klíče v jednom seznamu s vyhledáváním — a označí, co ještě zbývá: klíče, které existují jen anglicky, změněné, ale nezapsané, a zastaralé, které projekt už nemá. Překlady zůstávají v prohlížeči, dokud je nevyexportujete, takže se mezi sezeními nic neztratí.
+
+Až bude překladatel hotov, vyexportujte výsledek a rozdělte ho zpátky po modulech:
 
 ```bash
 # z kořene MAM
 npx view-tree-lsp locale bog/myapp/app/- --exclude=mol --update
 ```
 
-Každý klíč v sobě nese cestu ke svému modulu, takže `$my_page_greeting` skončí v `my/page/page.locale=<lang>.json` — vedle zdrojů, ke kterým patří. Argumentem je složka nebo jeden soubor s lokalizací.
+Argumentem je složka nebo jeden soubor s lokalizací. Přepínače:
 
-- `--include=<část cesty>` — jen moduly, jejichž cesta obsahuje fragment; lze opakovat
-- `--exclude=<část cesty>` — ty přeskočit; `--exclude=mol` nechá balíčky samotného frameworku netknuté
-- `--update` — sloučit do existujících souborů: hodnoty ze zdroje vyhrávají, klíče chybějící ve zdroji zůstanou
-- `--dry` — vypsat plán a nic nezapisovat
+- `--include=` bere část cesty a nechá jen moduly, jejichž cesta ji obsahuje; lze opakovat, kolikrát chcete
+- `--exclude=` je naopak přeskočí — `--exclude=mol` nechá balíčky samotného frameworku netknuté
+- `--update` sloučí do existujících souborů: hodnoty ze zdroje vyhrávají a klíče, které ve zdroji nejsou, zůstanou
+- `--dry` vypíše plán a nic nezapíše
 
-Určit modul podle klíče je záludnější, než vypadá. `_` odděluje složky i slova, takže nejdelší odpovídající cesta není správná odpověď: v `$my_page_lang_hint` začíná vlastnost na `lang` a skutečný sousední podmodul `my/page/lang` by si klíč vzal. Příkaz se proto ptá každého kandidáta, jaké klíče deklaruje — MAM zapisuje přesně ty do `<modul>/-view.tree/*.locale=en.json` — a klíč přidělí tomu, komu patří.
+Každý klíč v sobě nese cestu ke svému modulu, takže `$my_page_greeting` skončí v `my/page/page.locale=ru.json` — vedle zdrojů, ke kterým patří. Určit ten modul je ovšem záludnější, než vypadá: `_` odděluje složky i slova, takže nejdelší odpovídající cesta je špatná odpověď. V `$my_page_lang_hint` začíná vlastnost na `lang` a skutečný sousední podmodul `my/page/lang` by si klíč vzal. Příkaz se proto ptá každého kandidáta, jaké klíče deklaruje — MAM zapisuje přesně ty do jeho souboru lokalizace v `-view.tree` — a klíč přidělí tomu, komu patří.
 
 ## Průběžná integrace
 

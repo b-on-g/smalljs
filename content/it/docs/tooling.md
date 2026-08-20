@@ -23,23 +23,27 @@ Alcuni pezzi sono invece opzionali:
 
 Lo scaffolder è un sottile wrapper attorno alla CLI del language server, quindi `npx view-tree-lsp create bog/myapp` fa la stessa cosa direttamente.
 
-## Distribuire le traduzioni
+## Traduzioni
 
-Un traduttore vuole un file, non trenta. Un'app compilata ce l'ha già: `<app>/-/web.locale=<lang>.json` contiene tutte le stringhe di tutti i moduli che l'app include. Invialo, riprendilo tradotto e ridistribuiscilo tra i moduli:
+Le traduzioni stanno accanto al proprio modulo, in `<modulo>/<nome>.locale=<lang>.json`. Al codice fa comodo, al traduttore molto meno: invece di un elenco di frasi riceve trenta file minuscoli.
+
+**[$yuf_localizer](https://zerkalica.github.io/yuf/#!demo=yuf_localizer_demo)** colma questa distanza. Indicagli gli URL dei progetti e i codici lingua e mostra tutte le chiavi in un unico elenco ricercabile, segnalando ciò che resta da fare: chiavi presenti solo in inglese, chiavi modificate ma non ancora salvate, e chiavi obsolete che il progetto non ha più. Le traduzioni restano nel browser finché non le esporti, quindi tra una sessione e l'altra non si perde nulla.
+
+Quando il traduttore ha finito, esporta il risultato e ridistribuiscilo tra i moduli:
 
 ```bash
 # dalla radice di MAM
 npx view-tree-lsp locale bog/myapp/app/- --exclude=mol --update
 ```
 
-Ogni chiave porta con sé il percorso del proprio modulo, quindi `$my_page_greeting` finisce in `my/page/page.locale=<lang>.json`, accanto ai sorgenti a cui appartiene. L'argomento è una cartella oppure un singolo file di locale.
+L'argomento è una cartella o un singolo file di locale. Opzioni:
 
-- `--include=<frammento>` — solo i moduli il cui percorso contiene il frammento; ripetibile
-- `--exclude=<frammento>` — salta quei moduli; `--exclude=mol` lascia intatti i pacchetti del framework
-- `--update` — unisci nei file esistenti: vincono i valori in ingresso, le chiavi assenti nella sorgente restano
-- `--dry` — stampa il piano senza scrivere nulla
+- `--include=` prende un frammento di percorso e tiene solo i moduli il cui percorso lo contiene; ripetibile quante volte vuoi
+- `--exclude=` al contrario li salta — `--exclude=mol` lascia intatti i pacchetti del framework
+- `--update` unisce nei file esistenti: vincono i valori in ingresso, le chiavi assenti nella sorgente restano
+- `--dry` stampa il piano senza scrivere nulla
 
-Risolvere una chiave è più sottile di quanto sembri. `_` separa sia cartelle sia parole, quindi il percorso corrispondente più lungo non è la risposta: in `$my_page_lang_hint` la proprietà inizia con `lang`, e un vero sottomodulo `my/page/lang` accanto si prenderebbe la chiave. Perciò il comando chiede a ogni modulo candidato quali chiavi dichiara — MAM scrive esattamente quelle in `<modulo>/-view.tree/*.locale=en.json` — e assegna la chiave a chi la possiede.
+Ogni chiave porta con sé il percorso del proprio modulo, così `$my_page_greeting` finisce in `my/page/page.locale=ru.json`, accanto ai sorgenti a cui appartiene. Capire quale sia quel modulo, però, è più sottile di quanto sembri: `_` separa sia cartelle sia parole, quindi il percorso corrispondente più lungo è la risposta sbagliata. In `$my_page_lang_hint` la proprietà inizia con `lang`, e un vero sottomodulo `my/page/lang` accanto si prenderebbe la chiave. Perciò il comando chiede a ogni modulo candidato quali chiavi dichiara — MAM scrive esattamente quelle nel suo file di locale sotto `-view.tree` — e assegna la chiave a chi la possiede.
 
 ## Integrazione continua
 

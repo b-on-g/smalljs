@@ -23,23 +23,27 @@ Quelques éléments sont au contraire optionnels :
 
 Le générateur est une fine surcouche de la CLI du serveur de langage, si bien que `npx view-tree-lsp create bog/myapp` fait la même chose directement.
 
-## Répartir les traductions
+## Traductions
 
-Un traducteur veut un fichier, pas trente. Une application compilée l'a déjà : `<app>/-/web.locale=<lang>.json` contient toutes les chaînes de tous les modules qu'elle embarque. Envoyez-le, récupérez-le traduit, puis répartissez-le de nouveau entre les modules :
+Les traductions vivent à côté de leur module, dans `<module>/<nom>.locale=<lang>.json`. Cela arrange le code, beaucoup moins le traducteur : au lieu d'une liste de phrases, il reçoit trente petits fichiers.
+
+**[$yuf_localizer](https://zerkalica.github.io/yuf/#!demo=yuf_localizer_demo)** comble cet écart. Donnez-lui les URL de vos projets et les codes de langue, et il affiche toutes les clés dans une liste unique avec recherche, en signalant ce qui reste à faire : les clés qui n'existent qu'en anglais, celles que vous avez modifiées sans les valider, et les clés périmées que le projet ne connaît plus. Les traductions restent dans le navigateur jusqu'à l'export, rien ne se perd entre deux séances.
+
+Une fois le traducteur satisfait, exportez le résultat et répartissez-le de nouveau entre les modules :
 
 ```bash
 # depuis la racine de MAM
 npx view-tree-lsp locale bog/myapp/app/- --exclude=mol --update
 ```
 
-Chaque clé porte son chemin de module, donc `$my_page_greeting` atterrit dans `my/page/page.locale=<lang>.json`, à côté des sources auxquelles elle appartient. L'argument est soit un dossier, soit un fichier de locale.
+L'argument est un dossier ou un fichier de locale. Options :
 
-- `--include=<fragment>` — seulement les modules dont le chemin contient le fragment ; répétable
-- `--exclude=<fragment>` — les ignorer ; `--exclude=mol` laisse intacts les paquets du framework
-- `--update` — fusionner dans les fichiers existants : les valeurs entrantes l'emportent, les clés absentes de la source restent
-- `--dry` — afficher le plan sans rien écrire
+- `--include=` prend un fragment de chemin et ne garde que les modules dont le chemin le contient ; répétable à volonté
+- `--exclude=` les ignore au contraire — `--exclude=mol` laisse intacts les paquets du framework
+- `--update` fusionne dans les fichiers existants : les valeurs entrantes l'emportent, les clés absentes de la source restent
+- `--dry` affiche le plan sans rien écrire
 
-Résoudre une clé est plus subtil qu'il n'y paraît. `_` sépare aussi bien les dossiers que les mots : le plus long chemin correspondant n'est donc pas la bonne réponse. Dans `$my_page_lang_hint`, la propriété commence par `lang`, et un vrai sous-module `my/page/lang` voisin avalerait la clé. La commande demande donc à chaque module candidat quelles clés il déclare — MAM écrit exactement celles-là dans `<module>/-view.tree/*.locale=en.json` — et attribue la clé à son propriétaire.
+Chaque clé porte son chemin de module, donc `$my_page_greeting` atterrit dans `my/page/page.locale=ru.json`, à côté des sources auxquelles elle appartient. Déterminer ce module est pourtant plus subtil qu'il n'y paraît : `_` sépare aussi bien les dossiers que les mots, le plus long chemin correspondant est donc une mauvaise réponse. Dans `$my_page_lang_hint`, la propriété commence par `lang`, et un vrai sous-module `my/page/lang` voisin avalerait la clé. La commande demande donc à chaque module candidat quelles clés il déclare — MAM écrit exactement celles-là dans son fichier de locale sous `-view.tree` — et attribue la clé à son propriétaire.
 
 ## Intégration continue
 
