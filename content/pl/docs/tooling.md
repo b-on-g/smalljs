@@ -23,6 +23,24 @@ Kilka elementów jest natomiast opcjonalnych:
 
 Generator to cienka nakładka na CLI serwera języka, więc `npx view-tree-lsp create bog/myapp` robi to samo bezpośrednio.
 
+## Rozdzielanie tłumaczeń
+
+Tłumacz chce jednego pliku, nie trzydziestu. Zbudowana aplikacja już go ma: `<app>/-/web.locale=<lang>.json` zawiera wszystkie teksty wszystkich modułów, które aplikacja pakuje. Wyślij go, odbierz przetłumaczony i rozdziel z powrotem na moduły:
+
+```bash
+# z katalogu głównego MAM
+npx view-tree-lsp locale bog/myapp/app/- --exclude=mol --update
+```
+
+Każdy klucz niesie ścieżkę swojego modułu, więc `$my_page_greeting` trafi do `my/page/page.locale=<lang>.json` — obok źródeł, do których należy. Argumentem może być katalog albo pojedynczy plik lokalizacji.
+
+- `--include=<fragment>` — tylko moduły, których ścieżka zawiera fragment; można powtarzać
+- `--exclude=<fragment>` — pomiń takie; `--exclude=mol` zostawia pakiety samego frameworka nietknięte
+- `--update` — scal z istniejącymi plikami: wartości ze źródła wygrywają, klucze nieobecne w źródle zostają
+- `--dry` — pokaż plan i nic nie zapisuj
+
+Ustalenie modułu po kluczu jest subtelniejsze, niż wygląda. `_` rozdziela zarówno katalogi, jak i słowa, więc najdłuższa pasująca ścieżka nie jest odpowiedzią: w `$my_page_lang_hint` właściwość zaczyna się od `lang`, a prawdziwy sąsiedni podmoduł `my/page/lang` połknąłby klucz. Dlatego polecenie pyta każdy moduł-kandydat, jakie klucze deklaruje — MAM zapisuje dokładnie te do `<moduł>/-view.tree/*.locale=en.json` — i oddaje klucz właścicielowi.
+
 ## Ciągła integracja
 
 Generator zapisuje GitHub Actions w `.github/workflows/`, dzięki czemu nowy projekt wdraża się i wydaje bez dodatkowej konfiguracji.

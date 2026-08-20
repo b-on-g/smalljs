@@ -23,6 +23,24 @@ npx create-view-tree-lsp bog/myapp --no-baza --no-docker --no-tauri
 
 脚手架只是语言服务器中 CLI 的一层薄封装，所以 `npx view-tree-lsp create bog/myapp` 会直接做同样的事。
 
+## 拆分翻译文件
+
+译者要的是一个文件，而不是三十个。构建好的应用里已经有了：`<app>/-/web.locale=<lang>.json` 汇总了该应用打包的所有模块的全部文案。把它发出去，拿回翻译好的版本，再拆回各个模块：
+
+```bash
+# 在 MAM 根目录下执行
+npx view-tree-lsp locale bog/myapp/app/- --exclude=mol --update
+```
+
+每个键自身带着所属模块的路径，所以 `$my_page_greeting` 会落到 `my/page/page.locale=<lang>.json`，就在它所属的源码旁边。参数既可以是目录，也可以是单个语言文件。
+
+- `--include=<路径片段>` — 只处理路径包含该片段的模块；可重复指定
+- `--exclude=<路径片段>` — 跳过这些模块；`--exclude=mol` 可以让框架自身的包保持原样
+- `--update` — 合并进已有文件：来源中的值优先，来源中没有的键保留不动
+- `--dry` — 只打印计划，不写入任何文件
+
+按键名定位模块比看上去更微妙。`_` 既分隔目录也分隔单词，所以「最长匹配路径」并不是答案：`$my_page_lang_hint` 的属性名以 `lang` 开头，若旁边真的存在 `my/page/lang` 子模块，这个键就会被它吞掉。因此该命令会逐个询问候选模块声明了哪些键——MAM 正是把这些键写进 `<模块>/-view.tree/*.locale=en.json`——再把键交给真正的归属者。
+
 ## 持续集成
 
 脚手架会把 GitHub Actions 写入 `.github/workflows/`，于是新项目无需额外配置即可部署和发布。

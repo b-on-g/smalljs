@@ -23,6 +23,24 @@ Algumas peças, ao contrário, são opcionais:
 
 O gerador é um wrapper fino sobre a CLI do language server, então `npx view-tree-lsp create bog/myapp` faz o mesmo diretamente.
 
+## Distribuir traduções
+
+Tradutores querem um arquivo, não trinta. Um app compilado já o tem: `<app>/-/web.locale=<lang>.json` reúne todas as strings de todos os módulos que o app empacota. Envie esse arquivo, receba-o traduzido e distribua-o de volta pelos módulos:
+
+```bash
+# a partir da raiz do MAM
+npx view-tree-lsp locale bog/myapp/app/- --exclude=mol --update
+```
+
+Cada chave carrega o caminho do próprio módulo, então `$my_page_greeting` vai parar em `my/page/page.locale=<lang>.json`, ao lado dos fontes a que pertence. O argumento é uma pasta ou um único arquivo de locale.
+
+- `--include=<fragmento>` — apenas módulos cujo caminho contém o fragmento; pode repetir
+- `--exclude=<fragmento>` — pular esses; `--exclude=mol` deixa os pacotes do próprio framework intactos
+- `--update` — mesclar nos arquivos existentes: os valores de entrada vencem, chaves ausentes na origem permanecem
+- `--dry` — mostrar o plano sem escrever nada
+
+Resolver uma chave é mais sutil do que parece. `_` separa tanto pastas quanto palavras, então o caminho correspondente mais longo não é a resposta: em `$my_page_lang_hint` a propriedade começa com `lang`, e um submódulo real `my/page/lang` ao lado engoliria a chave. Por isso o comando pergunta a cada módulo candidato quais chaves ele declara — o MAM escreve exatamente essas em `<módulo>/-view.tree/*.locale=en.json` — e entrega a chave a quem é dono dela.
+
 ## Integração contínua
 
 O gerador escreve as GitHub Actions em `.github/workflows/`, de modo que um novo projeto faz deploy e release sem configuração extra.

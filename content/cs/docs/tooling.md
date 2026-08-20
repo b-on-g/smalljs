@@ -23,6 +23,24 @@ Několik částí je naopak volitelných:
 
 Generátor je tenká obálka nad CLI jazykového serveru, takže `npx view-tree-lsp create bog/myapp` udělá totéž přímo.
 
+## Rozdělení překladů
+
+Překladatel chce jeden soubor, ne třicet. Sestavená aplikace ho už má: `<app>/-/web.locale=<lang>.json` obsahuje všechny texty všech modulů, které aplikace balí. Pošlete ho, dostaňte zpět přeložený a rozdělte zase po modulech:
+
+```bash
+# z kořene MAM
+npx view-tree-lsp locale bog/myapp/app/- --exclude=mol --update
+```
+
+Každý klíč v sobě nese cestu ke svému modulu, takže `$my_page_greeting` skončí v `my/page/page.locale=<lang>.json` — vedle zdrojů, ke kterým patří. Argumentem je složka nebo jeden soubor s lokalizací.
+
+- `--include=<část cesty>` — jen moduly, jejichž cesta obsahuje fragment; lze opakovat
+- `--exclude=<část cesty>` — ty přeskočit; `--exclude=mol` nechá balíčky samotného frameworku netknuté
+- `--update` — sloučit do existujících souborů: hodnoty ze zdroje vyhrávají, klíče chybějící ve zdroji zůstanou
+- `--dry` — vypsat plán a nic nezapisovat
+
+Určit modul podle klíče je záludnější, než vypadá. `_` odděluje složky i slova, takže nejdelší odpovídající cesta není správná odpověď: v `$my_page_lang_hint` začíná vlastnost na `lang` a skutečný sousední podmodul `my/page/lang` by si klíč vzal. Příkaz se proto ptá každého kandidáta, jaké klíče deklaruje — MAM zapisuje přesně ty do `<modul>/-view.tree/*.locale=en.json` — a klíč přidělí tomu, komu patří.
+
 ## Průběžná integrace
 
 Generátor zapíše GitHub Actions do `.github/workflows/`, takže nový projekt se nasazuje a vydává bez další konfigurace.

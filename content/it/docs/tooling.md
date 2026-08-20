@@ -23,6 +23,24 @@ Alcuni pezzi sono invece opzionali:
 
 Lo scaffolder è un sottile wrapper attorno alla CLI del language server, quindi `npx view-tree-lsp create bog/myapp` fa la stessa cosa direttamente.
 
+## Distribuire le traduzioni
+
+Un traduttore vuole un file, non trenta. Un'app compilata ce l'ha già: `<app>/-/web.locale=<lang>.json` contiene tutte le stringhe di tutti i moduli che l'app include. Invialo, riprendilo tradotto e ridistribuiscilo tra i moduli:
+
+```bash
+# dalla radice di MAM
+npx view-tree-lsp locale bog/myapp/app/- --exclude=mol --update
+```
+
+Ogni chiave porta con sé il percorso del proprio modulo, quindi `$my_page_greeting` finisce in `my/page/page.locale=<lang>.json`, accanto ai sorgenti a cui appartiene. L'argomento è una cartella oppure un singolo file di locale.
+
+- `--include=<frammento>` — solo i moduli il cui percorso contiene il frammento; ripetibile
+- `--exclude=<frammento>` — salta quei moduli; `--exclude=mol` lascia intatti i pacchetti del framework
+- `--update` — unisci nei file esistenti: vincono i valori in ingresso, le chiavi assenti nella sorgente restano
+- `--dry` — stampa il piano senza scrivere nulla
+
+Risolvere una chiave è più sottile di quanto sembri. `_` separa sia cartelle sia parole, quindi il percorso corrispondente più lungo non è la risposta: in `$my_page_lang_hint` la proprietà inizia con `lang`, e un vero sottomodulo `my/page/lang` accanto si prenderebbe la chiave. Perciò il comando chiede a ogni modulo candidato quali chiavi dichiara — MAM scrive esattamente quelle in `<modulo>/-view.tree/*.locale=en.json` — e assegna la chiave a chi la possiede.
+
 ## Integrazione continua
 
 Lo scaffolder scrive le GitHub Actions in `.github/workflows/`, così un nuovo progetto viene deployato e rilasciato senza configurazione aggiuntiva.

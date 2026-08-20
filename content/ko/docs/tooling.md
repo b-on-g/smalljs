@@ -23,6 +23,24 @@ npx create-view-tree-lsp bog/myapp --no-baza --no-docker --no-tauri
 
 스캐폴더는 언어 서버의 CLI를 감싼 얇은 래퍼이므로, `npx view-tree-lsp create bog/myapp`도 같은 일을 직접 수행합니다.
 
+## 번역 파일 나누기
+
+번역자에게 필요한 것은 파일 하나이지 서른 개가 아닙니다. 빌드된 앱에는 이미 그런 파일이 있습니다. `<app>/-/web.locale=<lang>.json` 에는 그 앱이 번들하는 모든 모듈의 문자열이 전부 담겨 있습니다. 이 파일을 넘겨 번역을 받고, 다시 모듈별로 나누면 됩니다.
+
+```bash
+# MAM 루트에서 실행
+npx view-tree-lsp locale bog/myapp/app/- --exclude=mol --update
+```
+
+각 키는 자기 모듈 경로를 품고 있어서 `$my_page_greeting` 은 자신이 속한 소스 옆인 `my/page/page.locale=<lang>.json` 에 놓입니다. 인자로는 폴더도, 로케일 파일 하나도 줄 수 있습니다.
+
+- `--include=<경로 조각>` — 경로에 해당 조각이 포함된 모듈만 처리하며, 여러 번 지정할 수 있습니다
+- `--exclude=<경로 조각>` — 그런 모듈은 건너뜁니다. `--exclude=mol` 은 프레임워크 자체 패키지를 그대로 둡니다
+- `--update` — 기존 파일에 병합합니다. 입력 쪽 값이 이기고, 입력에 없는 키는 남습니다
+- `--dry` — 계획만 출력하고 아무것도 쓰지 않습니다
+
+키로 모듈을 찾아내는 일은 보기보다 까다롭습니다. `_` 는 폴더 구분자이면서 단어 구분자이기도 해서 "가장 길게 일치하는 경로"는 정답이 아닙니다. `$my_page_lang_hint` 에서 속성 이름은 `lang` 으로 시작하는데, 옆에 실제 `my/page/lang` 서브모듈이 있다면 그 키를 삼켜버립니다. 그래서 이 명령은 후보 모듈마다 어떤 키를 선언했는지 묻습니다. MAM 이 바로 그 키들을 `<module>/-view.tree/*.locale=en.json` 에 기록해 두므로, 키는 진짜 주인에게 돌아갑니다.
+
 ## 지속적 통합
 
 스캐폴더는 GitHub Actions를 `.github/workflows/`에 작성하므로, 새 프로젝트는 별도 설정 없이 배포되고 릴리스됩니다.

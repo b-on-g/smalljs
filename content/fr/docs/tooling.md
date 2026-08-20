@@ -23,6 +23,24 @@ Quelques éléments sont au contraire optionnels :
 
 Le générateur est une fine surcouche de la CLI du serveur de langage, si bien que `npx view-tree-lsp create bog/myapp` fait la même chose directement.
 
+## Répartir les traductions
+
+Un traducteur veut un fichier, pas trente. Une application compilée l'a déjà : `<app>/-/web.locale=<lang>.json` contient toutes les chaînes de tous les modules qu'elle embarque. Envoyez-le, récupérez-le traduit, puis répartissez-le de nouveau entre les modules :
+
+```bash
+# depuis la racine de MAM
+npx view-tree-lsp locale bog/myapp/app/- --exclude=mol --update
+```
+
+Chaque clé porte son chemin de module, donc `$my_page_greeting` atterrit dans `my/page/page.locale=<lang>.json`, à côté des sources auxquelles elle appartient. L'argument est soit un dossier, soit un fichier de locale.
+
+- `--include=<fragment>` — seulement les modules dont le chemin contient le fragment ; répétable
+- `--exclude=<fragment>` — les ignorer ; `--exclude=mol` laisse intacts les paquets du framework
+- `--update` — fusionner dans les fichiers existants : les valeurs entrantes l'emportent, les clés absentes de la source restent
+- `--dry` — afficher le plan sans rien écrire
+
+Résoudre une clé est plus subtil qu'il n'y paraît. `_` sépare aussi bien les dossiers que les mots : le plus long chemin correspondant n'est donc pas la bonne réponse. Dans `$my_page_lang_hint`, la propriété commence par `lang`, et un vrai sous-module `my/page/lang` voisin avalerait la clé. La commande demande donc à chaque module candidat quelles clés il déclare — MAM écrit exactement celles-là dans `<module>/-view.tree/*.locale=en.json` — et attribue la clé à son propriétaire.
+
 ## Intégration continue
 
 Le générateur écrit les GitHub Actions dans `.github/workflows/`, de sorte qu'un nouveau projet se déploie et se publie sans configuration supplémentaire.

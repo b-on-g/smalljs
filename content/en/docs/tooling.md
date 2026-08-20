@@ -23,6 +23,24 @@ A few pieces are opt-in instead:
 
 The scaffolder is a thin wrapper over the CLI in the language server, so `npx view-tree-lsp create bog/myapp` does the same thing directly.
 
+## Merge translations
+
+Translators want one file, not thirty. A built app already has it: `<app>/-/web.locale=<lang>.json` holds every string of every module the app bundles. Send that out, get it back translated, then split it back into per-module files:
+
+```bash
+# from the MAM root
+npx view-tree-lsp locale bog/myapp/app/- --exclude=mol --update
+```
+
+Every key carries its own module path, so `$my_page_greeting` lands in `my/page/page.locale=<lang>.json`, next to the sources it belongs to. The argument is either a folder or a single locale file.
+
+- `--include=<fragment>` — only modules whose path contains the fragment; repeatable
+- `--exclude=<fragment>` — skip them; `--exclude=mol` leaves the framework's own packages untouched
+- `--update` — merge into existing files: incoming values win, keys missing from the input stay
+- `--dry` — print the plan and write nothing
+
+Resolving a key is subtler than it looks. `_` separates folders and words alike, so the longest matching folder path is not the answer: in `$my_page_lang_hint` the property starts with `lang`, and a real `my/page/lang` submodule next door would swallow the key. So the command asks each candidate module which keys it declares — MAM writes exactly those into `<module>/-view.tree/*.locale=en.json` — and gives the key to the module that owns it.
+
 ## Continuous integration
 
 The scaffolder writes GitHub Actions to `.github/workflows/`, so a new project deploys and releases without extra setup.

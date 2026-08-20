@@ -23,6 +23,24 @@ Ein paar Bestandteile sind stattdessen optional:
 
 Der Scaffolder ist ein dünner Wrapper über der CLI im Language Server, sodass `npx view-tree-lsp create bog/myapp` dasselbe direkt erledigt.
 
+## Übersetzungen aufteilen
+
+Übersetzer wollen eine Datei, nicht dreißig. Eine gebaute App hat sie bereits: `<app>/-/web.locale=<lang>.json` enthält alle Texte aller Module, die die App bündelt. Schicken Sie diese Datei raus, holen Sie sie übersetzt zurück und teilen Sie sie wieder auf die Module auf:
+
+```bash
+# aus dem MAM-Wurzelverzeichnis
+npx view-tree-lsp locale bog/myapp/app/- --exclude=mol --update
+```
+
+Jeder Schlüssel trägt seinen Modulpfad in sich, also landet `$my_page_greeting` in `my/page/page.locale=<lang>.json` — direkt neben den Quellen, zu denen er gehört. Als Argument dient ein Ordner oder eine einzelne Locale-Datei.
+
+- `--include=<Pfadfragment>` — nur Module, deren Pfad das Fragment enthält; mehrfach angebbar
+- `--exclude=<Pfadfragment>` — solche überspringen; `--exclude=mol` lässt die Pakete des Frameworks unangetastet
+- `--update` — in bestehende Dateien einmischen: eingehende Werte gewinnen, im Input fehlende Schlüssel bleiben erhalten
+- `--dry` — den Plan ausgeben und nichts schreiben
+
+Einen Schlüssel aufzulösen ist heikler, als es aussieht. `_` trennt Ordner und Wörter gleichermaßen, der längste passende Pfad ist also nicht die Antwort: In `$my_page_lang_hint` beginnt die Eigenschaft mit `lang`, und ein echtes Submodul `my/page/lang` nebenan würde den Schlüssel verschlucken. Deshalb fragt der Befehl jedes Kandidatenmodul, welche Schlüssel es deklariert — MAM schreibt genau diese in `<Modul>/-view.tree/*.locale=en.json` — und gibt den Schlüssel dem Modul, dem er gehört.
+
 ## Kontinuierliche Integration
 
 Der Scaffolder schreibt die GitHub Actions nach `.github/workflows/`, sodass ein neues Projekt ohne zusätzliche Einrichtung deployt und released wird.
