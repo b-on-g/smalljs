@@ -46,6 +46,20 @@ jobs:
                   sitemap-file: "bog/smalljs/content/sitemap.xml"
                   viewport: "1280x900"
 
+            # Пиксель GEO Audit во ВСЕ выходные страницы. Отдельным шагом, а не
+            # надеждой на пререндер: ключ кэша prerender-экшена считается от
+            # web.js + web.css, а index.html в него не входит. Правка одного
+            # index.html оставляет бандл прежним -> кэш попадает -> шаг
+            # восстанавливает старые снимки поверх свежего файла, и пиксель
+            # молча пропадает (ровно так и случилось 20.08.2026: деплой зелёный,
+            # на проде пикселя нет). Инъекция после пререндера от этого не зависит
+            # и заодно покрывает все 56 маршрутов, а не только главную.
+            # Источник сниппета один — app/index.html; шаг его оттуда и читает,
+            # так что менять id пикселя надо в одном месте.
+            - name: Inject GEO Audit pixel into every page
+              if: github.ref == 'refs/heads/main'
+              run: node bog/smalljs/deploy/inject-pixel.cjs
+
             # Minify the JS bundle. MAM ships web.js unminified (~2.4 MB); esbuild's
             # whitespace + identifier minify takes it to ~1.9 MB (~10% smaller gzipped,
             # what GitHub Pages actually transfers). Safe for $mol: classes live on the
