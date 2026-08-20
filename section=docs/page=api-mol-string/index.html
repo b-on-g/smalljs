@@ -5794,4 +5794,45 @@ h6[mol_text_header] {
 		<script src="web.js"></script>
 	
 
+		<!-- GEO Audit AI traffic pixel -->
+		<script>
+		(function () {
+		  try {
+		    var ENDPOINT = "https://geoaudit24.ru/api/px/cmt0605lq003bhxkevrgs94k0";
+		    function send(payload) {
+		      var body = JSON.stringify(payload);
+		      if (navigator.sendBeacon) {
+		        navigator.sendBeacon(ENDPOINT, new Blob([body], { type: "application/json" }));
+		      } else {
+		        fetch(ENDPOINT, {
+		          method: "POST",
+		          headers: { "Content-Type": "application/json" },
+		          body: body,
+		          keepalive: true,
+		          mode: "cors",
+		          credentials: "omit"
+		        }).catch(function () {});
+		      }
+		    }
+		    try {
+		      var aliveKey = "geo_px_" + ENDPOINT;
+		      if (!sessionStorage.getItem(aliveKey)) {
+		        sessionStorage.setItem(aliveKey, "1");
+		        send({ alive: true, path: location.pathname });
+		      }
+		    } catch (eAlive) {
+		      send({ alive: true, path: location.pathname });
+		    }
+		    var params = new URLSearchParams(location.search);
+		    var utm = params.get("utm_source") || "";
+		    var ref = document.referrer || "";
+		    if (!utm && !ref) return;
+		    send({
+		      referrer: ref.slice(0, 500),
+		      utmSource: utm.slice(0, 100),
+		      path: location.pathname
+		    });
+		  } catch (e) {}
+		})();
+		</script>
 </body></html>
