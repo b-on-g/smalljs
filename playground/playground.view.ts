@@ -62,6 +62,7 @@ namespace $.$$ {
 				`\t\tValue: {`,
 				`\t\t\tfont: { size: '2rem', weight: 700 },`,
 				`\t\t\tcolor: '#0088ff',`,
+				`\t\t\tpadding: { bottom: '0.5rem' },`,
 				`\t\t},`,
 				`\t} )`,
 				`}`,
