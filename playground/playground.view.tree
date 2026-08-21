@@ -12,7 +12,7 @@ $bog_smalljs_playground $mol_view
 		<= Editor_pane $mol_view
 			sub /
 				<= Tabs $mol_view
-					sub /
+					sub <= tabs_content /
 						<= Tree_tab $mol_button_minor
 							click? <=> show_tree? null
 							sub / <= tree_tab_label @ \view.tree
@@ -22,6 +22,12 @@ $bog_smalljs_playground $mol_view
 						<= Css_tab $mol_button_minor
 							click? <=> show_css? null
 							sub / <= css_tab_label @ \view.css.ts
+						<= Tabs_gap $mol_view
+						<= Reset $mol_button_minor
+							hint <= reset_hint @ \Restore the example
+							click? <=> reset? null
+							sub /
+								<= Reset_icon $mol_icon_undo
 				<= Editor $mol_textarea
 					value? <=> draft?
 					hint <= editor_hint

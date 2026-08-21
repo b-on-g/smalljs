@@ -113,7 +113,7 @@ namespace $.$$ {
 
 		// Persistence funnel — standalone stores in the URL hash (shareable); when an
 		// embedder sets store_scope (e.g. the course, per lesson), store in localStorage.
-		stored( key: string, next?: string ): string | null {
+		stored( key: string, next?: string | null ): string | null {
 			const scope = this.store_scope()
 			if ( scope ) return this.$.$mol_state_local.value( `${ scope }/${ key }`, next ) ?? null
 			return this.$.$mol_state_arg.value( key, next ) ?? null
@@ -165,6 +165,56 @@ namespace $.$$ {
 			if ( tab === 'ts' ) return this.ts_draft()
 			if ( tab === 'css' ) return this.css_draft()
 			return this.tree_draft()
+		}
+
+		// --- сброс к исходному примеру ------------------------------------
+
+		/** Кнопки сброса просто нет в разметке, пока откатывать нечего. */
+		tabs_content(): readonly $mol_view[] {
+			const list: $mol_view[] = [ this.Tree_tab(), this.Ts_tab(), this.Css_tab(), this.Tabs_gap() ]
+			if ( this.is_modified() ) list.push( this.Reset() )
+			return list
+		}
+
+		/** Что-то из трёх исходников правили — значит есть что откатывать. */
+		is_modified(): boolean {
+			return [ 'code', 'ts', 'css' ].some( key => this.stored( key ) !== null )
+		}
+
+		@ $mol_action
+		reset() {
+
+			// Сначала гасим отложенные коммиты. Иначе таймер, заведённый последним
+			// нажатием клавиши, доживёт свои 400 мс и запишет старый текст ПОВЕРХ
+			// сброса — кнопка работала бы через раз.
+			for ( const key in this.timers ) {
+				this.timers[ key ]?.destructor()
+				this.timers[ key ] = null
+			}
+
+			for ( const key of [ 'code', 'ts', 'css' ] ) this.stored( key, null )
+
+			// Ячейки *_committed приходится заполнять руками. В них писали через
+			// commit(), а запись в @$mol_mem замораживает зависимости: такая ячейка
+			// больше не читает stored() и сама от его очистки не пересчитается.
+			// Черновики (*_draft) в этом не нуждаются — они пересчитаются сами,
+			// но выставляем и их, чтобы состояние было одинаковым по всем трём.
+			this.tree_draft( this.default_tree() )
+			this.ts_draft( this.default_ts() )
+			this.css_draft( this.default_css() )
+			this.tree_committed( this.default_tree() )
+			this.ts_committed( this.default_ts() )
+			this.css_committed( this.default_css() )
+
+			// *_draft снова завели таймеры на запись только что подставленных
+			// дефолтов — они бы вернули значения в хранилище и is_modified()
+			// опять стал бы true. Гасим повторно.
+			for ( const key in this.timers ) {
+				this.timers[ key ]?.destructor()
+				this.timers[ key ] = null
+			}
+
+			return null
 		}
 
 		// --- debounce -----------------------------------------------------

@@ -64,6 +64,35 @@ namespace $ {
 		Ts_tab: tab,
 		Css_tab: tab,
 
+		// Распорка отжимает сброс к правому краю ряда табов.
+		Tabs_gap: {
+			flex: { grow: 1 },
+		},
+
+		// Кнопки нет в разметке, пока откатывать нечего — см. tabs_content().
+		Reset: {
+			align: { self: 'center' },
+			margin: { right: '0.5rem' },
+			padding: {
+				top: '0.25rem',
+				bottom: '0.25rem',
+				left: '0.5rem',
+				right: '0.5rem',
+			},
+			color: $bog_builderui_tokens.shade,
+			border: { radius: '0.375rem' },
+			':hover': {
+				color: $bog_builderui_tokens.text,
+				background: { color: $bog_builderui_tokens.card },
+			},
+		},
+
+		Reset_icon: {
+			width: '1rem',
+			height: '1rem',
+			flex: { shrink: 0 },
+		},
+
 		Preview_label: label,
 
 		Editor: {
