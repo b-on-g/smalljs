@@ -20,7 +20,6 @@
 	"$bog_smalljs_top_M_about_team_title": "Equipe",
 	"$bog_smalljs_top_About_releases_title": "Lançamentos",
 	"$bog_smalljs_top_M_about_releases_title": "Lançamentos",
-	"$bog_smalljs_top_Lang_hint": "Idioma",
 	"$bog_smalljs_top_Logo_image_title": "smalljs",
 	"$bog_smalljs_top_Search_hint_text": "⌘ K",
 	"$bog_smalljs_top_Docs_label": "Docs",
@@ -49,5 +48,7 @@
 	"$bog_smalljs_top_M_about_faq_title": "FAQ",
 	"$bog_smalljs_top_M_about_telegram_title": "Telegram",
 	"$bog_smalljs_top_Burger_hint": "Menu",
-	"$bog_smalljs_top_Lang_pick_hint": "Idioma"
+	"$bog_smalljs_top_Lang_pick_hint": "Idioma",
+	"$bog_smalljs_top_Nav_versus_title": "Comparar",
+	"$bog_smalljs_top_Mobile_versus_title": "Comparar"
 }
