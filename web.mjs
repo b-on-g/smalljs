@@ -19310,6 +19310,18 @@ var $;
 })($ || ($ = {}));
 
 ;
+	($.$mol_icon_undo) = class $mol_icon_undo extends ($.$mol_icon) {
+		path(){
+			return "M12.5,8C9.85,8 7.45,9 5.6,10.6L2,7V16H11L7.38,12.38C8.77,11.22 10.54,10.5 12.5,10.5C16.04,10.5 19.05,12.81 20.1,16L22.47,15.22C21.08,11.03 17.15,8 12.5,8Z";
+		}
+	};
+
+
+;
+"use strict";
+
+
+;
 	($.$bog_smalljs_playground) = class $bog_smalljs_playground extends ($.$mol_view) {
 		show_tree(next){
 			if(next !== undefined) return next;
@@ -19350,13 +19362,40 @@ var $;
 			(obj.sub) = () => ([(this.css_tab_label())]);
 			return obj;
 		}
-		Tabs(){
+		Tabs_gap(){
 			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([
+			return obj;
+		}
+		reset_hint(){
+			return (this.$.$mol_locale.text("$bog_smalljs_playground_reset_hint"));
+		}
+		reset(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Reset_icon(){
+			const obj = new this.$.$mol_icon_undo();
+			return obj;
+		}
+		Reset(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.hint) = () => ((this.reset_hint()));
+			(obj.click) = (next) => ((this.reset(next)));
+			(obj.sub) = () => ([(this.Reset_icon())]);
+			return obj;
+		}
+		tabs_content(){
+			return [
 				(this.Tree_tab()), 
 				(this.Ts_tab()), 
-				(this.Css_tab())
-			]);
+				(this.Css_tab()), 
+				(this.Tabs_gap()), 
+				(this.Reset())
+			];
+		}
+		Tabs(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.tabs_content()));
 			return obj;
 		}
 		Editor(){
@@ -19426,6 +19465,10 @@ var $;
 	($mol_mem(($.$bog_smalljs_playground.prototype), "Ts_tab"));
 	($mol_mem(($.$bog_smalljs_playground.prototype), "show_css"));
 	($mol_mem(($.$bog_smalljs_playground.prototype), "Css_tab"));
+	($mol_mem(($.$bog_smalljs_playground.prototype), "Tabs_gap"));
+	($mol_mem(($.$bog_smalljs_playground.prototype), "reset"));
+	($mol_mem(($.$bog_smalljs_playground.prototype), "Reset_icon"));
+	($mol_mem(($.$bog_smalljs_playground.prototype), "Reset"));
 	($mol_mem(($.$bog_smalljs_playground.prototype), "Tabs"));
 	($mol_mem(($.$bog_smalljs_playground.prototype), "Editor"));
 	($mol_mem(($.$bog_smalljs_playground.prototype), "Editor_pane"));
@@ -21071,6 +21114,48 @@ var $;
                     return this.css_draft();
                 return this.tree_draft();
             }
+            // --- сброс к исходному примеру ------------------------------------
+            /** Кнопки сброса просто нет в разметке, пока откатывать нечего. */
+            tabs_content() {
+                const list = [this.Tree_tab(), this.Ts_tab(), this.Css_tab(), this.Tabs_gap()];
+                if (this.is_modified())
+                    list.push(this.Reset());
+                return list;
+            }
+            /** Что-то из трёх исходников правили — значит есть что откатывать. */
+            is_modified() {
+                return ['code', 'ts', 'css'].some(key => this.stored(key) !== null);
+            }
+            reset() {
+                // Сначала гасим отложенные коммиты. Иначе таймер, заведённый последним
+                // нажатием клавиши, доживёт свои 400 мс и запишет старый текст ПОВЕРХ
+                // сброса — кнопка работала бы через раз.
+                for (const key in this.timers) {
+                    this.timers[key]?.destructor();
+                    this.timers[key] = null;
+                }
+                for (const key of ['code', 'ts', 'css'])
+                    this.stored(key, null);
+                // Ячейки *_committed приходится заполнять руками. В них писали через
+                // commit(), а запись в @$mol_mem замораживает зависимости: такая ячейка
+                // больше не читает stored() и сама от его очистки не пересчитается.
+                // Черновики (*_draft) в этом не нуждаются — они пересчитаются сами,
+                // но выставляем и их, чтобы состояние было одинаковым по всем трём.
+                this.tree_draft(this.default_tree());
+                this.ts_draft(this.default_ts());
+                this.css_draft(this.default_css());
+                this.tree_committed(this.default_tree());
+                this.ts_committed(this.default_ts());
+                this.css_committed(this.default_css());
+                // *_draft снова завели таймеры на запись только что подставленных
+                // дефолтов — они бы вернули значения в хранилище и is_modified()
+                // опять стал бы true. Гасим повторно.
+                for (const key in this.timers) {
+                    this.timers[key]?.destructor();
+                    this.timers[key] = null;
+                }
+                return null;
+            }
             // --- debounce -----------------------------------------------------
             timers = {};
             schedule(key, value) {
@@ -21202,6 +21287,9 @@ var $;
         ], $bog_smalljs_playground.prototype, "css_committed", null);
         __decorate([
             $mol_action
+        ], $bog_smalljs_playground.prototype, "reset", null);
+        __decorate([
+            $mol_action
         ], $bog_smalljs_playground.prototype, "schedule", null);
         __decorate([
             $mol_action
@@ -21269,6 +21357,32 @@ var $;
         Tree_tab: tab,
         Ts_tab: tab,
         Css_tab: tab,
+        // Распорка отжимает сброс к правому краю ряда табов.
+        Tabs_gap: {
+            flex: { grow: 1 },
+        },
+        // Кнопки нет в разметке, пока откатывать нечего — см. tabs_content().
+        Reset: {
+            align: { self: 'center' },
+            margin: { right: '0.5rem' },
+            padding: {
+                top: '0.25rem',
+                bottom: '0.25rem',
+                left: '0.5rem',
+                right: '0.5rem',
+            },
+            color: $bog_builderui_tokens.shade,
+            border: { radius: '0.375rem' },
+            ':hover': {
+                color: $bog_builderui_tokens.text,
+                background: { color: $bog_builderui_tokens.card },
+            },
+        },
+        Reset_icon: {
+            width: '1rem',
+            height: '1rem',
+            flex: { shrink: 0 },
+        },
         Preview_label: label,
         Editor: {
             flex: { grow: 1 },

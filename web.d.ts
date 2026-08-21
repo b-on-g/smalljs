@@ -8593,6 +8593,15 @@ declare namespace $ {
 }
 
 declare namespace $ {
+
+	export class $mol_icon_undo extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=undo.view.tree.d.ts.map
+declare namespace $ {
     /** Position in any resource. */
     class $mol_span extends $mol_object2 {
         readonly uri: string;
@@ -8883,37 +8892,52 @@ declare namespace $ {
 		,
 		ReturnType< $mol_button_minor['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_7 = $mol_type_enforce<
+	type $mol_button_minor__hint_bog_smalljs_playground_7 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['reset_hint'] >
+		,
+		ReturnType< $mol_button_minor['hint'] >
+	>
+	type $mol_button_minor__click_bog_smalljs_playground_8 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['reset'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_button_minor__sub_bog_smalljs_playground_9 = $mol_type_enforce<
 		readonly(any)[]
+		,
+		ReturnType< $mol_button_minor['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_playground_10 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['tabs_content'] >
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_textarea__value_bog_smalljs_playground_8 = $mol_type_enforce<
+	type $mol_textarea__value_bog_smalljs_playground_11 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['draft'] >
 		,
 		ReturnType< $mol_textarea['value'] >
 	>
-	type $mol_textarea__hint_bog_smalljs_playground_9 = $mol_type_enforce<
+	type $mol_textarea__hint_bog_smalljs_playground_12 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['editor_hint'] >
 		,
 		ReturnType< $mol_textarea['hint'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_10 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_playground_13 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_11 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_playground_14 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_12 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_playground_15 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['preview_content'] >
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_13 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_playground_16 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
@@ -8928,6 +8952,12 @@ declare namespace $ {
 		show_css( next?: any ): any
 		css_tab_label( ): string
 		Css_tab( ): $mol_button_minor
+		Tabs_gap( ): $mol_view
+		reset_hint( ): string
+		reset( next?: any ): any
+		Reset_icon( ): $mol_icon_undo
+		Reset( ): $mol_button_minor
+		tabs_content( ): readonly(any)[]
 		Tabs( ): $mol_view
 		Editor( ): $mol_textarea
 		Editor_pane( ): $mol_view
@@ -8974,7 +9004,7 @@ declare namespace $.$$ {
         show_ts(): null;
         show_css(): null;
         editor_hint(): "Optional — add a class with logic (state, actions), e.g. count() and inc()." | "Optional — style the component with $mol_style_define." | "Type a view.tree here…";
-        stored(key: string, next?: string): string | null;
+        stored(key: string, next?: string | null): string | null;
         tree_draft(next?: string): string;
         ts_draft(next?: string): string;
         tree_committed(next?: string): string;
@@ -8982,6 +9012,11 @@ declare namespace $.$$ {
         css_draft(next?: string): string;
         css_committed(next?: string): string;
         draft(next?: string): string;
+        /** Кнопки сброса просто нет в разметке, пока откатывать нечего. */
+        tabs_content(): readonly $mol_view[];
+        /** Что-то из трёх исходников правили — значит есть что откатывать. */
+        is_modified(): boolean;
+        reset(): null;
         timers: Record<string, $mol_after_timeout | null>;
         schedule(key: string, value: string): void;
         commit(key: string, value: string): void;
