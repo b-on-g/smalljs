@@ -5511,8 +5511,18 @@ var $;
         static lang(next) {
             return this.$.$mol_state_local.value('locale', next) || $mol_dom_context.navigator.language.replace(/-.*/, '') || this.lang_default();
         }
+        static langs_rtl() {
+            return ['ar', 'he', 'fa', 'ur', 'yi', 'ps', 'ug', 'sd'];
+        }
         static direction() {
-            return new Intl.Locale(this.lang()).getTextInfo().direction ?? 'ltr';
+            const lang = this.lang();
+            try {
+                return new Intl.Locale(lang).getTextInfo().direction ?? 'ltr';
+            }
+            catch (e) {
+                $mol_fail_log(e);
+                return this.langs_rtl().includes(lang) ? 'rtl' : 'ltr';
+            }
         }
         static source(lang) {
             return JSON.parse(this.$.$mol_file.relative(`web.locale=${lang}.json`).text().toString());
@@ -33060,7 +33070,14 @@ var $;
         static dict(next) {
             const href = this.href(next && this.make_link(next));
             const url = new URL(href);
-            const path = decodeURIComponent(url.pathname);
+            // Раскодируем КАЖДЫЙ сегмент отдельно, а не путь целиком.
+            // Значение может содержать `%2F` — в песочнице это любой view.tree
+            // со строкой `sub /`. При общем декодировании такой `/` становился
+            // настоящим и работал разделителем сегментов, поэтому хвост значения
+            // отрезало: в редакторе на первом же нажатии пропадала половина текста.
+            // Запись (make_link -> encode) кодирует правильно, ломалось только чтение.
+            const raw = url.pathname;
+            const path = raw.startsWith(this.mount) ? raw : decodeURIComponent(raw);
             const segment = path.startsWith(this.mount) ? path.slice(this.mount.length) : '';
             const params = {};
             for (const chunk of segment.split(this.separator)) {

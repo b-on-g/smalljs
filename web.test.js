@@ -6818,6 +6818,24 @@ var $;
         static route_target(anchor_path) { return anchor_path; }
     };
     $mol_test({
+        // --- значения со слэшем внутри ------------------------------------------
+        'значение со слэшем переживает круг через pathname'($) {
+            // `make_link` кодирует `/` в `%2F`, а `dict` раньше декодировал путь
+            // целиком до разбиения на сегменты — слэш оживал и резал значение.
+            // В песочнице это ломало любой view.tree: `sub /` есть в каждом.
+            const Mounted = class extends $bog_builderui_router {
+                static mount = '/app/';
+                static href(next) { return next ?? 'https://example.com/app/'; }
+            };
+            const code = 'a\n\tsub /\n\t\tb';
+            const link = Mounted.make_link({ code, tab: 'tree' });
+            $mol_assert_equal(link.includes('%2F'), true);
+            const Read = class extends Mounted {
+                static href(next) { return link; }
+            };
+            $mol_assert_equal(Read.dict().code, code);
+            $mol_assert_equal(Read.dict().tab, 'tree');
+        },
         // --- default: the merge, pinned as it stands ---------------------------
         //
         // These four cases describe behaviour, not an ideal. The merge was switched
