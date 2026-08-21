@@ -7729,6 +7729,16 @@ var $;
             style: 'solid',
             color: $mol_theme.line,
         },
+        // Явный размер иконкам. У $mol_icon нет ни атрибутов width/height, ни своих
+        // стилей — размер ему целиком отдан на откуп раскладке. Chrome в этом случае
+        // даёт svg 16x16, а Safari сжимает его в ноль внутри флекс-кнопки: пилюля
+        // рисуется, иконок не видно. Задаём размер сами, чтобы не зависеть от
+        // расхождения движков.
+        $mol_icon: {
+            width: '1rem',
+            height: '1rem',
+            flex: { shrink: 0 },
+        },
         $mol_button_minor: {
             minWidth: '2rem',
             minHeight: '2rem',
@@ -20965,6 +20975,7 @@ var $;
                     `\t\tValue: {`,
                     `\t\t\tfont: { size: '2rem', weight: 700 },`,
                     `\t\t\tcolor: '#0088ff',`,
+                    `\t\t\tpadding: { bottom: '0.5rem' },`,
                     `\t\t},`,
                     `\t} )`,
                     `}`,
