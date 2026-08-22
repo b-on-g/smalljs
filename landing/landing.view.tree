@@ -60,6 +60,15 @@ $bog_smalljs_landing $mol_view
 											sidebar_showed false
 											playground_showed false
 											run_enabled false
+										<= Sign_ts_label $mol_view
+											sub /
+												<= Sign_ts_label_text @ \view.ts
+										<= Sign_ts_view $bog_smalljs_text_code
+											text <= code_ts \
+											lang \ts
+											sidebar_showed false
+											playground_showed false
+											run_enabled false
 								<= Sign_arrow $mol_view
 									sub /
 										<= Sign_arrow_text \→
@@ -71,7 +80,7 @@ $bog_smalljs_landing $mol_view
 										<= Sign_demo $bog_smalljs_demo
 						<= Sign_caption $mol_view
 							sub /
-								<= Sign_caption_text @ \This is the whole component.
+								<= Sign_caption_text @ \Two files: the markup and the logic.
 		<= Features $mol_view
 			sub /
 				<= Feature1 $mol_view

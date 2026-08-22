@@ -2,7 +2,7 @@
 	"$bog_smalljs_landing_Hero_eyebrow_text": "রিঅ্যাকটিভ মাইক্রোমডিউল",
 	"$bog_smalljs_landing_Hero_subtitle_text": "রিঅ্যাকটিভিটি ফ্রেমওয়ার্কের ভিতেই থাকে, উপরে বসানো নয়।",
 	"$bog_smalljs_landing_Hero_subtitle_note_text": "ডিপেন্ডেন্সি অ্যারে, ম্যানুয়াল সাবস্ক্রিপশন, ম্যানুয়াল ক্যাশ ইনভ্যালিডেশন, ইফেক্ট ক্লিনআপ — এর কোনোটিই এখানে নেই। সহজ করা হয়নি, বরং অপ্রয়োজনীয় করে দেওয়া হয়েছে।",
-	"$bog_smalljs_landing_Sign_caption_text": "এটাই সম্পূর্ণ কম্পোনেন্ট।",
+	"$bog_smalljs_landing_Sign_caption_text": "দুটি ফাইল: মার্কআপ আর লজিক।",
 	"$bog_smalljs_landing_Hero_cta_why_label": "কেন $mol",
 	"$bog_smalljs_landing_Hero_cta_start_label": "শুরু করুন",
 	"$bog_smalljs_landing_Hero_cta_install_title": "ইনস্টল",
@@ -46,5 +46,6 @@
 	"$bog_smalljs_landing_versus_eyebrow_text": "তুলনা",
 	"$bog_smalljs_landing_versus_line_text": "একটি পরিস্থিতি, React, Vue আর $mol-এ পাশাপাশি চলে, আপনার নিজের ব্রাউজারেই লাইভ।",
 	"$bog_smalljs_landing_versus_open_label": "তুলনা খুলুন",
-	"$bog_smalljs_landing_versus_pair_label": "$mol vs React দিয়ে শুরু করুন"
+	"$bog_smalljs_landing_versus_pair_label": "$mol vs React দিয়ে শুরু করুন",
+	"$bog_smalljs_landing_Sign_ts_label_text": "view.ts"
 }

@@ -176,6 +176,26 @@ namespace $ {
 			lineHeight: '1.7',
 		},
 
+		// Второй файл витрины оформляем как первый: своя подпись-разделитель
+		// и та же типографика кода.
+		Sign_ts_label: {
+			display: 'block',
+			... eyebrow,
+			padding: { top: rem( 0.625 ), bottom: rem( 0.625 ), left: rem( 1 ), right: rem( 1 ) },
+			border: {
+				top: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
+				bottom: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
+			},
+			background: { color: $bog_builderui_tokens.card },
+		},
+
+		Sign_ts_view: {
+			padding: { top: rem( 0.75 ), bottom: rem( 1 ), left: rem( 1 ), right: rem( 1 ) },
+			overflow: { x: 'auto', y: 'hidden' },
+			font: { family: mono, size: rem( 0.8125 ) },
+			lineHeight: '1.7',
+		},
+
 		Sign_arrow: {
 			flex: { direction: 'column', grow: 0, shrink: 0 },
 			justify: { content: 'center' },

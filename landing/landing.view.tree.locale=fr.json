@@ -2,7 +2,7 @@
 	"$bog_smalljs_landing_Hero_eyebrow_text": "Micromodules réactifs",
 	"$bog_smalljs_landing_Hero_subtitle_text": "La réactivité repose dans les fondations du framework, elle n'est pas ajoutée par-dessus.",
 	"$bog_smalljs_landing_Hero_subtitle_note_text": "Tableaux de dépendances, abonnements manuels, invalidation manuelle du cache, nettoyage des effets — rien de tout cela n'existe ici. Non pas simplifié, mais rendu inutile.",
-	"$bog_smalljs_landing_Sign_caption_text": "Voici le composant tout entier.",
+	"$bog_smalljs_landing_Sign_caption_text": "Deux fichiers : le balisage et la logique.",
 	"$bog_smalljs_landing_Hero_cta_why_label": "Pourquoi $mol",
 	"$bog_smalljs_landing_Hero_cta_start_label": "Commencer",
 	"$bog_smalljs_landing_Hero_cta_install_title": "Installer",
@@ -46,5 +46,6 @@
 	"$bog_smalljs_landing_versus_eyebrow_text": "Comparer",
 	"$bog_smalljs_landing_versus_line_text": "Un seul scénario, exécuté côte à côte dans React, Vue et $mol, en direct dans votre propre navigateur.",
 	"$bog_smalljs_landing_versus_open_label": "Ouvrir la comparaison",
-	"$bog_smalljs_landing_versus_pair_label": "Commencer par $mol vs React"
+	"$bog_smalljs_landing_versus_pair_label": "Commencer par $mol vs React",
+	"$bog_smalljs_landing_Sign_ts_label_text": "view.ts"
 }

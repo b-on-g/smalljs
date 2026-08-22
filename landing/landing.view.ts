@@ -3,6 +3,21 @@ namespace $.$$ {
 	export class $bog_smalljs_landing extends $.$bog_smalljs_landing {
 
 		/**
+		 * Второй файл витрины. Без него `greeting` в дереве остался бы статической
+		 * строкой: ввод в поле ничего бы не менял, а живое демо справа — меняет.
+		 * Показывать одно дерево значило обещать поведение, которого показанный
+		 * код не даёт.
+		 */
+		code_ts() {
+			const d = String.fromCharCode( 36 )
+			return [
+				`class ${ d }my_hello extends ${ d }.${ d }my_hello {`,
+				"\tgreeting() { return `Hello, ${ this.name().trim() || 'stranger' }!` }",
+				'}',
+			].join( '\n' )
+		}
+
+		/**
 		 * Source shown in the hero, left panel. It is the same shape as the live
 		 * component mounted to the right ($bog_smalljs_demo): a two-way-bound field
 		 * and a derived greeting — the whole thing, no wiring.

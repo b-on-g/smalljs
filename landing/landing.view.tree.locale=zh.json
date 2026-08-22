@@ -2,7 +2,7 @@
 	"$bog_smalljs_landing_Hero_eyebrow_text": "响应式微模块",
 	"$bog_smalljs_landing_Hero_subtitle_text": "响应式能力根植于框架的底层，而非事后加装。",
 	"$bog_smalljs_landing_Hero_subtitle_note_text": "依赖数组、手动订阅、手动缓存失效、副作用清理——这些在这里都不存在。不是变得更简单，而是压根不需要。",
-	"$bog_smalljs_landing_Sign_caption_text": "这就是整个组件。",
+	"$bog_smalljs_landing_Sign_caption_text": "两个文件：结构与逻辑。",
 	"$bog_smalljs_landing_Hero_cta_why_label": "为什么选 $mol",
 	"$bog_smalljs_landing_Hero_cta_start_label": "开始使用",
 	"$bog_smalljs_landing_Hero_cta_install_title": "安装",
@@ -46,5 +46,6 @@
 	"$bog_smalljs_landing_versus_eyebrow_text": "对比",
 	"$bog_smalljs_landing_versus_line_text": "同一个场景，在 React、Vue 和 $mol 中并排运行，就在你自己的浏览器里实时进行。",
 	"$bog_smalljs_landing_versus_open_label": "打开对比",
-	"$bog_smalljs_landing_versus_pair_label": "从 $mol vs React 开始"
+	"$bog_smalljs_landing_versus_pair_label": "从 $mol vs React 开始",
+	"$bog_smalljs_landing_Sign_ts_label_text": "view.ts"
 }
