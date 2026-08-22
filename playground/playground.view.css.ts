@@ -36,6 +36,23 @@ namespace $ {
 		background: { color: $bog_builderui_tokens.card },
 	} as const
 
+	// Подпись файла над редактором на широком экране — вкладок там нет.
+	const file_label = {
+		display: 'block',
+		font: { size: '0.75rem', weight: 600 },
+		letterSpacing: '0.04em',
+		textTransform: 'uppercase',
+		color: $bog_builderui_tokens.shade,
+		padding: {
+			top: '0.5rem',
+			bottom: '0.375rem',
+			left: '1rem',
+			right: '1rem',
+		},
+		border: { top: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+		background: { color: $bog_builderui_tokens.card },
+	} as const
+
 	$mol_style_define( $bog_smalljs_playground, {
 
 		display: 'grid',
@@ -274,7 +291,36 @@ namespace $ {
 			},
 		},
 
+		// Все три редактора существуют всегда, а показ переключается стилями.
+		// По умолчанию (узкий и средний экран) виден только файл активной вкладки —
+		// поведение прежнее. На широком экране показываем все три сразу: компонент
+		// на $mol это три файла, и видеть их разом полезнее, чем щёлкать вкладки.
+		Editors: {
+			flex: { direction: 'column', grow: 1, shrink: 1 },
+			minHeight: 0,
+			overflow: 'auto',
+		},
+
+		Editor_tree_label: { display: 'none' },
+		Editor_ts_label: { display: 'none' },
+		Editor_css_label: { display: 'none' },
+		Editor_ts: { display: 'none' },
+		Editor_css: { display: 'none' },
+
 		'@media': {
+
+			// Широкий экран: вкладки не нужны, файлы идут стопкой с подписями.
+			'(min-width: 90rem)': {
+				Tree_tab: { display: 'none' },
+				Ts_tab: { display: 'none' },
+				Css_tab: { display: 'none' },
+				Editor_tree_label: { ...file_label, border: { top: { width: '0px', style: 'solid', color: $bog_builderui_tokens.line } } },
+				Editor_ts_label: file_label,
+				Editor_css_label: file_label,
+				Editor_ts: { display: 'flex', flex: { shrink: 0 } },
+				Editor_css: { display: 'flex', flex: { shrink: 0 } },
+			},
+
 			'(max-width: 47.9375rem)': {
 				gridTemplateColumns: '1fr',
 				gridTemplateRows: '1fr 1fr',

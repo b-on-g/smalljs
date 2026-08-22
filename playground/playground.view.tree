@@ -1,6 +1,8 @@
 $bog_smalljs_playground $mol_view
 	tab \tree
 	draft? \
+	ts_draft? \
+	css_draft? \
 	editor_hint \
 	seed_tree \
 	seed_ts \
@@ -58,9 +60,23 @@ $bog_smalljs_playground $mol_view
 							click? <=> reset? null
 							sub /
 								<= Reset_icon $mol_icon_undo
-				<= Editor $mol_textarea
-					value? <=> draft?
-					hint <= editor_hint
+				<= Editors $mol_view
+					sub /
+						<= Editor_tree_label $mol_view
+							sub / <= tree_tab_label
+						<= Editor $mol_textarea
+							value? <=> draft?
+							hint <= editor_hint
+						<= Editor_ts_label $mol_view
+							sub / <= ts_tab_label
+						<= Editor_ts $mol_textarea
+							value? <=> ts_draft?
+							hint <= editor_hint_ts @ \Optional — logic for the component.
+						<= Editor_css_label $mol_view
+							sub / <= css_tab_label
+						<= Editor_css $mol_textarea
+							value? <=> css_draft?
+							hint <= editor_hint_css @ \Optional — typed styles.
 		<= Preview_pane $mol_view
 			sub /
 				<= Preview_label $mol_view
