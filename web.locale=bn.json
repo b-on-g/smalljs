@@ -65,6 +65,8 @@
 	"$bog_smalljs_playground_css_tab_label": "view.css.ts",
 	"$bog_smalljs_playground_editor_hint_css": "ঐচ্ছিক — টাইপ করা স্টাইল।",
 	"$bog_smalljs_playground_editor_hint_ts": "ঐচ্ছিক — কম্পোনেন্টের লজিক।",
+	"$bog_smalljs_playground_layout_hint": "সব ফাইল একসঙ্গে দেখান",
+	"$bog_smalljs_playground_layout_hint_tabs": "ট্যাবে ফিরে যান",
 	"$bog_smalljs_playground_log_clear_hint": "সাফ করুন",
 	"$bog_smalljs_playground_log_title_text": "কনসোল",
 	"$bog_smalljs_playground_preview_label_text": "প্রিভিউ",

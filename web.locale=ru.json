@@ -65,6 +65,8 @@
 	"$bog_smalljs_playground_css_tab_label": "view.css.ts",
 	"$bog_smalljs_playground_editor_hint_css": "Необязательно — типизированные стили.",
 	"$bog_smalljs_playground_editor_hint_ts": "Необязательно — логика компонента.",
+	"$bog_smalljs_playground_layout_hint": "Показать все файлы сразу",
+	"$bog_smalljs_playground_layout_hint_tabs": "Вернуться к вкладкам",
 	"$bog_smalljs_playground_log_clear_hint": "Очистить",
 	"$bog_smalljs_playground_log_title_text": "Консоль",
 	"$bog_smalljs_playground_preview_label_text": "Превью",

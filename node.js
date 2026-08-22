@@ -20072,6 +20072,18 @@ var $;
 })($ || ($ = {}));
 
 ;
+	($.$mol_icon_view_agenda) = class $mol_icon_view_agenda extends ($.$mol_icon) {
+		path(){
+			return "M21 3H3C2.4 3 2 3.4 2 4V10C2 10.6 2.4 11 3 11H21C21.6 11 22 10.6 22 10V4C22 3.4 21.6 3 21 3M21 13H3C2.4 13 2 13.4 2 14V20C2 20.6 2.4 21 3 21H21C21.6 21 22 20.6 22 20V14C22 13.4 21.6 13 21 13Z";
+		}
+	};
+
+
+;
+"use strict";
+
+
+;
 	($.$mol_icon_link) = class $mol_icon_link extends ($.$mol_icon) {
 		path(){
 			return "M3.9,12C3.9,10.29 5.29,8.9 7,8.9H11V7H7A5,5 0 0,0 2,12A5,5 0 0,0 7,17H11V15.1H7C5.29,15.1 3.9,13.71 3.9,12M8,13H16V11H8V13M17,7H13V8.9H17C18.71,8.9 20.1,10.29 20.1,12C20.1,13.71 18.71,15.1 17,15.1H13V17H17A5,5 0 0,0 22,12A5,5 0 0,0 17,7Z";
@@ -20183,6 +20195,24 @@ var $;
 			(obj.bubble_content) = () => ([(this.Samples_menu())]);
 			return obj;
 		}
+		layout_title(){
+			return "";
+		}
+		layout_toggle(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Layout_icon(){
+			const obj = new this.$.$mol_icon_view_agenda();
+			return obj;
+		}
+		Layout_toggle(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.hint) = () => ((this.layout_title()));
+			(obj.click) = (next) => ((this.layout_toggle(next)));
+			(obj.sub) = () => ([(this.Layout_icon())]);
+			return obj;
+		}
 		share_title(){
 			return "";
 		}
@@ -20226,6 +20256,7 @@ var $;
 				(this.Css_tab()), 
 				(this.Tabs_gap()), 
 				(this.Samples()), 
+				(this.Layout_toggle()), 
 				(this.Share()), 
 				(this.Reset())
 			];
@@ -20456,8 +20487,18 @@ var $;
 		share_done_hint(){
 			return (this.$.$mol_locale.text("$bog_smalljs_playground_share_done_hint"));
 		}
+		editors_mode(next){
+			if(next !== undefined) return next;
+			return "tabs";
+		}
+		layout_hint(){
+			return (this.$.$mol_locale.text("$bog_smalljs_playground_layout_hint"));
+		}
+		layout_hint_tabs(){
+			return (this.$.$mol_locale.text("$bog_smalljs_playground_layout_hint_tabs"));
+		}
 		attr(){
-			return {"bog_smalljs_pg_tab": (this.tab())};
+			return {"bog_smalljs_pg_tab": (this.tab()), "bog_smalljs_pg_editors": (this.editors_mode())};
 		}
 		sub(){
 			return [(this.Editor_pane()), (this.Preview_pane())];
@@ -20490,6 +20531,9 @@ var $;
 	($mol_mem(($.$bog_smalljs_playground.prototype), "Samples_chevron"));
 	($mol_mem(($.$bog_smalljs_playground.prototype), "Samples_menu"));
 	($mol_mem(($.$bog_smalljs_playground.prototype), "Samples"));
+	($mol_mem(($.$bog_smalljs_playground.prototype), "layout_toggle"));
+	($mol_mem(($.$bog_smalljs_playground.prototype), "Layout_icon"));
+	($mol_mem(($.$bog_smalljs_playground.prototype), "Layout_toggle"));
 	($mol_mem(($.$bog_smalljs_playground.prototype), "share"));
 	($mol_mem(($.$bog_smalljs_playground.prototype), "Share_icon"));
 	($mol_mem(($.$bog_smalljs_playground.prototype), "Share"));
@@ -20523,6 +20567,7 @@ var $;
 	($mol_mem(($.$bog_smalljs_playground.prototype), "css_draft"));
 	($mol_mem_key(($.$bog_smalljs_playground.prototype), "sample_pick"));
 	($mol_mem_key(($.$bog_smalljs_playground.prototype), "Sample_option"));
+	($mol_mem(($.$bog_smalljs_playground.prototype), "editors_mode"));
 	($mol_mem(($.$bog_smalljs_playground.prototype), "log_open"));
 	($mol_mem_key(($.$bog_smalljs_playground.prototype), "Log_row"));
 
@@ -21590,19 +21635,42 @@ var $;
         /** Отложенный сигнал о новых записях; держим ссылку, чтобы его не убрали. */
         static ticket = null;
         static version(next) { return next ?? 0; }
+        static one(arg) {
+            if (typeof arg === 'string')
+                return arg;
+            if (arg instanceof Error)
+                return arg.message;
+            try {
+                return JSON.stringify(arg) ?? String(arg);
+            }
+            catch {
+                return String(arg);
+            }
+        }
         static text(args) {
-            return args.map(arg => {
-                if (typeof arg === 'string')
-                    return arg;
-                if (arg instanceof Error)
-                    return arg.message;
-                try {
-                    return JSON.stringify(arg) ?? String(arg);
-                }
-                catch {
-                    return String(arg);
-                }
-            }).join(' ').slice(0, 400);
+            const rest = args.slice();
+            let out = '';
+            // Первый аргумент может быть шаблоном с подстановками — так печатает
+            // и сам $mol. Без разбора в журнал попадала сырая строка вида
+            // «%c%s: %s color:orangered place $mol_storage», в которой не видно
+            // ни сообщения, ни его источника.
+            if (typeof rest[0] === 'string' && /%[sdifoOjc]/.test(rest[0])) {
+                const template = rest.shift();
+                out = template.replace(/%([sdifoOjc%])/g, (_, kind) => {
+                    if (kind === '%')
+                        return '%';
+                    const value = rest.shift();
+                    if (kind === 'c')
+                        return ''; // это стили, а не текст
+                    if (kind === 'd' || kind === 'i')
+                        return String(parseInt(String(value)));
+                    if (kind === 'f')
+                        return String(parseFloat(String(value)));
+                    return this.one(value);
+                });
+            }
+            const tail = rest.map(arg => this.one(arg)).join(' ');
+            return (out ? out + (tail ? ' ' + tail : '') : tail).trim().slice(0, 400);
         }
         static push(level, args) {
             this.entries.push({ level, text: this.text(args) });
@@ -21914,13 +21982,30 @@ var $;
                 return null;
             }
             // --- сброс к исходному примеру ------------------------------------
+            // --- раскладка редакторов -------------------------------------------
+            /**
+             * Вкладки или все файлы стопкой. Выбор личный и запоминается: это вкус,
+             * а не свойство страницы, поэтому в ссылку он не попадает — иначе
+             * расшаренный код навязывал бы получателю чужую раскладку.
+             */
+            editors_mode(next) {
+                return this.$.$mol_state_local.value(`${$_1.$bog_smalljs_playground_store}/editors`, next) ?? 'tabs';
+            }
+            editors_all() { return this.editors_mode() === 'all'; }
+            layout_title() {
+                return this.editors_all() ? this.layout_hint_tabs() : this.layout_hint();
+            }
+            layout_toggle() {
+                this.editors_mode(this.editors_all() ? 'tabs' : 'all');
+                return null;
+            }
             /** Кнопки сброса просто нет в разметке, пока откатывать нечего. */
             tabs_content() {
                 const list = [this.Tree_tab(), this.Ts_tab(), this.Css_tab(), this.Tabs_gap()];
                 // Выбор примера не показываем, когда содержимое задал встраиватель:
                 // у курса свой сценарий на урок, чужие примеры там ни к чему.
                 if (!this.seed_tree())
-                    list.push(this.Samples(), this.Share());
+                    list.push(this.Samples(), this.Layout_toggle(), this.Share());
                 if (this.is_modified())
                     list.push(this.Reset());
                 return list;
@@ -22111,6 +22196,12 @@ var $;
         __decorate([
             $mol_action
         ], $bog_smalljs_playground.prototype, "share", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_playground.prototype, "editors_mode", null);
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_playground.prototype, "layout_toggle", null);
         __decorate([
             $mol_action
         ], $bog_smalljs_playground.prototype, "reset", null);
@@ -22379,17 +22470,9 @@ var $;
             padding: $mol_gap.block,
             color: $bog_builderui_tokens.text,
         },
-        '@': {
-            bog_smalljs_pg_tab: {
-                tree: { Tree_tab: tab_active },
-                ts: { Ts_tab: tab_active },
-                css: { Css_tab: tab_active },
-            },
-        },
         // Все три редактора существуют всегда, а показ переключается стилями.
-        // По умолчанию (узкий и средний экран) виден только файл активной вкладки —
-        // поведение прежнее. На широком экране показываем все три сразу: компонент
-        // на $mol это три файла, и видеть их разом полезнее, чем щёлкать вкладки.
+        // По умолчанию — вкладки: так было изначально и так привычнее.
+        // Кнопка в ряду вкладок разворачивает файлы стопкой, выбор запоминается.
         Editors: {
             flex: { direction: 'column', grow: 1, shrink: 1 },
             minHeight: 0,
@@ -22398,26 +22481,62 @@ var $;
         Editor_tree_label: { display: 'none' },
         Editor_ts_label: { display: 'none' },
         Editor_css_label: { display: 'none' },
+        Layout_toggle: {
+            align: { self: 'center' },
+            margin: { right: '0.25rem' },
+            padding: {
+                top: '0.25rem',
+                bottom: '0.25rem',
+                left: '0.5rem',
+                right: '0.5rem',
+            },
+            color: $bog_builderui_tokens.shade,
+            border: { radius: '0.375rem' },
+            ':hover': {
+                color: $bog_builderui_tokens.text,
+                background: { color: $bog_builderui_tokens.card },
+            },
+        },
+        Layout_icon: {
+            width: '1rem',
+            height: '1rem',
+            flex: { shrink: 0 },
+        },
         Editor_ts: { display: 'none' },
         Editor_css: { display: 'none' },
         '@media': {
-            // Широкий экран: вкладки не нужны, файлы идут стопкой с подписями.
-            '(min-width: 90rem)': {
-                Tree_tab: { display: 'none' },
-                Ts_tab: { display: 'none' },
-                Css_tab: { display: 'none' },
-                Editor_tree_label: { ...file_label, border: { top: { width: '0px', style: 'solid', color: $bog_builderui_tokens.line } } },
-                Editor_ts_label: file_label,
-                Editor_css_label: file_label,
-                Editor_ts: { display: 'flex', flex: { shrink: 0 } },
-                Editor_css: { display: 'flex', flex: { shrink: 0 } },
-            },
             '(max-width: 47.9375rem)': {
                 gridTemplateColumns: '1fr',
                 gridTemplateRows: '1fr 1fr',
                 Editor_pane: {
                     ...pane,
                     border: { right: { width: '0px', style: 'solid', color: $bog_builderui_tokens.line }, bottom: line },
+                },
+            },
+        },
+        // Правила режима идут последними: они перекрывают display: none
+        // у скрытых редакторов, а при равной специфичности выигрывает
+        // тот, кто ниже по файлу.
+        '@': {
+            bog_smalljs_pg_tab: {
+                tree: { Tree_tab: tab_active },
+                ts: { Ts_tab: tab_active },
+                css: { Css_tab: tab_active },
+            },
+            bog_smalljs_pg_editors: {
+                all: {
+                    Tree_tab: { display: 'none' },
+                    Ts_tab: { display: 'none' },
+                    Css_tab: { display: 'none' },
+                    Editor_tree_label: { ...file_label, border: { top: { width: '0px', style: 'solid', color: $bog_builderui_tokens.line } } },
+                    Editor_ts_label: file_label,
+                    Editor_css_label: file_label,
+                    Editor_ts: { display: 'flex', flex: { shrink: 0 } },
+                    Editor_css: { display: 'flex', flex: { shrink: 0 } },
+                    Layout_toggle: {
+                        color: $bog_builderui_tokens.text,
+                        background: { color: $bog_builderui_tokens.card },
+                    },
                 },
             },
         },

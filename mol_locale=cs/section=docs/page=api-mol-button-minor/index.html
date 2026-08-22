@@ -2687,18 +2687,6 @@ h6[mol_text_header] {
 	padding: var(--mol_gap_block);
 	color: var(--bog_builderui_text);
 }
-[bog_smalljs_playground]:where([bog_smalljs_pg_tab="css"]) :where([bog_smalljs_playground_css_tab]) {
-	color: var(--bog_builderui_special);
-	background-color: var(--bog_builderui_card);
-}
-[bog_smalljs_playground]:where([bog_smalljs_pg_tab="ts"]) :where([bog_smalljs_playground_ts_tab]) {
-	color: var(--bog_builderui_special);
-	background-color: var(--bog_builderui_card);
-}
-[bog_smalljs_playground]:where([bog_smalljs_pg_tab="tree"]) :where([bog_smalljs_playground_tree_tab]) {
-	color: var(--bog_builderui_special);
-	background-color: var(--bog_builderui_card);
-}
 [bog_smalljs_playground_editors] {
 	flex-direction: column;
 	flex-grow: 1;
@@ -2715,78 +2703,30 @@ h6[mol_text_header] {
 [bog_smalljs_playground_editor_css_label] {
 	display: none;
 }
+[bog_smalljs_playground_layout_toggle] {
+	align-self: center;
+	margin-right: 0.25rem;
+	padding-top: 0.25rem;
+	padding-bottom: 0.25rem;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+	color: var(--bog_builderui_shade);
+	border-radius: 0.375rem;
+}
+[bog_smalljs_playground_layout_toggle]:hover {
+	color: var(--bog_builderui_text);
+	background-color: var(--bog_builderui_card);
+}
+[bog_smalljs_playground_layout_icon] {
+	width: 1rem;
+	height: 1rem;
+	flex-shrink: 0;
+}
 [bog_smalljs_playground_editor_ts] {
 	display: none;
 }
 [bog_smalljs_playground_editor_css] {
 	display: none;
-}
-@media (min-width: 90rem) {
-[bog_smalljs_playground_tree_tab] {
-	display: none;
-}
-[bog_smalljs_playground_ts_tab] {
-	display: none;
-}
-[bog_smalljs_playground_css_tab] {
-	display: none;
-}
-[bog_smalljs_playground_editor_tree_label] {
-	display: block;
-	font-size: 0.75rem;
-	font-weight: 600;
-	letter-spacing: 0.04em;
-	text-transform: uppercase;
-	color: var(--bog_builderui_shade);
-	padding-top: 0.5rem;
-	padding-bottom: 0.375rem;
-	padding-left: 1rem;
-	padding-right: 1rem;
-	border-top-width: 0px;
-	border-top-style: solid;
-	border-top-color: var(--bog_builderui_line);
-	background-color: var(--bog_builderui_card);
-}
-[bog_smalljs_playground_editor_ts_label] {
-	display: block;
-	font-size: 0.75rem;
-	font-weight: 600;
-	letter-spacing: 0.04em;
-	text-transform: uppercase;
-	color: var(--bog_builderui_shade);
-	padding-top: 0.5rem;
-	padding-bottom: 0.375rem;
-	padding-left: 1rem;
-	padding-right: 1rem;
-	border-top-width: 1px;
-	border-top-style: solid;
-	border-top-color: var(--bog_builderui_line);
-	background-color: var(--bog_builderui_card);
-}
-[bog_smalljs_playground_editor_css_label] {
-	display: block;
-	font-size: 0.75rem;
-	font-weight: 600;
-	letter-spacing: 0.04em;
-	text-transform: uppercase;
-	color: var(--bog_builderui_shade);
-	padding-top: 0.5rem;
-	padding-bottom: 0.375rem;
-	padding-left: 1rem;
-	padding-right: 1rem;
-	border-top-width: 1px;
-	border-top-style: solid;
-	border-top-color: var(--bog_builderui_line);
-	background-color: var(--bog_builderui_card);
-}
-[bog_smalljs_playground_editor_ts] {
-	display: flex;
-	flex-shrink: 0;
-}
-[bog_smalljs_playground_editor_css] {
-	display: flex;
-	flex-shrink: 0;
-}
 }
 @media (max-width: 47.9375rem) {
 [bog_smalljs_playground] {
@@ -2806,6 +2746,87 @@ h6[mol_text_header] {
 	border-bottom-style: solid;
 	border-bottom-color: var(--bog_builderui_line);
 }
+}
+[bog_smalljs_playground]:where([bog_smalljs_pg_tab="css"]) :where([bog_smalljs_playground_css_tab]) {
+	color: var(--bog_builderui_special);
+	background-color: var(--bog_builderui_card);
+}
+[bog_smalljs_playground]:where([bog_smalljs_pg_tab="ts"]) :where([bog_smalljs_playground_ts_tab]) {
+	color: var(--bog_builderui_special);
+	background-color: var(--bog_builderui_card);
+}
+[bog_smalljs_playground]:where([bog_smalljs_pg_tab="tree"]) :where([bog_smalljs_playground_tree_tab]) {
+	color: var(--bog_builderui_special);
+	background-color: var(--bog_builderui_card);
+}
+[bog_smalljs_playground]:where([bog_smalljs_pg_editors="all"]) :where([bog_smalljs_playground_tree_tab]) {
+	display: none;
+}
+[bog_smalljs_playground]:where([bog_smalljs_pg_editors="all"]) :where([bog_smalljs_playground_ts_tab]) {
+	display: none;
+}
+[bog_smalljs_playground]:where([bog_smalljs_pg_editors="all"]) :where([bog_smalljs_playground_css_tab]) {
+	display: none;
+}
+[bog_smalljs_playground]:where([bog_smalljs_pg_editors="all"]) :where([bog_smalljs_playground_editor_tree_label]) {
+	display: block;
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	color: var(--bog_builderui_shade);
+	padding-top: 0.5rem;
+	padding-bottom: 0.375rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	border-top-width: 0px;
+	border-top-style: solid;
+	border-top-color: var(--bog_builderui_line);
+	background-color: var(--bog_builderui_card);
+}
+[bog_smalljs_playground]:where([bog_smalljs_pg_editors="all"]) :where([bog_smalljs_playground_editor_ts_label]) {
+	display: block;
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	color: var(--bog_builderui_shade);
+	padding-top: 0.5rem;
+	padding-bottom: 0.375rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: var(--bog_builderui_line);
+	background-color: var(--bog_builderui_card);
+}
+[bog_smalljs_playground]:where([bog_smalljs_pg_editors="all"]) :where([bog_smalljs_playground_editor_css_label]) {
+	display: block;
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	color: var(--bog_builderui_shade);
+	padding-top: 0.5rem;
+	padding-bottom: 0.375rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: var(--bog_builderui_line);
+	background-color: var(--bog_builderui_card);
+}
+[bog_smalljs_playground]:where([bog_smalljs_pg_editors="all"]) :where([bog_smalljs_playground_editor_ts]) {
+	display: flex;
+	flex-shrink: 0;
+}
+[bog_smalljs_playground]:where([bog_smalljs_pg_editors="all"]) :where([bog_smalljs_playground_editor_css]) {
+	display: flex;
+	flex-shrink: 0;
+}
+[bog_smalljs_playground]:where([bog_smalljs_pg_editors="all"]) :where([bog_smalljs_playground_layout_toggle]) {
+	color: var(--bog_builderui_text);
+	background-color: var(--bog_builderui_card);
 }
 </style><style id="$mol_style_attach:$bog_smalljs_text_code">[bog_smalljs_text_code_playground] {
 	align-self: flex-start;

@@ -8805,6 +8805,15 @@ declare namespace $ {
 
 declare namespace $ {
 
+	export class $mol_icon_view_agenda extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=agenda.view.tree.d.ts.map
+declare namespace $ {
+
 	export class $mol_icon_link extends $mol_icon {
 		path( ): string
 	}
@@ -8980,6 +8989,7 @@ declare namespace $ {
         /** Отложенный сигнал о новых записях; держим ссылку, чтобы его не убрали. */
         static ticket: unknown;
         static version(next?: number): number;
+        static one(arg: unknown): string;
         static text(args: unknown[]): string;
         static push(level: $bog_smalljs_playground_log_entry['level'], args: unknown[]): void;
         static clear(): void;
@@ -9074,12 +9084,12 @@ declare namespace $ {
 		ReturnType< $mol_pick['bubble_content'] >
 	>
 	type $mol_button_minor__hint_bog_smalljs_playground_13 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_playground['share_title'] >
+		ReturnType< $bog_smalljs_playground['layout_title'] >
 		,
 		ReturnType< $mol_button_minor['hint'] >
 	>
 	type $mol_button_minor__click_bog_smalljs_playground_14 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_playground['share'] >
+		ReturnType< $bog_smalljs_playground['layout_toggle'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
@@ -9089,12 +9099,12 @@ declare namespace $ {
 		ReturnType< $mol_button_minor['sub'] >
 	>
 	type $mol_button_minor__hint_bog_smalljs_playground_16 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_playground['reset_hint'] >
+		ReturnType< $bog_smalljs_playground['share_title'] >
 		,
 		ReturnType< $mol_button_minor['hint'] >
 	>
 	type $mol_button_minor__click_bog_smalljs_playground_17 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_playground['reset'] >
+		ReturnType< $bog_smalljs_playground['share'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
@@ -9103,25 +9113,25 @@ declare namespace $ {
 		,
 		ReturnType< $mol_button_minor['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_19 = $mol_type_enforce<
+	type $mol_button_minor__hint_bog_smalljs_playground_19 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['reset_hint'] >
+		,
+		ReturnType< $mol_button_minor['hint'] >
+	>
+	type $mol_button_minor__click_bog_smalljs_playground_20 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['reset'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_button_minor__sub_bog_smalljs_playground_21 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_button_minor['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_playground_22 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['tabs_content'] >
 		,
 		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_playground_20 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_textarea__value_bog_smalljs_playground_21 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_playground['draft'] >
-		,
-		ReturnType< $mol_textarea['value'] >
-	>
-	type $mol_textarea__hint_bog_smalljs_playground_22 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_playground['editor_hint'] >
-		,
-		ReturnType< $mol_textarea['hint'] >
 	>
 	type $mol_view__sub_bog_smalljs_playground_23 = $mol_type_enforce<
 		readonly(any)[]
@@ -9129,12 +9139,12 @@ declare namespace $ {
 		ReturnType< $mol_view['sub'] >
 	>
 	type $mol_textarea__value_bog_smalljs_playground_24 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_playground['ts_draft'] >
+		ReturnType< $bog_smalljs_playground['draft'] >
 		,
 		ReturnType< $mol_textarea['value'] >
 	>
 	type $mol_textarea__hint_bog_smalljs_playground_25 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_playground['editor_hint_ts'] >
+		ReturnType< $bog_smalljs_playground['editor_hint'] >
 		,
 		ReturnType< $mol_textarea['hint'] >
 	>
@@ -9144,12 +9154,12 @@ declare namespace $ {
 		ReturnType< $mol_view['sub'] >
 	>
 	type $mol_textarea__value_bog_smalljs_playground_27 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_playground['css_draft'] >
+		ReturnType< $bog_smalljs_playground['ts_draft'] >
 		,
 		ReturnType< $mol_textarea['value'] >
 	>
 	type $mol_textarea__hint_bog_smalljs_playground_28 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_playground['editor_hint_css'] >
+		ReturnType< $bog_smalljs_playground['editor_hint_ts'] >
 		,
 		ReturnType< $mol_textarea['hint'] >
 	>
@@ -9158,67 +9168,65 @@ declare namespace $ {
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_30 = $mol_type_enforce<
+	type $mol_textarea__value_bog_smalljs_playground_30 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['css_draft'] >
+		,
+		ReturnType< $mol_textarea['value'] >
+	>
+	type $mol_textarea__hint_bog_smalljs_playground_31 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['editor_hint_css'] >
+		,
+		ReturnType< $mol_textarea['hint'] >
+	>
+	type $mol_view__sub_bog_smalljs_playground_32 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_button_minor__click_bog_smalljs_playground_31 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_playground['log_toggle'] >
-		,
-		ReturnType< $mol_button_minor['click'] >
-	>
-	type $mol_button_minor__sub_bog_smalljs_playground_32 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_button_minor['sub'] >
 	>
 	type $mol_view__sub_bog_smalljs_playground_33 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_34 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_playground['preview_content'] >
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_playground_35 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_button_minor__hint_bog_smalljs_playground_36 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_playground['log_clear_hint'] >
-		,
-		ReturnType< $mol_button_minor['hint'] >
-	>
-	type $mol_button_minor__click_bog_smalljs_playground_37 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_playground['log_clear'] >
+	type $mol_button_minor__click_bog_smalljs_playground_34 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['log_toggle'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_button_minor__sub_bog_smalljs_playground_38 = $mol_type_enforce<
+	type $mol_button_minor__sub_bog_smalljs_playground_35 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_button_minor['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_39 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_playground_36 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_40 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_playground['log_rows'] >
+	type $mol_view__sub_bog_smalljs_playground_37 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['preview_content'] >
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__attr_bog_smalljs_playground_41 = $mol_type_enforce<
-		({ 
-			'bog_smalljs_pg_log_shown': ReturnType< $bog_smalljs_playground['log_shown'] >,
-		})  & ReturnType< $mol_view['attr'] >
+	type $mol_view__sub_bog_smalljs_playground_38 = $mol_type_enforce<
+		readonly(any)[]
 		,
-		ReturnType< $mol_view['attr'] >
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_button_minor__hint_bog_smalljs_playground_39 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['log_clear_hint'] >
+		,
+		ReturnType< $mol_button_minor['hint'] >
+	>
+	type $mol_button_minor__click_bog_smalljs_playground_40 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['log_clear'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_button_minor__sub_bog_smalljs_playground_41 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_button_minor['sub'] >
 	>
 	type $mol_view__sub_bog_smalljs_playground_42 = $mol_type_enforce<
 		readonly(any)[]
@@ -9226,28 +9234,45 @@ declare namespace $ {
 		ReturnType< $mol_view['sub'] >
 	>
 	type $mol_view__sub_bog_smalljs_playground_43 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['log_rows'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__attr_bog_smalljs_playground_44 = $mol_type_enforce<
+		({ 
+			'bog_smalljs_pg_log_shown': ReturnType< $bog_smalljs_playground['log_shown'] >,
+		})  & ReturnType< $mol_view['attr'] >
+		,
+		ReturnType< $mol_view['attr'] >
+	>
+	type $mol_view__sub_bog_smalljs_playground_45 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_button_minor__click_bog_smalljs_playground_44 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_playground_46 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_button_minor__click_bog_smalljs_playground_47 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['sample_pick'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_button_minor__sub_bog_smalljs_playground_45 = $mol_type_enforce<
+	type $mol_button_minor__sub_bog_smalljs_playground_48 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_button_minor['sub'] >
 	>
-	type $mol_view__attr_bog_smalljs_playground_46 = $mol_type_enforce<
+	type $mol_view__attr_bog_smalljs_playground_49 = $mol_type_enforce<
 		({ 
 			'bog_smalljs_pg_level': ReturnType< $bog_smalljs_playground['log_level'] >,
 		})  & ReturnType< $mol_view['attr'] >
 		,
 		ReturnType< $mol_view['attr'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_47 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_playground_50 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
@@ -9270,6 +9295,10 @@ declare namespace $ {
 		sample_options( ): readonly(any)[]
 		Samples_menu( ): $mol_view
 		Samples( ): $mol_pick
+		layout_title( ): string
+		layout_toggle( next?: any ): any
+		Layout_icon( ): $mol_icon_view_agenda
+		Layout_toggle( ): $mol_button_minor
 		share_title( ): string
 		share( next?: any ): any
 		Share_icon( ): $mol_icon_link_variant
@@ -9330,8 +9359,12 @@ declare namespace $ {
 		Sample_option( id: any): $mol_button_minor
 		share_hint( ): string
 		share_done_hint( ): string
+		editors_mode( next?: string ): string
+		layout_hint( ): string
+		layout_hint_tabs( ): string
 		attr( ): ({ 
 			'bog_smalljs_pg_tab': ReturnType< $bog_smalljs_playground['tab'] >,
+			'bog_smalljs_pg_editors': ReturnType< $bog_smalljs_playground['editors_mode'] >,
 		}) 
 		sub( ): readonly(any)[]
 		log_open( next?: boolean ): boolean
@@ -9400,6 +9433,15 @@ declare namespace $.$$ {
         share_title(): string;
         /** Ссылка собирается по требованию, а не висит в адресе постоянно. */
         share(): null;
+        /**
+         * Вкладки или все файлы стопкой. Выбор личный и запоминается: это вкус,
+         * а не свойство страницы, поэтому в ссылку он не попадает — иначе
+         * расшаренный код навязывал бы получателю чужую раскладку.
+         */
+        editors_mode(next?: string): string;
+        editors_all(): boolean;
+        layout_title(): string;
+        layout_toggle(): null;
         /** Кнопки сброса просто нет в разметке, пока откатывать нечего. */
         tabs_content(): readonly $mol_view[];
         /** Что-то из трёх исходников правили — значит есть что откатывать. */

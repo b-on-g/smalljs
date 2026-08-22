@@ -67,6 +67,8 @@
 	"$bog_smalljs_playground_css_tab_label": "view.css.ts",
 	"$bog_smalljs_playground_editor_hint_css": "Optional — typed styles.",
 	"$bog_smalljs_playground_editor_hint_ts": "Optional — logic for the component.",
+	"$bog_smalljs_playground_layout_hint": "Show all files at once",
+	"$bog_smalljs_playground_layout_hint_tabs": "Back to tabs",
 	"$bog_smalljs_playground_log_clear_hint": "Clear",
 	"$bog_smalljs_playground_log_title_text": "Console",
 	"$bog_smalljs_playground_preview_label_text": "Preview",

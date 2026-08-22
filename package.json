@@ -334,6 +334,8 @@
     "$mol_error_enriched",
     "$mol_error_fence",
     "$mol_dom_parse",
+    "$mol_icon_view_agenda",
+    "$mol_icon_view",
     "$mol_icon_link_variant",
     "$mol_icon_link",
     "$mol_icon_undo",

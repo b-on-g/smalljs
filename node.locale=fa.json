@@ -65,6 +65,8 @@
 	"$bog_smalljs_playground_css_tab_label": "view.css.ts",
 	"$bog_smalljs_playground_editor_hint_css": "اختیاری — سبک‌های نوع‌دار.",
 	"$bog_smalljs_playground_editor_hint_ts": "اختیاری — منطق کامپوننت.",
+	"$bog_smalljs_playground_layout_hint": "نمایش همهٔ فایل‌ها با هم",
+	"$bog_smalljs_playground_layout_hint_tabs": "بازگشت به زبانه‌ها",
 	"$bog_smalljs_playground_log_clear_hint": "پاک‌کردن",
 	"$bog_smalljs_playground_log_title_text": "کنسول",
 	"$bog_smalljs_playground_preview_label_text": "پیش‌نمایش",

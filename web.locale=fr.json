@@ -65,6 +65,8 @@
 	"$bog_smalljs_playground_css_tab_label": "view.css.ts",
 	"$bog_smalljs_playground_editor_hint_css": "Facultatif — styles typés.",
 	"$bog_smalljs_playground_editor_hint_ts": "Facultatif — la logique du composant.",
+	"$bog_smalljs_playground_layout_hint": "Afficher tous les fichiers",
+	"$bog_smalljs_playground_layout_hint_tabs": "Revenir aux onglets",
 	"$bog_smalljs_playground_log_clear_hint": "Effacer",
 	"$bog_smalljs_playground_log_title_text": "Console",
 	"$bog_smalljs_playground_preview_label_text": "Aperçu",
