@@ -14,5 +14,7 @@
 	"$bog_smalljs_playground_share_hint": "Copiar um link para este código",
 	"$bog_smalljs_playground_share_done_hint": "Link copiado",
 	"$bog_smalljs_playground_log_title_text": "Console",
-	"$bog_smalljs_playground_log_clear_hint": "Limpar"
+	"$bog_smalljs_playground_log_clear_hint": "Limpar",
+	"$bog_smalljs_playground_editor_hint_ts": "Opcional — a lógica do componente.",
+	"$bog_smalljs_playground_editor_hint_css": "Opcional — estilos tipados."
 }

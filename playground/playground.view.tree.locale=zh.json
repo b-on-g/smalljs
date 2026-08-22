@@ -14,5 +14,7 @@
 	"$bog_smalljs_playground_share_hint": "复制此代码的链接",
 	"$bog_smalljs_playground_share_done_hint": "链接已复制",
 	"$bog_smalljs_playground_log_title_text": "控制台",
-	"$bog_smalljs_playground_log_clear_hint": "清空"
+	"$bog_smalljs_playground_log_clear_hint": "清空",
+	"$bog_smalljs_playground_editor_hint_ts": "可选 — 组件的逻辑。",
+	"$bog_smalljs_playground_editor_hint_css": "可选 — 带类型的样式。"
 }

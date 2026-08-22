@@ -14,5 +14,7 @@
 	"$bog_smalljs_playground_share_hint": "Скопировать ссылку на этот код",
 	"$bog_smalljs_playground_share_done_hint": "Ссылка скопирована",
 	"$bog_smalljs_playground_log_title_text": "Консоль",
-	"$bog_smalljs_playground_log_clear_hint": "Очистить"
+	"$bog_smalljs_playground_log_clear_hint": "Очистить",
+	"$bog_smalljs_playground_editor_hint_ts": "Необязательно — логика компонента.",
+	"$bog_smalljs_playground_editor_hint_css": "Необязательно — типизированные стили."
 }

@@ -14,5 +14,7 @@
 	"$bog_smalljs_playground_share_hint": "이 코드 링크 복사",
 	"$bog_smalljs_playground_share_done_hint": "링크를 복사했습니다",
 	"$bog_smalljs_playground_log_title_text": "콘솔",
-	"$bog_smalljs_playground_log_clear_hint": "지우기"
+	"$bog_smalljs_playground_log_clear_hint": "지우기",
+	"$bog_smalljs_playground_editor_hint_ts": "선택 — 컴포넌트의 로직.",
+	"$bog_smalljs_playground_editor_hint_css": "선택 — 타입이 있는 스타일."
 }

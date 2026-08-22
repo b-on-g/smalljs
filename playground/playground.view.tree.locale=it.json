@@ -14,5 +14,7 @@
 	"$bog_smalljs_playground_share_hint": "Copia un link a questo codice",
 	"$bog_smalljs_playground_share_done_hint": "Link copiato",
 	"$bog_smalljs_playground_log_title_text": "Console",
-	"$bog_smalljs_playground_log_clear_hint": "Pulisci"
+	"$bog_smalljs_playground_log_clear_hint": "Pulisci",
+	"$bog_smalljs_playground_editor_hint_ts": "Facoltativo — la logica del componente.",
+	"$bog_smalljs_playground_editor_hint_css": "Facoltativo — stili tipizzati."
 }

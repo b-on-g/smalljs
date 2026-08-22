@@ -14,5 +14,7 @@
 	"$bog_smalljs_playground_share_hint": "کپی پیوند این کد",
 	"$bog_smalljs_playground_share_done_hint": "پیوند کپی شد",
 	"$bog_smalljs_playground_log_title_text": "کنسول",
-	"$bog_smalljs_playground_log_clear_hint": "پاک‌کردن"
+	"$bog_smalljs_playground_log_clear_hint": "پاک‌کردن",
+	"$bog_smalljs_playground_editor_hint_ts": "اختیاری — منطق کامپوننت.",
+	"$bog_smalljs_playground_editor_hint_css": "اختیاری — سبک‌های نوع‌دار."
 }

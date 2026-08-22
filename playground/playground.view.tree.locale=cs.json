@@ -14,5 +14,7 @@
 	"$bog_smalljs_playground_share_hint": "Zkopírovat odkaz na tento kód",
 	"$bog_smalljs_playground_share_done_hint": "Odkaz zkopírován",
 	"$bog_smalljs_playground_log_title_text": "Konzole",
-	"$bog_smalljs_playground_log_clear_hint": "Vymazat"
+	"$bog_smalljs_playground_log_clear_hint": "Vymazat",
+	"$bog_smalljs_playground_editor_hint_ts": "Volitelné — logika komponenty.",
+	"$bog_smalljs_playground_editor_hint_css": "Volitelné — typované styly."
 }
