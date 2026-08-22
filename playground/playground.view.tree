@@ -6,6 +6,18 @@ $bog_smalljs_playground $mol_view
 	seed_ts \
 	seed_css \
 	store_scope \
+	sample_title* \
+	sample_pick*? null
+	sample_hello_title @ \Hello world
+	sample_counter_title @ \Counter
+	sample_fetch_title @ \Loading data
+	sample_args_title @ \URL arguments
+	sample_state_title @ \Saved state
+	sample_login_title @ \Login form
+	Sample_option* $mol_button_minor
+		click? <=> sample_pick*?
+		sub /
+			<= sample_title*
 	attr *
 		bog_smalljs_pg_tab <= tab
 	sub /
@@ -23,6 +35,16 @@ $bog_smalljs_playground $mol_view
 							click? <=> show_css? null
 							sub / <= css_tab_label @ \view.css.ts
 						<= Tabs_gap $mol_view
+						<= Samples $mol_pick
+							hint <= samples_hint @ \Examples
+							align \bottom_right
+							trigger_content /
+								<= Samples_label $mol_view
+									sub / <= samples_label \
+								<= Samples_chevron $mol_icon_chevron_down
+							bubble_content /
+								<= Samples_menu $mol_view
+									sub <= sample_options /
 						<= Reset $mol_button_minor
 							hint <= reset_hint @ \Restore the example
 							click? <=> reset? null

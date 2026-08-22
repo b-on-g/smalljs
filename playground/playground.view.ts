@@ -20,18 +20,7 @@ namespace $.$$ {
 
 		default_tree() {
 			if ( this.seed_tree() ) return this.seed_tree() // seeded by an embedder (e.g. course)
-			const S = String.fromCharCode( 36 ) // "$" — kept out of MAM's dep scan
-			return [
-				`${ S }my_demo ${ S }mol_view`,
-				`\tcount_text \\0`,
-				`\tinc? null`,
-				`\tsub /`,
-				`\t\t<= Value ${ S }mol_view`,
-				`\t\t\tsub / <= count_text`,
-				`\t\t<= Button ${ S }mol_button_major`,
-				`\t\t\tclick? <=> inc?`,
-				`\t\t\tsub / <= button_label \\Count up`,
-			].join( '\n' ) + '\n'
+			return $bog_smalljs_playground_samples[ this.sample() ].tree
 		}
 
 		// The standalone defaults (counter logic + styling) target the $my_demo component, so
@@ -40,52 +29,57 @@ namespace $.$$ {
 		// `code` but clears `ts`/`css` — attaching the $my_demo class/styles would compile a
 		// reference to an undefined component and blow up the preview ("$my_demo is not
 		// defined"). In that case the defaults must be empty.
+		// --- примеры -------------------------------------------------------
+
+		/** Выбранный пример. Живёт в URL, чтобы ссылкой можно было поделиться. */
+		@ $mol_mem
+		sample( next?: string ) {
+			const id = this.$.$mol_state_arg.value( 'sample', next )
+			return id && $bog_smalljs_playground_samples[ id ] ? id : 'counter'
+		}
+
+		sample_ids() { return $bog_smalljs_playground_sample_ids }
+
+		sample_options() {
+			return this.sample_ids().map( id => this.Sample_option( id ) )
+		}
+
+		sample_title( id: string ) {
+			return this.$.$mol_locale.text( `$bog_smalljs_playground_sample_${ id }_title` ) || id
+		}
+
+		samples_label() { return this.sample_title( this.sample() ) }
+
+		/** Выбор примера — это сброс на него: черновики берутся из дефолтов. */
+		@ $mol_action
+		sample_pick( id: string ) {
+			this.sample( id )
+			this.reset()
+			this.Samples().showed( false )
+			return null
+		}
+
 		tree_is_default() {
-			const S = String.fromCharCode( 36 ) // "$" — kept out of MAM's dep scan
 			const tree = this.stored( 'code' ) || this.default_tree()
-			return /(\$[\w$]+)/.exec( tree )?.[ 1 ] === S + 'my_demo'
+			const root = $bog_smalljs_playground_samples[ this.sample() ]?.root
+			return !!root && /(\$[\w$]+)/.exec( tree )?.[ 1 ] === root
 		}
 
 		default_css() {
 			// An embedder controls the css via seed_css, mirroring default_ts's seed gate.
 			if ( this.seed_tree() ) return this.seed_css()
-			// A non-default tree (e.g. a doc snippet) has no $my_demo to style.
+			// Дерево увели от примера (например, сниппет из доков) — стилить нечего.
 			if ( !this.tree_is_default() ) return ''
-			// Standalone: a working view.css.ts sample that styles the default counter,
-			// so opening the css.ts tab shows real, applied styling.
-			const S = String.fromCharCode( 36 ) // "$" — kept out of MAM's dep scan
-			return [
-				`namespace ${ S } {`,
-				`\t${ S }mol_style_define( ${ S }my_demo, {`,
-				`\t\tflex: { direction: 'column', gap: '1rem' },`,
-				`\t\tpadding: '1.5rem',`,
-				`\t\tValue: {`,
-				`\t\t\tfont: { size: '2rem', weight: 700 },`,
-				`\t\t\tcolor: '#0088ff',`,
-				`\t\t\tpadding: { bottom: '0.5rem' },`,
-				`\t\t},`,
-				`\t} )`,
-				`}`,
-			].join( '\n' ) + '\n'
+			return $bog_smalljs_playground_samples[ this.sample() ].css
 		}
 
 		default_ts() {
 			// An embedder (e.g. the course) fully controls the ts via seed_ts,
 			// even when empty — mirror default_tree's seed gate.
 			if ( this.seed_tree() ) return this.seed_ts()
-			// A non-default tree (e.g. a doc snippet) has no $my_demo class to extend.
+			// Дерево увели от примера — расширять нечего.
 			if ( !this.tree_is_default() ) return ''
-			// Standalone playground: ship a working counter so the default
-			// example is live on open (the tree alone has no logic, so inc()
-			// would be dead). This does fetch the TS compiler on first render.
-			const S = String.fromCharCode( 36 ) // "$" — kept out of MAM's dep scan
-			return [
-				`class ${ S }my_demo extends ${ S }.${ S }my_demo {`,
-				`\t@ ${ S }mol_mem count( next?: number ) { return next ?? 0 }`,
-				`\t@ ${ S }mol_action inc() { this.count( this.count() + 1 ) }`,
-				`\tcount_text() { return String( this.count() ) }`,
-				`}`,
-			].join( '\n' ) + '\n'
+			return $bog_smalljs_playground_samples[ this.sample() ].ts
 		}
 
 		// --- tabs ---------------------------------------------------------
@@ -172,6 +166,9 @@ namespace $.$$ {
 		/** Кнопки сброса просто нет в разметке, пока откатывать нечего. */
 		tabs_content(): readonly $mol_view[] {
 			const list: $mol_view[] = [ this.Tree_tab(), this.Ts_tab(), this.Css_tab(), this.Tabs_gap() ]
+			// Выбор примера не показываем, когда содержимое задал встраиватель:
+			// у курса свой сценарий на урок, чужие примеры там ни к чему.
+			if ( !this.seed_tree() ) list.push( this.Samples() )
 			if ( this.is_modified() ) list.push( this.Reset() )
 			return list
 		}

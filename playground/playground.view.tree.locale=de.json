@@ -2,5 +2,13 @@
 	"$bog_smalljs_playground_preview_label_text": "Vorschau",
 	"$bog_smalljs_playground_tree_tab_label": "view.tree",
 	"$bog_smalljs_playground_ts_tab_label": "view.ts",
-	"$bog_smalljs_playground_css_tab_label": "view.css.ts"
+	"$bog_smalljs_playground_css_tab_label": "view.css.ts",
+	"$bog_smalljs_playground_samples_hint": "Beispiele",
+	"$bog_smalljs_playground_sample_hello_title": "Hello World",
+	"$bog_smalljs_playground_sample_counter_title": "Zähler",
+	"$bog_smalljs_playground_sample_fetch_title": "Daten laden",
+	"$bog_smalljs_playground_sample_args_title": "URL-Parameter",
+	"$bog_smalljs_playground_sample_state_title": "Gespeicherter Zustand",
+	"$bog_smalljs_playground_sample_login_title": "Login-Formular",
+	"$bog_smalljs_playground_reset_hint": "Beispiel wiederherstellen"
 }

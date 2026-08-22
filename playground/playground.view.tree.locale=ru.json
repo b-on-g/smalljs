@@ -2,5 +2,13 @@
 	"$bog_smalljs_playground_tree_tab_label": "view.tree",
 	"$bog_smalljs_playground_ts_tab_label": "view.ts",
 	"$bog_smalljs_playground_preview_label_text": "Превью",
-	"$bog_smalljs_playground_css_tab_label": "view.css.ts"
+	"$bog_smalljs_playground_css_tab_label": "view.css.ts",
+	"$bog_smalljs_playground_samples_hint": "Примеры",
+	"$bog_smalljs_playground_sample_hello_title": "Hello world",
+	"$bog_smalljs_playground_sample_counter_title": "Счётчик",
+	"$bog_smalljs_playground_sample_fetch_title": "Загрузка данных",
+	"$bog_smalljs_playground_sample_args_title": "Аргументы URL",
+	"$bog_smalljs_playground_sample_state_title": "Сохранённое состояние",
+	"$bog_smalljs_playground_sample_login_title": "Форма входа",
+	"$bog_smalljs_playground_reset_hint": "Вернуть пример"
 }

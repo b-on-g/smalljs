@@ -2,5 +2,13 @@
 	"$bog_smalljs_playground_preview_label_text": "预览",
 	"$bog_smalljs_playground_tree_tab_label": "view.tree",
 	"$bog_smalljs_playground_ts_tab_label": "view.ts",
-	"$bog_smalljs_playground_css_tab_label": "view.css.ts"
+	"$bog_smalljs_playground_css_tab_label": "view.css.ts",
+	"$bog_smalljs_playground_samples_hint": "示例",
+	"$bog_smalljs_playground_sample_hello_title": "Hello world",
+	"$bog_smalljs_playground_sample_counter_title": "计数器",
+	"$bog_smalljs_playground_sample_fetch_title": "加载数据",
+	"$bog_smalljs_playground_sample_args_title": "URL 参数",
+	"$bog_smalljs_playground_sample_state_title": "保存的状态",
+	"$bog_smalljs_playground_sample_login_title": "登录表单",
+	"$bog_smalljs_playground_reset_hint": "恢复示例"
 }

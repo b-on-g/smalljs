@@ -69,6 +69,50 @@ namespace $ {
 			flex: { grow: 1 },
 		},
 
+		// Выбор примера: в том же ряду, что и табы, слева от сброса.
+		Samples: {
+			align: { self: 'center' },
+			margin: { right: '0.25rem' },
+		},
+
+		Samples_label: {
+			font: { size: '0.8125rem' },
+			color: $bog_builderui_tokens.shade,
+		},
+
+		Samples_chevron: {
+			width: '0.875rem',
+			height: '0.875rem',
+			flex: { shrink: 0 },
+			color: $bog_builderui_tokens.shade,
+		},
+
+		Samples_menu: {
+			flex: { direction: 'column' },
+			padding: {
+				top: '0.25rem',
+				bottom: '0.25rem',
+				left: '0.25rem',
+				right: '0.25rem',
+			},
+			minWidth: '11rem',
+		},
+
+		Sample_option: {
+			justify: { content: 'flex-start' },
+			padding: {
+				top: '0.375rem',
+				bottom: '0.375rem',
+				left: '0.625rem',
+				right: '0.625rem',
+			},
+			border: { radius: '0.375rem' },
+			font: { size: '0.875rem' },
+			':hover': {
+				background: { color: $bog_builderui_tokens.card },
+			},
+		},
+
 		// Кнопки нет в разметке, пока откатывать нечего — см. tabs_content().
 		Reset: {
 			align: { self: 'center' },
