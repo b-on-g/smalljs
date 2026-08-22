@@ -10,5 +10,7 @@
 	"$bog_smalljs_playground_sample_args_title": "URL 参数",
 	"$bog_smalljs_playground_sample_state_title": "保存的状态",
 	"$bog_smalljs_playground_sample_login_title": "登录表单",
-	"$bog_smalljs_playground_reset_hint": "恢复示例"
+	"$bog_smalljs_playground_reset_hint": "恢复示例",
+	"$bog_smalljs_playground_share_hint": "复制此代码的链接",
+	"$bog_smalljs_playground_share_done_hint": "链接已复制"
 }

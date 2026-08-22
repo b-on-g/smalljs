@@ -10,5 +10,7 @@
 	"$bog_smalljs_playground_sample_args_title": "Аргументи URL",
 	"$bog_smalljs_playground_sample_state_title": "Збережений стан",
 	"$bog_smalljs_playground_sample_login_title": "Форма входу",
-	"$bog_smalljs_playground_reset_hint": "Повернути приклад"
+	"$bog_smalljs_playground_reset_hint": "Повернути приклад",
+	"$bog_smalljs_playground_share_hint": "Скопіювати посилання на цей код",
+	"$bog_smalljs_playground_share_done_hint": "Посилання скопійовано"
 }

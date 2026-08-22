@@ -10,5 +10,7 @@
 	"$bog_smalljs_playground_sample_args_title": "URL আর্গুমেন্ট",
 	"$bog_smalljs_playground_sample_state_title": "সংরক্ষিত অবস্থা",
 	"$bog_smalljs_playground_sample_login_title": "লগইন ফর্ম",
-	"$bog_smalljs_playground_reset_hint": "উদাহরণ ফিরিয়ে আনুন"
+	"$bog_smalljs_playground_reset_hint": "উদাহরণ ফিরিয়ে আনুন",
+	"$bog_smalljs_playground_share_hint": "এই কোডের লিঙ্ক কপি করুন",
+	"$bog_smalljs_playground_share_done_hint": "লিঙ্ক কপি হয়েছে"
 }

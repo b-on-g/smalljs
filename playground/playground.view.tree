@@ -18,6 +18,9 @@ $bog_smalljs_playground $mol_view
 		click? <=> sample_pick*?
 		sub /
 			<= sample_title*
+	share_hint @ \Copy a link to this code
+	share_done_hint @ \Link copied
+	share? null
 	attr *
 		bog_smalljs_pg_tab <= tab
 	sub /
@@ -45,6 +48,11 @@ $bog_smalljs_playground $mol_view
 							bubble_content /
 								<= Samples_menu $mol_view
 									sub <= sample_options /
+						<= Share $mol_button_minor
+							hint <= share_title \
+							click? <=> share? null
+							sub /
+								<= Share_icon $mol_icon_link_variant
 						<= Reset $mol_button_minor
 							hint <= reset_hint @ \Restore the example
 							click? <=> reset? null

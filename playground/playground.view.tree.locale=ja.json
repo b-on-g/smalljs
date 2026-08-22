@@ -10,5 +10,7 @@
 	"$bog_smalljs_playground_sample_args_title": "URL 引数",
 	"$bog_smalljs_playground_sample_state_title": "保存される状態",
 	"$bog_smalljs_playground_sample_login_title": "ログインフォーム",
-	"$bog_smalljs_playground_reset_hint": "サンプルを元に戻す"
+	"$bog_smalljs_playground_reset_hint": "サンプルを元に戻す",
+	"$bog_smalljs_playground_share_hint": "このコードへのリンクをコピー",
+	"$bog_smalljs_playground_share_done_hint": "リンクをコピーしました"
 }

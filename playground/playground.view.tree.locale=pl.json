@@ -10,5 +10,7 @@
 	"$bog_smalljs_playground_sample_args_title": "Parametry URL",
 	"$bog_smalljs_playground_sample_state_title": "Zapisany stan",
 	"$bog_smalljs_playground_sample_login_title": "Formularz logowania",
-	"$bog_smalljs_playground_reset_hint": "Przywróć przykład"
+	"$bog_smalljs_playground_reset_hint": "Przywróć przykład",
+	"$bog_smalljs_playground_share_hint": "Skopiuj link do tego kodu",
+	"$bog_smalljs_playground_share_done_hint": "Link skopiowany"
 }

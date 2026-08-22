@@ -1,3 +1,8 @@
+namespace $ {
+	/** Где отдельно стоящая песочница держит черновики. */
+	export const $bog_smalljs_playground_store = '$bog_smalljs_playground'
+}
+
 namespace $.$$ {
 
 	// TypeScript compiler, lazy-loaded from a CDN only when the user writes logic.
@@ -108,9 +113,22 @@ namespace $.$$ {
 		// Persistence funnel — standalone stores in the URL hash (shareable); when an
 		// embedder sets store_scope (e.g. the course, per lesson), store in localStorage.
 		stored( key: string, next?: string | null ): string | null {
-			const scope = this.store_scope()
-			if ( scope ) return this.$.$mol_state_local.value( `${ scope }/${ key }`, next ) ?? null
-			return this.$.$mol_state_arg.value( key, next ) ?? null
+			// Раньше отдельно стоящая песочница держала код прямо в адресной строке,
+			// и URL распухал от первого же символа. Теперь черновики живут в
+			// localStorage — адрес остаётся чистым и переживает перезагрузку,
+			// а длинную ссылку собирает кнопка «Поделиться», когда её попросят.
+			// У встраивателя (курс) свой скоуп на урок — он работал так и раньше.
+			const scope = this.store_scope() || $bog_smalljs_playground_store
+			if ( next !== undefined ) return this.$.$mol_state_local.value( `${ scope }/${ key }`, next ) ?? null
+
+			const local = this.$.$mol_state_local.value( `${ scope }/${ key }` )
+			if ( local != null ) return local as string
+
+			// Ссылка — транспорт, а не хранилище: из неё только читаем.
+			// Свои правки уедут в localStorage и с этого момента будут главнее,
+			// а адрес освободится при первом же изменении (см. commit).
+			if ( this.store_scope() ) return null
+			return this.$.$mol_state_arg.value( key ) ?? null
 		}
 
 		// --- editor sources (immediate) + debounced committed copies ------
@@ -161,6 +179,37 @@ namespace $.$$ {
 			return this.tree_draft()
 		}
 
+		// --- ссылка: принять и отдать ---------------------------------------
+
+		@ $mol_mem
+		shared( next?: boolean ) { return next ?? false }
+
+		share_title() {
+			return this.shared() ? this.share_done_hint() : this.share_hint()
+		}
+
+		/** Ссылка собирается по требованию, а не висит в адресе постоянно. */
+		@ $mol_action
+		share() {
+
+			const link = this.$.$mol_state_arg.link( {
+				code: this.tree_draft(),
+				ts: this.ts_draft(),
+				css: this.css_draft(),
+				sample: this.sample(),
+			} )
+
+			// Без await: обработчик события в $mol может быть переигран, а
+			// повторная запись в буфер вне жеста пользователя уже не пройдёт.
+			this.$.$mol_dom_context.navigator?.clipboard?.writeText( link )
+
+			this.shared( true )
+			this.timers[ 'shared' ]?.destructor()
+			this.timers[ 'shared' ] = new this.$.$mol_after_timeout( 2000, () => this.shared( false ) )
+
+			return null
+		}
+
 		// --- сброс к исходному примеру ------------------------------------
 
 		/** Кнопки сброса просто нет в разметке, пока откатывать нечего. */
@@ -168,7 +217,7 @@ namespace $.$$ {
 			const list: $mol_view[] = [ this.Tree_tab(), this.Ts_tab(), this.Css_tab(), this.Tabs_gap() ]
 			// Выбор примера не показываем, когда содержимое задал встраиватель:
 			// у курса свой сценарий на урок, чужие примеры там ни к чему.
-			if ( !this.seed_tree() ) list.push( this.Samples() )
+			if ( !this.seed_tree() ) list.push( this.Samples(), this.Share() )
 			if ( this.is_modified() ) list.push( this.Reset() )
 			return list
 		}
@@ -227,6 +276,11 @@ namespace $.$$ {
 		@ $mol_action
 		commit( key: string, value: string ) {
 			this.stored( key, value )
+			// Пришли по ссылке и начали править — код уже в localStorage,
+			// держать его ещё и в адресе незачем.
+			if ( !this.store_scope() && this.$.$mol_state_arg.value( key ) !== null ) {
+				this.$.$mol_state_arg.value( key, null )
+			}
 			if ( key === 'ts' ) this.ts_committed( value )
 			else if ( key === 'css' ) this.css_committed( value )
 			else this.tree_committed( value )

@@ -10,5 +10,7 @@
 	"$bog_smalljs_playground_sample_args_title": "URL-Parameter",
 	"$bog_smalljs_playground_sample_state_title": "Gespeicherter Zustand",
 	"$bog_smalljs_playground_sample_login_title": "Login-Formular",
-	"$bog_smalljs_playground_reset_hint": "Beispiel wiederherstellen"
+	"$bog_smalljs_playground_reset_hint": "Beispiel wiederherstellen",
+	"$bog_smalljs_playground_share_hint": "Link zu diesem Code kopieren",
+	"$bog_smalljs_playground_share_done_hint": "Link kopiert"
 }

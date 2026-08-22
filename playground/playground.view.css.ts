@@ -113,6 +113,29 @@ namespace $ {
 			},
 		},
 
+		Share: {
+			align: { self: 'center' },
+			margin: { right: '0.25rem' },
+			padding: {
+				top: '0.25rem',
+				bottom: '0.25rem',
+				left: '0.5rem',
+				right: '0.5rem',
+			},
+			color: $bog_builderui_tokens.shade,
+			border: { radius: '0.375rem' },
+			':hover': {
+				color: $bog_builderui_tokens.text,
+				background: { color: $bog_builderui_tokens.card },
+			},
+		},
+
+		Share_icon: {
+			width: '1rem',
+			height: '1rem',
+			flex: { shrink: 0 },
+		},
+
 		// Кнопки нет в разметке, пока откатывать нечего — см. tabs_content().
 		Reset: {
 			align: { self: 'center' },

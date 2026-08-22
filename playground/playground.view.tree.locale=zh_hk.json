@@ -10,5 +10,7 @@
 	"$bog_smalljs_playground_sample_args_title": "URL 參數",
 	"$bog_smalljs_playground_sample_state_title": "儲存的狀態",
 	"$bog_smalljs_playground_sample_login_title": "登入表單",
-	"$bog_smalljs_playground_reset_hint": "還原範例"
+	"$bog_smalljs_playground_reset_hint": "還原範例",
+	"$bog_smalljs_playground_share_hint": "複製此程式碼的連結",
+	"$bog_smalljs_playground_share_done_hint": "連結已複製"
 }
