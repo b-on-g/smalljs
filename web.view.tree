@@ -1457,6 +1457,8 @@ $mol_icon_undo $mol_icon path \M12.5,8C9.85,8 7.45,9 5.6,10.6L2,7V16H11L7.38,12.
 $bog_smalljs_playground $mol_view
 	tab \tree
 	draft? \
+	ts_draft? \
+	css_draft? \
 	editor_hint \
 	seed_tree \
 	seed_ts \
@@ -1514,15 +1516,59 @@ $bog_smalljs_playground $mol_view
 							click? <=> reset? null
 							sub /
 								<= Reset_icon $mol_icon_undo
-				<= Editor $mol_textarea
-					value? <=> draft?
-					hint <= editor_hint
+				<= Editors $mol_view
+					sub /
+						<= Editor_tree_label $mol_view
+							sub / <= tree_tab_label
+						<= Editor $mol_textarea
+							value? <=> draft?
+							hint <= editor_hint
+						<= Editor_ts_label $mol_view
+							sub / <= ts_tab_label
+						<= Editor_ts $mol_textarea
+							value? <=> ts_draft?
+							hint <= editor_hint_ts @ \Optional — logic for the component.
+						<= Editor_css_label $mol_view
+							sub / <= css_tab_label
+						<= Editor_css $mol_textarea
+							value? <=> css_draft?
+							hint <= editor_hint_css @ \Optional — typed styles.
 		<= Preview_pane $mol_view
 			sub /
 				<= Preview_label $mol_view
-					sub / <= preview_label_text @ \Preview
+					sub /
+						<= preview_label_text @ \Preview
+						<= Preview_gap $mol_view
+						<= Log_toggle $mol_button_minor
+							click? <=> log_toggle? null
+							sub / <= log_toggle_label \
 				<= Preview $mol_view
 					sub <= preview_content /
+				<= Log $mol_view
+					attr *
+						^
+						bog_smalljs_pg_log_shown <= log_shown false
+					sub /
+						<= Log_head $mol_view
+							sub /
+								<= Log_title $mol_view
+									sub / <= log_title_text @ \Console
+								<= Log_gap $mol_view
+								<= Log_clear $mol_button_minor
+									hint <= log_clear_hint @ \Clear
+									click? <=> log_clear? null
+									sub / \✕
+						<= Log_list $mol_view
+							sub <= log_rows /
+	log_open? false
+	log_shown false
+	log_text* \
+	log_level* \
+	Log_row* $mol_view
+		attr *
+			^
+			bog_smalljs_pg_level <= log_level*
+		sub / <= log_text*
 
 $mol_icon_pencil $mol_icon path \M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z
 
@@ -1684,6 +1730,15 @@ $bog_smalljs_landing $mol_view
 											sidebar_showed false
 											playground_showed false
 											run_enabled false
+										<= Sign_ts_label $mol_view
+											sub /
+												<= Sign_ts_label_text @ \view.ts
+										<= Sign_ts_view $bog_smalljs_text_code
+											text <= code_ts \
+											lang \ts
+											sidebar_showed false
+											playground_showed false
+											run_enabled false
 								<= Sign_arrow $mol_view
 									sub /
 										<= Sign_arrow_text \→
@@ -1695,7 +1750,7 @@ $bog_smalljs_landing $mol_view
 										<= Sign_demo $bog_smalljs_demo
 						<= Sign_caption $mol_view
 							sub /
-								<= Sign_caption_text @ \This is the whole component.
+								<= Sign_caption_text @ \Two files: the markup and the logic.
 		<= Features $mol_view
 			sub /
 				<= Feature1 $mol_view
