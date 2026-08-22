@@ -13,6 +13,7 @@ mam/                            workspace — the MAM checkout
 │       ├── major/              submodule — $mol_button_major
 │       └── minor/              submodule — $mol_button_minor
 └── my/                         package — yours
+    ├── .gitattributes          `* -text` — keeps built binaries intact
     └── hello/                  module — the component $my_hello
         ├── index.html          entry point (app modules only)
         ├── hello.view.tree     layout
@@ -44,6 +45,23 @@ When the build meets `$mol_view` and there is no `mol/` folder yet, it looks the
 A top-level folder is a package, and a package is a git repository. Your own package is just a folder you name — it needs no registration while it stays local, and a `pack` line the day you want it fetched by name.
 
 Packages nest. A package can carry its own `pack` declarations for the folders inside it, and MAM reads them from the `meta.tree` of the folder that will contain the package. This site lives at `bog/smalljs/` and is a repository of its own, listed in `bog/bog.meta.tree`, which is itself inside the `bog/` checkout listed in the root `.meta.tree`.
+
+### One file every package needs
+
+A package that gets deployed needs a `.gitattributes` with a single line:
+
+```
+* -text
+```
+
+That switches off git's end-of-line normalisation. It matters because deployment means
+committing the build output to a branch, and that output is not only text: this site ships
+57 binary files — the fonts it self-hosts and a preview image per page. Normalised on the
+way in, they arrive at the reader as broken images and fonts, while the build itself stays
+green. The MAM checkout has the same file at its root, with the font formats additionally
+marked `binary`.
+
+The scaffolder writes it for you; add it by hand in a repository you started yourself.
 
 ## Modules
 
