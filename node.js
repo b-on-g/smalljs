@@ -11254,7 +11254,7 @@ var $;
         'code-link': /(?:\w+:\/\/|#)\S+?(?=\s|\\\\|""|$)/,
         'code-comment-inline': /\/\/.*?(?:$|\/\/)|- \\(?!\\).*|(?<=^| )#!? .*/,
         'code-string': /(?:".*?"|'.*?'|`.*?`| ?\\\\.+?\\\\|\/.+?\/[dygimsu]*(?!\p{Letter})|[ \t]*\\[^\n]*)/u,
-        'code-number': /[+-]?(?:\d*\.)?\d+\w*/,
+        'code-number': /[+-]?(?:\d*\.)?\d+(\uFE0F.|\w*)/,
         'code-call': /\.?\w+(?=\()/,
         'code-sexpr': /\((\w+ )/,
         'code-field': /(?:(?<=\.|::|->)[a-z][\w-]*|(?<=[, \t] |\t)[\w-]+\??:(?!\/\/|:))/,
@@ -19723,6 +19723,299 @@ var $;
 })($ || ($ = {}));
 
 ;
+"use strict";
+var $;
+(function ($) {
+    let $mol_rest_code;
+    (function ($mol_rest_code) {
+        $mol_rest_code[$mol_rest_code["Continue"] = 100] = "Continue";
+        $mol_rest_code[$mol_rest_code["Switching protocols"] = 101] = "Switching protocols";
+        $mol_rest_code[$mol_rest_code["Processing"] = 102] = "Processing";
+        $mol_rest_code[$mol_rest_code["OK"] = 200] = "OK";
+        $mol_rest_code[$mol_rest_code["Created"] = 201] = "Created";
+        $mol_rest_code[$mol_rest_code["Accepted"] = 202] = "Accepted";
+        $mol_rest_code[$mol_rest_code["Non-Authoritative Information"] = 203] = "Non-Authoritative Information";
+        $mol_rest_code[$mol_rest_code["No Content"] = 204] = "No Content";
+        $mol_rest_code[$mol_rest_code["Reset Content"] = 205] = "Reset Content";
+        $mol_rest_code[$mol_rest_code["Partial Content"] = 206] = "Partial Content";
+        $mol_rest_code[$mol_rest_code["Multi Status"] = 207] = "Multi Status";
+        $mol_rest_code[$mol_rest_code["Already Reported"] = 208] = "Already Reported";
+        $mol_rest_code[$mol_rest_code["IM Used"] = 226] = "IM Used";
+        $mol_rest_code[$mol_rest_code["Multiple Choices"] = 300] = "Multiple Choices";
+        $mol_rest_code[$mol_rest_code["Moved Permanently"] = 301] = "Moved Permanently";
+        $mol_rest_code[$mol_rest_code["Found"] = 302] = "Found";
+        $mol_rest_code[$mol_rest_code["See Other"] = 303] = "See Other";
+        $mol_rest_code[$mol_rest_code["Not Modified"] = 304] = "Not Modified";
+        $mol_rest_code[$mol_rest_code["Use Proxy"] = 305] = "Use Proxy";
+        $mol_rest_code[$mol_rest_code["Temporary Redirect"] = 307] = "Temporary Redirect";
+        $mol_rest_code[$mol_rest_code["Bad Request"] = 400] = "Bad Request";
+        $mol_rest_code[$mol_rest_code["Unauthorized"] = 401] = "Unauthorized";
+        $mol_rest_code[$mol_rest_code["Payment Required"] = 402] = "Payment Required";
+        $mol_rest_code[$mol_rest_code["Forbidden"] = 403] = "Forbidden";
+        $mol_rest_code[$mol_rest_code["Not Found"] = 404] = "Not Found";
+        $mol_rest_code[$mol_rest_code["Method Not Allowed"] = 405] = "Method Not Allowed";
+        $mol_rest_code[$mol_rest_code["Not Acceptable"] = 406] = "Not Acceptable";
+        $mol_rest_code[$mol_rest_code["Proxy Authentication Required"] = 407] = "Proxy Authentication Required";
+        $mol_rest_code[$mol_rest_code["Request Timeout"] = 408] = "Request Timeout";
+        $mol_rest_code[$mol_rest_code["Conflict"] = 409] = "Conflict";
+        $mol_rest_code[$mol_rest_code["Gone"] = 410] = "Gone";
+        $mol_rest_code[$mol_rest_code["Length Required"] = 411] = "Length Required";
+        $mol_rest_code[$mol_rest_code["Precondition Failed"] = 412] = "Precondition Failed";
+        $mol_rest_code[$mol_rest_code["Request Entity Too Large"] = 413] = "Request Entity Too Large";
+        $mol_rest_code[$mol_rest_code["Request URI Too Long"] = 414] = "Request URI Too Long";
+        $mol_rest_code[$mol_rest_code["Unsupported Media Type"] = 415] = "Unsupported Media Type";
+        $mol_rest_code[$mol_rest_code["Requested Range Not Satisfiable"] = 416] = "Requested Range Not Satisfiable";
+        $mol_rest_code[$mol_rest_code["Expectation Failed"] = 417] = "Expectation Failed";
+        $mol_rest_code[$mol_rest_code["Teapot"] = 418] = "Teapot";
+        $mol_rest_code[$mol_rest_code["Unprocessable Entity"] = 422] = "Unprocessable Entity";
+        $mol_rest_code[$mol_rest_code["Locked"] = 423] = "Locked";
+        $mol_rest_code[$mol_rest_code["Failed Dependency"] = 424] = "Failed Dependency";
+        $mol_rest_code[$mol_rest_code["Upgrade Required"] = 426] = "Upgrade Required";
+        $mol_rest_code[$mol_rest_code["Precondition Required"] = 428] = "Precondition Required";
+        $mol_rest_code[$mol_rest_code["Too Many Requests"] = 429] = "Too Many Requests";
+        $mol_rest_code[$mol_rest_code["Request Header Fields Too Large"] = 431] = "Request Header Fields Too Large";
+        $mol_rest_code[$mol_rest_code["Unavailable For Legal Reasons"] = 451] = "Unavailable For Legal Reasons";
+        $mol_rest_code[$mol_rest_code["Internal Server Error"] = 500] = "Internal Server Error";
+        $mol_rest_code[$mol_rest_code["Not Implemented"] = 501] = "Not Implemented";
+        $mol_rest_code[$mol_rest_code["Bad Gateway"] = 502] = "Bad Gateway";
+        $mol_rest_code[$mol_rest_code["Service Unavailable"] = 503] = "Service Unavailable";
+        $mol_rest_code[$mol_rest_code["Gateway Timeout"] = 504] = "Gateway Timeout";
+        $mol_rest_code[$mol_rest_code["HTTP Version Not Supported"] = 505] = "HTTP Version Not Supported";
+        $mol_rest_code[$mol_rest_code["Insufficient Storage"] = 507] = "Insufficient Storage";
+        $mol_rest_code[$mol_rest_code["Loop Detected"] = 508] = "Loop Detected";
+        $mol_rest_code[$mol_rest_code["Not Extended"] = 510] = "Not Extended";
+        $mol_rest_code[$mol_rest_code["Network Authentication Required"] = 511] = "Network Authentication Required";
+        $mol_rest_code[$mol_rest_code["Network Read Timeout Error"] = 598] = "Network Read Timeout Error";
+        $mol_rest_code[$mol_rest_code["Network Connect Timeout Error"] = 599] = "Network Connect Timeout Error";
+    })($mol_rest_code = $.$mol_rest_code || ($.$mol_rest_code = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    function pass(data) {
+        return data;
+    }
+    function $mol_error_fence(task, fallback, loading = pass) {
+        try {
+            return task();
+        }
+        catch (error) {
+            let normalized;
+            try {
+                normalized = $mol_promise_like(error) ? loading(error) : fallback(error);
+            }
+            catch (sub_error) {
+                normalized = $mol_promise_like(sub_error) ? sub_error : new $mol_error_mix(sub_error.message, { error }, sub_error);
+            }
+            if (normalized instanceof Error || $mol_promise_like(normalized)) {
+                $mol_fail_hidden(normalized);
+            }
+            return normalized;
+        }
+    }
+    $.$mol_error_fence = $mol_error_fence;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_error_enriched(cause, cb) {
+        return $mol_error_fence(cb, e => new $mol_error_mix(e.message, cause, e));
+    }
+    $.$mol_error_enriched = $mol_error_enriched;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_dom_parse(text, type = 'application/xhtml+xml') {
+        const parser = new $mol_dom_context.DOMParser();
+        const doc = parser.parseFromString(text, type);
+        const error = doc.getElementsByTagName('parsererror');
+        if (error.length)
+            throw new Error(error[0].textContent);
+        return doc;
+    }
+    $.$mol_dom_parse = $mol_dom_parse;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_fetch_response extends $mol_object {
+        native;
+        request;
+        status() {
+            const types = ['unknown', 'inform', 'success', 'redirect', 'wrong', 'failed'];
+            return types[Math.floor(this.native.status / 100)];
+        }
+        code() {
+            return this.native.status;
+        }
+        ok() {
+            return this.native.ok;
+        }
+        message() {
+            return $mol_rest_code[this.code()] || `HTTP Error ${this.code()}`;
+        }
+        headers() {
+            return this.native.headers;
+        }
+        mime() {
+            return this.headers().get('content-type');
+        }
+        stream() {
+            return this.native.body;
+        }
+        text() {
+            const buffer = this.buffer();
+            const mime = this.mime() || '';
+            const [, charset] = /charset=(.*)/.exec(mime) || [, 'utf-8'];
+            const decoder = new TextDecoder(charset);
+            return decoder.decode(buffer);
+        }
+        json() {
+            return $mol_error_enriched(this, () => $mol_wire_sync(this.native).json());
+        }
+        blob() {
+            return $mol_error_enriched(this, () => $mol_wire_sync(this.native).blob());
+        }
+        buffer() {
+            return $mol_error_enriched(this, () => $mol_wire_sync(this.native).arrayBuffer());
+        }
+        xml() {
+            return $mol_dom_parse(this.text(), 'application/xml');
+        }
+        xhtml() {
+            return $mol_dom_parse(this.text(), 'application/xhtml+xml');
+        }
+        html() {
+            return $mol_dom_parse(this.text(), 'text/html');
+        }
+    }
+    __decorate([
+        $mol_action
+    ], $mol_fetch_response.prototype, "stream", null);
+    __decorate([
+        $mol_action
+    ], $mol_fetch_response.prototype, "text", null);
+    __decorate([
+        $mol_action
+    ], $mol_fetch_response.prototype, "xml", null);
+    __decorate([
+        $mol_action
+    ], $mol_fetch_response.prototype, "xhtml", null);
+    __decorate([
+        $mol_action
+    ], $mol_fetch_response.prototype, "html", null);
+    $.$mol_fetch_response = $mol_fetch_response;
+    class $mol_fetch_request extends $mol_object {
+        native;
+        response_async() {
+            const controller = new AbortController();
+            let done = false;
+            const request = new Request(this.native, { signal: controller.signal });
+            const promise = fetch(request).finally(() => {
+                done = true;
+            });
+            return Object.assign(promise, {
+                destructor: () => {
+                    // Abort of done request breaks response parsing
+                    if (!done && !controller.signal.aborted)
+                        controller.abort();
+                },
+            });
+        }
+        response() {
+            return this.$.$mol_fetch_response.make({
+                native: $mol_wire_sync(this).response_async(),
+                request: this
+            });
+        }
+        success() {
+            const response = this.response();
+            if (response.status() === 'success')
+                return response;
+            throw new Error(response.message(), { cause: response });
+        }
+    }
+    __decorate([
+        $mol_action
+    ], $mol_fetch_request.prototype, "response", null);
+    $.$mol_fetch_request = $mol_fetch_request;
+    class $mol_fetch extends $mol_object {
+        static request(input, init) {
+            return this.$.$mol_fetch_request.make({
+                native: new Request(input, init)
+            });
+        }
+        static response(input, init) {
+            return this.request(input, init).response();
+        }
+        static success(input, init) {
+            return this.request(input, init).success();
+        }
+        static stream(input, init) {
+            return this.success(input, init).stream();
+        }
+        static text(input, init) {
+            return this.success(input, init).text();
+        }
+        static json(input, init) {
+            return this.success(input, init).json();
+        }
+        static blob(input, init) {
+            return this.success(input, init).blob();
+        }
+        static buffer(input, init) {
+            return this.success(input, init).buffer();
+        }
+        static xml(input, init) {
+            return this.success(input, init).xml();
+        }
+        static xhtml(input, init) {
+            return this.success(input, init).xhtml();
+        }
+        static html(input, init) {
+            return this.success(input, init).html();
+        }
+    }
+    __decorate([
+        $mol_action
+    ], $mol_fetch, "request", null);
+    $.$mol_fetch = $mol_fetch;
+})($ || ($ = {}));
+
+;
+	($.$mol_icon_link) = class $mol_icon_link extends ($.$mol_icon) {
+		path(){
+			return "M3.9,12C3.9,10.29 5.29,8.9 7,8.9H11V7H7A5,5 0 0,0 2,12A5,5 0 0,0 7,17H11V15.1H7C5.29,15.1 3.9,13.71 3.9,12M8,13H16V11H8V13M17,7H13V8.9H17C18.71,8.9 20.1,10.29 20.1,12C20.1,13.71 18.71,15.1 17,15.1H13V17H17A5,5 0 0,0 22,12A5,5 0 0,0 17,7Z";
+		}
+	};
+
+
+;
+"use strict";
+
+
+;
+	($.$mol_icon_link_variant) = class $mol_icon_link_variant extends ($.$mol_icon) {
+		path(){
+			return "M10.59,13.41C11,13.8 11,14.44 10.59,14.83C10.2,15.22 9.56,15.22 9.17,14.83C7.22,12.88 7.22,9.71 9.17,7.76V7.76L12.71,4.22C14.66,2.27 17.83,2.27 19.78,4.22C21.73,6.17 21.73,9.34 19.78,11.29L18.29,12.78C18.3,11.96 18.17,11.14 17.89,10.36L18.36,9.88C19.54,8.71 19.54,6.81 18.36,5.64C17.19,4.46 15.29,4.46 14.12,5.64L10.59,9.17C9.41,10.34 9.41,12.24 10.59,13.41M13.41,9.17C13.8,8.78 14.44,8.78 14.83,9.17C16.78,11.12 16.78,14.29 14.83,16.24V16.24L11.29,19.78C9.34,21.73 6.17,21.73 4.22,19.78C2.27,17.83 2.27,14.66 4.22,12.71L5.71,11.22C5.7,12.04 5.83,12.86 6.11,13.65L5.64,14.12C4.46,15.29 4.46,17.19 5.64,18.36C6.81,19.54 8.71,19.54 9.88,18.36L13.41,14.83C14.59,13.66 14.59,11.76 13.41,10.59C13,10.2 13,9.56 13.41,9.17Z";
+		}
+	};
+
+
+;
+"use strict";
+
+
+;
 	($.$mol_icon_undo) = class $mol_icon_undo extends ($.$mol_icon) {
 		path(){
 			return "M12.5,8C9.85,8 7.45,9 5.6,10.6L2,7V16H11L7.38,12.38C8.77,11.22 10.54,10.5 12.5,10.5C16.04,10.5 19.05,12.81 20.1,16L22.47,15.22C21.08,11.03 17.15,8 12.5,8Z";
@@ -19779,6 +20072,55 @@ var $;
 			const obj = new this.$.$mol_view();
 			return obj;
 		}
+		samples_hint(){
+			return (this.$.$mol_locale.text("$bog_smalljs_playground_samples_hint"));
+		}
+		samples_label(){
+			return "";
+		}
+		Samples_label(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.samples_label())]);
+			return obj;
+		}
+		Samples_chevron(){
+			const obj = new this.$.$mol_icon_chevron_down();
+			return obj;
+		}
+		sample_options(){
+			return [];
+		}
+		Samples_menu(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.sample_options()));
+			return obj;
+		}
+		Samples(){
+			const obj = new this.$.$mol_pick();
+			(obj.hint) = () => ((this.samples_hint()));
+			(obj.align) = () => ("bottom_right");
+			(obj.trigger_content) = () => ([(this.Samples_label()), (this.Samples_chevron())]);
+			(obj.bubble_content) = () => ([(this.Samples_menu())]);
+			return obj;
+		}
+		share_title(){
+			return "";
+		}
+		share(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Share_icon(){
+			const obj = new this.$.$mol_icon_link_variant();
+			return obj;
+		}
+		Share(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.hint) = () => ((this.share_title()));
+			(obj.click) = (next) => ((this.share(next)));
+			(obj.sub) = () => ([(this.Share_icon())]);
+			return obj;
+		}
 		reset_hint(){
 			return (this.$.$mol_locale.text("$bog_smalljs_playground_reset_hint"));
 		}
@@ -19803,6 +20145,8 @@ var $;
 				(this.Ts_tab()), 
 				(this.Css_tab()), 
 				(this.Tabs_gap()), 
+				(this.Samples()), 
+				(this.Share()), 
 				(this.Reset())
 			];
 		}
@@ -19865,6 +20209,43 @@ var $;
 		store_scope(){
 			return "";
 		}
+		sample_title(id){
+			return "";
+		}
+		sample_pick(id, next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		sample_hello_title(){
+			return (this.$.$mol_locale.text("$bog_smalljs_playground_sample_hello_title"));
+		}
+		sample_counter_title(){
+			return (this.$.$mol_locale.text("$bog_smalljs_playground_sample_counter_title"));
+		}
+		sample_fetch_title(){
+			return (this.$.$mol_locale.text("$bog_smalljs_playground_sample_fetch_title"));
+		}
+		sample_args_title(){
+			return (this.$.$mol_locale.text("$bog_smalljs_playground_sample_args_title"));
+		}
+		sample_state_title(){
+			return (this.$.$mol_locale.text("$bog_smalljs_playground_sample_state_title"));
+		}
+		sample_login_title(){
+			return (this.$.$mol_locale.text("$bog_smalljs_playground_sample_login_title"));
+		}
+		Sample_option(id){
+			const obj = new this.$.$mol_button_minor();
+			(obj.click) = (next) => ((this.sample_pick(id, next)));
+			(obj.sub) = () => ([(this.sample_title(id))]);
+			return obj;
+		}
+		share_hint(){
+			return (this.$.$mol_locale.text("$bog_smalljs_playground_share_hint"));
+		}
+		share_done_hint(){
+			return (this.$.$mol_locale.text("$bog_smalljs_playground_share_done_hint"));
+		}
 		attr(){
 			return {"bog_smalljs_pg_tab": (this.tab())};
 		}
@@ -19879,6 +20260,13 @@ var $;
 	($mol_mem(($.$bog_smalljs_playground.prototype), "show_css"));
 	($mol_mem(($.$bog_smalljs_playground.prototype), "Css_tab"));
 	($mol_mem(($.$bog_smalljs_playground.prototype), "Tabs_gap"));
+	($mol_mem(($.$bog_smalljs_playground.prototype), "Samples_label"));
+	($mol_mem(($.$bog_smalljs_playground.prototype), "Samples_chevron"));
+	($mol_mem(($.$bog_smalljs_playground.prototype), "Samples_menu"));
+	($mol_mem(($.$bog_smalljs_playground.prototype), "Samples"));
+	($mol_mem(($.$bog_smalljs_playground.prototype), "share"));
+	($mol_mem(($.$bog_smalljs_playground.prototype), "Share_icon"));
+	($mol_mem(($.$bog_smalljs_playground.prototype), "Share"));
 	($mol_mem(($.$bog_smalljs_playground.prototype), "reset"));
 	($mol_mem(($.$bog_smalljs_playground.prototype), "Reset_icon"));
 	($mol_mem(($.$bog_smalljs_playground.prototype), "Reset"));
@@ -19889,6 +20277,8 @@ var $;
 	($mol_mem(($.$bog_smalljs_playground.prototype), "Preview"));
 	($mol_mem(($.$bog_smalljs_playground.prototype), "Preview_pane"));
 	($mol_mem(($.$bog_smalljs_playground.prototype), "draft"));
+	($mol_mem_key(($.$bog_smalljs_playground.prototype), "sample_pick"));
+	($mol_mem_key(($.$bog_smalljs_playground.prototype), "Sample_option"));
 
 
 ;
@@ -20935,11 +21325,70 @@ var $;
 
 ;
 "use strict";
+var $;
+(function ($) {
+    const S = String.fromCharCode(36); // "$" — вне разбора зависимостей MAM
+    const lines = (...rows) => rows.join('\n') + '\n';
+    $.$bog_smalljs_playground_samples = {
+        hello: {
+            root: `${S}my_hello`,
+            tree: lines(`${S}my_hello ${S}mol_view`, `\tname? \\world`, `\tgreeting \\`, `\tsub /`, `\t\t<= Field ${S}mol_string`, `\t\t\tvalue? <=> name?`, `\t\t\thint \\Your name`, `\t\t<= Greeting ${S}mol_view`, `\t\t\tsub / <= greeting`),
+            // Приветствие view.tree сам не соберёт — за него отвечает класс.
+            ts: lines(`class ${S}my_hello extends ${S}.${S}my_hello {`, `\tgreeting() {`, `\t\treturn 'Hello, ' + ( this.name() || 'stranger' ) + '!'`, `\t}`, `}`),
+            css: lines(`namespace ${S} {`, `\t${S}mol_style_define( ${S}my_hello, {`, `\t\tflex: { direction: 'column', gap: '1rem' },`, `\t\tpadding: '1.5rem',`, `\t\tGreeting: {`, `\t\t\tfont: { size: '1.5rem', weight: 700 },`, `\t\t\tcolor: '#0088ff',`, `\t\t},`, `\t} )`, `}`),
+        },
+        counter: {
+            root: `${S}my_demo`,
+            tree: lines(`${S}my_demo ${S}mol_view`, `\tcount_text \\0`, `\tinc? null`, `\tsub /`, `\t\t<= Value ${S}mol_view`, `\t\t\tsub / <= count_text`, `\t\t<= Button ${S}mol_button_major`, `\t\t\tclick? <=> inc?`, `\t\t\tsub / <= button_label \\Count up`),
+            ts: lines(`class ${S}my_demo extends ${S}.${S}my_demo {`, `\t@ ${S}mol_mem count( next?: number ) { return next ?? 0 }`, `\t@ ${S}mol_action inc() { this.count( this.count() + 1 ) }`, `\tcount_text() { return String( this.count() ) }`, `}`),
+            css: lines(`namespace ${S} {`, `\t${S}mol_style_define( ${S}my_demo, {`, `\t\tflex: { direction: 'column', gap: '1rem' },`, `\t\tpadding: '1.5rem',`, `\t\tValue: {`, `\t\t\tfont: { size: '2rem', weight: 700 },`, `\t\t\tcolor: '#0088ff',`, `\t\t\tpadding: { bottom: '0.5rem' },`, `\t\t},`, `\t} )`, `}`),
+        },
+        fetch: {
+            root: `${S}my_fetch`,
+            tree: lines(`${S}my_fetch ${S}mol_view`, `\trepo \\`, `\tstars \\`, `\tabout \\`, `\tsub /`, `\t\t<= Repo ${S}mol_view`, `\t\t\tsub / <= repo`, `\t\t<= Stars ${S}mol_view`, `\t\t\tsub / <= stars`, `\t\t<= About ${S}mol_view`, `\t\t\tsub / <= about`),
+            // Ждать ответ не нужно: чтение подвисает, пока данные не придут,
+            // а $mol сам показывает заглушку и дорисовывает по готовности.
+            ts: lines(`class ${S}my_fetch extends ${S}.${S}my_fetch {`, ``, `\t@ ${S}mol_mem data() {`, `\t\treturn ${S}mol_fetch.json(`, `\t\t\t'https://api.github.com/repos/hyoo-ru/mam_mol'`, `\t\t) as { full_name: string, stargazers_count: number, description: string }`, `\t}`, ``, `\trepo() { return this.data().full_name }`, `\tstars() { return String( this.data().stargazers_count ) + ' stars' }`, `\tabout() { return this.data().description }`, ``, `}`),
+            css: lines(`namespace ${S} {`, `\t${S}mol_style_define( ${S}my_fetch, {`, `\t\tflex: { direction: 'column', gap: '0.5rem' },`, `\t\tpadding: '1.5rem',`, `\t\tRepo: { font: { size: '1.25rem', weight: 700 } },`, `\t\tStars: { color: '#0088ff' },`, `\t\tAbout: { opacity: 0.7 },`, `\t} )`, `}`),
+        },
+        args: {
+            root: `${S}my_args`,
+            tree: lines(`${S}my_args ${S}mol_view`, `\tpage? \\home`, `\tgo_home? null`, `\tgo_about? null`, `\ttitle \\`, `\tsub /`, `\t\t<= Menu ${S}mol_row`, `\t\t\tsub /`, `\t\t\t\t<= Home ${S}mol_button_minor`, `\t\t\t\t\tclick? <=> go_home?`, `\t\t\t\t\tsub / \\Home`, `\t\t\t\t<= About ${S}mol_button_minor`, `\t\t\t\t\tclick? <=> go_about?`, `\t\t\t\t\tsub / \\About`, `\t\t<= Title ${S}mol_view`, `\t\t\tsub / <= title`),
+            // Адресная строка и есть состояние: экран переживает перезагрузку,
+            // работает «назад» и ссылкой можно поделиться. Это же и роутинг.
+            ts: lines(`class ${S}my_args extends ${S}.${S}my_args {`, ``, `\t@ ${S}mol_mem page( next?: string ) {`, `\t\t// ключ свой, чтобы не спорить с аргументами самого сайта`, `\t\treturn ${S}mol_state_arg.value( 'demo_page', next ) ?? 'home'`, `\t}`, ``, `\t@ ${S}mol_action go_home() { this.page( 'home' ); return null }`, `\t@ ${S}mol_action go_about() { this.page( 'about' ); return null }`, ``, `\ttitle() {`, `\t\treturn this.page() === 'about'`, `\t\t\t? 'About — the address bar changed too'`, `\t\t\t: 'Home — switch and look at the URL'`, `\t}`, ``, `}`),
+            css: lines(`namespace ${S} {`, `\t${S}mol_style_define( ${S}my_args, {`, `\t\tflex: { direction: 'column', gap: '1rem' },`, `\t\tpadding: '1.5rem',`, `\t\tMenu: { gap: '0.5rem' },`, `\t\tTitle: { font: { size: '1.25rem', weight: 700 } },`, `\t} )`, `}`),
+        },
+        state: {
+            root: `${S}my_state`,
+            tree: lines(`${S}my_state ${S}mol_view`, `\tnote? \\`, `\tsub /`, `\t\t<= Hint ${S}mol_view`, `\t\t\tsub / \\Type something, then reload the page`, `\t\t<= Note ${S}mol_string`, `\t\t\tvalue? <=> note?`, `\t\t\thint \\It survives a reload`),
+            // Единственное отличие от обычного поля — где лежит значение.
+            ts: lines(`class ${S}my_state extends ${S}.${S}my_state {`, `\t@ ${S}mol_mem note( next?: string ) {`, `\t\treturn ${S}mol_state_local.value( 'my_demo_note', next ) ?? ''`, `\t}`, `}`),
+            css: lines(`namespace ${S} {`, `\t${S}mol_style_define( ${S}my_state, {`, `\t\tflex: { direction: 'column', gap: '0.75rem' },`, `\t\tpadding: '1.5rem',`, `\t\tHint: { opacity: 0.7 },`, `\t} )`, `}`),
+        },
+        login: {
+            root: `${S}my_login`,
+            tree: lines(`${S}my_login ${S}mol_view`, `\tmail? \\`, `\tpass? \\`, `\thint \\`, `\tvalid false`, `\tsubmit? null`, `\tsub /`, `\t\t<= Mail ${S}mol_string`, `\t\t\tvalue? <=> mail?`, `\t\t\thint \\E-mail`, `\t\t<= Pass ${S}mol_string`, `\t\t\tfield *`, `\t\t\t\t^`, `\t\t\t\ttype \\password`, `\t\t\tvalue? <=> pass?`, `\t\t\thint \\Password`, `\t\t<= Hint_text ${S}mol_view`, `\t\t\tsub / <= hint`, `\t\t<= Send ${S}mol_button_major`, `\t\t\tenabled <= valid`, `\t\t\tclick? <=> submit?`, `\t\t\tsub / \\Sign in`),
+            // Кнопка и подсказка ничего не хранят — они пересчитываются из полей.
+            ts: lines(`class ${S}my_login extends ${S}.${S}my_login {`, ``, `\tmail_ok() { return /.+@.+\\..+/.test( this.mail() ) }`, `\tpass_ok() { return this.pass().length >= 8 }`, `\tvalid() { return this.mail_ok() && this.pass_ok() }`, ``, `\t@ ${S}mol_mem sent( next?: boolean ) { return next ?? false }`, `\t@ ${S}mol_action submit() { this.sent( true ); return null }`, ``, `\thint() {`, `\t\tif( this.sent() ) return 'Signed in as ' + this.mail()`, `\t\tif( !this.mail() && !this.pass() ) return 'Fill both fields'`, `\t\tif( !this.mail_ok() ) return 'This e-mail looks wrong'`, `\t\tif( !this.pass_ok() ) return 'Password: 8 characters or more'`, `\t\treturn 'Looks good'`, `\t}`, ``, `}`),
+            css: lines(`namespace ${S} {`, `\t${S}mol_style_define( ${S}my_login, {`, `\t\tflex: { direction: 'column', gap: '0.75rem' },`, `\t\tpadding: '1.5rem',`, `\t\tmaxWidth: '20rem',`, `\t\tHint_text: { opacity: 0.7, font: { size: '0.875rem' } },`, `\t} )`, `}`),
+        },
+    };
+    /** Порядок в выпадашке. */
+    $.$bog_smalljs_playground_sample_ids = ['hello', 'counter', 'fetch', 'args', 'state', 'login'];
+})($ || ($ = {}));
+
+;
+"use strict";
 
 
 ;
 "use strict";
 var $;
+(function ($) {
+    /** Где отдельно стоящая песочница держит черновики. */
+    $.$bog_smalljs_playground_store = '$bog_smalljs_playground';
+})($ || ($ = {}));
 (function ($_1) {
     var $$;
     (function ($$) {
@@ -20961,18 +21410,7 @@ var $;
             default_tree() {
                 if (this.seed_tree())
                     return this.seed_tree(); // seeded by an embedder (e.g. course)
-                const S = String.fromCharCode(36); // "$" — kept out of MAM's dep scan
-                return [
-                    `${S}my_demo ${S}mol_view`,
-                    `\tcount_text \\0`,
-                    `\tinc? null`,
-                    `\tsub /`,
-                    `\t\t<= Value ${S}mol_view`,
-                    `\t\t\tsub / <= count_text`,
-                    `\t\t<= Button ${S}mol_button_major`,
-                    `\t\t\tclick? <=> inc?`,
-                    `\t\t\tsub / <= button_label \\Count up`,
-                ].join('\n') + '\n';
+                return $bog_smalljs_playground_samples[this.sample()].tree;
             }
             // The standalone defaults (counter logic + styling) target the $my_demo component, so
             // they only make sense while that default tree is loaded. When a different tree is in
@@ -20980,54 +21418,50 @@ var $;
             // `code` but clears `ts`/`css` — attaching the $my_demo class/styles would compile a
             // reference to an undefined component and blow up the preview ("$my_demo is not
             // defined"). In that case the defaults must be empty.
+            // --- примеры -------------------------------------------------------
+            /** Выбранный пример. Живёт в URL, чтобы ссылкой можно было поделиться. */
+            sample(next) {
+                const id = this.$.$mol_state_arg.value('sample', next);
+                return id && $bog_smalljs_playground_samples[id] ? id : 'counter';
+            }
+            sample_ids() { return $bog_smalljs_playground_sample_ids; }
+            sample_options() {
+                return this.sample_ids().map(id => this.Sample_option(id));
+            }
+            sample_title(id) {
+                return this.$.$mol_locale.text(`$bog_smalljs_playground_sample_${id}_title`) || id;
+            }
+            samples_label() { return this.sample_title(this.sample()); }
+            /** Выбор примера — это сброс на него: черновики берутся из дефолтов. */
+            sample_pick(id) {
+                this.sample(id);
+                this.reset();
+                this.Samples().showed(false);
+                return null;
+            }
             tree_is_default() {
-                const S = String.fromCharCode(36); // "$" — kept out of MAM's dep scan
                 const tree = this.stored('code') || this.default_tree();
-                return /(\$[\w$]+)/.exec(tree)?.[1] === S + 'my_demo';
+                const root = $bog_smalljs_playground_samples[this.sample()]?.root;
+                return !!root && /(\$[\w$]+)/.exec(tree)?.[1] === root;
             }
             default_css() {
                 // An embedder controls the css via seed_css, mirroring default_ts's seed gate.
                 if (this.seed_tree())
                     return this.seed_css();
-                // A non-default tree (e.g. a doc snippet) has no $my_demo to style.
+                // Дерево увели от примера (например, сниппет из доков) — стилить нечего.
                 if (!this.tree_is_default())
                     return '';
-                // Standalone: a working view.css.ts sample that styles the default counter,
-                // so opening the css.ts tab shows real, applied styling.
-                const S = String.fromCharCode(36); // "$" — kept out of MAM's dep scan
-                return [
-                    `namespace ${S} {`,
-                    `\t${S}mol_style_define( ${S}my_demo, {`,
-                    `\t\tflex: { direction: 'column', gap: '1rem' },`,
-                    `\t\tpadding: '1.5rem',`,
-                    `\t\tValue: {`,
-                    `\t\t\tfont: { size: '2rem', weight: 700 },`,
-                    `\t\t\tcolor: '#0088ff',`,
-                    `\t\t\tpadding: { bottom: '0.5rem' },`,
-                    `\t\t},`,
-                    `\t} )`,
-                    `}`,
-                ].join('\n') + '\n';
+                return $bog_smalljs_playground_samples[this.sample()].css;
             }
             default_ts() {
                 // An embedder (e.g. the course) fully controls the ts via seed_ts,
                 // even when empty — mirror default_tree's seed gate.
                 if (this.seed_tree())
                     return this.seed_ts();
-                // A non-default tree (e.g. a doc snippet) has no $my_demo class to extend.
+                // Дерево увели от примера — расширять нечего.
                 if (!this.tree_is_default())
                     return '';
-                // Standalone playground: ship a working counter so the default
-                // example is live on open (the tree alone has no logic, so inc()
-                // would be dead). This does fetch the TS compiler on first render.
-                const S = String.fromCharCode(36); // "$" — kept out of MAM's dep scan
-                return [
-                    `class ${S}my_demo extends ${S}.${S}my_demo {`,
-                    `\t@ ${S}mol_mem count( next?: number ) { return next ?? 0 }`,
-                    `\t@ ${S}mol_action inc() { this.count( this.count() + 1 ) }`,
-                    `\tcount_text() { return String( this.count() ) }`,
-                    `}`,
-                ].join('\n') + '\n';
+                return $bog_smalljs_playground_samples[this.sample()].ts;
             }
             // --- tabs ---------------------------------------------------------
             tab(next) {
@@ -21047,10 +21481,23 @@ var $;
             // Persistence funnel — standalone stores in the URL hash (shareable); when an
             // embedder sets store_scope (e.g. the course, per lesson), store in localStorage.
             stored(key, next) {
-                const scope = this.store_scope();
-                if (scope)
+                // Раньше отдельно стоящая песочница держала код прямо в адресной строке,
+                // и URL распухал от первого же символа. Теперь черновики живут в
+                // localStorage — адрес остаётся чистым и переживает перезагрузку,
+                // а длинную ссылку собирает кнопка «Поделиться», когда её попросят.
+                // У встраивателя (курс) свой скоуп на урок — он работал так и раньше.
+                const scope = this.store_scope() || $_1.$bog_smalljs_playground_store;
+                if (next !== undefined)
                     return this.$.$mol_state_local.value(`${scope}/${key}`, next) ?? null;
-                return this.$.$mol_state_arg.value(key, next) ?? null;
+                const local = this.$.$mol_state_local.value(`${scope}/${key}`);
+                if (local != null)
+                    return local;
+                // Ссылка — транспорт, а не хранилище: из неё только читаем.
+                // Свои правки уедут в localStorage и с этого момента будут главнее,
+                // а адрес освободится при первом же изменении (см. commit).
+                if (this.store_scope())
+                    return null;
+                return this.$.$mol_state_arg.value(key) ?? null;
             }
             // --- editor sources (immediate) + debounced committed copies ------
             tree_draft(next) {
@@ -21099,10 +21546,35 @@ var $;
                     return this.css_draft();
                 return this.tree_draft();
             }
+            // --- ссылка: принять и отдать ---------------------------------------
+            shared(next) { return next ?? false; }
+            share_title() {
+                return this.shared() ? this.share_done_hint() : this.share_hint();
+            }
+            /** Ссылка собирается по требованию, а не висит в адресе постоянно. */
+            share() {
+                const link = this.$.$mol_state_arg.link({
+                    code: this.tree_draft(),
+                    ts: this.ts_draft(),
+                    css: this.css_draft(),
+                    sample: this.sample(),
+                });
+                // Без await: обработчик события в $mol может быть переигран, а
+                // повторная запись в буфер вне жеста пользователя уже не пройдёт.
+                this.$.$mol_dom_context.navigator?.clipboard?.writeText(link);
+                this.shared(true);
+                this.timers['shared']?.destructor();
+                this.timers['shared'] = new this.$.$mol_after_timeout(2000, () => this.shared(false));
+                return null;
+            }
             // --- сброс к исходному примеру ------------------------------------
             /** Кнопки сброса просто нет в разметке, пока откатывать нечего. */
             tabs_content() {
                 const list = [this.Tree_tab(), this.Ts_tab(), this.Css_tab(), this.Tabs_gap()];
+                // Выбор примера не показываем, когда содержимое задал встраиватель:
+                // у курса свой сценарий на урок, чужие примеры там ни к чему.
+                if (!this.seed_tree())
+                    list.push(this.Samples(), this.Share());
                 if (this.is_modified())
                     list.push(this.Reset());
                 return list;
@@ -21149,6 +21621,11 @@ var $;
             }
             commit(key, value) {
                 this.stored(key, value);
+                // Пришли по ссылке и начали править — код уже в localStorage,
+                // держать его ещё и в адресе незачем.
+                if (!this.store_scope() && this.$.$mol_state_arg.value(key) !== null) {
+                    this.$.$mol_state_arg.value(key, null);
+                }
                 if (key === 'ts')
                     this.ts_committed(value);
                 else if (key === 'css')
@@ -21242,6 +21719,12 @@ var $;
         }
         __decorate([
             $mol_mem
+        ], $bog_smalljs_playground.prototype, "sample", null);
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_playground.prototype, "sample_pick", null);
+        __decorate([
+            $mol_mem
         ], $bog_smalljs_playground.prototype, "tab", null);
         __decorate([
             $mol_action
@@ -21270,6 +21753,12 @@ var $;
         __decorate([
             $mol_mem
         ], $bog_smalljs_playground.prototype, "css_committed", null);
+        __decorate([
+            $mol_mem
+        ], $bog_smalljs_playground.prototype, "shared", null);
+        __decorate([
+            $mol_action
+        ], $bog_smalljs_playground.prototype, "share", null);
         __decorate([
             $mol_action
         ], $bog_smalljs_playground.prototype, "reset", null);
@@ -21345,6 +21834,66 @@ var $;
         // Распорка отжимает сброс к правому краю ряда табов.
         Tabs_gap: {
             flex: { grow: 1 },
+        },
+        // Выбор примера: в том же ряду, что и табы, слева от сброса.
+        Samples: {
+            align: { self: 'center' },
+            margin: { right: '0.25rem' },
+        },
+        Samples_label: {
+            font: { size: '0.8125rem' },
+            color: $bog_builderui_tokens.shade,
+        },
+        Samples_chevron: {
+            width: '0.875rem',
+            height: '0.875rem',
+            flex: { shrink: 0 },
+            color: $bog_builderui_tokens.shade,
+        },
+        Samples_menu: {
+            flex: { direction: 'column' },
+            padding: {
+                top: '0.25rem',
+                bottom: '0.25rem',
+                left: '0.25rem',
+                right: '0.25rem',
+            },
+            minWidth: '11rem',
+        },
+        Sample_option: {
+            justify: { content: 'flex-start' },
+            padding: {
+                top: '0.375rem',
+                bottom: '0.375rem',
+                left: '0.625rem',
+                right: '0.625rem',
+            },
+            border: { radius: '0.375rem' },
+            font: { size: '0.875rem' },
+            ':hover': {
+                background: { color: $bog_builderui_tokens.card },
+            },
+        },
+        Share: {
+            align: { self: 'center' },
+            margin: { right: '0.25rem' },
+            padding: {
+                top: '0.25rem',
+                bottom: '0.25rem',
+                left: '0.5rem',
+                right: '0.5rem',
+            },
+            color: $bog_builderui_tokens.shade,
+            border: { radius: '0.375rem' },
+            ':hover': {
+                color: $bog_builderui_tokens.text,
+                background: { color: $bog_builderui_tokens.card },
+            },
+        },
+        Share_icon: {
+            width: '1rem',
+            height: '1rem',
+            flex: { shrink: 0 },
         },
         // Кнопки нет в разметке, пока откатывать нечего — см. tabs_content().
         Reset: {

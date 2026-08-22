@@ -8594,6 +8594,24 @@ declare namespace $ {
 
 declare namespace $ {
 
+	export class $mol_icon_link extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=link.view.tree.d.ts.map
+declare namespace $ {
+
+	export class $mol_icon_link_variant extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=variant.view.tree.d.ts.map
+declare namespace $ {
+
 	export class $mol_icon_undo extends $mol_icon {
 		path( ): string
 	}
@@ -8861,6 +8879,30 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    /**
+     * Готовые примеры для песочницы.
+     *
+     * Компоненты, на которые они ссылаются, обязаны быть в бандле: код примера
+     * компилируется в браузере и обращается к настоящим классам. В коде примеров
+     * `$` собирается через String.fromCharCode, чтобы не попадать в разбор
+     * зависимостей, поэтому перечисляем нужное здесь — в TS только `/** *\/`
+     * тащит модули в граф:
+     * $mol_view $mol_string $mol_button_major $mol_button_minor $mol_row
+     * $mol_fetch $mol_state_arg $mol_state_local
+     */
+    type $bog_smalljs_playground_sample = {
+        /** Корневой компонент примера — по нему видно, что редактор всё ещё на нём. */
+        root: string;
+        tree: string;
+        ts: string;
+        css: string;
+    };
+    const $bog_smalljs_playground_samples: Record<string, $bog_smalljs_playground_sample>;
+    /** Порядок в выпадашке. */
+    const $bog_smalljs_playground_sample_ids: string[];
+}
+
+declare namespace $ {
 
 	type $mol_button_minor__click_bog_smalljs_playground_1 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['show_tree'] >
@@ -8892,55 +8934,110 @@ declare namespace $ {
 		,
 		ReturnType< $mol_button_minor['sub'] >
 	>
-	type $mol_button_minor__hint_bog_smalljs_playground_7 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_playground['reset_hint'] >
+	type $mol_view__sub_bog_smalljs_playground_7 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_playground_8 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['sample_options'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_pick__hint_bog_smalljs_playground_9 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['samples_hint'] >
+		,
+		ReturnType< $mol_pick['hint'] >
+	>
+	type $mol_pick__align_bog_smalljs_playground_10 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_pick['align'] >
+	>
+	type $mol_pick__trigger_content_bog_smalljs_playground_11 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_pick['trigger_content'] >
+	>
+	type $mol_pick__bubble_content_bog_smalljs_playground_12 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_pick['bubble_content'] >
+	>
+	type $mol_button_minor__hint_bog_smalljs_playground_13 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['share_title'] >
 		,
 		ReturnType< $mol_button_minor['hint'] >
 	>
-	type $mol_button_minor__click_bog_smalljs_playground_8 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_playground['reset'] >
+	type $mol_button_minor__click_bog_smalljs_playground_14 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['share'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_button_minor__sub_bog_smalljs_playground_9 = $mol_type_enforce<
+	type $mol_button_minor__sub_bog_smalljs_playground_15 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_button_minor['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_10 = $mol_type_enforce<
+	type $mol_button_minor__hint_bog_smalljs_playground_16 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['reset_hint'] >
+		,
+		ReturnType< $mol_button_minor['hint'] >
+	>
+	type $mol_button_minor__click_bog_smalljs_playground_17 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['reset'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_button_minor__sub_bog_smalljs_playground_18 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_button_minor['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_playground_19 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['tabs_content'] >
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_textarea__value_bog_smalljs_playground_11 = $mol_type_enforce<
+	type $mol_textarea__value_bog_smalljs_playground_20 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['draft'] >
 		,
 		ReturnType< $mol_textarea['value'] >
 	>
-	type $mol_textarea__hint_bog_smalljs_playground_12 = $mol_type_enforce<
+	type $mol_textarea__hint_bog_smalljs_playground_21 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['editor_hint'] >
 		,
 		ReturnType< $mol_textarea['hint'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_13 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_playground_22 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_14 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_playground_23 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_15 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_playground_24 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['preview_content'] >
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_16 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_playground_25 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_button_minor__click_bog_smalljs_playground_26 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['sample_pick'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_button_minor__sub_bog_smalljs_playground_27 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_button_minor['sub'] >
 	>
 	export class $bog_smalljs_playground extends $mol_view {
 		show_tree( next?: any ): any
@@ -8953,6 +9050,17 @@ declare namespace $ {
 		css_tab_label( ): string
 		Css_tab( ): $mol_button_minor
 		Tabs_gap( ): $mol_view
+		samples_hint( ): string
+		samples_label( ): string
+		Samples_label( ): $mol_view
+		Samples_chevron( ): $mol_icon_chevron_down
+		sample_options( ): readonly(any)[]
+		Samples_menu( ): $mol_view
+		Samples( ): $mol_pick
+		share_title( ): string
+		share( next?: any ): any
+		Share_icon( ): $mol_icon_link_variant
+		Share( ): $mol_button_minor
 		reset_hint( ): string
 		reset( next?: any ): any
 		Reset_icon( ): $mol_icon_undo
@@ -8973,6 +9081,17 @@ declare namespace $ {
 		seed_ts( ): string
 		seed_css( ): string
 		store_scope( ): string
+		sample_title( id: any): string
+		sample_pick( id: any, next?: any ): any
+		sample_hello_title( ): string
+		sample_counter_title( ): string
+		sample_fetch_title( ): string
+		sample_args_title( ): string
+		sample_state_title( ): string
+		sample_login_title( ): string
+		Sample_option( id: any): $mol_button_minor
+		share_hint( ): string
+		share_done_hint( ): string
 		attr( ): ({ 
 			'bog_smalljs_pg_tab': ReturnType< $bog_smalljs_playground['tab'] >,
 		}) 
@@ -8982,6 +9101,10 @@ declare namespace $ {
 }
 
 //# sourceMappingURL=playground.view.tree.d.ts.map
+declare namespace $ {
+    /** Где отдельно стоящая песочница держит черновики. */
+    const $bog_smalljs_playground_store = "$bog_smalljs_playground";
+}
 declare namespace $.$$ {
     /**
      * A live view.tree + view.ts playground. view.tree is compiled with $mol's own
@@ -8996,6 +9119,14 @@ declare namespace $.$$ {
      */
     class $bog_smalljs_playground extends $.$bog_smalljs_playground {
         default_tree(): string;
+        /** Выбранный пример. Живёт в URL, чтобы ссылкой можно было поделиться. */
+        sample(next?: string): string;
+        sample_ids(): string[];
+        sample_options(): $mol_button_minor[];
+        sample_title(id: string): string;
+        samples_label(): string;
+        /** Выбор примера — это сброс на него: черновики берутся из дефолтов. */
+        sample_pick(id: string): null;
         tree_is_default(): boolean;
         default_css(): string;
         default_ts(): string;
@@ -9012,6 +9143,10 @@ declare namespace $.$$ {
         css_draft(next?: string): string;
         css_committed(next?: string): string;
         draft(next?: string): string;
+        shared(next?: boolean): boolean;
+        share_title(): string;
+        /** Ссылка собирается по требованию, а не висит в адресе постоянно. */
+        share(): null;
         /** Кнопки сброса просто нет в разметке, пока откатывать нечего. */
         tabs_content(): readonly $mol_view[];
         /** Что-то из трёх исходников правили — значит есть что откатывать. */

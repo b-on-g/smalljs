@@ -8686,6 +8686,142 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    enum $mol_rest_code {
+        'Continue' = 100,
+        'Switching protocols' = 101,
+        'Processing' = 102,
+        'OK' = 200,
+        'Created' = 201,
+        'Accepted' = 202,
+        'Non-Authoritative Information' = 203,
+        'No Content' = 204,
+        'Reset Content' = 205,
+        'Partial Content' = 206,
+        'Multi Status' = 207,
+        'Already Reported' = 208,
+        'IM Used' = 226,
+        'Multiple Choices' = 300,
+        'Moved Permanently' = 301,
+        'Found' = 302,
+        'See Other' = 303,
+        'Not Modified' = 304,
+        'Use Proxy' = 305,
+        'Temporary Redirect' = 307,
+        'Bad Request' = 400,
+        'Unauthorized' = 401,
+        'Payment Required' = 402,
+        'Forbidden' = 403,
+        'Not Found' = 404,
+        'Method Not Allowed' = 405,
+        'Not Acceptable' = 406,
+        'Proxy Authentication Required' = 407,
+        'Request Timeout' = 408,
+        'Conflict' = 409,
+        'Gone' = 410,
+        'Length Required' = 411,
+        'Precondition Failed' = 412,
+        'Request Entity Too Large' = 413,
+        'Request URI Too Long' = 414,
+        'Unsupported Media Type' = 415,
+        'Requested Range Not Satisfiable' = 416,
+        'Expectation Failed' = 417,
+        'Teapot' = 418,
+        'Unprocessable Entity' = 422,
+        'Locked' = 423,
+        'Failed Dependency' = 424,
+        'Upgrade Required' = 426,
+        'Precondition Required' = 428,
+        'Too Many Requests' = 429,
+        'Request Header Fields Too Large' = 431,
+        'Unavailable For Legal Reasons' = 451,
+        'Internal Server Error' = 500,
+        'Not Implemented' = 501,
+        'Bad Gateway' = 502,
+        'Service Unavailable' = 503,
+        'Gateway Timeout' = 504,
+        'HTTP Version Not Supported' = 505,
+        'Insufficient Storage' = 507,
+        'Loop Detected' = 508,
+        'Not Extended' = 510,
+        'Network Authentication Required' = 511,
+        'Network Read Timeout Error' = 598,
+        'Network Connect Timeout Error' = 599
+    }
+}
+
+declare namespace $ {
+    function $mol_error_fence<Data>(task: () => Data, fallback: (parent: Error) => Error | Data | PromiseLike<Data>, loading?: (parent: PromiseLike<Data>) => Error | Data | PromiseLike<Data>): Data;
+}
+
+declare namespace $ {
+    function $mol_error_enriched<V>(cause: {}, cb: () => V): V;
+}
+
+declare namespace $ {
+    function $mol_dom_parse(text: string, type?: DOMParserSupportedType): Document;
+}
+
+declare namespace $ {
+    class $mol_fetch_response extends $mol_object {
+        readonly native: Response;
+        readonly request: $mol_fetch_request;
+        status(): "success" | "unknown" | "inform" | "redirect" | "wrong" | "failed";
+        code(): number;
+        ok(): boolean;
+        message(): string;
+        headers(): Headers;
+        mime(): string | null;
+        stream(): ReadableStream<Uint8Array<ArrayBuffer>> | null;
+        text(): string;
+        json(): unknown;
+        blob(): Blob;
+        buffer(): ArrayBuffer;
+        xml(): Document;
+        xhtml(): Document;
+        html(): Document;
+    }
+    class $mol_fetch_request extends $mol_object {
+        readonly native: Request;
+        response_async(): Promise<Response> & {
+            destructor: () => void;
+        };
+        response(): $mol_fetch_response;
+        success(): $mol_fetch_response;
+    }
+    class $mol_fetch extends $mol_object {
+        static request(input: RequestInfo, init?: RequestInit): $mol_fetch_request;
+        static response(input: RequestInfo, init?: RequestInit): $mol_fetch_response;
+        static success(input: RequestInfo, init?: RequestInit): $mol_fetch_response;
+        static stream(input: RequestInfo, init?: RequestInit): ReadableStream<Uint8Array<ArrayBuffer>> | null;
+        static text(input: RequestInfo, init?: RequestInit): string;
+        static json(input: RequestInfo, init?: RequestInit): unknown;
+        static blob(input: RequestInfo, init?: RequestInit): Blob;
+        static buffer(input: RequestInfo, init?: RequestInit): ArrayBuffer;
+        static xml(input: RequestInfo, init?: RequestInit): Document;
+        static xhtml(input: RequestInfo, init?: RequestInit): Document;
+        static html(input: RequestInfo, init?: RequestInit): Document;
+    }
+}
+
+declare namespace $ {
+
+	export class $mol_icon_link extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=link.view.tree.d.ts.map
+declare namespace $ {
+
+	export class $mol_icon_link_variant extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=variant.view.tree.d.ts.map
+declare namespace $ {
 
 	export class $mol_icon_undo extends $mol_icon {
 		path( ): string
@@ -8823,6 +8959,30 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    /**
+     * Готовые примеры для песочницы.
+     *
+     * Компоненты, на которые они ссылаются, обязаны быть в бандле: код примера
+     * компилируется в браузере и обращается к настоящим классам. В коде примеров
+     * `$` собирается через String.fromCharCode, чтобы не попадать в разбор
+     * зависимостей, поэтому перечисляем нужное здесь — в TS только `/** *\/`
+     * тащит модули в граф:
+     * $mol_view $mol_string $mol_button_major $mol_button_minor $mol_row
+     * $mol_fetch $mol_state_arg $mol_state_local
+     */
+    type $bog_smalljs_playground_sample = {
+        /** Корневой компонент примера — по нему видно, что редактор всё ещё на нём. */
+        root: string;
+        tree: string;
+        ts: string;
+        css: string;
+    };
+    const $bog_smalljs_playground_samples: Record<string, $bog_smalljs_playground_sample>;
+    /** Порядок в выпадашке. */
+    const $bog_smalljs_playground_sample_ids: string[];
+}
+
+declare namespace $ {
 
 	type $mol_button_minor__click_bog_smalljs_playground_1 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['show_tree'] >
@@ -8854,55 +9014,110 @@ declare namespace $ {
 		,
 		ReturnType< $mol_button_minor['sub'] >
 	>
-	type $mol_button_minor__hint_bog_smalljs_playground_7 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_playground['reset_hint'] >
+	type $mol_view__sub_bog_smalljs_playground_7 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_playground_8 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['sample_options'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_pick__hint_bog_smalljs_playground_9 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['samples_hint'] >
+		,
+		ReturnType< $mol_pick['hint'] >
+	>
+	type $mol_pick__align_bog_smalljs_playground_10 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_pick['align'] >
+	>
+	type $mol_pick__trigger_content_bog_smalljs_playground_11 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_pick['trigger_content'] >
+	>
+	type $mol_pick__bubble_content_bog_smalljs_playground_12 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_pick['bubble_content'] >
+	>
+	type $mol_button_minor__hint_bog_smalljs_playground_13 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['share_title'] >
 		,
 		ReturnType< $mol_button_minor['hint'] >
 	>
-	type $mol_button_minor__click_bog_smalljs_playground_8 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_playground['reset'] >
+	type $mol_button_minor__click_bog_smalljs_playground_14 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['share'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_button_minor__sub_bog_smalljs_playground_9 = $mol_type_enforce<
+	type $mol_button_minor__sub_bog_smalljs_playground_15 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_button_minor['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_10 = $mol_type_enforce<
+	type $mol_button_minor__hint_bog_smalljs_playground_16 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['reset_hint'] >
+		,
+		ReturnType< $mol_button_minor['hint'] >
+	>
+	type $mol_button_minor__click_bog_smalljs_playground_17 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['reset'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_button_minor__sub_bog_smalljs_playground_18 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_button_minor['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_playground_19 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['tabs_content'] >
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_textarea__value_bog_smalljs_playground_11 = $mol_type_enforce<
+	type $mol_textarea__value_bog_smalljs_playground_20 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['draft'] >
 		,
 		ReturnType< $mol_textarea['value'] >
 	>
-	type $mol_textarea__hint_bog_smalljs_playground_12 = $mol_type_enforce<
+	type $mol_textarea__hint_bog_smalljs_playground_21 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['editor_hint'] >
 		,
 		ReturnType< $mol_textarea['hint'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_13 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_playground_22 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_14 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_playground_23 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_15 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_playground_24 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['preview_content'] >
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_16 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_playground_25 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_button_minor__click_bog_smalljs_playground_26 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['sample_pick'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_button_minor__sub_bog_smalljs_playground_27 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_button_minor['sub'] >
 	>
 	export class $bog_smalljs_playground extends $mol_view {
 		show_tree( next?: any ): any
@@ -8915,6 +9130,17 @@ declare namespace $ {
 		css_tab_label( ): string
 		Css_tab( ): $mol_button_minor
 		Tabs_gap( ): $mol_view
+		samples_hint( ): string
+		samples_label( ): string
+		Samples_label( ): $mol_view
+		Samples_chevron( ): $mol_icon_chevron_down
+		sample_options( ): readonly(any)[]
+		Samples_menu( ): $mol_view
+		Samples( ): $mol_pick
+		share_title( ): string
+		share( next?: any ): any
+		Share_icon( ): $mol_icon_link_variant
+		Share( ): $mol_button_minor
 		reset_hint( ): string
 		reset( next?: any ): any
 		Reset_icon( ): $mol_icon_undo
@@ -8935,6 +9161,17 @@ declare namespace $ {
 		seed_ts( ): string
 		seed_css( ): string
 		store_scope( ): string
+		sample_title( id: any): string
+		sample_pick( id: any, next?: any ): any
+		sample_hello_title( ): string
+		sample_counter_title( ): string
+		sample_fetch_title( ): string
+		sample_args_title( ): string
+		sample_state_title( ): string
+		sample_login_title( ): string
+		Sample_option( id: any): $mol_button_minor
+		share_hint( ): string
+		share_done_hint( ): string
 		attr( ): ({ 
 			'bog_smalljs_pg_tab': ReturnType< $bog_smalljs_playground['tab'] >,
 		}) 
@@ -8944,6 +9181,10 @@ declare namespace $ {
 }
 
 //# sourceMappingURL=playground.view.tree.d.ts.map
+declare namespace $ {
+    /** Где отдельно стоящая песочница держит черновики. */
+    const $bog_smalljs_playground_store = "$bog_smalljs_playground";
+}
 declare namespace $.$$ {
     /**
      * A live view.tree + view.ts playground. view.tree is compiled with $mol's own
@@ -8958,6 +9199,14 @@ declare namespace $.$$ {
      */
     class $bog_smalljs_playground extends $.$bog_smalljs_playground {
         default_tree(): string;
+        /** Выбранный пример. Живёт в URL, чтобы ссылкой можно было поделиться. */
+        sample(next?: string): string;
+        sample_ids(): string[];
+        sample_options(): $mol_button_minor[];
+        sample_title(id: string): string;
+        samples_label(): string;
+        /** Выбор примера — это сброс на него: черновики берутся из дефолтов. */
+        sample_pick(id: string): null;
         tree_is_default(): boolean;
         default_css(): string;
         default_ts(): string;
@@ -8974,6 +9223,10 @@ declare namespace $.$$ {
         css_draft(next?: string): string;
         css_committed(next?: string): string;
         draft(next?: string): string;
+        shared(next?: boolean): boolean;
+        share_title(): string;
+        /** Ссылка собирается по требованию, а не висит в адресе постоянно. */
+        share(): null;
         /** Кнопки сброса просто нет в разметке, пока откатывать нечего. */
         tabs_content(): readonly $mol_view[];
         /** Что-то из трёх исходников правили — значит есть что откатывать. */
