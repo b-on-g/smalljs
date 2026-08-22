@@ -12,5 +12,7 @@
 	"$bog_smalljs_playground_sample_login_title": "Formulaire de connexion",
 	"$bog_smalljs_playground_reset_hint": "Restaurer l'exemple",
 	"$bog_smalljs_playground_share_hint": "Copier un lien vers ce code",
-	"$bog_smalljs_playground_share_done_hint": "Lien copié"
+	"$bog_smalljs_playground_share_done_hint": "Lien copié",
+	"$bog_smalljs_playground_log_title_text": "Console",
+	"$bog_smalljs_playground_log_clear_hint": "Effacer"
 }

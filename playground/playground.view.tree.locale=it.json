@@ -12,5 +12,7 @@
 	"$bog_smalljs_playground_sample_login_title": "Modulo di accesso",
 	"$bog_smalljs_playground_reset_hint": "Ripristina l'esempio",
 	"$bog_smalljs_playground_share_hint": "Copia un link a questo codice",
-	"$bog_smalljs_playground_share_done_hint": "Link copiato"
+	"$bog_smalljs_playground_share_done_hint": "Link copiato",
+	"$bog_smalljs_playground_log_title_text": "Console",
+	"$bog_smalljs_playground_log_clear_hint": "Pulisci"
 }

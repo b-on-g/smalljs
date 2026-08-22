@@ -12,5 +12,7 @@
 	"$bog_smalljs_playground_sample_login_title": "ログインフォーム",
 	"$bog_smalljs_playground_reset_hint": "サンプルを元に戻す",
 	"$bog_smalljs_playground_share_hint": "このコードへのリンクをコピー",
-	"$bog_smalljs_playground_share_done_hint": "リンクをコピーしました"
+	"$bog_smalljs_playground_share_done_hint": "リンクをコピーしました",
+	"$bog_smalljs_playground_log_title_text": "コンソール",
+	"$bog_smalljs_playground_log_clear_hint": "消去"
 }

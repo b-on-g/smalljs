@@ -64,6 +64,36 @@ $bog_smalljs_playground $mol_view
 		<= Preview_pane $mol_view
 			sub /
 				<= Preview_label $mol_view
-					sub / <= preview_label_text @ \Preview
+					sub /
+						<= preview_label_text @ \Preview
+						<= Preview_gap $mol_view
+						<= Log_toggle $mol_button_minor
+							click? <=> log_toggle? null
+							sub / <= log_toggle_label \
 				<= Preview $mol_view
 					sub <= preview_content /
+				<= Log $mol_view
+					attr *
+						^
+						bog_smalljs_pg_log_shown <= log_shown false
+					sub /
+						<= Log_head $mol_view
+							sub /
+								<= Log_title $mol_view
+									sub / <= log_title_text @ \Console
+								<= Log_gap $mol_view
+								<= Log_clear $mol_button_minor
+									hint <= log_clear_hint @ \Clear
+									click? <=> log_clear? null
+									sub / \✕
+						<= Log_list $mol_view
+							sub <= log_rows /
+	log_open? false
+	log_shown false
+	log_text* \
+	log_level* \
+	Log_row* $mol_view
+		attr *
+			^
+			bog_smalljs_pg_level <= log_level*
+		sub / <= log_text*

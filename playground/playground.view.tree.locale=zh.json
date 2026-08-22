@@ -12,5 +12,7 @@
 	"$bog_smalljs_playground_sample_login_title": "登录表单",
 	"$bog_smalljs_playground_reset_hint": "恢复示例",
 	"$bog_smalljs_playground_share_hint": "复制此代码的链接",
-	"$bog_smalljs_playground_share_done_hint": "链接已复制"
+	"$bog_smalljs_playground_share_done_hint": "链接已复制",
+	"$bog_smalljs_playground_log_title_text": "控制台",
+	"$bog_smalljs_playground_log_clear_hint": "清空"
 }

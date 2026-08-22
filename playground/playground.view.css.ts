@@ -113,6 +113,95 @@ namespace $ {
 			},
 		},
 
+		// Журнал под превью. Свёрнут по умолчанию, но счётчик ошибок виден
+		// на кнопке и в свёрнутом виде — иначе ловить их было бы незачем.
+		Preview_gap: { flex: { grow: 1 } },
+
+		Log_toggle: {
+			align: { self: 'center' },
+			padding: {
+				top: '0.125rem',
+				bottom: '0.125rem',
+				left: '0.5rem',
+				right: '0.5rem',
+			},
+			font: { size: '0.75rem' },
+			color: $bog_builderui_tokens.shade,
+			border: { radius: '0.375rem' },
+			':hover': { color: $bog_builderui_tokens.text },
+		},
+
+		Log: {
+			display: 'none',
+			flex: { direction: 'column', shrink: 0 },
+			maxHeight: '12rem',
+			border: { top: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+			background: { color: $bog_builderui_tokens.back },
+			'@': {
+				bog_smalljs_pg_log_shown: {
+					true: { display: 'flex' },
+				},
+			},
+		},
+
+		Log_head: {
+			flex: { direction: 'row', shrink: 0 },
+			align: { items: 'center' },
+			padding: {
+				top: '0.375rem',
+				bottom: '0.375rem',
+				left: '0.75rem',
+				right: '0.5rem',
+			},
+			border: { bottom: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+		},
+
+		Log_title: {
+			font: { size: '0.75rem', weight: 600 },
+			letterSpacing: '0.04em',
+			textTransform: 'uppercase',
+			color: $bog_builderui_tokens.shade,
+		},
+
+		Log_gap: { flex: { grow: 1 } },
+
+		Log_clear: {
+			padding: {
+				top: 0,
+				bottom: 0,
+				left: '0.375rem',
+				right: '0.375rem',
+			},
+			color: $bog_builderui_tokens.shade,
+			':hover': { color: $bog_builderui_tokens.text },
+		},
+
+		Log_list: {
+			flex: { direction: 'column', shrink: 1 },
+			minHeight: 0,
+			overflow: 'auto',
+			padding: {
+				top: '0.375rem',
+				bottom: '0.5rem',
+				left: '0.75rem',
+				right: '0.75rem',
+			},
+		},
+
+		Log_row: {
+			font: { family: "'JetBrains Mono', ui-monospace, monospace", size: '0.75rem' },
+			lineHeight: '1.6',
+			whiteSpace: 'pre-wrap',
+			wordBreak: 'break-word',
+			color: $bog_builderui_tokens.text,
+			'@': {
+				bog_smalljs_pg_level: {
+					warn: { color: '#b26a00' },
+					error: { color: '#c0392b' },
+				},
+			},
+		},
+
 		Share: {
 			align: { self: 'center' },
 			margin: { right: '0.25rem' },

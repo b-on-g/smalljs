@@ -179,6 +179,41 @@ namespace $.$$ {
 			return this.tree_draft()
 		}
 
+		// --- журнал --------------------------------------------------------
+
+		/** Перехват ставится один раз на страницу, при первом обращении к журналу. */
+		log_entries(): readonly $bog_smalljs_playground_log_entry[] {
+			$bog_smalljs_playground_log.install()
+			void $bog_smalljs_playground_log.version()   // подписка на новые записи
+			return $bog_smalljs_playground_log.entries
+		}
+
+		log_errors() {
+			return this.log_entries().filter( entry => entry.level === 'error' ).length
+		}
+
+		/** Ошибки видно и с закрытой панелью — иначе их незачем ловить. */
+		log_toggle_label() {
+			const errors = this.log_errors()
+			const title = this.log_title_text()
+			return errors ? `${ title } · ${ errors }` : title
+		}
+
+		log_shown() { return this.log_open() }
+
+		log_rows() {
+			return this.log_entries().map( ( _, index ) => this.Log_row( index ) )
+		}
+
+		log_text( index: number ) { return this.log_entries()[ index ]?.text ?? '' }
+		log_level( index: number ) { return this.log_entries()[ index ]?.level ?? 'log' }
+
+		@ $mol_action
+		log_toggle() { this.log_open( !this.log_open() ); return null }
+
+		@ $mol_action
+		log_clear() { $bog_smalljs_playground_log.clear(); return null }
+
 		// --- ссылка: принять и отдать ---------------------------------------
 
 		@ $mol_mem
