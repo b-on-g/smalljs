@@ -16,5 +16,7 @@
 	"$bog_smalljs_playground_log_title_text": "コンソール",
 	"$bog_smalljs_playground_log_clear_hint": "消去",
 	"$bog_smalljs_playground_editor_hint_ts": "任意 — コンポーネントのロジック。",
-	"$bog_smalljs_playground_editor_hint_css": "任意 — 型付きスタイル。"
+	"$bog_smalljs_playground_editor_hint_css": "任意 — 型付きスタイル。",
+	"$bog_smalljs_playground_layout_hint": "すべてのファイルを同時に表示",
+	"$bog_smalljs_playground_layout_hint_tabs": "タブ表示に戻す"
 }

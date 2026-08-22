@@ -16,5 +16,7 @@
 	"$bog_smalljs_playground_log_title_text": "Console",
 	"$bog_smalljs_playground_log_clear_hint": "Limpar",
 	"$bog_smalljs_playground_editor_hint_ts": "Opcional — a lógica do componente.",
-	"$bog_smalljs_playground_editor_hint_css": "Opcional — estilos tipados."
+	"$bog_smalljs_playground_editor_hint_css": "Opcional — estilos tipados.",
+	"$bog_smalljs_playground_layout_hint": "Mostrar todos os arquivos",
+	"$bog_smalljs_playground_layout_hint_tabs": "Voltar às abas"
 }

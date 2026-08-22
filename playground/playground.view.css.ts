@@ -283,18 +283,10 @@ namespace $ {
 			color: $bog_builderui_tokens.text,
 		},
 
-		'@': {
-			bog_smalljs_pg_tab: {
-				tree: { Tree_tab: tab_active },
-				ts: { Ts_tab: tab_active },
-				css: { Css_tab: tab_active },
-			},
-		},
 
 		// Все три редактора существуют всегда, а показ переключается стилями.
-		// По умолчанию (узкий и средний экран) виден только файл активной вкладки —
-		// поведение прежнее. На широком экране показываем все три сразу: компонент
-		// на $mol это три файла, и видеть их разом полезнее, чем щёлкать вкладки.
+		// По умолчанию — вкладки: так было изначально и так привычнее.
+		// Кнопка в ряду вкладок разворачивает файлы стопкой, выбор запоминается.
 		Editors: {
 			flex: { direction: 'column', grow: 1, shrink: 1 },
 			minHeight: 0,
@@ -304,22 +296,34 @@ namespace $ {
 		Editor_tree_label: { display: 'none' },
 		Editor_ts_label: { display: 'none' },
 		Editor_css_label: { display: 'none' },
+
+		Layout_toggle: {
+			align: { self: 'center' },
+			margin: { right: '0.25rem' },
+			padding: {
+				top: '0.25rem',
+				bottom: '0.25rem',
+				left: '0.5rem',
+				right: '0.5rem',
+			},
+			color: $bog_builderui_tokens.shade,
+			border: { radius: '0.375rem' },
+			':hover': {
+				color: $bog_builderui_tokens.text,
+				background: { color: $bog_builderui_tokens.card },
+			},
+		},
+
+		Layout_icon: {
+			width: '1rem',
+			height: '1rem',
+			flex: { shrink: 0 },
+		},
+
 		Editor_ts: { display: 'none' },
 		Editor_css: { display: 'none' },
 
 		'@media': {
-
-			// Широкий экран: вкладки не нужны, файлы идут стопкой с подписями.
-			'(min-width: 90rem)': {
-				Tree_tab: { display: 'none' },
-				Ts_tab: { display: 'none' },
-				Css_tab: { display: 'none' },
-				Editor_tree_label: { ...file_label, border: { top: { width: '0px', style: 'solid', color: $bog_builderui_tokens.line } } },
-				Editor_ts_label: file_label,
-				Editor_css_label: file_label,
-				Editor_ts: { display: 'flex', flex: { shrink: 0 } },
-				Editor_css: { display: 'flex', flex: { shrink: 0 } },
-			},
 
 			'(max-width: 47.9375rem)': {
 				gridTemplateColumns: '1fr',
@@ -331,6 +335,33 @@ namespace $ {
 			},
 		},
 
+
+		// Правила режима идут последними: они перекрывают display: none
+		// у скрытых редакторов, а при равной специфичности выигрывает
+		// тот, кто ниже по файлу.
+		'@': {
+			bog_smalljs_pg_tab: {
+				tree: { Tree_tab: tab_active },
+				ts: { Ts_tab: tab_active },
+				css: { Css_tab: tab_active },
+			},
+			bog_smalljs_pg_editors: {
+				all: {
+					Tree_tab: { display: 'none' },
+					Ts_tab: { display: 'none' },
+					Css_tab: { display: 'none' },
+					Editor_tree_label: { ...file_label, border: { top: { width: '0px', style: 'solid', color: $bog_builderui_tokens.line } } },
+					Editor_ts_label: file_label,
+					Editor_css_label: file_label,
+					Editor_ts: { display: 'flex', flex: { shrink: 0 } },
+					Editor_css: { display: 'flex', flex: { shrink: 0 } },
+					Layout_toggle: {
+						color: $bog_builderui_tokens.text,
+						background: { color: $bog_builderui_tokens.card },
+					},
+				},
+			},
+		},
 	} )
 
 }

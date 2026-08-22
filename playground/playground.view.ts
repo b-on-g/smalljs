@@ -247,12 +247,39 @@ namespace $.$$ {
 
 		// --- сброс к исходному примеру ------------------------------------
 
+		// --- раскладка редакторов -------------------------------------------
+
+		/**
+		 * Вкладки или все файлы стопкой. Выбор личный и запоминается: это вкус,
+		 * а не свойство страницы, поэтому в ссылку он не попадает — иначе
+		 * расшаренный код навязывал бы получателю чужую раскладку.
+		 */
+		@ $mol_mem
+		editors_mode( next?: string ) {
+			return this.$.$mol_state_local.value(
+				`${ $bog_smalljs_playground_store }/editors`,
+				next,
+			) ?? 'tabs'
+		}
+
+		editors_all() { return this.editors_mode() === 'all' }
+
+		layout_title() {
+			return this.editors_all() ? this.layout_hint_tabs() : this.layout_hint()
+		}
+
+		@ $mol_action
+		layout_toggle() {
+			this.editors_mode( this.editors_all() ? 'tabs' : 'all' )
+			return null
+		}
+
 		/** Кнопки сброса просто нет в разметке, пока откатывать нечего. */
 		tabs_content(): readonly $mol_view[] {
 			const list: $mol_view[] = [ this.Tree_tab(), this.Ts_tab(), this.Css_tab(), this.Tabs_gap() ]
 			// Выбор примера не показываем, когда содержимое задал встраиватель:
 			// у курса свой сценарий на урок, чужие примеры там ни к чему.
-			if ( !this.seed_tree() ) list.push( this.Samples(), this.Share() )
+			if ( !this.seed_tree() ) list.push( this.Samples(), this.Layout_toggle(), this.Share() )
 			if ( this.is_modified() ) list.push( this.Reset() )
 			return list
 		}

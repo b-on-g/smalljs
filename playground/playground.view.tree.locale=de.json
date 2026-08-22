@@ -16,5 +16,7 @@
 	"$bog_smalljs_playground_log_title_text": "Konsole",
 	"$bog_smalljs_playground_log_clear_hint": "Leeren",
 	"$bog_smalljs_playground_editor_hint_ts": "Optional — Logik der Komponente.",
-	"$bog_smalljs_playground_editor_hint_css": "Optional — typisierte Styles."
+	"$bog_smalljs_playground_editor_hint_css": "Optional — typisierte Styles.",
+	"$bog_smalljs_playground_layout_hint": "Alle Dateien auf einmal zeigen",
+	"$bog_smalljs_playground_layout_hint_tabs": "Zurück zu den Tabs"
 }

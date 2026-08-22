@@ -29,13 +29,36 @@ namespace $ {
 		@ $mol_mem
 		static version( next?: number ) { return next ?? 0 }
 
+		static one( arg: unknown ): string {
+			if ( typeof arg === 'string' ) return arg
+			if ( arg instanceof Error ) return arg.message
+			try { return JSON.stringify( arg ) ?? String( arg ) }
+			catch { return String( arg ) }
+		}
+
 		static text( args: unknown[] ) {
-			return args.map( arg => {
-				if ( typeof arg === 'string' ) return arg
-				if ( arg instanceof Error ) return arg.message
-				try { return JSON.stringify( arg ) ?? String( arg ) }
-				catch { return String( arg ) }
-			} ).join( ' ' ).slice( 0, 400 )
+
+			const rest = args.slice()
+			let out = ''
+
+			// Первый аргумент может быть шаблоном с подстановками — так печатает
+			// и сам $mol. Без разбора в журнал попадала сырая строка вида
+			// «%c%s: %s color:orangered place $mol_storage», в которой не видно
+			// ни сообщения, ни его источника.
+			if ( typeof rest[ 0 ] === 'string' && /%[sdifoOjc]/.test( rest[ 0 ] ) ) {
+				const template = rest.shift() as string
+				out = template.replace( /%([sdifoOjc%])/g, ( _, kind ) => {
+					if ( kind === '%' ) return '%'
+					const value = rest.shift()
+					if ( kind === 'c' ) return ''          // это стили, а не текст
+					if ( kind === 'd' || kind === 'i' ) return String( parseInt( String( value ) ) )
+					if ( kind === 'f' ) return String( parseFloat( String( value ) ) )
+					return this.one( value )
+				} )
+			}
+
+			const tail = rest.map( arg => this.one( arg ) ).join( ' ' )
+			return ( out ? out + ( tail ? ' ' + tail : '' ) : tail ).trim().slice( 0, 400 )
 		}
 
 		static push( level: $bog_smalljs_playground_log_entry[ 'level' ], args: unknown[] ) {

@@ -16,5 +16,7 @@
 	"$bog_smalljs_playground_log_title_text": "Консоль",
 	"$bog_smalljs_playground_log_clear_hint": "Очистити",
 	"$bog_smalljs_playground_editor_hint_ts": "Необовʼязково — логіка компонента.",
-	"$bog_smalljs_playground_editor_hint_css": "Необовʼязково — типізовані стилі."
+	"$bog_smalljs_playground_editor_hint_css": "Необовʼязково — типізовані стилі.",
+	"$bog_smalljs_playground_layout_hint": "Показати всі файли одразу",
+	"$bog_smalljs_playground_layout_hint_tabs": "Повернутися до вкладок"
 }

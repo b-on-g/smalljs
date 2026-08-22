@@ -23,8 +23,13 @@ $bog_smalljs_playground $mol_view
 	share_hint @ \Copy a link to this code
 	share_done_hint @ \Link copied
 	share? null
+	editors_mode? \tabs
+	layout_hint @ \Show all files at once
+	layout_hint_tabs @ \Back to tabs
+	layout_toggle? null
 	attr *
 		bog_smalljs_pg_tab <= tab
+		bog_smalljs_pg_editors <= editors_mode?
 	sub /
 		<= Editor_pane $mol_view
 			sub /
@@ -50,6 +55,11 @@ $bog_smalljs_playground $mol_view
 							bubble_content /
 								<= Samples_menu $mol_view
 									sub <= sample_options /
+						<= Layout_toggle $mol_button_minor
+							hint <= layout_title \
+							click? <=> layout_toggle? null
+							sub /
+								<= Layout_icon $mol_icon_view_agenda
 						<= Share $mol_button_minor
 							hint <= share_title \
 							click? <=> share? null

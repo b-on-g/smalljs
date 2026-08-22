@@ -16,5 +16,7 @@
 	"$bog_smalljs_playground_log_title_text": "콘솔",
 	"$bog_smalljs_playground_log_clear_hint": "지우기",
 	"$bog_smalljs_playground_editor_hint_ts": "선택 — 컴포넌트의 로직.",
-	"$bog_smalljs_playground_editor_hint_css": "선택 — 타입이 있는 스타일."
+	"$bog_smalljs_playground_editor_hint_css": "선택 — 타입이 있는 스타일.",
+	"$bog_smalljs_playground_layout_hint": "모든 파일 한 번에 보기",
+	"$bog_smalljs_playground_layout_hint_tabs": "탭으로 돌아가기"
 }

@@ -16,5 +16,7 @@
 	"$bog_smalljs_playground_log_title_text": "主控台",
 	"$bog_smalljs_playground_log_clear_hint": "清除",
 	"$bog_smalljs_playground_editor_hint_ts": "選填 — 元件的邏輯。",
-	"$bog_smalljs_playground_editor_hint_css": "選填 — 具型別的樣式。"
+	"$bog_smalljs_playground_editor_hint_css": "選填 — 具型別的樣式。",
+	"$bog_smalljs_playground_layout_hint": "同時顯示所有檔案",
+	"$bog_smalljs_playground_layout_hint_tabs": "回到分頁"
 }
