@@ -10,16 +10,23 @@ $mol fonctionne dans n'importe quel éditeur, mais un petit ensemble d'outils re
 npx create-view-tree-lsp bog/myapp
 ```
 
-L'argument est le chemin du module (`namespace/name`, ou son équivalent `bog_myapp`). Il écrit les `view.tree`, `view.ts`, `view.css.ts` et `index.html` d'une application fonctionnelle, ainsi que les GitHub Actions pour la déployer. Par défaut, il inclut aussi un stockage local-first **Giper Baza**, une configuration **Docker** et une enveloppe de bureau **Tauri**. Désactivez l'un ou l'autre avec un drapeau :
+Lancez-le à la racine de votre copie de MAM : les chemins de modules partent de là, et c'est là que le projet doit vivre. Hors d'un workspace, la commande prévient au lieu de vous laisser le découvrir au premier build.
+
+L'argument est le chemin du module (`namespace/name`, ou son équivalent `bog_myapp`). Il écrit les `view.tree`, `view.ts`, `view.css.ts` et `index.html` d'une application fonctionnelle, ainsi que les GitHub Actions pour la déployer.
+
+Tout ce que le générateur sait ajouter est inclus par défaut. Vous ne nommez que ce dont vous ne voulez pas :
 
 ```bash
-npx create-view-tree-lsp bog/myapp --no-baza --no-docker --no-tauri
+npx create-view-tree-lsp bog/myapp --no-tauri --no-backend
 ```
 
-Quelques éléments sont au contraire optionnels :
+- `--no-baza` — un stockage local-first **Giper Baza**
+- `--no-docker` — une configuration **Docker** avec `docker-compose.yml` et une config nginx
+- `--no-tauri` — une enveloppe de bureau **Tauri**
+- `--no-backend` — un backend REST `$mol_server` avec un stockage `node:sqlite` et un type d'item TypeScript partagé
+- `--no-prerender`, `--no-seo` — la visibilité pour les moteurs de recherche, décrite plus bas sous [Intégration continue](#!section=docs/page=tooling/Docs.Body=Int%C3%A9gration%20continue)
 
-- `--backend` ajoute un backend REST `$mol_server` avec un stockage `node:sqlite` et un type d'item TypeScript partagé
-- `--prerender` et `--seo` ajoutent la visibilité pour les moteurs de recherche, décrite plus bas sous [Intégration continue](#!section=docs/page=tooling/Docs.Body=Int%C3%A9gration%20continue)
+Un drapeau inconnu interrompt l'exécution : une faute de frappe ne peut pas laisser quelque chose en douce.
 
 Le générateur est une fine surcouche de la CLI du serveur de langage, si bien que `npx view-tree-lsp create bog/myapp` fait la même chose directement.
 
@@ -53,12 +60,12 @@ Le générateur écrit les GitHub Actions dans `.github/workflows/`, de sorte qu
 
 ### SEO
 
-Deux options indépendantes, toutes deux déclenchées par les tags `v*` :
+Les deux sont actifs par défaut et se déclenchent sur les tags `v*` :
 
-- **`--prerender`** rend les écrans que vous listez (comme `home`) en HTML statique avec `b-on-g/mol-prerender-action`, afin que les robots et les aperçus de liens voient un vrai contenu.
-- **`--seo`** ajoute le runtime `$bog_seo` : un routeur par pathname avec un sitemap, `robots.txt`, `llms.txt` et l'injection de métadonnées par page. Le job sert le build, extrait le HTML pré-rendu canonique et le réintègre dans le déploiement.
+- **`--no-prerender`** retire l'étape qui rend en HTML statique les écrans que vous listez (comme `home`) avec `b-on-g/mol-prerender-action` — précisément ce qui fait que les crawlers et les aperçus de liens voient du vrai contenu.
+- **`--no-seo`** retire le runtime `$bog_seo` : un routeur par pathname avec sitemap, `robots.txt`, `llms.txt` et injection de méta par page. Le job sert le build, exporte le HTML prérendu canonique et le replie dans le déploiement.
 
-Optez pour l'action de prérendu quand une poignée d'écrans publics doivent être explorables, et pour `$bog_seo` quand vous avez besoin de sitemaps et de métadonnées par page.
+Ils couvrent le même terrain et écrivent dans le même dossier, donc un seul atterrit dans `deploy.yml` : `$bog_seo` tant qu'il est actif, l'action de prérendu dès que vous passez `--no-seo`. Gardez `$bog_seo` quand il vous faut des sitemaps et des métadonnées par page, et rabattez-vous sur l'action de prérendu quand une poignée d'écrans publics suffit.
 
 ### Bureau Tauri
 

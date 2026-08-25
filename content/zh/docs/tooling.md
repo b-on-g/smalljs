@@ -10,16 +10,23 @@ $mol 在任何编辑器中都能工作，但一小套工具能让 `.view.tree` �
 npx create-view-tree-lsp bog/myapp
 ```
 
-参数是模块路径（`namespace/name`，或等价的 `bog_myapp`）。它会为一个可运行的应用写出 `view.tree`、`view.ts`、`view.css.ts` 和 `index.html`，外加用于部署的 GitHub Actions。默认情况下，它还包含一个 local-first 存储 **Giper Baza**、一套 **Docker** 配置和一个 **Tauri** 桌面外壳。任意一项都可以用标志关闭：
+请在自己的 MAM 检出根目录下运行：模块路径从那里解析，项目也该待在那里。不在工作区里时，命令会先警告，而不是让你到第一次构建才发现。
+
+参数是模块路径（`namespace/name`，或等价的 `bog_myapp`）。它会为一个可运行的应用写出 `view.tree`、`view.ts`、`view.css.ts` 和 `index.html`，外加用于部署的 GitHub Actions。
+
+生成器能加的东西，默认全都加上。你只需要点名不想要的那些：
 
 ```bash
-npx create-view-tree-lsp bog/myapp --no-baza --no-docker --no-tauri
+npx create-view-tree-lsp bog/myapp --no-tauri --no-backend
 ```
 
-相反，还有几项是按需启用的：
+- `--no-baza` — local-first 存储 **Giper Baza**
+- `--no-docker` — 含 `docker-compose.yml` 与 nginx 配置的 **Docker** 配置
+- `--no-tauri` — **Tauri** 桌面外壳
+- `--no-backend` — 带 `node:sqlite` 存储和共享 TypeScript 条目类型的 `$mol_server` REST 后端
+- `--no-prerender`、`--no-seo` — 搜索引擎可见性，见下文 [持续集成](#!section=docs/page=tooling/Docs.Body=%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90)
 
-- `--backend` 添加一个 `$mol_server` REST 后端，配有 `node:sqlite` 存储和共享的 TypeScript item 类型
-- `--prerender` 和 `--seo` 添加搜索引擎可见性，详见下文的 [持续集成](#!section=docs/page=tooling/Docs.Body=%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90)
+遇到不认识的标志就停下，免得一个笔误悄悄把东西留在项目里。
 
 脚手架只是语言服务器中 CLI 的一层薄封装，所以 `npx view-tree-lsp create bog/myapp` 会直接做同样的事。
 
@@ -53,12 +60,12 @@ npx view-tree-lsp locale bog/myapp/app/- --exclude=mol --update
 
 ### SEO
 
-两个独立选项，都由 `v*` 标签触发：
+两者默认都开着，也都在 `v*` 标签上触发：
 
-- **`--prerender`** 用 `b-on-g/mol-prerender-action` 把你列出的屏幕（例如 `home`）渲染成静态 HTML，这样爬虫和链接预览就能看到真实内容。
-- **`--seo`** 添加 `$bog_seo` 运行时：一个基于 pathname 的路由器，带有站点地图、`robots.txt`、`llms.txt` 以及每页的 meta 注入。该任务会服务构建产物，导出规范的预渲染 HTML，并将其折回部署中。
+- **`--no-prerender`** 去掉那一步：用 `b-on-g/mol-prerender-action` 把你列出的界面（比如 `home`）渲染成静态 HTML —— 爬虫和链接预览能看到真内容，靠的就是它。
+- **`--no-seo`** 去掉 `$bog_seo` 运行时：带站点地图、`robots.txt`、`llms.txt` 和逐页 meta 注入的 pathname 路由器。该任务会伺服构建产物、导出规范的预渲染 HTML，再折回部署里。
 
-当少数公开屏幕需要可爬取时，选用 prerender action；当你需要站点地图和每页元数据时，选用 `$bog_seo`。
+两者覆盖同一片地、写同一个目录，所以 `deploy.yml` 里只会留下一个：`$bog_seo` 开着就是它，一旦传了 `--no-seo` 就换成预渲染 action。需要站点地图和逐页元数据就留着 `$bog_seo`；如果活儿就是几个公开界面，退到预渲染 action 即可。
 
 ### Tauri 桌面
 

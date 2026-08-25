@@ -10,16 +10,23 @@ $mol 在任何編輯器中都能運作，但一小套工具能讓 `.view.tree` �
 npx create-view-tree-lsp bog/myapp
 ```
 
-參數是模組路徑（`namespace/name`，或等價的 `bog_myapp`）。它會為一個可運行的應用寫出 `view.tree`、`view.ts`、`view.css.ts` 和 `index.html`，外加用於部署的 GitHub Actions。預設情況下，它還包含一個 local-first 儲存 **Giper Baza**、一套 **Docker** 設定和一個 **Tauri** 桌面外殼。任何一項都可以用旗標關閉：
+請在自己的 MAM 檢出根目錄下執行：模組路徑從那裡解析，專案也該待在那裡。不在工作區裡時，指令會先警告，而不是讓你到第一次建置才發現。
+
+參數是模組路徑（`namespace/name`，或等價的 `bog_myapp`）。它會為一個可運行的應用寫出 `view.tree`、`view.ts`、`view.css.ts` 和 `index.html`，外加用於部署的 GitHub Actions。
+
+生成器能加的東西，預設全都加上。你只需要點名不想要的那些：
 
 ```bash
-npx create-view-tree-lsp bog/myapp --no-baza --no-docker --no-tauri
+npx create-view-tree-lsp bog/myapp --no-tauri --no-backend
 ```
 
-相反，還有幾項是按需啟用的：
+- `--no-baza` — local-first 儲存 **Giper Baza**
+- `--no-docker` — 含 `docker-compose.yml` 與 nginx 設定的 **Docker** 設定
+- `--no-tauri` — **Tauri** 桌面外殼
+- `--no-backend` — 帶 `node:sqlite` 儲存和共享 TypeScript 項目型別的 `$mol_server` REST 後端
+- `--no-prerender`、`--no-seo` — 搜尋引擎可見性，見下文 [持續整合](#!section=docs/page=tooling/Docs.Body=%E6%8C%81%E7%BA%8C%E6%95%B4%E5%90%88)
 
-- `--backend` 加入一個 `$mol_server` REST 後端，配有 `node:sqlite` 儲存和共用的 TypeScript item 型別
-- `--prerender` 和 `--seo` 加入搜尋引擎可見性，詳見下文的 [持續整合](#!section=docs/page=tooling/Docs.Body=%E6%8C%81%E7%BA%8C%E6%95%B4%E5%90%88)
+遇到不認識的旗標就停下，免得一個手誤悄悄把東西留在專案裡。
 
 腳手架只是語言伺服器中 CLI 的一層薄封裝，所以 `npx view-tree-lsp create bog/myapp` 會直接做同樣的事。
 
@@ -53,12 +60,12 @@ npx view-tree-lsp locale bog/myapp/app/- --exclude=mol --update
 
 ### SEO
 
-兩個獨立選項，都由 `v*` 標籤觸發：
+兩者預設都開著，也都在 `v*` 標籤上觸發：
 
-- **`--prerender`** 用 `b-on-g/mol-prerender-action` 把你列出的畫面（例如 `home`）算繪成靜態 HTML，這樣爬蟲和連結預覽就能看到真實內容。
-- **`--seo`** 加入 `$bog_seo` 執行期：一個基於 pathname 的路由器，帶有網站地圖、`robots.txt`、`llms.txt` 以及每頁的 meta 注入。該工作會服務建置產物，匯出正規的預算繪 HTML，並將其折回部署中。
+- **`--no-prerender`** 去掉那一步：用 `b-on-g/mol-prerender-action` 把你列出的畫面（例如 `home`）算成靜態 HTML —— 爬蟲和連結預覽能看到真內容，靠的就是它。
+- **`--no-seo`** 去掉 `$bog_seo` 執行期：帶網站地圖、`robots.txt`、`llms.txt` 和逐頁 meta 注入的 pathname 路由器。該工作會伺服建置產物、匯出規範的預先算好的 HTML，再摺回部署裡。
 
-當少數公開畫面需要可被爬取時，選用 prerender action；當你需要網站地圖和每頁中繼資料時，選用 `$bog_seo`。
+兩者覆蓋同一片地、寫同一個目錄，所以 `deploy.yml` 裡只會留下一個：`$bog_seo` 開著就是它，一旦傳了 `--no-seo` 就換成預先算好的 action。需要網站地圖和逐頁中繼資料就留著 `$bog_seo`；如果活兒就是幾個公開畫面，退到預先算好的 action 即可。
 
 ### Tauri 桌面
 

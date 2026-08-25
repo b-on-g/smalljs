@@ -10,16 +10,23 @@ $mol funktioniert in jedem Editor, aber eine kleine Auswahl an Werkzeugen macht 
 npx create-view-tree-lsp bog/myapp
 ```
 
-Das Argument ist der Modulpfad (`namespace/name` oder das gleichwertige `bog_myapp`). Es schreibt `view.tree`, `view.ts`, `view.css.ts` und `index.html` für eine funktionierende App sowie die GitHub Actions zum Deployen. Standardmäßig enthält es außerdem einen local-first Speicher **Giper Baza**, ein **Docker**-Setup und eine **Tauri**-Desktop-Hülle. Jedes davon lässt sich mit einem Flag abschalten:
+Führen Sie es im Wurzelverzeichnis Ihres MAM-Checkouts aus: Modulpfade werden von dort aus aufgelöst, und dort gehört das Projekt hin. Außerhalb eines Workspace warnt der Befehl, statt Sie das beim ersten Build herausfinden zu lassen.
+
+Das Argument ist der Modulpfad (`namespace/name` oder das gleichwertige `bog_myapp`). Es schreibt `view.tree`, `view.ts`, `view.css.ts` und `index.html` für eine funktionierende App sowie die GitHub Actions zum Deployen.
+
+Alles, was der Generator hinzufügen kann, ist standardmäßig dabei. Sie nennen nur das, was Sie nicht wollen:
 
 ```bash
-npx create-view-tree-lsp bog/myapp --no-baza --no-docker --no-tauri
+npx create-view-tree-lsp bog/myapp --no-tauri --no-backend
 ```
 
-Ein paar Bestandteile sind stattdessen optional:
+- `--no-baza` — ein local-first Speicher **Giper Baza**
+- `--no-docker` — ein **Docker**-Setup mit `docker-compose.yml` und nginx-Konfiguration
+- `--no-tauri` — eine **Tauri**-Desktop-Hülle
+- `--no-backend` — ein `$mol_server`-REST-Backend mit `node:sqlite`-Speicher und einem gemeinsam genutzten TypeScript-Item-Typ
+- `--no-prerender`, `--no-seo` — Sichtbarkeit für Suchmaschinen, weiter unten unter [Kontinuierliche Integration](#!section=docs/page=tooling/Docs.Body=Kontinuierliche%20Integration) beschrieben
 
-- `--backend` fügt ein `$mol_server`-REST-Backend mit `node:sqlite`-Speicher und einem gemeinsam genutzten TypeScript-Item-Typ hinzu
-- `--prerender` und `--seo` fügen Sichtbarkeit für Suchmaschinen hinzu, weiter unten unter [Kontinuierliche Integration](#!section=docs/page=tooling/Docs.Body=Kontinuierliche%20Integration) beschrieben
+Ein unbekanntes Flag bricht den Lauf ab, damit ein Tippfehler nicht stillschweigend etwas drin lässt.
 
 Der Scaffolder ist ein dünner Wrapper über der CLI im Language Server, sodass `npx view-tree-lsp create bog/myapp` dasselbe direkt erledigt.
 
@@ -53,12 +60,12 @@ Der Scaffolder schreibt die GitHub Actions nach `.github/workflows/`, sodass ein
 
 ### SEO
 
-Zwei unabhängige Optionen, beide ausgelöst durch `v*`-Tags:
+Beide sind standardmäßig an und beide laufen bei `v*`-Tags:
 
-- **`--prerender`** rendert die von Ihnen aufgelisteten Screens (etwa `home`) mit `b-on-g/mol-prerender-action` zu statischem HTML, sodass Crawler und Link-Vorschauen echten Inhalt sehen.
-- **`--seo`** fügt die `$bog_seo`-Laufzeit hinzu: einen Pathname-Router mit Sitemap, `robots.txt`, `llms.txt` und Meta-Injektion pro Seite. Der Job serviert den Build, dumpt kanonisches vorgerendertes HTML und faltet es zurück in das Deploy.
+- **`--no-prerender`** entfernt den Schritt, der die von Ihnen aufgezählten Screens (etwa `home`) mit `b-on-g/mol-prerender-action` zu statischem HTML rendert — genau das, wodurch Crawler und Link-Vorschauen echten Inhalt sehen.
+- **`--no-seo`** entfernt die `$bog_seo`-Laufzeit: einen Pathname-Router mit Sitemap, `robots.txt`, `llms.txt` und Meta-Injektion pro Seite. Der Job serviert den Build, schreibt kanonisches vorgerendertes HTML heraus und faltet es zurück ins Deployment.
 
-Greifen Sie zur Prerender-Action, wenn eine Handvoll öffentlicher Screens crawlbar sein muss, und zu `$bog_seo`, wenn Sie Sitemaps und Metadaten pro Seite brauchen.
+Beide decken dasselbe ab und schreiben in denselben Ordner, deshalb landet nur eines in `deploy.yml`: `$bog_seo`, solange es an ist, und die Prerender-Action, sobald Sie `--no-seo` übergeben. Behalten Sie `$bog_seo`, wenn Sie Sitemaps und Metadaten pro Seite brauchen, und greifen Sie zur Prerender-Action, wenn eine Handvoll öffentlicher Screens die ganze Aufgabe ist.
 
 ### Tauri-Desktop
 

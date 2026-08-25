@@ -10,16 +10,23 @@ $mol works in any editor, but a small set of tools makes `.view.tree` and typed 
 npx create-view-tree-lsp bog/myapp
 ```
 
-The argument is the module path (`namespace/name`, or the equivalent `bog_myapp`). It writes the `view.tree`, `view.ts`, `view.css.ts`, and `index.html` for a working app, plus the GitHub Actions to deploy it. By default it also includes a **Giper Baza** local-first store, a **Docker** setup, and a **Tauri** desktop shell. Turn any of them off with a flag:
+Run it from the root of your MAM checkout: module paths are resolved from there, and that is where the project has to live. Outside a workspace the command warns instead of leaving you to find out at the first build.
+
+The argument is the module path (`namespace/name`, or the equivalent `bog_myapp`). It writes the `view.tree`, `view.ts`, `view.css.ts`, and `index.html` for a working app, plus the GitHub Actions to deploy it.
+
+Everything the scaffolder knows how to add is included by default. You name only what you do not want:
 
 ```bash
-npx create-view-tree-lsp bog/myapp --no-baza --no-docker --no-tauri
+npx create-view-tree-lsp bog/myapp --no-tauri --no-backend
 ```
 
-A few pieces are opt-in instead:
+- `--no-baza` — a **Giper Baza** local-first store
+- `--no-docker` — a **Docker** setup with `docker-compose.yml` and an nginx config
+- `--no-tauri` — a **Tauri** desktop shell
+- `--no-backend` — a `$mol_server` REST backend with `node:sqlite` storage and a shared TypeScript item type
+- `--no-prerender`, `--no-seo` — search-engine visibility, described under [Continuous integration](#!section=docs/page=tooling/Docs.Body=Continuous%20integration) below
 
-- `--backend` adds a `$mol_server` REST backend with `node:sqlite` storage and a shared TypeScript item type
-- `--prerender` and `--seo` add search-engine visibility, described under [Continuous integration](#!section=docs/page=tooling/Docs.Body=Continuous%20integration) below
+A flag it does not know stops the run, so a typo cannot quietly leave something in.
 
 The scaffolder is a thin wrapper over the CLI in the language server, so `npx view-tree-lsp create bog/myapp` does the same thing directly.
 
@@ -53,12 +60,12 @@ The scaffolder writes GitHub Actions to `.github/workflows/`, so a new project d
 
 ### SEO
 
-Two independent options, both triggered on `v*` tags:
+Both are on by default and both run on `v*` tags:
 
-- **`--prerender`** renders the screens you list (such as `home`) to static HTML with `b-on-g/mol-prerender-action`, so crawlers and link previews see real content.
-- **`--seo`** adds the `$bog_seo` runtime: a pathname router with a sitemap, `robots.txt`, `llms.txt`, and per-page meta injection. The job serves the build, dumps canonical prerendered HTML, and folds it back into the deploy.
+- **`--no-prerender`** drops the step that renders the screens you list (such as `home`) to static HTML with `b-on-g/mol-prerender-action` — the thing that makes crawlers and link previews see real content.
+- **`--no-seo`** drops the `$bog_seo` runtime: a pathname router with a sitemap, `robots.txt`, `llms.txt`, and per-page meta injection. The job serves the build, dumps canonical prerendered HTML, and folds it back into the deploy.
 
-Reach for the prerender action when a handful of public screens need to be crawlable, and for `$bog_seo` when you need sitemaps and per-page metadata.
+They cover the same ground and write to the same folder, so only one of them lands in `deploy.yml`: `$bog_seo` while it is on, the prerender action once you pass `--no-seo`. Keep `$bog_seo` when you need sitemaps and per-page metadata, and drop to the prerender action when a handful of public screens is the whole job.
 
 ### Tauri desktop
 

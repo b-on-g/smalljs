@@ -10,16 +10,23 @@ $mol은 어떤 에디터에서도 동작하지만, 소수의 도구를 쓰면 `.
 npx create-view-tree-lsp bog/myapp
 ```
 
-인자는 모듈 경로(`namespace/name` 또는 동등한 `bog_myapp`)입니다. 동작하는 앱의 `view.tree`, `view.ts`, `view.css.ts`, `index.html`과 함께, 이를 배포하는 GitHub Actions를 작성합니다. 기본적으로 local-first 저장소 **Giper Baza**, **Docker** 설정, **Tauri** 데스크톱 셸도 포함합니다. 어느 것이든 플래그로 끌 수 있습니다.
+자신의 MAM 체크아웃 루트에서 실행하세요. 모듈 경로가 거기서부터 풀리고, 프로젝트도 거기 있어야 합니다. 워크스페이스 밖이면 첫 빌드에서 알게 되기 전에 명령이 경고합니다.
+
+인자는 모듈 경로(`namespace/name` 또는 동등한 `bog_myapp`)입니다. 동작하는 앱의 `view.tree`, `view.ts`, `view.css.ts`, `index.html`과 함께, 이를 배포하는 GitHub Actions를 작성합니다.
+
+스캐폴더가 넣을 수 있는 것은 모두 기본으로 들어갑니다. 원하지 않는 것만 이름을 대면 됩니다:
 
 ```bash
-npx create-view-tree-lsp bog/myapp --no-baza --no-docker --no-tauri
+npx create-view-tree-lsp bog/myapp --no-tauri --no-backend
 ```
 
-반대로, 몇 가지 요소는 선택적으로 켭니다.
+- `--no-baza` — local-first 저장소 **Giper Baza**
+- `--no-docker` — `docker-compose.yml`과 nginx 설정을 포함한 **Docker** 구성
+- `--no-tauri` — **Tauri** 데스크톱 셸
+- `--no-backend` — `node:sqlite` 저장소와 공유 TypeScript 아이템 타입을 갖춘 `$mol_server` REST 백엔드
+- `--no-prerender`, `--no-seo` — 검색 엔진 가시성. 아래 [지속적 통합](#!section=docs/page=tooling/Docs.Body=%EC%A7%80%EC%86%8D%EC%A0%81%20%ED%86%B5%ED%95%A9)에서 설명합니다
 
-- `--backend`는 `node:sqlite` 저장소와 공유 TypeScript 아이템 타입을 갖춘 `$mol_server` REST 백엔드를 추가합니다
-- `--prerender`와 `--seo`는 검색 엔진 가시성을 추가하며, 아래 [지속적 통합](#!section=docs/page=tooling/Docs.Body=%EC%A7%80%EC%86%8D%EC%A0%81%20%ED%86%B5%ED%95%A9)에서 설명합니다
+모르는 플래그를 만나면 실행을 멈춥니다. 오타 때문에 뭔가가 조용히 남는 일은 없습니다.
 
 스캐폴더는 언어 서버의 CLI를 감싼 얇은 래퍼이므로, `npx view-tree-lsp create bog/myapp`도 같은 일을 직접 수행합니다.
 
@@ -53,12 +60,12 @@ npx view-tree-lsp locale bog/myapp/app/- --exclude=mol --update
 
 ### SEO
 
-두 가지 독립적인 옵션이며, 둘 다 `v*` 태그에서 트리거됩니다.
+둘 다 기본으로 켜져 있고, 둘 다 `v*` 태그에서 돕니다:
 
-- **`--prerender`**는 `b-on-g/mol-prerender-action`으로 나열한 화면(예: `home`)을 정적 HTML로 렌더링하므로, 크롤러와 링크 미리보기가 실제 콘텐츠를 봅니다.
-- **`--seo`**는 `$bog_seo` 런타임을 추가합니다. 사이트맵, `robots.txt`, `llms.txt`, 페이지별 메타 주입을 갖춘 pathname 라우터입니다. 이 잡은 빌드를 서빙하고, 정규 프리렌더 HTML을 덤프하여 배포에 다시 접어 넣습니다.
+- **`--no-prerender`** 는 나열한 화면(예: `home`)을 `b-on-g/mol-prerender-action` 으로 정적 HTML에 렌더링하는 단계를 뺍니다. 크롤러와 링크 미리보기가 진짜 내용을 보는 건 이것 덕분입니다.
+- **`--no-seo`** 는 `$bog_seo` 런타임을 뺍니다. 사이트맵, `robots.txt`, `llms.txt`, 페이지별 메타 주입을 갖춘 pathname 라우터입니다. 잡은 빌드를 서빙하고, 정규 사전 렌더링 HTML을 덤프해 다시 배포에 접어 넣습니다.
 
-소수의 공개 화면이 크롤 가능해야 할 때는 prerender 액션을, 사이트맵과 페이지별 메타데이터가 필요할 때는 `$bog_seo`를 선택하세요.
+둘은 같은 땅을 덮고 같은 폴더에 쓰기 때문에 `deploy.yml` 에는 하나만 들어갑니다. 켜져 있는 동안은 `$bog_seo`, `--no-seo` 를 넘기는 순간부터는 프리렌더 액션입니다. 사이트맵과 페이지별 메타데이터가 필요하면 `$bog_seo` 를 두고, 공개 화면 몇 개가 일의 전부라면 프리렌더 액션으로 내려오세요.
 
 ### Tauri 데스크톱
 

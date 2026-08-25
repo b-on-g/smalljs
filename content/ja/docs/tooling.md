@@ -10,16 +10,23 @@ $mol はどのエディタでも動きますが、少数のツールを使うと
 npx create-view-tree-lsp bog/myapp
 ```
 
-引数はモジュールパス（`namespace/name`、または同等の `bog_myapp`）です。動作するアプリの `view.tree`、`view.ts`、`view.css.ts`、`index.html` に加え、それをデプロイする GitHub Actions を書き出します。デフォルトでは、local-first ストアの **Giper Baza**、**Docker** のセットアップ、**Tauri** のデスクトップシェルも含まれます。いずれもフラグでオフにできます。
+自分の MAM チェックアウトのルートで実行してください。モジュールパスはそこを起点に解決され、プロジェクトもそこに置かれます。ワークスペースの外では、最初のビルドで気づく前にコマンドが警告します。
+
+引数はモジュールパス（`namespace/name`、または同等の `bog_myapp`）です。動作するアプリの `view.tree`、`view.ts`、`view.css.ts`、`index.html` に加え、それをデプロイする GitHub Actions を書き出します。
+
+スキャフォルダーが追加できるものは、すべてデフォルトで入ります。要らないものだけを挙げてください。
 
 ```bash
-npx create-view-tree-lsp bog/myapp --no-baza --no-docker --no-tauri
+npx create-view-tree-lsp bog/myapp --no-tauri --no-backend
 ```
 
-一方、いくつかの要素はオプトインです。
+- `--no-baza` — local-first ストアの **Giper Baza**
+- `--no-docker` — `docker-compose.yml` と nginx 設定を含む **Docker** のセットアップ
+- `--no-tauri` — **Tauri** のデスクトップシェル
+- `--no-backend` — `node:sqlite` ストレージと共有 TypeScript アイテム型を備えた `$mol_server` の REST バックエンド
+- `--no-prerender`、`--no-seo` — 検索エンジンでの可視性。詳細は下の [継続的インテグレーション](#!section=docs/page=tooling/Docs.Body=%E7%B6%99%E7%B6%9A%E7%9A%84%E3%82%A4%E3%83%B3%E3%83%86%E3%82%B0%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3) を参照してください
 
-- `--backend` は、`node:sqlite` ストレージと共有 TypeScript アイテム型を備えた `$mol_server` の REST バックエンドを追加します
-- `--prerender` と `--seo` は検索エンジンでの可視性を追加します。詳細は下の [継続的インテグレーション](#!section=docs/page=tooling/Docs.Body=%E7%B6%99%E7%B6%9A%E7%9A%84%E3%82%A4%E3%83%B3%E3%83%86%E3%82%B0%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3) を参照してください
+知らないフラグは実行を止めます。打ち間違いで何かが黙って残ることはありません。
 
 スキャフォルダは言語サーバー内の CLI の薄いラッパーなので、`npx view-tree-lsp create bog/myapp` でも同じことを直接行えます。
 
@@ -53,12 +60,12 @@ npx view-tree-lsp locale bog/myapp/app/- --exclude=mol --update
 
 ### SEO
 
-独立した 2 つのオプションで、どちらも `v*` タグで発火します。
+どちらもデフォルトで有効で、どちらも `v*` タグで動きます。
 
-- **`--prerender`** は、`b-on-g/mol-prerender-action` を使って、あなたが列挙した画面（`home` など）を静的 HTML にレンダリングするので、クローラーやリンクプレビューが本物のコンテンツを見られます。
-- **`--seo`** は `$bog_seo` ランタイムを追加します。サイトマップ、`robots.txt`、`llms.txt`、ページごとのメタ注入を備えた pathname ルーターです。ジョブはビルドを配信し、正規のプリレンダー済み HTML をダンプして、それをデプロイに折り込みます。
+- **`--no-prerender`** は、挙げた画面（`home` など）を `b-on-g/mol-prerender-action` で静的 HTML にレンダリングする手順を外します。クローラーやリンクプレビューが本物の内容を見られるのは、これのおかげです。
+- **`--no-seo`** は `$bog_seo` ランタイムを外します。サイトマップ、`robots.txt`、`llms.txt`、ページごとのメタ注入を備えた pathname ルーターです。ジョブはビルドを配信し、正規の事前レンダリング HTML を書き出し、それをデプロイに畳み込みます。
 
-少数の公開画面をクロール可能にしたいときは prerender アクションを、サイトマップとページごとのメタデータが必要なときは `$bog_seo` を選んでください。
+両者は同じ範囲を覆い、同じフォルダーに書き込むため、`deploy.yml` に入るのは片方だけです。`$bog_seo` が有効な間はそちら、`--no-seo` を渡した時点でプリレンダー・アクションになります。サイトマップとページごとのメタデータが要るなら `$bog_seo` を残し、公開画面がひと握りで済むならプリレンダー・アクションに落としてください。
 
 ### Tauri デスクトップ
 

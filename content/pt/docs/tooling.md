@@ -10,16 +10,23 @@ O `create-view-tree-lsp` gera um módulo $mol pronto para rodar, para você não
 npx create-view-tree-lsp bog/myapp
 ```
 
-O argumento é o caminho do módulo (`namespace/name`, ou o equivalente `bog_myapp`). Ele escreve `view.tree`, `view.ts`, `view.css.ts` e `index.html` de uma app funcional, além das GitHub Actions para fazer o deploy. Por padrão, também inclui um armazenamento local-first **Giper Baza**, uma configuração **Docker** e uma casca desktop **Tauri**. Desligue qualquer um deles com uma flag:
+Rode a partir da raiz da sua cópia do MAM: os caminhos de módulo são resolvidos dali, e é lá que o projeto tem de morar. Fora de um workspace o comando avisa, em vez de deixar você descobrir no primeiro build.
+
+O argumento é o caminho do módulo (`namespace/name`, ou o equivalente `bog_myapp`). Ele escreve `view.tree`, `view.ts`, `view.css.ts` e `index.html` de uma app funcional, além das GitHub Actions para fazer o deploy.
+
+Tudo o que o gerador sabe adicionar vem incluído por padrão. Você nomeia apenas o que não quer:
 
 ```bash
-npx create-view-tree-lsp bog/myapp --no-baza --no-docker --no-tauri
+npx create-view-tree-lsp bog/myapp --no-tauri --no-backend
 ```
 
-Algumas peças, ao contrário, são opcionais:
+- `--no-baza` — um armazenamento local-first **Giper Baza**
+- `--no-docker` — uma configuração **Docker** com `docker-compose.yml` e config do nginx
+- `--no-tauri` — uma casca desktop **Tauri**
+- `--no-backend` — um backend REST `$mol_server` com armazenamento `node:sqlite` e um tipo de item TypeScript compartilhado
+- `--no-prerender`, `--no-seo` — visibilidade para mecanismos de busca, descrita abaixo em [Integração contínua](#!section=docs/page=tooling/Docs.Body=Integra%C3%A7%C3%A3o%20cont%C3%ADnua)
 
-- `--backend` adiciona um backend REST `$mol_server` com armazenamento `node:sqlite` e um tipo de item TypeScript compartilhado
-- `--prerender` e `--seo` adicionam visibilidade para mecanismos de busca, descrita abaixo em [Integração contínua](#!section=docs/page=tooling/Docs.Body=Integra%C3%A7%C3%A3o%20cont%C3%ADnua)
+Uma flag desconhecida interrompe a execução, para que um erro de digitação não deixe algo lá calado.
 
 O gerador é um wrapper fino sobre a CLI do language server, então `npx view-tree-lsp create bog/myapp` faz o mesmo diretamente.
 
@@ -53,12 +60,12 @@ O `deploy.yml` roda a cada push. Ele constrói a app com `hyoo-ru/mam_build`, pu
 
 ### SEO
 
-Duas opções independentes, ambas acionadas por tags `v*`:
+Os dois vêm ligados por padrão e os dois disparam em tags `v*`:
 
-- **`--prerender`** renderiza as telas que você listar (como `home`) em HTML estático com `b-on-g/mol-prerender-action`, para que crawlers e prévias de link vejam conteúdo real.
-- **`--seo`** adiciona o runtime `$bog_seo`: um roteador por pathname com sitemap, `robots.txt`, `llms.txt` e injeção de meta por página. O job serve o build, exporta o HTML pré-renderizado canônico e o reincorpora no deploy.
+- **`--no-prerender`** tira o passo que renderiza as telas que você lista (como `home`) em HTML estático com `b-on-g/mol-prerender-action` — justamente o que faz crawlers e prévias de link verem conteúdo de verdade.
+- **`--no-seo`** tira o runtime `$bog_seo`: um roteador por pathname com sitemap, `robots.txt`, `llms.txt` e injeção de meta por página. O job serve o build, despeja o HTML pré-renderizado canônico e o dobra de volta no deploy.
 
-Recorra à prerender action quando um punhado de telas públicas precisar ser rastreável, e ao `$bog_seo` quando você precisar de sitemaps e metadados por página.
+Eles cobrem o mesmo terreno e escrevem na mesma pasta, então só um cai no `deploy.yml`: `$bog_seo` enquanto estiver ligado, e a action de prerender assim que você passar `--no-seo`. Fique com `$bog_seo` quando precisar de sitemaps e metadados por página, e desça para a action de prerender quando um punhado de telas públicas for todo o trabalho.
 
 ### Desktop Tauri
 

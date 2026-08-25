@@ -10,16 +10,23 @@ $mol działa w każdym edytorze, ale niewielki zestaw narzędzi sprawia, że `.v
 npx create-view-tree-lsp bog/myapp
 ```
 
-Argumentem jest ścieżka modułu (`namespace/name` lub równoważne `bog_myapp`). Zapisuje `view.tree`, `view.ts`, `view.css.ts` i `index.html` działającej aplikacji, a także GitHub Actions do jej wdrożenia. Domyślnie dołącza też local-first magazyn **Giper Baza**, konfigurację **Docker** oraz desktopową powłokę **Tauri**. Każde z nich możesz wyłączyć flagą:
+Uruchamiaj z katalogu głównego swojej kopii MAM: stamtąd liczone są ścieżki modułów i tam projekt ma mieszkać. Poza workspace'em polecenie ostrzeże, zamiast zostawiać to do odkrycia przy pierwszym budowaniu.
+
+Argumentem jest ścieżka modułu (`namespace/name` lub równoważne `bog_myapp`). Zapisuje `view.tree`, `view.ts`, `view.css.ts` i `index.html` działającej aplikacji, a także GitHub Actions do jej wdrożenia.
+
+Wszystko, co generator potrafi dodać, jest domyślnie w środku. Wymieniasz tylko to, czego nie chcesz:
 
 ```bash
-npx create-view-tree-lsp bog/myapp --no-baza --no-docker --no-tauri
+npx create-view-tree-lsp bog/myapp --no-tauri --no-backend
 ```
 
-Kilka elementów jest natomiast opcjonalnych:
+- `--no-baza` — local-first magazyn **Giper Baza**
+- `--no-docker` — konfiguracja **Docker** z `docker-compose.yml` i configiem nginx
+- `--no-tauri` — desktopowa powłoka **Tauri**
+- `--no-backend` — backend REST `$mol_server` z magazynem `node:sqlite` i współdzielonym typem elementu w TypeScript
+- `--no-prerender`, `--no-seo` — widoczność w wyszukiwarkach, opisana poniżej w sekcji [Ciągła integracja](#!section=docs/page=tooling/Docs.Body=Ci%C4%85g%C5%82a%20integracja)
 
-- `--backend` dodaje backend REST `$mol_server` z magazynem `node:sqlite` i współdzielonym typem elementu w TypeScript
-- `--prerender` i `--seo` dodają widoczność w wyszukiwarkach, opisaną poniżej w sekcji [Ciągła integracja](#!section=docs/page=tooling/Docs.Body=Ci%C4%85g%C5%82a%20integracja)
+Nieznana flaga przerywa uruchomienie, więc literówka nie zostawi czegoś w projekcie po cichu.
 
 Generator to cienka nakładka na CLI serwera języka, więc `npx view-tree-lsp create bog/myapp` robi to samo bezpośrednio.
 
@@ -53,12 +60,12 @@ Generator zapisuje GitHub Actions w `.github/workflows/`, dzięki czemu nowy pro
 
 ### SEO
 
-Dwie niezależne opcje, obie wyzwalane tagami `v*`:
+Oba są domyślnie włączone i oba odpalają się na tagach `v*`:
 
-- **`--prerender`** renderuje wskazane przez Ciebie ekrany (na przykład `home`) do statycznego HTML za pomocą `b-on-g/mol-prerender-action`, dzięki czemu roboty i podglądy linków widzą prawdziwą treść.
-- **`--seo`** dodaje runtime `$bog_seo`: router po pathname z mapą witryny, `robots.txt`, `llms.txt` oraz wstrzykiwaniem meta na każdą stronę. Zadanie serwuje build, zrzuca kanoniczny prerenderowany HTML i wplata go z powrotem do wdrożenia.
+- **`--no-prerender`** usuwa krok, który renderuje wymienione przez ciebie ekrany (na przykład `home`) do statycznego HTML-a przez `b-on-g/mol-prerender-action` — właśnie to sprawia, że crawlery i podglądy linków widzą prawdziwą treść.
+- **`--no-seo`** usuwa runtime `$bog_seo`: router po pathname z mapą strony, `robots.txt`, `llms.txt` i wstrzykiwaniem meta na każdą stronę. Zadanie serwuje build, zrzuca kanoniczny prerenderowany HTML i zawija go z powrotem do wdrożenia.
 
-Sięgnij po prerender action, gdy garstka publicznych ekranów musi być indeksowalna, a po `$bog_seo`, gdy potrzebujesz map witryny i metadanych na każdą stronę.
+Robią to samo i piszą do tego samego katalogu, więc do `deploy.yml` trafia tylko jedno: `$bog_seo`, dopóki jest włączone, i prerender-action, gdy tylko podasz `--no-seo`. Zostaw `$bog_seo`, gdy potrzebujesz map strony i metadanych na stronę, a zejdź do prerender-action, gdy całą robotą jest garstka publicznych ekranów.
 
 ### Pulpit Tauri
 

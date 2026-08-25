@@ -10,16 +10,23 @@ $mol funguje v libovolném editoru, ale malá sada nástrojů činí `.view.tree
 npx create-view-tree-lsp bog/myapp
 ```
 
-Argumentem je cesta modulu (`namespace/name` nebo ekvivalentní `bog_myapp`). Zapíše `view.tree`, `view.ts`, `view.css.ts` a `index.html` fungující aplikace a k tomu GitHub Actions pro její nasazení. Ve výchozím nastavení zahrnuje také local-first úložiště **Giper Baza**, konfiguraci **Docker** a desktopový obal **Tauri**. Kterékoli z nich vypnete přepínačem:
+Spouštějte z kořene své kopie MAM: odtud se počítají cesty modulů a tam má projekt bydlet. Mimo workspace příkaz varuje, místo aby vás to nechal zjistit až při prvním buildu.
+
+Argumentem je cesta modulu (`namespace/name` nebo ekvivalentní `bog_myapp`). Zapíše `view.tree`, `view.ts`, `view.css.ts` a `index.html` fungující aplikace a k tomu GitHub Actions pro její nasazení.
+
+Vše, co generátor umí přidat, je ve výchozím stavu uvnitř. Vyjmenujete jen to, co nechcete:
 
 ```bash
-npx create-view-tree-lsp bog/myapp --no-baza --no-docker --no-tauri
+npx create-view-tree-lsp bog/myapp --no-tauri --no-backend
 ```
 
-Několik částí je naopak volitelných:
+- `--no-baza` — local-first úložiště **Giper Baza**
+- `--no-docker` — konfigurace **Docker** s `docker-compose.yml` a nginx configem
+- `--no-tauri` — desktopový obal **Tauri**
+- `--no-backend` — REST backend `$mol_server` s úložištěm `node:sqlite` a sdíleným TypeScriptovým typem položky
+- `--no-prerender`, `--no-seo` — viditelnost pro vyhledávače, popsaná níže v sekci [Průběžná integrace](#!section=docs/page=tooling/Docs.Body=Pr%C5%AFb%C4%9B%C5%BEn%C3%A1%20integrace)
 
-- `--backend` přidá REST backend `$mol_server` s úložištěm `node:sqlite` a sdíleným TypeScriptovým typem položky
-- `--prerender` a `--seo` přidají viditelnost pro vyhledávače, popsanou níže v sekci [Průběžná integrace](#!section=docs/page=tooling/Docs.Body=Pr%C5%AFb%C4%9B%C5%BEn%C3%A1%20integrace)
+Neznámý přepínač běh zastaví, takže překlep v projektu potichu nic nenechá.
 
 Generátor je tenká obálka nad CLI jazykového serveru, takže `npx view-tree-lsp create bog/myapp` udělá totéž přímo.
 
@@ -53,12 +60,12 @@ Generátor zapíše GitHub Actions do `.github/workflows/`, takže nový projekt
 
 ### SEO
 
-Dvě nezávislé volby, obě spouštěné tagy `v*`:
+Obojí je ve výchozím stavu zapnuté a obojí se spouští na tazích `v*`:
 
-- **`--prerender`** vykreslí obrazovky, které vyjmenujete (například `home`), do statického HTML pomocí `b-on-g/mol-prerender-action`, takže crawlery a náhledy odkazů vidí skutečný obsah.
-- **`--seo`** přidá runtime `$bog_seo`: router podle pathname se sitemapou, `robots.txt`, `llms.txt` a vkládáním meta pro každou stránku. Úloha obslouží build, vypíše kanonické předvykreslené HTML a vloží ho zpět do nasazení.
+- **`--no-prerender`** odebere krok, který vámi vyjmenované obrazovky (třeba `home`) vyrenderuje do statického HTML pomocí `b-on-g/mol-prerender-action` — právě díky němu crawlery a náhledy odkazů vidí skutečný obsah.
+- **`--no-seo`** odebere runtime `$bog_seo`: router podle pathname se sitemapou, `robots.txt`, `llms.txt` a vkládáním meta na každou stránku. Úloha obslouží build, vysype kanonické předrenderované HTML a zabalí ho zpět do nasazení.
 
-Sáhněte po prerender action, když má být hrstka veřejných obrazovek procházitelná, a po `$bog_seo`, když potřebujete sitemapy a metadata pro každou stránku.
+Pokrývají totéž a zapisují do stejné složky, takže do `deploy.yml` se dostane jen jedno: `$bog_seo`, dokud je zapnuté, a prerender-action, jakmile předáte `--no-seo`. Nechte si `$bog_seo`, když potřebujete sitemapy a metadata po stránkách, a spadněte k prerender-action, když je celou prací hrstka veřejných obrazovek.
 
 ### Desktop Tauri
 
