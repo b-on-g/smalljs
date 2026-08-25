@@ -4335,78 +4335,108 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $.$mol_mem_persist = $mol_wire_solid;
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    $.$mol_mem_cached = $mol_wire_probe;
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    function $mol_wait_user_async() {
-        return new Promise(done => $mol_dom.addEventListener('click', function onclick() {
-            $mol_dom.removeEventListener('click', onclick);
-            done(null);
-        }));
-    }
-    $.$mol_wait_user_async = $mol_wait_user_async;
-    function $mol_wait_user() {
-        return this.$mol_wire_sync(this).$mol_wait_user_async();
-    }
-    $.$mol_wait_user = $mol_wait_user;
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
     class $mol_storage extends $mol_object2 {
-        static native() {
-            return this.$.$mol_dom_context.navigator.storage ?? {
-                persisted: async () => false,
-                persist: async () => false,
-                estimate: async () => ({}),
-                getDirectory: async () => null,
-            };
+        /** Is storage a long term. */
+        static persisted(next) {
+            return false;
         }
-        static persisted(next, cache) {
-            $mol_mem_persist();
-            if (cache)
-                return Boolean(next);
-            const native = this.native();
-            if (next && !$mol_mem_cached(() => this.persisted())) {
-                this.$.$mol_wait_user_async()
-                    .then(() => native.persist())
-                    .then(actual => {
-                    setTimeout(() => this.persisted(actual, 'cache'), 5000);
-                    if (actual)
-                        this.$.$mol_log3_done({ place: `$mol_storage`, message: `Persist: Yes` });
-                    else
-                        this.$.$mol_log3_fail({ place: `$mol_storage`, message: `Persist: No` });
-                });
+        /** Total storage quota in bytes. */
+        static total() {
+            return 0;
+        }
+        /** Total storage usage in bytes. */
+        static used() {
+            return 0;
+        }
+        /** Minimum available free space in bytes. */
+        static free() {
+            return this.total() - this.used();
+        }
+        /** Fulfillness of storage. */
+        static portion() {
+            const total = this.total();
+            if (!total)
+                return 1;
+            return this.used() / total;
+        }
+        /**
+         * Fulfillness logarithmic level.
+         * `0` - empty
+         * `1` - half free
+         * `2` - quart free
+         * `Infinity` - fulfilled
+         */
+        static level() {
+            return Math.floor(-Math.log2(1 - this.portion()));
+        }
+    }
+    $.$mol_storage = $mol_storage;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    /** State of time moment */
+    class $mol_state_time extends $mol_object {
+        static task(precision, reset) {
+            if (precision) {
+                return new $mol_after_timeout(precision, () => this.task(precision, null));
             }
-            return next ?? $mol_wire_sync(native).persisted();
+            else {
+                return new $mol_after_frame(() => this.task(precision, null));
+            }
         }
-        static estimate() {
-            return $mol_wire_sync(this.native() ?? {}).estimate();
+        static now(precision) {
+            this.task(precision);
+            return Date.now();
         }
-        static dir() {
-            return $mol_wire_sync(this.native()).getDirectory();
+    }
+    __decorate([
+        $mol_mem_key
+    ], $mol_state_time, "task", null);
+    __decorate([
+        $mol_mem_key
+    ], $mol_state_time, "now", null);
+    $.$mol_state_time = $mol_state_time;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_storage_node extends $mol_storage {
+        static persisted() {
+            return true;
+        }
+        static stats() {
+            $mol_state_time.now(1000);
+            return $node.fs.statfsSync('.');
+        }
+        static total() {
+            const { blocks, bsize } = this.stats();
+            return blocks * bsize;
+        }
+        static used() {
+            const { blocks, bfree, bsize } = this.stats();
+            return (blocks - bfree) * bsize;
+        }
+        static free() {
+            const { bfree, bsize } = this.stats();
+            return bfree * bsize;
+        }
+        static portion() {
+            const { blocks, bfree } = this.stats();
+            if (!blocks)
+                return 1;
+            return (blocks - bfree) / blocks;
         }
     }
     __decorate([
         $mol_mem
-    ], $mol_storage, "native", null);
-    __decorate([
-        $mol_mem
-    ], $mol_storage, "persisted", null);
-    $.$mol_storage = $mol_storage;
+    ], $mol_storage_node, "stats", null);
+    $.$mol_storage_node = $mol_storage_node;
+    $.$mol_storage = $.$mol_storage_node;
 })($ || ($ = {}));
 
 ;
@@ -4511,6 +4541,13 @@ var $;
         grab() { return $mol_wire_sync(this).wait(); }
     }
     $.$mol_lock = $mol_lock;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_mem_cached = $mol_wire_probe;
 })($ || ($ = {}));
 
 ;
@@ -6199,34 +6236,6 @@ var $;
 		}
 	};
 
-
-;
-"use strict";
-var $;
-(function ($) {
-    /** State of time moment */
-    class $mol_state_time extends $mol_object {
-        static task(precision, reset) {
-            if (precision) {
-                return new $mol_after_timeout(precision, () => this.task(precision, null));
-            }
-            else {
-                return new $mol_after_frame(() => this.task(precision, null));
-            }
-        }
-        static now(precision) {
-            this.task(precision);
-            return Date.now();
-        }
-    }
-    __decorate([
-        $mol_mem_key
-    ], $mol_state_time, "task", null);
-    __decorate([
-        $mol_mem_key
-    ], $mol_state_time, "now", null);
-    $.$mol_state_time = $mol_state_time;
-})($ || ($ = {}));
 
 ;
 "use strict";
@@ -13357,7 +13366,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_attach("mol/text/text/text.view.css", "[mol_text] {\n\tline-height: 1.5em;\n\tbox-sizing: border-box;\n\tborder-radius: var(--mol_gap_round);\n\twhite-space: pre-line;\n\tdisplay: flex;\n\tflex-direction: column;\n\tflex: 0 0 auto;\n\ttab-size: 4;\n}\n\n[mol_text_paragraph] {\n\tpadding: var(--mol_gap_text);\n\toverflow: auto;\n\toverflow-x: overlay;\n\tmax-width: 100%;\n\tdisplay: block;\n\tmax-width: 60rem;\n\tbreak-inside: avoid;\n}\n\n[mol_text_spoiler_label_paragraph] {\n\tpadding: 0;\n}\n\n[mol_text_span] {\n\tdisplay: inline;\n}\n\n[mol_text_string] {\n\tdisplay: inline;\n\tflex: 0 1 auto;\n\twhite-space: normal;\n}\n\n[mol_text_quote] {\n\tmargin: var(--mol_gap_block);\n\tpadding: var(--mol_gap_block);\n\tbackground: var(--mol_theme_card);\n\tbox-shadow: 0 0 0 1px var(--mol_theme_back);\n\tbreak-inside: avoid;\n}\n\n[mol_text_header] {\n\tdisplay: block;\n\ttext-shadow: 0 0;\n\tfont-weight: normal;\n\tbreak-after: avoid;\n}\n\n* + [mol_text_header] {\n\tmargin-top: 0.75rem;\n}\n\nh1[mol_text_header] {\n\tfont-size: 1.5rem;\n}\n\nh2[mol_text_header] {\n\tfont-size: 1.5rem;\n\tfont-style: italic;\n}\n\nh3[mol_text_header] {\n\tfont-size: 1.25rem;\n}\n\nh4[mol_text_header] {\n\tfont-size: 1.25em;\n\tfont-style: italic;\n}\n\nh5[mol_text_header] {\n\tfont-size: 1rem;\n}\n\nh6[mol_text_header] {\n\tfont-size: 1rem;\n\tfont-style: italic;\n}\n\n[mol_text_header_link] {\n\tcolor: inherit;\n}\n\n[mol_text_table] {\n\tbreak-inside: avoid;\n}\n\n[mol_text_table_cell] {\n\twidth: auto;\n\tdisplay: table-cell;\n\tvertical-align: baseline;\n\tpadding: 0;\n\tborder-radius: 0;\n}\n\n[mol_text_grid] {\n\tbreak-inside: avoid;\n}\n\n[mol_text_grid_cell] {\n\twidth: auto;\n\tdisplay: table-cell;\n\tvertical-align: top;\n\tpadding: 0;\n\tborder-radius: 0;\n}\n\n[mol_text_cut] {\n\tborder: none;\n\twidth: 100%;\n\tbox-shadow: 0 0 0 1px var(--mol_theme_line);\n}\n\n[mol_text_link_http],\n[mol_text_link] {\n\tpadding: 0;\n\tdisplay: inline;\n\twhite-space: nowrap;\n}\n\n[mol_text_link_icon] + [mol_text_embed] {\n\tmargin-inline-start: -1.5rem;\n}\n\n[mol_text_embed_youtube] {\n\tdisplay: inline;\n}\n\n[mol_text_embed_youtube_image],\n[mol_text_embed_youtube_frame],\n[mol_text_embed_object] {\n\tobject-fit: contain;\n\tobject-position: center;\n\twidth: 100vw;\n\tmax-height: calc( 100vh - 6rem );\n}\n[mol_text_embed_object_fallback] {\n\tpadding: 0;\n}\n[mol_text_embed_image] {\n\tobject-fit: contain;\n\tobject-position: center;\n\tdisplay: inline;\n\t/* max-height: calc( 100vh - 6rem ); */\n\tvertical-align: top;\n}\n\n[mol_text_pre] {\n\twhite-space: pre;\n\toverflow-x: auto;\n\toverflow-x: overlay;\n\ttab-size: 2;\n\tbreak-inside: avoid;\n}\n\n[mol_text_code_line] {\n\tdisplay: inline-block;\n}\n\n[mol_text_type=\"strong\"] {\n\ttext-shadow: 0 0;\n\tfilter: contrast(1.5);\n}\n\n[mol_text_type=\"emphasis\"] {\n\tfont-style: italic;\n}\n\n[mol_text_type=\"insert\"] {\n\tcolor: var(--mol_theme_special);\n}\n\n[mol_text_type=\"delete\"] {\n\tcolor: var(--mol_theme_shade);\n}\n\n[mol_text_type=\"remark\"] {\n\tcolor: var(--mol_theme_shade);\n}\n\n[mol_text_type=\"quote\"] {\n\tfont-style: italic;\n}\n");
+    $mol_style_attach("mol/text/text/text.view.css", "[mol_text] {\n\tline-height: 1.5em;\n\tbox-sizing: border-box;\n\tborder-radius: var(--mol_gap_round);\n\twhite-space: pre-line;\n\tdisplay: flex;\n\tflex-direction: column;\n\tflex: 0 0 auto;\n\ttab-size: 4;\n}\n\n[mol_text_paragraph] {\n\tpadding: var(--mol_gap_text);\n\toverflow: auto;\n\toverflow-x: overlay;\n\tmax-width: 100%;\n\tdisplay: block;\n\tmax-width: 60rem;\n\tbreak-inside: avoid;\n}\n\n[mol_text_spoiler_label_paragraph] {\n\tpadding: 0;\n}\n\n[mol_text_span] {\n\tdisplay: inline;\n}\n\n[mol_text_string] {\n\tdisplay: inline;\n\tflex: 0 1 auto;\n\twhite-space: normal;\n}\n\n[mol_text_quote] {\n\tmargin: var(--mol_gap_block);\n\tpadding: var(--mol_gap_block);\n\tbackground: var(--mol_theme_card);\n\tbox-shadow: 0 0 0 1px var(--mol_theme_back);\n\tbreak-inside: avoid;\n}\n\n[mol_text_header] {\n\tdisplay: block;\n\ttext-shadow: 0 0;\n\tfont-weight: normal;\n\tbreak-after: avoid;\n\tletter-spacing: 2px;\n}\n\n* + [mol_text_header] {\n\tmargin-top: 0.75rem;\n}\n\nh1[mol_text_header] {\n\tfont-size: 1.5rem;\n}\n\nh2[mol_text_header] {\n\tfont-size: 1.5rem;\n\tfont-style: italic;\n}\n\nh3[mol_text_header] {\n\tfont-size: 1.25rem;\n}\n\nh4[mol_text_header] {\n\tfont-size: 1.25em;\n\tfont-style: italic;\n}\n\nh5[mol_text_header] {\n\tfont-size: 1rem;\n}\n\nh6[mol_text_header] {\n\tfont-size: 1rem;\n\tfont-style: italic;\n}\n\n[mol_text_header_link] {\n\tcolor: inherit;\n}\n\n[mol_text_table] {\n\tbreak-inside: avoid;\n}\n\n[mol_text_table_cell] {\n\twidth: auto;\n\tdisplay: table-cell;\n\tvertical-align: baseline;\n\tpadding: 0;\n\tborder-radius: 0;\n}\n\n[mol_text_grid] {\n\tbreak-inside: avoid;\n}\n\n[mol_text_grid_cell] {\n\twidth: auto;\n\tdisplay: table-cell;\n\tvertical-align: top;\n\tpadding: 0;\n\tborder-radius: 0;\n}\n\n[mol_text_cut] {\n\tborder: none;\n\twidth: 100%;\n\tbox-shadow: 0 0 0 1px var(--mol_theme_line);\n}\n\n[mol_text_link_http],\n[mol_text_link] {\n\tpadding: 0;\n\tdisplay: inline;\n\twhite-space: nowrap;\n}\n\n[mol_text_link_icon] + [mol_text_embed] {\n\tmargin-inline-start: -1.5rem;\n}\n\n[mol_text_embed_youtube] {\n\tdisplay: inline;\n}\n\n[mol_text_embed_youtube_image],\n[mol_text_embed_youtube_frame],\n[mol_text_embed_object] {\n\tobject-fit: contain;\n\tobject-position: center;\n\twidth: 100vw;\n\tmax-height: calc( 100vh - 6rem );\n}\n[mol_text_embed_object_fallback] {\n\tpadding: 0;\n}\n[mol_text_embed_image] {\n\tobject-fit: contain;\n\tobject-position: center;\n\tdisplay: inline;\n\t/* max-height: calc( 100vh - 6rem ); */\n\tvertical-align: top;\n}\n\n[mol_text_pre] {\n\twhite-space: pre;\n\toverflow-x: auto;\n\toverflow-x: overlay;\n\ttab-size: 2;\n\tbreak-inside: avoid;\n}\n\n[mol_text_code_line] {\n\tdisplay: inline-block;\n}\n\n[mol_text_type=\"strong\"] {\n\ttext-shadow: 0 0;\n\tfilter: contrast(1.5);\n}\n\n[mol_text_type=\"emphasis\"] {\n\tfont-style: italic;\n}\n\n[mol_text_type=\"insert\"] {\n\tcolor: var(--mol_theme_special);\n}\n\n[mol_text_type=\"delete\"] {\n\tcolor: var(--mol_theme_shade);\n}\n\n[mol_text_type=\"remark\"] {\n\tcolor: var(--mol_theme_shade);\n}\n\n[mol_text_type=\"quote\"] {\n\tfont-style: italic;\n}\n");
 })($ || ($ = {}));
 
 ;
@@ -19803,6 +19812,104 @@ var $;
 })($ || ($ = {}));
 
 ;
+	($.$mol_icon_eye) = class $mol_icon_eye extends ($.$mol_icon) {
+		path(){
+			return "M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z";
+		}
+	};
+
+
+;
+"use strict";
+
+
+;
+	($.$mol_password) = class $mol_password extends ($.$mol_view) {
+		hint(){
+			return "";
+		}
+		value(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		submit(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		enabled(){
+			return true;
+		}
+		Pass(){
+			const obj = new this.$.$mol_string();
+			(obj.type) = () => ((this.type()));
+			(obj.hint) = () => ((this.hint()));
+			(obj.value) = (next) => ((this.value(next)));
+			(obj.submit) = (next) => ((this.submit(next)));
+			(obj.enabled) = () => ((this.enabled()));
+			return obj;
+		}
+		checked(next){
+			if(next !== undefined) return next;
+			return true;
+		}
+		Show_icon(){
+			const obj = new this.$.$mol_icon_eye();
+			return obj;
+		}
+		Show(){
+			const obj = new this.$.$mol_check_icon();
+			(obj.checked) = (next) => ((this.checked(next)));
+			(obj.Icon) = () => ((this.Show_icon()));
+			return obj;
+		}
+		content(){
+			return [(this.Pass()), (this.Show())];
+		}
+		type(next){
+			if(next !== undefined) return next;
+			return "password";
+		}
+		sub(){
+			return (this.content());
+		}
+	};
+	($mol_mem(($.$mol_password.prototype), "value"));
+	($mol_mem(($.$mol_password.prototype), "submit"));
+	($mol_mem(($.$mol_password.prototype), "Pass"));
+	($mol_mem(($.$mol_password.prototype), "checked"));
+	($mol_mem(($.$mol_password.prototype), "Show_icon"));
+	($mol_mem(($.$mol_password.prototype), "Show"));
+	($mol_mem(($.$mol_password.prototype), "type"));
+
+
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        /**
+         * Password input field
+         * @see https://mol.hyoo.ru/#!section=demos/demo=mol_password_demo
+         */
+        class $mol_password extends $.$mol_password {
+            checked(next) {
+                this.type(next ? 'text' : 'password');
+                return next ?? false;
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $mol_password.prototype, "checked", null);
+        $$.$mol_password = $mol_password;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
 "use strict";
 var $;
 (function ($) {
@@ -20084,9 +20191,9 @@ var $;
 
 
 ;
-	($.$mol_icon_link) = class $mol_icon_link extends ($.$mol_icon) {
+	($.$mol_icon_share) = class $mol_icon_share extends ($.$mol_icon) {
 		path(){
-			return "M3.9,12C3.9,10.29 5.29,8.9 7,8.9H11V7H7A5,5 0 0,0 2,12A5,5 0 0,0 7,17H11V15.1H7C5.29,15.1 3.9,13.71 3.9,12M8,13H16V11H8V13M17,7H13V8.9H17C18.71,8.9 20.1,10.29 20.1,12C20.1,13.71 18.71,15.1 17,15.1H13V17H17A5,5 0 0,0 22,12A5,5 0 0,0 17,7Z";
+			return "M21,12L14,5V9C7,10 4,15 3,20C5.5,16.5 9,14.9 14,14.9V19L21,12Z";
 		}
 	};
 
@@ -20096,9 +20203,9 @@ var $;
 
 
 ;
-	($.$mol_icon_link_variant) = class $mol_icon_link_variant extends ($.$mol_icon) {
+	($.$mol_icon_share_variant) = class $mol_icon_share_variant extends ($.$mol_icon) {
 		path(){
-			return "M10.59,13.41C11,13.8 11,14.44 10.59,14.83C10.2,15.22 9.56,15.22 9.17,14.83C7.22,12.88 7.22,9.71 9.17,7.76V7.76L12.71,4.22C14.66,2.27 17.83,2.27 19.78,4.22C21.73,6.17 21.73,9.34 19.78,11.29L18.29,12.78C18.3,11.96 18.17,11.14 17.89,10.36L18.36,9.88C19.54,8.71 19.54,6.81 18.36,5.64C17.19,4.46 15.29,4.46 14.12,5.64L10.59,9.17C9.41,10.34 9.41,12.24 10.59,13.41M13.41,9.17C13.8,8.78 14.44,8.78 14.83,9.17C16.78,11.12 16.78,14.29 14.83,16.24V16.24L11.29,19.78C9.34,21.73 6.17,21.73 4.22,19.78C2.27,17.83 2.27,14.66 4.22,12.71L5.71,11.22C5.7,12.04 5.83,12.86 6.11,13.65L5.64,14.12C4.46,15.29 4.46,17.19 5.64,18.36C6.81,19.54 8.71,19.54 9.88,18.36L13.41,14.83C14.59,13.66 14.59,11.76 13.41,10.59C13,10.2 13,9.56 13.41,9.17Z";
+			return "M18,16.08C17.24,16.08 16.56,16.38 16.04,16.85L8.91,12.7C8.96,12.47 9,12.24 9,12C9,11.76 8.96,11.53 8.91,11.3L15.96,7.19C16.5,7.69 17.21,8 18,8A3,3 0 0,0 21,5A3,3 0 0,0 18,2A3,3 0 0,0 15,5C15,5.24 15.04,5.47 15.09,5.7L8.04,9.81C7.5,9.31 6.79,9 6,9A3,3 0 0,0 3,12A3,3 0 0,0 6,15C6.79,15 7.5,14.69 8.04,14.19L15.16,18.34C15.11,18.55 15.08,18.77 15.08,19C15.08,20.61 16.39,21.91 18,21.91C19.61,21.91 20.92,20.61 20.92,19A2.92,2.92 0 0,0 18,16.08Z";
 		}
 	};
 
@@ -20108,9 +20215,21 @@ var $;
 
 
 ;
-	($.$mol_icon_undo) = class $mol_icon_undo extends ($.$mol_icon) {
+	($.$mol_icon_share_variant_outline) = class $mol_icon_share_variant_outline extends ($.$mol_icon) {
 		path(){
-			return "M12.5,8C9.85,8 7.45,9 5.6,10.6L2,7V16H11L7.38,12.38C8.77,11.22 10.54,10.5 12.5,10.5C16.04,10.5 19.05,12.81 20.1,16L22.47,15.22C21.08,11.03 17.15,8 12.5,8Z";
+			return "M18 16.08C17.24 16.08 16.56 16.38 16.04 16.85L8.91 12.7C8.96 12.47 9 12.24 9 12S8.96 11.53 8.91 11.3L15.96 7.19C16.5 7.69 17.21 8 18 8C19.66 8 21 6.66 21 5S19.66 2 18 2 15 3.34 15 5C15 5.24 15.04 5.47 15.09 5.7L8.04 9.81C7.5 9.31 6.79 9 6 9C4.34 9 3 10.34 3 12S4.34 15 6 15C6.79 15 7.5 14.69 8.04 14.19L15.16 18.34C15.11 18.55 15.08 18.77 15.08 19C15.08 20.61 16.39 21.91 18 21.91S20.92 20.61 20.92 19C20.92 17.39 19.61 16.08 18 16.08M18 4C18.55 4 19 4.45 19 5S18.55 6 18 6 17 5.55 17 5 17.45 4 18 4M6 13C5.45 13 5 12.55 5 12S5.45 11 6 11 7 11.45 7 12 6.55 13 6 13M18 20C17.45 20 17 19.55 17 19S17.45 18 18 18 19 18.45 19 19 18.55 20 18 20Z";
+		}
+	};
+
+
+;
+"use strict";
+
+
+;
+	($.$mol_icon_restore) = class $mol_icon_restore extends ($.$mol_icon) {
+		path(){
+			return "M13,3A9,9 0 0,0 4,12H1L4.89,15.89L4.96,16.03L9,12H6A7,7 0 0,1 13,5A7,7 0 0,1 20,12A7,7 0 0,1 13,19C11.07,19 9.32,18.21 8.06,16.94L6.64,18.36C8.27,20 10.5,21 13,21A9,9 0 0,0 22,12A9,9 0 0,0 13,3Z";
 		}
 	};
 
@@ -20221,7 +20340,7 @@ var $;
 			return null;
 		}
 		Share_icon(){
-			const obj = new this.$.$mol_icon_link_variant();
+			const obj = new this.$.$mol_icon_share_variant_outline();
 			return obj;
 		}
 		Share(){
@@ -20239,7 +20358,7 @@ var $;
 			return null;
 		}
 		Reset_icon(){
-			const obj = new this.$.$mol_icon_undo();
+			const obj = new this.$.$mol_icon_restore();
 			return obj;
 		}
 		Reset(){
@@ -21722,46 +21841,52 @@ var $;
     $.$bog_smalljs_playground_samples = {
         hello: {
             root: `${S}my_hello`,
-            tree: lines(`${S}my_hello ${S}mol_view`, `\tname? \\world`, `\tgreeting \\`, `\tsub /`, `\t\t<= Field ${S}mol_string`, `\t\t\tvalue? <=> name?`, `\t\t\thint \\Your name`, `\t\t<= Greeting ${S}mol_view`, `\t\t\tsub / <= greeting`),
+            tree: lines(`${S}my_hello ${S}mol_view`, `\tname? \\mol`, `\tgreeting \\`, `\tsub /`, `\t\t<= Name ${S}mol_string`, `\t\t\tvalue? <=> name?`, `\t\t\thint @ \\Type a name`, `\t\t<= Greeting ${S}mol_view`, `\t\t\tsub / <= greeting`),
             // Приветствие view.tree сам не соберёт — за него отвечает класс.
-            ts: lines(`class ${S}my_hello extends ${S}.${S}my_hello {`, `\tgreeting() {`, `\t\treturn 'Hello, ' + ( this.name() || 'stranger' ) + '!'`, `\t}`, `}`),
-            css: lines(`namespace ${S} {`, `\t${S}mol_style_define( ${S}my_hello, {`, `\t\tflex: { direction: 'column', gap: '1rem' },`, `\t\tpadding: '1.5rem',`, `\t\tGreeting: {`, `\t\t\tfont: { size: '1.5rem', weight: 700 },`, `\t\t\tcolor: '#0088ff',`, `\t\t},`, `\t} )`, `}`),
+            ts: lines(`class ${S}my_hello extends ${S}.${S}my_hello {`, ``, `\tgreeting() {`, 
+            // Обычная строка, а не шаблонная: внутри лежит шаблонная литера
+            // примера, и её `${` не должен раскрыться здесь.
+            "\t\treturn `Hello, ${ this.name().trim() || 'stranger' }!`", `\t}`, ``, `}`),
+            css: lines(`namespace ${S} {`, ``, `\t${S}mol_style_define( ${S}my_hello, {`, ``, `\t\tflex: { direction: 'column', gap: '1rem' },`, `\t\tpadding: '1.5rem',`, ``, `\t\tGreeting: {`, `\t\t\tfont: { size: '1.75rem', weight: 500 },`, `\t\t},`, ``, `\t} )`, ``, `}`),
         },
         counter: {
             root: `${S}my_demo`,
-            tree: lines(`${S}my_demo ${S}mol_view`, `\tcount_text \\0`, `\tinc? null`, `\tsub /`, `\t\t<= Value ${S}mol_view`, `\t\t\tsub / <= count_text`, `\t\t<= Button ${S}mol_button_major`, `\t\t\tclick? <=> inc?`, `\t\t\tsub / <= button_label \\Count up`),
-            ts: lines(`class ${S}my_demo extends ${S}.${S}my_demo {`, `\t@ ${S}mol_mem count( next?: number ) { return next ?? 0 }`, `\t@ ${S}mol_action inc() { this.count( this.count() + 1 ) }`, `\tcount_text() { return String( this.count() ) }`, `}`),
-            css: lines(`namespace ${S} {`, `\t${S}mol_style_define( ${S}my_demo, {`, `\t\tflex: { direction: 'column', gap: '1rem' },`, `\t\tpadding: '1.5rem',`, `\t\tValue: {`, `\t\t\tfont: { size: '2rem', weight: 700 },`, `\t\t\tcolor: '#0088ff',`, `\t\t\tpadding: { bottom: '0.5rem' },`, `\t\t},`, `\t} )`, `}`),
+            tree: lines(`${S}my_demo ${S}mol_view`, `\tcount_text \\0`, `\tinc? null`, `\tsub /`, `\t\t<= Value ${S}mol_view`, `\t\t\tsub / <= count_text`, `\t\t<= Button ${S}mol_button_major`, `\t\t\tclick? <=> inc?`, `\t\t\tsub / <= button_label @ \\Count up`),
+            ts: lines(`class ${S}my_demo extends ${S}.${S}my_demo {`, ``, `\t@ ${S}mol_mem`, `\tcount( next?: number ) {`, `\t\treturn next ?? 0`, `\t}`, ``, `\t@ ${S}mol_action`, `\tinc() {`, `\t\tthis.count( this.count() + 1 )`, `\t}`, ``, `\tcount_text() {`, `\t\treturn String( this.count() )`, `\t}`, ``, `}`),
+            css: lines(`namespace ${S} {`, ``, `\t${S}mol_style_define( ${S}my_demo, {`, ``, `\t\tflex: { direction: 'column', gap: '1rem' },`, `\t\tpadding: '1.5rem',`, ``, `\t\tValue: {`, `\t\t\tfont: { size: '2rem', weight: 700 },`, `\t\t\tcolor: '#0088ff',`, `\t\t\tpadding: { bottom: '0.5rem' },`, `\t\t},`, ``, `\t} )`, ``, `}`),
         },
         fetch: {
             root: `${S}my_fetch`,
             tree: lines(`${S}my_fetch ${S}mol_view`, `\trepo \\`, `\tstars \\`, `\tabout \\`, `\tsub /`, `\t\t<= Repo ${S}mol_view`, `\t\t\tsub / <= repo`, `\t\t<= Stars ${S}mol_view`, `\t\t\tsub / <= stars`, `\t\t<= About ${S}mol_view`, `\t\t\tsub / <= about`),
             // Ждать ответ не нужно: чтение подвисает, пока данные не придут,
             // а $mol сам показывает заглушку и дорисовывает по готовности.
-            ts: lines(`class ${S}my_fetch extends ${S}.${S}my_fetch {`, ``, `\t@ ${S}mol_mem data() {`, `\t\treturn ${S}mol_fetch.json(`, `\t\t\t'https://api.github.com/repos/hyoo-ru/mam_mol'`, `\t\t) as { full_name: string, stargazers_count: number, description: string }`, `\t}`, ``, `\trepo() { return this.data().full_name }`, `\tstars() { return String( this.data().stargazers_count ) + ' stars' }`, `\tabout() { return this.data().description }`, ``, `}`),
-            css: lines(`namespace ${S} {`, `\t${S}mol_style_define( ${S}my_fetch, {`, `\t\tflex: { direction: 'column', gap: '0.5rem' },`, `\t\tpadding: '1.5rem',`, `\t\tRepo: { font: { size: '1.25rem', weight: 700 } },`, `\t\tStars: { color: '#0088ff' },`, `\t\tAbout: { opacity: 0.7 },`, `\t} )`, `}`),
+            ts: lines(`class ${S}my_fetch extends ${S}.${S}my_fetch {`, ``, `\t@ ${S}mol_mem`, `\tdata() {`, `\t\treturn ${S}mol_fetch.json(`, `\t\t\t'https://api.github.com/repos/hyoo-ru/mam_mol'`, `\t\t) as { full_name: string, stargazers_count: number, description: string }`, `\t}`, ``, `\trepo() {`, `\t\treturn this.data().full_name`, `\t}`, ``, `\tstars() {`, `\t\treturn String( this.data().stargazers_count ) + ' stars'`, `\t}`, ``, `\tabout() {`, `\t\treturn this.data().description`, `\t}`, ``, `}`),
+            css: lines(`namespace ${S} {`, ``, `\t${S}mol_style_define( ${S}my_fetch, {`, ``, `\t\tflex: { direction: 'column', gap: '0.5rem' },`, `\t\tpadding: '1.5rem',`, ``, `\t\tRepo: { font: { size: '1.25rem', weight: 700 } },`, `\t\tStars: { color: '#0088ff' },`, `\t\tAbout: { opacity: 0.7 },`, ``, `\t} )`, ``, `}`),
         },
         args: {
             root: `${S}my_args`,
-            tree: lines(`${S}my_args ${S}mol_view`, `\tpage? \\home`, `\tgo_home? null`, `\tgo_about? null`, `\ttitle \\`, `\tsub /`, `\t\t<= Menu ${S}mol_row`, `\t\t\tsub /`, `\t\t\t\t<= Home ${S}mol_button_minor`, `\t\t\t\t\tclick? <=> go_home?`, `\t\t\t\t\tsub / \\Home`, `\t\t\t\t<= About ${S}mol_button_minor`, `\t\t\t\t\tclick? <=> go_about?`, `\t\t\t\t\tsub / \\About`, `\t\t<= Title ${S}mol_view`, `\t\t\tsub / <= title`),
+            tree: lines(`${S}my_args ${S}mol_view`, `\tpage? \\home`, `\tgo_home? null`, `\tgo_about? null`, `\ttitle \\`, `\tsub /`, `\t\t<= Menu ${S}mol_row`, `\t\t\tsub /`, `\t\t\t\t<= Home ${S}mol_button_minor`, `\t\t\t\t\tclick? <=> go_home?`, `\t\t\t\t\tsub / <= home_label @ \\Home`, `\t\t\t\t<= About ${S}mol_button_minor`, `\t\t\t\t\tclick? <=> go_about?`, `\t\t\t\t\tsub / <= about_label @ \\About`, `\t\t<= Title ${S}mol_view`, `\t\t\tsub / <= title`),
             // Адресная строка и есть состояние: экран переживает перезагрузку,
             // работает «назад» и ссылкой можно поделиться. Это же и роутинг.
-            ts: lines(`class ${S}my_args extends ${S}.${S}my_args {`, ``, `\t@ ${S}mol_mem page( next?: string ) {`, `\t\t// ключ свой, чтобы не спорить с аргументами самого сайта`, `\t\treturn ${S}mol_state_arg.value( 'demo_page', next ) ?? 'home'`, `\t}`, ``, `\t@ ${S}mol_action go_home() { this.page( 'home' ); return null }`, `\t@ ${S}mol_action go_about() { this.page( 'about' ); return null }`, ``, `\ttitle() {`, `\t\treturn this.page() === 'about'`, `\t\t\t? 'About — the address bar changed too'`, `\t\t\t: 'Home — switch and look at the URL'`, `\t}`, ``, `}`),
-            css: lines(`namespace ${S} {`, `\t${S}mol_style_define( ${S}my_args, {`, `\t\tflex: { direction: 'column', gap: '1rem' },`, `\t\tpadding: '1.5rem',`, `\t\tMenu: { gap: '0.5rem' },`, `\t\tTitle: { font: { size: '1.25rem', weight: 700 } },`, `\t} )`, `}`),
+            ts: lines(`class ${S}my_args extends ${S}.${S}my_args {`, ``, `\t@ ${S}mol_mem`, `\tpage( next?: string ) {`, `\t\t// ключ свой, чтобы не спорить с аргументами самого сайта`, `\t\treturn ${S}mol_state_arg.value( 'demo_page', next ) ?? 'home'`, `\t}`, ``, `\t@ ${S}mol_action`, `\tgo_home() {`, `\t\tthis.page( 'home' )`, `\t\treturn null`, `\t}`, ``, `\t@ ${S}mol_action`, `\tgo_about() {`, `\t\tthis.page( 'about' )`, `\t\treturn null`, `\t}`, ``, `\ttitle() {`, `\t\treturn this.page() === 'about'`, `\t\t\t? 'About — the address bar changed too'`, `\t\t\t: 'Home — switch and look at the URL'`, `\t}`, ``, `}`),
+            css: lines(`namespace ${S} {`, ``, `\t${S}mol_style_define( ${S}my_args, {`, ``, `\t\tflex: { direction: 'column', gap: '1rem' },`, `\t\tpadding: '1.5rem',`, ``, `\t\tMenu: { gap: '0.5rem' },`, `\t\tTitle: { font: { size: '1.25rem', weight: 700 } },`, ``, `\t} )`, ``, `}`),
         },
         state: {
             root: `${S}my_state`,
-            tree: lines(`${S}my_state ${S}mol_view`, `\tnote? \\`, `\tsub /`, `\t\t<= Hint ${S}mol_view`, `\t\t\tsub / \\Type something, then reload the page`, `\t\t<= Note ${S}mol_string`, `\t\t\tvalue? <=> note?`, `\t\t\thint \\It survives a reload`),
+            tree: lines(`${S}my_state ${S}mol_view`, `\tnote? \\`, `\tsub /`, `\t\t<= Hint ${S}mol_view`, `\t\t\tsub / <= hint_text @ \\Type something, then reload the page`, `\t\t<= Note ${S}mol_string`, `\t\t\tvalue? <=> note?`, `\t\t\thint @ \\It survives a reload`),
             // Единственное отличие от обычного поля — где лежит значение.
-            ts: lines(`class ${S}my_state extends ${S}.${S}my_state {`, `\t@ ${S}mol_mem note( next?: string ) {`, `\t\treturn ${S}mol_state_local.value( 'my_demo_note', next ) ?? ''`, `\t}`, `}`),
-            css: lines(`namespace ${S} {`, `\t${S}mol_style_define( ${S}my_state, {`, `\t\tflex: { direction: 'column', gap: '0.75rem' },`, `\t\tpadding: '1.5rem',`, `\t\tHint: { opacity: 0.7 },`, `\t} )`, `}`),
+            ts: lines(`class ${S}my_state extends ${S}.${S}my_state {`, ``, `\t@ ${S}mol_mem`, `\tnote( next?: string ) {`, `\t\treturn ${S}mol_state_local.value( 'my_demo_note', next ) ?? ''`, `\t}`, ``, `}`),
+            css: lines(`namespace ${S} {`, ``, `\t${S}mol_style_define( ${S}my_state, {`, ``, `\t\tflex: { direction: 'column', gap: '0.75rem' },`, `\t\tpadding: '1.5rem',`, ``, `\t\tHint: { opacity: 0.7 },`, ``, `\t} )`, ``, `}`),
         },
         login: {
             root: `${S}my_login`,
-            tree: lines(`${S}my_login ${S}mol_view`, `\tmail? \\`, `\tpass? \\`, `\thint \\`, `\tvalid false`, `\tsubmit? null`, `\tsub /`, `\t\t<= Mail ${S}mol_string`, `\t\t\tvalue? <=> mail?`, `\t\t\thint \\E-mail`, `\t\t<= Pass ${S}mol_string`, `\t\t\tfield *`, `\t\t\t\t^`, `\t\t\t\ttype \\password`, `\t\t\tvalue? <=> pass?`, `\t\t\thint \\Password`, `\t\t<= Hint_text ${S}mol_view`, `\t\t\tsub / <= hint`, `\t\t<= Send ${S}mol_button_major`, `\t\t\tenabled <= valid`, `\t\t\tclick? <=> submit?`, `\t\t\tsub / \\Sign in`),
+            tree: lines(`${S}my_login ${S}mol_view`, `\tmail? \\`, `\tpass? \\`, `\thint \\`, `\tvalid false`, `\tsubmit? null`, `\tsub /`, `\t\t<= Mail ${S}mol_string`, `\t\t\tvalue? <=> mail?`, `\t\t\thint @ \\E-mail`, 
+            // Готовый компонент вместо `$mol_string` с `type \password`:
+            // в нём уже есть кнопка «показать пароль» со своей иконкой.
+            `\t\t<= Pass ${S}mol_password`, `\t\t\tvalue? <=> pass?`, `\t\t\thint @ \\Password`, `\t\t<= Hint_text ${S}mol_view`, `\t\t\tsub / <= hint`, `\t\t<= Send ${S}mol_button_major`, `\t\t\tenabled <= valid`, `\t\t\tclick? <=> submit?`, `\t\t\tsub / <= send_label @ \\Sign in`),
             // Кнопка и подсказка ничего не хранят — они пересчитываются из полей.
-            ts: lines(`class ${S}my_login extends ${S}.${S}my_login {`, ``, `\tmail_ok() { return /.+@.+\\..+/.test( this.mail() ) }`, `\tpass_ok() { return this.pass().length >= 8 }`, `\tvalid() { return this.mail_ok() && this.pass_ok() }`, ``, `\t@ ${S}mol_mem sent( next?: boolean ) { return next ?? false }`, `\t@ ${S}mol_action submit() { this.sent( true ); return null }`, ``, `\thint() {`, `\t\tif( this.sent() ) return 'Signed in as ' + this.mail()`, `\t\tif( !this.mail() && !this.pass() ) return 'Fill both fields'`, `\t\tif( !this.mail_ok() ) return 'This e-mail looks wrong'`, `\t\tif( !this.pass_ok() ) return 'Password: 8 characters or more'`, `\t\treturn 'Looks good'`, `\t}`, ``, `}`),
-            css: lines(`namespace ${S} {`, `\t${S}mol_style_define( ${S}my_login, {`, `\t\tflex: { direction: 'column', gap: '0.75rem' },`, `\t\tpadding: '1.5rem',`, `\t\tmaxWidth: '20rem',`, `\t\tHint_text: { opacity: 0.7, font: { size: '0.875rem' } },`, `\t} )`, `}`),
+            ts: lines(`class ${S}my_login extends ${S}.${S}my_login {`, ``, `\tmail_ok() {`, `\t\treturn /.+@.+\\..+/.test( this.mail() )`, `\t}`, ``, `\tpass_ok() {`, `\t\treturn this.pass().length >= 8`, `\t}`, ``, `\tvalid() {`, `\t\treturn this.mail_ok() && this.pass_ok()`, `\t}`, ``, `\t@ ${S}mol_mem`, `\tsent( next?: boolean ) {`, `\t\treturn next ?? false`, `\t}`, ``, `\t@ ${S}mol_action`, `\tsubmit() {`, `\t\tthis.sent( true )`, `\t\treturn null`, `\t}`, ``, `\thint() {`, `\t\tif( this.sent() ) return 'Signed in as ' + this.mail()`, `\t\tif( !this.mail() && !this.pass() ) return 'Fill both fields'`, `\t\tif( !this.mail_ok() ) return 'This e-mail looks wrong'`, `\t\tif( !this.pass_ok() ) return 'Password: 8 characters or more'`, `\t\treturn 'Looks good'`, `\t}`, ``, `}`),
+            css: lines(`namespace ${S} {`, ``, `\t${S}mol_style_define( ${S}my_login, {`, ``, `\t\tflex: { direction: 'column', gap: '0.75rem' },`, `\t\tpadding: '1.5rem',`, `\t\tmaxWidth: '20rem',`, ``, `\t\tHint_text: { opacity: 0.7, font: { size: '0.875rem' } },`, ``, `\t} )`, ``, `}`),
         },
     };
     /** Порядок в выпадашке. */
@@ -21794,6 +21919,7 @@ var $;
          * here (in a doc comment, which MAM keeps) to pull them into the bundle:
          * $mol_view $mol_button_major $mol_button_minor $mol_string $mol_number
          * $mol_text $mol_paragraph $mol_list $mol_row $mol_link $mol_check $mol_switch
+         * $mol_password
          */
         class $bog_smalljs_playground extends $.$bog_smalljs_playground {
             // --- default snippets --------------------------------------------
@@ -21830,7 +21956,7 @@ var $;
                 return null;
             }
             tree_is_default() {
-                const tree = this.stored('code') || this.default_tree();
+                const tree = this.stored_own('code') || this.default_tree();
                 const root = $bog_smalljs_playground_samples[this.sample()]?.root;
                 return !!root && /(\$[\w$]+)/.exec(tree)?.[1] === root;
             }
@@ -21889,36 +22015,61 @@ var $;
                     return null;
                 return this.$.$mol_state_arg.value(key) ?? null;
             }
+            /**
+             * Пришли по ссылке «Попробовать пример»: в адресе назван пример, а в
+             * localStorage лежит черновик от прошлого захода. Показать черновик значило
+             * бы, что кнопка ведёт куда угодно, только не на обещанный пример.
+             *
+             * Отличаем по корневому компоненту: не совпал с корнем запрошенного примера
+             * — черновик не про него. Сам черновик остаётся на месте, мы его только не
+             * показываем; первая же правка в редакторе делает его своим (см. schedule).
+             */
+            draft_is_foreign() {
+                if (this.store_scope())
+                    return false; // у встраивателя своё хранилище
+                const asked = this.$.$mol_state_arg.value('sample');
+                const sample = asked ? $bog_smalljs_playground_samples[asked] : null;
+                if (!sample)
+                    return false;
+                const stored = this.stored('code');
+                if (!stored)
+                    return false;
+                return /(\$[\w$]+)/.exec(stored)?.[1] !== sample.root;
+            }
+            /** Черновик, если он относится к тому, что просили показать. */
+            stored_own(key) {
+                return this.draft_is_foreign() ? null : this.stored(key);
+            }
             // --- editor sources (immediate) + debounced committed copies ------
             tree_draft(next) {
                 if (next !== undefined) {
                     this.schedule('code', next);
                     return next;
                 }
-                return this.stored('code') || this.default_tree();
+                return this.stored_own('code') || this.default_tree();
             }
             ts_draft(next) {
                 if (next !== undefined) {
                     this.schedule('ts', next);
                     return next;
                 }
-                return this.stored('ts') || this.default_ts();
+                return this.stored_own('ts') || this.default_ts();
             }
             tree_committed(next) {
-                return next ?? (this.stored('code') || this.default_tree());
+                return next ?? (this.stored_own('code') || this.default_tree());
             }
             ts_committed(next) {
-                return next ?? (this.stored('ts') || this.default_ts());
+                return next ?? (this.stored_own('ts') || this.default_ts());
             }
             css_draft(next) {
                 if (next !== undefined) {
                     this.schedule('css', next);
                     return next;
                 }
-                return this.stored('css') || this.default_css();
+                return this.stored_own('css') || this.default_css();
             }
             css_committed(next) {
-                return next ?? (this.stored('css') || this.default_css());
+                return next ?? (this.stored_own('css') || this.default_css());
             }
             // One editor, bound to the active tab's source.
             draft(next) {
@@ -24654,13 +24805,35 @@ var $;
 			(obj.run_enabled) = () => (false);
 			return obj;
 		}
+		Sign_css_label_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_landing_Sign_css_label_text"));
+		}
+		Sign_css_label(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Sign_css_label_text())]);
+			return obj;
+		}
+		code_css(){
+			return "";
+		}
+		Sign_css_view(){
+			const obj = new this.$.$bog_smalljs_text_code();
+			(obj.text) = () => ((this.code_css()));
+			(obj.lang) = () => ("ts");
+			(obj.sidebar_showed) = () => (false);
+			(obj.playground_showed) = () => (false);
+			(obj.run_enabled) = () => (false);
+			return obj;
+		}
 		Sign_code(){
 			const obj = new this.$.$mol_view();
 			(obj.sub) = () => ([
 				(this.Sign_code_label()), 
 				(this.Sign_code_view()), 
 				(this.Sign_ts_label()), 
-				(this.Sign_ts_view())
+				(this.Sign_ts_view()), 
+				(this.Sign_css_label()), 
+				(this.Sign_css_view())
 			]);
 			return obj;
 		}
@@ -24706,9 +24879,30 @@ var $;
 			(obj.sub) = () => ([(this.Sign_caption_text())]);
 			return obj;
 		}
+		Sign_try_label(){
+			return (this.$.$mol_locale.text("$bog_smalljs_landing_Sign_try_label"));
+		}
+		Sign_try_icon(){
+			const obj = new this.$.$mol_icon_open_in_new();
+			return obj;
+		}
+		Sign_try(){
+			const obj = new this.$.$mol_link();
+			(obj.arg) = () => ({
+				"section": "playground", 
+				"page": "", 
+				"sample": "hello"
+			});
+			(obj.sub) = () => ([(this.Sign_try_label()), (this.Sign_try_icon())]);
+			return obj;
+		}
 		Signature(){
 			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Sign_panel()), (this.Sign_caption())]);
+			(obj.sub) = () => ([
+				(this.Sign_panel()), 
+				(this.Sign_caption()), 
+				(this.Sign_try())
+			]);
 			return obj;
 		}
 		Hero(){
@@ -25120,6 +25314,8 @@ var $;
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Sign_code_view"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Sign_ts_label"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Sign_ts_view"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Sign_css_label"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Sign_css_view"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Sign_code"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Sign_arrow"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Sign_live_label"));
@@ -25127,6 +25323,8 @@ var $;
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Sign_live"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Sign_panel"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Sign_caption"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Sign_try_icon"));
+	($mol_mem(($.$bog_smalljs_landing.prototype), "Sign_try"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Signature"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Hero"));
 	($mol_mem(($.$bog_smalljs_landing.prototype), "Feature1_title"));
@@ -25196,41 +25394,41 @@ var $;
     (function ($$) {
         class $bog_smalljs_landing extends $.$bog_smalljs_landing {
             /**
+             * Три файла витрины — это буквально пример `hello` из песочницы, а не его
+             * пересказ. Кнопка «Попробовать» рядом открывает песочницу на нём же, и
+             * читатель попадает в тот самый код, который только что прочёл. Держать
+             * вторую копию значило бы однажды поправить одну из них.
+             *
+             * Живое демо справа — $bog_smalljs_demo, ручной двойник этого примера:
+             * то же поле, то же приветствие, но в теме сайта.
+             *
+             * Примеры лежат в $bog_smalljs_playground — упоминаем модуль здесь, чтобы
+             * сборщик увидел зависимость: имя константы длиннее имени папки и само по
+             * себе в граф не разбирается.
+             */
+            sample() {
+                return $bog_smalljs_playground_samples.hello;
+            }
+            /** Разметка: что показано, из чего собрано. */
+            code() {
+                return this.sample().tree.trimEnd();
+            }
+            /**
              * Второй файл витрины. Без него `greeting` в дереве остался бы статической
              * строкой: ввод в поле ничего бы не менял, а живое демо справа — меняет.
              * Показывать одно дерево значило обещать поведение, которого показанный
              * код не даёт.
              */
             code_ts() {
-                const d = String.fromCharCode(36);
-                return [
-                    `class ${d}my_hello extends ${d}.${d}my_hello {`,
-                    "\tgreeting() { return `Hello, ${ this.name().trim() || 'stranger' }!` }",
-                    '}',
-                ].join('\n');
+                return this.sample().ts.trimEnd();
             }
             /**
-             * Source shown in the hero, left panel. It is the same shape as the live
-             * component mounted to the right ($bog_smalljs_demo): a two-way-bound field
-             * and a derived greeting — the whole thing, no wiring.
-             *
-             * The leading dollar of each token is spliced in from `d` so MAM's dependency
-             * -graph regex doesn't read the display-only component name as a (non-existent)
-             * module. Tabs, because view.tree is tab-indented and the grammar highlighter
-             * expects it.
+             * Третий файл. Фронтендер, впервые увидевший $mol, первым делом
+             * спрашивает, чем тут пишут стили — и уходит гадать, если ответа рядом
+             * нет. Это он: обычный TypeScript, свойства проверяются типами.
              */
-            code() {
-                const d = String.fromCharCode(36);
-                return [
-                    `${d}my_hello ${d}mol_view`,
-                    '\tname? \\mol',
-                    '\tsub /',
-                    `\t\t<= Name ${d}mol_string`,
-                    '\t\t\tvalue? <=> name?',
-                    `\t\t<= Greeting ${d}mol_view`,
-                    '\t\t\tsub /',
-                    '\t\t\t\t<= greeting \\Hello, mol!',
-                ].join('\n');
+            code_css() {
+                return this.sample().css.trimEnd();
             }
         }
         $$.$bog_smalljs_landing = $bog_smalljs_landing;
@@ -25411,6 +25609,24 @@ var $;
             font: { family: mono, size: rem(0.8125) },
             lineHeight: '1.7',
         },
+        // Третий файл — стили. Оформление то же, что у первых двух: витрина
+        // обещает «три файла», и все три должны выглядеть одинаково весомо.
+        Sign_css_label: {
+            display: 'block',
+            ...eyebrow,
+            padding: { top: rem(0.625), bottom: rem(0.625), left: rem(1), right: rem(1) },
+            border: {
+                top: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
+                bottom: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
+            },
+            background: { color: $bog_builderui_tokens.card },
+        },
+        Sign_css_view: {
+            padding: { top: rem(0.75), bottom: rem(1), left: rem(1), right: rem(1) },
+            overflow: { x: 'auto', y: 'hidden' },
+            font: { family: mono, size: rem(0.8125) },
+            lineHeight: '1.7',
+        },
         Sign_arrow: {
             flex: { direction: 'column', grow: 0, shrink: 0 },
             justify: { content: 'center' },
@@ -25453,6 +25669,18 @@ var $;
             color: $bog_builderui_tokens.shade,
             textAlign: 'center',
         },
+        // Прочитал код — тут же его и потрогай. Ссылка ведёт в песочницу ровно
+        // на этот пример, а не «в песочницу вообще».
+        Sign_try: {
+            flex: { direction: 'row', grow: 0 },
+            align: { items: 'center' },
+            gap: rem(0.4),
+            color: $bog_builderui_tokens.control,
+            padding: { left: rem(1.125), right: rem(1.125), top: rem(0.5625), bottom: rem(0.5625) },
+            border: { radius: rem(0.375), width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
+            font: { weight: 600, size: rem(0.9375) },
+        },
+        Sign_try_icon: { width: rem(0.85), height: rem(0.85) },
         // ── Features ──
         Features: {
             display: 'grid',
