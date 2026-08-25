@@ -1733,7 +1733,7 @@ $bog_smalljs_landing $mol_view
 								<= Hero_cta_play $mol_link
 									arg *
 										section \playground
-										page \
+										page null
 									sub /
 										<= Hero_cta_play_label @ \Try Playground
 										<= Hero_cta_play_icon $mol_icon_open_in_new
@@ -1792,7 +1792,7 @@ $bog_smalljs_landing $mol_view
 						<= Sign_try $mol_link
 							arg *
 								section \playground
-								page \
+								page null
 								sample \hello
 							sub /
 								<= Sign_try_label @ \Try this example

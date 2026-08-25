@@ -10461,7 +10461,7 @@ declare namespace $ {
 	type $mol_link__arg_bog_smalljs_landing_10 = $mol_type_enforce<
 		({ 
 			'section': string,
-			'page': string,
+			'page': any,
 		}) 
 		,
 		ReturnType< $mol_link['arg'] >
@@ -10617,7 +10617,7 @@ declare namespace $ {
 	type $mol_link__arg_bog_smalljs_landing_40 = $mol_type_enforce<
 		({ 
 			'section': string,
-			'page': string,
+			'page': any,
 			'sample': string,
 		}) 
 		,

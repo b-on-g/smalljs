@@ -24528,7 +24528,7 @@ var $;
 		}
 		Hero_cta_play(){
 			const obj = new this.$.$mol_link();
-			(obj.arg) = () => ({"section": "playground", "page": ""});
+			(obj.arg) = () => ({"section": "playground", "page": null});
 			(obj.sub) = () => ([(this.Hero_cta_play_label()), (this.Hero_cta_play_icon())]);
 			return obj;
 		}
@@ -24690,7 +24690,7 @@ var $;
 			const obj = new this.$.$mol_link();
 			(obj.arg) = () => ({
 				"section": "playground", 
-				"page": "", 
+				"page": null, 
 				"sample": "hello"
 			});
 			(obj.sub) = () => ([(this.Sign_try_label()), (this.Sign_try_icon())]);
