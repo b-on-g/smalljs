@@ -196,6 +196,26 @@ namespace $ {
 			lineHeight: '1.7',
 		},
 
+		// Третий файл — стили. Оформление то же, что у первых двух: витрина
+		// обещает «три файла», и все три должны выглядеть одинаково весомо.
+		Sign_css_label: {
+			display: 'block',
+			... eyebrow,
+			padding: { top: rem( 0.625 ), bottom: rem( 0.625 ), left: rem( 1 ), right: rem( 1 ) },
+			border: {
+				top: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
+				bottom: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
+			},
+			background: { color: $bog_builderui_tokens.card },
+		},
+
+		Sign_css_view: {
+			padding: { top: rem( 0.75 ), bottom: rem( 1 ), left: rem( 1 ), right: rem( 1 ) },
+			overflow: { x: 'auto', y: 'hidden' },
+			font: { family: mono, size: rem( 0.8125 ) },
+			lineHeight: '1.7',
+		},
+
 		Sign_arrow: {
 			flex: { direction: 'column', grow: 0, shrink: 0 },
 			justify: { content: 'center' },
@@ -243,6 +263,20 @@ namespace $ {
 			color: $bog_builderui_tokens.shade,
 			textAlign: 'center',
 		},
+
+		// Прочитал код — тут же его и потрогай. Ссылка ведёт в песочницу ровно
+		// на этот пример, а не «в песочницу вообще».
+		Sign_try: {
+			flex: { direction: 'row', grow: 0 },
+			align: { items: 'center' },
+			gap: rem( 0.4 ),
+			color: $bog_builderui_tokens.control,
+			padding: { left: rem( 1.125 ), right: rem( 1.125 ), top: rem( 0.5625 ), bottom: rem( 0.5625 ) },
+			border: { radius: rem( 0.375 ), width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
+			font: { weight: 600, size: rem( 0.9375 ) },
+		},
+
+		Sign_try_icon: { width: rem( 0.85 ), height: rem( 0.85 ) },
 
 		// ── Features ──
 		Features: {

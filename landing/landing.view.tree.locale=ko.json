@@ -2,7 +2,7 @@
 	"$bog_smalljs_landing_Hero_eyebrow_text": "반응형 마이크로모듈",
 	"$bog_smalljs_landing_Hero_subtitle_text": "반응성은 프레임워크의 토대에 자리하며, 나중에 덧붙인 것이 아닙니다.",
 	"$bog_smalljs_landing_Hero_subtitle_note_text": "의존성 배열, 수동 구독, 수동 캐시 무효화, 이펙트 정리 — 어느 것도 여기엔 없습니다. 더 쉬워진 게 아니라, 필요 없어진 것입니다.",
-	"$bog_smalljs_landing_Sign_caption_text": "파일 두 개, 마크업과 로직.",
+	"$bog_smalljs_landing_Sign_caption_text": "파일 세 개, 마크업과 로직과 스타일.",
 	"$bog_smalljs_landing_Hero_cta_why_label": "$mol 이란",
 	"$bog_smalljs_landing_Hero_cta_start_label": "시작하기",
 	"$bog_smalljs_landing_Hero_cta_install_title": "설치",
@@ -47,5 +47,7 @@
 	"$bog_smalljs_landing_versus_line_text": "하나의 시나리오를 React, Vue, $mol에서 나란히, 여러분의 브라우저에서 바로 실행합니다.",
 	"$bog_smalljs_landing_versus_open_label": "비교 열기",
 	"$bog_smalljs_landing_versus_pair_label": "$mol vs React부터 보기",
-	"$bog_smalljs_landing_Sign_ts_label_text": "view.ts"
+	"$bog_smalljs_landing_Sign_ts_label_text": "view.ts",
+	"$bog_smalljs_landing_Sign_css_label_text": "view.css.ts",
+	"$bog_smalljs_landing_Sign_try_label": "이 예제 실행해 보기"
 }

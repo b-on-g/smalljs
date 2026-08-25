@@ -2,7 +2,7 @@
 	"$bog_smalljs_landing_Hero_eyebrow_text": "میکروماژول‌های واکنش‌گرا",
 	"$bog_smalljs_landing_Hero_subtitle_text": "واکنش‌گرایی در پیِ فریم‌ورک نهفته است، نه اینکه از بیرون به آن سنجاق شده باشد.",
 	"$bog_smalljs_landing_Hero_subtitle_note_text": "آرایه‌های وابستگی، اشتراک‌های دستی، بی‌اعتبارسازی دستی کش، پاک‌سازی افکت‌ها — هیچ‌کدام اینجا وجود ندارند. آسان‌تر نشده‌اند، بلکه غیرضروری شده‌اند.",
-	"$bog_smalljs_landing_Sign_caption_text": "دو فایل: نشانه‌گذاری و منطق.",
+	"$bog_smalljs_landing_Sign_caption_text": "سه فایل: نشانه‌گذاری، منطق و استایل‌ها.",
 	"$bog_smalljs_landing_Hero_cta_why_label": "چرا $mol",
 	"$bog_smalljs_landing_Hero_cta_start_label": "شروع کنید",
 	"$bog_smalljs_landing_Hero_cta_install_title": "نصب",
@@ -47,5 +47,7 @@
 	"$bog_smalljs_landing_versus_line_text": "یک سناریو، کنار هم در React، Vue و $mol، زنده در مرورگر خودتان.",
 	"$bog_smalljs_landing_versus_open_label": "باز کردن مقایسه",
 	"$bog_smalljs_landing_versus_pair_label": "شروع با $mol vs React",
-	"$bog_smalljs_landing_Sign_ts_label_text": "view.ts"
+	"$bog_smalljs_landing_Sign_ts_label_text": "view.ts",
+	"$bog_smalljs_landing_Sign_css_label_text": "view.css.ts",
+	"$bog_smalljs_landing_Sign_try_label": "این نمونه را امتحان کنید"
 }

@@ -69,6 +69,15 @@ $bog_smalljs_landing $mol_view
 											sidebar_showed false
 											playground_showed false
 											run_enabled false
+										<= Sign_css_label $mol_view
+											sub /
+												<= Sign_css_label_text @ \view.css.ts
+										<= Sign_css_view $bog_smalljs_text_code
+											text <= code_css \
+											lang \ts
+											sidebar_showed false
+											playground_showed false
+											run_enabled false
 								<= Sign_arrow $mol_view
 									sub /
 										<= Sign_arrow_text \→
@@ -80,7 +89,15 @@ $bog_smalljs_landing $mol_view
 										<= Sign_demo $bog_smalljs_demo
 						<= Sign_caption $mol_view
 							sub /
-								<= Sign_caption_text @ \Two files: the markup and the logic.
+								<= Sign_caption_text @ \Three files: the markup, the logic and the styles.
+						<= Sign_try $mol_link
+							arg *
+								section \playground
+								page \
+								sample \hello
+							sub /
+								<= Sign_try_label @ \Try this example
+								<= Sign_try_icon $mol_icon_open_in_new
 		<= Features $mol_view
 			sub /
 				<= Feature1 $mol_view

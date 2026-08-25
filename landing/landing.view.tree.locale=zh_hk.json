@@ -2,7 +2,7 @@
 	"$bog_smalljs_landing_Hero_eyebrow_text": "響應式微模組",
 	"$bog_smalljs_landing_Hero_subtitle_text": "響應式能力根植於框架的底層，而非事後加裝。",
 	"$bog_smalljs_landing_Hero_subtitle_note_text": "依賴陣列、手動訂閱、手動快取失效、副作用清理——這些在這裡都不存在。不是變得更簡單，而是根本不需要。",
-	"$bog_smalljs_landing_Sign_caption_text": "兩個檔案：結構與邏輯。",
+	"$bog_smalljs_landing_Sign_caption_text": "三個檔案：結構、邏輯與樣式。",
 	"$bog_smalljs_landing_Hero_cta_why_label": "為什麼選 $mol",
 	"$bog_smalljs_landing_Hero_cta_start_label": "開始使用",
 	"$bog_smalljs_landing_Hero_cta_install_title": "安裝",
@@ -47,5 +47,7 @@
 	"$bog_smalljs_landing_versus_line_text": "同一個情境，在 React、Vue 和 $mol 中並排執行，就在你自己的瀏覽器裡即時進行。",
 	"$bog_smalljs_landing_versus_open_label": "打開比較",
 	"$bog_smalljs_landing_versus_pair_label": "由 $mol vs React 開始",
-	"$bog_smalljs_landing_Sign_ts_label_text": "view.ts"
+	"$bog_smalljs_landing_Sign_ts_label_text": "view.ts",
+	"$bog_smalljs_landing_Sign_css_label_text": "view.css.ts",
+	"$bog_smalljs_landing_Sign_try_label": "試試這個例子"
 }

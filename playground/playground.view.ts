@@ -18,6 +18,7 @@ namespace $.$$ {
 	 * here (in a doc comment, which MAM keeps) to pull them into the bundle:
 	 * $mol_view $mol_button_major $mol_button_minor $mol_string $mol_number
 	 * $mol_text $mol_paragraph $mol_list $mol_row $mol_link $mol_check $mol_switch
+	 * $mol_password
 	 */
 	export class $bog_smalljs_playground extends $.$bog_smalljs_playground {
 
@@ -65,7 +66,7 @@ namespace $.$$ {
 		}
 
 		tree_is_default() {
-			const tree = this.stored( 'code' ) || this.default_tree()
+			const tree = this.stored_own( 'code' ) || this.default_tree()
 			const root = $bog_smalljs_playground_samples[ this.sample() ]?.root
 			return !!root && /(\$[\w$]+)/.exec( tree )?.[ 1 ] === root
 		}
@@ -131,39 +132,63 @@ namespace $.$$ {
 			return this.$.$mol_state_arg.value( key ) ?? null
 		}
 
+		/**
+		 * Пришли по ссылке «Попробовать пример»: в адресе назван пример, а в
+		 * localStorage лежит черновик от прошлого захода. Показать черновик значило
+		 * бы, что кнопка ведёт куда угодно, только не на обещанный пример.
+		 *
+		 * Отличаем по корневому компоненту: не совпал с корнем запрошенного примера
+		 * — черновик не про него. Сам черновик остаётся на месте, мы его только не
+		 * показываем; первая же правка в редакторе делает его своим (см. schedule).
+		 */
+		draft_is_foreign() {
+			if ( this.store_scope() ) return false   // у встраивателя своё хранилище
+			const asked = this.$.$mol_state_arg.value( 'sample' )
+			const sample = asked ? $bog_smalljs_playground_samples[ asked ] : null
+			if ( !sample ) return false
+			const stored = this.stored( 'code' )
+			if ( !stored ) return false
+			return /(\$[\w$]+)/.exec( stored )?.[ 1 ] !== sample.root
+		}
+
+		/** Черновик, если он относится к тому, что просили показать. */
+		stored_own( key: string ) {
+			return this.draft_is_foreign() ? null : this.stored( key )
+		}
+
 		// --- editor sources (immediate) + debounced committed copies ------
 
 		@ $mol_mem
 		tree_draft( next?: string ) {
 			if ( next !== undefined ) { this.schedule( 'code', next ); return next }
-			return this.stored( 'code' ) || this.default_tree()
+			return this.stored_own( 'code' ) || this.default_tree()
 		}
 
 		@ $mol_mem
 		ts_draft( next?: string ) {
 			if ( next !== undefined ) { this.schedule( 'ts', next ); return next }
-			return this.stored( 'ts' ) || this.default_ts()
+			return this.stored_own( 'ts' ) || this.default_ts()
 		}
 
 		@ $mol_mem
 		tree_committed( next?: string ) {
-			return next ?? ( this.stored( 'code' ) || this.default_tree() )
+			return next ?? ( this.stored_own( 'code' ) || this.default_tree() )
 		}
 
 		@ $mol_mem
 		ts_committed( next?: string ) {
-			return next ?? ( this.stored( 'ts' ) || this.default_ts() )
+			return next ?? ( this.stored_own( 'ts' ) || this.default_ts() )
 		}
 
 		@ $mol_mem
 		css_draft( next?: string ) {
 			if ( next !== undefined ) { this.schedule( 'css', next ); return next }
-			return this.stored( 'css' ) || this.default_css()
+			return this.stored_own( 'css' ) || this.default_css()
 		}
 
 		@ $mol_mem
 		css_committed( next?: string ) {
-			return next ?? ( this.stored( 'css' ) || this.default_css() )
+			return next ?? ( this.stored_own( 'css' ) || this.default_css() )
 		}
 
 		// One editor, bound to the active tab's source.

@@ -64,12 +64,12 @@ $bog_smalljs_playground $mol_view
 							hint <= share_title \
 							click? <=> share? null
 							sub /
-								<= Share_icon $mol_icon_link_variant
+								<= Share_icon $mol_icon_share_variant_outline
 						<= Reset $mol_button_minor
 							hint <= reset_hint @ \Restore the example
 							click? <=> reset? null
 							sub /
-								<= Reset_icon $mol_icon_undo
+								<= Reset_icon $mol_icon_restore
 				<= Editors $mol_view
 					sub /
 						<= Editor_tree_label $mol_view

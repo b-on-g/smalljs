@@ -3,42 +3,44 @@ namespace $.$$ {
 	export class $bog_smalljs_landing extends $.$bog_smalljs_landing {
 
 		/**
+		 * Три файла витрины — это буквально пример `hello` из песочницы, а не его
+		 * пересказ. Кнопка «Попробовать» рядом открывает песочницу на нём же, и
+		 * читатель попадает в тот самый код, который только что прочёл. Держать
+		 * вторую копию значило бы однажды поправить одну из них.
+		 *
+		 * Живое демо справа — $bog_smalljs_demo, ручной двойник этого примера:
+		 * то же поле, то же приветствие, но в теме сайта.
+		 *
+		 * Примеры лежат в $bog_smalljs_playground — упоминаем модуль здесь, чтобы
+		 * сборщик увидел зависимость: имя константы длиннее имени папки и само по
+		 * себе в граф не разбирается.
+		 */
+		sample() {
+			return $bog_smalljs_playground_samples.hello
+		}
+
+		/** Разметка: что показано, из чего собрано. */
+		code() {
+			return this.sample().tree.trimEnd()
+		}
+
+		/**
 		 * Второй файл витрины. Без него `greeting` в дереве остался бы статической
 		 * строкой: ввод в поле ничего бы не менял, а живое демо справа — меняет.
 		 * Показывать одно дерево значило обещать поведение, которого показанный
 		 * код не даёт.
 		 */
 		code_ts() {
-			const d = String.fromCharCode( 36 )
-			return [
-				`class ${ d }my_hello extends ${ d }.${ d }my_hello {`,
-				"\tgreeting() { return `Hello, ${ this.name().trim() || 'stranger' }!` }",
-				'}',
-			].join( '\n' )
+			return this.sample().ts.trimEnd()
 		}
 
 		/**
-		 * Source shown in the hero, left panel. It is the same shape as the live
-		 * component mounted to the right ($bog_smalljs_demo): a two-way-bound field
-		 * and a derived greeting — the whole thing, no wiring.
-		 *
-		 * The leading dollar of each token is spliced in from `d` so MAM's dependency
-		 * -graph regex doesn't read the display-only component name as a (non-existent)
-		 * module. Tabs, because view.tree is tab-indented and the grammar highlighter
-		 * expects it.
+		 * Третий файл. Фронтендер, впервые увидевший $mol, первым делом
+		 * спрашивает, чем тут пишут стили — и уходит гадать, если ответа рядом
+		 * нет. Это он: обычный TypeScript, свойства проверяются типами.
 		 */
-		code() {
-			const d = String.fromCharCode( 36 )
-			return [
-				`${ d }my_hello ${ d }mol_view`,
-				'\tname? \\mol',
-				'\tsub /',
-				`\t\t<= Name ${ d }mol_string`,
-				'\t\t\tvalue? <=> name?',
-				`\t\t<= Greeting ${ d }mol_view`,
-				'\t\t\tsub /',
-				'\t\t\t\t<= greeting \\Hello, mol!',
-			].join( '\n' )
+		code_css() {
+			return this.sample().css.trimEnd()
 		}
 
 	}
