@@ -344,6 +344,17 @@ namespace $.$$ {
 			return this.shared() ? this.share_done_hint() : this.share_hint()
 		}
 
+		/**
+		 * Пока ссылка в буфере, кнопка говорит это сама: галочка и слово вместо
+		 * иконки «поделиться». Раньше единственным ответом на клик была подсказка
+		 * в `title`, а её после клика никто не видит — жать приходилось наугад.
+		 */
+		@ $mol_mem
+		share_content() {
+			if ( !this.shared() ) return [ this.Share_icon() ]
+			return [ this.Share_done_icon(), this.Share_done_label() ]
+		}
+
 		/** Ссылка собирается по требованию, а не висит в адресе постоянно. */
 		@ $mol_action
 		share() {
@@ -494,6 +505,21 @@ namespace $.$$ {
 			if ( /^\$(mol|hyoo|bog|node)_/.test( root ) ) {
 				throw new Error( `Choose another name — ${ root } is reserved by the framework.` )
 			}
+
+			// Ссылка на компонент, которого в бандле нет, компиляцию переживает и
+			// падает уже в рендере: «$mol_paragt is not a constructor» летит мимо
+			// нашего try/catch и краснит консоль на каждом наборе имени по буквам.
+			// Ловим заранее и говорим человеческим языком. Строковые литералы
+			// отрезаем: `\Price: $10` про компоненты ничего не сообщает.
+			const declared = new Set(
+				tree_src.split( '\n' )
+					.map( line => /^(\$[\w$]+)/.exec( line )?.[ 1 ] )
+					.filter( Boolean ) as string[]
+			)
+			const code_only = tree_src.split( '\n' ).map( line => line.replace( /\\.*$/, '' ) ).join( '\n' )
+			const missing = ( code_only.match( /\$[a-z][\w$]*/g ) ?? [] )
+				.find( ref => !declared.has( ref ) && typeof $[ ref ] !== 'function' )
+			if ( missing ) throw new Error( `Unknown component ${ missing } — it is not bundled into this page.` )
 
 			const tree = $.$mol_tree2_from_string( tree_src, 'playground.view.tree' )
 			const tree_js = $.$mol_tree2_text_to_string_mapped_js(

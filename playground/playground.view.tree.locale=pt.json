@@ -21,5 +21,6 @@
 	"$bog_smalljs_playground_layout_hint_tabs": "Voltar às abas",
 	"$bog_smalljs_playground_sample_routing_title": "Rotas",
 	"$bog_smalljs_playground_files_title": "Projeto",
-	"$bog_smalljs_playground_files_note": "Onde estes arquivos ficam num workspace MAM"
+	"$bog_smalljs_playground_files_note": "Onde estes arquivos ficam num workspace MAM",
+	"$bog_smalljs_playground_share_done_label": "Copiado"
 }

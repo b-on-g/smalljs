@@ -11,7 +11,7 @@ mam/                         ワークスペース — クローンした MAM
     ├── my.meta.tree         あなた自身のプロジェクトのレジストリ
     └── hello/               プロジェクト — モジュールであり、専用の git リポジトリ
         ├── index.html       エントリポイント（アプリのモジュールのみ）
-        ├── hello.view.tree
+        ├── hello.view.tree  マークアップ
         └── form/            サブモジュール — $my_hello_form
 ```
 

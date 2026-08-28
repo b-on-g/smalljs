@@ -59,5 +59,7 @@
 	"$bog_smalljs_landing_arch_label_framework": "ফ্রেমওয়ার্ক",
 	"$bog_smalljs_landing_arch_label_package": "আপনার প্যাকেজ",
 	"$bog_smalljs_landing_arch_label_registry_own": "আপনার রেজিস্ট্রি",
-	"$bog_smalljs_landing_arch_label_project": "আপনার প্রকল্প"
+	"$bog_smalljs_landing_arch_label_project": "আপনার প্রকল্প",
+	"$bog_smalljs_landing_arch_label_entry": "এন্ট্রি পয়েন্ট",
+	"$bog_smalljs_landing_arch_label_tree": "মার্কআপ"
 }

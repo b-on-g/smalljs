@@ -11,7 +11,7 @@ mam/                         Workspace — der geklonte MAM-Checkout
     ├── my.meta.tree         Registry Ihrer eigenen Projekte
     └── hello/               Projekt — ein Modul und ein eigenes git-Repository
         ├── index.html       Einstiegspunkt (nur App-Module)
-        ├── hello.view.tree
+        ├── hello.view.tree  das Markup
         └── form/            Untermodul — $my_hello_form
 ```
 

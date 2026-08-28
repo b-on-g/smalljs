@@ -11,7 +11,7 @@ mam/                         工作區 —— 複製下來的 MAM
     ├── my.meta.tree         你自己專案的登記表
     └── hello/               專案 —— 一個模組，也是自己的 git 儲存庫
         ├── index.html       入口（只有應用模組需要）
-        ├── hello.view.tree
+        ├── hello.view.tree  標記
         └── form/            子模組 —— $my_hello_form
 ```
 

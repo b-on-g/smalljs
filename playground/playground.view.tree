@@ -21,6 +21,7 @@ $bog_smalljs_playground $mol_view
 		click? <=> sample_pick*?
 		sub /
 			<= sample_title*
+	shared false
 	share_hint @ \Copy a link to this code
 	share_done_hint @ \Link copied
 	share? null
@@ -38,6 +39,7 @@ $bog_smalljs_playground $mol_view
 		bog_smalljs_pg_tab <= tab
 		bog_smalljs_pg_editors <= editors_mode?
 		bog_smalljs_pg_files <= files_showed
+		bog_smalljs_pg_shared <= shared
 	sub /
 		<= Files $mol_view
 			sub /
@@ -85,8 +87,12 @@ $bog_smalljs_playground $mol_view
 						<= Share $mol_button_minor
 							hint <= share_title \
 							click? <=> share? null
-							sub /
+							sub <= share_content /
 								<= Share_icon $mol_icon_share_variant_outline
+								<= Share_done_icon $mol_icon_check
+								<= Share_done_label $mol_view
+									sub /
+										<= share_done_label @ \Copied
 						<= Reset $mol_button_minor
 							hint <= reset_hint @ \Restore the example
 							click? <=> reset? null

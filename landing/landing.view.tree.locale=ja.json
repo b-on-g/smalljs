@@ -59,5 +59,7 @@
 	"$bog_smalljs_landing_arch_label_framework": "フレームワーク",
 	"$bog_smalljs_landing_arch_label_package": "あなたのパッケージ",
 	"$bog_smalljs_landing_arch_label_registry_own": "あなたのレジストリ",
-	"$bog_smalljs_landing_arch_label_project": "あなたのプロジェクト"
+	"$bog_smalljs_landing_arch_label_project": "あなたのプロジェクト",
+	"$bog_smalljs_landing_arch_label_entry": "エントリポイント",
+	"$bog_smalljs_landing_arch_label_tree": "マークアップ"
 }

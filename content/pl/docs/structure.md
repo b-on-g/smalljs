@@ -11,7 +11,7 @@ mam/                         workspace — sklonowany MAM
     ├── my.meta.tree         rejestr twoich projektów
     └── hello/               projekt — moduł i własne repozytorium gita
         ├── index.html       punkt wejścia (tylko moduły aplikacji)
-        ├── hello.view.tree
+        ├── hello.view.tree  znaczniki
         └── form/            podmoduł — $my_hello_form
 ```
 

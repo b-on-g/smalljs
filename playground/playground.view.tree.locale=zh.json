@@ -21,5 +21,6 @@
 	"$bog_smalljs_playground_layout_hint_tabs": "回到标签页",
 	"$bog_smalljs_playground_sample_routing_title": "路由",
 	"$bog_smalljs_playground_files_title": "项目",
-	"$bog_smalljs_playground_files_note": "这些文件在 MAM 工作区里的位置"
+	"$bog_smalljs_playground_files_note": "这些文件在 MAM 工作区里的位置",
+	"$bog_smalljs_playground_share_done_label": "已复制"
 }

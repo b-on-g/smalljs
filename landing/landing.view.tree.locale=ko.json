@@ -59,5 +59,7 @@
 	"$bog_smalljs_landing_arch_label_framework": "프레임워크",
 	"$bog_smalljs_landing_arch_label_package": "당신의 패키지",
 	"$bog_smalljs_landing_arch_label_registry_own": "당신의 레지스트리",
-	"$bog_smalljs_landing_arch_label_project": "당신의 프로젝트"
+	"$bog_smalljs_landing_arch_label_project": "당신의 프로젝트",
+	"$bog_smalljs_landing_arch_label_entry": "진입점",
+	"$bog_smalljs_landing_arch_label_tree": "마크업"
 }

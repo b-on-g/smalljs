@@ -59,5 +59,7 @@
 	"$bog_smalljs_landing_arch_label_framework": "framework",
 	"$bog_smalljs_landing_arch_label_package": "twój pakiet",
 	"$bog_smalljs_landing_arch_label_registry_own": "twój rejestr",
-	"$bog_smalljs_landing_arch_label_project": "twój projekt"
+	"$bog_smalljs_landing_arch_label_project": "twój projekt",
+	"$bog_smalljs_landing_arch_label_entry": "punkt wejścia",
+	"$bog_smalljs_landing_arch_label_tree": "znaczniki"
 }

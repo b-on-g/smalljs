@@ -21,5 +21,6 @@
 	"$bog_smalljs_playground_layout_hint_tabs": "Zurück zu den Tabs",
 	"$bog_smalljs_playground_sample_routing_title": "Routing",
 	"$bog_smalljs_playground_files_title": "Projekt",
-	"$bog_smalljs_playground_files_note": "Wo diese Dateien in einem MAM-Workspace liegen"
+	"$bog_smalljs_playground_files_note": "Wo diese Dateien in einem MAM-Workspace liegen",
+	"$bog_smalljs_playground_share_done_label": "Kopiert"
 }

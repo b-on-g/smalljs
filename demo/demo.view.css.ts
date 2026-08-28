@@ -31,8 +31,8 @@ namespace $ {
 			display: 'block',
 			font: {
 				family: $bog_builderui_tokens.font_head,
-				size: rem( 1.75 ),
-				weight: 500,
+				size: rem( 2 ),
+				weight: 600,
 			},
 			letterSpacing: '-0.01em',
 			color: $bog_builderui_tokens.text,

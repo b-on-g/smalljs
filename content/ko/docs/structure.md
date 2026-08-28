@@ -11,7 +11,7 @@ mam/                         작업 공간 — 클론한 MAM
     ├── my.meta.tree         여러분 프로젝트의 레지스트리
     └── hello/               프로젝트 — 모듈이자 자체 git 저장소
         ├── index.html       진입점 (앱 모듈만 해당)
-        ├── hello.view.tree
+        ├── hello.view.tree  마크업
         └── form/            하위 모듈 — $my_hello_form
 ```
 

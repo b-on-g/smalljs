@@ -59,5 +59,7 @@
 	"$bog_smalljs_landing_arch_label_framework": "фреймворк",
 	"$bog_smalljs_landing_arch_label_package": "ваш пакет",
 	"$bog_smalljs_landing_arch_label_registry_own": "ваш реєстр",
-	"$bog_smalljs_landing_arch_label_project": "ваш проєкт"
+	"$bog_smalljs_landing_arch_label_project": "ваш проєкт",
+	"$bog_smalljs_landing_arch_label_entry": "точка входу",
+	"$bog_smalljs_landing_arch_label_tree": "розмітка"
 }

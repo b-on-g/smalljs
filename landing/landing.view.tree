@@ -5,6 +5,8 @@ $bog_smalljs_landing $mol_view
 	arch_label_package @ \your package
 	arch_label_registry_own @ \your registry
 	arch_label_project @ \your project
+	arch_label_entry @ \entry point
+	arch_label_tree @ \the markup
 	sub /
 		<= Hero $mol_view
 			sub /

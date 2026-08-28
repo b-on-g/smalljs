@@ -11,7 +11,7 @@ mam/                         espace de travail — le clone de MAM
     ├── my.meta.tree         registre de vos propres projets
     └── hello/               projet — un module, et un dépôt git à lui
         ├── index.html       point d'entrée (modules applicatifs seulement)
-        ├── hello.view.tree
+        ├── hello.view.tree  le balisage
         └── form/            sous-module — $my_hello_form
 ```
 

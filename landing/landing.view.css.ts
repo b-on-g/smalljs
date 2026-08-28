@@ -153,8 +153,11 @@ namespace $ {
 			overflow: { x: 'hidden', y: 'hidden' },
 		},
 
+		// Две трети под код, треть под живой результат. Поровну код не помещался:
+		// три файла с отступами упирались в перенос, а превью занимало полполосы
+		// ради одного поля и одной строки.
 		Sign_code: {
-			flex: { direction: 'column', grow: 1, shrink: 1, basis: 0 },
+			flex: { direction: 'column', grow: 2, shrink: 1, basis: 0 },
 			minWidth: 0,
 			background: { color: $bog_builderui_tokens.back },
 			border: { right: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
@@ -163,17 +166,17 @@ namespace $ {
 		Sign_code_label: {
 			display: 'block',
 			... eyebrow,
-			padding: { top: rem( 0.625 ), bottom: rem( 0.625 ), left: rem( 1 ), right: rem( 1 ) },
+			padding: { top: rem( 0.4375 ), bottom: rem( 0.4375 ), left: rem( 1 ), right: rem( 1 ) },
 			border: { bottom: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
 			background: { color: $bog_builderui_tokens.card },
 		},
 
 		Sign_code_view: {
 			flex: { grow: 1 },
-			padding: { top: rem( 0.75 ), bottom: rem( 1 ), left: rem( 1 ), right: rem( 1 ) },
+			padding: { top: rem( 0.625 ), bottom: rem( 0.75 ), left: rem( 1 ), right: rem( 1 ) },
 			overflow: { x: 'auto', y: 'hidden' },
 			font: { family: mono, size: rem( 0.8125 ) },
-			lineHeight: '1.7',
+			lineHeight: '1.55',
 		},
 
 		// Второй файл витрины оформляем как первый: своя подпись-разделитель
@@ -181,7 +184,7 @@ namespace $ {
 		Sign_ts_label: {
 			display: 'block',
 			... eyebrow,
-			padding: { top: rem( 0.625 ), bottom: rem( 0.625 ), left: rem( 1 ), right: rem( 1 ) },
+			padding: { top: rem( 0.4375 ), bottom: rem( 0.4375 ), left: rem( 1 ), right: rem( 1 ) },
 			border: {
 				top: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
 				bottom: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
@@ -190,10 +193,10 @@ namespace $ {
 		},
 
 		Sign_ts_view: {
-			padding: { top: rem( 0.75 ), bottom: rem( 1 ), left: rem( 1 ), right: rem( 1 ) },
+			padding: { top: rem( 0.625 ), bottom: rem( 0.75 ), left: rem( 1 ), right: rem( 1 ) },
 			overflow: { x: 'auto', y: 'hidden' },
 			font: { family: mono, size: rem( 0.8125 ) },
-			lineHeight: '1.7',
+			lineHeight: '1.55',
 		},
 
 		// Третий файл — стили. Оформление то же, что у первых двух: витрина
@@ -201,7 +204,7 @@ namespace $ {
 		Sign_css_label: {
 			display: 'block',
 			... eyebrow,
-			padding: { top: rem( 0.625 ), bottom: rem( 0.625 ), left: rem( 1 ), right: rem( 1 ) },
+			padding: { top: rem( 0.4375 ), bottom: rem( 0.4375 ), left: rem( 1 ), right: rem( 1 ) },
 			border: {
 				top: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
 				bottom: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
@@ -210,10 +213,10 @@ namespace $ {
 		},
 
 		Sign_css_view: {
-			padding: { top: rem( 0.75 ), bottom: rem( 1 ), left: rem( 1 ), right: rem( 1 ) },
+			padding: { top: rem( 0.625 ), bottom: rem( 0.75 ), left: rem( 1 ), right: rem( 1 ) },
 			overflow: { x: 'auto', y: 'hidden' },
 			font: { family: mono, size: rem( 0.8125 ) },
-			lineHeight: '1.7',
+			lineHeight: '1.55',
 		},
 
 		Sign_arrow: {

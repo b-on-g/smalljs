@@ -21,5 +21,6 @@
 	"$bog_smalljs_playground_layout_hint_tabs": "ট্যাবে ফিরে যান",
 	"$bog_smalljs_playground_sample_routing_title": "রাউটিং",
 	"$bog_smalljs_playground_files_title": "প্রকল্প",
-	"$bog_smalljs_playground_files_note": "এই ফাইলগুলো MAM ওয়ার্কস্পেসের কোথায় থাকে"
+	"$bog_smalljs_playground_files_note": "এই ফাইলগুলো MAM ওয়ার্কস্পেসের কোথায় থাকে",
+	"$bog_smalljs_playground_share_done_label": "কপি হয়েছে"
 }

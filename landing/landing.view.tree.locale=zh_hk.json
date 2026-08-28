@@ -59,5 +59,7 @@
 	"$bog_smalljs_landing_arch_label_framework": "框架",
 	"$bog_smalljs_landing_arch_label_package": "你的套件",
 	"$bog_smalljs_landing_arch_label_registry_own": "你的登記表",
-	"$bog_smalljs_landing_arch_label_project": "你的專案"
+	"$bog_smalljs_landing_arch_label_project": "你的專案",
+	"$bog_smalljs_landing_arch_label_entry": "入口",
+	"$bog_smalljs_landing_arch_label_tree": "標記"
 }

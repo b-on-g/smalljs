@@ -11,7 +11,7 @@ mam/                         workspace — o checkout do MAM
     ├── my.meta.tree         registro dos seus próprios projetos
     └── hello/               projeto — um módulo, e um repositório git próprio
         ├── index.html       ponto de entrada (só módulos de aplicação)
-        ├── hello.view.tree
+        ├── hello.view.tree  a marcação
         └── form/            submódulo — $my_hello_form
 ```
 

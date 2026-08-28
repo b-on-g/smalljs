@@ -21,5 +21,6 @@
 	"$bog_smalljs_playground_layout_hint_tabs": "بازگشت به زبانه‌ها",
 	"$bog_smalljs_playground_sample_routing_title": "مسیریابی",
 	"$bog_smalljs_playground_files_title": "پروژه",
-	"$bog_smalljs_playground_files_note": "این فایل‌ها کجای فضای کاریِ MAM هستند"
+	"$bog_smalljs_playground_files_note": "این فایل‌ها کجای فضای کاریِ MAM هستند",
+	"$bog_smalljs_playground_share_done_label": "کپی شد"
 }

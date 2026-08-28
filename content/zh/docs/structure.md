@@ -11,7 +11,7 @@ mam/                         工作区 —— 克隆下来的 MAM
     ├── my.meta.tree         你自己项目的登记表
     └── hello/               项目 —— 一个模块，也是自己的 git 仓库
         ├── index.html       入口（只有应用模块需要）
-        ├── hello.view.tree
+        ├── hello.view.tree  标记
         └── form/            子模块 —— $my_hello_form
 ```
 

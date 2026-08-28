@@ -278,6 +278,17 @@ namespace $ {
 			flex: { shrink: 0 },
 		},
 
+		Share_done_icon: {
+			width: '1rem',
+			height: '1rem',
+			flex: { shrink: 0 },
+		},
+
+		Share_done_label: {
+			margin: { left: '0.25rem' },
+			font: { size: '0.75rem', weight: 600 },
+		},
+
 		// Кнопки нет в разметке, пока откатывать нечего — см. tabs_content().
 		Reset: {
 			align: { self: 'center' },
@@ -378,6 +389,16 @@ namespace $ {
 		'@': {
 			// Третья колонка появляется только вместе с панелью файлов, и только
 			// когда экран достаточно широк, чтобы она не съела редактор.
+			// Ссылка ушла в буфер — кнопка отвечает сама, а не только подсказкой,
+			// которую после клика никто не читает.
+			bog_smalljs_pg_shared: {
+				true: {
+					Share: {
+						color: $bog_builderui_tokens.special,
+						background: { color: $bog_builderui_tokens.card },
+					},
+				},
+			},
 			bog_smalljs_pg_files: {
 				true: {
 					gridTemplateColumns: '17rem minmax(0, 1fr) minmax(0, 1fr)',

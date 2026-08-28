@@ -59,5 +59,7 @@
 	"$bog_smalljs_landing_arch_label_framework": "فریم‌ورک",
 	"$bog_smalljs_landing_arch_label_package": "بستهٔ شما",
 	"$bog_smalljs_landing_arch_label_registry_own": "فهرستِ شما",
-	"$bog_smalljs_landing_arch_label_project": "پروژهٔ شما"
+	"$bog_smalljs_landing_arch_label_project": "پروژهٔ شما",
+	"$bog_smalljs_landing_arch_label_entry": "نقطهٔ ورود",
+	"$bog_smalljs_landing_arch_label_tree": "نشانه‌گذاری"
 }

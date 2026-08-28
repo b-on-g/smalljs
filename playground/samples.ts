@@ -15,6 +15,7 @@ namespace $ {
 	 * тащит модули в граф:
 	 * $mol_view $mol_string $mol_password $mol_button_major $mol_button_minor
 	 * $mol_row $mol_link $mol_check $mol_fetch $mol_state_arg $mol_state_local
+	 * $mol_gap
 	 */
 	export type $bog_smalljs_playground_sample = {
 		/** Корневой компонент примера — по нему видно, что редактор всё ещё на нём. */
@@ -31,43 +32,39 @@ namespace $ {
 
 		hello: {
 			root: `${ S }my_hello`,
+			// Готовый компонент вместо примитива: $mol_paragraph уже умеет
+			// переносить длинный текст, а $mol_view — только коробка.
 			tree: lines(
 				`${ S }my_hello ${ S }mol_view`,
-				`\tname? \\mol`,
-				`\tgreeting \\`,
+				`\tguest \\stranger`,
 				`\tsub /`,
 				`\t\t<= Name ${ S }mol_string`,
-				`\t\t\tvalue? <=> name?`,
+				`\t\t\tvalue? <=> name? \\mol`,
 				`\t\t\thint @ \\Type a name`,
-				`\t\t<= Greeting ${ S }mol_view`,
-				`\t\t\tsub / <= greeting`,
+				`\t\t<= Greeting ${ S }mol_paragraph`,
+				`\t\t\ttitle <= greeting \\`,
 			),
 			// Приветствие view.tree сам не соберёт — за него отвечает класс.
 			ts: lines(
 				`class ${ S }my_hello extends ${ S }.${ S }my_hello {`,
-				``,
 				`\tgreeting() {`,
 				// Обычная строка, а не шаблонная: внутри лежит шаблонная литера
 				// примера, и её `${` не должен раскрыться здесь.
-				"\t\treturn `Hello, ${ this.name().trim() || 'stranger' }!`",
+				"\t\treturn `Hello, ${ this.name() || this.guest() }!`",
 				`\t}`,
-				``,
 				`}`,
 			),
+			// gap стоит рядом с flex, а не внутри: вложенным он собрался бы
+			// в `flex-gap`, а такого свойства в CSS нет.
 			css: lines(
 				`namespace ${ S } {`,
-				``,
 				`\t${ S }mol_style_define( ${ S }my_hello, {`,
-				``,
-				`\t\tflex: { direction: 'column', gap: '1rem' },`,
-				`\t\tpadding: '1.5rem',`,
-				``,
+				`\t\tgap: ${ S }mol_gap.block,`,
+				`\t\tflex: { direction: 'column' },`,
 				`\t\tGreeting: {`,
-				`\t\t\tfont: { size: '1.75rem', weight: 500 },`,
+				`\t\t\tfont: { size: '2rem', weight: 600 },`,
 				`\t\t},`,
-				``,
 				`\t} )`,
-				``,
 				`}`,
 			),
 		},
@@ -109,7 +106,8 @@ namespace $ {
 				``,
 				`\t${ S }mol_style_define( ${ S }my_demo, {`,
 				``,
-				`\t\tflex: { direction: 'column', gap: '1rem' },`,
+				`\t\tflex: { direction: 'column' },`,
+				`\t\tgap: '1rem',`,
 				`\t\tpadding: '1.5rem',`,
 				``,
 				`\t\tValue: {`,
@@ -170,7 +168,8 @@ namespace $ {
 				``,
 				`\t${ S }mol_style_define( ${ S }my_fetch, {`,
 				``,
-				`\t\tflex: { direction: 'column', gap: '0.5rem' },`,
+				`\t\tflex: { direction: 'column' },`,
+				`\t\tgap: '0.5rem',`,
 				`\t\tpadding: '1.5rem',`,
 				``,
 				`\t\tRepo: { font: { size: '1.25rem', weight: 700 } },`,
@@ -239,7 +238,8 @@ namespace $ {
 				``,
 				`\t${ S }mol_style_define( ${ S }my_args, {`,
 				``,
-				`\t\tflex: { direction: 'column', gap: '1rem' },`,
+				`\t\tflex: { direction: 'column' },`,
+				`\t\tgap: '1rem',`,
 				`\t\tpadding: '1.5rem',`,
 				``,
 				`\t\tMenu: { gap: '0.5rem' },`,
@@ -299,7 +299,8 @@ namespace $ {
 				``,
 				`\t${ S }mol_style_define( ${ S }my_route, {`,
 				``,
-				`\t\tflex: { direction: 'column', gap: '1rem' },`,
+				`\t\tflex: { direction: 'column' },`,
+				`\t\tgap: '1rem',`,
 				`\t\tpadding: '1.5rem',`,
 				``,
 				`\t\tMenu: { gap: '1rem' },`,
@@ -339,7 +340,8 @@ namespace $ {
 				``,
 				`\t${ S }mol_style_define( ${ S }my_state, {`,
 				``,
-				`\t\tflex: { direction: 'column', gap: '0.75rem' },`,
+				`\t\tflex: { direction: 'column' },`,
+				`\t\tgap: '0.75rem',`,
 				`\t\tpadding: '1.5rem',`,
 				``,
 				`\t\tHint: { opacity: 0.7 },`,
@@ -417,7 +419,8 @@ namespace $ {
 				``,
 				`\t${ S }mol_style_define( ${ S }my_login, {`,
 				``,
-				`\t\tflex: { direction: 'column', gap: '0.75rem' },`,
+				`\t\tflex: { direction: 'column' },`,
+				`\t\tgap: '0.75rem',`,
 				`\t\tpadding: '1.5rem',`,
 				`\t\tmaxWidth: '20rem',`,
 				``,

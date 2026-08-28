@@ -59,5 +59,7 @@
 	"$bog_smalljs_landing_arch_label_framework": "le framework",
 	"$bog_smalljs_landing_arch_label_package": "votre paquet",
 	"$bog_smalljs_landing_arch_label_registry_own": "votre registre",
-	"$bog_smalljs_landing_arch_label_project": "votre projet"
+	"$bog_smalljs_landing_arch_label_project": "votre projet",
+	"$bog_smalljs_landing_arch_label_entry": "point d'entrée",
+	"$bog_smalljs_landing_arch_label_tree": "le balisage"
 }

@@ -60,8 +60,8 @@ namespace $.$$ {
 				[ '└── my/', this.arch_label_package() ],
 				[ '    ├── my.meta.tree', this.arch_label_registry_own() ],
 				[ '    └── hello/', this.arch_label_project() ],
-				[ '        ├── index.html', '' ],
-				[ '        └── hello.view.tree', '' ],
+				[ '        ├── index.html', this.arch_label_entry() ],
+				[ '        └── hello.view.tree', this.arch_label_tree() ],
 			]
 			// Два пробела и больше — граница имени и подписи для разборщика дерева.
 			const width = Math.max( ... rows.map( ( [ path ] ) => path.length ) ) + 2

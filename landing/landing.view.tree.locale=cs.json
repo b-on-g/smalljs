@@ -59,5 +59,7 @@
 	"$bog_smalljs_landing_arch_label_framework": "framework",
 	"$bog_smalljs_landing_arch_label_package": "váš balík",
 	"$bog_smalljs_landing_arch_label_registry_own": "váš rejstřík",
-	"$bog_smalljs_landing_arch_label_project": "váš projekt"
+	"$bog_smalljs_landing_arch_label_project": "váš projekt",
+	"$bog_smalljs_landing_arch_label_entry": "vstupní bod",
+	"$bog_smalljs_landing_arch_label_tree": "rozvržení"
 }

@@ -21,5 +21,6 @@
 	"$bog_smalljs_playground_layout_hint_tabs": "Zpět na záložky",
 	"$bog_smalljs_playground_sample_routing_title": "Routing",
 	"$bog_smalljs_playground_files_title": "Projekt",
-	"$bog_smalljs_playground_files_note": "Kde tyto soubory leží v workspace MAM"
+	"$bog_smalljs_playground_files_note": "Kde tyto soubory leží v workspace MAM",
+	"$bog_smalljs_playground_share_done_label": "Zkopírováno"
 }

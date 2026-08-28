@@ -21,5 +21,6 @@
 	"$bog_smalljs_playground_layout_hint_tabs": "Torna alle schede",
 	"$bog_smalljs_playground_sample_routing_title": "Routing",
 	"$bog_smalljs_playground_files_title": "Progetto",
-	"$bog_smalljs_playground_files_note": "Dove stanno questi file in un workspace MAM"
+	"$bog_smalljs_playground_files_note": "Dove stanno questi file in un workspace MAM",
+	"$bog_smalljs_playground_share_done_label": "Copiato"
 }

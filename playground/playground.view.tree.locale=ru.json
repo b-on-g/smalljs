@@ -21,5 +21,6 @@
 	"$bog_smalljs_playground_layout_hint_tabs": "Вернуться к вкладкам",
 	"$bog_smalljs_playground_sample_routing_title": "Роутинг",
 	"$bog_smalljs_playground_files_title": "Проект",
-	"$bog_smalljs_playground_files_note": "Где эти файлы лежат в воркспейсе MAM"
+	"$bog_smalljs_playground_files_note": "Где эти файлы лежат в воркспейсе MAM",
+	"$bog_smalljs_playground_share_done_label": "Скопировано"
 }

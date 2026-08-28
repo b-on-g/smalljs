@@ -11,7 +11,7 @@ mam/                         workspace — naklonovaný MAM
     ├── my.meta.tree         rejstřík vašich projektů
     └── hello/               projekt — modul a vlastní git repozitář
         ├── index.html       vstupní bod (jen moduly aplikací)
-        ├── hello.view.tree
+        ├── hello.view.tree  rozvržení
         └── form/            podmodul — $my_hello_form
 ```
 

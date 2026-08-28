@@ -7,9 +7,10 @@ namespace $.$$ {
 	 */
 	export class $bog_smalljs_demo extends $.$bog_smalljs_demo {
 
+		// Ровно то, что написано в соседнем окне с кодом: двойник обещает, что
+		// показанный код и есть работающий.
 		greeting() {
-			const name = this.name().trim()
-			return `Hello, ${ name || 'stranger' }!`
+			return `Hello, ${ this.name() || this.guest() }!`
 		}
 
 	}

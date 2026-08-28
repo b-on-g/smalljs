@@ -21,5 +21,6 @@
 	"$bog_smalljs_playground_layout_hint_tabs": "탭으로 돌아가기",
 	"$bog_smalljs_playground_sample_routing_title": "라우팅",
 	"$bog_smalljs_playground_files_title": "프로젝트",
-	"$bog_smalljs_playground_files_note": "이 파일들이 MAM 작업 공간의 어디에 있는지"
+	"$bog_smalljs_playground_files_note": "이 파일들이 MAM 작업 공간의 어디에 있는지",
+	"$bog_smalljs_playground_share_done_label": "복사됨"
 }
