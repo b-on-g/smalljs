@@ -15,7 +15,6 @@ $bog_smalljs_app $bog_builderui_div
 		bog_builderui_font_head \eb-garamond
 	auto /
 		<= hotkeys null
-		<= locale_sync null
 		<= lang_sync null
 		<= route_canonical null
 	sub /

@@ -49,25 +49,38 @@ namespace $ {
 
 		// The question mark stays quiet until the line is hovered — a column of bright
 		// icons would read as decoration and pull attention off the tree itself.
-		// $mol_button is a full-size control by default; here it rides inside a line of
-		// code and has to keep that line's height.
+		// Знак вопроса не кричит: колонка ярких иконок читалась бы как украшение и
+		// тянула бы внимание с самого дерева.
 		Help: {
 			flex: { shrink: 0 },
-			minHeight: 0,
-			height: rem( 1.25 ),
+			align: { items: 'center' },
 			margin: { left: rem( 0.375 ) },
-			padding: {
-				top: 0,
-				bottom: 0,
-				left: rem( 0.125 ),
-				right: rem( 0.125 ),
-			},
-			border: { radius: rem( 0.25 ) },
 			color: $bog_builderui_tokens.shade,
 			opacity: 0.45,
+			cursor: 'help',
 			':hover': {
 				opacity: 1,
 				color: $bog_builderui_tokens.special,
+			},
+			':focus-visible': {
+				opacity: 1,
+				color: $bog_builderui_tokens.special,
+			},
+
+			// Пузырь рисуется в верхнем слое браузера, поэтому оформляем его сами:
+			// собственные цвета $mol_pop берёт из темы $mol, а сайт живёт на токенах
+			// builderui.
+			Bubble: {
+				// Своя ширина, но не шире экрана: на телефоне пузырь иначе уезжает
+				// за левый край, потому что $mol_follower его не подрезает.
+				maxWidth: $mol_style_func.calc( 'min( 24rem, 100vw - 2rem )' ),
+				border: {
+					radius: rem( 0.5 ),
+					width: '1px',
+					style: 'solid',
+					color: $bog_builderui_tokens.line,
+				},
+				background: { color: $bog_builderui_tokens.card },
 			},
 		},
 
@@ -77,28 +90,20 @@ namespace $ {
 			flex: { shrink: 0 },
 		},
 
+		// Пузырь висит в верхнем слое, но CSS наследует от строки дерева — без явного
+		// шрифта объяснение набралось бы моноширинным, как сам листинг.
 		Note: {
-			margin: {
-				left: rem( 1.5 ),
-				top: rem( 0.25 ),
-				bottom: rem( 0.5 ),
-			},
+			font: { family: $bog_builderui_tokens.font_body },
 			padding: {
+				top: rem( 0.5 ),
+				bottom: rem( 0.5 ),
 				left: rem( 0.75 ),
-				top: rem( 0.125 ),
-				bottom: rem( 0.125 ),
+				right: rem( 0.75 ),
 			},
-			maxWidth: rem( 34 ),
-			border: {
-				left: {
-					width: '2px',
-					style: 'solid',
-					color: $bog_builderui_tokens.special,
-				},
-			},
-			font: { size: rem( 0.8125 ) },
+			fontSize: rem( 0.8125 ),
 			lineHeight: rem( 1.5 ),
 			color: $bog_builderui_tokens.text,
+			background: { color: $bog_builderui_tokens.card },
 			whiteSpace: 'normal',
 		},
 
@@ -136,15 +141,6 @@ namespace $ {
 					Name: {
 						color: $bog_builderui_tokens.special,
 						font: { weight: 700 },
-					},
-				},
-			},
-
-			bog_smalljs_structure_open: {
-				true: {
-					Help: {
-						opacity: 1,
-						color: $bog_builderui_tokens.special,
 					},
 				},
 			},

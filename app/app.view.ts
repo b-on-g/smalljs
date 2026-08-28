@@ -38,6 +38,21 @@ namespace $.$$ {
 
 			$bog_smalljs_router.activate( '/smalljs/' )
 
+			/** Язык из адреса — до первого рендера.
+			 *
+			 *  Страница `/mol_locale=ru/…` приезжает статикой на русском, но
+			 *  `$mol_locale.lang()` о ней ничего не знает: он читает localStorage и
+			 *  язык браузера. Раньше адрес доезжал до локали отдельным проходом
+			 *  ( `$mol_wire_async` из рендера — писать в чужую ячейку прямо из него
+			 *  нельзя ), и читатель успевал увидеть английский текст поверх русской
+			 *  статики. Сюда же запись попадает на загрузке модуля, когда рендера
+			 *  ещё не было: первый проход сразу на нужном языке, прыгать нечему.
+			 *
+			 *  Роутер активирован строкой выше, поэтому `$mol_state_arg` уже читает
+			 *  путь, а не только хеш. */
+			const lang_asked = $mol_state_arg.value( 'mol_locale' )
+			if( lang_asked ) $mol_state_local.value( 'locale', lang_asked )
+
 			/** Focus that goes nowhere.
 			 *
 			 *  $mol tracks the focused element from a capture listener on `focus`,
@@ -262,20 +277,6 @@ namespace $.$$ {
 
 		override attr() {
 			return { ... super.attr(), ... $bog_meta_attr( this ) }
-		}
-
-		/** Honor a `?mol_locale=<code>` URL param once on load, so shared
-		 *  localized links (and hreflang alternates) select the right language. */
-		locale_synced = false
-
-		@ $mol_mem
-		locale_sync() {
-			if( this.locale_synced ) return null
-			const want = this.$.$mol_state_arg.value( 'mol_locale' )
-			if( !want ) return null
-			this.locale_synced = true
-			$mol_wire_async( this.$.$mol_locale ).lang( want )
-			return null
 		}
 
 		/** Keep <html lang> in step with the active UI language (a11y: screen readers

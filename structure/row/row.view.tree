@@ -8,14 +8,11 @@ $bog_smalljs_structure_row $mol_view
 	active false
 	pickable false
 	pick? null
-	open? false
-	help_click? null
 	line_click? null
 	attr *
 		bog_smalljs_structure_kind <= kind
 		bog_smalljs_structure_active <= active
 		bog_smalljs_structure_pickable <= pickable
-		bog_smalljs_structure_open <= open?
 	sub /
 		<= Line $mol_view
 			event *
@@ -31,11 +28,9 @@ $bog_smalljs_structure_row $mol_view
 				<= Comment $mol_view
 					sub /
 						<= comment
-				<= Help $mol_button_minor
-					hint <= note
-					click? <=> help_click?
-					sub /
-						<= Help_icon $mol_icon_help_circle_outline
-		<= Note $mol_view
-			sub /
-				<= note
+				<= Help $mol_pop_over
+					Anchor <= Help_icon $mol_icon_help_circle_outline
+					bubble_content /
+						<= Note $mol_view
+							sub /
+								<= note

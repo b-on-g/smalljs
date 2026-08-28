@@ -72,9 +72,18 @@ namespace $.$$ {
 			return super.Lang_option_check( code )
 		}
 
+		/** Выбор языка уезжает и в адрес.
+		 *
+		 *  Без этого перезагрузка приходила на английскую статику: пререндер
+		 *  раскладывает по языкам ( `/mol_locale=ru/…` ), а голый адрес — это
+		 *  x-default, то есть английский. Читатель видел английский текст, пока
+		 *  бандл не поднимется и не вспомнит его выбор из localStorage. С языком
+		 *  в адресе он с первого байта получает свою страницу, а ссылкой на неё
+		 *  можно поделиться. */
 		@ $mol_action
 		lang_select( code: string ) {
 			this.lang( code )
+			this.$.$mol_state_arg.value( 'mol_locale', code )
 			this.Lang_pick().showed( false )
 			return null
 		}
