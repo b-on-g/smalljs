@@ -3,16 +3,16 @@
 A $mol project has four nested levels: the **workspace** you cloned, the **packages** inside it, the **modules** inside those, and the **files** inside a module. The layout answers one practical question — where a new project goes and what owns its history — and almost everything the build does follows from it.
 
 ```structure
-mam/                     workspace — the MAM checkout
-├── .meta.tree           registry: which package comes from which repo
-├── mol/                 package — the framework, its own git repo
-└── my/                  package — yours, its own git repo
-    ├── .gitattributes   keeps built binaries intact
-    ├── my.meta.tree     registry of your own projects
-    └── hello/           project — a module, and a git repo of its own
-        ├── index.html   entry point (app modules only)
-        ├── hello.view.tree
-        └── form/        submodule — $my_hello_form
+mam/                         workspace — the MAM checkout
+├── .meta.tree               registry: which package comes from which repo
+├── mol/                     package — the framework, its own git repo
+└── my/                      package — yours, its own git repo
+    ├── .gitattributes       keeps built binaries intact
+    ├── my.meta.tree         registry of your own projects
+    └── hello/               project — a module, and a git repo of its own
+        ├── index.html       entry point (app modules only)
+        ├── hello.view.tree  the markup
+        └── form/            submodule — $my_hello_form
 ```
 
 On this page every line of that listing carries a question mark with the reason it is there; the sections further down say the same at length.

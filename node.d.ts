@@ -8440,6 +8440,7 @@ declare namespace $ {
      * тащит модули в граф:
      * $mol_view $mol_string $mol_password $mol_button_major $mol_button_minor
      * $mol_row $mol_link $mol_check $mol_fetch $mol_state_arg $mol_state_local
+     * $mol_gap
      */
     type $bog_smalljs_playground_sample = {
         /** Корневой компонент примера — по нему видно, что редактор всё ещё на нём. */
@@ -8570,181 +8571,186 @@ declare namespace $ {
 		,
 		ReturnType< $mol_button_minor['sub'] >
 	>
-	type $mol_button_minor__hint_bog_smalljs_playground_24 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_playground_24 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_button_minor__hint_bog_smalljs_playground_25 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['share_title'] >
 		,
 		ReturnType< $mol_button_minor['hint'] >
 	>
-	type $mol_button_minor__click_bog_smalljs_playground_25 = $mol_type_enforce<
+	type $mol_button_minor__click_bog_smalljs_playground_26 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['share'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_button_minor__sub_bog_smalljs_playground_26 = $mol_type_enforce<
-		readonly(any)[]
+	type $mol_button_minor__sub_bog_smalljs_playground_27 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['share_content'] >
 		,
 		ReturnType< $mol_button_minor['sub'] >
 	>
-	type $mol_button_minor__hint_bog_smalljs_playground_27 = $mol_type_enforce<
+	type $mol_button_minor__hint_bog_smalljs_playground_28 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['reset_hint'] >
 		,
 		ReturnType< $mol_button_minor['hint'] >
 	>
-	type $mol_button_minor__click_bog_smalljs_playground_28 = $mol_type_enforce<
+	type $mol_button_minor__click_bog_smalljs_playground_29 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['reset'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_button_minor__sub_bog_smalljs_playground_29 = $mol_type_enforce<
+	type $mol_button_minor__sub_bog_smalljs_playground_30 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_button_minor['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_30 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_playground_31 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['tabs_content'] >
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_31 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_playground_32 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_textarea__value_bog_smalljs_playground_32 = $mol_type_enforce<
+	type $mol_textarea__value_bog_smalljs_playground_33 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['draft'] >
 		,
 		ReturnType< $mol_textarea['value'] >
 	>
-	type $mol_textarea__hint_bog_smalljs_playground_33 = $mol_type_enforce<
+	type $mol_textarea__hint_bog_smalljs_playground_34 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['editor_hint'] >
 		,
 		ReturnType< $mol_textarea['hint'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_34 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_playground_35 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_textarea__value_bog_smalljs_playground_35 = $mol_type_enforce<
+	type $mol_textarea__value_bog_smalljs_playground_36 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['ts_draft'] >
 		,
 		ReturnType< $mol_textarea['value'] >
 	>
-	type $mol_textarea__hint_bog_smalljs_playground_36 = $mol_type_enforce<
+	type $mol_textarea__hint_bog_smalljs_playground_37 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['editor_hint_ts'] >
 		,
 		ReturnType< $mol_textarea['hint'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_37 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_playground_38 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_textarea__value_bog_smalljs_playground_38 = $mol_type_enforce<
+	type $mol_textarea__value_bog_smalljs_playground_39 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['css_draft'] >
 		,
 		ReturnType< $mol_textarea['value'] >
 	>
-	type $mol_textarea__hint_bog_smalljs_playground_39 = $mol_type_enforce<
+	type $mol_textarea__hint_bog_smalljs_playground_40 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['editor_hint_css'] >
 		,
 		ReturnType< $mol_textarea['hint'] >
-	>
-	type $mol_view__sub_bog_smalljs_playground_40 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
 	>
 	type $mol_view__sub_bog_smalljs_playground_41 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_button_minor__click_bog_smalljs_playground_42 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_playground_42 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_button_minor__click_bog_smalljs_playground_43 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['log_toggle'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_button_minor__sub_bog_smalljs_playground_43 = $mol_type_enforce<
+	type $mol_button_minor__sub_bog_smalljs_playground_44 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_button_minor['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_44 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
 	type $mol_view__sub_bog_smalljs_playground_45 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_playground['preview_content'] >
+		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
 	type $mol_view__sub_bog_smalljs_playground_46 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['preview_content'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_playground_47 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_button_minor__hint_bog_smalljs_playground_47 = $mol_type_enforce<
+	type $mol_button_minor__hint_bog_smalljs_playground_48 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['log_clear_hint'] >
 		,
 		ReturnType< $mol_button_minor['hint'] >
 	>
-	type $mol_button_minor__click_bog_smalljs_playground_48 = $mol_type_enforce<
+	type $mol_button_minor__click_bog_smalljs_playground_49 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['log_clear'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_button_minor__sub_bog_smalljs_playground_49 = $mol_type_enforce<
+	type $mol_button_minor__sub_bog_smalljs_playground_50 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_button_minor['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_50 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_playground_51 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_51 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_playground_52 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['log_rows'] >
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__attr_bog_smalljs_playground_52 = $mol_type_enforce<
+	type $mol_view__attr_bog_smalljs_playground_53 = $mol_type_enforce<
 		({ 
 			'bog_smalljs_pg_log_shown': ReturnType< $bog_smalljs_playground['log_shown'] >,
 		})  & ReturnType< $mol_view['attr'] >
 		,
 		ReturnType< $mol_view['attr'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_53 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
 	type $mol_view__sub_bog_smalljs_playground_54 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_button_minor__click_bog_smalljs_playground_55 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_playground_55 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_button_minor__click_bog_smalljs_playground_56 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['sample_pick'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_button_minor__sub_bog_smalljs_playground_56 = $mol_type_enforce<
+	type $mol_button_minor__sub_bog_smalljs_playground_57 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_button_minor['sub'] >
 	>
-	type $mol_view__attr_bog_smalljs_playground_57 = $mol_type_enforce<
+	type $mol_view__attr_bog_smalljs_playground_58 = $mol_type_enforce<
 		({ 
 			'bog_smalljs_pg_level': ReturnType< $bog_smalljs_playground['log_level'] >,
 		})  & ReturnType< $mol_view['attr'] >
 		,
 		ReturnType< $mol_view['attr'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_58 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_playground_59 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
@@ -8778,6 +8784,10 @@ declare namespace $ {
 		share_title( ): string
 		share( next?: any ): any
 		Share_icon( ): $mol_icon_share_variant_outline
+		Share_done_icon( ): $mol_icon_check
+		share_done_label( ): string
+		Share_done_label( ): $mol_view
+		share_content( ): readonly(any)[]
 		Share( ): $mol_button_minor
 		reset_hint( ): string
 		reset( next?: any ): any
@@ -8834,6 +8844,7 @@ declare namespace $ {
 		sample_state_title( ): string
 		sample_login_title( ): string
 		Sample_option( id: any): $mol_button_minor
+		shared( ): boolean
 		share_hint( ): string
 		share_done_hint( ): string
 		editors_mode( next?: string ): string
@@ -8849,6 +8860,7 @@ declare namespace $ {
 			'bog_smalljs_pg_tab': ReturnType< $bog_smalljs_playground['tab'] >,
 			'bog_smalljs_pg_editors': ReturnType< $bog_smalljs_playground['editors_mode'] >,
 			'bog_smalljs_pg_files': ReturnType< $bog_smalljs_playground['files_showed'] >,
+			'bog_smalljs_pg_shared': ReturnType< $bog_smalljs_playground['shared'] >,
 		}) 
 		sub( ): readonly(any)[]
 		log_open( next?: boolean ): boolean
@@ -8963,6 +8975,12 @@ declare namespace $.$$ {
         log_clear(): null;
         shared(next?: boolean): boolean;
         share_title(): string;
+        /**
+         * Пока ссылка в буфере, кнопка говорит это сама: галочка и слово вместо
+         * иконки «поделиться». Раньше единственным ответом на клик была подсказка
+         * в `title`, а её после клика никто не видит — жать приходилось наугад.
+         */
+        share_content(): ($mol_view | $mol_icon_check)[];
         /** Ссылка собирается по требованию, а не висит в адресе постоянно. */
         share(): null;
         /**
@@ -9812,16 +9830,17 @@ declare namespace $ {
 		,
 		ReturnType< $mol_string['value'] >
 	>
-	type $mol_view__sub_bog_smalljs_demo_3 = $mol_type_enforce<
-		readonly(any)[]
+	type $mol_paragraph__title_bog_smalljs_demo_3 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_demo['greeting'] >
 		,
-		ReturnType< $mol_view['sub'] >
+		ReturnType< $mol_paragraph['title'] >
 	>
 	export class $bog_smalljs_demo extends $mol_view {
+		name( next?: string ): string
 		Name( ): $mol_string
 		greeting( ): string
-		Greeting( ): $mol_view
-		name( next?: string ): string
+		Greeting( ): $mol_paragraph
+		guest( ): string
 		sub( ): readonly(any)[]
 	}
 	
@@ -10702,6 +10721,8 @@ declare namespace $ {
 		arch_label_package( ): string
 		arch_label_registry_own( ): string
 		arch_label_project( ): string
+		arch_label_entry( ): string
+		arch_label_tree( ): string
 		sub( ): readonly(any)[]
 	}
 	

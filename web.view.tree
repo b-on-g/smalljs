@@ -1649,6 +1649,7 @@ $bog_smalljs_playground $mol_view
 		click? <=> sample_pick*?
 		sub /
 			<= sample_title*
+	shared false
 	share_hint @ \Copy a link to this code
 	share_done_hint @ \Link copied
 	share? null
@@ -1666,6 +1667,7 @@ $bog_smalljs_playground $mol_view
 		bog_smalljs_pg_tab <= tab
 		bog_smalljs_pg_editors <= editors_mode?
 		bog_smalljs_pg_files <= files_showed
+		bog_smalljs_pg_shared <= shared
 	sub /
 		<= Files $mol_view
 			sub /
@@ -1713,8 +1715,12 @@ $bog_smalljs_playground $mol_view
 						<= Share $mol_button_minor
 							hint <= share_title \
 							click? <=> share? null
-							sub /
+							sub <= share_content /
 								<= Share_icon $mol_icon_share_variant_outline
+								<= Share_done_icon $mol_icon_check
+								<= Share_done_label $mol_view
+									sub /
+										<= share_done_label @ \Copied
 						<= Reset $mol_button_minor
 							hint <= reset_hint @ \Restore the example
 							click? <=> reset? null
@@ -1863,14 +1869,13 @@ $mol_icon_arrow_right $mol_icon path \M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12
 $mol_icon_open_in_new $mol_icon path \M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z
 
 $bog_smalljs_demo $mol_view
-	name? \mol
+	guest \stranger
 	sub /
 		<= Name $mol_string
 			hint @ \Type a name
-			value? <=> name?
-		<= Greeting $mol_view
-			sub /
-				<= greeting \Hello, mol!
+			value? <=> name? \mol
+		<= Greeting $mol_paragraph
+			title <= greeting \Hello, mol!
 
 $bog_smalljs_landing $mol_view
 	arch_label_workspace @ \workspace
@@ -1879,6 +1884,8 @@ $bog_smalljs_landing $mol_view
 	arch_label_package @ \your package
 	arch_label_registry_own @ \your registry
 	arch_label_project @ \your project
+	arch_label_entry @ \entry point
+	arch_label_tree @ \the markup
 	sub /
 		<= Hero $mol_view
 			sub /
