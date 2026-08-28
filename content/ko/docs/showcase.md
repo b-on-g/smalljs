@@ -7,6 +7,7 @@ $mol로 만든 진짜 것들——커뮤니티 앱, 상업 제품, 개발자 도
 - **[Bog Music](https://b-on-g.github.io/music/)**——Chrome 확장으로도 웹 앱으로도 동작하는 음악 플레이어. 백그라운드 재생과 오프라인 캐싱을 갖췄습니다. $mol이 UI와 로컬 우선 상태를 구동합니다.
 - **[Blitz Quiz](https://b-on-g.github.io/blitz/)**——$mol과 Giper Baza로 만든 Kahoot 스타일 라이브 퀴즈. 방은 CRDT 계층을 통해 실시간으로 동기화되므로, 돌릴 게임 서버가 없습니다.
 - **[VDO Rebalance](https://b-on-g.github.io/invest/)**——로컬 우선 투자 도구: `.xlsx` 포트폴리오를 넣으면 그것을 리밸런싱하는 거래가 나옵니다. 상태는 Giper Baza 위에서 브라우저 안에 존속합니다.
+- **[RAGU](https://raguteam.github.io/web/#!screen=summary)**——오픈소스 GraphRAG 엔진의 웹 인터페이스: 문서 색인을 둘러보고, 출처가 달린 답변을 받고, 거기서 추출된 지식 그래프를 탐색합니다. 힘 기반 레이아웃 그래프는 `$mol_svg_*` 프리미티브로 그려지며, 레이아웃과 확대·이동까지 포함해 그래프 라이브러리를 쓰지 않았습니다.
 - **[$hyoo_budget](https://budget.hyoo.ru)**——협업형, 로컬 우선 개인 예산 앱. Beautiful Code 해커톤에서 1위를 차지했습니다.
 - **[$hyoo_talks](https://talks.hyoo.ru)**——임베드 가능한 메신저. Sberbank를 위해 만든 프로토타입이 Moscow City Hack에서 2위를 차지했습니다.
 

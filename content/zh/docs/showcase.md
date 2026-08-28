@@ -7,6 +7,7 @@
 - **[Bog Music](https://b-on-g.github.io/music/)**——一个既可作为 Chrome 扩展、也可作为网页应用运行的音乐播放器，带后台播放和离线缓存。$mol 驱动界面和本地优先的状态。
 - **[Blitz Quiz](https://b-on-g.github.io/blitz/)**——一个基于 $mol 和 Giper Baza 构建的 Kahoot 风格实时问答。房间通过 CRDT 层实时同步，因此没有游戏服务器需要运行。
 - **[VDO Rebalance](https://b-on-g.github.io/invest/)**——一个本地优先的投资工具：放入一个 `.xlsx` 投资组合，得到用于再平衡的交易。状态在浏览器中通过 Giper Baza 存续。
+- **[RAGU](https://raguteam.github.io/web/#!screen=summary)**——一个开源 GraphRAG 引擎的网页界面：浏览文档索引、提问并获得带来源的回答、探索从中抽取的知识图谱。力导向图由 `$mol_svg_*` 原语绘制，连布局和缩放平移一起，没有用图形库。
 - **[$hyoo_budget](https://budget.hyoo.ru)**——一个协作式、本地优先的个人预算应用。它在 Beautiful Code 黑客松上获得第一名。
 - **[$hyoo_talks](https://talks.hyoo.ru)**——一个可嵌入的即时通讯。为 Sberbank 构建的一个原型在 Moscow City Hack 上获得第二名。
 

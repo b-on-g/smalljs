@@ -7,6 +7,7 @@ Des choses réelles construites avec $mol — applications communautaires, produ
 - **[Bog Music](https://b-on-g.github.io/music/)** — un lecteur de musique qui fonctionne à la fois comme extension Chrome et application web, avec lecture en arrière-plan et mise en cache hors ligne. $mol pilote l'interface et l'état local-first.
 - **[Blitz Quiz](https://b-on-g.github.io/blitz/)** — un quiz en direct façon Kahoot construit sur $mol et Giper Baza. Les salles se synchronisent en temps réel via la couche CRDT, donc il n'y a aucun serveur de jeu à faire tourner.
 - **[VDO Rebalance](https://b-on-g.github.io/invest/)** — un outil d'investissement local-first : déposez un portefeuille `.xlsx` et obtenez les opérations qui le rééquilibrent. L'état vit dans le navigateur via Giper Baza.
+- **[RAGU](https://raguteam.github.io/web/#!screen=summary)** — une interface web pour un moteur GraphRAG open source : parcourez les index de documents, posez des questions et obtenez des réponses sourcées, explorez le graphe de connaissances qui en est extrait. Le graphe à disposition par forces est dessiné avec des primitives `$mol_svg_*`, mise en page, zoom et déplacement compris, sans aucune bibliothèque de graphes.
 - **[$hyoo_budget](https://budget.hyoo.ru)** — une application de budget personnel collaborative et local-first. Elle a remporté la première place au hackathon Beautiful Code.
 - **[$hyoo_talks](https://talks.hyoo.ru)** — une messagerie intégrable. Un prototype construit pour Sberbank a pris la deuxième place au Moscow City Hack.
 

@@ -7,6 +7,7 @@ Echte Dinge, die mit $mol gebaut wurden — Community-Apps, kommerzielle Produkt
 - **[Bog Music](https://b-on-g.github.io/music/)** — ein Musikplayer, der sowohl als Chrome-Erweiterung als auch als Web-App läuft, mit Hintergrundwiedergabe und Offline-Caching. $mol treibt die Oberfläche und den local-first Zustand an.
 - **[Blitz Quiz](https://b-on-g.github.io/blitz/)** — ein Kahoot-artiges Live-Quiz, gebaut auf $mol und Giper Baza. Räume synchronisieren sich in Echtzeit über die CRDT-Schicht, es gibt also keinen Spielserver zu betreiben.
 - **[VDO Rebalance](https://b-on-g.github.io/invest/)** — ein local-first Investment-Werkzeug: legen Sie ein `.xlsx`-Portfolio ab und erhalten Sie die Trades, die es neu ausbalancieren. Der Zustand lebt im Browser über Giper Baza.
+- **[RAGU](https://raguteam.github.io/web/#!screen=summary)** — eine Weboberfläche für eine quelloffene GraphRAG-Engine: Dokumentindizes durchsehen, Fragen stellen und Antworten mit Quellen erhalten, den daraus extrahierten Wissensgraphen erkunden. Der kräftebasierte Graph wird mit `$mol_svg_*`-Primitiven gezeichnet, samt Layout sowie Zoomen und Verschieben, ganz ohne Graphbibliothek.
 - **[$hyoo_budget](https://budget.hyoo.ru)** — eine kollaborative, local-first Haushaltsbuch-App. Sie belegte den ersten Platz beim Beautiful-Code-Hackathon.
 - **[$hyoo_talks](https://talks.hyoo.ru)** — ein einbettbarer Messenger. Ein für Sberbank gebauter Prototyp belegte den zweiten Platz beim Moscow City Hack.
 

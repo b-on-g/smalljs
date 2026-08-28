@@ -7,6 +7,7 @@ Skutečné věci postavené na $mol — komunitní aplikace, komerční produkty
 - **[Bog Music](https://b-on-g.github.io/music/)** — hudební přehrávač, který běží jako rozšíření Chrome i jako webová aplikace, s přehráváním na pozadí a offline cachováním. $mol pohání rozhraní a local-first stav.
 - **[Blitz Quiz](https://b-on-g.github.io/blitz/)** — živý kvíz ve stylu Kahoot postavený na $mol a Giper Baza. Místnosti se synchronizují v reálném čase přes vrstvu CRDT, takže není třeba provozovat žádný herní server.
 - **[VDO Rebalance](https://b-on-g.github.io/invest/)** — local-first investiční nástroj: vložte portfolio `.xlsx` a získáte obchody, které ho vyváží. Stav žije v prohlížeči nad Giper Baza.
+- **[RAGU](https://raguteam.github.io/web/#!screen=summary)** — webové rozhraní k open-source GraphRAG enginu: procházejte indexy dokumentů, ptejte se a dostávejte odpovědi se zdroji a zkoumejte znalostní graf z nich vytěžený. Silově řízený graf je vykreslen primitivy `$mol_svg_*`, včetně rozvržení i posouvání a přiblížení, bez jakékoli grafové knihovny.
 - **[$hyoo_budget](https://budget.hyoo.ru)** — kolaborativní, local-first aplikace osobního rozpočtu. Získala první místo na hackathonu Beautiful Code.
 - **[$hyoo_talks](https://talks.hyoo.ru)** — vestavitelný messenger. Prototyp postavený pro Sberbank obsadil druhé místo na Moscow City Hack.
 

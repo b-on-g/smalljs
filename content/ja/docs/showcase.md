@@ -7,6 +7,7 @@ $mol で作られた本物のもの——コミュニティのアプリ、商用
 - **[Bog Music](https://b-on-g.github.io/music/)**——Chrome 拡張としても Web アプリとしても動く音楽プレーヤー。バックグラウンド再生とオフラインキャッシュ付き。$mol が UI とローカルファーストな状態を駆動します。
 - **[Blitz Quiz](https://b-on-g.github.io/blitz/)**——$mol と Giper Baza で作られた Kahoot 風のライブクイズ。ルームは CRDT 層を通じてリアルタイムに同期するので、動かすゲームサーバーはありません。
 - **[VDO Rebalance](https://b-on-g.github.io/invest/)**——ローカルファーストな投資ツール。`.xlsx` のポートフォリオを入れると、それをリバランスする取引が得られます。状態は Giper Baza 上でブラウザ内に存続します。
+- **[RAGU](https://raguteam.github.io/web/#!screen=summary)**——オープンソースの GraphRAG エンジンの Web インターフェイス。ドキュメントの索引を眺め、出典付きの回答を得て、そこから抽出された知識グラフを探索できます。力学的レイアウトのグラフは `$mol_svg_*` プリミティブで描かれ、レイアウトもズームやパンも込みで、グラフライブラリは使っていません。
 - **[$hyoo_budget](https://budget.hyoo.ru)**——協働的でローカルファーストな家計簿アプリ。Beautiful Code ハッカソンで一位を獲得しました。
 - **[$hyoo_talks](https://talks.hyoo.ru)**——埋め込み可能なメッセンジャー。Sberbank 向けに作られた試作品が Moscow City Hack で二位を獲得しました。
 
