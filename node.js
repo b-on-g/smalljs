@@ -9666,576 +9666,6 @@ var $;
 
 
 ;
-"use strict";
-var $;
-(function ($) {
-    class $mol_schema_any extends Object {
-        static [Symbol.toStringTag];
-        static [$mol_key_handle]() {
-            return this.toString();
-        }
-        /** Short user-readable identity. */
-        static toString() {
-            return $$.$mol_func_name(this);
-        }
-        /** Type-predicate that checks value by schema. */
-        static check(value) {
-            try {
-                this.guard(value);
-                return true;
-            }
-            catch (error) {
-                return false;
-            }
-        }
-        /** `instanceof` support */
-        static [Symbol.hasInstance](value) {
-            return this.check(value);
-        }
-        /** Type-parser that fails of wrong values. */
-        static guard(value) {
-            return value;
-        }
-        /** Type-caster that normalizes wrong values. */
-        static cast(value) {
-            try {
-                this.guard(value);
-                return value;
-            }
-            catch (error) {
-                return this.default;
-            }
-        }
-        /** Default value which conforms schema. */
-        static default = null;
-    }
-    $.$mol_schema_any = $mol_schema_any;
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_schema_float extends $mol_schema_any {
-        static guard(value) {
-            if (typeof value === 'number')
-                return value;
-            return $mol_fail(new TypeError('Wrong type', { cause: { value, schema: this } }));
-        }
-        static default = Number.NaN;
-    }
-    $.$mol_schema_float = $mol_schema_float;
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_schema_integer extends $mol_schema_float {
-        $mol_schema_integer = true;
-        static guard(value) {
-            const val = super.guard(value);
-            if (!Number.isFinite(val))
-                return $mol_fail(new TypeError('Non finite', { cause: { value, schema: this } }));
-            if (Math.trunc(val) !== val)
-                return $mol_fail(new TypeError('Non integer', { cause: { value, schema: this } }));
-            return val;
-        }
-        static default = 0;
-    }
-    $.$mol_schema_integer = $mol_schema_integer;
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_schema_bigint extends $mol_schema_any {
-        static guard(value) {
-            if (typeof value === 'bigint')
-                return value;
-            return $mol_fail(new TypeError('Wrong type', { cause: { value, schema: this } }));
-        }
-        static cast(value) {
-            if (typeof value === 'number')
-                return BigInt($mol_schema_integer.cast(value));
-            return super.cast(value);
-        }
-        static default = 0n;
-    }
-    $.$mol_schema_bigint = $mol_schema_bigint;
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_schema_boolean extends $mol_schema_any {
-        static guard(value) {
-            if (typeof value === 'boolean')
-                return value;
-            return $mol_fail(new TypeError('Wrong type', { cause: { value, schema: this } }));
-        }
-        static default = false;
-    }
-    $.$mol_schema_boolean = $mol_schema_boolean;
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_schema_string extends $mol_schema_any {
-        static guard(value) {
-            if (typeof value === 'string')
-                return value;
-            return $mol_fail(new TypeError('Wrong type', { cause: { value, schema: this } }));
-        }
-        static cast(value) {
-            return super.cast(value);
-        }
-        static default = '';
-    }
-    $.$mol_schema_string = $mol_schema_string;
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_memo_key extends $mol_wrapper {
-        static wrap(task) {
-            const store = new WeakMap();
-            const fun = function (key, next) {
-                let store2 = store.get(this ?? fun);
-                if (!store2)
-                    store.set(this ?? fun, store2 = new Map);
-                const key_str = $mol_key(key);
-                if (next === undefined && store2.has(key_str))
-                    return store2.get(key_str);
-                const val = task.call(this, key, next) ?? next;
-                store2.set(key_str, val);
-                return val;
-            };
-            Reflect.defineProperty(fun, 'name', { value: task.name + ' ' });
-            return fun;
-        }
-    }
-    $.$mol_memo_key = $mol_memo_key;
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    $.$mol_schema_pattern = $mol_memo_key.func(function $mol_schema_pattern(Pattern) {
-        return class $mol_schema_pattern_ extends $mol_schema_string {
-            static Pattern = Pattern;
-            static toString() {
-                if (this !== $mol_schema_pattern_)
-                    return super.toString();
-                return '$mol_schema_pattern<' + $mol_key(Pattern) + '>';
-            }
-            static guard(value) {
-                if (Pattern.test(super.guard(value)))
-                    return value;
-                return $mol_fail(new TypeError('Wrong string', { cause: { value, schema: this } }));
-            }
-            static cast(value) {
-                return super.cast(value);
-            }
-            static default = '';
-        };
-    });
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    $.$mol_schema_instance = $mol_memo_key.func(function $mol_schema_instance(Class) {
-        class $mol_schema_instance_ extends $mol_schema_any {
-            static Class = Class;
-            static toString() {
-                if (this !== $mol_schema_instance_)
-                    return super.toString();
-                return '$mol_schema_instance<' + $$.$mol_func_name(Class) + '>';
-            }
-            static guard(value) {
-                if (value != null && Object(value) instanceof Class)
-                    return value;
-                return $mol_fail(new TypeError('Wrong class', { cause: { value, schema: this } }));
-            }
-            static cast(value) {
-                return this.guard(value);
-            }
-            static default;
-        }
-        return ((Class?.[Symbol.hasInstance] === $mol_schema_any[Symbol.hasInstance])
-            ? Class
-            : $mol_schema_instance_);
-    });
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    function $mol_schema_lazy(Schema) {
-        // return $mol_delegate( $mol_schema_any, Schema )
-        return class $mol_schema_lazy_ extends $mol_schema_any {
-            static Schema = $mol_memo.func(Schema);
-            static guard(value) {
-                return this.Schema().guard(value);
-            }
-            static cast(value) {
-                return this.Schema().cast(value);
-            }
-            static get default() {
-                return this.Schema().default;
-            }
-        };
-    }
-    $.$mol_schema_lazy = $mol_schema_lazy;
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    $.$mol_schema_some = $mol_memo_key.func(function $mol_schema_some(Variants) {
-        return class $mol_schema_some_ extends $mol_schema_any {
-            static Variants = Variants;
-            static toString() {
-                if (this !== $mol_schema_some_)
-                    return super.toString();
-                return '$mol_schema_some<' + $mol_key(Variants) + '>';
-            }
-            static guard(value) {
-                const errors = [];
-                for (const Variant of Variants) {
-                    try {
-                        return Variant.guard(value);
-                    }
-                    catch (error) {
-                        errors.push(error);
-                    }
-                }
-                return $mol_fail(new AggregateError(errors, 'Wrong variant', { cause: { value, schema: this } }));
-            }
-            static cast(value) {
-                try {
-                    return this.guard(value);
-                }
-                catch (error) {
-                    return Variants[0].cast(value);
-                }
-            }
-            static default = Variants[0].default;
-        };
-    });
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    $.$mol_schema_dict = $mol_memo_key.func(function $mol_schema_dict(Pair) {
-        return class $mol_schema_dict_ extends $mol_schema_any {
-            static Pair = Pair;
-            static toString() {
-                if (this !== $mol_schema_dict_)
-                    return super.toString();
-                return '$mol_schema_dict<' + $mol_key(Pair) + '>';
-            }
-            static guard(value) {
-                if (Object.getPrototypeOf(Object.getPrototypeOf(value))) {
-                    return $mol_fail(new TypeError('Non dictionary', { cause: { value, schema: this } }));
-                }
-                for (const key in value) {
-                    try {
-                        Pair[0].guard(key);
-                    }
-                    catch (error) {
-                        return $mol_fail(new TypeError('Wrong key', { cause: { key, error, value, schema: this } }));
-                    }
-                    try {
-                        Pair[1].guard(value[key]);
-                    }
-                    catch (error) {
-                        return $mol_fail(new TypeError('Wrong val', { cause: { key, error, value, schema: this } }));
-                    }
-                }
-                return value;
-            }
-            static cast(value) {
-                if (Object.getPrototypeOf(Object.getPrototypeOf(value)))
-                    return this.default;
-                const res = {};
-                for (const key in value) {
-                    if (!Pair[0].check(key))
-                        continue;
-                    res[key] = Pair[1].cast(value[key]);
-                }
-                return res;
-            }
-            static default = {};
-        };
-    });
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    $.$mol_schema_enum = $mol_memo_key.func(function $mol_schema_enum(Options) {
-        return class $mol_schema_enum_ extends $mol_schema_any {
-            static Options = Options;
-            static toString() {
-                if (this !== $mol_schema_enum_)
-                    return super.toString();
-                return '$mol_schema_enum<' + $mol_key(Options) + '>';
-            }
-            static guard(value) {
-                if (Options.some(Option => Object.is(Option, value)))
-                    return value;
-                return $mol_fail(new TypeError('Wrong option', { cause: { value, schema: this } }));
-            }
-            static cast(value) {
-                if (this.check(value))
-                    return value;
-                return Options[0];
-            }
-            static default = Options[0];
-        };
-    });
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    $.$mol_schema_list = $mol_memo_key.func(function $mol_schema_list(Item) {
-        return class $mol_schema_list_ extends $mol_schema_any {
-            static Item = Item;
-            static toString() {
-                if (this !== $mol_schema_list_)
-                    return super.toString();
-                return '$mol_schema_list<' + $mol_key(Item) + '>';
-            }
-            static guard(value) {
-                if (!Array.isArray(value))
-                    return $mol_fail(new TypeError('Non array', { cause: { value, schema: this } }));
-                for (const [index, item] of super.guard(value).entries()) {
-                    try {
-                        Item.guard(item);
-                    }
-                    catch (error) {
-                        return $mol_fail(new TypeError('Wrong item', { cause: { index, error, value, schema: this } }));
-                    }
-                }
-                return value;
-            }
-            static cast(value) {
-                if (!Array.isArray(value))
-                    return this.default;
-                return value.map(item => Item.cast(item));
-            }
-            static default = [];
-        };
-    });
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_schema_json extends $mol_schema_lazy(() => $mol_schema_some([
-        $mol_schema_dict([$mol_schema_string, $mol_schema_json]),
-        $mol_schema_enum([null]),
-        $mol_schema_boolean, $mol_schema_float, $mol_schema_string,
-        $mol_schema_list($mol_schema_json),
-    ])) {
-    }
-    $.$mol_schema_json = $mol_schema_json;
-})($ || ($ = {}));
-
-;
-"use strict";
-
-;
-"use strict";
-var $;
-(function ($) {
-    $.$mol_schema_every = $mol_memo_key.func(function $mol_schema_every(Schemas) {
-        return class $mol_schema_every_ extends $mol_schema_any {
-            static Schemas = Schemas;
-            static toString() {
-                if (this !== $mol_schema_every_)
-                    return super.toString();
-                return '$mol_schema_every<' + $mol_key(Schemas) + '>';
-            }
-            static guard(value) {
-                for (const Schema of Schemas) {
-                    Schema.guard(value);
-                }
-                return value;
-            }
-            static cast(value) {
-                for (const Scheme of Schemas)
-                    value = Scheme.cast(value);
-                return value;
-            }
-            static default = Schemas.find(Scheme => this.check(Scheme.default));
-        };
-    });
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    $.$mol_schema_range = $mol_memo_key.func(function $mol_schema_range(Range) {
-        return class $mol_schema_range_ extends $mol_schema_any {
-            static Range = Range;
-            static toString() {
-                if (this !== $mol_schema_range_)
-                    return super.toString();
-                return '$mol_schema_range<' + $mol_key(Range) + '>';
-            }
-            static guard(value) {
-                if (typeof value !== 'number' && typeof value !== 'bigint')
-                    return $mol_fail(new TypeError('Uncomparable type', { cause: { value, schema: this } }));
-                if (!(value <= Range[1]))
-                    return $mol_fail(new TypeError('Too large', { cause: { value, schema: this } }));
-                if (!(value >= Range[0]))
-                    return $mol_fail(new TypeError('Too small', { cause: { value, schema: this } }));
-                return value;
-            }
-            static cast(value) {
-                if (value > Range[1])
-                    return Range[1];
-                if (value >= Range[0])
-                    return value;
-                return Range[0];
-            }
-            static default = Range[0];
-        };
-    });
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_schema_positive extends $mol_schema_range([0, Number.POSITIVE_INFINITY]) {
-    }
-    $.$mol_schema_positive = $mol_schema_positive;
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_schema_natural extends $mol_schema_every([
-        $mol_schema_integer,
-        $mol_schema_positive,
-    ]) {
-    }
-    $.$mol_schema_natural = $mol_schema_natural;
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_schema_negative extends $mol_schema_range([Number.NEGATIVE_INFINITY, 0]) {
-    }
-    $.$mol_schema_negative = $mol_schema_negative;
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    $.$mol_schema_maybe = $mol_memo_key.func(function $mol_schema_maybe(Some) {
-        return class $mol_schema_maybe_ extends $mol_schema_any {
-            static Some = Some;
-            static toString() {
-                if (this !== $mol_schema_maybe_)
-                    return super.toString();
-                return '$mol_schema_maybe<' + $mol_key(Some) + '>';
-            }
-            static guard(value) {
-                if (value == null)
-                    return value;
-                return Some.guard(value);
-            }
-            static default = null;
-        };
-    });
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    $.$mol_schema_record = $mol_memo_key.func(function $mol_schema_record(Fields) {
-        return class $mol_schema_record_ extends $mol_schema_any {
-            static Fields = Fields;
-            static toString() {
-                if (this !== $mol_schema_record_)
-                    return super.toString();
-                return '$mol_schema_record<' + $mol_key(Fields) + '>';
-            }
-            static guard(value) {
-                if (Object.getPrototypeOf(Object.getPrototypeOf(value))) {
-                    return $mol_fail(new TypeError('Non record', { cause: { value, schema: this } }));
-                }
-                for (const field in Fields) {
-                    try {
-                        Fields[field].guard(value[field]);
-                    }
-                    catch (error) {
-                        return $mol_fail(new TypeError('Wrong field', { cause: { field, error, value, schema: this } }));
-                    }
-                }
-                return value;
-            }
-            static cast(value) {
-                if (Object.getPrototypeOf(Object.getPrototypeOf(value)))
-                    return this.default;
-                const res = {};
-                for (const field in Fields)
-                    res[field] = Fields[field].cast(value[field]);
-                return res;
-            }
-            static default = Object.fromEntries(Object.entries(Fields).map(([field, Field]) => [field, Field.default]));
-        };
-    });
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    function $mol_schema_partial(Fields) {
-        const partial = {};
-        for (const field in Fields)
-            partial[field] = $mol_schema_maybe(Fields[field]);
-        return class $mol_schema_partial_ extends $mol_schema_record(partial) {
-            static Fields = Fields;
-            static toString() {
-                if (this !== $mol_schema_partial_)
-                    return super.toString();
-                return '$mol_schema_partial<' + $mol_key(Fields) + '>';
-            }
-        };
-    }
-    $.$mol_schema_partial = $mol_schema_partial;
-})($ || ($ = {}));
-
-;
 	($.$mol_button_major) = class $mol_button_major extends ($.$mol_button_minor) {
 		theme(){
 			return "$mol_theme_base";
@@ -10666,6 +10096,9 @@ var $;
 	($mol_mem_key(($.$mol_dimmer.prototype), "Low"));
 	($mol_mem_key(($.$mol_dimmer.prototype), "High"));
 
+
+;
+"use strict";
 
 ;
 "use strict";
@@ -14535,7 +13968,8 @@ var $;
                                 "views",
                                 "state",
                                 "routing",
-                                "rendering"
+                                "rendering",
+                                "deployment"
                             ]
                         },
                         {
@@ -15305,6 +14739,85 @@ var $;
                             title: "রাউটিং",
                             summary: "$mol-এ রাউটিং কোনো আলাদা লাইব্রেরি নয়——URL শুধু রিয়্যাক্টিভ স্টেটের আরেকটি অংশ। এটি পড়ুন, লিখুন, আর ভিউ ঠিক সেভাবেই প্রতিক্রিয়া জানায় যেভাবে তারা যেকোনো…",
                             md: "# রাউটিং\n\n\u0024mol-এ রাউটিং কোনো আলাদা লাইব্রেরি নয়——URL শুধু রিয়্যাক্টিভ স্টেটের আরেকটি অংশ। এটি পড়ুন, লিখুন, আর ভিউ ঠিক সেভাবেই প্রতিক্রিয়া জানায় যেভাবে তারা যেকোনো সেলে জানায়। ব্যাক বোতাম, ডিপ লিংক ও শেয়ারযোগ্য URL সবই বিনামূল্যে আসে।\n\n## স্টেট হিসেবে URL\n\n`\u0024mol_state_arg` URL প্যারামিটারগুলোকে রিয়্যাক্টিভ মান হিসেবে উন্মুক্ত করে। এর একটিকে একটি প্রপার্টির সঙ্গে বাঁধুন, আর অ্যাড্রেস বার হয়ে ওঠে আপনার সত্যের উৎস:\n\n```typescript\nnamespace \u0024.\u0024\u0024 {\n\texport class \u0024my_app extends \u0024.\u0024my_app {\n\t\t@ \u0024mol_mem\n\t\tpage( next?: string ) {\n\t\t\treturn \u0024mol_state_arg.value( 'page', next ) ?? 'home'\n\t\t}\n\t}\n}\n```\n\n`page()` পড়লে বর্তমান মান রিটার্ন করে; `page('about')` কল করলে নেভিগেট করে। যা কিছু `page()` পড়ে তা পরিবর্তনে পুনরায় রেন্ডার হয়——ব্রাউজারের ব্যাক বোতামসহ, যা আপনার হয়ে সেলটি আপডেট করে।\n\n## স্ক্রিন পরিবর্তন\n\nএকটি রাউটেড মানকে একটি সাধারণ `switch`-এর সঙ্গে মিলিয়ে বেছে নিন কী রেন্ডার হবে। যেহেতু ভিউ [অলস](#!section=docs/page=rendering), আপনি যেসব স্ক্রিন দেখান না সেগুলো কখনো তৈরি হয় না:\n\n```typescript\n@ \u0024mol_mem\nbody_content() {\n\tswitch ( this.page() ) {\n\t\tcase 'about': return [ this.About() ]\n\t\tcase 'docs': return [ this.Docs() ]\n\t\tdefault: return [ this.Home() ]\n\t}\n}\n```\n\n## আর্গুমেন্ট সেট করা লিংক\n\n`view.tree`-এ একটি লিংক ঘোষণামূলকভাবে URL আর্গুমেন্ট সেট করতে পারে——এতে ক্লিক করলে কোনো হ্যান্ডলার ছাড়াই নেভিগেট হয়:\n\n```tree\n<= About_link \u0024mol_link\n\targ *\n\t\tpage \\about\n\tsub / <= about_label \\About\n```\n\n`\u0024mol_link`-এর আর্গুমেন্ট যখন বর্তমান URL-এর সঙ্গে মেলে তখন এটি নিজেকে সক্রিয় (`mol_link_current`) হিসেবেও চিহ্নিত করে, তাই বর্তমান পৃষ্ঠা হাইলাইট করতে কোনো বাড়তি স্টেট লাগে না।\n\n## একাধিক প্যারামিটার\n\nআর্গুমেন্টগুলো স্বাধীন, তাই একটি স্ক্রিন একসঙ্গে একাধিকের ওপর রাউট করতে পারে। এই ডকুমেন্টেশন সাইটটিই `section` ও `page` দুটোর ওপর রাউট করে:\n\n```tree\n<= Guide_link \u0024mol_link\n\targ *\n\t\tsection \\docs\n\t\tpage \\views\n```\n\nপ্রতিটি কী URL-এর মধ্য দিয়ে রাউন্ড-ট্রিপ করে, তাই যেকোনো ভিউ গঠনগতভাবেই শেয়ারযোগ্য ও বুকমার্কযোগ্য। একটি আর্গুমেন্ট সেট করলে বাকিগুলো অক্ষত থাকে, যা ডিপ লিংককে——একটি নির্দিষ্ট সেকশন *এবং* পৃষ্ঠা *এবং* অ্যাংকর——শুধু আপনার পছন্দের কী-গুলো সেট করার ব্যাপারে পরিণত করে।\n\n## যে স্টেট URL-এ থাকা উচিত নয়\n\nস্টেটের প্রতিটি অংশ অ্যাড্রেস বারে থাকার যোগ্য নয়। যেসব মান স্থানীয়ভাবে টিকে থাকা উচিত কিন্তু লিংক দূষিত করা উচিত নয়——একটি ভাঁজ করা সাইডবার, একটি খসড়া——তাদের জন্য `\u0024mol_state_local` ব্যবহার করুন, যা একই getter/setter আকারে `localStorage`-এ সংরক্ষণ করে:\n\n```typescript\n@ \u0024mol_mem\nsidebar_open( next?: boolean ) {\n\treturn \u0024mol_state_local.value( 'sidebar_open', next ) ?? false\n}\n```\n\nস্টেট শেয়ারযোগ্য হওয়া উচিত হলে `\u0024mol_state_arg` বেছে নিন; শুধু মনে রাখা দরকার হলে `\u0024mol_state_local`।\n\n## পরবর্তী\n\nআপনি দেখলেন \u0024mol কীভাবে স্টেটকে UI ও URL-এ পরিণত করে। এই সবকিছু কীভাবে দক্ষতার সঙ্গে স্ক্রিনে পৌঁছায় তা [রেন্ডারিং](#!section=docs/page=rendering)-এ দেখুন।\n",
+                        },
+                    },
+                },
+                'deployment': {
+                    slug: 'deployment',
+                    title: "Deployment",
+                    summary: "A built app is a folder of static files: the GitHub Pages workflow, branch previews, deep links on a static host, and any other host.",
+                    file: 'content/en/docs/deployment.md',
+                    md: "# Deployment\n\nA built \u0024mol app is a folder of static files. There is no server to run, no Node process to keep alive, and no adapter to pick: whatever hosts a folder can host the app.\n\n## What you deploy\n\nThe build writes everything into the module's `-/` folder:\n\n```\nmy/hello/-/\n├── index.html                 rewritten for the deployed path\n├── web.js                     the whole app, one file\n├── web.css\n├── web.locale=en.json         one per language\n├── manifest.json\n└── …                          anything a `deploy` directive copied in\n```\n\nThat folder is the site. Serve it from any static host and the app runs.\n\nEverything else in `my/hello/` is source, and `-/` is generated: the workspace `.gitignore` ignores `-*`, so the build output never lands in the project's own history. It reaches the web from the deploy branch instead.\n\n## The short version\n\nThe scaffolder writes the workflow, so a new project publishes on push:\n\n```bash\nnpx create-view-tree-lsp my/hello\ngit push\n```\n\n`.github/workflows/deploy.yml` builds the module and pushes `my/hello/-/` to the `gh-pages` branch. GitHub serves that branch once **Settings → Pages → Source** is *Deploy from a branch* with `gh-pages` selected, which is what a repository with a `gh-pages` branch defaults to. If the URL 404s, that setting is the first thing to check.\n\nThe site then lives at `https://<user>.github.io/<repo>/`.\n\n## What the workflow actually does\n\nTwo actions carry it, and both take a couple of inputs:\n\n```yaml\n- uses: hyoo-ru/mam_build@master2\n  with:\n      package: \"my/hello\"     # the folder to build, workspace-relative\n      modules: \"app\"          # which modules inside it to build\n\n- uses: hyoo-ru/gh-deploy@v4.4.1\n  if: github.ref == 'refs/heads/main'\n  with:\n      folder: \"my/hello/app/-\"\n```\n\n`mam_build` clones the MAM workspace around your package, resolves the `\u0024name` tokens in your code into the repositories that hold them, and builds. It needs no lockfile and no `npm install` step: the registry in `.meta.tree` is the dependency list, as [Project structure](#!section=docs/page=structure) describes.\n\n`gh-deploy` commits the built folder to `gh-pages`. `target-folder` puts it in a subfolder instead of the root, which is how a branch preview works:\n\n```yaml\n- name: Deploy feature branch\n  if: startsWith(github.ref, 'refs/heads/feature/')\n  uses: hyoo-ru/gh-deploy@v4.4.1\n  with:\n      folder: \"my/hello/app/-\"\n      target-folder: \u0024{{ github.ref_name }}\n```\n\nEvery `feature/*` branch then has its own URL under the same Pages site, and a `delete` trigger removes the folder when the branch goes.\n\n## One file the deploy needs\n\nA package that gets deployed needs a `.gitattributes` next to it with a single line:\n\n```\n* -text\n```\n\nDeployment means committing the build output to a branch, and that output is not only text. Fonts and images normalised on the way into that commit arrive at the reader broken, while the build itself stays green. The scaffolder writes the file; add it by hand in a repository you started yourself.\n\n## Files that have to sit at the site root\n\n`deploy \\/path` in `meta.tree` copies a file into `-/` **keeping its workspace-relative path**, which is right for assets the code refers to and wrong for files a host looks for at the root. A `CNAME`, a `robots.txt`, a search-console verification page: copy those in a workflow step after the build, before the deploy step.\n\n```yaml\n- name: Copy root-level files\n  run: cp my/hello/public/CNAME my/hello/app/-/CNAME\n```\n\n## Deep links on a static host\n\nAn app with path routing (`/section=docs/page=views` rather than `#!section=docs`) asks one thing of the host: any unknown path under the mount must return the app's `index.html`. Otherwise the first hit on a deep link is a 404, and only navigation from the home page works.\n\nGitHub Pages has no rewrite rules, so the way through is its `404.html`: it is served for every unknown path, and a few lines in it hand the address back to `index.html`, which the router expands into the real route. Copy it next to the build output the same way as the root-level files above.\n\nOther hosts say it in one line — `try_files \u0024uri /index.html` in nginx, `try_files {path} /index.html` in Caddy, a `/* /index.html 200` rule on Netlify.\n\nAn app on the hash router (the default) needs none of this: everything after `#` never reaches the server.\n\n## Check before you push\n\nThe build is the same locally and in CI, so a green audit locally means a green deploy:\n\n```bash\nnpx mam my/hello/app\ncat my/hello/app/-/web.audit.js\n```\n\n`Audit passed` is the whole report. Serve the folder with any static server to see the real thing:\n\n```bash\nnpx serve my/hello/app/-\n```\n\n## Beyond GitHub Pages\n\nNothing above is specific to GitHub. The output is a folder; the deploy is a copy. Netlify, Cloudflare Pages, S3 with a CDN, nginx on a VPS, a Docker image with the folder inside — the build step is the same `npx mam my/hello/app`, and what you upload is `my/hello/app/-`.\n\nFor an offline-capable install, [Offline](#!section=docs/page=offline) adds the service worker that caches the bundle, which turns the same folder into an installable app.\n",
+                    tr: {
+                        zh: {
+                            title: "部署",
+                            summary: "构建好的 $mol 应用就是一个静态文件目录。没有服务要跑，没有 Node 进程要守着，也没有适配器要挑：能托管一个目录的地方，就能托管这个应用。",
+                            md: "# 部署\n\n构建好的 \u0024mol 应用就是一个静态文件目录。没有服务要跑，没有 Node 进程要守着，也没有适配器要挑：能托管一个目录的地方，就能托管这个应用。\n\n## 你部署的到底是什么\n\n构建把所有东西写进模块里的 `-/` 目录：\n\n```\nmy/hello/-/\n├── index.html                 按部署路径重写过\n├── web.js                     整个应用，一个文件\n├── web.css\n├── web.locale=en.json         每种语言一个\n├── manifest.json\n└── …                          `deploy` 指令拷进来的任何东西\n```\n\n这个目录就是网站。用任何静态托管把它发出去，应用就跑起来了。\n\n`my/hello/` 里的其他东西都是源码，而 `-/` 是生成的：工作区的 `.gitignore` 忽略 `-*`，所以构建产物从不进入项目自己的历史。它是从部署分支上网的。\n\n## 最短的版本\n\n脚手架会写好工作流，所以新项目一推送就发布：\n\n```bash\nnpx create-view-tree-lsp my/hello\ngit push\n```\n\n`.github/workflows/deploy.yml` 构建模块，并把 `my/hello/-/` 推到 `gh-pages` 分支。只要 **Settings → Pages → Source** 是 *Deploy from a branch* 并选中 `gh-pages`，GitHub 就会提供这个分支——而对已经有该分支的仓库来说，这正是默认值。如果地址返回 404，先查这一项。\n\n之后网站就住在 `https://<user>.github.io/<repo>/`。\n\n## 工作流到底做了什么\n\n两个 action 撑起全部，各自只要几个输入：\n\n```yaml\n- uses: hyoo-ru/mam_build@master2\n  with:\n      package: \"my/hello\"     # 要构建的目录，相对工作区\n      modules: \"app\"          # 其中的哪些模块\n\n- uses: hyoo-ru/gh-deploy@v4.4.1\n  if: github.ref == 'refs/heads/main'\n  with:\n      folder: \"my/hello/app/-\"\n```\n\n`mam_build` 在你的包周围铺开 MAM 工作区，把代码里的 `\u0024name` 记号解析成存放它们的仓库，然后构建。它不需要 lockfile，也不需要 `npm install` 这一步：依赖清单就是 `.meta.tree` 里的登记表，[项目结构](#!section=docs/page=structure)已经讲过。\n\n`gh-deploy` 把构建好的目录提交到 `gh-pages`。`target-folder` 让它落在子目录而不是根目录——分支预览就是这么来的：\n\n```yaml\n- name: Deploy feature branch\n  if: startsWith(github.ref, 'refs/heads/feature/')\n  uses: hyoo-ru/gh-deploy@v4.4.1\n  with:\n      folder: \"my/hello/app/-\"\n      target-folder: \u0024{{ github.ref_name }}\n```\n\n于是每个 `feature/*` 分支在同一个 Pages 站点上都有自己的地址，而 `delete` 触发器会在分支消失时清掉那个目录。\n\n## 部署离不开的一个文件\n\n要发布的包，旁边需要一个只有一行的 `.gitattributes`：\n\n```\n* -text\n```\n\n部署就是把构建产物提交到一个分支，而产物不只是文本。字体和图片在进入这次提交的路上被规范化，到读者那里就是坏的，而构建本身照样是绿的。脚手架会写好这个文件；自己开的仓库，请手动补上。\n\n## 必须待在站点根目录的文件\n\n`meta.tree` 里的 `deploy \\/path` 把文件拷进 `-/`，并**保留它相对工作区的路径**。对代码引用的资源来说这是对的，对托管方要在根目录找的文件来说就不对了。`CNAME`、`robots.txt`、搜索资源平台的验证页：这些要在构建之后、部署步骤之前，用一个工作流步骤拷过去。\n\n```yaml\n- name: Copy root-level files\n  run: cp my/hello/public/CNAME my/hello/app/-/CNAME\n```\n\n## 静态托管上的深链接\n\n使用路径路由的应用（`/section=docs/page=views` 而不是 `#!section=docs`）只向托管方要一件事：挂载点下任何未知路径都必须返回应用的 `index.html`。否则深链接的第一次访问就是 404，只有从首页点进去才管用。\n\nGitHub Pages 没有重写规则，所以路要绕它的 `404.html`：任何未知路径都会拿到它，而里面几行代码把地址交还给 `index.html`，再由路由器展开成真正的路由。像上面那些文件一样，把它拷到构建产物旁边。\n\n别的托管一行就说清了：nginx 里 `try_files \u0024uri /index.html`，Caddy 里 `try_files {path} /index.html`，Netlify 上一条 `/* /index.html 200`。\n\n用哈希路由（默认那个）的应用完全不需要这些：`#` 之后的一切根本到不了服务器。\n\n## 推送前先看一眼\n\n本地和 CI 的构建是同一套，所以本地审计是绿的，部署就是绿的：\n\n```bash\nnpx mam my/hello/app\ncat my/hello/app/-/web.audit.js\n```\n\n`Audit passed` 就是全部报告。想看真东西，用任意静态服务器把目录发出去：\n\n```bash\nnpx serve my/hello/app/-\n```\n\n## 不止 GitHub Pages\n\n上面这些都不是 GitHub 专属。产出是一个目录，部署就是一次拷贝。Netlify、Cloudflare Pages、CDN 后面的 S3、VPS 上的 nginx、把目录装进去的 Docker 镜像——构建这一步还是 `npx mam my/hello/app`，你上传的还是 `my/hello/app/-`。\n\n想要能离线的安装版，[离线](#!section=docs/page=offline)会加上缓存 bundle 的 service worker，同一个目录就变成可安装的应用。\n",
+                        },
+                        zh_hk: {
+                            title: "部署",
+                            summary: "建置好的 $mol 應用就是一個靜態檔案目錄。沒有服務要跑，沒有 Node 行程要守著，也沒有轉接器要挑：能託管一個目錄的地方，就能託管這個應用。",
+                            md: "# 部署\n\n建置好的 \u0024mol 應用就是一個靜態檔案目錄。沒有服務要跑，沒有 Node 行程要守著，也沒有轉接器要挑：能託管一個目錄的地方，就能託管這個應用。\n\n## 你部署的到底是什麼\n\n建置把所有東西寫進模組裡的 `-/` 目錄：\n\n```\nmy/hello/-/\n├── index.html                 按部署路徑改寫過\n├── web.js                     整個應用，一個檔案\n├── web.css\n├── web.locale=en.json         每種語言一個\n├── manifest.json\n└── …                          `deploy` 指令複製進來的任何東西\n```\n\n這個目錄就是網站。用任何靜態託管把它送出去，應用就跑起來了。\n\n`my/hello/` 裡的其他東西都是原始碼，而 `-/` 是產生的：工作區的 `.gitignore` 忽略 `-*`，所以建置產物從不進入專案自己的歷史。它是從部署分支上網的。\n\n## 最短的版本\n\n鷹架工具會寫好工作流程，所以新專案一推送就發佈：\n\n```bash\nnpx create-view-tree-lsp my/hello\ngit push\n```\n\n`.github/workflows/deploy.yml` 建置模組，並把 `my/hello/-/` 推到 `gh-pages` 分支。只要 **Settings → Pages → Source** 是 *Deploy from a branch* 並選了 `gh-pages`，GitHub 就會提供這個分支——而對已經有該分支的儲存庫來說，這正是預設值。如果網址回 404，先查這一項。\n\n之後網站就住在 `https://<user>.github.io/<repo>/`。\n\n## 工作流程到底做了什麼\n\n兩個 action 撐起全部，各自只要幾個輸入：\n\n```yaml\n- uses: hyoo-ru/mam_build@master2\n  with:\n      package: \"my/hello\"     # 要建置的目錄，相對工作區\n      modules: \"app\"          # 其中的哪些模組\n\n- uses: hyoo-ru/gh-deploy@v4.4.1\n  if: github.ref == 'refs/heads/main'\n  with:\n      folder: \"my/hello/app/-\"\n```\n\n`mam_build` 在你的套件周圍鋪開 MAM 工作區，把程式裡的 `\u0024name` 記號解析成存放它們的儲存庫，然後建置。它不需要 lockfile，也不需要 `npm install` 這一步：相依清單就是 `.meta.tree` 裡的登記表，[專案結構](#!section=docs/page=structure)已經講過。\n\n`gh-deploy` 把建置好的目錄提交到 `gh-pages`。`target-folder` 讓它落在子目錄而不是根目錄——分支預覽就是這麼來的：\n\n```yaml\n- name: Deploy feature branch\n  if: startsWith(github.ref, 'refs/heads/feature/')\n  uses: hyoo-ru/gh-deploy@v4.4.1\n  with:\n      folder: \"my/hello/app/-\"\n      target-folder: \u0024{{ github.ref_name }}\n```\n\n於是每個 `feature/*` 分支在同一個 Pages 站台上都有自己的網址，而 `delete` 觸發器會在分支消失時清掉那個目錄。\n\n## 部署離不開的一個檔案\n\n要發佈的套件，旁邊需要一個只有一行的 `.gitattributes`：\n\n```\n* -text\n```\n\n部署就是把建置產物提交到一個分支，而產物不只是文字。字型和圖片在進入這次提交的路上被正規化，到讀者那裡就是壞的，而建置本身照樣是綠的。鷹架工具會寫好這個檔案；自己開的儲存庫，請手動補上。\n\n## 必須待在站台根目錄的檔案\n\n`meta.tree` 裡的 `deploy \\/path` 把檔案複製進 `-/`，並**保留它相對工作區的路徑**。對程式引用的資源來說這是對的，對託管方要在根目錄找的檔案來說就不對了。`CNAME`、`robots.txt`、搜尋主控台的驗證頁：這些要在建置之後、部署步驟之前，用一個工作流程步驟複製過去。\n\n```yaml\n- name: Copy root-level files\n  run: cp my/hello/public/CNAME my/hello/app/-/CNAME\n```\n\n## 靜態託管上的深連結\n\n使用路徑路由的應用（`/section=docs/page=views` 而不是 `#!section=docs`）只向託管方要一件事：掛載點下任何未知路徑都必須回傳應用的 `index.html`。否則深連結的第一次造訪就是 404，只有從首頁點進去才管用。\n\nGitHub Pages 沒有重寫規則，所以路要繞它的 `404.html`：任何未知路徑都會拿到它，而裡面幾行程式把網址交還給 `index.html`，再由路由器展開成真正的路由。像上面那些檔案一樣，把它複製到建置產物旁邊。\n\n別的託管一行就說清了：nginx 裡 `try_files \u0024uri /index.html`，Caddy 裡 `try_files {path} /index.html`，Netlify 上一條 `/* /index.html 200`。\n\n用雜湊路由（預設那個）的應用完全不需要這些：`#` 之後的一切根本到不了伺服器。\n\n## 推送前先看一眼\n\n本機和 CI 的建置是同一套，所以本機稽核是綠的，部署就是綠的：\n\n```bash\nnpx mam my/hello/app\ncat my/hello/app/-/web.audit.js\n```\n\n`Audit passed` 就是全部報告。想看真東西，用任意靜態伺服器把目錄送出去：\n\n```bash\nnpx serve my/hello/app/-\n```\n\n## 不只 GitHub Pages\n\n上面這些都不是 GitHub 專屬。產出是一個目錄，部署就是一次複製。Netlify、Cloudflare Pages、CDN 後面的 S3、VPS 上的 nginx、把目錄裝進去的 Docker 映像——建置這一步還是 `npx mam my/hello/app`，你上傳的還是 `my/hello/app/-`。\n\n想要能離線的安裝版，[離線](#!section=docs/page=offline)會加上快取 bundle 的 service worker，同一個目錄就變成可安裝的應用。\n",
+                        },
+                        ja: {
+                            title: "デプロイ",
+                            summary: "ビルドした $mol アプリは静的ファイルの入ったフォルダです。動かすサーバーもなく、生かし続ける Node プロセスもなく、選ぶアダプタもありません。フォルダを配れる場所なら、どこでもアプリが動きます。",
+                            md: "# デプロイ\n\nビルドした \u0024mol アプリは静的ファイルの入ったフォルダです。動かすサーバーもなく、生かし続ける Node プロセスもなく、選ぶアダプタもありません。フォルダを配れる場所なら、どこでもアプリが動きます。\n\n## 配るのは何か\n\nビルドはすべてをモジュール内の `-/` フォルダに書き出します。\n\n```\nmy/hello/-/\n├── index.html                 配置先のパスに合わせて書き換え済み\n├── web.js                     アプリ全体、ファイル一つ\n├── web.css\n├── web.locale=en.json         言語ごとに一つ\n├── manifest.json\n└── …                          `deploy` ディレクティブが持ち込んだもの\n```\n\nこのフォルダがサイトそのものです。どんな静的ホスティングから配ってもアプリは動きます。\n\n`my/hello/` の残りはソースで、`-/` は生成物です。ワークスペースの `.gitignore` が `-*` を無視するので、ビルド結果がプロジェクト自身の履歴に入ることはありません。ウェブへはデプロイ用ブランチから出ていきます。\n\n## 短い版\n\nワークフローはスキャフォルダが書くので、新しいプロジェクトは push だけで公開されます。\n\n```bash\nnpx create-view-tree-lsp my/hello\ngit push\n```\n\n`.github/workflows/deploy.yml` がモジュールをビルドし、`my/hello/-/` を `gh-pages` ブランチへ push します。**Settings → Pages → Source** が *Deploy from a branch* で `gh-pages` になっていれば、GitHub がそのブランチを配信します。そのブランチがあるリポジトリの既定値がまさにこれです。URL が 404 を返すなら、まず確認するのはこの設定です。\n\n以後サイトは `https://<user>.github.io/<repo>/` に住みます。\n\n## ワークフローが実際にしていること\n\n支えているのは二つのアクションで、どちらも入力は数個です。\n\n```yaml\n- uses: hyoo-ru/mam_build@master2\n  with:\n      package: \"my/hello\"     # ビルドするフォルダ、ワークスペースからの相対パス\n      modules: \"app\"          # その中のどのモジュールか\n\n- uses: hyoo-ru/gh-deploy@v4.4.1\n  if: github.ref == 'refs/heads/main'\n  with:\n      folder: \"my/hello/app/-\"\n```\n\n`mam_build` はあなたのパッケージの周りに MAM ワークスペースを広げ、コード中の `\u0024name` トークンをそれを収めたリポジトリへ解決し、ビルドします。ロックファイルも `npm install` の手順も要りません。依存関係の一覧は `.meta.tree` のレジストリそのもので、[プロジェクト構成](#!section=docs/page=structure)で説明したとおりです。\n\n`gh-deploy` はビルドしたフォルダを `gh-pages` にコミットします。`target-folder` を渡すとルートではなくサブフォルダに置かれ、これがブランチのプレビューになります。\n\n```yaml\n- name: Deploy feature branch\n  if: startsWith(github.ref, 'refs/heads/feature/')\n  uses: hyoo-ru/gh-deploy@v4.4.1\n  with:\n      folder: \"my/hello/app/-\"\n      target-folder: \u0024{{ github.ref_name }}\n```\n\n`feature/*` の各ブランチが同じ Pages サイト上に自分の URL を持ち、`delete` トリガーがブランチの消滅に合わせてフォルダを片付けます。\n\n## デプロイに要る一つのファイル\n\nデプロイされるパッケージには、隣に一行だけの `.gitattributes` が要ります。\n\n```\n* -text\n```\n\nデプロイとはビルド結果をブランチにコミットすることで、その結果はテキストばかりではありません。そのコミットへ向かう途中で正規化されたフォントや画像は、読者のところへ壊れて届きます。ビルド自体は緑のままです。ファイルはスキャフォルダが書きます。自分で作ったリポジトリでは手で足してください。\n\n## サイトのルートに置くべきファイル\n\n`meta.tree` の `deploy \\/path` はファイルを `-/` へ、**ワークスペースからの相対パスを保ったまま**コピーします。コードが参照するアセットにはそれが正しく、ホスティングがルートで探すファイルには合いません。`CNAME`、`robots.txt`、サーチコンソールの確認ページ。これらはビルドの後、デプロイ手順の前に、ワークフローの一手順でコピーします。\n\n```yaml\n- name: Copy root-level files\n  run: cp my/hello/public/CNAME my/hello/app/-/CNAME\n```\n\n## 静的ホスティングでの深いリンク\n\nパスルーティングのアプリ（`#!section=docs` ではなく `/section=docs/page=views`）がホスティングに求めるのは一つだけです。マウント配下の未知のパスは、すべてアプリの `index.html` を返さなければなりません。さもないと深いリンクへの最初のアクセスは 404 になり、トップページからの遷移しか動きません。\n\nGitHub Pages に書き換えルールはないので、通り道はその `404.html` です。未知のパスにはこれが返り、その中の数行がアドレスを `index.html` に戻し、ルーターが本当のルートへ展開します。上のファイルと同じように、ビルド結果の隣へコピーします。\n\nほかのホスティングは一行で済みます。nginx なら `try_files \u0024uri /index.html`、Caddy なら `try_files {path} /index.html`、Netlify なら `/* /index.html 200` の一行です。\n\nハッシュルーター（既定）のアプリにはどれも要りません。`#` の後ろはサーバーまで届かないからです。\n\n## push の前に確かめる\n\nビルドはローカルでも CI でも同じなので、手元で監査が緑ならデプロイも緑です。\n\n```bash\nnpx mam my/hello/app\ncat my/hello/app/-/web.audit.js\n```\n\n`Audit passed` が報告のすべてです。本物を見るには、任意の静的サーバーでフォルダを配ってください。\n\n```bash\nnpx serve my/hello/app/-\n```\n\n## GitHub Pages の外でも\n\nここまでの話に GitHub 固有のものはありません。出力はフォルダ、デプロイはコピーです。Netlify、Cloudflare Pages、CDN の後ろの S3、VPS 上の nginx、そのフォルダを収めた Docker イメージ。ビルド手順は同じ `npx mam my/hello/app` で、アップロードするのは `my/hello/app/-` です。\n\nオフラインでも使えるインストールにするなら、[オフライン](#!section=docs/page=offline)がバンドルをキャッシュする service worker を足し、同じフォルダがインストール可能なアプリになります。\n",
+                        },
+                        ko: {
+                            title: "배포",
+                            summary: "빌드된 $mol 앱은 정적 파일이 담긴 폴더입니다. 돌릴 서버도, 살려 둘 Node 프로세스도, 고를 어댑터도 없습니다. 폴더를 서빙할 수 있는 곳이라면 어디서든 앱이 돕니다.",
+                            md: "# 배포\n\n빌드된 \u0024mol 앱은 정적 파일이 담긴 폴더입니다. 돌릴 서버도, 살려 둘 Node 프로세스도, 고를 어댑터도 없습니다. 폴더를 서빙할 수 있는 곳이라면 어디서든 앱이 돕니다.\n\n## 배포하는 것의 정체\n\n빌드는 모든 것을 모듈 안의 `-/` 폴더에 씁니다:\n\n```\nmy/hello/-/\n├── index.html                 배포 경로에 맞게 다시 쓰임\n├── web.js                     앱 전체, 파일 하나\n├── web.css\n├── web.locale=en.json         언어마다 하나\n├── manifest.json\n└── …                          `deploy` 지시자가 복사해 넣은 것들\n```\n\n그 폴더가 곧 사이트입니다. 아무 정적 호스트에서 서빙하면 앱이 동작합니다.\n\n`my/hello/`의 나머지는 소스이고 `-/`는 생성물입니다. 작업 공간의 `.gitignore`가 `-*`를 무시하므로 빌드 결과가 프로젝트 자신의 이력에 들어가는 일은 없습니다. 웹에는 배포 브랜치를 통해 나갑니다.\n\n## 짧은 버전\n\n워크플로는 스캐폴더가 써 주므로, 새 프로젝트는 푸시만으로 배포됩니다:\n\n```bash\nnpx create-view-tree-lsp my/hello\ngit push\n```\n\n`.github/workflows/deploy.yml`이 모듈을 빌드해 `my/hello/-/`를 `gh-pages` 브랜치로 푸시합니다. **Settings → Pages → Source**가 *Deploy from a branch*이고 `gh-pages`가 선택돼 있으면 GitHub가 그 브랜치를 서빙합니다. 그런 브랜치가 있는 저장소라면 그것이 바로 기본값입니다. URL이 404를 준다면 가장 먼저 확인할 설정입니다.\n\n이후 사이트는 `https://<user>.github.io/<repo>/`에 삽니다.\n\n## 워크플로가 실제로 하는 일\n\n두 개의 액션이 전부를 떠받치고, 각각 입력은 두어 개입니다:\n\n```yaml\n- uses: hyoo-ru/mam_build@master2\n  with:\n      package: \"my/hello\"     # 빌드할 폴더, 작업 공간 기준 경로\n      modules: \"app\"          # 그 안의 어떤 모듈인지\n\n- uses: hyoo-ru/gh-deploy@v4.4.1\n  if: github.ref == 'refs/heads/main'\n  with:\n      folder: \"my/hello/app/-\"\n```\n\n`mam_build`는 여러분의 패키지 주위에 MAM 작업 공간을 펼치고, 코드 속 `\u0024name` 토큰을 그것들이 사는 저장소로 풀어낸 다음 빌드합니다. 잠금 파일도 `npm install` 단계도 필요 없습니다. 의존성 목록은 `.meta.tree`의 레지스트리 그 자체이며, [프로젝트 구조](#!section=docs/page=structure)에서 설명한 그대로입니다.\n\n`gh-deploy`는 빌드된 폴더를 `gh-pages`에 커밋합니다. `target-folder`를 주면 루트 대신 하위 폴더에 놓이는데, 브랜치 미리보기가 그렇게 만들어집니다:\n\n```yaml\n- name: Deploy feature branch\n  if: startsWith(github.ref, 'refs/heads/feature/')\n  uses: hyoo-ru/gh-deploy@v4.4.1\n  with:\n      folder: \"my/hello/app/-\"\n      target-folder: \u0024{{ github.ref_name }}\n```\n\n그러면 `feature/*` 브랜치마다 같은 Pages 사이트 위에 자기 URL이 생기고, `delete` 트리거가 브랜치가 사라질 때 폴더를 치웁니다.\n\n## 배포에 꼭 필요한 파일 하나\n\n배포되는 패키지에는 옆에 한 줄짜리 `.gitattributes`가 필요합니다:\n\n```\n* -text\n```\n\n배포란 빌드 결과를 브랜치에 커밋하는 일이고, 그 결과는 텍스트만이 아닙니다. 그 커밋으로 가는 길에 정규화된 폰트와 이미지는 독자에게 깨진 채로 도착하지만, 빌드 자체는 초록으로 남습니다. 파일은 스캐폴더가 써 줍니다. 직접 만든 저장소라면 손으로 추가하세요.\n\n## 사이트 루트에 있어야 하는 파일들\n\n`meta.tree`의 `deploy \\/path`는 파일을 `-/`로 복사하되 **작업 공간 기준 경로를 그대로 유지**합니다. 코드가 참조하는 자산에는 맞는 방식이고, 호스트가 루트에서 찾는 파일에는 맞지 않습니다. `CNAME`, `robots.txt`, 서치 콘솔 소유 확인 페이지 같은 것들은 빌드 이후, 배포 단계 이전에 워크플로 한 단계로 복사하세요.\n\n```yaml\n- name: Copy root-level files\n  run: cp my/hello/public/CNAME my/hello/app/-/CNAME\n```\n\n## 정적 호스트에서의 딥링크\n\n경로 라우팅을 쓰는 앱(`#!section=docs`가 아니라 `/section=docs/page=views`)이 호스트에 요구하는 것은 하나입니다. 마운트 아래의 알 수 없는 모든 경로가 앱의 `index.html`을 돌려줘야 합니다. 그러지 않으면 딥링크의 첫 방문은 404가 되고, 홈에서 이동하는 경우만 동작합니다.\n\nGitHub Pages에는 리라이트 규칙이 없으니 길은 그 `404.html`을 지납니다. 알 수 없는 경로마다 이 파일이 나가고, 그 안의 몇 줄이 주소를 `index.html`에 돌려주면 라우터가 진짜 경로로 펼칩니다. 위의 파일들처럼 빌드 결과 옆에 복사하세요.\n\n다른 호스트는 한 줄이면 됩니다. nginx는 `try_files \u0024uri /index.html`, Caddy는 `try_files {path} /index.html`, Netlify는 `/* /index.html 200` 규칙입니다.\n\n해시 라우터(기본값)를 쓰는 앱에는 이 중 아무것도 필요 없습니다. `#` 뒤의 것은 서버까지 가지 않으니까요.\n\n## 푸시 전에 확인하기\n\n빌드는 로컬과 CI가 같으므로, 로컬에서 초록인 감사는 초록인 배포를 뜻합니다:\n\n```bash\nnpx mam my/hello/app\ncat my/hello/app/-/web.audit.js\n```\n\n`Audit passed`가 보고서 전부입니다. 진짜 모습을 보려면 아무 정적 서버로 폴더를 서빙하세요:\n\n```bash\nnpx serve my/hello/app/-\n```\n\n## GitHub Pages 너머\n\n위의 어떤 것도 GitHub 전용이 아닙니다. 산출물은 폴더이고 배포는 복사입니다. Netlify, Cloudflare Pages, CDN 뒤의 S3, VPS의 nginx, 그 폴더를 담은 도커 이미지까지 — 빌드 단계는 똑같이 `npx mam my/hello/app`이고, 올리는 것은 `my/hello/app/-`입니다.\n\n오프라인에서도 쓰이는 설치본이 필요하다면 [오프라인](#!section=docs/page=offline)이 번들을 캐시하는 서비스 워커를 더해 주고, 같은 폴더가 설치 가능한 앱이 됩니다.\n",
+                        },
+                        fr: {
+                            title: "Déploiement",
+                            summary: "Une application $mol compilée est un dossier de fichiers statiques. Aucun serveur à faire tourner, aucun processus Node à maintenir en vie, aucun adaptateur à…",
+                            md: "# Déploiement\n\nUne application \u0024mol compilée est un dossier de fichiers statiques. Aucun serveur à faire tourner, aucun processus Node à maintenir en vie, aucun adaptateur à choisir : ce qui héberge un dossier héberge l'application.\n\n## Ce que vous déployez\n\nLa compilation écrit tout dans le dossier `-/` du module :\n\n```\nmy/hello/-/\n├── index.html                 réécrit pour le chemin de déploiement\n├── web.js                     toute l'application, un seul fichier\n├── web.css\n├── web.locale=en.json         un par langue\n├── manifest.json\n└── …                          tout ce qu'une directive `deploy` a copié\n```\n\nCe dossier est le site. Servez-le depuis n'importe quel hébergement statique et l'application tourne.\n\nTout le reste dans `my/hello/` est du source, et `-/` est généré : le `.gitignore` de l'espace de travail ignore `-*`, donc le résultat de la compilation n'entre jamais dans l'historique du projet. Il arrive sur le web par la branche de déploiement.\n\n## La version courte\n\nLe générateur écrit le workflow, donc un nouveau projet se publie au push :\n\n```bash\nnpx create-view-tree-lsp my/hello\ngit push\n```\n\n`.github/workflows/deploy.yml` compile le module et pousse `my/hello/-/` sur la branche `gh-pages`. GitHub la sert dès que **Settings → Pages → Source** est sur *Deploy from a branch* avec `gh-pages` — ce qui est la valeur par défaut d'un dépôt où cette branche existe. Si l'URL renvoie un 404, c'est le premier réglage à vérifier.\n\nLe site vit alors à l'adresse `https://<user>.github.io/<repo>/`.\n\n## Ce que fait le workflow\n\nDeux actions le portent, et chacune prend deux entrées :\n\n```yaml\n- uses: hyoo-ru/mam_build@master2\n  with:\n      package: \"my/hello\"     # le dossier à compiler, relatif à l'espace de travail\n      modules: \"app\"          # quels modules à l'intérieur\n\n- uses: hyoo-ru/gh-deploy@v4.4.1\n  if: github.ref == 'refs/heads/main'\n  with:\n      folder: \"my/hello/app/-\"\n```\n\n`mam_build` déploie l'espace de travail MAM autour de votre paquet, résout les jetons `\u0024name` de votre code en dépôts qui les contiennent, et compile. Il n'a besoin ni de fichier de verrouillage ni d'étape `npm install` : la liste des dépendances, c'est le registre dans `.meta.tree`, comme le décrit [Structure du projet](#!section=docs/page=structure).\n\n`gh-deploy` commite le dossier compilé sur `gh-pages`. `target-folder` le place dans un sous-dossier plutôt qu'à la racine : c'est ainsi qu'on obtient un aperçu de branche :\n\n```yaml\n- name: Deploy feature branch\n  if: startsWith(github.ref, 'refs/heads/feature/')\n  uses: hyoo-ru/gh-deploy@v4.4.1\n  with:\n      folder: \"my/hello/app/-\"\n      target-folder: \u0024{{ github.ref_name }}\n```\n\nChaque branche `feature/*` a alors sa propre URL sur le même site Pages, et un déclencheur `delete` retire le dossier quand la branche disparaît.\n\n## Un fichier dont le déploiement a besoin\n\nUn paquet qui se déploie a besoin, à côté de lui, d'un `.gitattributes` d'une seule ligne :\n\n```\n* -text\n```\n\nDéployer, c'est commiter le résultat de la compilation sur une branche, et ce résultat n'est pas que du texte. Polices et images normalisées en chemin vers ce commit arrivent cassées chez le lecteur, tandis que la compilation, elle, reste verte. Le générateur écrit ce fichier ; dans un dépôt que vous avez créé vous-même, ajoutez-le à la main.\n\n## Les fichiers qui doivent être à la racine\n\n`deploy \\/path` dans `meta.tree` copie un fichier dans `-/` **en conservant son chemin relatif à l'espace de travail**. C'est ce qu'il faut pour les ressources auxquelles le code fait référence, et pas du tout pour les fichiers qu'un hébergeur cherche à la racine. Un `CNAME`, un `robots.txt`, une page de vérification de propriété : copiez-les dans une étape du workflow après la compilation et avant l'étape de déploiement.\n\n```yaml\n- name: Copy root-level files\n  run: cp my/hello/public/CNAME my/hello/app/-/CNAME\n```\n\n## Liens profonds sur un hébergement statique\n\nUne application avec routage par chemin (`/section=docs/page=views` plutôt que `#!section=docs`) demande une seule chose à l'hébergeur : tout chemin inconnu sous le point de montage doit renvoyer l'`index.html` de l'application. Sinon le premier accès à un lien profond est un 404, et seule la navigation depuis l'accueil fonctionne.\n\nGitHub Pages n'a pas de règles de réécriture ; le passage se fait donc par son `404.html` : il est servi pour tout chemin inconnu, et quelques lignes à l'intérieur rendent l'adresse à `index.html`, que le routeur développe en route réelle. On le copie à côté du résultat de compilation, comme les fichiers ci-dessus.\n\nLes autres hébergeurs le disent en une ligne : `try_files \u0024uri /index.html` dans nginx, `try_files {path} /index.html` dans Caddy, une règle `/* /index.html 200` chez Netlify.\n\nUne application sur le routeur à hash (celui par défaut) n'a besoin de rien de tout cela : ce qui suit `#` n'atteint jamais le serveur.\n\n## Vérifier avant de pousser\n\nLa compilation est la même en local et en CI, donc un audit vert en local veut dire un déploiement vert :\n\n```bash\nnpx mam my/hello/app\ncat my/hello/app/-/web.audit.js\n```\n\n`Audit passed` est tout le rapport. Pour voir le vrai résultat, servez le dossier avec n'importe quel serveur statique :\n\n```bash\nnpx serve my/hello/app/-\n```\n\n## Au-delà de GitHub Pages\n\nRien de ce qui précède n'est propre à GitHub. La sortie est un dossier, le déploiement une copie. Netlify, Cloudflare Pages, S3 derrière un CDN, nginx sur un VPS, une image Docker contenant le dossier — l'étape de compilation reste `npx mam my/hello/app`, et ce que vous envoyez est `my/hello/app/-`.\n\nPour une installation utilisable hors ligne, [Hors ligne](#!section=docs/page=offline) ajoute le service worker qui met le bundle en cache, et le même dossier devient une application installable.\n",
+                        },
+                        de: {
+                            title: "Deployment",
+                            summary: "Eine gebaute $mol-App ist ein Ordner mit statischen Dateien. Kein Server, der laufen muss, kein Node-Prozess, den man am Leben hält, kein Adapter, den man…",
+                            md: "# Deployment\n\nEine gebaute \u0024mol-App ist ein Ordner mit statischen Dateien. Kein Server, der laufen muss, kein Node-Prozess, den man am Leben hält, kein Adapter, den man auswählt: was einen Ordner hostet, hostet die App.\n\n## Was Sie ausliefern\n\nDer Build schreibt alles in den Ordner `-/` des Moduls:\n\n```\nmy/hello/-/\n├── index.html                 auf den Auslieferungspfad umgeschrieben\n├── web.js                     die ganze App, eine Datei\n├── web.css\n├── web.locale=en.json         eine pro Sprache\n├── manifest.json\n└── …                          alles, was eine `deploy`-Direktive hineinkopiert hat\n```\n\nDieser Ordner ist die Website. Von jedem statischen Host ausgeliefert, läuft die App.\n\nAlles andere in `my/hello/` ist Quellcode, und `-/` ist generiert: die `.gitignore` des Workspace ignoriert `-*`, also landet das Build-Ergebnis nie in der Historie des Projekts selbst. Ins Netz kommt es über den Deploy-Branch.\n\n## Die kurze Fassung\n\nDen Workflow schreibt der Scaffolder, also veröffentlicht ein neues Projekt beim Push:\n\n```bash\nnpx create-view-tree-lsp my/hello\ngit push\n```\n\n`.github/workflows/deploy.yml` baut das Modul und pusht `my/hello/-/` in den Branch `gh-pages`. GitHub liefert diesen Branch aus, sobald unter **Settings → Pages → Source** *Deploy from a branch* mit `gh-pages` steht — und genau das ist die Voreinstellung eines Repositorys, in dem ein solcher Branch existiert. Antwortet die URL mit 404, ist das die erste Einstellung, die man prüft.\n\nDie Website liegt dann unter `https://<user>.github.io/<repo>/`.\n\n## Was der Workflow tatsächlich tut\n\nZwei Actions tragen ihn, und beide nehmen ein paar Eingaben:\n\n```yaml\n- uses: hyoo-ru/mam_build@master2\n  with:\n      package: \"my/hello\"     # der zu bauende Ordner, relativ zum Workspace\n      modules: \"app\"          # welche Module darin\n\n- uses: hyoo-ru/gh-deploy@v4.4.1\n  if: github.ref == 'refs/heads/main'\n  with:\n      folder: \"my/hello/app/-\"\n```\n\n`mam_build` baut den MAM-Workspace um Ihr Paket herum auf, löst die `\u0024name`-Tokens aus Ihrem Code in die Repositorys auf, die sie enthalten, und baut. Es braucht keine Lockfile und keinen `npm install`-Schritt: die Abhängigkeitsliste ist die Registry in `.meta.tree`, wie [Projektstruktur](#!section=docs/page=structure) beschreibt.\n\n`gh-deploy` committet den gebauten Ordner nach `gh-pages`. `target-folder` legt ihn statt ins Wurzelverzeichnis in einen Unterordner — so entsteht eine Branch-Vorschau:\n\n```yaml\n- name: Deploy feature branch\n  if: startsWith(github.ref, 'refs/heads/feature/')\n  uses: hyoo-ru/gh-deploy@v4.4.1\n  with:\n      folder: \"my/hello/app/-\"\n      target-folder: \u0024{{ github.ref_name }}\n```\n\nJeder `feature/*`-Branch hat dann seine eigene URL auf derselben Pages-Site, und ein `delete`-Trigger entfernt den Ordner, wenn der Branch verschwindet.\n\n## Eine Datei, die der Deploy braucht\n\nEin Paket, das ausgeliefert wird, braucht daneben eine `.gitattributes` mit einer einzigen Zeile:\n\n```\n* -text\n```\n\nDeployment heißt, das Build-Ergebnis in einen Branch zu committen, und dieses Ergebnis ist nicht nur Text. Schriften und Bilder, die auf dem Weg in diesen Commit normalisiert werden, kommen beim Leser kaputt an, während der Build selbst grün bleibt. Der Scaffolder schreibt die Datei; in einem selbst angelegten Repository fügen Sie sie von Hand hinzu.\n\n## Dateien, die im Wurzelverzeichnis liegen müssen\n\n`deploy \\/path` in `meta.tree` kopiert eine Datei nach `-/` und **behält dabei ihren Workspace-Pfad**. Für Assets, auf die der Code verweist, ist das richtig, für Dateien, die ein Host im Wurzelverzeichnis sucht, falsch. Eine `CNAME`, eine `robots.txt`, eine Bestätigungsseite der Search Console: die kopiert man in einem Workflow-Schritt nach dem Build und vor dem Deploy-Schritt.\n\n```yaml\n- name: Copy root-level files\n  run: cp my/hello/public/CNAME my/hello/app/-/CNAME\n```\n\n## Deep Links auf einem statischen Host\n\nEine App mit Pfad-Routing (`/section=docs/page=views` statt `#!section=docs`) verlangt vom Host eines: jeder unbekannte Pfad unterhalb des Mounts muss die `index.html` der App zurückgeben. Sonst ist der erste Aufruf eines Deep Links ein 404, und nur die Navigation von der Startseite funktioniert.\n\nGitHub Pages hat keine Rewrite-Regeln, der Weg führt also über seine `404.html`: sie wird für jeden unbekannten Pfad ausgeliefert, und ein paar Zeilen darin geben die Adresse an `index.html` zurück, die der Router in die echte Route auflöst. Kopiert wird sie neben das Build-Ergebnis, genauso wie die Dateien oben.\n\nAndere Hosts sagen es in einer Zeile — `try_files \u0024uri /index.html` in nginx, `try_files {path} /index.html` in Caddy, eine Regel `/* /index.html 200` bei Netlify.\n\nEine App auf dem Hash-Router (die Voreinstellung) braucht nichts davon: alles nach `#` erreicht den Server nie.\n\n## Vor dem Push prüfen\n\nDer Build ist lokal derselbe wie in der CI, ein grünes Audit lokal heißt also ein grüner Deploy:\n\n```bash\nnpx mam my/hello/app\ncat my/hello/app/-/web.audit.js\n```\n\n`Audit passed` ist der ganze Bericht. Um das echte Ergebnis zu sehen, liefern Sie den Ordner mit einem beliebigen statischen Server aus:\n\n```bash\nnpx serve my/hello/app/-\n```\n\n## Jenseits von GitHub Pages\n\nNichts davon ist GitHub-spezifisch. Das Ergebnis ist ein Ordner, das Deployment ein Kopiervorgang. Netlify, Cloudflare Pages, S3 hinter einem CDN, nginx auf einem VPS, ein Docker-Image mit dem Ordner darin — der Build-Schritt ist dasselbe `npx mam my/hello/app`, und hochgeladen wird `my/hello/app/-`.\n\nFür eine offlinefähige Installation ergänzt [Offline](#!section=docs/page=offline) den Service Worker, der das Bundle cacht — und derselbe Ordner wird zur installierbaren App.\n",
+                        },
+                        pt: {
+                            title: "Deploy",
+                            summary: "Um app $mol compilado é uma pasta de arquivos estáticos. Nenhum servidor para rodar, nenhum processo Node para manter vivo, nenhum adaptador para escolher: o…",
+                            md: "# Deploy\n\nUm app \u0024mol compilado é uma pasta de arquivos estáticos. Nenhum servidor para rodar, nenhum processo Node para manter vivo, nenhum adaptador para escolher: o que hospeda uma pasta hospeda o app.\n\n## O que você publica\n\nO build escreve tudo na pasta `-/` do módulo:\n\n```\nmy/hello/-/\n├── index.html                 reescrito para o caminho de publicação\n├── web.js                     o app inteiro, um arquivo\n├── web.css\n├── web.locale=en.json         um por idioma\n├── manifest.json\n└── …                          tudo o que uma diretiva `deploy` copiou para dentro\n```\n\nEssa pasta é o site. Sirva-a de qualquer host estático e o app roda.\n\nTodo o resto em `my/hello/` é fonte, e `-/` é gerada: o `.gitignore` do workspace ignora `-*`, então o resultado do build nunca entra no histórico do próprio projeto. Ele chega à web pelo branch de deploy.\n\n## A versão curta\n\nO scaffolder escreve o workflow, então um projeto novo publica no push:\n\n```bash\nnpx create-view-tree-lsp my/hello\ngit push\n```\n\n`.github/workflows/deploy.yml` compila o módulo e empurra `my/hello/-/` para o branch `gh-pages`. O GitHub serve esse branch assim que **Settings → Pages → Source** estiver em *Deploy from a branch* com `gh-pages` — que é justamente o padrão de um repositório onde esse branch existe. Se a URL devolver 404, é essa a primeira configuração a conferir.\n\nO site passa a viver em `https://<user>.github.io/<repo>/`.\n\n## O que o workflow faz de fato\n\nDuas actions sustentam tudo, e cada uma recebe um par de entradas:\n\n```yaml\n- uses: hyoo-ru/mam_build@master2\n  with:\n      package: \"my/hello\"     # a pasta a compilar, relativa ao workspace\n      modules: \"app\"          # quais módulos dentro dela\n\n- uses: hyoo-ru/gh-deploy@v4.4.1\n  if: github.ref == 'refs/heads/main'\n  with:\n      folder: \"my/hello/app/-\"\n```\n\n`mam_build` monta o workspace MAM em volta do seu pacote, resolve os tokens `\u0024name` do seu código nos repositórios que os contêm, e compila. Não precisa de lockfile nem de passo `npm install`: a lista de dependências é o registro no `.meta.tree`, como conta [Estrutura do projeto](#!section=docs/page=structure).\n\n`gh-deploy` commita a pasta compilada em `gh-pages`. `target-folder` a coloca em uma subpasta em vez da raiz — é assim que nasce a prévia de um branch:\n\n```yaml\n- name: Deploy feature branch\n  if: startsWith(github.ref, 'refs/heads/feature/')\n  uses: hyoo-ru/gh-deploy@v4.4.1\n  with:\n      folder: \"my/hello/app/-\"\n      target-folder: \u0024{{ github.ref_name }}\n```\n\nCada branch `feature/*` ganha então uma URL própria no mesmo site do Pages, e um gatilho `delete` remove a pasta quando o branch some.\n\n## Um arquivo de que o deploy precisa\n\nUm pacote que é publicado precisa, ao lado, de um `.gitattributes` com uma única linha:\n\n```\n* -text\n```\n\nPublicar significa commitar o resultado do build em um branch, e esse resultado não é só texto. Fontes e imagens normalizadas no caminho para esse commit chegam quebradas ao leitor, enquanto o build continua verde. O scaffolder escreve o arquivo; num repositório que você mesmo criou, acrescente-o à mão.\n\n## Arquivos que precisam ficar na raiz do site\n\n`deploy \\/path` no `meta.tree` copia um arquivo para `-/` **mantendo o caminho relativo ao workspace**. Isso é certo para assets a que o código se refere, e errado para arquivos que um host procura na raiz. Um `CNAME`, um `robots.txt`, uma página de verificação do search console: esses se copiam num passo do workflow depois do build e antes do passo de deploy.\n\n```yaml\n- name: Copy root-level files\n  run: cp my/hello/public/CNAME my/hello/app/-/CNAME\n```\n\n## Links diretos num host estático\n\nUm app com roteamento por caminho (`/section=docs/page=views` em vez de `#!section=docs`) pede uma coisa ao host: qualquer caminho desconhecido sob o mount precisa devolver o `index.html` do app. Sem isso, o primeiro acesso a um link direto é 404, e só a navegação a partir da home funciona.\n\nO GitHub Pages não tem regras de rewrite, então o caminho passa pelo seu `404.html`: ele é servido para qualquer rota desconhecida, e algumas linhas dentro dele devolvem o endereço ao `index.html`, que o roteador expande na rota real. Copie-o junto ao resultado do build, do mesmo jeito que os arquivos acima.\n\nOs outros hosts dizem isso em uma linha: `try_files \u0024uri /index.html` no nginx, `try_files {path} /index.html` no Caddy, uma regra `/* /index.html 200` na Netlify.\n\nUm app no roteador de hash (o padrão) não precisa de nada disso: o que vem depois do `#` nunca chega ao servidor.\n\n## Conferir antes de dar push\n\nO build é o mesmo localmente e no CI, então um audit verde na sua máquina significa um deploy verde:\n\n```bash\nnpx mam my/hello/app\ncat my/hello/app/-/web.audit.js\n```\n\n`Audit passed` é o relatório inteiro. Para ver a coisa de verdade, sirva a pasta com qualquer servidor estático:\n\n```bash\nnpx serve my/hello/app/-\n```\n\n## Além do GitHub Pages\n\nNada acima é específico do GitHub. A saída é uma pasta, o deploy é uma cópia. Netlify, Cloudflare Pages, S3 atrás de uma CDN, nginx num VPS, uma imagem Docker com a pasta dentro — o passo de build é o mesmo `npx mam my/hello/app`, e o que você envia é `my/hello/app/-`.\n\nPara uma instalação que funcione offline, [Offline](#!section=docs/page=offline) acrescenta o service worker que faz cache do bundle, e a mesma pasta vira um app instalável.\n",
+                        },
+                        it: {
+                            title: "Deployment",
+                            summary: "Un'app $mol compilata è una cartella di file statici. Nessun server da tenere acceso, nessun processo Node da mantenere vivo, nessun adattatore da scegliere:…",
+                            md: "# Deployment\n\nUn'app \u0024mol compilata è una cartella di file statici. Nessun server da tenere acceso, nessun processo Node da mantenere vivo, nessun adattatore da scegliere: ciò che ospita una cartella ospita l'app.\n\n## Cosa metti in produzione\n\nLa build scrive tutto nella cartella `-/` del modulo:\n\n```\nmy/hello/-/\n├── index.html                 riscritto per il percorso di pubblicazione\n├── web.js                     tutta l'app, un file solo\n├── web.css\n├── web.locale=en.json         uno per lingua\n├── manifest.json\n└── …                          tutto ciò che una direttiva `deploy` ha copiato dentro\n```\n\nQuella cartella è il sito. Servila da un qualsiasi host statico e l'app funziona.\n\nTutto il resto in `my/hello/` è sorgente, e `-/` è generata: il `.gitignore` del workspace ignora `-*`, così il risultato della build non finisce mai nella storia del progetto. Sul web ci arriva dal ramo di deploy.\n\n## In breve\n\nIl workflow lo scrive lo scaffolder, quindi un progetto nuovo si pubblica al push:\n\n```bash\nnpx create-view-tree-lsp my/hello\ngit push\n```\n\n`.github/workflows/deploy.yml` compila il modulo e spinge `my/hello/-/` sul ramo `gh-pages`. GitHub lo serve appena **Settings → Pages → Source** è su *Deploy from a branch* con `gh-pages` — che è poi il valore predefinito di un repository in cui quel ramo esiste. Se l'URL risponde 404, è la prima impostazione da controllare.\n\nIl sito vive poi su `https://<user>.github.io/<repo>/`.\n\n## Cosa fa davvero il workflow\n\nLo reggono due action, e ognuna prende un paio di input:\n\n```yaml\n- uses: hyoo-ru/mam_build@master2\n  with:\n      package: \"my/hello\"     # la cartella da compilare, relativa al workspace\n      modules: \"app\"          # quali moduli al suo interno\n\n- uses: hyoo-ru/gh-deploy@v4.4.1\n  if: github.ref == 'refs/heads/main'\n  with:\n      folder: \"my/hello/app/-\"\n```\n\n`mam_build` monta il workspace MAM attorno al tuo pacchetto, risolve i token `\u0024name` del codice nei repository che li contengono, e compila. Non gli serve né un lockfile né un passo `npm install`: l'elenco delle dipendenze è il registro in `.meta.tree`, come racconta [Struttura del progetto](#!section=docs/page=structure).\n\n`gh-deploy` committa la cartella compilata su `gh-pages`. `target-folder` la mette in una sottocartella invece che nella radice: è così che nasce l'anteprima di un ramo:\n\n```yaml\n- name: Deploy feature branch\n  if: startsWith(github.ref, 'refs/heads/feature/')\n  uses: hyoo-ru/gh-deploy@v4.4.1\n  with:\n      folder: \"my/hello/app/-\"\n      target-folder: \u0024{{ github.ref_name }}\n```\n\nOgni ramo `feature/*` ha allora un proprio URL sullo stesso sito Pages, e un trigger `delete` rimuove la cartella quando il ramo sparisce.\n\n## Un file di cui il deploy ha bisogno\n\nUn pacchetto che viene pubblicato ha bisogno accanto di un `.gitattributes` con una sola riga:\n\n```\n* -text\n```\n\nPubblicare significa committare il risultato della build su un ramo, e quel risultato non è solo testo. Font e immagini normalizzati lungo la strada verso quel commit arrivano rotti al lettore, mentre la build resta verde. Lo scaffolder scrive il file; in un repository che hai creato tu, aggiungilo a mano.\n\n## File che devono stare nella radice del sito\n\n`deploy \\/path` in `meta.tree` copia un file dentro `-/` **mantenendo il suo percorso relativo al workspace**. Giusto per gli asset a cui il codice si riferisce, sbagliato per i file che un host cerca nella radice. Un `CNAME`, un `robots.txt`, una pagina di verifica per la search console: quelli si copiano in un passo del workflow dopo la build e prima del passo di deploy.\n\n```yaml\n- name: Copy root-level files\n  run: cp my/hello/public/CNAME my/hello/app/-/CNAME\n```\n\n## Link diretti su un host statico\n\nUn'app con routing a percorso (`/section=docs/page=views` invece di `#!section=docs`) chiede all'host una cosa sola: qualunque percorso sconosciuto sotto il mount deve restituire l'`index.html` dell'app. Altrimenti il primo colpo su un link diretto è un 404, e funziona solo la navigazione dalla home.\n\nGitHub Pages non ha regole di rewrite, quindi la strada passa dal suo `404.html`: viene servito per ogni percorso sconosciuto, e poche righe al suo interno restituiscono l'indirizzo a `index.html`, che il router espande nella rotta vera. Si copia accanto al risultato della build, come i file qui sopra.\n\nGli altri host lo dicono in una riga: `try_files \u0024uri /index.html` in nginx, `try_files {path} /index.html` in Caddy, una regola `/* /index.html 200` su Netlify.\n\nA un'app sul router a hash (quello predefinito) non serve niente di tutto questo: quel che sta dopo `#` al server non arriva mai.\n\n## Controllare prima di pushare\n\nLa build è la stessa in locale e in CI, quindi un audit verde in locale significa un deploy verde:\n\n```bash\nnpx mam my/hello/app\ncat my/hello/app/-/web.audit.js\n```\n\n`Audit passed` è tutto il rapporto. Per vedere la cosa vera, servi la cartella con un qualsiasi server statico:\n\n```bash\nnpx serve my/hello/app/-\n```\n\n## Oltre GitHub Pages\n\nNiente di quanto sopra è specifico di GitHub. L'output è una cartella, il deploy è una copia. Netlify, Cloudflare Pages, S3 dietro una CDN, nginx su un VPS, un'immagine Docker con dentro la cartella: il passo di build è sempre `npx mam my/hello/app`, e quello che carichi è `my/hello/app/-`.\n\nPer un'installazione che funzioni offline, [Offline](#!section=docs/page=offline) aggiunge il service worker che mette in cache il bundle, e la stessa cartella diventa un'app installabile.\n",
+                        },
+                        ru: {
+                            title: "Деплой",
+                            summary: "Собранное $mol-приложение — это папка со статикой. Нечего запускать на сервере, нечего держать живым в Node, не из чего выбирать адаптер: где хостится папка,…",
+                            md: "# Деплой\n\nСобранное \u0024mol-приложение — это папка со статикой. Нечего запускать на сервере, нечего держать живым в Node, не из чего выбирать адаптер: где хостится папка, там работает и приложение.\n\n## Что именно вы выкладываете\n\nСборка складывает всё в папку `-/` внутри модуля:\n\n```\nmy/hello/-/\n├── index.html                 переписан под адрес, по которому лежит сайт\n├── web.js                     всё приложение, один файл\n├── web.css\n├── web.locale=en.json         по одному на язык\n├── manifest.json\n└── …                          всё, что притащила директива `deploy`\n```\n\nЭта папка и есть сайт. Отдайте её любым статическим хостингом — приложение заработает.\n\nВсё остальное в `my/hello/` — исходники, а `-/` сгенерирована: корневой `.gitignore` игнорирует `-*`, так что результат сборки не попадает в историю самого проекта. В сеть он уезжает из ветки деплоя.\n\n## Коротко\n\nВоркфлоу пишет скаффолдер, поэтому новый проект публикуется по пушу:\n\n```bash\nnpx create-view-tree-lsp my/hello\ngit push\n```\n\n`.github/workflows/deploy.yml` собирает модуль и пушит `my/hello/-/` в ветку `gh-pages`. GitHub отдаёт её, как только в **Settings → Pages → Source** выбрано *Deploy from a branch* и ветка `gh-pages` — а это и есть значение по умолчанию для репозитория, в котором такая ветка появилась. Если адрес отдаёт 404, проверять надо в первую очередь эту настройку.\n\nДальше сайт живёт по адресу `https://<user>.github.io/<repo>/`.\n\n## Что делает воркфлоу\n\nВсю работу тянут два экшена, и у каждого пара параметров:\n\n```yaml\n- uses: hyoo-ru/mam_build@master2\n  with:\n      package: \"my/hello\"     # какую папку собирать, путь от корня воркспейса\n      modules: \"app\"          # какие модули внутри неё\n\n- uses: hyoo-ru/gh-deploy@v4.4.1\n  if: github.ref == 'refs/heads/main'\n  with:\n      folder: \"my/hello/app/-\"\n```\n\n`mam_build` разворачивает вокруг вашего пакета воркспейс MAM, превращает токены `\u0024name` из кода в репозитории, где эти имена живут, и собирает. Ему не нужен ни лок-файл, ни шаг `npm install`: список зависимостей — это реестр в `.meta.tree`, как описано в [Структуре проекта](#!section=docs/page=structure).\n\n`gh-deploy` коммитит собранную папку в `gh-pages`. Параметр `target-folder` кладёт её не в корень, а во вложенную папку — так и делается превью ветки:\n\n```yaml\n- name: Deploy feature branch\n  if: startsWith(github.ref, 'refs/heads/feature/')\n  uses: hyoo-ru/gh-deploy@v4.4.1\n  with:\n      folder: \"my/hello/app/-\"\n      target-folder: \u0024{{ github.ref_name }}\n```\n\nУ каждой ветки `feature/*` появляется свой адрес на том же сайте, а триггер `delete` убирает папку, когда ветка удалена.\n\n## Один файл, без которого деплой ломается\n\nПакету, который выкладывается, нужен рядом `.gitattributes` с единственной строкой:\n\n```\n* -text\n```\n\nДеплой — это коммит результата сборки в ветку, а в результате не только текст. Шрифты и картинки, нормализованные по дороге в этот коммит, приезжают к читателю битыми, при этом сама сборка остаётся зелёной. Скаффолдер этот файл пишет сам; в репозитории, заведённом руками, добавьте его руками.\n\n## Файлы, которым место в корне сайта\n\n`deploy \\/path` в `meta.tree` копирует файл в `-/`, **сохраняя путь относительно воркспейса**. Для ассетов, на которые ссылается код, это правильно, а для файлов, которые хостинг ищет в корне, — нет. `CNAME`, `robots.txt`, страница подтверждения прав в поисковике: их копируют шагом воркфлоу после сборки и до шага деплоя.\n\n```yaml\n- name: Copy root-level files\n  run: cp my/hello/public/CNAME my/hello/app/-/CNAME\n```\n\n## Глубокие ссылки на статике\n\nПриложению с путевым роутингом (`/section=docs/page=views`, а не `#!section=docs`) от хостинга нужно одно: любой неизвестный путь внутри монтирования должен отдавать `index.html` приложения. Иначе первый заход по глубокой ссылке — это 404, и работают только переходы с главной.\n\nУ GitHub Pages нет правил переписывания, поэтому дорога лежит через его `404.html`: он отдаётся на любой неизвестный путь, и несколько строк внутри возвращают адрес в `index.html`, а роутер разворачивает его в настоящий маршрут. Копируется рядом с результатом сборки — тем же шагом, что и файлы выше.\n\nОстальные хостинги говорят это одной строкой: `try_files \u0024uri /index.html` в nginx, `try_files {path} /index.html` в Caddy, правило `/* /index.html 200` в Netlify.\n\nПриложению на хеш-роутере (он по умолчанию) ничего из этого не нужно: всё, что после `#`, до сервера не доезжает.\n\n## Проверить до пуша\n\nСборка одна и та же локально и в CI, поэтому зелёный аудит на машине означает зелёный деплой:\n\n```bash\nnpx mam my/hello/app\ncat my/hello/app/-/web.audit.js\n```\n\n`Audit passed` — это весь отчёт. Чтобы посмотреть на настоящий результат, отдайте папку любым статическим сервером:\n\n```bash\nnpx serve my/hello/app/-\n```\n\n## Не только GitHub Pages\n\nНичего из написанного выше не привязано к GitHub. На выходе папка, деплой — это копирование. Netlify, Cloudflare Pages, S3 за CDN, nginx на VPS, docker-образ с этой папкой внутри: шаг сборки тот же `npx mam my/hello/app`, а заливаете вы `my/hello/app/-`.\n\nЕсли нужна работа без сети, [Офлайн](#!section=docs/page=offline) добавляет service worker, кеширующий бандл, — и та же папка превращается в устанавливаемое приложение.\n",
+                        },
+                        uk: {
+                            title: "Деплой",
+                            summary: "Зібраний $mol-застосунок — це тека зі статикою. Нічого запускати на сервері, нічого тримати живим у Node, немає з чого вибирати адаптер: де хоститься тека, там…",
+                            md: "# Деплой\n\nЗібраний \u0024mol-застосунок — це тека зі статикою. Нічого запускати на сервері, нічого тримати живим у Node, немає з чого вибирати адаптер: де хоститься тека, там працює і застосунок.\n\n## Що саме ви викладаєте\n\nЗбірка складає все в теку `-/` всередині модуля:\n\n```\nmy/hello/-/\n├── index.html                 переписаний під адресу, за якою лежить сайт\n├── web.js                     весь застосунок, один файл\n├── web.css\n├── web.locale=en.json         по одному на мову\n├── manifest.json\n└── …                          усе, що притягнула директива `deploy`\n```\n\nЦя тека і є сайт. Віддайте її будь-яким статичним хостингом — застосунок запрацює.\n\nУсе інше в `my/hello/` — вихідники, а `-/` згенерована: кореневий `.gitignore` ігнорує `-*`, тож результат збірки не потрапляє в історію самого проєкту. У мережу він їде з гілки деплою.\n\n## Коротко\n\nВоркфлоу пише скафолдер, тому новий проєкт публікується по пушу:\n\n```bash\nnpx create-view-tree-lsp my/hello\ngit push\n```\n\n`.github/workflows/deploy.yml` збирає модуль і пушить `my/hello/-/` у гілку `gh-pages`. GitHub віддає її, щойно в **Settings → Pages → Source** обрано *Deploy from a branch* і гілку `gh-pages` — і це значення за замовчуванням для репозиторію, у якому така гілка з'явилася. Якщо адреса віддає 404, перевіряти треба насамперед це налаштування.\n\nДалі сайт живе за адресою `https://<user>.github.io/<repo>/`.\n\n## Що робить воркфлоу\n\nУсю роботу тягнуть два екшени, і в кожного пара параметрів:\n\n```yaml\n- uses: hyoo-ru/mam_build@master2\n  with:\n      package: \"my/hello\"     # яку теку збирати, шлях від кореня воркспейса\n      modules: \"app\"          # які модулі всередині неї\n\n- uses: hyoo-ru/gh-deploy@v4.4.1\n  if: github.ref == 'refs/heads/main'\n  with:\n      folder: \"my/hello/app/-\"\n```\n\n`mam_build` розгортає навколо вашого пакета воркспейс MAM, перетворює токени `\u0024name` з коду на репозиторії, де ці імена живуть, і збирає. Йому не потрібен ані лок-файл, ані крок `npm install`: список залежностей — це реєстр у `.meta.tree`, як описано в [Структурі проєкту](#!section=docs/page=structure).\n\n`gh-deploy` комітить зібрану теку в `gh-pages`. Параметр `target-folder` кладе її не в корінь, а у вкладену теку — так і робиться превʼю гілки:\n\n```yaml\n- name: Deploy feature branch\n  if: startsWith(github.ref, 'refs/heads/feature/')\n  uses: hyoo-ru/gh-deploy@v4.4.1\n  with:\n      folder: \"my/hello/app/-\"\n      target-folder: \u0024{{ github.ref_name }}\n```\n\nУ кожної гілки `feature/*` зʼявляється своя адреса на тому ж сайті, а тригер `delete` прибирає теку, коли гілку видалено.\n\n## Один файл, без якого деплой ламається\n\nПакету, який викладається, потрібен поруч `.gitattributes` з єдиним рядком:\n\n```\n* -text\n```\n\nДеплой — це коміт результату збірки в гілку, а в результаті не лише текст. Шрифти й картинки, нормалізовані дорогою в цей коміт, приїжджають до читача побитими, а сама збірка при цьому лишається зеленою. Скафолдер цей файл пише сам; у репозиторії, заведеному руками, додайте його руками.\n\n## Файли, яким місце в корені сайту\n\n`deploy \\/path` у `meta.tree` копіює файл у `-/`, **зберігаючи шлях відносно воркспейса**. Для ассетів, на які посилається код, це правильно, а для файлів, які хостинг шукає в корені, — ні. `CNAME`, `robots.txt`, сторінка підтвердження прав у пошуковику: їх копіюють кроком воркфлоу після збірки й до кроку деплою.\n\n```yaml\n- name: Copy root-level files\n  run: cp my/hello/public/CNAME my/hello/app/-/CNAME\n```\n\n## Глибокі посилання на статиці\n\nЗастосунку зі шляховим роутингом (`/section=docs/page=views`, а не `#!section=docs`) від хостингу потрібне одне: будь-який невідомий шлях усередині монтування має віддавати `index.html` застосунку. Інакше перший захід за глибоким посиланням — це 404, і працюють лише переходи з головної.\n\nУ GitHub Pages немає правил переписування, тому дорога лежить через його `404.html`: він віддається на будь-який невідомий шлях, і кілька рядків усередині повертають адресу в `index.html`, а роутер розгортає її в справжній маршрут. Копіюється поруч із результатом збірки — тим самим кроком, що й файли вище.\n\nРешта хостингів каже це одним рядком: `try_files \u0024uri /index.html` у nginx, `try_files {path} /index.html` у Caddy, правило `/* /index.html 200` у Netlify.\n\nЗастосунку на хеш-роутері (він за замовчуванням) нічого з цього не треба: усе, що після `#`, до сервера не доїжджає.\n\n## Перевірити до пушу\n\nЗбірка та сама локально і в CI, тож зелений аудит на машині означає зелений деплой:\n\n```bash\nnpx mam my/hello/app\ncat my/hello/app/-/web.audit.js\n```\n\n`Audit passed` — це весь звіт. Щоб подивитися на справжній результат, віддайте теку будь-яким статичним сервером:\n\n```bash\nnpx serve my/hello/app/-\n```\n\n## Не лише GitHub Pages\n\nНічого з написаного вище не привʼязане до GitHub. На виході тека, деплой — це копіювання. Netlify, Cloudflare Pages, S3 за CDN, nginx на VPS, docker-образ із цією текою всередині: крок збірки той самий `npx mam my/hello/app`, а заливаєте ви `my/hello/app/-`.\n\nЯкщо потрібна робота без мережі, [Офлайн](#!section=docs/page=offline) додає service worker, який кешує бандл, — і та сама тека перетворюється на застосунок, який можна встановити.\n",
+                        },
+                        pl: {
+                            title: "Wdrożenie",
+                            summary: "Zbudowana aplikacja $mol to katalog plików statycznych. Nie ma serwera do uruchomienia, procesu Node do utrzymywania przy życiu ani adaptera do wyboru: co…",
+                            md: "# Wdrożenie\n\nZbudowana aplikacja \u0024mol to katalog plików statycznych. Nie ma serwera do uruchomienia, procesu Node do utrzymywania przy życiu ani adaptera do wyboru: co hostuje katalog, to hostuje aplikację.\n\n## Co właściwie wdrażasz\n\nBuild zapisuje wszystko do katalogu `-/` wewnątrz modułu:\n\n```\nmy/hello/-/\n├── index.html                 przepisany pod ścieżkę wdrożenia\n├── web.js                     cała aplikacja, jeden plik\n├── web.css\n├── web.locale=en.json         po jednym na język\n├── manifest.json\n└── …                          wszystko, co wciągnęła dyrektywa `deploy`\n```\n\nTen katalog to jest strona. Podaj go dowolnym hostingiem statycznym, a aplikacja działa.\n\nCała reszta w `my/hello/` to źródła, a `-/` jest generowany: `.gitignore` workspace'u ignoruje `-*`, więc wynik builda nigdy nie trafia do historii samego projektu. Do sieci jedzie z gałęzi wdrożeniowej.\n\n## Krótko\n\nWorkflow pisze scaffolder, więc nowy projekt publikuje się przy pushu:\n\n```bash\nnpx create-view-tree-lsp my/hello\ngit push\n```\n\n`.github/workflows/deploy.yml` buduje moduł i wypycha `my/hello/-/` na gałąź `gh-pages`. GitHub serwuje tę gałąź, gdy tylko w **Settings → Pages → Source** stoi *Deploy from a branch* z `gh-pages` — a to właśnie domyślne ustawienie repozytorium, w którym taka gałąź powstała. Jeśli adres zwraca 404, od tego ustawienia zaczynaj.\n\nStrona żyje wtedy pod `https://<user>.github.io/<repo>/`.\n\n## Co robi workflow\n\nNiosą go dwie akcje, każda z paroma wejściami:\n\n```yaml\n- uses: hyoo-ru/mam_build@master2\n  with:\n      package: \"my/hello\"     # katalog do zbudowania, względem workspace'u\n      modules: \"app\"          # które moduły w środku\n\n- uses: hyoo-ru/gh-deploy@v4.4.1\n  if: github.ref == 'refs/heads/main'\n  with:\n      folder: \"my/hello/app/-\"\n```\n\n`mam_build` rozwija wokół twojego pakietu workspace MAM, zamienia tokeny `\u0024name` z kodu na repozytoria, w których te nazwy mieszkają, i buduje. Nie potrzebuje ani lockfile'a, ani kroku `npm install`: listą zależności jest rejestr w `.meta.tree`, jak opisuje [Struktura projektu](#!section=docs/page=structure).\n\n`gh-deploy` commituje zbudowany katalog na `gh-pages`. `target-folder` kładzie go w podkatalogu zamiast w korzeniu — tak powstaje podgląd gałęzi:\n\n```yaml\n- name: Deploy feature branch\n  if: startsWith(github.ref, 'refs/heads/feature/')\n  uses: hyoo-ru/gh-deploy@v4.4.1\n  with:\n      folder: \"my/hello/app/-\"\n      target-folder: \u0024{{ github.ref_name }}\n```\n\nKażda gałąź `feature/*` dostaje wtedy własny adres na tej samej stronie Pages, a wyzwalacz `delete` usuwa katalog, gdy gałąź znika.\n\n## Jeden plik, którego wdrożenie potrzebuje\n\nPakiet, który się wdraża, potrzebuje obok `.gitattributes` z jedną linią:\n\n```\n* -text\n```\n\nWdrożenie to commit wyniku builda na gałąź, a w tym wyniku nie jest sam tekst. Fonty i obrazy znormalizowane po drodze do tego commita docierają do czytelnika popsute, podczas gdy sam build zostaje zielony. Scaffolder pisze ten plik sam; w repozytorium założonym ręcznie dodaj go ręcznie.\n\n## Pliki, którym miejsce w korzeniu strony\n\n`deploy \\/path` w `meta.tree` kopiuje plik do `-/`, **zachowując ścieżkę względem workspace'u**. Dla zasobów, do których odwołuje się kod, to jest w porządku; dla plików, których hosting szuka w korzeniu — nie. `CNAME`, `robots.txt`, strona weryfikacyjna wyszukiwarki: te kopiuje się krokiem workflow po buildzie, a przed krokiem wdrożenia.\n\n```yaml\n- name: Copy root-level files\n  run: cp my/hello/public/CNAME my/hello/app/-/CNAME\n```\n\n## Głębokie linki na hostingu statycznym\n\nAplikacja z routingiem po ścieżce (`/section=docs/page=views`, a nie `#!section=docs`) prosi hosting o jedno: każda nieznana ścieżka pod montowaniem ma zwracać `index.html` aplikacji. Inaczej pierwsze wejście z głębokiego linku to 404 i działa tylko nawigacja ze strony głównej.\n\nGitHub Pages nie ma reguł przepisywania, więc droga wiedzie przez jego `404.html`: jest podawany na każdą nieznaną ścieżkę, a kilka linii w środku oddaje adres do `index.html`, który router rozwija w prawdziwą trasę. Kopiuje się go obok wyniku builda, tym samym krokiem co pliki wyżej.\n\nReszta hostingów mówi to jedną linią: `try_files \u0024uri /index.html` w nginx, `try_files {path} /index.html` w Caddy, reguła `/* /index.html 200` w Netlify.\n\nAplikacji na routerze hashowym (domyślnym) nic z tego nie trzeba: to, co po `#`, do serwera nie dojeżdża.\n\n## Sprawdzić przed pushem\n\nBuild jest ten sam lokalnie i w CI, więc zielony audyt na maszynie oznacza zielone wdrożenie:\n\n```bash\nnpx mam my/hello/app\ncat my/hello/app/-/web.audit.js\n```\n\n`Audit passed` to cały raport. Żeby zobaczyć rzecz na żywo, podaj katalog dowolnym serwerem statycznym:\n\n```bash\nnpx serve my/hello/app/-\n```\n\n## Nie tylko GitHub Pages\n\nNic z powyższego nie jest związane z GitHubem. Na wyjściu jest katalog, wdrożenie to kopiowanie. Netlify, Cloudflare Pages, S3 za CDN-em, nginx na VPS-ie, obraz Dockera z tym katalogiem w środku — krok builda to wciąż `npx mam my/hello/app`, a wgrywasz `my/hello/app/-`.\n\nDla instalacji działającej bez sieci [Offline](#!section=docs/page=offline) dokłada service workera, który cachuje bundle, i ten sam katalog staje się aplikacją do zainstalowania.\n",
+                        },
+                        cs: {
+                            title: "Nasazení",
+                            summary: "Sestavená $mol aplikace je složka statických souborů. Není co spouštět na serveru, není co držet naživu v Node, není z čeho vybírat adaptér: co hostuje složku,…",
+                            md: "# Nasazení\n\nSestavená \u0024mol aplikace je složka statických souborů. Není co spouštět na serveru, není co držet naživu v Node, není z čeho vybírat adaptér: co hostuje složku, to hostuje aplikaci.\n\n## Co vlastně nasazujete\n\nBuild zapíše všechno do složky `-/` uvnitř modulu:\n\n```\nmy/hello/-/\n├── index.html                 přepsaný pro cestu, kde web leží\n├── web.js                     celá aplikace, jeden soubor\n├── web.css\n├── web.locale=en.json         jeden na jazyk\n├── manifest.json\n└── …                          cokoli, co sem zkopírovala direktiva `deploy`\n```\n\nTa složka je web. Servírujte ji libovolným statickým hostingem a aplikace běží.\n\nVšechno ostatní v `my/hello/` je zdroj a `-/` je generovaná: `.gitignore` workspace ignoruje `-*`, takže výsledek buildu se do historie samotného projektu nikdy nedostane. Na web jede z nasazovací větve.\n\n## Stručně\n\nWorkflow píše scaffolder, takže nový projekt se publikuje pushem:\n\n```bash\nnpx create-view-tree-lsp my/hello\ngit push\n```\n\n`.github/workflows/deploy.yml` sestaví modul a pushne `my/hello/-/` do větve `gh-pages`. GitHub ji servíruje, jakmile je v **Settings → Pages → Source** *Deploy from a branch* s `gh-pages` — a to je právě výchozí volba repozitáře, v němž taková větev vznikla. Když adresa vrací 404, tohle nastavení je první na řadě.\n\nWeb pak žije na `https://<user>.github.io/<repo>/`.\n\n## Co workflow doopravdy dělá\n\nNesou ho dvě akce a každá bere pár vstupů:\n\n```yaml\n- uses: hyoo-ru/mam_build@master2\n  with:\n      package: \"my/hello\"     # složka k sestavení, relativně k workspace\n      modules: \"app\"          # které moduly uvnitř\n\n- uses: hyoo-ru/gh-deploy@v4.4.1\n  if: github.ref == 'refs/heads/main'\n  with:\n      folder: \"my/hello/app/-\"\n```\n\n`mam_build` rozvine kolem vašeho balíku workspace MAM, přeloží tokeny `\u0024name` z kódu na repozitáře, kde ta jména bydlí, a sestaví. Nepotřebuje lockfile ani krok `npm install`: seznamem závislostí je rejstřík v `.meta.tree`, jak popisuje [Struktura projektu](#!section=docs/page=structure).\n\n`gh-deploy` commitne sestavenou složku do `gh-pages`. `target-folder` ji položí do podsložky místo do kořene — tak vzniká náhled větve:\n\n```yaml\n- name: Deploy feature branch\n  if: startsWith(github.ref, 'refs/heads/feature/')\n  uses: hyoo-ru/gh-deploy@v4.4.1\n  with:\n      folder: \"my/hello/app/-\"\n      target-folder: \u0024{{ github.ref_name }}\n```\n\nKaždá větev `feature/*` pak má vlastní adresu na tomtéž Pages webu a trigger `delete` složku odstraní, jakmile větev zmizí.\n\n## Jeden soubor, který nasazení potřebuje\n\nBalík, který se nasazuje, potřebuje vedle sebe `.gitattributes` s jediným řádkem:\n\n```\n* -text\n```\n\nNasazení znamená commitnout výsledek buildu do větve, a ten výsledek není jen text. Fonty a obrázky normalizované cestou do toho commitu dorazí ke čtenáři rozbité, zatímco build sám zůstane zelený. Scaffolder soubor napíše; v repozitáři, který jste založili sami, ho přidejte ručně.\n\n## Soubory, které patří do kořene webu\n\n`deploy \\/path` v `meta.tree` kopíruje soubor do `-/` a **zachovává jeho cestu vůči workspace**. Pro assety, na které kód odkazuje, je to správně; pro soubory, které hosting hledá v kořeni, ne. `CNAME`, `robots.txt`, ověřovací stránka vyhledávače: ty se kopírují krokem workflow po buildu a před krokem nasazení.\n\n```yaml\n- name: Copy root-level files\n  run: cp my/hello/public/CNAME my/hello/app/-/CNAME\n```\n\n## Hluboké odkazy na statickém hostingu\n\nAplikace s cestovým routingem (`/section=docs/page=views` místo `#!section=docs`) chce po hostingu jedno: každá neznámá cesta pod mountem musí vrátit `index.html` aplikace. Jinak je první zásah hlubokého odkazu 404 a funguje jen navigace z domovské stránky.\n\nGitHub Pages nemá pravidla přepisu, takže cesta vede přes jeho `404.html`: servíruje se na každou neznámou cestu a pár řádků uvnitř vrátí adresu do `index.html`, který router rozvine na skutečnou routu. Kopíruje se vedle výsledku buildu, stejně jako soubory výše.\n\nOstatní hostingy to řeknou jedním řádkem: `try_files \u0024uri /index.html` v nginxu, `try_files {path} /index.html` v Caddy, pravidlo `/* /index.html 200` na Netlify.\n\nAplikace na hash routeru (výchozím) nic z toho nepotřebuje: co je za `#`, na server nedojede.\n\n## Zkontrolovat před pushem\n\nBuild je stejný lokálně i v CI, takže zelený audit na počítači znamená zelené nasazení:\n\n```bash\nnpx mam my/hello/app\ncat my/hello/app/-/web.audit.js\n```\n\n`Audit passed` je celá zpráva. Abyste viděli skutečnou věc, naservírujte složku libovolným statickým serverem:\n\n```bash\nnpx serve my/hello/app/-\n```\n\n## Nejen GitHub Pages\n\nNic z výše uvedeného není vázané na GitHub. Výstupem je složka, nasazení je kopírování. Netlify, Cloudflare Pages, S3 za CDN, nginx na VPS, docker image s touto složkou uvnitř — krok buildu je pořád `npx mam my/hello/app` a nahráváte `my/hello/app/-`.\n\nPro instalaci fungující offline přidá [Offline](#!section=docs/page=offline) service worker, který nacachuje bundle, a tatáž složka se stane instalovatelnou aplikací.\n",
+                        },
+                        fa: {
+                            title: "استقرار",
+                            summary: "اپلیکیشنِ ساخته‌شدهٔ $mol یک پوشه از فایل‌های ایستاست. نه سروری هست که اجرا شود، نه پروسهٔ Nodeای که زنده نگه دارید، و نه آداپتوری که انتخاب کنید: هرچه بتواند…",
+                            md: "# استقرار\n\nاپلیکیشنِ ساخته‌شدهٔ \u0024mol یک پوشه از فایل‌های ایستاست. نه سروری هست که اجرا شود، نه پروسهٔ Nodeای که زنده نگه دارید، و نه آداپتوری که انتخاب کنید: هرچه بتواند یک پوشه را میزبانی کند، اپلیکیشن را هم میزبانی می‌کند.\n\n## چیزی که منتشر می‌کنید\n\nساخت همه‌چیز را در پوشهٔ `-/` داخلِ ماژول می‌نویسد:\n\n```\nmy/hello/-/\n├── index.html                 برای مسیرِ انتشار بازنویسی شده\n├── web.js                     کلِ اپلیکیشن، یک فایل\n├── web.css\n├── web.locale=en.json         یکی برای هر زبان\n├── manifest.json\n└── …                          هرچه دستورِ `deploy` به اینجا آورده\n```\n\nهمان پوشه، خودِ سایت است. از هر میزبانِ ایستایی سرو کنید، اپلیکیشن کار می‌کند.\n\nباقیِ چیزها در `my/hello/` سورس‌اند و `-/` تولیدشده است: `.gitignore`ِ فضای کاری الگوی `-*` را نادیده می‌گیرد، پس خروجیِ ساخت هرگز واردِ تاریخچهٔ خودِ پروژه نمی‌شود. به وب از شاخهٔ استقرار می‌رسد.\n\n## روایتِ کوتاه\n\nاسکافولدر ورک‌فلو را می‌نویسد، پس پروژهٔ تازه با همان push منتشر می‌شود:\n\n```bash\nnpx create-view-tree-lsp my/hello\ngit push\n```\n\n`.github/workflows/deploy.yml` ماژول را می‌سازد و `my/hello/-/` را به شاخهٔ `gh-pages` می‌فرستد. به‌محضِ اینکه در **Settings → Pages → Source** گزینهٔ *Deploy from a branch* با `gh-pages` باشد، گیت‌هاب همان شاخه را سرو می‌کند — و این دقیقاً مقدارِ پیش‌فرضِ مخزنی است که چنین شاخه‌ای دارد. اگر نشانی ۴۰۴ می‌دهد، اولین چیزی که باید دید همین تنظیم است.\n\nاز آن پس سایت روی `https://<user>.github.io/<repo>/` زندگی می‌کند.\n\n## ورک‌فلو واقعاً چه می‌کند\n\nدو اکشن آن را می‌برند و هرکدام چند ورودی می‌گیرند:\n\n```yaml\n- uses: hyoo-ru/mam_build@master2\n  with:\n      package: \"my/hello\"     # پوشه‌ای که ساخته می‌شود، نسبت به فضای کاری\n      modules: \"app\"          # کدام ماژول‌های داخلش\n\n- uses: hyoo-ru/gh-deploy@v4.4.1\n  if: github.ref == 'refs/heads/main'\n  with:\n      folder: \"my/hello/app/-\"\n```\n\n`mam_build` فضای کاریِ MAM را دورِ بستهٔ شما می‌گستراند، توکن‌های `\u0024name` را از کدتان به مخزن‌هایی که آن‌ها را دارند می‌رساند و می‌سازد. نه به lockfile نیاز دارد و نه به گامِ `npm install`: فهرستِ وابستگی‌ها همان رجیستریِ `.meta.tree` است، همان‌طور که [ساختارِ پروژه](#!section=docs/page=structure) می‌گوید.\n\n`gh-deploy` پوشهٔ ساخته‌شده را در `gh-pages` کامیت می‌کند. `target-folder` آن را به‌جای ریشه در زیرپوشه می‌گذارد — پیش‌نمایشِ شاخه این‌طور ساخته می‌شود:\n\n```yaml\n- name: Deploy feature branch\n  if: startsWith(github.ref, 'refs/heads/feature/')\n  uses: hyoo-ru/gh-deploy@v4.4.1\n  with:\n      folder: \"my/hello/app/-\"\n      target-folder: \u0024{{ github.ref_name }}\n```\n\nآنگاه هر شاخهٔ `feature/*` نشانیِ خودش را روی همان سایتِ Pages دارد، و تریگرِ `delete` با رفتنِ شاخه پوشه را برمی‌دارد.\n\n## یک فایل که استقرار به آن نیاز دارد\n\nبسته‌ای که منتشر می‌شود، کنارِ خودش به `.gitattributes` با یک خط نیاز دارد:\n\n```\n* -text\n```\n\nاستقرار یعنی کامیت‌کردنِ خروجیِ ساخت در یک شاخه، و آن خروجی تنها متن نیست. فونت‌ها و تصویرهایی که در راهِ آن کامیت نرمال‌سازی شوند، شکسته به دستِ خواننده می‌رسند، در حالی که خودِ ساخت سبز می‌ماند. اسکافولدر این فایل را می‌نویسد؛ در مخزنی که خودتان ساخته‌اید، دستی اضافه‌اش کنید.\n\n## فایل‌هایی که باید در ریشهٔ سایت باشند\n\n`deploy \\/path` در `meta.tree` فایل را به `-/` کپی می‌کند و **مسیرش نسبت به فضای کاری را نگه می‌دارد**. برای دارایی‌هایی که کد به آن‌ها ارجاع می‌دهد درست است و برای فایل‌هایی که میزبان در ریشه دنبالشان می‌گردد نادرست. `CNAME`، `robots.txt`، صفحهٔ تأییدِ مالکیت در سرچ‌کنسول: این‌ها را با یک گامِ ورک‌فلو، بعد از ساخت و پیش از گامِ استقرار، کپی کنید.\n\n```yaml\n- name: Copy root-level files\n  run: cp my/hello/public/CNAME my/hello/app/-/CNAME\n```\n\n## لینک‌های عمیق روی میزبانِ ایستا\n\nاپلیکیشنی با مسیریابیِ مبتنی بر path (یعنی `/section=docs/page=views` و نه `#!section=docs`) تنها یک چیز از میزبان می‌خواهد: هر مسیرِ ناشناخته زیرِ نقطهٔ نصب باید `index.html`ِ اپلیکیشن را برگرداند. وگرنه نخستین ورود از یک لینکِ عمیق ۴۰۴ است و فقط پیمایش از صفحهٔ اصلی کار می‌کند.\n\nگیت‌هاب Pages قاعدهٔ بازنویسی ندارد، پس راه از `404.html`ِ خودش می‌گذرد: برای هر مسیرِ ناشناخته سرو می‌شود و چند خط داخلش نشانی را به `index.html` برمی‌گردانند تا روتر آن را به مسیرِ واقعی باز کند. مثلِ فایل‌های بالا، کنارِ خروجیِ ساخت کپی‌اش کنید.\n\nمیزبان‌های دیگر آن را در یک خط می‌گویند: `try_files \u0024uri /index.html` در nginx، `try_files {path} /index.html` در Caddy، و قاعدهٔ `/* /index.html 200` در Netlify.\n\nاپلیکیشنی روی روترِ hash (همان پیش‌فرض) به هیچ‌کدامِ این‌ها نیاز ندارد: هرچه پس از `#` بیاید هرگز به سرور نمی‌رسد.\n\n## پیش از push بررسی کنید\n\nساخت در ماشینِ خودتان و در CI یکی است، پس ممیزیِ سبز روی سیستم یعنی استقرارِ سبز:\n\n```bash\nnpx mam my/hello/app\ncat my/hello/app/-/web.audit.js\n```\n\n`Audit passed` تمامِ گزارش است. برای دیدنِ چیزِ واقعی، پوشه را با هر سرورِ ایستایی سرو کنید:\n\n```bash\nnpx serve my/hello/app/-\n```\n\n## فراتر از GitHub Pages\n\nهیچ‌کدام از این‌ها مخصوصِ گیت‌هاب نیست. خروجی یک پوشه است و استقرار یک کپی. Netlify، Cloudflare Pages، S3 پشتِ CDN، nginx روی VPS، ایمیجِ داکری با همین پوشه داخلش — گامِ ساخت همان `npx mam my/hello/app` است و آنچه بالا می‌فرستید `my/hello/app/-`.\n\nبرای نصبی که آفلاین هم کار کند، [آفلاین](#!section=docs/page=offline) سرویس‌ورکری می‌افزاید که باندل را کش می‌کند، و همان پوشه به اپلیکیشنی نصب‌شدنی بدل می‌شود.\n",
+                        },
+                        bn: {
+                            title: "ডিপ্লয়",
+                            summary: "বিল্ড করা $mol অ্যাপ মানে স্ট্যাটিক ফাইলের একটি ফোল্ডার। চালানোর মতো সার্ভার নেই, বাঁচিয়ে রাখার মতো Node প্রসেস নেই, বেছে নেওয়ার মতো অ্যাডাপ্টারও নেই: যা…",
+                            md: "# ডিপ্লয়\n\nবিল্ড করা \u0024mol অ্যাপ মানে স্ট্যাটিক ফাইলের একটি ফোল্ডার। চালানোর মতো সার্ভার নেই, বাঁচিয়ে রাখার মতো Node প্রসেস নেই, বেছে নেওয়ার মতো অ্যাডাপ্টারও নেই: যা একটি ফোল্ডার হোস্ট করতে পারে, তা-ই অ্যাপটিও হোস্ট করে।\n\n## আপনি আসলে কী ডিপ্লয় করেন\n\nবিল্ড সবকিছু মডিউলের ভিতরের `-/` ফোল্ডারে লেখে:\n\n```\nmy/hello/-/\n├── index.html                 ডিপ্লয়ের পথ অনুযায়ী নতুন করে লেখা\n├── web.js                     পুরো অ্যাপ, একটিই ফাইল\n├── web.css\n├── web.locale=en.json         প্রতিটি ভাষার জন্য একটি\n├── manifest.json\n└── …                          `deploy` নির্দেশ যা কিছু কপি করে এনেছে\n```\n\nওই ফোল্ডারটিই সাইট। যেকোনো স্ট্যাটিক হোস্ট থেকে পরিবেশন করুন, অ্যাপ চলবে।\n\n`my/hello/`-এর বাকি সবকিছু সোর্স, আর `-/` তৈরি হওয়া: ওয়ার্কস্পেসের `.gitignore` `-*` উপেক্ষা করে, তাই বিল্ডের ফল প্রকল্পের নিজের ইতিহাসে কখনও ঢোকে না। ওয়েবে সেটি যায় ডিপ্লয় ব্রাঞ্চ হয়ে।\n\n## সংক্ষেপে\n\nওয়ার্কফ্লো লিখে দেয় স্ক্যাফোল্ডার, তাই নতুন প্রকল্প পুশেই প্রকাশ পায়:\n\n```bash\nnpx create-view-tree-lsp my/hello\ngit push\n```\n\n`.github/workflows/deploy.yml` মডিউল বিল্ড করে `my/hello/-/` কে `gh-pages` ব্রাঞ্চে পুশ করে। **Settings → Pages → Source** যখন *Deploy from a branch* আর `gh-pages` নির্বাচিত, GitHub তখনই ওই ব্রাঞ্চ পরিবেশন করে — এবং যে রিপোজিটরিতে ওই ব্রাঞ্চ আছে, তার ডিফল্টও এটিই। ঠিকানা 404 দিলে সবার আগে এই সেটিংটাই দেখবেন।\n\nএরপর সাইটটি থাকে `https://<user>.github.io/<repo>/`-এ।\n\n## ওয়ার্কফ্লো আসলে কী করে\n\nদুটি অ্যাকশনই পুরোটা টানে, আর প্রত্যেকটি নেয় গোটা দুই ইনপুট:\n\n```yaml\n- uses: hyoo-ru/mam_build@master2\n  with:\n      package: \"my/hello\"     # কোন ফোল্ডার বিল্ড হবে, ওয়ার্কস্পেস থেকে পথ\n      modules: \"app\"          # তার ভিতরের কোন মডিউলগুলো\n\n- uses: hyoo-ru/gh-deploy@v4.4.1\n  if: github.ref == 'refs/heads/main'\n  with:\n      folder: \"my/hello/app/-\"\n```\n\n`mam_build` আপনার প্যাকেজের চারপাশে MAM ওয়ার্কস্পেস বিছিয়ে দেয়, কোডের `\u0024name` টোকেনগুলোকে সেই রিপোজিটরিতে মেলায় যেখানে ওরা থাকে, তারপর বিল্ড করে। লকফাইলও লাগে না, `npm install` ধাপও না: নির্ভরতার তালিকা মানেই `.meta.tree`-এর রেজিস্ট্রি, যেমনটা [প্রকল্পের গঠন](#!section=docs/page=structure) বলে।\n\n`gh-deploy` বিল্ড করা ফোল্ডারটিকে `gh-pages`-এ কমিট করে। `target-folder` সেটিকে রুটের বদলে সাবফোল্ডারে রাখে — ব্রাঞ্চ প্রিভিউ এভাবেই হয়:\n\n```yaml\n- name: Deploy feature branch\n  if: startsWith(github.ref, 'refs/heads/feature/')\n  uses: hyoo-ru/gh-deploy@v4.4.1\n  with:\n      folder: \"my/hello/app/-\"\n      target-folder: \u0024{{ github.ref_name }}\n```\n\nতখন প্রতিটি `feature/*` ব্রাঞ্চের একই Pages সাইটে নিজের ঠিকানা থাকে, আর ব্রাঞ্চ মুছে গেলে `delete` ট্রিগার ফোল্ডারটিও সরিয়ে দেয়।\n\n## ডিপ্লয়ের জন্য দরকারি একটি ফাইল\n\nযে প্যাকেজ ডিপ্লয় হয়, তার পাশে এক লাইনের `.gitattributes` লাগে:\n\n```\n* -text\n```\n\nডিপ্লয় মানে বিল্ডের ফলকে একটি ব্রাঞ্চে কমিট করা, আর সেই ফলে কেবল টেক্সট থাকে না। ওই কমিটে যাওয়ার পথে নর্মালাইজ হয়ে যাওয়া ফন্ট আর ছবি পাঠকের কাছে ভাঙা অবস্থায় পৌঁছায়, অথচ বিল্ড নিজে সবুজই থাকে। ফাইলটি স্ক্যাফোল্ডার লিখে দেয়; নিজের হাতে বানানো রিপোজিটরিতে হাতে যোগ করুন।\n\n## যে ফাইলগুলোর জায়গা সাইটের রুটে\n\n`meta.tree`-এর `deploy \\/path` ফাইলটিকে `-/`-এ কপি করে, **ওয়ার্কস্পেস-সাপেক্ষ পথ অক্ষত রেখে**। কোড যেসব অ্যাসেটকে ডাকে তাদের জন্য এটাই ঠিক, আর হোস্ট রুটে যেসব ফাইল খোঁজে তাদের জন্য নয়। `CNAME`, `robots.txt`, সার্চ কনসোলের মালিকানা যাচাইয়ের পাতা: এগুলো বিল্ডের পরে আর ডিপ্লয় ধাপের আগে ওয়ার্কফ্লোর একটি ধাপে কপি করুন।\n\n```yaml\n- name: Copy root-level files\n  run: cp my/hello/public/CNAME my/hello/app/-/CNAME\n```\n\n## স্ট্যাটিক হোস্টে গভীর লিংক\n\nপাথ রাউটিং ব্যবহার করা অ্যাপ (`#!section=docs` নয়, `/section=docs/page=views`) হোস্টের কাছে একটাই জিনিস চায়: মাউন্টের নিচে যেকোনো অচেনা পথকে অ্যাপের `index.html` ফেরত দিতে হবে। নইলে গভীর লিংকে প্রথম আঘাতই 404, আর কেবল হোম থেকে চলাচলই কাজ করে।\n\nGitHub Pages-এ রিরাইট নিয়ম নেই, তাই পথটা যায় তার `404.html` দিয়ে: অচেনা যেকোনো পথে সেটিই পরিবেশিত হয়, আর ভিতরের কয়েক লাইন ঠিকানাটিকে `index.html`-এ ফিরিয়ে দেয়, যাকে রাউটার আসল রুটে খুলে নেয়। উপরের ফাইলগুলোর মতোই বিল্ডের ফলাফলের পাশে কপি করুন।\n\nঅন্য হোস্টরা এক লাইনেই বলে দেয়: nginx-এ `try_files \u0024uri /index.html`, Caddy-তে `try_files {path} /index.html`, Netlify-তে `/* /index.html 200`।\n\nহ্যাশ রাউটারে (ডিফল্ট) চলা অ্যাপের এসবের কিছুই লাগে না: `#`-এর পরের কিছুই সার্ভার পর্যন্ত পৌঁছায় না।\n\n## পুশের আগে দেখে নিন\n\nবিল্ড স্থানীয়ভাবে আর CI-তে একই, তাই নিজের মেশিনে সবুজ অডিট মানে সবুজ ডিপ্লয়:\n\n```bash\nnpx mam my/hello/app\ncat my/hello/app/-/web.audit.js\n```\n\n`Audit passed` — এটুকুই পুরো রিপোর্ট। আসল জিনিসটা দেখতে যেকোনো স্ট্যাটিক সার্ভার দিয়ে ফোল্ডারটি পরিবেশন করুন:\n\n```bash\nnpx serve my/hello/app/-\n```\n\n## GitHub Pages ছাড়াও\n\nউপরের কিছুই GitHub-নির্দিষ্ট নয়। আউটপুট একটি ফোল্ডার, ডিপ্লয় মানে একটি কপি। Netlify, Cloudflare Pages, CDN-এর পিছনে S3, VPS-এ nginx, ভিতরে ওই ফোল্ডার রাখা একটি ডকার ইমেজ — বিল্ড ধাপ সেই একই `npx mam my/hello/app`, আর আপনি আপলোড করেন `my/hello/app/-`।\n\nঅফলাইনে চলার মতো ইনস্টলের জন্য [অফলাইন](#!section=docs/page=offline) বান্ডল ক্যাশ করা সার্ভিস ওয়ার্কার যোগ করে, আর সেই একই ফোল্ডার ইনস্টলযোগ্য অ্যাপে পরিণত হয়।\n",
                         },
                     },
                 },
