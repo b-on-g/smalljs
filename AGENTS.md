@@ -13,6 +13,7 @@ Vue-style сайт документации для $mol. MAM-модуль в `bo
 | `landing/` | `$bog_smalljs_landing` | Главная: Hero · Sponsor banner · Features · Sponsors · Footer |
 | `docs/` | `$bog_smalljs_docs` | 3-col layout: sidebar · main · TOC ( пока stub ) |
 | `playground/` | `$bog_smalljs_playground` | Заглушка для Sprint 2 |
+| `structure/` | `$bog_smalljs_structure` | Дерево проекта с «?» на каждой строке. Разбирает обычный ASCII-листинг, поэтому в доках листинг лежит в markdown (фенс ```structure), на главной и в песочнице дерево собирается кодом |
 
 Каждый подмодуль — отдельная папка с `.view.tree`, `.view.ts`, `.view.css.ts`. `Theme` плагин ( `$bog_theme_auto` ) живёт на root в `app/app.view.tree`, прокинут в Top через `Theme <= Theme`.
 
