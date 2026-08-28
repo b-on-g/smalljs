@@ -23,7 +23,7 @@ const sections = [
 		title: 'Docs',
 		groups: [
 			{ title: 'Getting Started', pages: [ 'introduction', 'getting-started', 'from-ts-to-view-tree', 'structure', 'tooling' ] },
-			{ title: 'Essentials', pages: [ 'installation', 'views', 'state', 'routing', 'rendering' ] },
+			{ title: 'Essentials', pages: [ 'installation', 'views', 'state', 'routing', 'rendering', 'deployment' ] },
 			{ title: 'Data', pages: [ 'data', 'data-schema', 'giper-baza' ] },
 			{ title: 'More', pages: [ 'showcase', 'rosetta', 'cookbook' ] },
 			{ title: 'Advanced', pages: [ 'plugins', 'meta', 'offline', 'ghost' ] },
@@ -43,6 +43,7 @@ const meta = {
 	'views': { title: 'Views', summary: 'Declaring and composing components with the view.tree language.' },
 	'state': { title: 'State & Reactivity', summary: 'Reactive properties, actions vs. computations, keyed and async state.' },
 	'routing': { title: 'Routing', summary: 'The URL as reactive state: screens, links, and multiple parameters.' },
+	'deployment': { title: 'Deployment', summary: 'A built app is a folder of static files: the GitHub Pages workflow, branch previews, deep links on a static host, and any other host.' },
 	'rendering': { title: 'Rendering', summary: 'No virtual DOM, lazy components, and virtualized rendering — plus reproducible benchmarks.' },
 	'data': { title: 'Data Fetching', summary: 'Loading remote data with reactive async properties and loading states.' },
 	'data-schema': { title: 'Data Schemas', summary: 'Runtime typing and validation of backend data with $mol_data and $mol_schema.' },

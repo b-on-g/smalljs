@@ -17,6 +17,7 @@
 - [State & Reactivity](https://b-on-g.github.io/smalljs/docs/state.md): Reactive properties, actions vs. computations, keyed and async state.
 - [Routing](https://b-on-g.github.io/smalljs/docs/routing.md): The URL as reactive state: screens, links, and multiple parameters.
 - [Rendering](https://b-on-g.github.io/smalljs/docs/rendering.md): No virtual DOM, lazy components, and virtualized rendering — plus reproducible benchmarks.
+- [Deployment](https://b-on-g.github.io/smalljs/docs/deployment.md): A built app is a folder of static files: the GitHub Pages workflow, branch previews, deep links on a static host, and any other host.
 
 ## Data
 
