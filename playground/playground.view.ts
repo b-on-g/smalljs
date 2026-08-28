@@ -169,9 +169,22 @@ namespace $.$$ {
 		@ $mol_action
 		file_pick( file?: string ) {
 			if ( !file ) return null
-			if ( file.endsWith( '.view.css.ts' ) ) this.tab( 'css' )
-			else if ( file.endsWith( '.view.ts' ) ) this.tab( 'ts' )
-			else if ( file.endsWith( '.view.tree' ) ) this.tab( 'tree' )
+			const tab =
+				file.endsWith( '.view.css.ts' ) ? 'css'
+				: file.endsWith( '.view.ts' ) ? 'ts'
+				: file.endsWith( '.view.tree' ) ? 'tree'
+				: null
+			if ( !tab ) return null
+			this.tab( tab )
+			// В режиме «все файлы» переключать нечего — все три на экране. Тогда
+			// клик подводит к нужному, иначе он выглядел бы как ничего не делающий.
+			if ( this.editors_all() ) {
+				const label =
+					tab === 'ts' ? this.Editor_ts_label()
+					: tab === 'css' ? this.Editor_css_label()
+					: this.Editor_tree_label()
+				label.dom_node().scrollIntoView( { block: 'start', behavior: 'smooth' } )
+			}
 			return null
 		}
 
@@ -289,6 +302,13 @@ namespace $.$$ {
 
 		// One editor, bound to the active tab's source.
 		draft( next?: string ) {
+			// В режиме «все файлы» вкладок нет, а у каждого редактора своя подпись.
+			// Первый из них подписан view.tree — значит и показывать он обязан
+			// дерево. Раньше туда подставлялась активная вкладка, и клик по файлу
+			// в панели слева приводил к тому, что под надписью VIEW.TREE лежал CSS.
+			if ( this.editors_all() ) {
+				return next === undefined ? this.tree_draft() : this.tree_draft( next )
+			}
 			const tab = this.tab()
 			if ( next !== undefined ) {
 				if ( tab === 'ts' ) return this.ts_draft( next )

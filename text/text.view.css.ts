@@ -128,6 +128,15 @@ namespace $ {
 		[bog_builderui_lights="light"] [mol_text_code_token_type="tree-string"] { color: hsl( 96, 42%, 34.5% ) }
 		[bog_builderui_lights="light"] [mol_text_code_token_type="tree-oper"] { color: hsl( 210, 62%, 45.5% ) }
 		[bog_builderui_lights="light"] [mol_text_code_token_type="tree-prim"] { color: hsl( 45, 72%, 31.5% ) }
+
+		/* То же самое для «как в системе»: тему там выбирает медиа-запрос, а не
+		   значение атрибута ( см. палитру в app.view.css.ts ). */
+		@media ( prefers-color-scheme: light ) {
+			[bog_builderui_lights="system"] [mol_text_code_token_type="tree-comp"] { color: hsl( 28, 80%, 38% ) }
+			[bog_builderui_lights="system"] [mol_text_code_token_type="tree-string"] { color: hsl( 96, 42%, 34.5% ) }
+			[bog_builderui_lights="system"] [mol_text_code_token_type="tree-oper"] { color: hsl( 210, 62%, 45.5% ) }
+			[bog_builderui_lights="system"] [mol_text_code_token_type="tree-prim"] { color: hsl( 45, 72%, 31.5% ) }
+		}
 	` )
 
 }

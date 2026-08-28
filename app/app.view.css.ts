@@ -31,6 +31,12 @@ namespace $ {
 	// elevation. Dark: the tuned zinc — softened text (#fafafa glares on near-black),
 	// and back/card SWAPPED so the page is the lighter shade and cards/topbar/sidebar
 	// the darker one (inverted elevation), hardcoded from the zinc base the app pins to.
+	//
+	// Три значения `lights`, а не два: пока читатель не выбрал тему сам, в
+	// разметке стоит `system`, и палитру выбирает медиа-запрос — так первый кадр
+	// красится без участия JS ( см. lights() в app.view.ts ). Значит и здешние
+	// перекрытия обязаны знать про `system`: иначе на нём отвалятся ровно они, и
+	// сайт покажет сырую палитру builderui вместо своей.
 	$mol_style_attach( '$bog_smalljs_app.palette', `
 		[bog_smalljs_app][bog_builderui_base][bog_builderui_lights="light"] {
 			--bog_builderui_control: hsl( 210, 68%, 42% );
@@ -40,7 +46,8 @@ namespace $ {
 			--bog_builderui_back: #faf9f7;
 			--bog_builderui_card: #ffffff;
 		}
-		[bog_smalljs_app][bog_builderui_base][bog_builderui_lights="dark"] {
+		[bog_smalljs_app][bog_builderui_base][bog_builderui_lights="dark"],
+		[bog_smalljs_app][bog_builderui_base][bog_builderui_lights="system"] {
 			--bog_builderui_control: hsl( 210, 72%, 64% );
 			--bog_builderui_focus: hsl( 210, 76%, 72% );
 			--bog_builderui_current: hsl( 210, 72%, 64% );
@@ -48,6 +55,17 @@ namespace $ {
 			--bog_builderui_text: #d4d4d8;
 			--bog_builderui_back: #18181b;
 			--bog_builderui_card: #09090b;
+		}
+		@media ( prefers-color-scheme: light ) {
+			[bog_smalljs_app][bog_builderui_base][bog_builderui_lights="system"] {
+				--bog_builderui_control: hsl( 210, 68%, 42% );
+				--bog_builderui_focus: hsl( 210, 72%, 36% );
+				--bog_builderui_current: hsl( 210, 68%, 42% );
+				--bog_builderui_special: hsl( 26, 82%, 44% );
+				--bog_builderui_text: #09090b;
+				--bog_builderui_back: #faf9f7;
+				--bog_builderui_card: #ffffff;
+			}
 		}
 	` )
 
