@@ -329,8 +329,21 @@ namespace $.$$ {
 			return null
 		}
 
+		/** Светлая тема, тёмная или «как в системе».
+		 *
+		 *  Третье значение не для красоты: пока в разметке стоял конкретный
+		 *  `light` или `dark`, пререндеренная страница приезжала запечённой в ту
+		 *  тему, в которой её сняли. Читателю с тёмной системой каждая холодная
+		 *  загрузка светила белым, пока не выполнится бандл. С `system` первый
+		 *  кадр красит один CSS: у builderui на этот случай есть
+		 *  `@media (prefers-color-scheme: light)`, а без него значение тёмное.
+		 *
+		 *  Явный выбор в переключателе по-прежнему приезжает сюда как `light`
+		 *  или `dark` и системный запрос перебивает. */
 		lights() {
-			return this.Theme().is_light_now() ? 'light' : 'dark'
+			const theme = this.Theme()
+			if( theme.mode() === 'system' ) return 'system'
+			return theme.is_light_now() ? 'light' : 'dark'
 		}
 
 		/** Right-to-left layout for RTL languages (currently Persian). */
