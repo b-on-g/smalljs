@@ -21,6 +21,39 @@
 		<meta name="twitter:description" content="Documentation, playground, and interactive course for $mol — a reactive web framework with typed views, automatic reactivity, and no virtual DOM." />
 		<meta name="twitter:image" content="https://b-on-g.github.io/smalljs/bog/smalljs/assets/og.png" />
 		<link rel="manifest" href="manifest.json" />
+		<!-- Язык приезжает позже страницы.
+
+		     Статика по этому адресу собрана на одном языке ( голый адрес — это
+		     x-default, то есть английский ), а читатель мог выбрать другой. Пока
+		     качается бандл, браузер показывает то, что пришло, и на жёсткой
+		     перезагрузке видно, как текст сначала английский, а потом прыгает.
+
+		     Ждём: если язык страницы и язык читателя разошлись, прячем содержимое
+		     до тех пор, пока приложение не проставит свой язык на <html> ( это
+		     делает lang_sync ). Фон и раскладка остаются, прыгать нечему. Через
+		     четыре секунды показываем что есть — бандл мог и не доехать. -->
+		<script>
+		(function () {
+		  try {
+		    var root = document.documentElement
+		    var norm = function (s) { return String(s || '').toLowerCase().replace('-', '_') }
+		    var stored = localStorage.getItem('locale')
+		    var want = norm(stored ? JSON.parse(stored) : (navigator.language || 'en').replace(/-.*/, ''))
+		    if (!want || want === norm(root.getAttribute('lang'))) return
+		    root.setAttribute('bog_smalljs_boot', 'wait')
+		    var done = function () {
+		      root.removeAttribute('bog_smalljs_boot')
+		      watcher.disconnect()
+		      clearTimeout(timer)
+		    }
+		    var watcher = new MutationObserver(function () {
+		      if (norm(root.getAttribute('lang')) === want) done()
+		    })
+		    watcher.observe(root, { attributes: true, attributeFilter: [ 'lang' ] })
+		    var timer = setTimeout(done, 4000)
+		  } catch (e) {}
+		})();
+		</script>
 	</head>
 	<body mol_view_root>
 		<div mol_view_root="$bog_smalljs_app"></div>
