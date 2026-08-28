@@ -1217,6 +1217,16 @@ $mol_icon_help_circle $mol_icon path \M15.07,11.25L14.17,12.17C13.45,12.89 13,13
 
 $mol_icon_help_circle_outline $mol_icon path \M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z
 
+$mol_pop_over $mol_pop
+	showed <= hovered? false
+	attr *
+		^
+		tabindex 0
+	event *
+		^
+		mouseenter? <=> event_show? null
+		mouseleave? <=> event_hide? null
+
 $bog_smalljs_structure_row $mol_view
 	prefix \
 	name \
@@ -1227,14 +1237,11 @@ $bog_smalljs_structure_row $mol_view
 	active false
 	pickable false
 	pick? null
-	open? false
-	help_click? null
 	line_click? null
 	attr *
 		bog_smalljs_structure_kind <= kind
 		bog_smalljs_structure_active <= active
 		bog_smalljs_structure_pickable <= pickable
-		bog_smalljs_structure_open <= open?
 	sub /
 		<= Line $mol_view
 			event *
@@ -1250,14 +1257,12 @@ $bog_smalljs_structure_row $mol_view
 				<= Comment $mol_view
 					sub /
 						<= comment
-				<= Help $mol_button_minor
-					hint <= note
-					click? <=> help_click?
-					sub /
-						<= Help_icon $mol_icon_help_circle_outline
-		<= Note $mol_view
-			sub /
-				<= note
+				<= Help $mol_pop_over
+					Anchor <= Help_icon $mol_icon_help_circle_outline
+					bubble_content /
+						<= Note $mol_view
+							sub /
+								<= note
 
 $bog_smalljs_structure $mol_view
 	tree \
@@ -3164,16 +3169,6 @@ $bog_builderui_chart $mol_chart
 
 $bog_builderui_select $mol_select
 
-$mol_pop_over $mol_pop
-	showed <= hovered? false
-	attr *
-		^
-		tabindex 0
-	event *
-		^
-		mouseenter? <=> event_show? null
-		mouseleave? <=> event_hide? null
-
 $bog_builderui_tooltip $mol_pop_over
 
 $bog_smalljs_app $bog_builderui_div
@@ -3193,7 +3188,6 @@ $bog_smalljs_app $bog_builderui_div
 		bog_builderui_font_head \eb-garamond
 	auto /
 		<= hotkeys null
-		<= locale_sync null
 		<= lang_sync null
 		<= route_canonical null
 	sub /

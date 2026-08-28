@@ -4183,6 +4183,14 @@ declare namespace $.$$ {
         Lang_option(code: string): $mol_button_minor;
         /** Show the check only next to the active language. */
         Lang_option_check(code: string): any;
+        /** Выбор языка уезжает и в адрес.
+         *
+         *  Без этого перезагрузка приходила на английскую статику: пререндер
+         *  раскладывает по языкам ( `/mol_locale=ru/…` ), а голый адрес — это
+         *  x-default, то есть английский. Читатель видел английский текст, пока
+         *  бандл не поднимется и не вспомнит его выбор из localStorage. С языком
+         *  в адресе он с первого байта получает свою страницу, а ссылкой на неё
+         *  можно поделиться. */
         lang_select(code: string): null;
     }
 }
@@ -7893,6 +7901,40 @@ declare namespace $ {
 //# sourceMappingURL=outline.view.tree.d.ts.map
 declare namespace $ {
 
+	export class $mol_pop_over extends $mol_pop {
+		hovered( next?: boolean ): boolean
+		event_show( next?: any ): any
+		event_hide( next?: any ): any
+		showed( ): ReturnType< $mol_pop_over['hovered'] >
+		attr( ): ({ 
+			'tabindex': number,
+		})  & ReturnType< $mol_pop['attr'] >
+		event( ): ({ 
+			mouseenter( next?: ReturnType< $mol_pop_over['event_show'] > ): ReturnType< $mol_pop_over['event_show'] >,
+			mouseleave( next?: ReturnType< $mol_pop_over['event_hide'] > ): ReturnType< $mol_pop_over['event_hide'] >,
+		})  & ReturnType< $mol_pop['event'] >
+	}
+	
+}
+
+//# sourceMappingURL=over.view.tree.d.ts.map
+declare namespace $.$$ {
+    /**
+     * Bubble that can be shown anchored to Anchor element.
+     * @see https://mol.hyoo.ru/#!section=demos/demo=mol_pop_over_demo
+     */
+    class $mol_pop_over extends $.$mol_pop_over {
+        event_show(event?: MouseEvent): void;
+        event_hide(event?: MouseEvent): void;
+        showed(): boolean;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+
 	type $mol_view__sub_bog_smalljs_structure_row_1 = $mol_type_enforce<
 		readonly(any)[]
 		,
@@ -7908,20 +7950,20 @@ declare namespace $ {
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_button_minor__hint_bog_smalljs_structure_row_4 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_structure_row['note'] >
-		,
-		ReturnType< $mol_button_minor['hint'] >
-	>
-	type $mol_button_minor__click_bog_smalljs_structure_row_5 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_structure_row['help_click'] >
-		,
-		ReturnType< $mol_button_minor['click'] >
-	>
-	type $mol_button_minor__sub_bog_smalljs_structure_row_6 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_structure_row_4 = $mol_type_enforce<
 		readonly(any)[]
 		,
-		ReturnType< $mol_button_minor['sub'] >
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_pop_over__Anchor_bog_smalljs_structure_row_5 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_structure_row['Help_icon'] >
+		,
+		ReturnType< $mol_pop_over['Anchor'] >
+	>
+	type $mol_pop_over__bubble_content_bog_smalljs_structure_row_6 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_pop_over['bubble_content'] >
 	>
 	type $mol_view__event_bog_smalljs_structure_row_7 = $mol_type_enforce<
 		({ 
@@ -7935,20 +7977,15 @@ declare namespace $ {
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_structure_row_9 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
 	export class $bog_smalljs_structure_row extends $mol_view {
 		Prefix( ): $mol_view
 		Name( ): $mol_view
 		Comment( ): $mol_view
 		Help_icon( ): $mol_icon_help_circle_outline
-		Help( ): $mol_button_minor
+		Note( ): $mol_view
+		Help( ): $mol_pop_over
 		line_content( ): readonly(any)[]
 		Line( ): $mol_view
-		Note( ): $mol_view
 		prefix( ): string
 		name( ): string
 		pad( ): string
@@ -7958,14 +7995,11 @@ declare namespace $ {
 		active( ): boolean
 		pickable( ): boolean
 		pick( next?: any ): any
-		open( next?: boolean ): boolean
-		help_click( next?: any ): any
 		line_click( next?: any ): any
 		attr( ): ({ 
 			'bog_smalljs_structure_kind': ReturnType< $bog_smalljs_structure_row['kind'] >,
 			'bog_smalljs_structure_active': ReturnType< $bog_smalljs_structure_row['active'] >,
 			'bog_smalljs_structure_pickable': ReturnType< $bog_smalljs_structure_row['pickable'] >,
-			'bog_smalljs_structure_open': ReturnType< $bog_smalljs_structure_row['open'] >,
 		}) 
 		sub( ): readonly(any)[]
 	}
@@ -7976,21 +8010,20 @@ declare namespace $ {
 declare namespace $.$$ {
     /**
      * One line of the project tree: the box-drawing indent, the name, the comment that
-     * followed it in the listing, and a "?" that unfolds why the file or folder is
+     * followed it in the listing, and a "?" whose tooltip says why the file or folder is
      * there. A line of a list is its own component, because a keyed sub-view does not
      * pass its key down to keyed children.
+     *
+     * The explanation is a $mol_pop_over — it opens on hover (and on focus, so the
+     * keyboard reaches it) and renders in the browser's top layer, which is what keeps
+     * it whole inside the scrolling boxes this tree lives in: the docs body and the
+     * playground's side panel would both clip an ordinary absolutely positioned box.
+     * It used to unfold under the line instead, and pushed the rest of the tree down
+     * every time a reader asked what a folder was for.
      */
     class $bog_smalljs_structure_row extends $.$bog_smalljs_structure_row {
         /** No comment, no column; no explanation, no question mark. */
-        line_content(): $mol_view[];
-        sub(): $mol_view[];
-        /**
-         * The explanation unfolds under its line instead of floating over it: the tree
-         * is shown inside scroll containers (docs body, playground sidebar) where a
-         * popup would be clipped, and a tooltip is unreachable on a touch screen. The
-         * same text is on the button's `hint`, so hovering still reads it.
-         */
-        help_click(next?: any): null;
+        line_content(): ($mol_view | $.$mol_pop_over)[];
         /** A whole line is the click target when the host offers a file to open. */
         line_click(next?: any): null;
     }
@@ -15436,40 +15469,6 @@ declare namespace $ {
 
 declare namespace $ {
 
-	export class $mol_pop_over extends $mol_pop {
-		hovered( next?: boolean ): boolean
-		event_show( next?: any ): any
-		event_hide( next?: any ): any
-		showed( ): ReturnType< $mol_pop_over['hovered'] >
-		attr( ): ({ 
-			'tabindex': number,
-		})  & ReturnType< $mol_pop['attr'] >
-		event( ): ({ 
-			mouseenter( next?: ReturnType< $mol_pop_over['event_show'] > ): ReturnType< $mol_pop_over['event_show'] >,
-			mouseleave( next?: ReturnType< $mol_pop_over['event_hide'] > ): ReturnType< $mol_pop_over['event_hide'] >,
-		})  & ReturnType< $mol_pop['event'] >
-	}
-	
-}
-
-//# sourceMappingURL=over.view.tree.d.ts.map
-declare namespace $.$$ {
-    /**
-     * Bubble that can be shown anchored to Anchor element.
-     * @see https://mol.hyoo.ru/#!section=demos/demo=mol_pop_over_demo
-     */
-    class $mol_pop_over extends $.$mol_pop_over {
-        event_show(event?: MouseEvent): void;
-        event_hide(event?: MouseEvent): void;
-        showed(): boolean;
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-
 	export class $bog_builderui_tooltip extends $mol_pop_over {
 	}
 	
@@ -15633,7 +15632,6 @@ declare namespace $ {
 	export class $bog_smalljs_app extends $bog_builderui_div {
 		dir( ): string
 		hotkeys( ): any
-		locale_sync( ): any
 		lang_sync( ): any
 		route_canonical( ): any
 		Theme( ): $bog_theme_auto
@@ -15737,10 +15735,6 @@ declare namespace $.$$ {
             bog_builderui_font_body: string;
             bog_builderui_font_head: string;
         };
-        /** Honor a `?mol_locale=<code>` URL param once on load, so shared
-         *  localized links (and hreflang alternates) select the right language. */
-        locale_synced: boolean;
-        locale_sync(): null;
         /** Keep <html lang> in step with the active UI language (a11y: screen readers
          *  announce the right language; SEO: the shell no longer hard-codes one locale).
          *  The static shell ships lang="en"; this reactively corrects it on switch. */

@@ -8956,8 +8956,17 @@ var $;
                     return null;
                 return super.Lang_option_check(code);
             }
+            /** Выбор языка уезжает и в адрес.
+             *
+             *  Без этого перезагрузка приходила на английскую статику: пререндер
+             *  раскладывает по языкам ( `/mol_locale=ru/…` ), а голый адрес — это
+             *  x-default, то есть английский. Читатель видел английский текст, пока
+             *  бандл не поднимется и не вспомнит его выбор из localStorage. С языком
+             *  в адресе он с первого байта получает свою страницу, а ссылкой на неё
+             *  можно поделиться. */
             lang_select(code) {
                 this.lang(code);
+                this.$.$mol_state_arg.value('mol_locale', code);
                 this.Lang_pick().showed(false);
                 return null;
             }
@@ -17792,6 +17801,75 @@ var $;
 
 
 ;
+	($.$mol_pop_over) = class $mol_pop_over extends ($.$mol_pop) {
+		hovered(next){
+			if(next !== undefined) return next;
+			return false;
+		}
+		event_show(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		event_hide(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		showed(){
+			return (this.hovered());
+		}
+		attr(){
+			return {...(super.attr()), "tabindex": 0};
+		}
+		event(){
+			return {
+				...(super.event()), 
+				"mouseenter": (next) => (this.event_show(next)), 
+				"mouseleave": (next) => (this.event_hide(next))
+			};
+		}
+	};
+	($mol_mem(($.$mol_pop_over.prototype), "hovered"));
+	($mol_mem(($.$mol_pop_over.prototype), "event_show"));
+	($mol_mem(($.$mol_pop_over.prototype), "event_hide"));
+
+
+;
+"use strict";
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        /**
+         * Bubble that can be shown anchored to Anchor element.
+         * @see https://mol.hyoo.ru/#!section=demos/demo=mol_pop_over_demo
+         */
+        class $mol_pop_over extends $.$mol_pop_over {
+            event_show(event) {
+                this.hovered(true);
+            }
+            event_hide(event) {
+                this.hovered(false);
+            }
+            showed() {
+                return this.focused() || this.hovered();
+            }
+        }
+        $$.$mol_pop_over = $mol_pop_over;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("mol/pop/over/over.view.css", "[mol_pop_over]:focus {\r\n\toutline: none;\r\n}");
+})($ || ($ = {}));
+
+;
 	($.$bog_smalljs_structure_row) = class $bog_smalljs_structure_row extends ($.$mol_view) {
 		Prefix(){
 			const obj = new this.$.$mol_view();
@@ -17812,11 +17890,15 @@ var $;
 			const obj = new this.$.$mol_icon_help_circle_outline();
 			return obj;
 		}
+		Note(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.note())]);
+			return obj;
+		}
 		Help(){
-			const obj = new this.$.$mol_button_minor();
-			(obj.hint) = () => ((this.note()));
-			(obj.click) = (next) => ((this.help_click(next)));
-			(obj.sub) = () => ([(this.Help_icon())]);
+			const obj = new this.$.$mol_pop_over();
+			(obj.Anchor) = () => ((this.Help_icon()));
+			(obj.bubble_content) = () => ([(this.Note())]);
 			return obj;
 		}
 		line_content(){
@@ -17831,11 +17913,6 @@ var $;
 			const obj = new this.$.$mol_view();
 			(obj.event) = () => ({"click": (next) => (this.line_click(next))});
 			(obj.sub) = () => ((this.line_content()));
-			return obj;
-		}
-		Note(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.note())]);
 			return obj;
 		}
 		prefix(){
@@ -17866,14 +17943,6 @@ var $;
 			if(next !== undefined) return next;
 			return null;
 		}
-		open(next){
-			if(next !== undefined) return next;
-			return false;
-		}
-		help_click(next){
-			if(next !== undefined) return next;
-			return null;
-		}
 		line_click(next){
 			if(next !== undefined) return next;
 			return null;
@@ -17882,24 +17951,21 @@ var $;
 			return {
 				"bog_smalljs_structure_kind": (this.kind()), 
 				"bog_smalljs_structure_active": (this.active()), 
-				"bog_smalljs_structure_pickable": (this.pickable()), 
-				"bog_smalljs_structure_open": (this.open())
+				"bog_smalljs_structure_pickable": (this.pickable())
 			};
 		}
 		sub(){
-			return [(this.Line()), (this.Note())];
+			return [(this.Line())];
 		}
 	};
 	($mol_mem(($.$bog_smalljs_structure_row.prototype), "Prefix"));
 	($mol_mem(($.$bog_smalljs_structure_row.prototype), "Name"));
 	($mol_mem(($.$bog_smalljs_structure_row.prototype), "Comment"));
 	($mol_mem(($.$bog_smalljs_structure_row.prototype), "Help_icon"));
+	($mol_mem(($.$bog_smalljs_structure_row.prototype), "Note"));
 	($mol_mem(($.$bog_smalljs_structure_row.prototype), "Help"));
 	($mol_mem(($.$bog_smalljs_structure_row.prototype), "Line"));
-	($mol_mem(($.$bog_smalljs_structure_row.prototype), "Note"));
 	($mol_mem(($.$bog_smalljs_structure_row.prototype), "pick"));
-	($mol_mem(($.$bog_smalljs_structure_row.prototype), "open"));
-	($mol_mem(($.$bog_smalljs_structure_row.prototype), "help_click"));
 	($mol_mem(($.$bog_smalljs_structure_row.prototype), "line_click"));
 
 
@@ -17915,9 +17981,16 @@ var $;
     (function ($$) {
         /**
          * One line of the project tree: the box-drawing indent, the name, the comment that
-         * followed it in the listing, and a "?" that unfolds why the file or folder is
+         * followed it in the listing, and a "?" whose tooltip says why the file or folder is
          * there. A line of a list is its own component, because a keyed sub-view does not
          * pass its key down to keyed children.
+         *
+         * The explanation is a $mol_pop_over — it opens on hover (and on focus, so the
+         * keyboard reaches it) and renders in the browser's top layer, which is what keeps
+         * it whole inside the scrolling boxes this tree lives in: the docs body and the
+         * playground's side panel would both clip an ordinary absolutely positioned box.
+         * It used to unfold under the line instead, and pushed the rest of the tree down
+         * every time a reader asked what a folder was for.
          */
         class $bog_smalljs_structure_row extends $.$bog_smalljs_structure_row {
             /** No comment, no column; no explanation, no question mark. */
@@ -17928,22 +18001,6 @@ var $;
                     ...this.comment() ? [this.Comment()] : [],
                     ...this.note() ? [this.Help()] : [],
                 ];
-            }
-            sub() {
-                return [
-                    this.Line(),
-                    ...this.open() && this.note() ? [this.Note()] : [],
-                ];
-            }
-            /**
-             * The explanation unfolds under its line instead of floating over it: the tree
-             * is shown inside scroll containers (docs body, playground sidebar) where a
-             * popup would be clipped, and a tooltip is unreachable on a touch screen. The
-             * same text is on the button's `hint`, so hovering still reads it.
-             */
-            help_click(next) {
-                this.open(!this.open());
-                return null;
             }
             /** A whole line is the click target when the host offers a file to open. */
             line_click(next) {
@@ -17956,12 +18013,6 @@ var $;
         __decorate([
             $mol_mem
         ], $bog_smalljs_structure_row.prototype, "line_content", null);
-        __decorate([
-            $mol_mem
-        ], $bog_smalljs_structure_row.prototype, "sub", null);
-        __decorate([
-            $mol_action
-        ], $bog_smalljs_structure_row.prototype, "help_click", null);
         __decorate([
             $mol_action
         ], $bog_smalljs_structure_row.prototype, "line_click", null);
@@ -18014,25 +18065,37 @@ var $;
         },
         // The question mark stays quiet until the line is hovered — a column of bright
         // icons would read as decoration and pull attention off the tree itself.
-        // $mol_button is a full-size control by default; here it rides inside a line of
-        // code and has to keep that line's height.
+        // Знак вопроса не кричит: колонка ярких иконок читалась бы как украшение и
+        // тянула бы внимание с самого дерева.
         Help: {
             flex: { shrink: 0 },
-            minHeight: 0,
-            height: rem(1.25),
+            align: { items: 'center' },
             margin: { left: rem(0.375) },
-            padding: {
-                top: 0,
-                bottom: 0,
-                left: rem(0.125),
-                right: rem(0.125),
-            },
-            border: { radius: rem(0.25) },
             color: $bog_builderui_tokens.shade,
             opacity: 0.45,
+            cursor: 'help',
             ':hover': {
                 opacity: 1,
                 color: $bog_builderui_tokens.special,
+            },
+            ':focus-visible': {
+                opacity: 1,
+                color: $bog_builderui_tokens.special,
+            },
+            // Пузырь рисуется в верхнем слое браузера, поэтому оформляем его сами:
+            // собственные цвета $mol_pop берёт из темы $mol, а сайт живёт на токенах
+            // builderui.
+            Bubble: {
+                // Своя ширина, но не шире экрана: на телефоне пузырь иначе уезжает
+                // за левый край, потому что $mol_follower его не подрезает.
+                maxWidth: $mol_style_func.calc('min( 24rem, 100vw - 2rem )'),
+                border: {
+                    radius: rem(0.5),
+                    width: '1px',
+                    style: 'solid',
+                    color: $bog_builderui_tokens.line,
+                },
+                background: { color: $bog_builderui_tokens.card },
             },
         },
         Help_icon: {
@@ -18040,28 +18103,20 @@ var $;
             height: rem(0.875),
             flex: { shrink: 0 },
         },
+        // Пузырь висит в верхнем слое, но CSS наследует от строки дерева — без явного
+        // шрифта объяснение набралось бы моноширинным, как сам листинг.
         Note: {
-            margin: {
-                left: rem(1.5),
-                top: rem(0.25),
-                bottom: rem(0.5),
-            },
+            font: { family: $bog_builderui_tokens.font_body },
             padding: {
+                top: rem(0.5),
+                bottom: rem(0.5),
                 left: rem(0.75),
-                top: rem(0.125),
-                bottom: rem(0.125),
+                right: rem(0.75),
             },
-            maxWidth: rem(34),
-            border: {
-                left: {
-                    width: '2px',
-                    style: 'solid',
-                    color: $bog_builderui_tokens.special,
-                },
-            },
-            font: { size: rem(0.8125) },
+            fontSize: rem(0.8125),
             lineHeight: rem(1.5),
             color: $bog_builderui_tokens.text,
+            background: { color: $bog_builderui_tokens.card },
             whiteSpace: 'normal',
         },
         '@': {
@@ -18095,14 +18150,6 @@ var $;
                     Name: {
                         color: $bog_builderui_tokens.special,
                         font: { weight: 700 },
-                    },
-                },
-            },
-            bog_smalljs_structure_open: {
-                true: {
-                    Help: {
-                        opacity: 1,
-                        color: $bog_builderui_tokens.special,
                     },
                 },
             },
@@ -35691,75 +35738,6 @@ var $;
 })($ || ($ = {}));
 
 ;
-	($.$mol_pop_over) = class $mol_pop_over extends ($.$mol_pop) {
-		hovered(next){
-			if(next !== undefined) return next;
-			return false;
-		}
-		event_show(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		event_hide(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		showed(){
-			return (this.hovered());
-		}
-		attr(){
-			return {...(super.attr()), "tabindex": 0};
-		}
-		event(){
-			return {
-				...(super.event()), 
-				"mouseenter": (next) => (this.event_show(next)), 
-				"mouseleave": (next) => (this.event_hide(next))
-			};
-		}
-	};
-	($mol_mem(($.$mol_pop_over.prototype), "hovered"));
-	($mol_mem(($.$mol_pop_over.prototype), "event_show"));
-	($mol_mem(($.$mol_pop_over.prototype), "event_hide"));
-
-
-;
-"use strict";
-
-
-;
-"use strict";
-var $;
-(function ($) {
-    var $$;
-    (function ($$) {
-        /**
-         * Bubble that can be shown anchored to Anchor element.
-         * @see https://mol.hyoo.ru/#!section=demos/demo=mol_pop_over_demo
-         */
-        class $mol_pop_over extends $.$mol_pop_over {
-            event_show(event) {
-                this.hovered(true);
-            }
-            event_hide(event) {
-                this.hovered(false);
-            }
-            showed() {
-                return this.focused() || this.hovered();
-            }
-        }
-        $$.$mol_pop_over = $mol_pop_over;
-    })($$ = $.$$ || ($.$$ = {}));
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    $mol_style_attach("mol/pop/over/over.view.css", "[mol_pop_over]:focus {\r\n\toutline: none;\r\n}");
-})($ || ($ = {}));
-
-;
 	($.$bog_builderui_tooltip) = class $bog_builderui_tooltip extends ($.$mol_pop_over) {};
 
 
@@ -35780,9 +35758,6 @@ var $;
 			return "ltr";
 		}
 		hotkeys(){
-			return null;
-		}
-		locale_sync(){
 			return null;
 		}
 		lang_sync(){
@@ -35859,7 +35834,6 @@ var $;
 		auto(){
 			return [
 				(this.hotkeys()), 
-				(this.locale_sync()), 
 				(this.lang_sync()), 
 				(this.route_canonical())
 			];
@@ -36099,6 +36073,21 @@ var $;
              *  after them. See the class for the full reasoning. */
             static {
                 $bog_smalljs_router.activate('/smalljs/');
+                /** Язык из адреса — до первого рендера.
+                 *
+                 *  Страница `/mol_locale=ru/…` приезжает статикой на русском, но
+                 *  `$mol_locale.lang()` о ней ничего не знает: он читает localStorage и
+                 *  язык браузера. Раньше адрес доезжал до локали отдельным проходом
+                 *  ( `$mol_wire_async` из рендера — писать в чужую ячейку прямо из него
+                 *  нельзя ), и читатель успевал увидеть английский текст поверх русской
+                 *  статики. Сюда же запись попадает на загрузке модуля, когда рендера
+                 *  ещё не было: первый проход сразу на нужном языке, прыгать нечему.
+                 *
+                 *  Роутер активирован строкой выше, поэтому `$mol_state_arg` уже читает
+                 *  путь, а не только хеш. */
+                const lang_asked = $mol_state_arg.value('mol_locale');
+                if (lang_asked)
+                    $mol_state_local.value('locale', lang_asked);
                 /** Focus that goes nowhere.
                  *
                  *  $mol tracks the focused element from a capture listener on `focus`,
@@ -36306,19 +36295,6 @@ var $;
             attr() {
                 return { ...super.attr(), ...$bog_meta_attr(this) };
             }
-            /** Honor a `?mol_locale=<code>` URL param once on load, so shared
-             *  localized links (and hreflang alternates) select the right language. */
-            locale_synced = false;
-            locale_sync() {
-                if (this.locale_synced)
-                    return null;
-                const want = this.$.$mol_state_arg.value('mol_locale');
-                if (!want)
-                    return null;
-                this.locale_synced = true;
-                $mol_wire_async(this.$.$mol_locale).lang(want);
-                return null;
-            }
             /** Keep <html lang> in step with the active UI language (a11y: screen readers
              *  announce the right language; SEO: the shell no longer hard-codes one locale).
              *  The static shell ships lang="en"; this reactively corrects it on switch. */
@@ -36390,9 +36366,6 @@ var $;
         __decorate([
             $mol_action
         ], $bog_smalljs_app.prototype, "route_rewrite", null);
-        __decorate([
-            $mol_mem
-        ], $bog_smalljs_app.prototype, "locale_sync", null);
         __decorate([
             $mol_mem
         ], $bog_smalljs_app.prototype, "lang_sync", null);
