@@ -127,9 +127,18 @@ const page_card = title => ( {
 	tagline: `The <span class="accent">$mol</span> reactive framework — documentation`,
 } )
 
+// Cards are committed like the rest of assets/, so by default only the ones that
+// are missing get rendered: a new page gets its card without rewriting the other
+// thirty-seven PNGs (and the diff that comes with them). Pass --all to redo them.
+const only_missing = !process.argv.includes( '--all' )
+
 ;( async () => {
 	fs.mkdirSync( out_dir, { recursive: true } )
-	const list = pages()
+	const list = pages().filter( ( { slug } ) => !only_missing || !fs.existsSync( path.join( out_dir, `${ slug }.png` ) ) )
+	if ( !list.length && ( !only_missing || fs.existsSync( path.join( __dirname, 'og.png' ) ) ) ) {
+		console.log( 'og cards are up to date' )
+		return
+	}
 	const browser = await puppeteer.launch( { headless: 'new', args: [ '--no-sandbox' ] } )
 	const page = await browser.newPage()
 	await page.setViewport( { width: 1200, height: 630, deviceScaleFactor: 1 } )
@@ -140,7 +149,8 @@ const page_card = title => ( {
 		await page.screenshot( { path: out, type: 'png', clip: { x: 0, y: 0, width: 1200, height: 630 } } )
 	}
 
-	await shoot( home_card, path.join( __dirname, 'og.png' ) )
+	const home_out = path.join( __dirname, 'og.png' )
+	if ( !only_missing || !fs.existsSync( home_out ) ) await shoot( home_card, home_out )
 	for ( const { slug, title } of list ) {
 		await shoot( page_card( title ), path.join( out_dir, `${ slug }.png` ) )
 	}

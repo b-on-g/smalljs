@@ -7736,6 +7736,452 @@ declare namespace $ {
 //# sourceMappingURL=menu.view.tree.d.ts.map
 declare namespace $ {
 
+	type $mol_view__sub_bog_smalljs_structure_step_1 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_structure_step_2 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_structure_step_3 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_structure_step_4 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_structure_step['body_content'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	export class $bog_smalljs_structure_step extends $mol_view {
+		Number( ): $mol_view
+		Text( ): $mol_view
+		Code( ): $mol_view
+		body_content( ): readonly(any)[]
+		Body( ): $mol_view
+		number( ): string
+		text( ): string
+		code( ): string
+		sub( ): readonly(any)[]
+	}
+	
+}
+
+//# sourceMappingURL=step.view.tree.d.ts.map
+declare namespace $.$$ {
+    /** One numbered step of "how to start a project", with the command or path it names. */
+    class $bog_smalljs_structure_step extends $.$bog_smalljs_structure_step {
+        /** A step without a command is just the sentence. */
+        body_content(): $mol_view[];
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+
+	export class $mol_icon_help extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=help.view.tree.d.ts.map
+declare namespace $ {
+
+	export class $mol_icon_help_circle extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=circle.view.tree.d.ts.map
+declare namespace $ {
+
+	export class $mol_icon_help_circle_outline extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=outline.view.tree.d.ts.map
+declare namespace $ {
+
+	type $mol_view__sub_bog_smalljs_structure_row_1 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_structure_row_2 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_structure_row_3 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_button_minor__hint_bog_smalljs_structure_row_4 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_structure_row['note'] >
+		,
+		ReturnType< $mol_button_minor['hint'] >
+	>
+	type $mol_button_minor__click_bog_smalljs_structure_row_5 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_structure_row['help_click'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_button_minor__sub_bog_smalljs_structure_row_6 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_button_minor['sub'] >
+	>
+	type $mol_view__event_bog_smalljs_structure_row_7 = $mol_type_enforce<
+		({ 
+			click( next?: ReturnType< $bog_smalljs_structure_row['line_click'] > ): ReturnType< $bog_smalljs_structure_row['line_click'] >,
+		}) 
+		,
+		ReturnType< $mol_view['event'] >
+	>
+	type $mol_view__sub_bog_smalljs_structure_row_8 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_structure_row['line_content'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_structure_row_9 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	export class $bog_smalljs_structure_row extends $mol_view {
+		Prefix( ): $mol_view
+		Name( ): $mol_view
+		Comment( ): $mol_view
+		Help_icon( ): $mol_icon_help_circle_outline
+		Help( ): $mol_button_minor
+		line_content( ): readonly(any)[]
+		Line( ): $mol_view
+		Note( ): $mol_view
+		prefix( ): string
+		name( ): string
+		pad( ): string
+		comment( ): string
+		note( ): string
+		kind( ): string
+		active( ): boolean
+		pickable( ): boolean
+		pick( next?: any ): any
+		open( next?: boolean ): boolean
+		help_click( next?: any ): any
+		line_click( next?: any ): any
+		attr( ): ({ 
+			'bog_smalljs_structure_kind': ReturnType< $bog_smalljs_structure_row['kind'] >,
+			'bog_smalljs_structure_active': ReturnType< $bog_smalljs_structure_row['active'] >,
+			'bog_smalljs_structure_pickable': ReturnType< $bog_smalljs_structure_row['pickable'] >,
+			'bog_smalljs_structure_open': ReturnType< $bog_smalljs_structure_row['open'] >,
+		}) 
+		sub( ): readonly(any)[]
+	}
+	
+}
+
+//# sourceMappingURL=row.view.tree.d.ts.map
+declare namespace $.$$ {
+    /**
+     * One line of the project tree: the box-drawing indent, the name, the comment that
+     * followed it in the listing, and a "?" that unfolds why the file or folder is
+     * there. A line of a list is its own component, because a keyed sub-view does not
+     * pass its key down to keyed children.
+     */
+    class $bog_smalljs_structure_row extends $.$bog_smalljs_structure_row {
+        /** No comment, no column; no explanation, no question mark. */
+        line_content(): $mol_view[];
+        sub(): $mol_view[];
+        /**
+         * The explanation unfolds under its line instead of floating over it: the tree
+         * is shown inside scroll containers (docs body, playground sidebar) where a
+         * popup would be clipped, and a tooltip is unreachable on a touch screen. The
+         * same text is on the button's `hint`, so hovering still reads it.
+         */
+        help_click(next?: any): null;
+        /** A whole line is the click target when the host offers a file to open. */
+        line_click(next?: any): null;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+
+	type $mol_view__sub_bog_smalljs_structure_1 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_structure['rows'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_structure_2 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $bog_smalljs_structure_step__number_bog_smalljs_structure_3 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $bog_smalljs_structure_step['number'] >
+	>
+	type $bog_smalljs_structure_step__text_bog_smalljs_structure_4 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_structure['step1_text'] >
+		,
+		ReturnType< $bog_smalljs_structure_step['text'] >
+	>
+	type $bog_smalljs_structure_step__code_bog_smalljs_structure_5 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_structure['step1_code'] >
+		,
+		ReturnType< $bog_smalljs_structure_step['code'] >
+	>
+	type $bog_smalljs_structure_step__number_bog_smalljs_structure_6 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $bog_smalljs_structure_step['number'] >
+	>
+	type $bog_smalljs_structure_step__text_bog_smalljs_structure_7 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_structure['step2_text'] >
+		,
+		ReturnType< $bog_smalljs_structure_step['text'] >
+	>
+	type $bog_smalljs_structure_step__code_bog_smalljs_structure_8 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_structure['step2_code'] >
+		,
+		ReturnType< $bog_smalljs_structure_step['code'] >
+	>
+	type $bog_smalljs_structure_step__number_bog_smalljs_structure_9 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $bog_smalljs_structure_step['number'] >
+	>
+	type $bog_smalljs_structure_step__text_bog_smalljs_structure_10 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_structure['step3_text'] >
+		,
+		ReturnType< $bog_smalljs_structure_step['text'] >
+	>
+	type $bog_smalljs_structure_step__code_bog_smalljs_structure_11 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_structure['step3_code'] >
+		,
+		ReturnType< $bog_smalljs_structure_step['code'] >
+	>
+	type $bog_smalljs_structure_step__number_bog_smalljs_structure_12 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $bog_smalljs_structure_step['number'] >
+	>
+	type $bog_smalljs_structure_step__text_bog_smalljs_structure_13 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_structure['step4_text'] >
+		,
+		ReturnType< $bog_smalljs_structure_step['text'] >
+	>
+	type $bog_smalljs_structure_step__code_bog_smalljs_structure_14 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_structure['step4_code'] >
+		,
+		ReturnType< $bog_smalljs_structure_step['code'] >
+	>
+	type $bog_smalljs_structure_step__number_bog_smalljs_structure_15 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $bog_smalljs_structure_step['number'] >
+	>
+	type $bog_smalljs_structure_step__text_bog_smalljs_structure_16 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_structure['step5_text'] >
+		,
+		ReturnType< $bog_smalljs_structure_step['text'] >
+	>
+	type $bog_smalljs_structure_step__code_bog_smalljs_structure_17 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_structure['step5_code'] >
+		,
+		ReturnType< $bog_smalljs_structure_step['code'] >
+	>
+	type $mol_view__sub_bog_smalljs_structure_18 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $bog_smalljs_structure_row__prefix_bog_smalljs_structure_19 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_structure['row_prefix'] >
+		,
+		ReturnType< $bog_smalljs_structure_row['prefix'] >
+	>
+	type $bog_smalljs_structure_row__name_bog_smalljs_structure_20 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_structure['row_name'] >
+		,
+		ReturnType< $bog_smalljs_structure_row['name'] >
+	>
+	type $bog_smalljs_structure_row__pad_bog_smalljs_structure_21 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_structure['row_pad'] >
+		,
+		ReturnType< $bog_smalljs_structure_row['pad'] >
+	>
+	type $bog_smalljs_structure_row__comment_bog_smalljs_structure_22 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_structure['row_comment'] >
+		,
+		ReturnType< $bog_smalljs_structure_row['comment'] >
+	>
+	type $bog_smalljs_structure_row__note_bog_smalljs_structure_23 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_structure['row_note'] >
+		,
+		ReturnType< $bog_smalljs_structure_row['note'] >
+	>
+	type $bog_smalljs_structure_row__kind_bog_smalljs_structure_24 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_structure['row_kind'] >
+		,
+		ReturnType< $bog_smalljs_structure_row['kind'] >
+	>
+	type $bog_smalljs_structure_row__active_bog_smalljs_structure_25 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_structure['row_active'] >
+		,
+		ReturnType< $bog_smalljs_structure_row['active'] >
+	>
+	type $bog_smalljs_structure_row__pickable_bog_smalljs_structure_26 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_structure['row_pickable'] >
+		,
+		ReturnType< $bog_smalljs_structure_row['pickable'] >
+	>
+	type $bog_smalljs_structure_row__pick_bog_smalljs_structure_27 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_structure['pick'] >
+		,
+		ReturnType< $bog_smalljs_structure_row['pick'] >
+	>
+	export class $bog_smalljs_structure extends $mol_view {
+		rows( ): readonly(any)[]
+		Tree( ): $mol_view
+		Steps_title( ): $mol_view
+		Step1( ): $bog_smalljs_structure_step
+		Step2( ): $bog_smalljs_structure_step
+		Step3( ): $bog_smalljs_structure_step
+		Step4( ): $bog_smalljs_structure_step
+		Step5( ): $bog_smalljs_structure_step
+		Steps( ): $mol_view
+		tree( ): string
+		active( ): string
+		pickable( ): boolean
+		plain( ): boolean
+		steps_showed( ): boolean
+		pick( id: any, next?: any ): any
+		file( next?: any ): any
+		row_prefix( id: any): string
+		row_name( id: any): string
+		row_pad( id: any): string
+		row_comment( id: any): string
+		row_note( id: any): string
+		row_kind( id: any): string
+		row_active( id: any): boolean
+		row_pickable( id: any): boolean
+		hint_workspace( ): string
+		hint_registry( ): string
+		hint_framework( ): string
+		hint_package( ): string
+		hint_gitattributes( ): string
+		hint_registry_own( ): string
+		hint_project( ): string
+		hint_entry( ): string
+		hint_tree( ): string
+		hint_ts( ): string
+		hint_css( ): string
+		hint_submodule( ): string
+		steps_title( ): string
+		step1_text( ): string
+		step1_code( ): string
+		step2_text( ): string
+		step2_code( ): string
+		step3_text( ): string
+		step3_code( ): string
+		step4_text( ): string
+		step4_code( ): string
+		step5_text( ): string
+		step5_code( ): string
+		attr( ): ({ 
+			'bog_smalljs_structure_steps': ReturnType< $bog_smalljs_structure['steps_showed'] >,
+			'bog_smalljs_structure_plain': ReturnType< $bog_smalljs_structure['plain'] >,
+		}) 
+		sub( ): readonly(any)[]
+		Row( id: any): $bog_smalljs_structure_row
+	}
+	
+}
+
+//# sourceMappingURL=structure.view.tree.d.ts.map
+declare namespace $.$$ {
+    /** One parsed line of the ASCII tree. */
+    type row_data = {
+        /** The box-drawing glyphs that indent the line. */
+        prefix: string;
+        /** File or folder name, a folder keeping its trailing slash. */
+        name: string;
+        /** Whatever the source line wrote after the name, aligned into a column. */
+        comment: string;
+        /** Role of the line — picks the hint and the colour. */
+        kind: string;
+    };
+    /**
+     * A project layout drawn as the reader would see it in a file manager, with a "?"
+     * on every line that explains why the folder is there at all.
+     *
+     * The tree is not hard-coded: the host passes the same plain ASCII listing that a
+     * markdown page would print, and this parses it. That keeps one source of truth per
+     * place it is shown — the docs page keeps its listing inside the .md (so the raw
+     * .md endpoint still reads correctly), and the playground builds one from the
+     * example currently open.
+     */
+    export class $bog_smalljs_structure extends $.$bog_smalljs_structure {
+        /**
+         * Parsed lines, keyed by index so a repeated file name (two `index.html`) still
+         * gets a view of its own. The key carries the name after the colon, so a host
+         * handling a click reads the file name straight off it.
+         */
+        lines(): readonly row_data[];
+        /** Row keys: index for uniqueness, name for whoever handles a click. */
+        keys(): readonly string[];
+        line(key: string): row_data;
+        /** Name of the file or folder a row key points at. */
+        static file(key: string): string;
+        rows(): $.$bog_smalljs_structure_row[];
+        sub(): $mol_view[];
+        /**
+         * Comments line up in a column the way they do in the source listing: the name
+         * is padded to the width of the longest line, in the same monospace font. Doing
+         * it here rather than with a grid keeps a row a plain flex line, so the "?" and
+         * its explanation can sit inside it.
+         */
+        width(): number;
+        /** A listing with nothing to align needs no column: the "?" follows the name. */
+        commented(): boolean;
+        row_prefix(key: string): string;
+        row_name(key: string): string;
+        row_pad(key: string): string;
+        row_comment(key: string): string;
+        row_kind(key: string): string;
+        row_active(key: string): boolean;
+        row_pickable(key: string): boolean;
+        /**
+         * A click on a row leaves as the file name, not as a row key: the host binds a
+         * plain `file?` and gets `hello.view.ts`. The key is this component's own
+         * business, and a keyed property cannot be bound from outside anyway.
+         */
+        pick(key: string, next?: any): null;
+        /** The "why is this here" text, one per role rather than one per line. */
+        row_note(key: string): string;
+    }
+    export {};
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+
 	export class $mol_icon_play extends $mol_icon {
 		path( ): string
 	}
@@ -9041,7 +9487,7 @@ declare namespace $ {
      * зависимостей, поэтому перечисляем нужное здесь — в TS только `/** *\/`
      * тащит модули в граф:
      * $mol_view $mol_string $mol_password $mol_button_major $mol_button_minor
-     * $mol_row $mol_check $mol_fetch $mol_state_arg $mol_state_local
+     * $mol_row $mol_link $mol_check $mol_fetch $mol_state_arg $mol_state_local
      */
     type $bog_smalljs_playground_sample = {
         /** Корневой компонент примера — по нему видно, что редактор всё ещё на нём. */
@@ -9057,35 +9503,35 @@ declare namespace $ {
 
 declare namespace $ {
 
-	type $mol_button_minor__click_bog_smalljs_playground_1 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_playground['show_tree'] >
-		,
-		ReturnType< $mol_button_minor['click'] >
-	>
-	type $mol_button_minor__sub_bog_smalljs_playground_2 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_playground_1 = $mol_type_enforce<
 		readonly(any)[]
 		,
-		ReturnType< $mol_button_minor['sub'] >
+		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_button_minor__click_bog_smalljs_playground_3 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_playground['show_ts'] >
+	type $bog_smalljs_structure__tree_bog_smalljs_playground_2 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['files_tree'] >
 		,
-		ReturnType< $mol_button_minor['click'] >
+		ReturnType< $bog_smalljs_structure['tree'] >
 	>
-	type $mol_button_minor__sub_bog_smalljs_playground_4 = $mol_type_enforce<
-		readonly(any)[]
+	type $bog_smalljs_structure__active_bog_smalljs_playground_3 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['active_file'] >
 		,
-		ReturnType< $mol_button_minor['sub'] >
+		ReturnType< $bog_smalljs_structure['active'] >
 	>
-	type $mol_button_minor__click_bog_smalljs_playground_5 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_playground['show_css'] >
+	type $bog_smalljs_structure__pickable_bog_smalljs_playground_4 = $mol_type_enforce<
+		boolean
 		,
-		ReturnType< $mol_button_minor['click'] >
+		ReturnType< $bog_smalljs_structure['pickable'] >
 	>
-	type $mol_button_minor__sub_bog_smalljs_playground_6 = $mol_type_enforce<
-		readonly(any)[]
+	type $bog_smalljs_structure__plain_bog_smalljs_playground_5 = $mol_type_enforce<
+		boolean
 		,
-		ReturnType< $mol_button_minor['sub'] >
+		ReturnType< $bog_smalljs_structure['plain'] >
+	>
+	type $bog_smalljs_structure__file_bog_smalljs_playground_6 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['file_pick'] >
+		,
+		ReturnType< $bog_smalljs_structure['file'] >
 	>
 	type $mol_view__sub_bog_smalljs_playground_7 = $mol_type_enforce<
 		readonly(any)[]
@@ -9093,194 +9539,192 @@ declare namespace $ {
 		ReturnType< $mol_view['sub'] >
 	>
 	type $mol_view__sub_bog_smalljs_playground_8 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_button_minor__click_bog_smalljs_playground_9 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['show_tree'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_button_minor__sub_bog_smalljs_playground_10 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_button_minor['sub'] >
+	>
+	type $mol_button_minor__click_bog_smalljs_playground_11 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['show_ts'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_button_minor__sub_bog_smalljs_playground_12 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_button_minor['sub'] >
+	>
+	type $mol_button_minor__click_bog_smalljs_playground_13 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['show_css'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_button_minor__sub_bog_smalljs_playground_14 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_button_minor['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_playground_15 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_playground_16 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['sample_options'] >
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_pick__hint_bog_smalljs_playground_9 = $mol_type_enforce<
+	type $mol_pick__hint_bog_smalljs_playground_17 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['samples_hint'] >
 		,
 		ReturnType< $mol_pick['hint'] >
 	>
-	type $mol_pick__align_bog_smalljs_playground_10 = $mol_type_enforce<
+	type $mol_pick__align_bog_smalljs_playground_18 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_pick['align'] >
 	>
-	type $mol_pick__trigger_content_bog_smalljs_playground_11 = $mol_type_enforce<
+	type $mol_pick__trigger_content_bog_smalljs_playground_19 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_pick['trigger_content'] >
 	>
-	type $mol_pick__bubble_content_bog_smalljs_playground_12 = $mol_type_enforce<
+	type $mol_pick__bubble_content_bog_smalljs_playground_20 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_pick['bubble_content'] >
 	>
-	type $mol_button_minor__hint_bog_smalljs_playground_13 = $mol_type_enforce<
+	type $mol_button_minor__hint_bog_smalljs_playground_21 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['layout_title'] >
 		,
 		ReturnType< $mol_button_minor['hint'] >
 	>
-	type $mol_button_minor__click_bog_smalljs_playground_14 = $mol_type_enforce<
+	type $mol_button_minor__click_bog_smalljs_playground_22 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['layout_toggle'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_button_minor__sub_bog_smalljs_playground_15 = $mol_type_enforce<
+	type $mol_button_minor__sub_bog_smalljs_playground_23 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_button_minor['sub'] >
 	>
-	type $mol_button_minor__hint_bog_smalljs_playground_16 = $mol_type_enforce<
+	type $mol_button_minor__hint_bog_smalljs_playground_24 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['share_title'] >
 		,
 		ReturnType< $mol_button_minor['hint'] >
 	>
-	type $mol_button_minor__click_bog_smalljs_playground_17 = $mol_type_enforce<
+	type $mol_button_minor__click_bog_smalljs_playground_25 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['share'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_button_minor__sub_bog_smalljs_playground_18 = $mol_type_enforce<
+	type $mol_button_minor__sub_bog_smalljs_playground_26 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_button_minor['sub'] >
 	>
-	type $mol_button_minor__hint_bog_smalljs_playground_19 = $mol_type_enforce<
+	type $mol_button_minor__hint_bog_smalljs_playground_27 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['reset_hint'] >
 		,
 		ReturnType< $mol_button_minor['hint'] >
 	>
-	type $mol_button_minor__click_bog_smalljs_playground_20 = $mol_type_enforce<
+	type $mol_button_minor__click_bog_smalljs_playground_28 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['reset'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_button_minor__sub_bog_smalljs_playground_21 = $mol_type_enforce<
+	type $mol_button_minor__sub_bog_smalljs_playground_29 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_button_minor['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_22 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_playground_30 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['tabs_content'] >
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_23 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_playground_31 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_textarea__value_bog_smalljs_playground_24 = $mol_type_enforce<
+	type $mol_textarea__value_bog_smalljs_playground_32 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['draft'] >
 		,
 		ReturnType< $mol_textarea['value'] >
 	>
-	type $mol_textarea__hint_bog_smalljs_playground_25 = $mol_type_enforce<
+	type $mol_textarea__hint_bog_smalljs_playground_33 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['editor_hint'] >
 		,
 		ReturnType< $mol_textarea['hint'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_26 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_playground_34 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_textarea__value_bog_smalljs_playground_27 = $mol_type_enforce<
+	type $mol_textarea__value_bog_smalljs_playground_35 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['ts_draft'] >
 		,
 		ReturnType< $mol_textarea['value'] >
 	>
-	type $mol_textarea__hint_bog_smalljs_playground_28 = $mol_type_enforce<
+	type $mol_textarea__hint_bog_smalljs_playground_36 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['editor_hint_ts'] >
 		,
 		ReturnType< $mol_textarea['hint'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_29 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_playground_37 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_textarea__value_bog_smalljs_playground_30 = $mol_type_enforce<
+	type $mol_textarea__value_bog_smalljs_playground_38 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['css_draft'] >
 		,
 		ReturnType< $mol_textarea['value'] >
 	>
-	type $mol_textarea__hint_bog_smalljs_playground_31 = $mol_type_enforce<
+	type $mol_textarea__hint_bog_smalljs_playground_39 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['editor_hint_css'] >
 		,
 		ReturnType< $mol_textarea['hint'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_32 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_playground_40 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_33 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_playground_41 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_button_minor__click_bog_smalljs_playground_34 = $mol_type_enforce<
+	type $mol_button_minor__click_bog_smalljs_playground_42 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_playground['log_toggle'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_button_minor__sub_bog_smalljs_playground_35 = $mol_type_enforce<
+	type $mol_button_minor__sub_bog_smalljs_playground_43 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_button_minor['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_playground_36 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_playground_44 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_playground_37 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_playground['preview_content'] >
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_playground_38 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_button_minor__hint_bog_smalljs_playground_39 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_playground['log_clear_hint'] >
-		,
-		ReturnType< $mol_button_minor['hint'] >
-	>
-	type $mol_button_minor__click_bog_smalljs_playground_40 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_playground['log_clear'] >
-		,
-		ReturnType< $mol_button_minor['click'] >
-	>
-	type $mol_button_minor__sub_bog_smalljs_playground_41 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_button_minor['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_playground_42 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_playground_43 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_playground['log_rows'] >
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__attr_bog_smalljs_playground_44 = $mol_type_enforce<
-		({ 
-			'bog_smalljs_pg_log_shown': ReturnType< $bog_smalljs_playground['log_shown'] >,
-		})  & ReturnType< $mol_view['attr'] >
-		,
-		ReturnType< $mol_view['attr'] >
 	>
 	type $mol_view__sub_bog_smalljs_playground_45 = $mol_type_enforce<
-		readonly(any)[]
+		ReturnType< $bog_smalljs_playground['preview_content'] >
 		,
 		ReturnType< $mol_view['sub'] >
 	>
@@ -9289,29 +9733,75 @@ declare namespace $ {
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_button_minor__click_bog_smalljs_playground_47 = $mol_type_enforce<
-		ReturnType< $bog_smalljs_playground['sample_pick'] >
+	type $mol_button_minor__hint_bog_smalljs_playground_47 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['log_clear_hint'] >
+		,
+		ReturnType< $mol_button_minor['hint'] >
+	>
+	type $mol_button_minor__click_bog_smalljs_playground_48 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['log_clear'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_button_minor__sub_bog_smalljs_playground_48 = $mol_type_enforce<
+	type $mol_button_minor__sub_bog_smalljs_playground_49 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_button_minor['sub'] >
-	>
-	type $mol_view__attr_bog_smalljs_playground_49 = $mol_type_enforce<
-		({ 
-			'bog_smalljs_pg_level': ReturnType< $bog_smalljs_playground['log_level'] >,
-		})  & ReturnType< $mol_view['attr'] >
-		,
-		ReturnType< $mol_view['attr'] >
 	>
 	type $mol_view__sub_bog_smalljs_playground_50 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
+	type $mol_view__sub_bog_smalljs_playground_51 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['log_rows'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__attr_bog_smalljs_playground_52 = $mol_type_enforce<
+		({ 
+			'bog_smalljs_pg_log_shown': ReturnType< $bog_smalljs_playground['log_shown'] >,
+		})  & ReturnType< $mol_view['attr'] >
+		,
+		ReturnType< $mol_view['attr'] >
+	>
+	type $mol_view__sub_bog_smalljs_playground_53 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_playground_54 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_button_minor__click_bog_smalljs_playground_55 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_playground['sample_pick'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_button_minor__sub_bog_smalljs_playground_56 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_button_minor['sub'] >
+	>
+	type $mol_view__attr_bog_smalljs_playground_57 = $mol_type_enforce<
+		({ 
+			'bog_smalljs_pg_level': ReturnType< $bog_smalljs_playground['log_level'] >,
+		})  & ReturnType< $mol_view['attr'] >
+		,
+		ReturnType< $mol_view['attr'] >
+	>
+	type $mol_view__sub_bog_smalljs_playground_58 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
 	export class $bog_smalljs_playground extends $mol_view {
+		Files_label( ): $mol_view
+		Files_tree( ): $bog_smalljs_structure
+		Files_note( ): $mol_view
+		Files( ): $mol_view
 		show_tree( next?: any ): any
 		tree_tab_label( ): string
 		Tree_tab( ): $mol_button_minor
@@ -9388,6 +9878,7 @@ declare namespace $ {
 		sample_counter_title( ): string
 		sample_fetch_title( ): string
 		sample_args_title( ): string
+		sample_routing_title( ): string
 		sample_state_title( ): string
 		sample_login_title( ): string
 		Sample_option( id: any): $mol_button_minor
@@ -9396,9 +9887,16 @@ declare namespace $ {
 		editors_mode( next?: string ): string
 		layout_hint( ): string
 		layout_hint_tabs( ): string
+		files_showed( ): boolean
+		files_tree( ): string
+		active_file( ): string
+		file_pick( next?: any ): any
+		files_title( ): string
+		files_note( ): string
 		attr( ): ({ 
 			'bog_smalljs_pg_tab': ReturnType< $bog_smalljs_playground['tab'] >,
 			'bog_smalljs_pg_editors': ReturnType< $bog_smalljs_playground['editors_mode'] >,
+			'bog_smalljs_pg_files': ReturnType< $bog_smalljs_playground['files_showed'] >,
 		}) 
 		sub( ): readonly(any)[]
 		log_open( next?: boolean ): boolean
@@ -9440,6 +9938,41 @@ declare namespace $.$$ {
         tree_is_default(): boolean;
         default_css(): string;
         default_ts(): string;
+        /**
+         * Слева от редактора — то же дерево проекта, что и в доках, но заполненное
+         * текущим примером. Начинающий приходит в песочницу с архитектурой реакта в
+         * голове и видит три файла без адреса; здесь у них появляется место: пакет,
+         * проект, модуль. Клик по файлу открывает его во вкладке.
+         *
+         * У встраивателя (курс) колонка узкая и сценарий свой — там панели нет.
+         */
+        files_showed(): boolean;
+        /**
+         * Путь модуля выводим из корневого компонента примера: my_demo живёт в
+         * my/demo/, потому что подчёркивание в имени и есть разделитель папок.
+         * Имя пишем без ведущего знака доллара нарочно: в doc-комментарии он тащил
+         * бы несуществующий модуль в граф сборки.
+         * Свой сниппет, открытый из доков, назовётся по-своему — дерево подстроится.
+         */
+        module_path(): readonly string[];
+        /** Имя модуля — последний сегмент пути: из него и собираются имена файлов. */
+        module_name(): string;
+        /** Файлы модуля в том порядке, в каком они лежат на диске. */
+        module_files(): string[];
+        /**
+         * Дерево рисуется тем же текстом, который в доках лежит в разметке страницы:
+         * компонент разбирает обычный ASCII-листинг, никакой отдельной модели.
+         */
+        files_tree(): string;
+        /** Открытая вкладка подсвечивается в дереве как открытый файл. */
+        active_file(): string;
+        /**
+         * Клик по файлу в дереве открывает его: дерево отдаёт имя файла, суффикс
+         * решает, какая это вкладка. `.view.css.ts` проверяем раньше `.view.ts`:
+         * второй суффикс — конец первого.
+         */
+        file_pick(file?: string): null;
+        sub(): $mol_view[];
         tab(next?: string): string;
         show_tree(): null;
         show_ts(): null;
@@ -9558,6 +10091,11 @@ declare namespace $ {
 		,
 		ReturnType< $bog_smalljs_text_code['playground_showed'] >
 	>
+	type $bog_smalljs_structure__tree_bog_smalljs_text_10 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_text['pre_text'] >
+		,
+		ReturnType< $bog_smalljs_structure['tree'] >
+	>
 	export class $bog_smalljs_text extends $mol_text {
 		pre_text( id: any): string
 		pre_themes( id: any): readonly(string)[]
@@ -9570,6 +10108,7 @@ declare namespace $ {
 		pre_playground_arg( id: any): Record<string, any>
 		pre_playground_showed( id: any): boolean
 		Pre( id: any): $bog_smalljs_text_code
+		Structure( id: any): $bog_smalljs_structure
 	}
 	
 	type $mol_button_minor__click_bog_smalljs_text_code_1 = $mol_type_enforce<
@@ -9655,6 +10194,18 @@ declare namespace $.$$ {
         pre_text(index: number): string;
         pre_themes(index: number): string[];
         uri_resolve(uri: string): string;
+        /**
+         * A ```structure fence is not code but a project layout, so it renders as the
+         * interactive tree instead of a code block: same listing, plus a "?" per line
+         * explaining why the folder is there. The listing stays inside the markdown, so
+         * the raw .md endpoint (and any reader who never loads the site) still gets it.
+         *
+         * $mol_text picks a component per flow token, and the switch below is its own,
+         * one case richer. It is repeated rather than delegated because the base builds
+         * the whole list in one memoized pass — calling it from an override of itself
+         * would re-enter the same cell.
+         */
+        rows(): ($mol_view | $.$mol_paragraph | $.$mol_grid | $.$bog_smalljs_structure | $.$bog_smalljs_text_code)[];
         /** Raw fence info-string of a code block (chunk 1 of the flow token), e.g. `tree-no-run`. */
         pre_info(index: number): any;
         /** Fence language with any author flag stripped, e.g. `tree`, `typescript`. */
@@ -10624,12 +11175,60 @@ declare namespace $ {
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_landing_55 = $mol_type_enforce<
+	type $mol_view__dom_name_bog_smalljs_landing_55 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_view['dom_name'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_56 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_link__arg_bog_smalljs_landing_56 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_landing_57 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $bog_smalljs_structure__tree_bog_smalljs_landing_58 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_landing['arch_tree'] >
+		,
+		ReturnType< $bog_smalljs_structure['tree'] >
+	>
+	type $bog_smalljs_structure__steps_showed_bog_smalljs_landing_59 = $mol_type_enforce<
+		boolean
+		,
+		ReturnType< $bog_smalljs_structure['steps_showed'] >
+	>
+	type $mol_link__arg_bog_smalljs_landing_60 = $mol_type_enforce<
+		({ 
+			'section': string,
+			'page': string,
+		}) 
+		,
+		ReturnType< $mol_link['arg'] >
+	>
+	type $mol_link__sub_bog_smalljs_landing_61 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_62 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_63 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_64 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_link__arg_bog_smalljs_landing_65 = $mol_type_enforce<
 		({ 
 			'section': string,
 			'page': any,
@@ -10637,12 +11236,12 @@ declare namespace $ {
 		,
 		ReturnType< $mol_link['arg'] >
 	>
-	type $mol_link__sub_bog_smalljs_landing_57 = $mol_type_enforce<
+	type $mol_link__sub_bog_smalljs_landing_66 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_link['sub'] >
 	>
-	type $mol_link__arg_bog_smalljs_landing_58 = $mol_type_enforce<
+	type $mol_link__arg_bog_smalljs_landing_67 = $mol_type_enforce<
 		({ 
 			'section': string,
 			'a': string,
@@ -10652,32 +11251,32 @@ declare namespace $ {
 		,
 		ReturnType< $mol_link['arg'] >
 	>
-	type $mol_link__sub_bog_smalljs_landing_59 = $mol_type_enforce<
+	type $mol_link__sub_bog_smalljs_landing_68 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_link['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_landing_60 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_landing_69 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_landing_61 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_landing_70 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_landing_62 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_landing_71 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_link__title_bog_smalljs_landing_63 = $mol_type_enforce<
+	type $mol_link__title_bog_smalljs_landing_72 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_link__arg_bog_smalljs_landing_64 = $mol_type_enforce<
+	type $mol_link__arg_bog_smalljs_landing_73 = $mol_type_enforce<
 		({ 
 			'section': string,
 			'page': string,
@@ -10685,72 +11284,18 @@ declare namespace $ {
 		,
 		ReturnType< $mol_link['arg'] >
 	>
-	type $mol_link__title_bog_smalljs_landing_65 = $mol_type_enforce<
+	type $mol_link__title_bog_smalljs_landing_74 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_link__arg_bog_smalljs_landing_66 = $mol_type_enforce<
+	type $mol_link__arg_bog_smalljs_landing_75 = $mol_type_enforce<
 		({ 
 			'section': string,
 			'page': string,
 		}) 
 		,
 		ReturnType< $mol_link['arg'] >
-	>
-	type $mol_link__title_bog_smalljs_landing_67 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['title'] >
-	>
-	type $mol_link__arg_bog_smalljs_landing_68 = $mol_type_enforce<
-		({ 
-			'section': string,
-			'page': string,
-		}) 
-		,
-		ReturnType< $mol_link['arg'] >
-	>
-	type $mol_link__title_bog_smalljs_landing_69 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['title'] >
-	>
-	type $mol_link__arg_bog_smalljs_landing_70 = $mol_type_enforce<
-		({ 
-			'section': string,
-			'page': string,
-		}) 
-		,
-		ReturnType< $mol_link['arg'] >
-	>
-	type $mol_link__title_bog_smalljs_landing_71 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['title'] >
-	>
-	type $mol_link__arg_bog_smalljs_landing_72 = $mol_type_enforce<
-		({ 
-			'section': string,
-			'page': string,
-		}) 
-		,
-		ReturnType< $mol_link['arg'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_73 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_74 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_75 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
 	>
 	type $mol_link__title_bog_smalljs_landing_76 = $mol_type_enforce<
 		string
@@ -10837,60 +11382,69 @@ declare namespace $ {
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_link__uri_bog_smalljs_landing_90 = $mol_type_enforce<
-		string
+	type $mol_link__arg_bog_smalljs_landing_90 = $mol_type_enforce<
+		({ 
+			'section': string,
+			'page': string,
+		}) 
 		,
-		ReturnType< $mol_link['uri'] >
+		ReturnType< $mol_link['arg'] >
 	>
-	type $mol_link__target_bog_smalljs_landing_91 = $mol_type_enforce<
-		string
+	type $mol_view__sub_bog_smalljs_landing_91 = $mol_type_enforce<
+		readonly(any)[]
 		,
-		ReturnType< $mol_link['target'] >
+		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_link__title_bog_smalljs_landing_92 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_landing_92 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_93 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_link__title_bog_smalljs_landing_94 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_link__uri_bog_smalljs_landing_93 = $mol_type_enforce<
-		string
+	type $mol_link__arg_bog_smalljs_landing_95 = $mol_type_enforce<
+		({ 
+			'section': string,
+			'page': string,
+		}) 
 		,
-		ReturnType< $mol_link['uri'] >
+		ReturnType< $mol_link['arg'] >
 	>
-	type $mol_link__target_bog_smalljs_landing_94 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['target'] >
-	>
-	type $mol_link__title_bog_smalljs_landing_95 = $mol_type_enforce<
+	type $mol_link__title_bog_smalljs_landing_96 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_link__uri_bog_smalljs_landing_96 = $mol_type_enforce<
+	type $mol_link__arg_bog_smalljs_landing_97 = $mol_type_enforce<
+		({ 
+			'section': string,
+			'page': string,
+		}) 
+		,
+		ReturnType< $mol_link['arg'] >
+	>
+	type $mol_link__title_bog_smalljs_landing_98 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_link__uri_bog_smalljs_landing_99 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__target_bog_smalljs_landing_97 = $mol_type_enforce<
+	type $mol_link__target_bog_smalljs_landing_100 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['target'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_98 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_99 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_smalljs_landing_100 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
 	>
 	type $mol_link__title_bog_smalljs_landing_101 = $mol_type_enforce<
 		string
@@ -10922,20 +11476,20 @@ declare namespace $ {
 		,
 		ReturnType< $mol_link['target'] >
 	>
-	type $mol_link__title_bog_smalljs_landing_107 = $mol_type_enforce<
-		string
+	type $mol_view__sub_bog_smalljs_landing_107 = $mol_type_enforce<
+		readonly(any)[]
 		,
-		ReturnType< $mol_link['title'] >
+		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_link__uri_bog_smalljs_landing_108 = $mol_type_enforce<
-		string
+	type $mol_view__sub_bog_smalljs_landing_108 = $mol_type_enforce<
+		readonly(any)[]
 		,
-		ReturnType< $mol_link['uri'] >
+		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_link__target_bog_smalljs_landing_109 = $mol_type_enforce<
-		string
+	type $mol_view__sub_bog_smalljs_landing_109 = $mol_type_enforce<
+		readonly(any)[]
 		,
-		ReturnType< $mol_link['target'] >
+		ReturnType< $mol_view['sub'] >
 	>
 	type $mol_link__title_bog_smalljs_landing_110 = $mol_type_enforce<
 		string
@@ -10982,37 +11536,82 @@ declare namespace $ {
 		,
 		ReturnType< $mol_link['target'] >
 	>
-	type $mol_view__sub_bog_smalljs_landing_119 = $mol_type_enforce<
+	type $mol_link__title_bog_smalljs_landing_119 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_link__uri_bog_smalljs_landing_120 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__target_bog_smalljs_landing_121 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['target'] >
+	>
+	type $mol_link__title_bog_smalljs_landing_122 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_link__uri_bog_smalljs_landing_123 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__target_bog_smalljs_landing_124 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['target'] >
+	>
+	type $mol_link__title_bog_smalljs_landing_125 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_link__uri_bog_smalljs_landing_126 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__target_bog_smalljs_landing_127 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['target'] >
+	>
+	type $mol_view__sub_bog_smalljs_landing_128 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_landing_120 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_landing_129 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_landing_121 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_landing_130 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_landing_122 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_landing_131 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_landing_123 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_landing_132 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_landing_124 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_landing_133 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_smalljs_landing_125 = $mol_type_enforce<
+	type $mol_view__sub_bog_smalljs_landing_134 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
@@ -11080,6 +11679,18 @@ declare namespace $ {
 		Feature3_text( ): $mol_text
 		Feature3( ): $mol_view
 		Features( ): $mol_view
+		arch_eyebrow_text( ): string
+		Arch_eyebrow( ): $mol_view
+		arch_title_text( ): string
+		Arch_title( ): $mol_view
+		arch_line_text( ): string
+		Arch_line( ): $mol_view
+		arch_tree( ): string
+		Arch_structure( ): $bog_smalljs_structure
+		arch_link_label( ): string
+		Arch_link_icon( ): $mol_icon_arrow_right
+		Arch_link( ): $mol_link
+		Arch( ): $mol_view
 		versus_eyebrow_text( ): string
 		Versus_eyebrow( ): $mol_view
 		versus_line_text( ): string
@@ -11133,6 +11744,12 @@ declare namespace $ {
 		Footer_copy_line2( ): $mol_view
 		Footer_copy( ): $mol_view
 		Footer( ): $mol_view
+		arch_label_workspace( ): string
+		arch_label_registry( ): string
+		arch_label_framework( ): string
+		arch_label_package( ): string
+		arch_label_registry_own( ): string
+		arch_label_project( ): string
 		sub( ): readonly(any)[]
 	}
 	
@@ -11170,6 +11787,16 @@ declare namespace $.$$ {
          * нет. Это он: обычный TypeScript, свойства проверяются типами.
          */
         code_css(): string;
+        /**
+         * Раскладка, которая есть у любого проекта на $mol, урезанная до строк,
+         * отвечающих на вопрос «куда класть свой код»: воркспейс, фреймворк рядом,
+         * ваш пакет и один проект внутри со своим репозиторием. В доках то же дерево
+         * показано вместе с файлами модуля — здесь речь про владение, а не про файлы.
+         *
+         * Собирается строками, а не разметкой: компонент разбирает ровно тот листинг,
+         * который читатель скопировал бы из доков. Подписи — локализуемые, пути — нет.
+         */
+        arch_tree(): string;
     }
 }
 
