@@ -2988,6 +2988,15 @@ h6[mol_text_header] {
 		[bog_builderui_lights="light"] [mol_text_code_token_type="tree-string"] { color: hsl( 96, 42%, 34.5% ) }
 		[bog_builderui_lights="light"] [mol_text_code_token_type="tree-oper"] { color: hsl( 210, 62%, 45.5% ) }
 		[bog_builderui_lights="light"] [mol_text_code_token_type="tree-prim"] { color: hsl( 45, 72%, 31.5% ) }
+
+		/* То же самое для «как в системе»: тему там выбирает медиа-запрос, а не
+		   значение атрибута ( см. палитру в app.view.css.ts ). */
+		@media ( prefers-color-scheme: light ) {
+			[bog_builderui_lights="system"] [mol_text_code_token_type="tree-comp"] { color: hsl( 28, 80%, 38% ) }
+			[bog_builderui_lights="system"] [mol_text_code_token_type="tree-string"] { color: hsl( 96, 42%, 34.5% ) }
+			[bog_builderui_lights="system"] [mol_text_code_token_type="tree-oper"] { color: hsl( 210, 62%, 45.5% ) }
+			[bog_builderui_lights="system"] [mol_text_code_token_type="tree-prim"] { color: hsl( 45, 72%, 31.5% ) }
+		}
 	</style><style id="$mol_style_attach:$bog_smalljs_docs">[bog_smalljs_docs] {
 	display: grid;
 	grid-template-columns: 16rem minmax(0, 1fr) 15rem;
@@ -6182,7 +6191,8 @@ h6[mol_text_header] {
 			--bog_builderui_back: #faf9f7;
 			--bog_builderui_card: #ffffff;
 		}
-		[bog_smalljs_app][bog_builderui_base][bog_builderui_lights="dark"] {
+		[bog_smalljs_app][bog_builderui_base][bog_builderui_lights="dark"],
+		[bog_smalljs_app][bog_builderui_base][bog_builderui_lights="system"] {
 			--bog_builderui_control: hsl( 210, 72%, 64% );
 			--bog_builderui_focus: hsl( 210, 76%, 72% );
 			--bog_builderui_current: hsl( 210, 72%, 64% );
@@ -6190,6 +6200,17 @@ h6[mol_text_header] {
 			--bog_builderui_text: #d4d4d8;
 			--bog_builderui_back: #18181b;
 			--bog_builderui_card: #09090b;
+		}
+		@media ( prefers-color-scheme: light ) {
+			[bog_smalljs_app][bog_builderui_base][bog_builderui_lights="system"] {
+				--bog_builderui_control: hsl( 210, 68%, 42% );
+				--bog_builderui_focus: hsl( 210, 72%, 36% );
+				--bog_builderui_current: hsl( 210, 68%, 42% );
+				--bog_builderui_special: hsl( 26, 82%, 44% );
+				--bog_builderui_text: #09090b;
+				--bog_builderui_back: #faf9f7;
+				--bog_builderui_card: #ffffff;
+			}
 		}
 	</style><style id="$mol_style_attach:$bog_smalljs_app.fonts">
 		@font-face {
