@@ -36192,6 +36192,12 @@ var $;
     // красится без участия JS ( см. lights() в app.view.ts ). Значит и здешние
     // перекрытия обязаны знать про `system`: иначе на нём отвалятся ровно они, и
     // сайт покажет сырую палитру builderui вместо своей.
+    // Пара к скрипту в <head> оболочки: пока язык страницы и язык читателя
+    // разошлись, содержимое не показываем. Прячем детей корня, а не сам корень —
+    // фон и геометрия остаются на месте, поэтому это не мигание, а пауза.
+    $mol_style_attach('$bog_smalljs_app.boot', `
+		html[bog_smalljs_boot="wait"] [bog_smalljs_app] > * { visibility: hidden }
+	`);
     $mol_style_attach('$bog_smalljs_app.palette', `
 		[bog_smalljs_app][bog_builderui_base][bog_builderui_lights="light"] {
 			--bog_builderui_control: hsl( 210, 68%, 42% );
