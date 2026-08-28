@@ -14598,7 +14598,18 @@ declare namespace $.$$ {
         open_search(): null;
         search_toggle(): null;
         hotkeys(): null;
-        lights(): "light" | "dark";
+        /** Светлая тема, тёмная или «как в системе».
+         *
+         *  Третье значение не для красоты: пока в разметке стоял конкретный
+         *  `light` или `dark`, пререндеренная страница приезжала запечённой в ту
+         *  тему, в которой её сняли. Читателю с тёмной системой каждая холодная
+         *  загрузка светила белым, пока не выполнится бандл. С `system` первый
+         *  кадр красит один CSS: у builderui на этот случай есть
+         *  `@media (prefers-color-scheme: light)`, а без него значение тёмное.
+         *
+         *  Явный выбор в переключателе по-прежнему приезжает сюда как `light`
+         *  или `dark` и системный запрос перебивает. */
+        lights(): "light" | "dark" | "system";
         /** Right-to-left layout for RTL languages (currently Persian). */
         dir(): "rtl" | "ltr";
         body_content(): $.$bog_smalljs_playground[] | $.$bog_smalljs_docs[] | $.$bog_smalljs_course[] | $.$bog_smalljs_versus_pair[] | $.$bog_smalljs_versus[] | $.$bog_smalljs_landing[];
