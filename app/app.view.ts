@@ -52,6 +52,25 @@ namespace $.$$ {
 			 *  путь, а не только хеш. */
 			const lang_asked = $mol_state_arg.value( 'mol_locale' )
 			if( lang_asked ) $mol_state_local.value( 'locale', lang_asked )
+			else {
+
+				/** Язык есть, а в адресе его нет.
+				 *
+				 *  Так бывает у того, кто пришёл по голой ссылке: статика на ней
+				 *  английская, потому что безъязыкий адрес — это x-default. Кадр
+				 *  на английском читатель уже увидел, тут ничего не поделать, но
+				 *  дальше адрес должен нести язык: тогда и перезагрузка, и любая
+				 *  ссылка отсюда приедут сразу на нужную статику.
+				 *
+				 *  Английский не трогаем: его статика и так совпадает, а лишний
+				 *  сегмент в адресе увёл бы каноникал с x-default на языковую
+				 *  версию той же страницы. */
+				const lang = $mol_locale.lang()
+				if( lang && lang !== $mol_locale.lang_default() ) {
+					const href = $mol_state_arg.link({ mol_locale: lang })
+					$mol_dom_context.history?.replaceState( null, '', href )
+				}
+			}
 
 			/** Focus that goes nowhere.
 			 *

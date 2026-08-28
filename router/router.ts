@@ -30,8 +30,23 @@ namespace $ {
 	 */
 	export class $bog_smalljs_router extends $bog_builderui_router {
 
-		static override route_target( anchor_path: string ) {
-			return anchor_path
+		/** Ключ, который переживает переход: язык. */
+		static readonly sticky = 'mol_locale='
+
+		static override route_target( anchor_path: string, current_path: string ) {
+
+			const carried = anchor_path.split( '/' ).some( part => part.startsWith( this.sticky ) )
+			if( carried ) return anchor_path
+
+			// Язык — свойство читателя, а не экрана, и ссылки в шапке про него
+			// молчат. Без этого исключения первый же переход возвращал адрес к
+			// безъязыкому, а безъязыкий адрес — это пререндер на английском:
+			// следующая загрузка показывала английскую статику и только потом
+			// переключалась на выбранный язык. Отсюда и «язык прыгает».
+			const lang = current_path.split( '/' ).find( part => part.startsWith( this.sticky ) )
+			if( !lang ) return anchor_path
+
+			return [ lang, anchor_path ].filter( Boolean ).join( '/' )
 		}
 
 	}
