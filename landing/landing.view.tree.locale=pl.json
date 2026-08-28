@@ -49,5 +49,15 @@
 	"$bog_smalljs_landing_versus_pair_label": "Zacznij od $mol vs React",
 	"$bog_smalljs_landing_Sign_ts_label_text": "view.ts",
 	"$bog_smalljs_landing_Sign_css_label_text": "view.css.ts",
-	"$bog_smalljs_landing_Sign_try_label": "Wypróbuj ten przykład"
+	"$bog_smalljs_landing_Sign_try_label": "Wypróbuj ten przykład",
+	"$bog_smalljs_landing_arch_eyebrow_text": "Struktura",
+	"$bog_smalljs_landing_arch_title_text": "Poprawna architektura mikromodułowa od razu",
+	"$bog_smalljs_landing_arch_line_text": "Projekt to katalog, katalog to repozytorium, a framework leży obok twojego kodu, nie w środku. Układ jest ten sam dla pierwszego komponentu i dla firmy z trzydziestoma projektami.",
+	"$bog_smalljs_landing_arch_link_label": "Jak zbudowany jest projekt",
+	"$bog_smalljs_landing_arch_label_workspace": "workspace",
+	"$bog_smalljs_landing_arch_label_registry": "rejestr",
+	"$bog_smalljs_landing_arch_label_framework": "framework",
+	"$bog_smalljs_landing_arch_label_package": "twój pakiet",
+	"$bog_smalljs_landing_arch_label_registry_own": "twój rejestr",
+	"$bog_smalljs_landing_arch_label_project": "twój projekt"
 }

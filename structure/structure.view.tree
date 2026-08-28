@@ -1,0 +1,80 @@
+$bog_smalljs_structure $mol_view
+	tree \
+	active \
+	pickable false
+	plain false
+	steps_showed false
+	pick*? null
+	file? null
+	row_prefix* \
+	row_name* \
+	row_pad* \
+	row_comment* \
+	row_note* \
+	row_kind* \
+	row_active* false
+	row_pickable* false
+	hint_workspace @ \The MAM checkout. You clone it once and every project lives inside it — nothing is ever copied in, each package is a git checkout of its own.
+	hint_registry @ \Maps a package name to a repository. When the build meets $mol_view and there is no mol/ folder yet, it clones the repo listed here.
+	hint_framework @ \$mol itself, cloned on the first build. Its source sits next to yours: read it, put a debugger in it, open a pull request from the same working copy.
+	hint_package @ \Your own package: one short folder that holds every project you start, and a git repository of its own.
+	hint_gitattributes @ \One line, "* -text", switching off end-of-line normalisation. Deployment commits the build output, and fonts and images have to survive that commit intact.
+	hint_registry_own @ \The same registry one level down. Every project you add gets a pack line here, so a fresh checkout of your package fetches the projects too.
+	hint_project @ \A project: a folder that is also a repository of its own. Its history belongs to it, not to your package and not to $mol.
+	hint_entry @ \The page that mounts the component. Only a module you actually deploy needs one.
+	hint_tree @ \The layout. The file name and the folder path together give the component its name: my/hello/hello.view.tree is $my_hello.
+	hint_ts @ \The behaviour: a class extending the base that the tree generates.
+	hint_css @ \The styles — TypeScript calling $mol_style_define, so property names are checked by the compiler.
+	hint_submodule @ \A folder inside a module is a nested component: my/hello/form/ is $my_hello_form. There is no import to write, the path is the name.
+	steps_title @ \Five steps to a project of your own
+	step1_text @ \Clone MAM once. It is the workspace every project lives in.
+	step1_code \git clone https://github.com/hyoo-ru/mam.git
+	step2_text @ \Make one short folder for yourself and push it as a repository.
+	step2_code \mam/my/
+	step3_text @ \Add the registry of your projects next to it.
+	step3_code \my/my.meta.tree
+	step4_text @ \Create the project inside, with a repository of its own.
+	step4_code \my/hello/
+	step5_text @ \Register it, so a fresh checkout fetches it by name.
+	step5_code \pack hello git \https://github.com/you/hello.git
+	attr *
+		bog_smalljs_structure_steps <= steps_showed
+		bog_smalljs_structure_plain <= plain
+	sub /
+		<= Tree $mol_view
+			sub <= rows /
+		<= Steps $mol_view
+			sub /
+				<= Steps_title $mol_view
+					sub /
+						<= steps_title
+				<= Step1 $bog_smalljs_structure_step
+					number \1
+					text <= step1_text
+					code <= step1_code
+				<= Step2 $bog_smalljs_structure_step
+					number \2
+					text <= step2_text
+					code <= step2_code
+				<= Step3 $bog_smalljs_structure_step
+					number \3
+					text <= step3_text
+					code <= step3_code
+				<= Step4 $bog_smalljs_structure_step
+					number \4
+					text <= step4_text
+					code <= step4_code
+				<= Step5 $bog_smalljs_structure_step
+					number \5
+					text <= step5_text
+					code <= step5_code
+	Row* $bog_smalljs_structure_row
+		prefix <= row_prefix*
+		name <= row_name*
+		pad <= row_pad*
+		comment <= row_comment*
+		note <= row_note*
+		kind <= row_kind*
+		active <= row_active*
+		pickable <= row_pickable*
+		pick? <=> pick*?

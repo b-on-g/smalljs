@@ -1,29 +1,67 @@
 # 项目结构
 
-一个 $mol 项目有四个嵌套层级：你克隆下来的**工作区**、其中的**包**、包里的**模块**，以及模块里的**文件**。每一层回答的问题都不同，而构建所做的大部分事情，都源自分清哪个是哪个。
+$mol 项目有四层嵌套：你克隆下来的**工作区**、其中的**包**、包里的**模块**，以及模块里的**文件**。这套布局回答一个很实际的问题——新项目放在哪里、它的历史归谁——构建所做的几乎一切都由此而来。
 
+```structure
+mam/                         工作区 —— 克隆下来的 MAM
+├── .meta.tree               登记表：哪个包来自哪个仓库
+├── mol/                     包 —— 框架本身，自己的 git 仓库
+└── my/                      包 —— 你的，你自己的 git 仓库
+    ├── .gitattributes       让构建出的二进制文件保持完好
+    ├── my.meta.tree         你自己项目的登记表
+    └── hello/               项目 —— 一个模块，也是自己的 git 仓库
+        ├── index.html       入口（只有应用模块需要）
+        ├── hello.view.tree
+        └── form/            子模块 —— $my_hello_form
 ```
-mam/                            工作区——MAM 的克隆
-├── .meta.tree                  注册表：哪个包来自哪个仓库
-├── package.json
-├── mol/                        包——框架本身，独立的 git 仓库
-│   └── button/                 模块——组件 $mol_button
-│       ├── button.view.tree
-│       ├── button.view.ts
-│       ├── major/              子模块——$mol_button_major
-│       └── minor/              子模块——$mol_button_minor
-└── my/                         包——你自己的
-    ├── .gitattributes          `* -text`——保持构建出的二进制文件完好
-    └── hello/                  模块——组件 $my_hello
-        ├── index.html          入口（只有应用模块才有）
-        ├── hello.view.tree     布局
-        ├── hello.view.ts       行为
-        ├── hello.view.css.ts   样式，用 TypeScript 写
-        ├── hello.locale=ru.json
-        ├── hello.meta.tree     构建与部署指令
-        ├── form/               子模块——$my_hello_form
-        ├── -view.tree/         由 hello.view.tree 生成
-        └── -/                  构建产物
+
+在本页，这份清单的每一行都带一个问号，说明它为什么在那里；下面的小节把同样的事讲得更细。
+
+## 开一个项目
+
+五步。只有第一步会重复，后三步可以交给脚手架。
+
+**1. 克隆工作区，一次。** 从此以后你写的一切都住在里面。
+
+```bash
+git clone https://github.com/hyoo-ru/mam.git
+cd mam
+```
+
+**2. 建一个属于你的包。** 一个短名目录——你的名字、你的公司、你的 ID——并且是一个独立的 git 仓库。它是你今后所有项目的容器：
+
+```bash
+mkdir my
+cd my
+git init
+```
+
+把它推到你放代码的地方，公开或私有都行。顺手加一个只有 `* -text` 一行的 `.gitattributes`；原因见下面关于包的小节。
+
+**3. 加上登记表。** `my/my.meta.tree` 是你包里项目的清单。它一开始是空的，每个项目一行：
+
+```tree
+pack hello git \https://github.com/you/hello.git
+```
+
+MAM 读它的方式，和读上一层工作区的 `.meta.tree` 完全一样，所以同事克隆 `my/` 时也会拿到这些项目。
+
+**4. 建项目，并给它自己的仓库。** 目录就是组件——`my/hello/` 就是 `$my_hello`——它的历史属于它自己，不属于你的包，也不属于 $mol：
+
+```bash
+mkdir hello
+cd hello
+git init
+```
+
+这种分离正是布局的用意：`my/hello/` 里的提交进入 `hello` 仓库，永远不会进 `my`，也不会进 `mol`。
+
+**5. 登记它。** 把第 3 步的 `pack` 行写进 `my/my.meta.tree`，之后新的检出就会按名字把项目取回来。
+
+第 2 步之后的任何时候，[脚手架](#!section=docs/page=tooling)都能替你写出一个能跑的模块：
+
+```bash
+npx create-view-tree-lsp my/hello
 ```
 
 ## 工作区

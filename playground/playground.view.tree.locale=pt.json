@@ -18,5 +18,8 @@
 	"$bog_smalljs_playground_editor_hint_ts": "Opcional — a lógica do componente.",
 	"$bog_smalljs_playground_editor_hint_css": "Opcional — estilos tipados.",
 	"$bog_smalljs_playground_layout_hint": "Mostrar todos os arquivos",
-	"$bog_smalljs_playground_layout_hint_tabs": "Voltar às abas"
+	"$bog_smalljs_playground_layout_hint_tabs": "Voltar às abas",
+	"$bog_smalljs_playground_sample_routing_title": "Rotas",
+	"$bog_smalljs_playground_files_title": "Projeto",
+	"$bog_smalljs_playground_files_note": "Onde estes arquivos ficam num workspace MAM"
 }

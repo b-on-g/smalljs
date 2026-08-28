@@ -18,5 +18,8 @@
 	"$bog_smalljs_playground_editor_hint_ts": "선택 — 컴포넌트의 로직.",
 	"$bog_smalljs_playground_editor_hint_css": "선택 — 타입이 있는 스타일.",
 	"$bog_smalljs_playground_layout_hint": "모든 파일 한 번에 보기",
-	"$bog_smalljs_playground_layout_hint_tabs": "탭으로 돌아가기"
+	"$bog_smalljs_playground_layout_hint_tabs": "탭으로 돌아가기",
+	"$bog_smalljs_playground_sample_routing_title": "라우팅",
+	"$bog_smalljs_playground_files_title": "프로젝트",
+	"$bog_smalljs_playground_files_note": "이 파일들이 MAM 작업 공간의 어디에 있는지"
 }

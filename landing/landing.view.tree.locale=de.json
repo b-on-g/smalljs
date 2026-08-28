@@ -49,5 +49,15 @@
 	"$bog_smalljs_landing_versus_pair_label": "Mit $mol vs React starten",
 	"$bog_smalljs_landing_Sign_ts_label_text": "view.ts",
 	"$bog_smalljs_landing_Sign_css_label_text": "view.css.ts",
-	"$bog_smalljs_landing_Sign_try_label": "Beispiel ausprobieren"
+	"$bog_smalljs_landing_Sign_try_label": "Beispiel ausprobieren",
+	"$bog_smalljs_landing_arch_eyebrow_text": "Struktur",
+	"$bog_smalljs_landing_arch_title_text": "Mikromodulare Architektur ab Werk",
+	"$bog_smalljs_landing_arch_line_text": "Ein Projekt ist ein Ordner, ein Ordner ist ein Repository, und das Framework liegt neben Ihrem Code statt darin. Die Aufteilung ist dieselbe für die erste Komponente wie für eine Firma mit dreißig Projekten.",
+	"$bog_smalljs_landing_arch_link_label": "Wie ein Projekt aufgebaut ist",
+	"$bog_smalljs_landing_arch_label_workspace": "Workspace",
+	"$bog_smalljs_landing_arch_label_registry": "Registry",
+	"$bog_smalljs_landing_arch_label_framework": "das Framework",
+	"$bog_smalljs_landing_arch_label_package": "Ihr Paket",
+	"$bog_smalljs_landing_arch_label_registry_own": "Ihre Registry",
+	"$bog_smalljs_landing_arch_label_project": "Ihr Projekt"
 }

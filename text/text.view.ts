@@ -162,6 +162,35 @@ namespace $.$$ {
 			return $mol_text.prototype.uri_resolve.call( this, uri )
 		}
 
+		/**
+		 * A ```structure fence is not code but a project layout, so it renders as the
+		 * interactive tree instead of a code block: same listing, plus a "?" per line
+		 * explaining why the folder is there. The listing stays inside the markdown, so
+		 * the raw .md endpoint (and any reader who never loads the site) still gets it.
+		 *
+		 * $mol_text picks a component per flow token, and the switch below is its own,
+		 * one case richer. It is repeated rather than delegated because the base builds
+		 * the whole list in one memoized pass — calling it from an override of itself
+		 * would re-enter the same cell.
+		 */
+		@ $mol_mem
+		rows() {
+			return this.flow_tokens().map( ( { name }, index ) => {
+				switch( name ) {
+					case 'quote': return this.Quote( index )
+					case 'spoiler': return this.Spoiler( index )
+					case 'header': return this.Header( index )
+					case 'list': return this.List( index )
+					case 'code': return this.lang_kind( index ) === 'structure' ? this.Structure( index ) : this.Pre( index )
+					case 'code-indent': return this.Pre( index )
+					case 'table': return this.Table( index )
+					case 'grid': return this.Grid( index )
+					case 'cut': return this.Cut( index )
+					default: return this.Paragraph( index )
+				}
+			} )
+		}
+
 		/** Raw fence info-string of a code block (chunk 1 of the flow token), e.g. `tree-no-run`. */
 		pre_info( index: number ) {
 			return this.flow_tokens()[ index ].chunks[ 1 ] ?? ''

@@ -1,4 +1,10 @@
 $bog_smalljs_landing $mol_view
+	arch_label_workspace @ \workspace
+	arch_label_registry @ \registry
+	arch_label_framework @ \the framework
+	arch_label_package @ \your package
+	arch_label_registry_own @ \your registry
+	arch_label_project @ \your project
 	sub /
 		<= Hero $mol_view
 			sub /
@@ -121,6 +127,28 @@ $bog_smalljs_landing $mol_view
 								<= Feature3_title_text @ \Lazy
 						<= Feature3_text $mol_text
 							text @ \Full rendering virtualization — components outside the viewport simply do not exist.
+		<= Arch $mol_view
+			sub /
+				<= Arch_eyebrow $mol_view
+					sub /
+						<= arch_eyebrow_text @ \Structure
+				<= Arch_title $mol_view
+					dom_name \h2
+					sub /
+						<= arch_title_text @ \Micromodule architecture by default
+				<= Arch_line $mol_view
+					sub /
+						<= arch_line_text @ \A project is a folder, a folder is a repository, and the framework sits next to your code instead of inside it. The layout is the same for a first component and for a company with thirty of them.
+				<= Arch_structure $bog_smalljs_structure
+					tree <= arch_tree \
+					steps_showed true
+				<= Arch_link $mol_link
+					arg *
+						section \docs
+						page \structure
+					sub /
+						<= arch_link_label @ \How a project is laid out
+						<= Arch_link_icon $mol_icon_arrow_right
 		<= Versus $mol_view
 			sub /
 				<= Versus_eyebrow $mol_view

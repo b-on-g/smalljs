@@ -49,5 +49,15 @@
 	"$bog_smalljs_landing_versus_pair_label": "从 $mol vs React 开始",
 	"$bog_smalljs_landing_Sign_ts_label_text": "view.ts",
 	"$bog_smalljs_landing_Sign_css_label_text": "view.css.ts",
-	"$bog_smalljs_landing_Sign_try_label": "试试这个例子"
+	"$bog_smalljs_landing_Sign_try_label": "试试这个例子",
+	"$bog_smalljs_landing_arch_eyebrow_text": "结构",
+	"$bog_smalljs_landing_arch_title_text": "默认就是微模块架构",
+	"$bog_smalljs_landing_arch_line_text": "项目就是目录，目录就是仓库，框架放在你的代码旁边而不是里面。第一个组件和三十个项目的公司，布局是同一套。",
+	"$bog_smalljs_landing_arch_link_label": "项目是怎样组织的",
+	"$bog_smalljs_landing_arch_label_workspace": "工作区",
+	"$bog_smalljs_landing_arch_label_registry": "登记表",
+	"$bog_smalljs_landing_arch_label_framework": "框架",
+	"$bog_smalljs_landing_arch_label_package": "你的包",
+	"$bog_smalljs_landing_arch_label_registry_own": "你的登记表",
+	"$bog_smalljs_landing_arch_label_project": "你的项目"
 }

@@ -49,5 +49,15 @@
 	"$bog_smalljs_landing_versus_pair_label": "Начать с $mol vs React",
 	"$bog_smalljs_landing_Sign_ts_label_text": "view.ts",
 	"$bog_smalljs_landing_Sign_css_label_text": "view.css.ts",
-	"$bog_smalljs_landing_Sign_try_label": "Попробовать пример"
+	"$bog_smalljs_landing_Sign_try_label": "Попробовать пример",
+	"$bog_smalljs_landing_arch_eyebrow_text": "Структура",
+	"$bog_smalljs_landing_arch_title_text": "Правильная микромодульная архитектура по умолчанию",
+	"$bog_smalljs_landing_arch_line_text": "Проект — это папка, папка — это репозиторий, а фреймворк лежит рядом с вашим кодом, а не внутри него. Раскладка одинаковая и для первого компонента, и для компании с тридцатью проектами.",
+	"$bog_smalljs_landing_arch_link_label": "Как устроен проект",
+	"$bog_smalljs_landing_arch_label_workspace": "воркспейс",
+	"$bog_smalljs_landing_arch_label_registry": "реестр",
+	"$bog_smalljs_landing_arch_label_framework": "фреймворк",
+	"$bog_smalljs_landing_arch_label_package": "ваш пакет",
+	"$bog_smalljs_landing_arch_label_registry_own": "ваш реестр",
+	"$bog_smalljs_landing_arch_label_project": "ваш проект"
 }

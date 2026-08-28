@@ -1,0 +1,20 @@
+{
+	"$bog_smalljs_structure_hint_workspace": "Sklonowany MAM. Klonujesz go raz i wszystkie projekty żyją w środku: nic się tu nie kopiuje, każdy pakiet jest osobnym checkoutem gita.",
+	"$bog_smalljs_structure_hint_registry": "Wiąże nazwę pakietu z repozytorium. Gdy build napotka $mol_view, a katalogu mol/ jeszcze nie ma, klonuje repozytorium wpisane tutaj.",
+	"$bog_smalljs_structure_hint_framework": "Sam $mol, sklonowany przy pierwszym buildzie. Jego źródła leżą obok twoich: czytaj je, wstaw debugger, otwórz pull request z tej samej kopii roboczej.",
+	"$bog_smalljs_structure_hint_package": "Twój własny pakiet: jeden krótki katalog, w którym leżą wszystkie twoje projekty, i własne repozytorium gita.",
+	"$bog_smalljs_structure_hint_gitattributes": "Jedna linia, \"* -text\", wyłączająca normalizację końców wierszy. Wdrożenie commituje wynik builda, a fonty i obrazy muszą przetrwać ten commit nietknięte.",
+	"$bog_smalljs_structure_hint_registry_own": "Ten sam rejestr piętro niżej. Każdy dodany projekt dostaje tu linię pack, więc świeży checkout twojego pakietu pobiera też projekty.",
+	"$bog_smalljs_structure_hint_project": "Projekt: katalog, który jest zarazem osobnym repozytorium. Historia należy do niego, nie do twojego pakietu ani do $mol.",
+	"$bog_smalljs_structure_hint_entry": "Strona, która montuje komponent. Potrzebuje jej tylko moduł, który naprawdę wdrażasz.",
+	"$bog_smalljs_structure_hint_tree": "Układ. Nazwa pliku razem ze ścieżką katalogu dają komponentowi nazwę: my/hello/hello.view.tree to $my_hello.",
+	"$bog_smalljs_structure_hint_ts": "Zachowanie: klasa rozszerzająca bazę wygenerowaną z drzewa.",
+	"$bog_smalljs_structure_hint_css": "Style — TypeScript wywołujący $mol_style_define, więc nazwy właściwości sprawdza kompilator.",
+	"$bog_smalljs_structure_hint_submodule": "Katalog wewnątrz modułu to zagnieżdżony komponent: my/hello/form/ to $my_hello_form. Nie ma żadnego importu do napisania, ścieżka jest nazwą.",
+	"$bog_smalljs_structure_steps_title": "Pięć kroków do własnego projektu",
+	"$bog_smalljs_structure_step1_text": "Sklonuj MAM raz. To workspace, w którym żyje każdy projekt.",
+	"$bog_smalljs_structure_step2_text": "Załóż sobie jeden krótki katalog i opublikuj go jako repozytorium.",
+	"$bog_smalljs_structure_step3_text": "Połóż obok rejestr swoich projektów.",
+	"$bog_smalljs_structure_step4_text": "Utwórz w środku projekt z własnym repozytorium.",
+	"$bog_smalljs_structure_step5_text": "Wpisz go, żeby świeży checkout pobierał go po nazwie."
+}

@@ -49,5 +49,15 @@
 	"$bog_smalljs_landing_versus_pair_label": "由 $mol vs React 開始",
 	"$bog_smalljs_landing_Sign_ts_label_text": "view.ts",
 	"$bog_smalljs_landing_Sign_css_label_text": "view.css.ts",
-	"$bog_smalljs_landing_Sign_try_label": "試試這個例子"
+	"$bog_smalljs_landing_Sign_try_label": "試試這個例子",
+	"$bog_smalljs_landing_arch_eyebrow_text": "結構",
+	"$bog_smalljs_landing_arch_title_text": "預設就是微模組架構",
+	"$bog_smalljs_landing_arch_line_text": "專案就是目錄，目錄就是儲存庫，框架放在你的程式旁邊而不是裡面。第一個元件和三十個專案的公司，版面是同一套。",
+	"$bog_smalljs_landing_arch_link_label": "專案是怎樣組織的",
+	"$bog_smalljs_landing_arch_label_workspace": "工作區",
+	"$bog_smalljs_landing_arch_label_registry": "登記表",
+	"$bog_smalljs_landing_arch_label_framework": "框架",
+	"$bog_smalljs_landing_arch_label_package": "你的套件",
+	"$bog_smalljs_landing_arch_label_registry_own": "你的登記表",
+	"$bog_smalljs_landing_arch_label_project": "你的專案"
 }

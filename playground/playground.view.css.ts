@@ -63,6 +63,42 @@ namespace $ {
 		height: $mol_style_func.calc( '100vh - 4rem' ),
 		background: { color: $bog_builderui_tokens.back },
 
+		// Панель «где эти файлы лежат». Показана рядом с редактором на широком
+		// экране, на узком её нет: там дороже каждая колонка.
+		Files: {
+			...pane,
+			border: { right: line },
+			background: { color: $bog_builderui_tokens.back },
+		},
+
+		Files_label: label,
+
+		Files_tree: {
+			flex: { shrink: 1 },
+			minHeight: 0,
+			overflow: { y: 'auto', x: 'auto' },
+			padding: {
+				top: rem( 0.75 ),
+				bottom: rem( 0.5 ),
+				left: rem( 0.25 ),
+				right: rem( 0.25 ),
+			},
+		},
+
+		Files_note: {
+			flex: { shrink: 0 },
+			padding: {
+				top: rem( 0.5 ),
+				bottom: rem( 0.75 ),
+				left: rem( 1 ),
+				right: rem( 1 ),
+			},
+			font: { size: rem( 0.6875 ) },
+			lineHeight: rem( 1.4 ),
+			color: $bog_builderui_tokens.shade,
+			border: { top: line },
+		},
+
 		Editor_pane: {
 			...pane,
 			border: { right: line },
@@ -340,6 +376,22 @@ namespace $ {
 		// у скрытых редакторов, а при равной специфичности выигрывает
 		// тот, кто ниже по файлу.
 		'@': {
+			// Третья колонка появляется только вместе с панелью файлов, и только
+			// когда экран достаточно широк, чтобы она не съела редактор.
+			bog_smalljs_pg_files: {
+				true: {
+					gridTemplateColumns: '17rem minmax(0, 1fr) minmax(0, 1fr)',
+					'@media': {
+						'(max-width: 63.9375rem)': {
+							gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)',
+							Files: { display: 'none' },
+						},
+						'(max-width: 47.9375rem)': {
+							gridTemplateColumns: 'minmax(0, 1fr)',
+						},
+					},
+				},
+			},
 			bog_smalljs_pg_tab: {
 				tree: { Tree_tab: tab_active },
 				ts: { Ts_tab: tab_active },

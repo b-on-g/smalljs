@@ -1,29 +1,67 @@
 # 프로젝트 구조
 
-$mol 프로젝트에는 중첩된 네 개의 층위가 있습니다. 여러분이 클론해 온 **워크스페이스**, 그 안의 **패키지**, 그 안의 **모듈**, 그리고 모듈 안의 **파일**입니다. 각 층위는 서로 다른 질문에 답하며, 빌드가 하는 일의 대부분은 무엇이 무엇인지 아는 것에서 따라 나옵니다.
+$mol 프로젝트에는 네 겹의 계층이 있습니다. 여러분이 클론한 **작업 공간**, 그 안의 **패키지**, 패키지 안의 **모듈**, 그리고 모듈 안의 **파일**입니다. 이 배치는 실용적인 질문 하나에 답합니다. 새 프로젝트를 어디에 두는가, 그 이력은 누구의 것인가. 빌드가 하는 일의 거의 전부가 여기서 따라 나옵니다.
 
+```structure
+mam/                         작업 공간 — 클론한 MAM
+├── .meta.tree               레지스트리: 어떤 패키지가 어느 저장소에서 오는지
+├── mol/                     패키지 — 프레임워크 자신, 자체 git 저장소
+└── my/                      패키지 — 여러분의 것, 자체 git 저장소
+    ├── .gitattributes       빌드된 바이너리를 온전하게 지킨다
+    ├── my.meta.tree         여러분 프로젝트의 레지스트리
+    └── hello/               프로젝트 — 모듈이자 자체 git 저장소
+        ├── index.html       진입점 (앱 모듈만 해당)
+        ├── hello.view.tree
+        └── form/            하위 모듈 — $my_hello_form
 ```
-mam/                            워크스페이스 — MAM 체크아웃
-├── .meta.tree                  레지스트리: 어떤 패키지가 어느 저장소에서 오는지
-├── package.json
-├── mol/                        패키지 — 프레임워크 자체, 별도의 git 저장소
-│   └── button/                 모듈 — 컴포넌트 $mol_button
-│       ├── button.view.tree
-│       ├── button.view.ts
-│       ├── major/              서브모듈 — $mol_button_major
-│       └── minor/              서브모듈 — $mol_button_minor
-└── my/                         패키지 — 여러분의 것
-    ├── .gitattributes          `* -text` — 빌드된 바이너리를 온전하게 유지
-    └── hello/                  모듈 — 컴포넌트 $my_hello
-        ├── index.html          진입점 (앱 모듈에만)
-        ├── hello.view.tree     레이아웃
-        ├── hello.view.ts       동작
-        ├── hello.view.css.ts   스타일, TypeScript로
-        ├── hello.locale=ru.json
-        ├── hello.meta.tree     빌드와 배포 지시자
-        ├── form/               서브모듈 — $my_hello_form
-        ├── -view.tree/         hello.view.tree에서 생성됨
-        └── -/                  빌드 산출물
+
+이 페이지에서는 목록의 모든 줄에 왜 거기 있는지를 알려주는 물음표가 달려 있습니다. 아래 절들은 같은 내용을 자세히 설명합니다.
+
+## 프로젝트 시작하기
+
+다섯 단계. 반복되는 것은 첫 단계뿐이고, 마지막 세 단계는 스캐폴더가 대신해 줍니다.
+
+**1. 작업 공간을 한 번 클론합니다.** 앞으로 쓰는 모든 것이 그 안에 놓입니다.
+
+```bash
+git clone https://github.com/hyoo-ru/mam.git
+cd mam
+```
+
+**2. 자기 패키지를 만듭니다.** 짧은 이름의 폴더 하나(이름, 회사, 핸들)와 자체 git 저장소. 앞으로 시작할 모든 프로젝트를 담는 그릇입니다:
+
+```bash
+mkdir my
+cd my
+git init
+```
+
+코드를 보관하는 곳에 공개든 비공개든 올려두세요. 겸사겸사 `* -text` 한 줄만 담은 `.gitattributes`를 같이 두세요. 이유는 아래 패키지 절에 있습니다.
+
+**3. 레지스트리를 더합니다.** `my/my.meta.tree`는 패키지 안 프로젝트 목록입니다. 처음엔 비어 있고 프로젝트마다 한 줄씩 늘어납니다:
+
+```tree
+pack hello git \https://github.com/you/hello.git
+```
+
+MAM은 이 파일을 한 단계 위 작업 공간의 `.meta.tree`와 똑같이 읽습니다. `my/`를 클론한 동료도 프로젝트를 함께 받습니다.
+
+**4. 프로젝트를 자체 저장소와 함께 만듭니다.** 폴더가 곧 컴포넌트입니다. `my/hello/`는 `$my_hello`이고, 이력은 그 프로젝트의 것이지 패키지나 $mol의 것이 아닙니다:
+
+```bash
+mkdir hello
+cd hello
+git init
+```
+
+이 분리가 배치의 요점입니다. `my/hello/`에서의 커밋은 `hello` 저장소로 가고, `my`나 `mol`로는 절대 가지 않습니다.
+
+**5. 등록합니다.** 3단계의 `pack` 줄을 `my/my.meta.tree`에 넣으면, 패키지를 새로 체크아웃할 때 이름으로 프로젝트를 가져옵니다.
+
+2단계 이후라면 언제든 [스캐폴더](#!section=docs/page=tooling)가 동작하는 모듈을 대신 써 줍니다:
+
+```bash
+npx create-view-tree-lsp my/hello
 ```
 
 ## 워크스페이스

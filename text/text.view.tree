@@ -9,6 +9,8 @@ $bog_smalljs_text $mol_text
 		run_enabled <= pre_run_enabled* true
 		playground_arg <= pre_playground_arg* *
 		playground_showed <= pre_playground_showed* false
+	Structure* $bog_smalljs_structure
+		tree <= pre_text*
 
 $bog_smalljs_text_code $mol_text_code
 	lang \

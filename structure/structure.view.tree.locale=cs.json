@@ -1,0 +1,20 @@
+{
+	"$bog_smalljs_structure_hint_workspace": "Naklonovaný MAM. Klonuje se jednou a uvnitř žijí všechny projekty: nic se sem nekopíruje, každý balík je vlastní git checkout.",
+	"$bog_smalljs_structure_hint_registry": "Přiřazuje jménu balíku repozitář. Když build narazí na $mol_view a složka mol/ ještě není, naklonuje repozitář uvedený zde.",
+	"$bog_smalljs_structure_hint_framework": "Samotný $mol, naklonovaný při prvním buildu. Jeho zdrojáky leží vedle vašich: čtěte je, dejte do nich debugger, otevřete pull request ze stejné pracovní kopie.",
+	"$bog_smalljs_structure_hint_package": "Váš vlastní balík: jedna krátká složka se všemi projekty, které začnete, a vlastní git repozitář.",
+	"$bog_smalljs_structure_hint_gitattributes": "Jeden řádek, \"* -text\", který vypíná normalizaci konců řádků. Nasazení commituje výsledek buildu a fonty i obrázky musí ten commit přežít nedotčené.",
+	"$bog_smalljs_structure_hint_registry_own": "Tentýž rejstřík o úroveň níž. Každý přidaný projekt tu dostane řádek pack, takže čerstvý checkout vašeho balíku stáhne i projekty.",
+	"$bog_smalljs_structure_hint_project": "Projekt: složka, která je zároveň vlastní repozitář. Historie patří jemu, ne vašemu balíku ani $mol.",
+	"$bog_smalljs_structure_hint_entry": "Stránka, která komponentu připojí. Potřebuje ji jen modul, který skutečně nasazujete.",
+	"$bog_smalljs_structure_hint_tree": "Rozvržení. Jméno souboru spolu s cestou složky dávají komponentě jméno: my/hello/hello.view.tree je $my_hello.",
+	"$bog_smalljs_structure_hint_ts": "Chování: třída rozšiřující bázi vygenerovanou ze stromu.",
+	"$bog_smalljs_structure_hint_css": "Styly — TypeScript volající $mol_style_define, takže jména vlastností kontroluje překladač.",
+	"$bog_smalljs_structure_hint_submodule": "Složka uvnitř modulu je vnořená komponenta: my/hello/form/ je $my_hello_form. Není co importovat, cesta je jméno.",
+	"$bog_smalljs_structure_steps_title": "Pět kroků k vlastnímu projektu",
+	"$bog_smalljs_structure_step1_text": "Naklonujte MAM jednou. Je to workspace, ve kterém žije každý projekt.",
+	"$bog_smalljs_structure_step2_text": "Založte si jednu krátkou složku a vystavte ji jako repozitář.",
+	"$bog_smalljs_structure_step3_text": "Vedle ní přidejte rejstřík svých projektů.",
+	"$bog_smalljs_structure_step4_text": "Uvnitř vytvořte projekt s vlastním repozitářem.",
+	"$bog_smalljs_structure_step5_text": "Zapište ho, aby ho čerstvý checkout stáhl podle jména."
+}

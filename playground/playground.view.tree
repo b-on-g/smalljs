@@ -14,6 +14,7 @@ $bog_smalljs_playground $mol_view
 	sample_counter_title @ \Counter
 	sample_fetch_title @ \Loading data
 	sample_args_title @ \URL arguments
+	sample_routing_title @ \Routing
 	sample_state_title @ \Saved state
 	sample_login_title @ \Login form
 	Sample_option* $mol_button_minor
@@ -27,10 +28,31 @@ $bog_smalljs_playground $mol_view
 	layout_hint @ \Show all files at once
 	layout_hint_tabs @ \Back to tabs
 	layout_toggle? null
+	files_showed false
+	files_tree \
+	active_file \
+	file_pick? null
+	files_title @ \Project
+	files_note @ \Where these files live in a MAM workspace
 	attr *
 		bog_smalljs_pg_tab <= tab
 		bog_smalljs_pg_editors <= editors_mode?
+		bog_smalljs_pg_files <= files_showed
 	sub /
+		<= Files $mol_view
+			sub /
+				<= Files_label $mol_view
+					sub /
+						<= files_title
+				<= Files_tree $bog_smalljs_structure
+					tree <= files_tree
+					active <= active_file
+					pickable true
+					plain true
+					file? <=> file_pick?
+				<= Files_note $mol_view
+					sub /
+						<= files_note
 		<= Editor_pane $mol_view
 			sub /
 				<= Tabs $mol_view

@@ -88,6 +88,102 @@ namespace $.$$ {
 			return $bog_smalljs_playground_samples[ this.sample() ].ts
 		}
 
+		// --- где эти файлы лежат ------------------------------------------
+
+		/**
+		 * Слева от редактора — то же дерево проекта, что и в доках, но заполненное
+		 * текущим примером. Начинающий приходит в песочницу с архитектурой реакта в
+		 * голове и видит три файла без адреса; здесь у них появляется место: пакет,
+		 * проект, модуль. Клик по файлу открывает его во вкладке.
+		 *
+		 * У встраивателя (курс) колонка узкая и сценарий свой — там панели нет.
+		 */
+		files_showed() {
+			return !this.seed_tree()
+		}
+
+		/**
+		 * Путь модуля выводим из корневого компонента примера: my_demo живёт в
+		 * my/demo/, потому что подчёркивание в имени и есть разделитель папок.
+		 * Имя пишем без ведущего знака доллара нарочно: в doc-комментарии он тащил
+		 * бы несуществующий модуль в граф сборки.
+		 * Свой сниппет, открытый из доков, назовётся по-своему — дерево подстроится.
+		 */
+		@ $mol_mem
+		module_path(): readonly string[] {
+			const root = /\$([\w$]+)/.exec( this.tree_committed() )?.[ 1 ] ?? ''
+			const parts = root.split( '_' ).filter( Boolean )
+			return parts.length > 1 ? parts : [ 'my', 'demo' ]
+		}
+
+		/** Имя модуля — последний сегмент пути: из него и собираются имена файлов. */
+		module_name() {
+			const path = this.module_path()
+			return path[ path.length - 1 ]
+		}
+
+		/** Файлы модуля в том порядке, в каком они лежат на диске. */
+		module_files() {
+			const name = this.module_name()
+			return [ `${ name }.view.tree`, `${ name }.view.ts`, `${ name }.view.css.ts` ]
+		}
+
+		/**
+		 * Дерево рисуется тем же текстом, который в доках лежит в разметке страницы:
+		 * компонент разбирает обычный ASCII-листинг, никакой отдельной модели.
+		 */
+		@ $mol_mem
+		files_tree() {
+			const path = this.module_path()
+			const pack = path[ 0 ]
+			const project = path.slice( 1 ).join( '/' )
+			const files = this.module_files()
+			const rows = [
+				'mam/',
+				'├── .meta.tree',
+				'├── mol/',
+				`└── ${ pack }/`,
+				`    ├── ${ pack }.meta.tree`,
+				`    └── ${ project }/`,
+				'        ├── index.html',
+			]
+			for ( const file of files.slice( 0, -1 ) ) rows.push( `        ├── ${ file }` )
+			rows.push( `        └── ${ files[ files.length - 1 ] }` )
+			return rows.join( '\n' )
+		}
+
+		/** Открытая вкладка подсвечивается в дереве как открытый файл. */
+		active_file() {
+			const name = this.module_name()
+			const tab = this.tab()
+			if ( tab === 'ts' ) return `${ name }.view.ts`
+			if ( tab === 'css' ) return `${ name }.view.css.ts`
+			return `${ name }.view.tree`
+		}
+
+		/**
+		 * Клик по файлу в дереве открывает его: дерево отдаёт имя файла, суффикс
+		 * решает, какая это вкладка. `.view.css.ts` проверяем раньше `.view.ts`:
+		 * второй суффикс — конец первого.
+		 */
+		@ $mol_action
+		file_pick( file?: string ) {
+			if ( !file ) return null
+			if ( file.endsWith( '.view.css.ts' ) ) this.tab( 'css' )
+			else if ( file.endsWith( '.view.ts' ) ) this.tab( 'ts' )
+			else if ( file.endsWith( '.view.tree' ) ) this.tab( 'tree' )
+			return null
+		}
+
+		@ $mol_mem
+		sub() {
+			return [
+				... this.files_showed() ? [ this.Files() ] : [],
+				this.Editor_pane(),
+				this.Preview_pane(),
+			]
+		}
+
 		// --- tabs ---------------------------------------------------------
 
 		@ $mol_mem

@@ -18,5 +18,8 @@
 	"$bog_smalljs_playground_editor_hint_ts": "اختیاری — منطق کامپوننت.",
 	"$bog_smalljs_playground_editor_hint_css": "اختیاری — سبک‌های نوع‌دار.",
 	"$bog_smalljs_playground_layout_hint": "نمایش همهٔ فایل‌ها با هم",
-	"$bog_smalljs_playground_layout_hint_tabs": "بازگشت به زبانه‌ها"
+	"$bog_smalljs_playground_layout_hint_tabs": "بازگشت به زبانه‌ها",
+	"$bog_smalljs_playground_sample_routing_title": "مسیریابی",
+	"$bog_smalljs_playground_files_title": "پروژه",
+	"$bog_smalljs_playground_files_note": "این فایل‌ها کجای فضای کاریِ MAM هستند"
 }

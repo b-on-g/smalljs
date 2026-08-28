@@ -1,29 +1,67 @@
 # Project structure
 
-A $mol project has four nested levels: the **workspace** you cloned, the **packages** inside it, the **modules** inside those, and the **files** inside a module. Each level answers a different question, and most of what the build does follows from knowing which is which.
+A $mol project has four nested levels: the **workspace** you cloned, the **packages** inside it, the **modules** inside those, and the **files** inside a module. The layout answers one practical question — where a new project goes and what owns its history — and almost everything the build does follows from it.
 
+```structure
+mam/                     workspace — the MAM checkout
+├── .meta.tree           registry: which package comes from which repo
+├── mol/                 package — the framework, its own git repo
+└── my/                  package — yours, its own git repo
+    ├── .gitattributes   keeps built binaries intact
+    ├── my.meta.tree     registry of your own projects
+    └── hello/           project — a module, and a git repo of its own
+        ├── index.html   entry point (app modules only)
+        ├── hello.view.tree
+        └── form/        submodule — $my_hello_form
 ```
-mam/                            workspace — the MAM checkout
-├── .meta.tree                  registry: which package comes from which repo
-├── package.json
-├── mol/                        package — the framework, its own git repo
-│   └── button/                 module — the component $mol_button
-│       ├── button.view.tree
-│       ├── button.view.ts
-│       ├── major/              submodule — $mol_button_major
-│       └── minor/              submodule — $mol_button_minor
-└── my/                         package — yours
-    ├── .gitattributes          `* -text` — keeps built binaries intact
-    └── hello/                  module — the component $my_hello
-        ├── index.html          entry point (app modules only)
-        ├── hello.view.tree     layout
-        ├── hello.view.ts       behaviour
-        ├── hello.view.css.ts   styles, in TypeScript
-        ├── hello.locale=ru.json
-        ├── hello.meta.tree     build and deploy directives
-        ├── form/               submodule — $my_hello_form
-        ├── -view.tree/         generated from hello.view.tree
-        └── -/                  build output
+
+On this page every line of that listing carries a question mark with the reason it is there; the sections further down say the same at length.
+
+## Start a project
+
+Five steps. Only the first one is ever repeated, and the scaffolder can do the last three for you.
+
+**1. Clone the workspace, once.** Everything you write from now on lives inside it.
+
+```bash
+git clone https://github.com/hyoo-ru/mam.git
+cd mam
+```
+
+**2. Make a package of your own.** One short folder — your name, your company, your handle — and a git repository of its own. It is the container for every project you will start:
+
+```bash
+mkdir my
+cd my
+git init
+```
+
+Push it wherever you keep code, public or private. Add a `.gitattributes` with a single `* -text` line while you are there; the reason is [below](#!section=docs/page=structure/Docs.Body=One%20file%20every%20package%20needs).
+
+**3. Add the registry.** `my/my.meta.tree` is the list of projects inside your package. It starts empty and gets a line per project:
+
+```tree
+pack hello git \https://github.com/you/hello.git
+```
+
+MAM reads it the same way it reads the workspace `.meta.tree` one level up, so a colleague who clones `my/` gets the projects too.
+
+**4. Create the project, with a repository of its own.** The folder is the component — `my/hello/` is `$my_hello` — and its history belongs to it, not to your package and not to $mol:
+
+```bash
+mkdir hello
+cd hello
+git init
+```
+
+That separation is the point of the layout: a commit in `my/hello/` goes to the `hello` repository, never to `my` and never to `mol`.
+
+**5. Register it.** Add the `pack` line from step 3 to `my/my.meta.tree`, and a fresh checkout of your package fetches the project by name.
+
+The [scaffolder](#!section=docs/page=tooling) writes a working module for you at any point after step 2:
+
+```bash
+npx create-view-tree-lsp my/hello
 ```
 
 ## Workspace

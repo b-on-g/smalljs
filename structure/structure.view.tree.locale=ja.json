@@ -1,0 +1,20 @@
+{
+	"$bog_smalljs_structure_hint_workspace": "MAM のチェックアウト。一度クローンすれば、すべてのプロジェクトはこの中に置かれます。ここへ何かがコピーされることはなく、各パッケージがそれぞれの git チェックアウトです。",
+	"$bog_smalljs_structure_hint_registry": "パッケージ名をリポジトリに対応づけます。ビルドが $mol_view に出会って mol/ フォルダがまだなければ、ここに書かれたリポジトリをクローンします。",
+	"$bog_smalljs_structure_hint_framework": "$mol 本体で、最初のビルドでクローンされます。ソースは自分のコードの隣にあります。読むのも、debugger を仕込むのも、同じ作業コピーから pull request を出すのも自由です。",
+	"$bog_smalljs_structure_hint_package": "あなた自身のパッケージ。始めたプロジェクトをすべて収める短い名前のフォルダで、それ自体が git リポジトリです。",
+	"$bog_smalljs_structure_hint_gitattributes": "\"* -text\" の一行で、改行コードの正規化を切ります。デプロイはビルド結果をコミットするので、フォントや画像はそのコミットを無傷で通り抜ける必要があります。",
+	"$bog_smalljs_structure_hint_registry_own": "同じレジストリの一階層下。追加したプロジェクトごとに pack の行がここに増え、パッケージを新しくチェックアウトした人もプロジェクトを取得できます。",
+	"$bog_smalljs_structure_hint_project": "プロジェクト。フォルダであると同時に、それ自体が独立したリポジトリです。履歴はプロジェクトのものであって、あなたのパッケージのものでも $mol のものでもありません。",
+	"$bog_smalljs_structure_hint_entry": "コンポーネントをマウントするページ。実際にデプロイするモジュールだけに必要です。",
+	"$bog_smalljs_structure_hint_tree": "レイアウト。ファイル名とフォルダのパスが合わさってコンポーネント名になります。my/hello/hello.view.tree は $my_hello です。",
+	"$bog_smalljs_structure_hint_ts": "振る舞い。ツリーが生成した基底クラスを継承するクラスです。",
+	"$bog_smalljs_structure_hint_css": "スタイル。$mol_style_define を呼ぶ TypeScript なので、プロパティ名はコンパイラが検査します。",
+	"$bog_smalljs_structure_hint_submodule": "モジュールの中のフォルダは入れ子のコンポーネントです。my/hello/form/ は $my_hello_form。import を書く必要はなく、パスがそのまま名前です。",
+	"$bog_smalljs_structure_steps_title": "自分のプロジェクトまで五歩",
+	"$bog_smalljs_structure_step1_text": "MAM を一度クローンします。すべてのプロジェクトはこのワークスペースの中にあります。",
+	"$bog_smalljs_structure_step2_text": "自分用に短い名前のフォルダを作り、リポジトリとして公開します。",
+	"$bog_smalljs_structure_step3_text": "その隣に、自分のプロジェクトのレジストリを置きます。",
+	"$bog_smalljs_structure_step4_text": "その中にプロジェクトを作り、専用のリポジトリを与えます。",
+	"$bog_smalljs_structure_step5_text": "登録すれば、新しいチェックアウトが名前で取得してくれます。"
+}

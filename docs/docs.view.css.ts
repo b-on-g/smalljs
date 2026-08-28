@@ -8,6 +8,9 @@ namespace $ {
 	const sidebar_link = {
 		flex: { direction: 'row' },
 		justify: { content: 'flex-start' },
+		// Ссылка, чей заголовок переносится на вторую строку, иначе прижимает текст
+		// к верху строки и выпадает из ряда соседей.
+		align: { items: 'center' },
 		padding: { top: rem( 0.3 ), bottom: rem( 0.3 ), left: rem( 0.625 ), right: rem( 0.625 ) },
 		border: { radius: rem( 0.375 ) },
 		color: $bog_builderui_tokens.shade,

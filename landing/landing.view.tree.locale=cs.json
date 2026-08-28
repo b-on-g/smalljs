@@ -49,5 +49,15 @@
 	"$bog_smalljs_landing_versus_pair_label": "Začít s $mol vs React",
 	"$bog_smalljs_landing_Sign_ts_label_text": "view.ts",
 	"$bog_smalljs_landing_Sign_css_label_text": "view.css.ts",
-	"$bog_smalljs_landing_Sign_try_label": "Vyzkoušet příklad"
+	"$bog_smalljs_landing_Sign_try_label": "Vyzkoušet příklad",
+	"$bog_smalljs_landing_arch_eyebrow_text": "Struktura",
+	"$bog_smalljs_landing_arch_title_text": "Mikromodulární architektura už z principu",
+	"$bog_smalljs_landing_arch_line_text": "Projekt je složka, složka je repozitář a framework leží vedle vašeho kódu, ne uvnitř. Rozvržení je stejné pro první komponentu i pro firmu s třiceti projekty.",
+	"$bog_smalljs_landing_arch_link_label": "Jak je projekt uspořádaný",
+	"$bog_smalljs_landing_arch_label_workspace": "workspace",
+	"$bog_smalljs_landing_arch_label_registry": "rejstřík",
+	"$bog_smalljs_landing_arch_label_framework": "framework",
+	"$bog_smalljs_landing_arch_label_package": "váš balík",
+	"$bog_smalljs_landing_arch_label_registry_own": "váš rejstřík",
+	"$bog_smalljs_landing_arch_label_project": "váš projekt"
 }

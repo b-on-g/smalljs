@@ -1,29 +1,67 @@
 # Projektstruktur
 
-Ein $mol-Projekt hat vier verschachtelte Ebenen: den **Workspace**, den Sie geklont haben, die **Pakete** darin, die **Module** in diesen Paketen und die **Dateien** in einem Modul. Jede Ebene beantwortet eine andere Frage, und das meiste, was der Build tut, folgt daraus, zu wissen, was was ist.
+Ein $mol-Projekt hat vier verschachtelte Ebenen: den **Workspace**, den Sie geklont haben, die **Pakete** darin, die **Module** in den Paketen und die **Dateien** in einem Modul. Die Aufteilung beantwortet eine praktische Frage — wohin ein neues Projekt gehört und wem seine Historie gehört — und fast alles, was der Build tut, folgt daraus.
 
+```structure
+mam/                         Workspace — der geklonte MAM-Checkout
+├── .meta.tree               Registry: welches Paket aus welchem Repository
+├── mol/                     Paket — das Framework selbst, eigenes git-Repository
+└── my/                      Paket — Ihres, Ihr eigenes git-Repository
+    ├── .gitattributes       hält gebaute Binärdateien unversehrt
+    ├── my.meta.tree         Registry Ihrer eigenen Projekte
+    └── hello/               Projekt — ein Modul und ein eigenes git-Repository
+        ├── index.html       Einstiegspunkt (nur App-Module)
+        ├── hello.view.tree
+        └── form/            Untermodul — $my_hello_form
 ```
-mam/                            Workspace — der MAM-Checkout
-├── .meta.tree                  Registry: welches Paket aus welchem Repo kommt
-├── package.json
-├── mol/                        Paket — das Framework, ein eigenes git-Repo
-│   └── button/                 Modul — die Komponente $mol_button
-│       ├── button.view.tree
-│       ├── button.view.ts
-│       ├── major/              Submodul — $mol_button_major
-│       └── minor/              Submodul — $mol_button_minor
-└── my/                         Paket — Ihres
-    ├── .gitattributes          `* -text` — hält gebaute Binärdateien intakt
-    └── hello/                  Modul — die Komponente $my_hello
-        ├── index.html          Einstiegspunkt (nur bei App-Modulen)
-        ├── hello.view.tree     Layout
-        ├── hello.view.ts       Verhalten
-        ├── hello.view.css.ts   Styles, in TypeScript
-        ├── hello.locale=ru.json
-        ├── hello.meta.tree     Build- und Deploy-Direktiven
-        ├── form/               Submodul — $my_hello_form
-        ├── -view.tree/         aus hello.view.tree generiert
-        └── -/                  Build-Ausgabe
+
+Auf dieser Seite trägt jede Zeile der Auflistung ein Fragezeichen mit dem Grund, warum sie dort steht; die Abschnitte weiter unten sagen dasselbe ausführlich.
+
+## Ein Projekt anlegen
+
+Fünf Schritte. Nur der erste wiederholt sich, und die letzten drei kann der Scaffolder für Sie erledigen.
+
+**1. Den Workspace einmal klonen.** Alles, was Sie ab jetzt schreiben, liegt darin.
+
+```bash
+git clone https://github.com/hyoo-ru/mam.git
+cd mam
+```
+
+**2. Ein eigenes Paket anlegen.** Ein kurzer Ordner — Ihr Name, Ihre Firma, Ihr Handle — und ein eigenes git-Repository. Es ist der Container für jedes Projekt, das Sie beginnen:
+
+```bash
+mkdir my
+cd my
+git init
+```
+
+Veröffentlichen Sie es dort, wo Sie Code halten, öffentlich oder privat. Legen Sie gleich eine `.gitattributes` mit der einen Zeile `* -text` dazu; warum, steht weiter unten im Abschnitt über Pakete.
+
+**3. Die Registry hinzufügen.** `my/my.meta.tree` ist die Liste der Projekte in Ihrem Paket. Sie beginnt leer und bekommt pro Projekt eine Zeile:
+
+```tree
+pack hello git \https://github.com/you/hello.git
+```
+
+MAM liest sie genauso wie die `.meta.tree` des Workspace eine Ebene höher, sodass eine Kollegin, die `my/` klont, auch die Projekte bekommt.
+
+**4. Das Projekt anlegen, mit eigenem Repository.** Der Ordner ist die Komponente — `my/hello/` ist `$my_hello` — und seine Historie gehört ihm, nicht Ihrem Paket und nicht $mol:
+
+```bash
+mkdir hello
+cd hello
+git init
+```
+
+Genau diese Trennung ist der Sinn der Aufteilung: ein Commit in `my/hello/` geht ins Repository `hello`, nie nach `my` und nie nach `mol`.
+
+**5. Es eintragen.** Fügen Sie die `pack`-Zeile aus Schritt 3 in `my/my.meta.tree` ein, und ein frischer Checkout Ihres Pakets holt das Projekt beim Namen.
+
+Der [Scaffolder](#!section=docs/page=tooling) schreibt Ihnen jederzeit nach Schritt 2 ein lauffähiges Modul:
+
+```bash
+npx create-view-tree-lsp my/hello
 ```
 
 ## Workspace

@@ -1,0 +1,20 @@
+{
+	"$bog_smalljs_structure_hint_workspace": "Der MAM-Checkout. Einmal geklont, und darin leben alle Projekte: nichts wird hineinkopiert, jedes Paket liegt als eigener git-Checkout da.",
+	"$bog_smalljs_structure_hint_registry": "Ordnet einem Paketnamen ein Repository zu. Trifft der Build auf $mol_view und es gibt noch keinen Ordner mol/, klont er das hier eingetragene Repository.",
+	"$bog_smalljs_structure_hint_framework": "$mol selbst, beim ersten Build geklont. Sein Quellcode liegt neben Ihrem: lesen, einen debugger hineinsetzen, aus derselben Arbeitskopie einen Pull Request öffnen.",
+	"$bog_smalljs_structure_hint_package": "Ihr eigenes Paket: ein kurzer Ordner, der jedes Ihrer Projekte enthält, und ein eigenes git-Repository.",
+	"$bog_smalljs_structure_hint_gitattributes": "Eine Zeile, \"* -text\", die die Zeilenenden-Normalisierung abschaltet. Beim Deploy wird das Build-Ergebnis committet, und Schriften und Bilder müssen diesen Commit unversehrt überstehen.",
+	"$bog_smalljs_structure_hint_registry_own": "Dieselbe Registry eine Ebene tiefer. Jedes hinzugefügte Projekt bekommt hier eine pack-Zeile, damit ein frischer Checkout Ihres Pakets die Projekte mitbringt.",
+	"$bog_smalljs_structure_hint_project": "Ein Projekt: ein Ordner, der zugleich ein eigenes Repository ist. Seine Historie gehört ihm, nicht Ihrem Paket und nicht $mol.",
+	"$bog_smalljs_structure_hint_entry": "Die Seite, die die Komponente einhängt. Nur ein Modul, das Sie tatsächlich ausliefern, braucht sie.",
+	"$bog_smalljs_structure_hint_tree": "Das Layout. Dateiname und Ordnerpfad ergeben zusammen den Namen der Komponente: my/hello/hello.view.tree ist $my_hello.",
+	"$bog_smalljs_structure_hint_ts": "Das Verhalten: eine Klasse, die die vom Baum erzeugte Basis erweitert.",
+	"$bog_smalljs_structure_hint_css": "Die Styles — TypeScript, das $mol_style_define aufruft, sodass der Compiler die Eigenschaftsnamen prüft.",
+	"$bog_smalljs_structure_hint_submodule": "Ein Ordner in einem Modul ist eine verschachtelte Komponente: my/hello/form/ ist $my_hello_form. Es gibt keinen Import zu schreiben, der Pfad ist der Name.",
+	"$bog_smalljs_structure_steps_title": "Fünf Schritte zu einem eigenen Projekt",
+	"$bog_smalljs_structure_step1_text": "MAM einmal klonen. Es ist der Workspace, in dem jedes Projekt liegt.",
+	"$bog_smalljs_structure_step2_text": "Einen kurzen Ordner für sich anlegen und als Repository veröffentlichen.",
+	"$bog_smalljs_structure_step3_text": "Die Registry Ihrer Projekte danebenlegen.",
+	"$bog_smalljs_structure_step4_text": "Darin das Projekt anlegen, mit einem eigenen Repository.",
+	"$bog_smalljs_structure_step5_text": "Es eintragen, damit ein frischer Checkout es beim Namen holt."
+}

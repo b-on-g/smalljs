@@ -18,5 +18,8 @@
 	"$bog_smalljs_playground_editor_hint_ts": "Необязательно — логика компонента.",
 	"$bog_smalljs_playground_editor_hint_css": "Необязательно — типизированные стили.",
 	"$bog_smalljs_playground_layout_hint": "Показать все файлы сразу",
-	"$bog_smalljs_playground_layout_hint_tabs": "Вернуться к вкладкам"
+	"$bog_smalljs_playground_layout_hint_tabs": "Вернуться к вкладкам",
+	"$bog_smalljs_playground_sample_routing_title": "Роутинг",
+	"$bog_smalljs_playground_files_title": "Проект",
+	"$bog_smalljs_playground_files_note": "Где эти файлы лежат в воркспейсе MAM"
 }

@@ -317,6 +317,58 @@ namespace $ {
 		Feature2_text: { color: $bog_builderui_tokens.shade, lineHeight: '1.6' },
 		Feature3_text: { color: $bog_builderui_tokens.shade, lineHeight: '1.6' },
 
+		// ── Structure ──
+		// The section that answers "where does my code go" before the reader has to ask
+		// on a forum. It sits after the three features and before the comparison: by
+		// then they know what the framework is, and the next honest question is how a
+		// project made with it is laid out.
+		Arch: {
+			flex: { direction: 'column' },
+			gap: rem( 1 ),
+			width: '100%',
+			maxWidth: rem( 62 ),
+			margin: { left: 'auto', right: 'auto' },
+			padding: { top: rem( 2.5 ), bottom: rem( 3.5 ), left: $mol_gap.block, right: $mol_gap.block },
+			border: { top: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line } },
+		},
+
+		Arch_eyebrow: {
+			display: 'block',
+			... eyebrow,
+		},
+
+		Arch_title: {
+			display: 'block',
+			font: { family: $bog_builderui_tokens.font_head, size: rem( 2 ), weight: 500 },
+			letterSpacing: '-0.02em',
+			margin: { top: rem( -0.25 ) },
+		},
+
+		Arch_line: {
+			display: 'block',
+			maxWidth: rem( 44 ),
+			font: { size: rem( 1.0625 ) },
+			lineHeight: '1.6',
+			color: $bog_builderui_tokens.shade,
+			margin: { bottom: rem( 0.5 ) },
+		},
+
+		Arch_link: {
+			flex: { direction: 'row', grow: 0 },
+			align: { items: 'center', self: 'flex-start' },
+			gap: rem( 0.4 ),
+			margin: { top: rem( 0.5 ) },
+			color: $bog_builderui_tokens.control,
+			font: { weight: 600 },
+			':hover': { color: $bog_builderui_tokens.focus },
+		},
+
+		Arch_link_icon: {
+			width: rem( 0.9 ),
+			height: rem( 0.9 ),
+			flex: { shrink: 0 },
+		},
+
 		// ── Compare ──
 		// The way into the comparison section, and deliberately quiet: a thin rule,
 		// one line and two text links, below the fold. The section is meant to be
@@ -474,6 +526,12 @@ namespace $ {
 					gap: rem( 1.75 ),
 					padding: { top: rem( 1 ), bottom: rem( 3 ), left: rem( 1.25 ), right: rem( 1.25 ) },
 				},
+
+				Arch: {
+					padding: { top: rem( 2 ), bottom: rem( 2.5 ), left: rem( 1.25 ), right: rem( 1.25 ) },
+				},
+
+				Arch_title: { font: { size: rem( 1.625 ) } },
 
 				Versus: {
 					padding: { top: rem( 2 ), bottom: rem( 2.25 ), left: rem( 1.25 ), right: rem( 1.25 ) },

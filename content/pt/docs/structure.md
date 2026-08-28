@@ -1,29 +1,67 @@
 # Estrutura do projeto
 
-Um projeto $mol tem quatro níveis aninhados: o **workspace** que você clonou, os **pacotes** dentro dele, os **módulos** dentro desses, e os **arquivos** dentro de um módulo. Cada nível responde a uma pergunta diferente, e boa parte do que a build faz decorre de saber qual é qual.
+Um projeto $mol tem quatro níveis aninhados: o **workspace** que você clonou, os **pacotes** dentro dele, os **módulos** dentro dos pacotes e os **arquivos** dentro de um módulo. O arranjo responde a uma pergunta prática — onde vai um projeto novo e de quem é o seu histórico — e quase tudo o que o build faz decorre disso.
 
+```structure
+mam/                         workspace — o checkout do MAM
+├── .meta.tree               registro: qual pacote vem de qual repositório
+├── mol/                     pacote — o próprio framework, repositório git próprio
+└── my/                      pacote — o seu, seu próprio repositório git
+    ├── .gitattributes       mantém os binários compilados intactos
+    ├── my.meta.tree         registro dos seus próprios projetos
+    └── hello/               projeto — um módulo, e um repositório git próprio
+        ├── index.html       ponto de entrada (só módulos de aplicação)
+        ├── hello.view.tree
+        └── form/            submódulo — $my_hello_form
 ```
-mam/                            workspace — o checkout do MAM
-├── .meta.tree                  registro: qual pacote vem de qual repositório
-├── package.json
-├── mol/                        pacote — o framework, um repositório git próprio
-│   └── button/                 módulo — o componente $mol_button
-│       ├── button.view.tree
-│       ├── button.view.ts
-│       ├── major/              submódulo — $mol_button_major
-│       └── minor/              submódulo — $mol_button_minor
-└── my/                         pacote — o seu
-    ├── .gitattributes          `* -text` — mantém intactos os binários gerados
-    └── hello/                  módulo — o componente $my_hello
-        ├── index.html          ponto de entrada (só em módulos de aplicação)
-        ├── hello.view.tree     layout
-        ├── hello.view.ts       comportamento
-        ├── hello.view.css.ts   estilos, em TypeScript
-        ├── hello.locale=ru.json
-        ├── hello.meta.tree     diretivas de build e de deploy
-        ├── form/               submódulo — $my_hello_form
-        ├── -view.tree/         gerado a partir de hello.view.tree
-        └── -/                  saída da build
+
+Nesta página cada linha da listagem traz um ponto de interrogação com o motivo de estar ali; as seções abaixo dizem o mesmo com mais calma.
+
+## Começar um projeto
+
+Cinco passos. Só o primeiro se repete, e o scaffolder pode fazer os três últimos por você.
+
+**1. Clone o workspace, uma vez.** Tudo o que você escrever daqui em diante vive dentro dele.
+
+```bash
+git clone https://github.com/hyoo-ru/mam.git
+cd mam
+```
+
+**2. Crie um pacote seu.** Uma pasta curta — seu nome, sua empresa, seu apelido — e um repositório git próprio. É o contêiner de todo projeto que você começar:
+
+```bash
+mkdir my
+cd my
+git init
+```
+
+Publique-o onde você guarda código, público ou privado. Já aproveite e coloque um `.gitattributes` com a única linha `* -text`; o motivo está abaixo, na seção sobre pacotes.
+
+**3. Adicione o registro.** `my/my.meta.tree` é a lista dos projetos dentro do seu pacote. Ele começa vazio e ganha uma linha por projeto:
+
+```tree
+pack hello git \https://github.com/you/hello.git
+```
+
+O MAM o lê do mesmo jeito que lê o `.meta.tree` do workspace um nível acima, então um colega que clonar `my/` recebe os projetos também.
+
+**4. Crie o projeto, com repositório próprio.** A pasta é o componente — `my/hello/` é `$my_hello` — e o histórico pertence a ele, não ao seu pacote nem ao $mol:
+
+```bash
+mkdir hello
+cd hello
+git init
+```
+
+Essa separação é o ponto do arranjo: um commit em `my/hello/` vai para o repositório `hello`, nunca para `my` e nunca para `mol`.
+
+**5. Registre-o.** Acrescente a linha `pack` do passo 3 em `my/my.meta.tree`, e um checkout novo do seu pacote busca o projeto pelo nome.
+
+O [scaffolder](#!section=docs/page=tooling) escreve um módulo funcional para você a qualquer momento depois do passo 2:
+
+```bash
+npx create-view-tree-lsp my/hello
 ```
 
 ## Workspace

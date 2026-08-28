@@ -1,29 +1,67 @@
 # Struktura projektu
 
-Projekt $mol ma cztery zagnieżdżone poziomy: **przestrzeń roboczą**, którą sklonowałeś, **pakiety** w jej wnętrzu, **moduły** wewnątrz nich oraz **pliki** wewnątrz modułu. Każdy poziom odpowiada na inne pytanie, a większość tego, co robi build, wynika z rozróżnienia, co jest czym.
+Projekt $mol ma cztery zagnieżdżone poziomy: **workspace**, który sklonowałeś, **pakiety** w środku, **moduły** w pakietach i **pliki** w module. Ten układ odpowiada na jedno praktyczne pytanie — gdzie trafia nowy projekt i do kogo należy jego historia — i prawie wszystko, co robi build, z niego wynika.
 
+```structure
+mam/                         workspace — sklonowany MAM
+├── .meta.tree               rejestr: który pakiet z którego repozytorium
+├── mol/                     pakiet — sam framework, własne repozytorium gita
+└── my/                      pakiet — twój, twoje repozytorium gita
+    ├── .gitattributes       zachowuje zbudowane binaria w całości
+    ├── my.meta.tree         rejestr twoich projektów
+    └── hello/               projekt — moduł i własne repozytorium gita
+        ├── index.html       punkt wejścia (tylko moduły aplikacji)
+        ├── hello.view.tree
+        └── form/            podmoduł — $my_hello_form
 ```
-mam/                            przestrzeń robocza — sklonowany MAM
-├── .meta.tree                  rejestr: który pakiet z którego repozytorium
-├── package.json
-├── mol/                        pakiet — sam framework, osobne repo git
-│   └── button/                 moduł — komponent $mol_button
-│       ├── button.view.tree
-│       ├── button.view.ts
-│       ├── major/              submoduł — $mol_button_major
-│       └── minor/              submoduł — $mol_button_minor
-└── my/                         pakiet — twój
-    ├── .gitattributes          `* -text` — zachowuje zbudowane binaria nietknięte
-    └── hello/                  moduł — komponent $my_hello
-        ├── index.html          punkt wejścia (tylko moduły aplikacji)
-        ├── hello.view.tree     układ
-        ├── hello.view.ts       zachowanie
-        ├── hello.view.css.ts   style, w TypeScripcie
-        ├── hello.locale=ru.json
-        ├── hello.meta.tree     dyrektywy builda i deployu
-        ├── form/               submoduł — $my_hello_form
-        ├── -view.tree/         wygenerowane z hello.view.tree
-        └── -/                  wynik builda
+
+Na tej stronie każdy wiersz listingu ma znak zapytania z powodem, dla którego tam jest; sekcje niżej mówią to samo szerzej.
+
+## Jak założyć projekt
+
+Pięć kroków. Powtarza się tylko pierwszy, a trzy ostatnie może wykonać za ciebie scaffolder.
+
+**1. Sklonuj workspace, raz.** Wszystko, co napiszesz od teraz, żyje w środku.
+
+```bash
+git clone https://github.com/hyoo-ru/mam.git
+cd mam
+```
+
+**2. Załóż własny pakiet.** Jeden krótki katalog — twoje imię, twoja firma, twój nick — i własne repozytorium gita. To pojemnik na każdy projekt, który zaczniesz:
+
+```bash
+mkdir my
+cd my
+git init
+```
+
+Opublikuj go tam, gdzie trzymasz kod, publicznie albo prywatnie. Przy okazji dołóż `.gitattributes` z jedną linią `* -text`; dlaczego — niżej, w sekcji o pakietach.
+
+**3. Dodaj rejestr.** `my/my.meta.tree` to lista projektów w twoim pakiecie. Zaczyna pusty i dostaje po linii na projekt:
+
+```tree
+pack hello git \https://github.com/you/hello.git
+```
+
+MAM czyta go tak samo jak `.meta.tree` workspace'u piętro wyżej, więc kolega, który sklonuje `my/`, dostanie też projekty.
+
+**4. Utwórz projekt z własnym repozytorium.** Katalog jest komponentem — `my/hello/` to `$my_hello` — a historia należy do niego, nie do twojego pakietu ani do $mol:
+
+```bash
+mkdir hello
+cd hello
+git init
+```
+
+W tym rozdzieleniu tkwi sens układu: commit w `my/hello/` idzie do repozytorium `hello`, nigdy do `my` i nigdy do `mol`.
+
+**5. Wpisz go.** Dodaj linię `pack` z kroku 3 do `my/my.meta.tree`, a świeży checkout twojego pakietu pobierze projekt po nazwie.
+
+[Scaffolder](#!section=docs/page=tooling) napisze ci działający moduł w dowolnym momencie po kroku 2:
+
+```bash
+npx create-view-tree-lsp my/hello
 ```
 
 ## Przestrzeń robocza

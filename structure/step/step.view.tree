@@ -1,0 +1,16 @@
+$bog_smalljs_structure_step $mol_view
+	number \
+	text \
+	code \
+	sub /
+		<= Number $mol_view
+			sub /
+				<= number
+		<= Body $mol_view
+			sub <= body_content /
+				<= Text $mol_view
+					sub /
+						<= text
+				<= Code $mol_view
+					sub /
+						<= code

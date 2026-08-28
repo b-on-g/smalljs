@@ -1,29 +1,67 @@
 # Struktura projektu
 
-Projekt $mol má čtyři vnořené úrovně: **pracovní prostor**, který jste naklonovali, **balíčky** uvnitř něj, **moduly** uvnitř nich a **soubory** uvnitř modulu. Každá úroveň odpovídá na jinou otázku a většina toho, co build dělá, plyne z toho, že víte, co je co.
+Projekt v $mol má čtyři vnořené úrovně: **workspace**, který jste naklonovali, **balíky** uvnitř, **moduly** v balících a **soubory** v modulu. Rozvržení odpovídá na jednu praktickou otázku — kam patří nový projekt a komu patří jeho historie — a skoro všechno, co build dělá, z toho plyne.
 
+```structure
+mam/                         workspace — naklonovaný MAM
+├── .meta.tree               rejstřík: který balík z kterého repozitáře
+├── mol/                     balík — samotný framework, vlastní git repozitář
+└── my/                      balík — váš, váš vlastní git repozitář
+    ├── .gitattributes       udrží sestavené binárky nedotčené
+    ├── my.meta.tree         rejstřík vašich projektů
+    └── hello/               projekt — modul a vlastní git repozitář
+        ├── index.html       vstupní bod (jen moduly aplikací)
+        ├── hello.view.tree
+        └── form/            podmodul — $my_hello_form
 ```
-mam/                            pracovní prostor — checkout MAM
-├── .meta.tree                  registr: který balíček z jakého repozitáře
-├── package.json
-├── mol/                        balíček — framework, vlastní git repozitář
-│   └── button/                 modul — komponenta $mol_button
-│       ├── button.view.tree
-│       ├── button.view.ts
-│       ├── major/              submodul — $mol_button_major
-│       └── minor/              submodul — $mol_button_minor
-└── my/                         balíček — váš
-    ├── .gitattributes          `* -text` — udrží sestavené binárky neporušené
-    └── hello/                  modul — komponenta $my_hello
-        ├── index.html          vstupní bod (jen u modulů aplikací)
-        ├── hello.view.tree     rozvržení
-        ├── hello.view.ts       chování
-        ├── hello.view.css.ts   styly, v TypeScriptu
-        ├── hello.locale=ru.json
-        ├── hello.meta.tree     direktivy buildu a nasazení
-        ├── form/               submodul — $my_hello_form
-        ├── -view.tree/         vygenerováno z hello.view.tree
-        └── -/                  výstup buildu
+
+Na této stránce nese každý řádek výpisu otazník s důvodem, proč tam je; sekce níž říkají totéž obšírněji.
+
+## Jak založit projekt
+
+Pět kroků. Opakuje se jen první a poslední tři za vás zvládne scaffolder.
+
+**1. Naklonujte workspace, jednou.** Všechno, co od teď napíšete, žije uvnitř.
+
+```bash
+git clone https://github.com/hyoo-ru/mam.git
+cd mam
+```
+
+**2. Založte si vlastní balík.** Jedna krátká složka — vaše jméno, vaše firma, vaše přezdívka — a vlastní git repozitář. Je to kontejner na každý projekt, který začnete:
+
+```bash
+mkdir my
+cd my
+git init
+```
+
+Vystavte ho tam, kde držíte kód, veřejně nebo privátně. Rovnou k němu přidejte `.gitattributes` s jediným řádkem `* -text`; proč, je níž v sekci o balících.
+
+**3. Přidejte rejstřík.** `my/my.meta.tree` je seznam projektů uvnitř vašeho balíku. Začíná prázdný a dostává řádek na projekt:
+
+```tree
+pack hello git \https://github.com/you/hello.git
+```
+
+MAM ho čte stejně jako `.meta.tree` workspace o úroveň výš, takže kolega, který naklonuje `my/`, dostane i projekty.
+
+**4. Vytvořte projekt s vlastním repozitářem.** Složka je komponenta — `my/hello/` je `$my_hello` — a historie patří jí, ne vašemu balíku ani $mol:
+
+```bash
+mkdir hello
+cd hello
+git init
+```
+
+V tom oddělení je smysl rozvržení: commit v `my/hello/` jde do repozitáře `hello`, nikdy do `my` a nikdy do `mol`.
+
+**5. Zapište ho.** Přidejte řádek `pack` z kroku 3 do `my/my.meta.tree` a čerstvý checkout vašeho balíku si projekt stáhne podle jména.
+
+[Scaffolder](#!section=docs/page=tooling) vám kdykoli po druhém kroku napíše funkční modul:
+
+```bash
+npx create-view-tree-lsp my/hello
 ```
 
 ## Pracovní prostor

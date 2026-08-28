@@ -18,5 +18,8 @@
 	"$bog_smalljs_playground_editor_hint_ts": "任意 — コンポーネントのロジック。",
 	"$bog_smalljs_playground_editor_hint_css": "任意 — 型付きスタイル。",
 	"$bog_smalljs_playground_layout_hint": "すべてのファイルを同時に表示",
-	"$bog_smalljs_playground_layout_hint_tabs": "タブ表示に戻す"
+	"$bog_smalljs_playground_layout_hint_tabs": "タブ表示に戻す",
+	"$bog_smalljs_playground_sample_routing_title": "ルーティング",
+	"$bog_smalljs_playground_files_title": "プロジェクト",
+	"$bog_smalljs_playground_files_note": "これらのファイルが MAM ワークスペースのどこにあるか"
 }

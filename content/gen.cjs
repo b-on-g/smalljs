@@ -37,7 +37,7 @@ const meta = {
 	'introduction': { title: 'Introduction', summary: 'What $mol is, who it is for, and a taste of reactive views.' },
 	'getting-started': { title: 'Getting Started', summary: 'From an empty folder to a running, reactive $mol app in under 15 minutes.' },
 	'from-ts-to-view-tree': { title: 'From TypeScript to view.tree', summary: 'The same component as a hand-written class and as a tree, line by line, plus the code the compiler generates from it.' },
-	'structure': { title: 'Project Structure', summary: 'How a MAM project is laid out: workspace, packages, modules, module files, and the generated folders.' },
+	'structure': { title: 'Project Structure', summary: 'Where a new project goes: workspace, your own package, the project repository, and the five steps from a clone to a registered project.' },
 	'tooling': { title: 'Tooling', summary: 'Project scaffolder, view.tree language server, and editor support for Zed and VS Code.' },
 	'installation': { title: 'Installation', summary: 'The MAM workspace, module layout, dev server, and production build.' },
 	'views': { title: 'Views', summary: 'Declaring and composing components with the view.tree language.' },

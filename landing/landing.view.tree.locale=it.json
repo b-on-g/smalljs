@@ -49,5 +49,15 @@
 	"$bog_smalljs_landing_versus_pair_label": "Inizia da $mol vs React",
 	"$bog_smalljs_landing_Sign_ts_label_text": "view.ts",
 	"$bog_smalljs_landing_Sign_css_label_text": "view.css.ts",
-	"$bog_smalljs_landing_Sign_try_label": "Prova questo esempio"
+	"$bog_smalljs_landing_Sign_try_label": "Prova questo esempio",
+	"$bog_smalljs_landing_arch_eyebrow_text": "Struttura",
+	"$bog_smalljs_landing_arch_title_text": "Architettura micromodulare per impostazione predefinita",
+	"$bog_smalljs_landing_arch_line_text": "Un progetto è una cartella, una cartella è un repository, e il framework sta accanto al tuo codice invece che dentro. La disposizione è la stessa per un primo componente e per un'azienda con trenta progetti.",
+	"$bog_smalljs_landing_arch_link_label": "Com'è organizzato un progetto",
+	"$bog_smalljs_landing_arch_label_workspace": "workspace",
+	"$bog_smalljs_landing_arch_label_registry": "registro",
+	"$bog_smalljs_landing_arch_label_framework": "il framework",
+	"$bog_smalljs_landing_arch_label_package": "il tuo pacchetto",
+	"$bog_smalljs_landing_arch_label_registry_own": "il tuo registro",
+	"$bog_smalljs_landing_arch_label_project": "il tuo progetto"
 }

@@ -1,29 +1,67 @@
 # Structure d'un projet
 
-Un projet $mol a quatre niveaux imbriqués : l'**espace de travail** que vous avez cloné, les **paquets** qu'il contient, les **modules** à l'intérieur de ceux-ci, et les **fichiers** dans un module. Chaque niveau répond à une question différente, et l'essentiel de ce que fait le build découle de savoir lequel est lequel.
+Un projet $mol a quatre niveaux imbriqués : l'**espace de travail** que vous avez cloné, les **paquets** qu'il contient, les **modules** dans ces paquets et les **fichiers** dans un module. Cette disposition répond à une question pratique — où va un nouveau projet et à qui appartient son historique — et presque tout ce que fait la compilation en découle.
 
+```structure
+mam/                         espace de travail — le clone de MAM
+├── .meta.tree               registre : quel paquet vient de quel dépôt
+├── mol/                     paquet — le framework lui-même, son propre dépôt git
+└── my/                      paquet — le vôtre, votre propre dépôt git
+    ├── .gitattributes       garde intacts les binaires compilés
+    ├── my.meta.tree         registre de vos propres projets
+    └── hello/               projet — un module, et un dépôt git à lui
+        ├── index.html       point d'entrée (modules applicatifs seulement)
+        ├── hello.view.tree
+        └── form/            sous-module — $my_hello_form
 ```
-mam/                            espace de travail — le clone de MAM
-├── .meta.tree                  registre : quel paquet vient de quel dépôt
-├── package.json
-├── mol/                        paquet — le framework, son propre dépôt git
-│   └── button/                 module — le composant $mol_button
-│       ├── button.view.tree
-│       ├── button.view.ts
-│       ├── major/              sous-module — $mol_button_major
-│       └── minor/              sous-module — $mol_button_minor
-└── my/                         paquet — le vôtre
-    ├── .gitattributes          `* -text` — garde intacts les binaires construits
-    └── hello/                  module — le composant $my_hello
-        ├── index.html          point d'entrée (modules d'application seulement)
-        ├── hello.view.tree     mise en page
-        ├── hello.view.ts       comportement
-        ├── hello.view.css.ts   styles, en TypeScript
-        ├── hello.locale=ru.json
-        ├── hello.meta.tree     directives de build et de déploiement
-        ├── form/               sous-module — $my_hello_form
-        ├── -view.tree/         généré depuis hello.view.tree
-        └── -/                  sortie du build
+
+Sur cette page, chaque ligne de la liste porte un point d'interrogation avec la raison de sa présence ; les sections plus bas disent la même chose en détail.
+
+## Démarrer un projet
+
+Cinq étapes. Seule la première se répète, et le générateur peut faire les trois dernières à votre place.
+
+**1. Clonez l'espace de travail, une fois.** Tout ce que vous écrirez désormais vit à l'intérieur.
+
+```bash
+git clone https://github.com/hyoo-ru/mam.git
+cd mam
+```
+
+**2. Créez votre propre paquet.** Un dossier court — votre nom, votre entreprise, votre pseudo — et un dépôt git à lui. C'est le conteneur de tous les projets que vous commencerez :
+
+```bash
+mkdir my
+cd my
+git init
+```
+
+Publiez-le là où vous gardez votre code, en public ou en privé. Ajoutez au passage un `.gitattributes` avec la seule ligne `* -text` ; la raison est plus bas, dans la section sur les paquets.
+
+**3. Ajoutez le registre.** `my/my.meta.tree` est la liste des projets de votre paquet. Il commence vide et gagne une ligne par projet :
+
+```tree
+pack hello git \https://github.com/you/hello.git
+```
+
+MAM le lit exactement comme le `.meta.tree` de l'espace de travail un niveau au-dessus, si bien qu'un collègue qui clone `my/` récupère aussi les projets.
+
+**4. Créez le projet, avec un dépôt à lui.** Le dossier est le composant — `my/hello/` c'est `$my_hello` — et son historique lui appartient, pas à votre paquet ni à $mol :
+
+```bash
+mkdir hello
+cd hello
+git init
+```
+
+Cette séparation est tout l'intérêt de la disposition : un commit dans `my/hello/` va au dépôt `hello`, jamais à `my` ni à `mol`.
+
+**5. Déclarez-le.** Ajoutez la ligne `pack` de l'étape 3 dans `my/my.meta.tree`, et un clone frais de votre paquet récupérera le projet par son nom.
+
+Le [générateur](#!section=docs/page=tooling) vous écrit un module fonctionnel à tout moment après l'étape 2 :
+
+```bash
+npx create-view-tree-lsp my/hello
 ```
 
 ## Espace de travail

@@ -49,5 +49,15 @@
 	"$bog_smalljs_landing_versus_pair_label": "$mol vs React দিয়ে শুরু করুন",
 	"$bog_smalljs_landing_Sign_ts_label_text": "view.ts",
 	"$bog_smalljs_landing_Sign_css_label_text": "view.css.ts",
-	"$bog_smalljs_landing_Sign_try_label": "এই উদাহরণটি চালিয়ে দেখুন"
+	"$bog_smalljs_landing_Sign_try_label": "এই উদাহরণটি চালিয়ে দেখুন",
+	"$bog_smalljs_landing_arch_eyebrow_text": "গঠন",
+	"$bog_smalljs_landing_arch_title_text": "শুরু থেকেই মাইক্রোমডিউলার স্থাপত্য",
+	"$bog_smalljs_landing_arch_line_text": "প্রকল্প মানে ফোল্ডার, ফোল্ডার মানে রিপোজিটরি, আর ফ্রেমওয়ার্ক থাকে আপনার কোডের পাশে, ভিতরে নয়। প্রথম কম্পোনেন্ট হোক বা ত্রিশটি প্রকল্পের কোম্পানি, বিন্যাস একই।",
+	"$bog_smalljs_landing_arch_link_label": "প্রকল্প কীভাবে সাজানো",
+	"$bog_smalljs_landing_arch_label_workspace": "ওয়ার্কস্পেস",
+	"$bog_smalljs_landing_arch_label_registry": "রেজিস্ট্রি",
+	"$bog_smalljs_landing_arch_label_framework": "ফ্রেমওয়ার্ক",
+	"$bog_smalljs_landing_arch_label_package": "আপনার প্যাকেজ",
+	"$bog_smalljs_landing_arch_label_registry_own": "আপনার রেজিস্ট্রি",
+	"$bog_smalljs_landing_arch_label_project": "আপনার প্রকল্প"
 }

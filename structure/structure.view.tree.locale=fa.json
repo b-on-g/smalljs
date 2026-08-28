@@ -1,0 +1,20 @@
+{
+	"$bog_smalljs_structure_hint_workspace": "چک‌اوتِ MAM. یک بار کلون می‌شود و همهٔ پروژه‌ها داخلش زندگی می‌کنند: چیزی به اینجا کپی نمی‌شود، هر بسته چک‌اوتِ گیتِ خودش است.",
+	"$bog_smalljs_structure_hint_registry": "نامِ بسته را به مخزن نگاشت می‌کند. وقتی ساخت به $mol_view می‌رسد و هنوز پوشهٔ mol/ نیست، مخزنِ نوشته‌شده در اینجا را کلون می‌کند.",
+	"$bog_smalljs_structure_hint_framework": "خودِ $mol، که در نخستین ساخت کلون می‌شود. سورسش کنارِ کدِ شماست: بخوانیدش، در آن debugger بگذارید، و از همان کپیِ کاری pull request بفرستید.",
+	"$bog_smalljs_structure_hint_package": "بستهٔ خودتان: یک پوشهٔ کوتاه که همهٔ پروژه‌هایتان را نگه می‌دارد، و مخزنِ گیتِ مستقلِ خودش.",
+	"$bog_smalljs_structure_hint_gitattributes": "یک خط، \"* -text\"، که نرمال‌سازیِ پایانِ خط را خاموش می‌کند. استقرار خروجیِ ساخت را کامیت می‌کند و فونت‌ها و تصویرها باید سالم از آن کامیت رد شوند.",
+	"$bog_smalljs_structure_hint_registry_own": "همان فهرست، یک سطح پایین‌تر. هر پروژه‌ای که اضافه کنید اینجا یک خط pack می‌گیرد، تا چک‌اوتِ تازه از بستهٔ شما پروژه‌ها را هم بیاورد.",
+	"$bog_smalljs_structure_hint_project": "یک پروژه: پوشه‌ای که خودش مخزنی جداگانه هم هست. تاریخچه‌اش مالِ خودش است، نه مالِ بستهٔ شما و نه مالِ $mol.",
+	"$bog_smalljs_structure_hint_entry": "صفحه‌ای که کامپوننت را سوار می‌کند. فقط ماژولی که واقعاً منتشر می‌کنید به آن نیاز دارد.",
+	"$bog_smalljs_structure_hint_tree": "چیدمان. نامِ فایل به‌همراهِ مسیرِ پوشه نامِ کامپوننت را می‌سازد: my/hello/hello.view.tree همان $my_hello است.",
+	"$bog_smalljs_structure_hint_ts": "رفتار: کلاسی که پایهٔ تولیدشده از درخت را گسترش می‌دهد.",
+	"$bog_smalljs_structure_hint_css": "استایل‌ها — تایپ‌اسکریپتی که $mol_style_define را صدا می‌زند، پس نامِ ویژگی‌ها را کامپایلر بررسی می‌کند.",
+	"$bog_smalljs_structure_hint_submodule": "پوشه‌ای داخلِ یک ماژول، کامپوننتِ تودرتوست: my/hello/form/ همان $my_hello_form است. import‌ای برای نوشتن نیست، مسیر همان نام است.",
+	"$bog_smalljs_structure_steps_title": "پنج گام تا پروژهٔ خودتان",
+	"$bog_smalljs_structure_step1_text": "یک بار MAM را کلون کنید. این همان فضای کاری است که هر پروژه در آن زندگی می‌کند.",
+	"$bog_smalljs_structure_step2_text": "برای خودتان یک پوشهٔ کوتاه بسازید و آن را به‌عنوان مخزن منتشر کنید.",
+	"$bog_smalljs_structure_step3_text": "کنارش فهرستِ پروژه‌هایتان را بگذارید.",
+	"$bog_smalljs_structure_step4_text": "پروژه را داخلش بسازید، با مخزنِ خودش.",
+	"$bog_smalljs_structure_step5_text": "ثبتش کنید تا چک‌اوتِ تازه آن را با نام بیاورد."
+}

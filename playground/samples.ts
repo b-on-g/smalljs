@@ -14,7 +14,7 @@ namespace $ {
 	 * зависимостей, поэтому перечисляем нужное здесь — в TS только `/** *\/`
 	 * тащит модули в граф:
 	 * $mol_view $mol_string $mol_password $mol_button_major $mol_button_minor
-	 * $mol_row $mol_check $mol_fetch $mol_state_arg $mol_state_local
+	 * $mol_row $mol_link $mol_check $mol_fetch $mol_state_arg $mol_state_local
 	 */
 	export type $bog_smalljs_playground_sample = {
 		/** Корневой компонент примера — по нему видно, что редактор всё ещё на нём. */
@@ -210,7 +210,7 @@ namespace $ {
 				``,
 				`\t@ ${ S }mol_mem`,
 				`\tpage( next?: string ) {`,
-				`\t\t// ключ свой, чтобы не спорить с аргументами самого сайта`,
+				`\t\t// Own key, so the demo does not argue with the site's own arguments`,
 				`\t\treturn ${ S }mol_state_arg.value( 'demo_page', next ) ?? 'home'`,
 				`\t}`,
 				``,
@@ -244,6 +244,66 @@ namespace $ {
 				``,
 				`\t\tMenu: { gap: '0.5rem' },`,
 				`\t\tTitle: { font: { size: '1.25rem', weight: 700 } },`,
+				``,
+				`\t} )`,
+				``,
+				`}`,
+			),
+		},
+
+		routing: {
+			root: `${ S }my_route`,
+			tree: lines(
+				`${ S }my_route ${ S }mol_view`,
+				`\tscreen \\`,
+				`\tsub /`,
+				`\t\t<= Menu ${ S }mol_row`,
+				`\t\t\tsub /`,
+				`\t\t\t\t<= Home ${ S }mol_link`,
+				`\t\t\t\t\targ *`,
+				`\t\t\t\t\t\tdemo_route \\home`,
+				`\t\t\t\t\tsub / <= home_label @ \\Home`,
+				`\t\t\t\t<= Guide ${ S }mol_link`,
+				`\t\t\t\t\targ *`,
+				`\t\t\t\t\t\tdemo_route \\guide`,
+				`\t\t\t\t\tsub / <= guide_label @ \\Guide`,
+				`\t\t\t\t<= About ${ S }mol_link`,
+				`\t\t\t\t\targ *`,
+				`\t\t\t\t\t\tdemo_route \\about`,
+				`\t\t\t\t\tsub / <= about_label @ \\About`,
+				`\t\t<= Screen ${ S }mol_view`,
+				`\t\t\tsub / <= screen`,
+			),
+			// Ссылки, а не кнопки: их можно открыть в новой вкладке, скопировать
+			// и вернуться назад — роутинг в $mol достаётся от адресной строки даром.
+			ts: lines(
+				`class ${ S }my_route extends ${ S }.${ S }my_route {`,
+				``,
+				`\t@ ${ S }mol_mem`,
+				`\troute() {`,
+				`\t\t// Own key, so the demo does not argue with the site's own arguments`,
+				`\t\treturn ${ S }mol_state_arg.value( 'demo_route' ) ?? 'home'`,
+				`\t}`,
+				``,
+				`\tscreen() {`,
+				`\t\tconst route = this.route()`,
+				`\t\tif( route === 'guide' ) return 'Guide — press Back and the previous screen returns'`,
+				`\t\tif( route === 'about' ) return 'About — a link is an address, so it opens in a new tab too'`,
+				`\t\treturn 'Home — pick a link and watch the address bar'`,
+				`\t}`,
+				``,
+				`}`,
+			),
+			css: lines(
+				`namespace ${ S } {`,
+				``,
+				`\t${ S }mol_style_define( ${ S }my_route, {`,
+				``,
+				`\t\tflex: { direction: 'column', gap: '1rem' },`,
+				`\t\tpadding: '1.5rem',`,
+				``,
+				`\t\tMenu: { gap: '1rem' },`,
+				`\t\tScreen: { font: { size: '1.125rem' } },`,
 				``,
 				`\t} )`,
 				``,
@@ -372,6 +432,6 @@ namespace $ {
 	}
 
 	/** Порядок в выпадашке. */
-	export const $bog_smalljs_playground_sample_ids = [ 'hello', 'counter', 'fetch', 'args', 'state', 'login' ]
+	export const $bog_smalljs_playground_sample_ids = [ 'hello', 'counter', 'fetch', 'args', 'routing', 'state', 'login' ]
 
 }

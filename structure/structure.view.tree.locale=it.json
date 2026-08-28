@@ -1,0 +1,20 @@
+{
+	"$bog_smalljs_structure_hint_workspace": "Il checkout di MAM. Lo cloni una volta e tutti i progetti vivono al suo interno: qui non viene copiato nulla, ogni pacchetto è un checkout git a sé.",
+	"$bog_smalljs_structure_hint_registry": "Associa il nome di un pacchetto a un repository. Quando la build incontra $mol_view e la cartella mol/ non c'è ancora, clona il repository indicato qui.",
+	"$bog_smalljs_structure_hint_framework": "$mol stesso, clonato alla prima build. I suoi sorgenti stanno accanto ai tuoi: leggili, mettici un debugger, apri una pull request dalla stessa copia di lavoro.",
+	"$bog_smalljs_structure_hint_package": "Il tuo pacchetto: una cartella corta che contiene tutti i progetti che avvii, e un repository git suo.",
+	"$bog_smalljs_structure_hint_gitattributes": "Una riga, \"* -text\", che disattiva la normalizzazione dei fine riga. Il deploy committa il risultato della build, e font e immagini devono sopravvivere intatti a quel commit.",
+	"$bog_smalljs_structure_hint_registry_own": "Lo stesso registro un livello più sotto. Ogni progetto aggiunto riceve qui una riga pack, così un checkout fresco del tuo pacchetto porta con sé anche i progetti.",
+	"$bog_smalljs_structure_hint_project": "Un progetto: una cartella che è anche un repository a sé. La sua storia appartiene a lui, non al tuo pacchetto né a $mol.",
+	"$bog_smalljs_structure_hint_entry": "La pagina che monta il componente. Serve solo a un modulo che pubblichi davvero.",
+	"$bog_smalljs_structure_hint_tree": "Il layout. Il nome del file e il percorso della cartella insieme danno il nome al componente: my/hello/hello.view.tree è $my_hello.",
+	"$bog_smalljs_structure_hint_ts": "Il comportamento: una classe che estende la base generata dall'albero.",
+	"$bog_smalljs_structure_hint_css": "Gli stili — TypeScript che chiama $mol_style_define, così i nomi delle proprietà li controlla il compilatore.",
+	"$bog_smalljs_structure_hint_submodule": "Una cartella dentro un modulo è un componente annidato: my/hello/form/ è $my_hello_form. Non c'è nessun import da scrivere, il percorso è il nome.",
+	"$bog_smalljs_structure_steps_title": "Cinque passi verso un progetto tuo",
+	"$bog_smalljs_structure_step1_text": "Clona MAM una volta. È il workspace in cui vive ogni progetto.",
+	"$bog_smalljs_structure_step2_text": "Crea una cartella corta per te e pubblicala come repository.",
+	"$bog_smalljs_structure_step3_text": "Mettici accanto il registro dei tuoi progetti.",
+	"$bog_smalljs_structure_step4_text": "Crea il progetto dentro, con un repository suo.",
+	"$bog_smalljs_structure_step5_text": "Registralo, così un checkout fresco lo prende per nome."
+}

@@ -1,29 +1,67 @@
 # 專案結構
 
-一個 $mol 專案有四個巢狀層級：你複製下來的**工作區**、其中的**套件**、套件裏的**模組**，以及模組裏的**檔案**。每一層回答的問題都不同，而建置所做的大部分事情，都源自分清哪個是哪個。
+$mol 專案有四層巢狀：你複製下來的**工作區**、其中的**套件**、套件裡的**模組**，以及模組裡的**檔案**。這套版面回答一個很實際的問題——新專案放在哪裡、它的歷史歸誰——建置所做的幾乎一切都由此而來。
 
+```structure
+mam/                         工作區 —— 複製下來的 MAM
+├── .meta.tree               登記表：哪個套件來自哪個儲存庫
+├── mol/                     套件 —— 框架本身，自己的 git 儲存庫
+└── my/                      套件 —— 你的，你自己的 git 儲存庫
+    ├── .gitattributes       讓建置出的二進位檔保持完好
+    ├── my.meta.tree         你自己專案的登記表
+    └── hello/               專案 —— 一個模組，也是自己的 git 儲存庫
+        ├── index.html       入口（只有應用模組需要）
+        ├── hello.view.tree
+        └── form/            子模組 —— $my_hello_form
 ```
-mam/                            工作區——MAM 的複製
-├── .meta.tree                  登錄表：哪個套件來自哪個儲存庫
-├── package.json
-├── mol/                        套件——框架本身，獨立的 git 儲存庫
-│   └── button/                 模組——元件 $mol_button
-│       ├── button.view.tree
-│       ├── button.view.ts
-│       ├── major/              子模組——$mol_button_major
-│       └── minor/              子模組——$mol_button_minor
-└── my/                         套件——你自己的
-    ├── .gitattributes          `* -text`——保持建置出的二進位檔案完好
-    └── hello/                  模組——元件 $my_hello
-        ├── index.html          進入點（只有應用模組才有）
-        ├── hello.view.tree     版面
-        ├── hello.view.ts       行為
-        ├── hello.view.css.ts   樣式，用 TypeScript 寫
-        ├── hello.locale=ru.json
-        ├── hello.meta.tree     建置與部署指令
-        ├── form/               子模組——$my_hello_form
-        ├── -view.tree/         由 hello.view.tree 生成
-        └── -/                  建置產物
+
+在本頁，這份清單的每一行都帶一個問號，說明它為什麼在那裡；下面的小節把同樣的事講得更細。
+
+## 開一個專案
+
+五步。只有第一步會重複，後三步可以交給鷹架工具。
+
+**1. 複製工作區，一次。** 從此以後你寫的一切都住在裡面。
+
+```bash
+git clone https://github.com/hyoo-ru/mam.git
+cd mam
+```
+
+**2. 建一個屬於你的套件。** 一個短名目錄——你的名字、你的公司、你的 ID——而且是一個獨立的 git 儲存庫。它是你今後所有專案的容器：
+
+```bash
+mkdir my
+cd my
+git init
+```
+
+把它推到你放程式的地方，公開或私有都行。順手加一個只有 `* -text` 一行的 `.gitattributes`；原因見下面關於套件的小節。
+
+**3. 加上登記表。** `my/my.meta.tree` 是你套件裡專案的清單。它一開始是空的，每個專案一行：
+
+```tree
+pack hello git \https://github.com/you/hello.git
+```
+
+MAM 讀它的方式，和讀上一層工作區的 `.meta.tree` 完全一樣，所以同事複製 `my/` 時也會拿到這些專案。
+
+**4. 建專案，並給它自己的儲存庫。** 目錄就是元件——`my/hello/` 就是 `$my_hello`——它的歷史屬於它自己，不屬於你的套件，也不屬於 $mol：
+
+```bash
+mkdir hello
+cd hello
+git init
+```
+
+這種分離正是版面的用意：`my/hello/` 裡的提交進入 `hello` 儲存庫，永遠不會進 `my`，也不會進 `mol`。
+
+**5. 登記它。** 把第 3 步的 `pack` 行寫進 `my/my.meta.tree`，之後新的檢出就會按名字把專案取回來。
+
+第 2 步之後的任何時候，[鷹架工具](#!section=docs/page=tooling)都能替你寫出一個能跑的模組：
+
+```bash
+npx create-view-tree-lsp my/hello
 ```
 
 ## 工作區

@@ -49,5 +49,15 @@
 	"$bog_smalljs_landing_versus_pair_label": "まずは $mol vs React から",
 	"$bog_smalljs_landing_Sign_ts_label_text": "view.ts",
 	"$bog_smalljs_landing_Sign_css_label_text": "view.css.ts",
-	"$bog_smalljs_landing_Sign_try_label": "この例を試す"
+	"$bog_smalljs_landing_Sign_try_label": "この例を試す",
+	"$bog_smalljs_landing_arch_eyebrow_text": "構造",
+	"$bog_smalljs_landing_arch_title_text": "はじめからマイクロモジュール構成",
+	"$bog_smalljs_landing_arch_line_text": "プロジェクトはフォルダ、フォルダはリポジトリ、そしてフレームワークはコードの中ではなく隣に置かれます。最初のコンポーネントでも、三十個の案件を抱える会社でも、置き方は同じです。",
+	"$bog_smalljs_landing_arch_link_label": "プロジェクトの構成",
+	"$bog_smalljs_landing_arch_label_workspace": "ワークスペース",
+	"$bog_smalljs_landing_arch_label_registry": "レジストリ",
+	"$bog_smalljs_landing_arch_label_framework": "フレームワーク",
+	"$bog_smalljs_landing_arch_label_package": "あなたのパッケージ",
+	"$bog_smalljs_landing_arch_label_registry_own": "あなたのレジストリ",
+	"$bog_smalljs_landing_arch_label_project": "あなたのプロジェクト"
 }

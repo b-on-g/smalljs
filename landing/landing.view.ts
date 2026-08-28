@@ -43,6 +43,31 @@ namespace $.$$ {
 			return this.sample().css.trimEnd()
 		}
 
+		/**
+		 * Раскладка, которая есть у любого проекта на $mol, урезанная до строк,
+		 * отвечающих на вопрос «куда класть свой код»: воркспейс, фреймворк рядом,
+		 * ваш пакет и один проект внутри со своим репозиторием. В доках то же дерево
+		 * показано вместе с файлами модуля — здесь речь про владение, а не про файлы.
+		 *
+		 * Собирается строками, а не разметкой: компонент разбирает ровно тот листинг,
+		 * который читатель скопировал бы из доков. Подписи — локализуемые, пути — нет.
+		 */
+		arch_tree() {
+			const rows: readonly ( readonly [ string, string ] )[] = [
+				[ 'mam/', this.arch_label_workspace() ],
+				[ '├── .meta.tree', this.arch_label_registry() ],
+				[ '├── mol/', this.arch_label_framework() ],
+				[ '└── my/', this.arch_label_package() ],
+				[ '    ├── my.meta.tree', this.arch_label_registry_own() ],
+				[ '    └── hello/', this.arch_label_project() ],
+				[ '        ├── index.html', '' ],
+				[ '        └── hello.view.tree', '' ],
+			]
+			// Два пробела и больше — граница имени и подписи для разборщика дерева.
+			const width = Math.max( ... rows.map( ( [ path ] ) => path.length ) ) + 2
+			return rows.map( ( [ path, note ] ) => note ? path.padEnd( width ) + note : path ).join( '\n' )
+		}
+
 	}
 
 }

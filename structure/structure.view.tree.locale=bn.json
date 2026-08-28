@@ -1,0 +1,20 @@
+{
+	"$bog_smalljs_structure_hint_workspace": "MAM-এর চেকআউট। একবার ক্লোন করুন, আর সব প্রকল্প এর ভিতরেই থাকে: এখানে কিছু কপি করা হয় না, প্রতিটি প্যাকেজ নিজের একটি git চেকআউট।",
+	"$bog_smalljs_structure_hint_registry": "প্যাকেজের নামকে রিপোজিটরির সঙ্গে মেলায়। বিল্ড যখন $mol_view পায় অথচ mol/ ফোল্ডার তখনও নেই, তখন এখানে লেখা রিপোজিটরিটি ক্লোন করে।",
+	"$bog_smalljs_structure_hint_framework": "$mol নিজেই, প্রথম বিল্ডে ক্লোন হয়। এর সোর্স আপনার কোডের পাশেই থাকে: পড়ুন, তাতে debugger বসান, একই ওয়ার্কিং কপি থেকে pull request খুলুন।",
+	"$bog_smalljs_structure_hint_package": "আপনার নিজের প্যাকেজ: একটি ছোট নামের ফোল্ডার যেখানে আপনার শুরু করা সব প্রকল্প থাকে, আর সেটি নিজেই একটি git রিপোজিটরি।",
+	"$bog_smalljs_structure_hint_gitattributes": "একটি লাইন, \"* -text\", যা লাইন-শেষের নর্মালাইজেশন বন্ধ করে। ডিপ্লয় বিল্ডের ফলাফল কমিট করে, আর ফন্ট ও ছবিকে সেই কমিট অক্ষত অবস্থায় পার হতে হয়।",
+	"$bog_smalljs_structure_hint_registry_own": "একই রেজিস্ট্রি এক ধাপ নিচে। যোগ করা প্রতিটি প্রকল্প এখানে একটি pack লাইন পায়, ফলে আপনার প্যাকেজের নতুন চেকআউট প্রকল্পগুলোও নিয়ে আসে।",
+	"$bog_smalljs_structure_hint_project": "একটি প্রকল্প: ফোল্ডার, আবার নিজের আলাদা রিপোজিটরিও। এর ইতিহাস তার নিজের, আপনার প্যাকেজের নয়, $mol-এরও নয়।",
+	"$bog_smalljs_structure_hint_entry": "যে পাতা কম্পোনেন্টটিকে মাউন্ট করে। কেবল যে মডিউল আপনি সত্যিই ডিপ্লয় করেন, তারই এটি লাগে।",
+	"$bog_smalljs_structure_hint_tree": "লেআউট। ফাইলের নাম আর ফোল্ডারের পথ মিলে কম্পোনেন্টের নাম দেয়: my/hello/hello.view.tree মানে $my_hello।",
+	"$bog_smalljs_structure_hint_ts": "আচরণ: গাছ থেকে তৈরি বেস ক্লাসকে এক্সটেন্ড করা একটি ক্লাস।",
+	"$bog_smalljs_structure_hint_css": "স্টাইল — $mol_style_define ডাকা TypeScript, তাই প্রপার্টির নাম কম্পাইলারই যাচাই করে।",
+	"$bog_smalljs_structure_hint_submodule": "মডিউলের ভিতরের ফোল্ডার মানেই নেস্টেড কম্পোনেন্ট: my/hello/form/ হলো $my_hello_form। কোনো import লিখতে হয় না, পথই নাম।",
+	"$bog_smalljs_structure_steps_title": "নিজের প্রকল্প পর্যন্ত পাঁচ ধাপ",
+	"$bog_smalljs_structure_step1_text": "একবার MAM ক্লোন করুন। এটিই সেই ওয়ার্কস্পেস যেখানে প্রতিটি প্রকল্প থাকে।",
+	"$bog_smalljs_structure_step2_text": "নিজের জন্য একটি ছোট নামের ফোল্ডার বানান আর সেটিকে রিপোজিটরি হিসেবে তুলুন।",
+	"$bog_smalljs_structure_step3_text": "তার পাশে নিজের প্রকল্পগুলোর রেজিস্ট্রি রাখুন।",
+	"$bog_smalljs_structure_step4_text": "ভিতরে প্রকল্পটি বানান, নিজের রিপোজিটরিসহ।",
+	"$bog_smalljs_structure_step5_text": "নিবন্ধন করুন, যাতে নতুন চেকআউট নাম ধরে সেটি নিয়ে আসে।"
+}
