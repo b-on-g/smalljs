@@ -151,7 +151,7 @@ body, :where([mol_theme]) {
 	contain: style;
 	scrollbar-color: var(--mol_theme_line) transparent;
 	scrollbar-width: thin;
-	text-wrap-style: pretty;
+	/* text-wrap-style: pretty; dont work in textarea */
 	unicode-bidi: plaintext
 }
 

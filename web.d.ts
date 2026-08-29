@@ -632,7 +632,7 @@ declare namespace $ {
      * Theme css variables
      * @see https://mol.hyoo.ru/#!section=demos/demo=mol_textarea_demo
      */
-    const $mol_theme: Record<"image" | "line" | "text" | "field" | "focus" | "hue" | "back" | "hover" | "card" | "current" | "special" | "control" | "shade" | "spirit" | "hue_spread", $mol_style_func<"var", unknown>>;
+    const $mol_theme: Record<"image" | "line" | "text" | "field" | "hue" | "back" | "hover" | "card" | "current" | "special" | "control" | "shade" | "focus" | "spirit" | "hue_spread", $mol_style_func<"var", unknown>>;
 }
 
 declare namespace $ {
@@ -1579,7 +1579,7 @@ declare namespace $ {
      * BuilderUI design tokens — CSS variables in --bog_builderui_*.
      * Used in .view.css.ts via $bog_builderui_tokens.text, $bog_builderui_tokens.back, etc.
      */
-    const $bog_builderui_tokens: Record<"line" | "text" | "field" | "focus" | "back" | "hover" | "card" | "current" | "special" | "control" | "shade" | "font_body" | "font_head" | "radius", $mol_style_func<"var", unknown>>;
+    const $bog_builderui_tokens: Record<"line" | "text" | "field" | "back" | "hover" | "card" | "current" | "special" | "control" | "shade" | "focus" | "font_body" | "font_head" | "radius", $mol_style_func<"var", unknown>>;
 }
 
 declare namespace $ {
@@ -1657,7 +1657,7 @@ declare namespace $ {
      * Theme css variables
      * @see https://mol.hyoo.ru/#!section=demos/demo=mol_textarea_demo
      */
-    const $bog_theme: Record<"image" | "line" | "text" | "field" | "focus" | "background" | "back" | "hover" | "card" | "current" | "special" | "control" | "shade" | "spirit", $mol_style_func<"var", unknown>>;
+    const $bog_theme: Record<"image" | "line" | "text" | "field" | "background" | "back" | "hover" | "card" | "current" | "special" | "control" | "shade" | "focus" | "spirit", $mol_style_func<"var", unknown>>;
     /**
      * Available theme names.
      * Add new theme to theme.css and add its name here.
@@ -2384,7 +2384,7 @@ declare namespace $ {
      * Z-index values for layers
      * https://page.hyoo.ru/#!=xthcpx_wqmiba
      */
-    let $mol_layer: Record<"focus" | "float" | "hover" | "speck" | "popup", $mol_style_func<"var", unknown>>;
+    let $mol_layer: Record<"float" | "hover" | "focus" | "speck" | "popup", $mol_style_func<"var", unknown>>;
 }
 
 declare namespace $ {

@@ -8183,7 +8183,7 @@ declare namespace $ {
     class $mol_fetch_response extends $mol_object {
         readonly native: Response;
         readonly request: $mol_fetch_request;
-        status(): "success" | "unknown" | "inform" | "redirect" | "wrong" | "failed";
+        status(): "unknown" | "success" | "inform" | "redirect" | "wrong" | "failed";
         code(): number;
         ok(): boolean;
         message(): string;
