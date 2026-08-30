@@ -30,7 +30,7 @@ namespace $ {
 	 */
 	export class $bog_smalljs_router extends $bog_builderui_router {
 
-		static override route_target( anchor_path: string ) {
+		static route_target( anchor_path: string ) {
 			return anchor_path
 		}
 
