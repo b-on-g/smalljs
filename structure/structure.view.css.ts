@@ -42,6 +42,60 @@ namespace $ {
 			padding: { bottom: rem( 0.25 ) },
 		},
 
+		// После пятого шага честный вопрос один: зачем держать свой репозиторий
+		// рядом с чужим. Ответ раскрывается по клику: на главной он занимает строку,
+		// а прочитать его можно, не уходя со страницы.
+		Why: {
+			flex: { direction: 'column' },
+			minWidth: 0,
+			maxWidth: '100%',
+			margin: { top: rem( 0.25 ) },
+			padding: { top: rem( 0.75 ) },
+			border: {
+				top: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
+			},
+		},
+
+		// Без явного размера svg занимает ту коробку, которую ему дали. В свёрнутом
+		// состоянии шеврон единственный тянущийся элемент строки, и он растягивает
+		// заголовок на всю ширину. Тот же случай уже ловили в versus/code.
+		$mol_icon_chevron: {
+			width: '1em',
+			height: '1em',
+			flex: { grow: 0, shrink: 0 },
+		},
+
+		$mol_check_expand: {
+			padding: 0,
+			font: { size: rem( 0.8125 ), weight: 600 },
+			color: $bog_builderui_tokens.shade,
+			background: { color: 'transparent' },
+			textAlign: 'left',
+			':hover': {
+				color: $bog_builderui_tokens.special,
+			},
+		},
+
+		Why_text: {
+			minWidth: 0,
+			padding: { top: rem( 0.5 ) },
+			font: { size: rem( 0.9375 ) },
+			lineHeight: '1.6',
+			color: $bog_builderui_tokens.shade,
+
+			$mol_paragraph: {
+				padding: { bottom: rem( 0.5 ) },
+			},
+
+			$mol_link: {
+				display: 'inline',
+				color: $bog_builderui_tokens.control,
+				':hover': {
+					color: $bog_builderui_tokens.focus,
+				},
+			},
+		},
+
 		// Внутри чужой панели (песочница) рамка и фон только мешают: у панели свои.
 		'@': {
 			bog_smalljs_structure_plain: {

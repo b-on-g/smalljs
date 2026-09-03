@@ -16,5 +16,7 @@
 	"$bog_smalljs_structure_step2_text": "Založte si jednu krátkou složku a vystavte ji jako repozitář.",
 	"$bog_smalljs_structure_step3_text": "Vedle ní přidejte rejstřík svých projektů.",
 	"$bog_smalljs_structure_step4_text": "Uvnitř vytvořte projekt s vlastním repozitářem.",
-	"$bog_smalljs_structure_step5_text": "Zapište ho, aby ho čerstvý checkout stáhl podle jména."
+	"$bog_smalljs_structure_step5_text": "Zapište ho, aby ho čerstvý checkout stáhl podle jména.",
+	"$bog_smalljs_structure_why_title": "Proč má váš projekt vlastní repozitář",
+	"$bog_smalljs_structure_why_text": "MAM do sebe nic nekopíruje. Každá složka workspace je samostatný git checkout: váš balík, váš projekt a framework vedle nich. Registr jen mapuje jméno modulu na repozitář, aby sestavení vědělo, odkud modul stáhnout, když na něj poprvé narazí.\n\nPlynou z toho dvě věci. Zdrojáky frameworku leží vedle vašeho kódu, takže si je můžete přečíst, dát do nich breakpoint a poslat pull request ze stejné pracovní kopie. A váš projekt zůstává samostatným repozitářem, který si naklonuje i někdo, kdo o MAM nikdy neslyšel.\n\n[MAM: sestavení frontendu bez bolesti](https://habhub.hyoo.ru/#!author=nin-jin/repo=HabHub/article=18) — podrobný rozbor od autora, rusky."
 }

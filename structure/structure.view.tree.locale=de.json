@@ -16,5 +16,7 @@
 	"$bog_smalljs_structure_step2_text": "Einen kurzen Ordner für sich anlegen und als Repository veröffentlichen.",
 	"$bog_smalljs_structure_step3_text": "Die Registry Ihrer Projekte danebenlegen.",
 	"$bog_smalljs_structure_step4_text": "Darin das Projekt anlegen, mit einem eigenen Repository.",
-	"$bog_smalljs_structure_step5_text": "Es eintragen, damit ein frischer Checkout es beim Namen holt."
+	"$bog_smalljs_structure_step5_text": "Es eintragen, damit ein frischer Checkout es beim Namen holt.",
+	"$bog_smalljs_structure_why_title": "Warum Ihr Projekt ein eigenes Repository behält",
+	"$bog_smalljs_structure_why_text": "MAM kopiert nichts in sich hinein. Jeder Ordner im Workspace ist ein eigener Git-Checkout: Ihr Paket, Ihr Projekt und daneben das Framework. Die Registry ordnet einem Modulnamen nur ein Repository zu, damit der Build weiß, woher er ein Modul holt, wenn er ihm zum ersten Mal begegnet.\n\nDaraus folgen zwei Dinge. Die Quellen des Frameworks liegen neben Ihrem Code: Sie können sie lesen, einen Breakpoint hineinsetzen und aus derselben Arbeitskopie einen Pull Request schicken. Und Ihr Projekt bleibt ein eigenständiges Repository, das auch jemand klonen kann, der noch nie von MAM gehört hat.\n\n[MAM: Frontend-Builds ohne Schmerzen](https://habhub.hyoo.ru/#!author=nin-jin/repo=HabHub/article=18) — die ausführliche Fassung vom Autor, auf Russisch."
 }
