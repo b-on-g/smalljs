@@ -119,6 +119,8 @@
 	"$bog_smalljs_structure_step4_text": "在里面建项目，并给它自己的仓库。",
 	"$bog_smalljs_structure_step5_text": "登记它，让新的检出按名字把它取回来。",
 	"$bog_smalljs_structure_steps_title": "五步开出自己的项目",
+	"$bog_smalljs_structure_why_text": "MAM 不往自己里面复制任何东西。工作区里的每个目录都是独立的 git 检出：你的包、你的项目，以及紧挨着它们的框架。注册表只是把模块名映射到仓库，让构建在第一次遇到某个模块时知道去哪里取。\n\n由此有两点。框架源码就在你的代码旁边，可以读它、在里面下断点，也可以从同一个工作副本发出 pull request。而你的项目仍然是独立的仓库，没听说过 MAM 的人也能单独克隆它。\n\n[MAM：不痛苦的前端构建](https://habhub.hyoo.ru/#!author=nin-jin/repo=HabHub/article=18) — 作者写的详细版本，俄文。",
+	"$bog_smalljs_structure_why_title": "为什么你的项目自成一个仓库",
 	"$bog_smalljs_text_code_Playground_hint": "在演练场中打开",
 	"$bog_smalljs_text_code_Run_hint": "切换实时结果",
 	"$bog_smalljs_text_live_label_text": "实时结果",

@@ -2407,6 +2407,16 @@ h6[mol_text_header] {
 [mol_date_month_next] {
 	flex-grow: 1;
 }
+
+[dir="rtl"] :where(
+	[mol_date_month_prev],
+	[mol_date_month_next],
+	[mol_date_year_prev],
+	[mol_date_year_next]
+) {
+	transform: scaleX(-1);
+}
+
 [mol_date_month_prev] {
 	justify-content: flex-end;
 }
@@ -6394,6 +6404,8 @@ h6[mol_text_header] {
 }
 [bog_smalljs_structure_step_body] {
 	flex-direction: column;
+	flex-grow: 1;
+	flex-shrink: 1;
 	gap: 0.25rem;
 	min-width: 0;
 }
@@ -6406,7 +6418,8 @@ h6[mol_text_header] {
 	font-size: 0.75rem;
 	color: var(--bog_builderui_shade);
 	overflow-x: auto;
-	white-space: pre;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
 	min-width: 0;
 }
 </style><style id="$mol_style_attach:$bog_smalljs_structure_row">[bog_smalljs_structure_row] {
@@ -6557,6 +6570,50 @@ h6[mol_text_header] {
 	text-transform: uppercase;
 	color: var(--bog_builderui_shade);
 	padding-bottom: 0.25rem;
+}
+[bog_smalljs_structure_why] {
+	flex-direction: column;
+	min-width: 0;
+	max-width: 100%;
+	margin-top: 0.25rem;
+	padding-top: 0.75rem;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: var(--bog_builderui_line);
+}
+[bog_smalljs_structure] :where([mol_icon_chevron]) {
+	width: 1em;
+	height: 1em;
+	flex-grow: 0;
+	flex-shrink: 0;
+}
+[bog_smalljs_structure] :where([mol_check_expand]) {
+	padding: 0;
+	font-size: 0.8125rem;
+	font-weight: 600;
+	color: var(--bog_builderui_shade);
+	background-color: transparent;
+	text-align: left;
+}
+[bog_smalljs_structure] :where([mol_check_expand]):hover {
+	color: var(--bog_builderui_special);
+}
+[bog_smalljs_structure_why_text] {
+	min-width: 0;
+	padding-top: 0.5rem;
+	font-size: 0.9375rem;
+	line-height: 1.6;
+	color: var(--bog_builderui_shade);
+}
+[bog_smalljs_structure_why_text] :where([mol_paragraph]) {
+	padding-bottom: 0.5rem;
+}
+[bog_smalljs_structure_why_text] :where([mol_link]) {
+	display: inline;
+	color: var(--bog_builderui_control);
+}
+[bog_smalljs_structure_why_text] :where([mol_link]):hover {
+	color: var(--bog_builderui_focus);
 }
 [bog_smalljs_structure]:where([bog_smalljs_structure_plain="true"]) :where([bog_smalljs_structure_tree]) {
 	padding: 0;

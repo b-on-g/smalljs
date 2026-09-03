@@ -2214,7 +2214,7 @@ declare namespace $ {
         static lang_default(): string;
         static lang(next?: string): string;
         static langs_rtl(): string[];
-        static direction(): "rtl" | "ltr";
+        static direction(): "ltr" | "rtl";
         static source(lang: string): any;
         static texts(lang: string, next?: $mol_locale_dict): $mol_locale_dict;
         static text(key: string): string;
@@ -2650,6 +2650,7 @@ declare namespace $ {
 		ReturnType< $mol_follower['Sub'] >
 	>
 	export class $mol_pop extends $mol_view {
+		align( ): string
 		bubble( ): any
 		Anchor( ): any
 		bubble_offset( ): readonly(number)[]
@@ -2661,7 +2662,8 @@ declare namespace $ {
 		showed( next?: boolean ): boolean
 		align_vert( ): string
 		align_hor( ): string
-		align( ): string
+		direction( ): string
+		align_enriched( ): ReturnType< $mol_pop['align'] >
 		prefer( ): string
 		auto( ): readonly(any)[]
 		sub( ): readonly(any)[]
@@ -2696,6 +2698,8 @@ declare namespace $.$$ {
         align(): string;
         align_vert(): "suspense" | "top" | "bottom";
         align_hor(): "suspense" | "left" | "right";
+        direction(): "ltr" | "rtl";
+        align_enriched(): string;
         bubble_offset(): number[];
         bubble_align(): number[];
         bubble(): void;
@@ -6887,52 +6891,67 @@ declare namespace $ {
 		,
 		ReturnType< $bog_smalljs_structure_step['code'] >
 	>
-	type $mol_view__sub_bog_smalljs_structure_18 = $mol_type_enforce<
+	type $mol_text__text_bog_smalljs_structure_18 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_structure['why_text'] >
+		,
+		ReturnType< $mol_text['text'] >
+	>
+	type $mol_expander__title_bog_smalljs_structure_19 = $mol_type_enforce<
+		ReturnType< $bog_smalljs_structure['why_title'] >
+		,
+		ReturnType< $mol_expander['title'] >
+	>
+	type $mol_expander__content_bog_smalljs_structure_20 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_expander['content'] >
+	>
+	type $mol_view__sub_bog_smalljs_structure_21 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $bog_smalljs_structure_row__prefix_bog_smalljs_structure_19 = $mol_type_enforce<
+	type $bog_smalljs_structure_row__prefix_bog_smalljs_structure_22 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_structure['row_prefix'] >
 		,
 		ReturnType< $bog_smalljs_structure_row['prefix'] >
 	>
-	type $bog_smalljs_structure_row__name_bog_smalljs_structure_20 = $mol_type_enforce<
+	type $bog_smalljs_structure_row__name_bog_smalljs_structure_23 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_structure['row_name'] >
 		,
 		ReturnType< $bog_smalljs_structure_row['name'] >
 	>
-	type $bog_smalljs_structure_row__pad_bog_smalljs_structure_21 = $mol_type_enforce<
+	type $bog_smalljs_structure_row__pad_bog_smalljs_structure_24 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_structure['row_pad'] >
 		,
 		ReturnType< $bog_smalljs_structure_row['pad'] >
 	>
-	type $bog_smalljs_structure_row__comment_bog_smalljs_structure_22 = $mol_type_enforce<
+	type $bog_smalljs_structure_row__comment_bog_smalljs_structure_25 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_structure['row_comment'] >
 		,
 		ReturnType< $bog_smalljs_structure_row['comment'] >
 	>
-	type $bog_smalljs_structure_row__note_bog_smalljs_structure_23 = $mol_type_enforce<
+	type $bog_smalljs_structure_row__note_bog_smalljs_structure_26 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_structure['row_note'] >
 		,
 		ReturnType< $bog_smalljs_structure_row['note'] >
 	>
-	type $bog_smalljs_structure_row__kind_bog_smalljs_structure_24 = $mol_type_enforce<
+	type $bog_smalljs_structure_row__kind_bog_smalljs_structure_27 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_structure['row_kind'] >
 		,
 		ReturnType< $bog_smalljs_structure_row['kind'] >
 	>
-	type $bog_smalljs_structure_row__active_bog_smalljs_structure_25 = $mol_type_enforce<
+	type $bog_smalljs_structure_row__active_bog_smalljs_structure_28 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_structure['row_active'] >
 		,
 		ReturnType< $bog_smalljs_structure_row['active'] >
 	>
-	type $bog_smalljs_structure_row__pickable_bog_smalljs_structure_26 = $mol_type_enforce<
+	type $bog_smalljs_structure_row__pickable_bog_smalljs_structure_29 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_structure['row_pickable'] >
 		,
 		ReturnType< $bog_smalljs_structure_row['pickable'] >
 	>
-	type $bog_smalljs_structure_row__pick_bog_smalljs_structure_27 = $mol_type_enforce<
+	type $bog_smalljs_structure_row__pick_bog_smalljs_structure_30 = $mol_type_enforce<
 		ReturnType< $bog_smalljs_structure['pick'] >
 		,
 		ReturnType< $bog_smalljs_structure_row['pick'] >
@@ -6946,6 +6965,8 @@ declare namespace $ {
 		Step3( ): $bog_smalljs_structure_step
 		Step4( ): $bog_smalljs_structure_step
 		Step5( ): $bog_smalljs_structure_step
+		Why_text( ): $mol_text
+		Why( ): $mol_expander
 		Steps( ): $mol_view
 		tree( ): string
 		active( ): string
@@ -6985,6 +7006,8 @@ declare namespace $ {
 		step4_code( ): string
 		step5_text( ): string
 		step5_code( ): string
+		why_title( ): string
+		why_text( ): string
 		attr( ): ({ 
 			'bog_smalljs_structure_steps': ReturnType< $bog_smalljs_structure['steps_showed'] >,
 			'bog_smalljs_structure_plain': ReturnType< $bog_smalljs_structure['plain'] >,
@@ -14620,7 +14643,7 @@ declare namespace $.$$ {
          *  или `dark` и системный запрос перебивает. */
         lights(): "light" | "dark" | "system";
         /** Right-to-left layout for RTL languages (currently Persian). */
-        dir(): "rtl" | "ltr";
+        dir(): "ltr" | "rtl";
         body_content(): $.$bog_smalljs_playground[] | $.$bog_smalljs_docs[] | $.$bog_smalljs_course[] | $.$bog_smalljs_versus_pair[] | $.$bog_smalljs_versus[] | $.$bog_smalljs_landing[];
     }
 }

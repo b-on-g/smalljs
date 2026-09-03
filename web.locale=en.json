@@ -121,6 +121,8 @@
 	"$bog_smalljs_structure_step4_text": "Create the project inside, with a repository of its own.",
 	"$bog_smalljs_structure_step5_text": "Register it, so a fresh checkout fetches it by name.",
 	"$bog_smalljs_structure_steps_title": "Five steps to a project of your own",
+	"$bog_smalljs_structure_why_text": "MAM copies nothing into itself. Every folder in the workspace is a git checkout in its own right: your package, your project, and the framework beside them. The registry only maps a module name to a repository, so the build knows where to fetch a module from the first time it meets one.\n\nTwo things follow. The framework source lies next to your code, so you can read it, put a breakpoint in it and send a pull request from the same working copy. And your project stays cloneable on its own, by someone who has never heard of MAM.\n\n[MAM: front-end builds without the pain](https://habhub.hyoo.ru/#!author=nin-jin/repo=HabHub/article=18) — the long version, from the author. In Russian.",
+	"$bog_smalljs_structure_why_title": "Why your project is a repository of its own",
 	"$bog_smalljs_text_code_Playground_hint": "Open in Playground",
 	"$bog_smalljs_text_code_Run_hint": "Toggle live result",
 	"$bog_smalljs_text_live_label_text": "Live result",

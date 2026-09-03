@@ -136,7 +136,8 @@ $mol_pop $mol_view
 	showed? false
 	align_vert \
 	align_hor \
-	align \bottom_center
+	direction \ltr
+	align_enriched <= align \bottom_center
 	prefer \vert
 	auto /
 		<= bubble null
@@ -1303,6 +1304,13 @@ $bog_smalljs_structure $mol_view
 	step4_code \my/hello/
 	step5_text @ \Register it, so a fresh checkout fetches it by name.
 	step5_code \pack hello git \https://github.com/you/hello.git
+	why_title @ \Why your project is a repository of its own
+	why_text @ \
+		\MAM copies nothing into itself. Every folder in the workspace is a git checkout in its own right: your package, your project, and the framework beside them. The registry only maps a module name to a repository, so the build knows where to fetch a module from the first time it meets one.
+		\
+		\Two things follow. The framework source lies next to your code, so you can read it, put a breakpoint in it and send a pull request from the same working copy. And your project stays cloneable on its own, by someone who has never heard of MAM.
+		\
+		\[MAM: front-end builds without the pain](https://habhub.hyoo.ru/#!author=nin-jin/repo=HabHub/article=18) — the long version, from the author. In Russian.
 	attr *
 		bog_smalljs_structure_steps <= steps_showed
 		bog_smalljs_structure_plain <= plain
@@ -1334,6 +1342,11 @@ $bog_smalljs_structure $mol_view
 					number \5
 					text <= step5_text
 					code <= step5_code
+				<= Why $mol_expander
+					title <= why_title
+					content /
+						<= Why_text $mol_text
+							text <= why_text
 	Row* $bog_smalljs_structure_row
 		prefix <= row_prefix*
 		name <= row_name*

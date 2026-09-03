@@ -119,6 +119,8 @@
 	"$bog_smalljs_structure_step4_text": "پروژه را داخلش بسازید، با مخزنِ خودش.",
 	"$bog_smalljs_structure_step5_text": "ثبتش کنید تا چک‌اوتِ تازه آن را با نام بیاورد.",
 	"$bog_smalljs_structure_steps_title": "پنج گام تا پروژهٔ خودتان",
+	"$bog_smalljs_structure_why_text": "MAM چیزی را درون خودش کپی نمی‌کند. هر پوشهٔ فضای کاری یک چک‌اوت گیت مستقل است: بستهٔ شما، پروژهٔ شما، و کنارشان خودِ فریم‌ورک. فهرست فقط نام ماژول را به یک مخزن نگاشت می‌کند تا ساخت بداند نخستین باری که به ماژولی می‌رسد، آن را از کجا بیاورد.\n\nدو چیز از این برمی‌آید. سورس فریم‌ورک کنار کد شماست: می‌توانید بخوانیدش، در آن breakpoint بگذارید و از همان کپی کاری pull request بفرستید. و پروژهٔ شما مخزنی مستقل می‌ماند که کسی که هرگز نام MAM را نشنیده هم می‌تواند آن را کلون کند.\n\n[MAM: ساختِ فرانت‌اند بدون درد](https://habhub.hyoo.ru/#!author=nin-jin/repo=HabHub/article=18) — نسخهٔ مفصل، از نویسنده، به روسی.",
+	"$bog_smalljs_structure_why_title": "چرا پروژهٔ شما مخزن خودش را دارد",
 	"$bog_smalljs_text_code_Playground_hint": "باز کردن در زمین بازی",
 	"$bog_smalljs_text_code_Run_hint": "تغییر نتیجهٔ زنده",
 	"$bog_smalljs_text_live_label_text": "نتیجهٔ زنده",

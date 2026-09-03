@@ -119,6 +119,8 @@
 	"$bog_smalljs_structure_step4_text": "Créez le projet à l'intérieur, avec un dépôt à lui.",
 	"$bog_smalljs_structure_step5_text": "Déclarez-le, pour qu'un clone frais le récupère par son nom.",
 	"$bog_smalljs_structure_steps_title": "Cinq étapes vers votre propre projet",
+	"$bog_smalljs_structure_why_text": "MAM ne copie rien à l'intérieur de lui-même. Chaque dossier de l'espace de travail est un checkout git à part entière : votre paquet, votre projet et le framework à côté d'eux. Le registre se contente d'associer un nom de module à un dépôt, pour que la compilation sache où aller le chercher la première fois qu'elle le rencontre.\n\nDeux conséquences. Les sources du framework se trouvent à côté de votre code : vous pouvez les lire, y poser un point d'arrêt et envoyer une pull request depuis la même copie de travail. Et votre projet reste un dépôt autonome, que peut cloner quelqu'un qui n'a jamais entendu parler de MAM.\n\n[MAM : le build front-end sans douleur](https://habhub.hyoo.ru/#!author=nin-jin/repo=HabHub/article=18) — la version longue, par l'auteur, en russe.",
+	"$bog_smalljs_structure_why_title": "Pourquoi votre projet garde son propre dépôt",
 	"$bog_smalljs_text_code_Playground_hint": "Ouvrir dans le Playground",
 	"$bog_smalljs_text_code_Run_hint": "Basculer le résultat en direct",
 	"$bog_smalljs_text_live_label_text": "Résultat en direct",

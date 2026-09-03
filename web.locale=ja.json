@@ -119,6 +119,8 @@
 	"$bog_smalljs_structure_step4_text": "その中にプロジェクトを作り、専用のリポジトリを与えます。",
 	"$bog_smalljs_structure_step5_text": "登録すれば、新しいチェックアウトが名前で取得してくれます。",
 	"$bog_smalljs_structure_steps_title": "自分のプロジェクトまで五歩",
+	"$bog_smalljs_structure_why_text": "MAM は自分の中へ何もコピーしません。ワークスペースの各フォルダはそれぞれ独立した git チェックアウトです。あなたのパッケージ、あなたのプロジェクト、そしてその隣にフレームワーク。レジストリはモジュール名とリポジトリを対応づけるだけで、ビルドは初めて出会ったモジュールをどこから取ってくればよいかをそこから知ります。\n\nここから二つのことが生まれます。フレームワークのソースはあなたのコードの隣にあるので、読むことも、ブレークポイントを置くことも、同じ作業コピーからプルリクエストを送ることもできます。そしてあなたのプロジェクトは独立したリポジトリのままなので、MAM を知らない人でもそれだけをクローンできます。\n\n[MAM: 痛みのないフロントエンドビルド](https://habhub.hyoo.ru/#!author=nin-jin/repo=HabHub/article=18) — 作者による詳しい解説（ロシア語）。",
+	"$bog_smalljs_structure_why_title": "プロジェクトが自分のリポジトリを持つ理由",
 	"$bog_smalljs_text_code_Playground_hint": "プレイグラウンドで開く",
 	"$bog_smalljs_text_code_Run_hint": "ライブ結果を切り替え",
 	"$bog_smalljs_text_live_label_text": "ライブ結果",

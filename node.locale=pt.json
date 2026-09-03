@@ -119,6 +119,8 @@
 	"$bog_smalljs_structure_step4_text": "Crie o projeto dentro dela, com um repositório próprio.",
 	"$bog_smalljs_structure_step5_text": "Registre-o, para que um checkout novo o busque pelo nome.",
 	"$bog_smalljs_structure_steps_title": "Cinco passos até um projeto seu",
+	"$bog_smalljs_structure_why_text": "O MAM não copia nada para dentro de si. Cada pasta do workspace é um checkout git próprio: o seu pacote, o seu projeto e o framework ao lado deles. O registro apenas associa o nome de um módulo a um repositório, para que a build saiba de onde buscá-lo na primeira vez que o encontra.\n\nDaí seguem duas coisas. O código do framework fica ao lado do seu: dá para ler, colocar um breakpoint e enviar um pull request da mesma cópia de trabalho. E o seu projeto continua sendo um repositório independente, que alguém que nunca ouviu falar de MAM consegue clonar.\n\n[MAM: build de front-end sem dor](https://habhub.hyoo.ru/#!author=nin-jin/repo=HabHub/article=18) — a versão longa, do autor, em russo.",
+	"$bog_smalljs_structure_why_title": "Por que o seu projeto mantém o próprio repositório",
 	"$bog_smalljs_text_code_Playground_hint": "Abrir no Playground",
 	"$bog_smalljs_text_code_Run_hint": "Alternar resultado ao vivo",
 	"$bog_smalljs_text_live_label_text": "Resultado ao vivo",

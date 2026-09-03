@@ -119,6 +119,8 @@
 	"$bog_smalljs_structure_step4_text": "그 안에 프로젝트를 만들고, 전용 저장소를 줍니다.",
 	"$bog_smalljs_structure_step5_text": "등록해 두면 새로 체크아웃할 때 이름으로 가져옵니다.",
 	"$bog_smalljs_structure_steps_title": "내 프로젝트까지 다섯 걸음",
+	"$bog_smalljs_structure_why_text": "MAM은 자기 안으로 아무것도 복사하지 않습니다. 워크스페이스의 모든 폴더는 저마다 독립된 git 체크아웃입니다. 내 패키지, 내 프로젝트, 그리고 그 옆의 프레임워크. 레지스트리는 모듈 이름과 저장소를 연결할 뿐이고, 빌드는 처음 만난 모듈을 어디서 가져올지 그것으로 알아냅니다.\n\n여기서 두 가지가 따라옵니다. 프레임워크 소스가 내 코드 옆에 있으니 읽고, 브레이크포인트를 걸고, 같은 작업 사본에서 풀 리퀘스트를 보낼 수 있습니다. 그리고 내 프로젝트는 독립된 저장소로 남아, MAM을 들어본 적 없는 사람도 그것만 클론할 수 있습니다.\n\n[MAM: 아프지 않은 프런트엔드 빌드](https://habhub.hyoo.ru/#!author=nin-jin/repo=HabHub/article=18) — 저자가 쓴 자세한 글(러시아어).",
+	"$bog_smalljs_structure_why_title": "프로젝트가 자기 저장소를 갖는 이유",
 	"$bog_smalljs_text_code_Playground_hint": "플레이그라운드에서 열기",
 	"$bog_smalljs_text_code_Run_hint": "실시간 결과 토글",
 	"$bog_smalljs_text_live_label_text": "실시간 결과",

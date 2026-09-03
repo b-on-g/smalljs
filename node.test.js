@@ -5852,13 +5852,14 @@ var $;
         }
         static direction() {
             const lang = this.lang();
+            let direction;
             try {
-                return new Intl.Locale(lang).getTextInfo().direction ?? 'ltr';
+                direction = new Intl.Locale(lang).getTextInfo().direction;
             }
             catch (e) {
                 $mol_fail_log(e);
-                return this.langs_rtl().includes(lang) ? 'rtl' : 'ltr';
             }
+            return direction ?? (this.langs_rtl().includes(lang) ? 'rtl' : 'ltr');
         }
         static source(lang) {
             return JSON.parse(this.$.$mol_file.relative(`web.locale=${lang}.json`).text().toString());
@@ -6905,6 +6906,9 @@ var $;
 
 ;
 	($.$mol_pop) = class $mol_pop extends ($.$mol_view) {
+		align(){
+			return "bottom_center";
+		}
 		bubble(){
 			return null;
 		}
@@ -6947,8 +6951,11 @@ var $;
 		align_hor(){
 			return "";
 		}
-		align(){
-			return "bottom_center";
+		direction(){
+			return "ltr";
+		}
+		align_enriched(){
+			return (this.align());
 		}
 		prefer(){
 			return "vert";
@@ -7238,8 +7245,16 @@ var $;
                 const viewport = this.$.$mol_window.size();
                 return rect_pop.left > viewport.width / 2 ? 'left' : 'right';
             }
+            direction() { return this.$.$mol_locale.direction(); }
+            align_enriched() {
+                const align = this.align();
+                const rtl = this.direction() === 'rtl';
+                const start = rtl ? 'right' : 'left';
+                const end = rtl ? 'left' : 'right';
+                return align.replace('start', start).replace('end', end);
+            }
             bubble_offset() {
-                const tags = new Set(this.align().split('_'));
+                const tags = new Set(this.align_enriched().split('_'));
                 if (tags.has('suspense'))
                     return [0, 0];
                 const hor = tags.has('right') ? 'right' : tags.has('left') ? 'left' : 'center';
@@ -7258,7 +7273,7 @@ var $;
                 }
             }
             bubble_align() {
-                const tags = new Set(this.align().split('_'));
+                const tags = new Set(this.align_enriched().split('_'));
                 if (tags.has('suspense'))
                     return [-.5, -.5];
                 const hor = tags.has('right') ? 'right' : tags.has('left') ? 'left' : 'center';
@@ -17249,8 +17264,12 @@ var $;
             color: $bog_builderui_tokens.special,
             font: { size: rem(0.75), weight: 700 },
         },
+        // Шагов пять, и каждый несёт команду в моноширинном шрифте. $mol_view по
+        // умолчанию flex-shrink: 0, поэтому колонка вставала по ширине самой длинной
+        // команды: на телефоне и текст, и команда уезжали за экран без возможности
+        // прокрутки. Явный shrink возвращает колонку в отведённое ей место.
         Body: {
-            flex: { direction: 'column' },
+            flex: { direction: 'column', grow: 1, shrink: 1 },
             gap: rem(0.25),
             minWidth: 0,
         },
@@ -17258,11 +17277,14 @@ var $;
             lineHeight: rem(1.5),
             color: $bog_builderui_tokens.text,
         },
+        // Команду копируют, а не разглядывают, так что на узком экране она
+        // переносится по пробелам вместо того, чтобы прятаться в боковой прокрутке.
         Code: {
             font: { family: mono, size: rem(0.75) },
             color: $bog_builderui_tokens.shade,
             overflow: { x: 'auto' },
-            whiteSpace: 'pre',
+            whiteSpace: 'pre-wrap',
+            overflowWrap: 'break-word',
             minWidth: 0,
         },
     });
@@ -17711,6 +17733,17 @@ var $;
 			(obj.code) = () => ((this.step5_code()));
 			return obj;
 		}
+		Why_text(){
+			const obj = new this.$.$mol_text();
+			(obj.text) = () => ((this.why_text()));
+			return obj;
+		}
+		Why(){
+			const obj = new this.$.$mol_expander();
+			(obj.title) = () => ((this.why_title()));
+			(obj.content) = () => ([(this.Why_text())]);
+			return obj;
+		}
 		Steps(){
 			const obj = new this.$.$mol_view();
 			(obj.sub) = () => ([
@@ -17719,7 +17752,8 @@ var $;
 				(this.Step2()), 
 				(this.Step3()), 
 				(this.Step4()), 
-				(this.Step5())
+				(this.Step5()), 
+				(this.Why())
 			]);
 			return obj;
 		}
@@ -17839,6 +17873,12 @@ var $;
 		step5_code(){
 			return "pack hello git \\https://github.com/you/hello.git";
 		}
+		why_title(){
+			return (this.$.$mol_locale.text("$bog_smalljs_structure_why_title"));
+		}
+		why_text(){
+			return (this.$.$mol_locale.text("$bog_smalljs_structure_why_text"));
+		}
 		attr(){
 			return {"bog_smalljs_structure_steps": (this.steps_showed()), "bog_smalljs_structure_plain": (this.plain())};
 		}
@@ -17866,6 +17906,8 @@ var $;
 	($mol_mem(($.$bog_smalljs_structure.prototype), "Step3"));
 	($mol_mem(($.$bog_smalljs_structure.prototype), "Step4"));
 	($mol_mem(($.$bog_smalljs_structure.prototype), "Step5"));
+	($mol_mem(($.$bog_smalljs_structure.prototype), "Why_text"));
+	($mol_mem(($.$bog_smalljs_structure.prototype), "Why"));
 	($mol_mem(($.$bog_smalljs_structure.prototype), "Steps"));
 	($mol_mem_key(($.$bog_smalljs_structure.prototype), "pick"));
 	($mol_mem(($.$bog_smalljs_structure.prototype), "file"));
@@ -18102,6 +18144,54 @@ var $;
             textTransform: 'uppercase',
             color: $bog_builderui_tokens.shade,
             padding: { bottom: rem(0.25) },
+        },
+        // После пятого шага честный вопрос один: зачем держать свой репозиторий
+        // рядом с чужим. Ответ раскрывается по клику: на главной он занимает строку,
+        // а прочитать его можно, не уходя со страницы.
+        Why: {
+            flex: { direction: 'column' },
+            minWidth: 0,
+            maxWidth: '100%',
+            margin: { top: rem(0.25) },
+            padding: { top: rem(0.75) },
+            border: {
+                top: { width: '1px', style: 'solid', color: $bog_builderui_tokens.line },
+            },
+        },
+        // Без явного размера svg занимает ту коробку, которую ему дали. В свёрнутом
+        // состоянии шеврон единственный тянущийся элемент строки, и он растягивает
+        // заголовок на всю ширину. Тот же случай уже ловили в versus/code.
+        $mol_icon_chevron: {
+            width: '1em',
+            height: '1em',
+            flex: { grow: 0, shrink: 0 },
+        },
+        $mol_check_expand: {
+            padding: 0,
+            font: { size: rem(0.8125), weight: 600 },
+            color: $bog_builderui_tokens.shade,
+            background: { color: 'transparent' },
+            textAlign: 'left',
+            ':hover': {
+                color: $bog_builderui_tokens.special,
+            },
+        },
+        Why_text: {
+            minWidth: 0,
+            padding: { top: rem(0.5) },
+            font: { size: rem(0.9375) },
+            lineHeight: '1.6',
+            color: $bog_builderui_tokens.shade,
+            $mol_paragraph: {
+                padding: { bottom: rem(0.5) },
+            },
+            $mol_link: {
+                display: 'inline',
+                color: $bog_builderui_tokens.control,
+                ':hover': {
+                    color: $bog_builderui_tokens.focus,
+                },
+            },
         },
         // Внутри чужой панели (песочница) рамка и фон только мешают: у панели свои.
         '@': {
@@ -20183,7 +20273,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_attach("mol/date/date.view.css", "/* [mol_date_bubble] {\n\tpadding: .5rem;\n} */\n\n[mol_date_input] {\n\tflex-shrink: 0;\n}\n\n[mol_date_month_prev] ,\n[mol_date_month_next] {\n\tflex-grow: 1;\n}\n[mol_date_month_prev] {\n\tjustify-content: flex-end;\n}\n\n[mol_date_calendar_title] {\n\tpadding: var(--mol_gap_text);\n}\n\n[mol_date_calendar_day] {\n\tpadding: 0;\n}\n\n[mol_date_calendar_day_button] {\n\twidth: 100%;\n\t/* padding: .25rem .5rem; */\n\tjustify-content: center;\n\tcursor: pointer;\n\tcolor: inherit;\n}\n");
+    $mol_style_attach("mol/date/date.view.css", "/* [mol_date_bubble] {\n\tpadding: .5rem;\n} */\n\n[mol_date_input] {\n\tflex-shrink: 0;\n}\n\n[mol_date_month_prev] ,\n[mol_date_month_next] {\n\tflex-grow: 1;\n}\n\n[dir=\"rtl\"] :where(\n\t[mol_date_month_prev],\n\t[mol_date_month_next],\n\t[mol_date_year_prev],\n\t[mol_date_year_next]\n) {\n\ttransform: scaleX(-1);\n}\n\n[mol_date_month_prev] {\n\tjustify-content: flex-end;\n}\n\n[mol_date_calendar_title] {\n\tpadding: var(--mol_gap_text);\n}\n\n[mol_date_calendar_day] {\n\tpadding: 0;\n}\n\n[mol_date_calendar_day_button] {\n\twidth: 100%;\n\t/* padding: .25rem .5rem; */\n\tjustify-content: center;\n\tcursor: pointer;\n\tcolor: inherit;\n}\n");
 })($ || ($ = {}));
 
 ;
@@ -21428,7 +21518,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    const class_regex = /^[$A-Z][$\w<>\[\]()"'?|]+$/;
+    const class_regex = /^[$A-Z][$\w<>\[\]()"'?|,]+$/;
     function $mol_view_tree2_class_match(klass) {
         if (!klass?.type)
             return false;

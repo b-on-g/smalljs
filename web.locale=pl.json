@@ -119,6 +119,8 @@
 	"$bog_smalljs_structure_step4_text": "Utwórz w środku projekt z własnym repozytorium.",
 	"$bog_smalljs_structure_step5_text": "Wpisz go, żeby świeży checkout pobierał go po nazwie.",
 	"$bog_smalljs_structure_steps_title": "Pięć kroków do własnego projektu",
+	"$bog_smalljs_structure_why_text": "MAM niczego nie kopiuje do środka. Każdy katalog w przestrzeni roboczej to osobny checkout gita: twój pakiet, twój projekt i framework obok nich. Rejestr tylko przypisuje nazwie modułu repozytorium, żeby budowanie wiedziało, skąd go pobrać, gdy natrafi na niego po raz pierwszy.\n\nWynikają z tego dwie rzeczy. Źródła frameworka leżą obok twojego kodu: można je czytać, postawić w nich breakpoint i wysłać pull requesta z tej samej kopii roboczej. A twój projekt pozostaje samodzielnym repozytorium, które sklonuje ktoś, kto o MAM nigdy nie słyszał.\n\n[MAM: budowanie frontendu bez bólu](https://habhub.hyoo.ru/#!author=nin-jin/repo=HabHub/article=18) — obszerny tekst od autora, po rosyjsku.",
+	"$bog_smalljs_structure_why_title": "Dlaczego projekt ma własne repozytorium",
 	"$bog_smalljs_text_code_Playground_hint": "Otwórz w Playground",
 	"$bog_smalljs_text_code_Run_hint": "Przełącz wynik na żywo",
 	"$bog_smalljs_text_live_label_text": "Wynik na żywo",
