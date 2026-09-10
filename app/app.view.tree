@@ -6,13 +6,6 @@ $bog_smalljs_app $bog_builderui_div
 	attr *
 		^
 		dir <= dir \ltr
-		bog_builderui_lights <= lights
-		bog_builderui_base \zinc
-		bog_builderui_theme \sky
-		bog_builderui_chart \yellow
-		bog_builderui_radius \medium
-		bog_builderui_font_body \inter
-		bog_builderui_font_head \eb-garamond
 	auto /
 		<= hotkeys null
 		<= lang_sync null
@@ -33,6 +26,11 @@ $bog_smalljs_app $bog_builderui_div
 			open? <=> search_open?
 			anchor_key <= docs_anchor_key \
 	plugins /
+		<= Skin $bog_builderui_skin
+			lights <= lights
+			base \zinc
+			chart \yellow
+			font_head \eb-garamond
 		<= Theme
 	Landing $bog_smalljs_landing
 	Docs $bog_smalljs_docs
