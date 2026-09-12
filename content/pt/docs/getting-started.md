@@ -1,5 +1,7 @@
 # Primeiros passos
 
+> Vindo de React ou Vue e nada faz sentido? Leia primeiro [Modelo mental](#!section=docs/page=mental-model): cinco minutos sobre para onde foram `computed`, `watch`, os hooks de ciclo de vida e o carregamento de dados.
+
 Esta página leva você de uma pasta vazia até um app $mol reativo e em execução. Deve levar cerca de quinze minutos. Cada trecho abaixo é código real e funcional — copie-o como está.
 
 Você vai escrever o componente em TypeScript comum. O $mol também tem um formato mais curto para descrever componentes, o `view.tree`, que você encontra na próxima página. Nada aqui precisa dele: um componente $mol é uma classe comum de qualquer jeito.

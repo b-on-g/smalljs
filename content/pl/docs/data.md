@@ -1,17 +1,17 @@
 # Pobieranie danych
 
-Ładowanie zdalnych danych w $mol nie jest specjalnym API — wartość asynchroniczna to po prostu właściwość reaktywna, która akurat zwraca obietnicę. Widok na nią czeka, pokazuje stan ładowania i renderuje się ponownie, gdy się rozwiąże.
+Ładowanie zdalnych danych w $mol nie jest specjalnym API — wartość asynchroniczna to po prostu właściwość reaktywna napisana tak, jakby odpowiedź już tam była. Widok na nią czeka, pokazuje stan ładowania i renderuje się ponownie, gdy dane nadejdą.
 
 ## Właściwość asynchroniczna
 
-Zwróć obietnicę z `@ $mol_mem` i czytaj ją jak każdą inną wartość:
+Wywołaj sieć wewnątrz `@ $mol_mem` i zwróć sparsowany wynik. W kodzie nie ma obietnicy, nie ma `await` ani callbacka:
 
 ```typescript
 namespace $.$$ {
 	export class $my_users extends $.$my_users {
 		@ $mol_mem
 		users() {
-			return $mol_fetch.json( 'https://api.example.com/users' ) as {
+			return this.$.$mol_fetch.json( 'https://api.example.com/users' ) as {
 				id: number
 				name: string
 			}[]
@@ -20,7 +20,9 @@ namespace $.$$ {
 }
 ```
 
-`$mol_fetch` zawiesza włókno do nadejścia odpowiedzi. Gdy jest w toku, każdy widok czytający `users()` automatycznie pokazuje wbudowany stan ładowania — nie piszesz żadnej flagi `isLoading`.
+`$mol_fetch` zawiesza włókno do nadejścia odpowiedzi, po czym obliczenie startuje od nowa, a `users()` zwraca tablicę. Gdy jest w toku, każdy widok czytający `users()` automatycznie pokazuje wbudowany stan ładowania — nie piszesz żadnej flagi `isLoading`. Nie zwracaj obietnicy z `@ $mol_mem` samodzielnie: obietnica przechowana jako wartość zostawia komórkę w stanie ładowania na zawsze, patrz [Rozwiązywanie problemów](#!section=docs/page=troubleshooting).
+
+`this.$` to kontekst komponentu. Każdy serwis idzie przez niego: `$mol_fetch` do sieci, `$mol_state_arg` do URL, `$mol_after_timeout` do czasu. W teście kontekst jest podmieniany, więc to samo `users()` wysyła swoje żądanie do mocka zamiast do sieci, i to bez zmiany choćby jednej linii komponentu. [Testowanie](#!section=docs/page=testing) pokazuje takiego mocka.
 
 ## Renderowanie wyniku
 
@@ -33,7 +35,7 @@ Powiąż rozwiązane dane bezpośrednio z listą:
 		}
 ```
 
-Gdy obietnica się rozwiąże, `users()` się aktualizuje, `user_names()` się przelicza, a lista renderuje. Bez callbacków, bez `useEffect`.
+Gdy nadejdzie odpowiedź, `users()` się aktualizuje, `user_names()` się przelicza, a lista renderuje. Bez callbacków, bez `useEffect`.
 
 ## Ponowne ładowanie
 
@@ -48,7 +50,7 @@ Ponieważ to tylko reaktywna komórka, przeładowujesz, unieważniając ją. Zal
 		@ $mol_mem
 		users() {
 			this.reload_token() // subscribe
-			return $mol_fetch.json( 'https://api.example.com/users' ) as unknown[]
+			return this.$.$mol_fetch.json( 'https://api.example.com/users' ) as unknown[]
 		}
 
 		@ $mol_action

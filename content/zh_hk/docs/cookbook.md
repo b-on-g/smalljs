@@ -81,14 +81,14 @@ namespace $.$$ {
 
 ## 帶載入與錯誤狀態的資料擷取
 
-非同步值只是一個回傳 promise 的響應式屬性。`$mol_fetch` 在請求進行期間掛起纖程，因此任何讀取它的視圖都會顯示內建的載入狀態——而失敗的請求會浮現為錯誤狀態。你不必寫任何 `isLoading` 旗標，也不必寫 `try`/`catch`。
+非同步值只是一個寫起來就像回應已經擺在那裏的響應式屬性。`$mol_fetch` 在請求進行期間掛起纖程，資料一落地屬性就回傳解析後的結果，因此任何讀取它的視圖都會顯示內建的載入狀態——而失敗的請求會浮現為錯誤狀態。你不必寫任何 `isLoading` 旗標，也不必寫 `try`/`catch`。這個呼叫走的是 `this.$`，也就是元件的上下文，於是[測試](#!section=docs/page=testing)可以把網絡換成一個 mock。
 
 ```typescript
 namespace $.$$ {
 	export class $my_users extends $.$my_users {
 		@ $mol_mem
 		users() {
-			return $mol_fetch.json( 'https://api.example.com/users' ) as {
+			return this.$.$mol_fetch.json( 'https://api.example.com/users' ) as {
 				id: number
 				name: string
 			}[]

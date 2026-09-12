@@ -123,7 +123,7 @@ $mol_after_frame   →  mol/after/frame/
 | `hello.view.ts` | 行为：继承生成基类的那个类 |
 | `hello.view.css.ts` | 带类型的样式。注意末尾的 `.ts`：这是调用 `$mol_style_define` 的 TypeScript，而不是样式表 |
 | `hello.ts` | 完全没有视图的模块——模型、工具函数、纯逻辑 |
-| `hello.test.ts` | 测试，由构建器运行 |
+| `hello.test.ts` | 测试，由构建器运行；参见[测试](#!section=docs/page=testing) |
 | `hello.locale=ru.json` | 翻译；任何以 `.locale=<lang>.json` 结尾的文件都会被收录 |
 | `hello.meta.tree` | 构建与部署指令 |
 | `index.html` | 入口——只有应用模块需要 |

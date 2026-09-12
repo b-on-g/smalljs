@@ -10,6 +10,7 @@ Se hai costruito interfacce con React, Vue o Svelte, capisci già la maggior par
 | Stato locale | `useState` | `ref` / `reactive` | `let x` | `@ $mol_mem` |
 | Valore derivato | `useMemo` | `computed` | `$: y = …` | `@ $mol_mem` (legge altre celle) |
 | Effetto collaterale | `useEffect` | `watchEffect` | `$: { … }` | `@ $mol_action` (esplicito, mai automatico) |
+| Caricare i dati al mount | `useEffect(fetch)` | `onMounted(fetch)` | `onMount(fetch)` | nessun hook: leggi i dati in una proprietà, la vista li richiede quando si renderizza |
 | Props | props | props | `export let` | binding in `view.tree` |
 | Evento | `onClick` | `@click` | `on:click` | `click? <=> handler?` |
 | Input bidirezionale | input controllato | `v-model` | `bind:value` | `value? <=> field?` |
@@ -40,3 +41,5 @@ Dove la tabella qui sopra rinomina le cose, è qui che $mol le rimuove davvero.
 ## Prova la traduzione
 
 Il modo più veloce per interiorizzare la corrispondenza è scrivere un po' di entrambi: apri il [Playground](#!section=playground), porta un piccolo componente che conosci e osserva come si comporta. Oppure parti da [Primi passi](#!section=docs/page=getting-started).
+
+Quando una riga della tabella rinomina qualcosa su cui fai affidamento, [Modello mentale](#!section=docs/page=mental-model) spiega l'idea dietro al nome nuovo, e perché l'hook che stai cercando non c'è.

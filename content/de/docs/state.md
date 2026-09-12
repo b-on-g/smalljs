@@ -84,17 +84,16 @@ task_done( id: string, next?: boolean ) {
 
 ## Asynchron ist nur ein Wert
 
-Geben Sie aus einem `@ $mol_mem` ein Promise zurück, und die Ansicht zeigt einen Ladezustand, bis es aufgelöst ist — ohne explizites Lade-Flag:
+Ein `@ $mol_mem`, das Daten aus dem Netz braucht, ruft es über den Kontext auf, als wäre die Antwort schon da. Die Fiber wird suspendiert, bis die Antwort eintrifft, die Ansicht zeigt währenddessen einen Ladezustand, und in Ihrem Code steht weder ein Lade-Flag noch ein Promise:
 
 ```typescript
 @ $mol_mem
-async data() {
-	const res = await fetch( '/api/data' )
-	return await res.json()
+data() {
+	return this.$.$mol_fetch.json( '/api/data' )
 }
 ```
 
-[Datenabruf](#!section=docs/page=data) baut auf diesem Muster auf.
+Machen Sie die Methode nicht `async` und geben Sie kein Promise aus ihr zurück: Ein als Wert gehaltenes Promise lässt die Zelle für immer rechnen. [Datenabruf](#!section=docs/page=data) baut auf diesem Muster auf.
 
 ## Transienter Zustand zwischen Ereignissen
 

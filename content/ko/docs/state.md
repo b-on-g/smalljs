@@ -84,17 +84,16 @@ task_done( id: string, next?: boolean ) {
 
 ## 비동기는 그저 하나의 값
 
-`@ $mol_mem`에서 promise를 반환하면, 해결될 때까지 뷰가 로딩 상태를 보여 줍니다——명시적인 로딩 플래그가 없습니다.
+네트워크에서 데이터가 필요한 `@ $mol_mem`은 마치 응답이 이미 거기 있는 것처럼 컨텍스트를 통해 네트워크를 호출합니다. 응답이 도착할 때까지 파이버는 중단되고, 그동안 뷰는 로딩 상태를 보여 주며, 여러분의 코드에는 로딩 플래그도 promise도 없습니다.
 
 ```typescript
 @ $mol_mem
-async data() {
-	const res = await fetch( '/api/data' )
-	return await res.json()
+data() {
+	return this.$.$mol_fetch.json( '/api/data' )
 }
 ```
 
-[데이터 가져오기](#!section=docs/page=data)는 이 패턴 위에 세워집니다.
+메서드를 `async`로 만들거나 거기서 promise를 반환하지 마세요. 값으로 남은 promise는 셀을 영원히 계산 중인 채로 둡니다. [데이터 가져오기](#!section=docs/page=data)는 이 패턴 위에 세워집니다.
 
 ## 이벤트 사이의 일시적 상태
 

@@ -1,17 +1,17 @@
 # 数据获取
 
-在 $mol 中加载远程数据不是一个特殊的 API——异步值只是一个恰好返回 promise 的响应式属性。视图会等待它，显示加载状态，并在它解析时重新渲染。
+在 $mol 中加载远程数据不是一个特殊的 API——异步值只是一个写起来就像响应已经摆在那里的响应式属性。视图会等待它，显示加载状态，并在数据到达时重新渲染。
 
 ## 异步属性
 
-从 `@ $mol_mem` 返回一个 promise，然后像读取任何其他值一样读取它：
+在 `@ $mol_mem` 内部发起网络调用，并返回解析后的结果。代码里没有 promise，没有 `await`，也没有回调：
 
 ```typescript
 namespace $.$$ {
 	export class $my_users extends $.$my_users {
 		@ $mol_mem
 		users() {
-			return $mol_fetch.json( 'https://api.example.com/users' ) as {
+			return this.$.$mol_fetch.json( 'https://api.example.com/users' ) as {
 				id: number
 				name: string
 			}[]
@@ -20,7 +20,9 @@ namespace $.$$ {
 }
 ```
 
-`$mol_fetch` 会挂起纤程，直到响应到达。在它处于挂起状态时，任何读取 `users()` 的视图都会自动显示内置的加载状态——你无需编写 `isLoading` 标志。
+`$mol_fetch` 会挂起纤程，直到响应到达，随后这次计算重启，`users()` 返回那个数组。在它处于挂起状态时，任何读取 `users()` 的视图都会自动显示内置的加载状态——你无需编写 `isLoading` 标志。不要自己从 `@ $mol_mem` 返回一个 promise：被当作值存进单元的 promise 会让这个单元永远停在加载状态，参见[故障排查](#!section=docs/page=troubleshooting)。
+
+`this.$` 是组件的上下文。每一个服务都经由它而来：管网络的 `$mol_fetch`、管 URL 的 `$mol_state_arg`、管时间的 `$mol_after_timeout`。在测试里上下文会被换掉，于是同一个 `users()` 会把请求发给一个 mock 而不是网络，组件本身一行都不用改。[测试](#!section=docs/page=testing) 展示了那个 mock。
 
 ## 渲染结果
 
@@ -33,7 +35,7 @@ namespace $.$$ {
 		}
 ```
 
-当 promise 解析时，`users()` 更新，`user_names()` 重新计算，列表随之渲染。没有回调，没有 `useEffect`。
+当响应到达时，`users()` 更新，`user_names()` 重新计算，列表随之渲染。没有回调，没有 `useEffect`。
 
 ## 重新加载
 
@@ -48,7 +50,7 @@ namespace $.$$ {
 		@ $mol_mem
 		users() {
 			this.reload_token() // subscribe
-			return $mol_fetch.json( 'https://api.example.com/users' ) as unknown[]
+			return this.$.$mol_fetch.json( 'https://api.example.com/users' ) as unknown[]
 		}
 
 		@ $mol_action

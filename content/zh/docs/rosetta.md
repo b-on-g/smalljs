@@ -10,6 +10,7 @@
 | 局部状态 | `useState` | `ref` / `reactive` | `let x` | `@ $mol_mem` |
 | 派生值 | `useMemo` | `computed` | `$: y = …` | `@ $mol_mem`（读取其他单元） |
 | 副作用 | `useEffect` | `watchEffect` | `$: { … }` | `@ $mol_action`（显式，永不自动） |
+| 挂载时加载数据 | `useEffect(fetch)` | `onMounted(fetch)` | `onMount(fetch)` | 没有钩子：在属性里读取数据，视图渲染时自会去请求 |
 | Props | props | props | `export let` | `view.tree` 中的绑定 |
 | 事件 | `onClick` | `@click` | `on:click` | `click? <=> handler?` |
 | 双向输入 | 受控输入 | `v-model` | `bind:value` | `value? <=> field?` |
@@ -40,3 +41,5 @@
 ## 试试这种翻译
 
 内化这套对应关系最快的方法是两边都写一点：打开[游乐场](#!section=playground)，移植一个你熟悉的小组件，看看效果如何。或者从[快速上手](#!section=docs/page=getting-started)开始。
+
+当表格里的某一行把你依赖的东西改了名字，[心智模型](#!section=docs/page=mental-model)会解释新名字背后的想法，以及你要找的那个钩子为什么不在这里。

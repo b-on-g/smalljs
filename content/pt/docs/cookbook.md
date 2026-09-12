@@ -81,14 +81,14 @@ namespace $.$$ {
 
 ## Buscar dados com estados de carregamento e erro
 
-Um valor assíncrono é apenas uma propriedade reativa que retorna uma promise. `$mol_fetch` suspende a fibra enquanto a requisição está a caminho, então qualquer view que o lê mostra o estado de carregamento embutido — e uma requisição que falha aparece como estado de erro. Você não escreve nenhuma flag `isLoading` nem `try`/`catch`.
+Um valor assíncrono é apenas uma propriedade reativa escrita como se a resposta já estivesse ali. `$mol_fetch` suspende a fibra enquanto a requisição está a caminho e a propriedade devolve os dados parseados assim que eles chegam, então qualquer view que a lê mostra o estado de carregamento embutido — e uma requisição que falha aparece como estado de erro. Você não escreve nenhuma flag `isLoading` nem `try`/`catch`. A chamada passa por `this.$`, o contexto do componente, então um [teste](#!section=docs/page=testing) pode trocar a rede por um mock.
 
 ```typescript
 namespace $.$$ {
 	export class $my_users extends $.$my_users {
 		@ $mol_mem
 		users() {
-			return $mol_fetch.json( 'https://api.example.com/users' ) as {
+			return this.$.$mol_fetch.json( 'https://api.example.com/users' ) as {
 				id: number
 				name: string
 			}[]

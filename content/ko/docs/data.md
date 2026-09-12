@@ -1,17 +1,17 @@
 # 데이터 가져오기
 
-$mol에서 원격 데이터를 불러오는 것은 특별한 API가 아닙니다——비동기 값은 그저 promise를 반환하는 반응형 속성일 뿐입니다. 뷰는 그것을 기다리고, 로딩 상태를 보여 주며, 해결되면 다시 렌더링합니다.
+$mol에서 원격 데이터를 불러오는 것은 특별한 API가 아닙니다——비동기 값은 마치 응답이 이미 거기 있는 것처럼 작성된 반응형 속성일 뿐입니다. 뷰는 그것을 기다리고, 로딩 상태를 보여 주며, 데이터가 도착하면 다시 렌더링합니다.
 
 ## 비동기 속성
 
-`@ $mol_mem`에서 promise를 반환하고, 다른 어떤 값과도 똑같이 읽으세요.
+`@ $mol_mem` 안에서 네트워크를 호출하고 파싱된 결과를 반환하세요. 코드에는 promise도, `await`도, 콜백도 없습니다.
 
 ```typescript
 namespace $.$$ {
 	export class $my_users extends $.$my_users {
 		@ $mol_mem
 		users() {
-			return $mol_fetch.json( 'https://api.example.com/users' ) as {
+			return this.$.$mol_fetch.json( 'https://api.example.com/users' ) as {
 				id: number
 				name: string
 			}[]
@@ -20,7 +20,9 @@ namespace $.$$ {
 }
 ```
 
-`$mol_fetch`는 응답이 도착할 때까지 파이버를 중단시킵니다. 보류 중인 동안 `users()`를 읽는 어떤 뷰든 내장 로딩 상태를 자동으로 보여 줍니다——`isLoading` 플래그를 쓰지 않습니다.
+`$mol_fetch`는 응답이 도착할 때까지 파이버를 중단시키고, 그러고 나면 계산이 다시 시작되어 `users()`가 배열을 반환합니다. 보류 중인 동안 `users()`를 읽는 어떤 뷰든 내장 로딩 상태를 자동으로 보여 줍니다——`isLoading` 플래그를 쓰지 않습니다. `@ $mol_mem`에서 직접 promise를 반환하지 마세요. 값으로 저장된 promise는 셀을 영원히 로딩 상태에 묶어 둡니다. [문제 해결](#!section=docs/page=troubleshooting)을 보세요.
+
+`this.$`는 컴포넌트의 컨텍스트입니다. 모든 서비스가 그것을 거쳐 옵니다. 네트워크는 `$mol_fetch`, URL은 `$mol_state_arg`, 시간은 `$mol_after_timeout`입니다. 테스트에서는 컨텍스트가 교체되므로, 컴포넌트를 한 줄도 바꾸지 않은 채 같은 `users()`가 네트워크가 아니라 목(mock)으로 요청을 보냅니다. 그 목은 [테스트](#!section=docs/page=testing)가 보여 줍니다.
 
 ## 결과 렌더링
 
@@ -33,7 +35,7 @@ namespace $.$$ {
 		}
 ```
 
-promise가 해결되면 `users()`가 갱신되고, `user_names()`가 재계산되며, 리스트가 렌더링됩니다. 콜백도, `useEffect`도 없습니다.
+응답이 도착하면 `users()`가 갱신되고, `user_names()`가 재계산되며, 리스트가 렌더링됩니다. 콜백도, `useEffect`도 없습니다.
 
 ## 다시 불러오기
 
@@ -48,7 +50,7 @@ promise가 해결되면 `users()`가 갱신되고, `user_names()`가 재계산�
 		@ $mol_mem
 		users() {
 			this.reload_token() // subscribe
-			return $mol_fetch.json( 'https://api.example.com/users' ) as unknown[]
+			return this.$.$mol_fetch.json( 'https://api.example.com/users' ) as unknown[]
 		}
 
 		@ $mol_action

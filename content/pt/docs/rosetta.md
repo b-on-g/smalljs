@@ -10,6 +10,7 @@ Se você já construiu interfaces com React, Vue ou Svelte, já entende a maior 
 | Estado local | `useState` | `ref` / `reactive` | `let x` | `@ $mol_mem` |
 | Valor derivado | `useMemo` | `computed` | `$: y = …` | `@ $mol_mem` (lê outras células) |
 | Efeito colateral | `useEffect` | `watchEffect` | `$: { … }` | `@ $mol_action` (explícito, nunca automático) |
+| Carregar dados no mount | `useEffect(fetch)` | `onMounted(fetch)` | `onMount(fetch)` | sem hook: leia os dados numa propriedade, a view os pede quando renderiza |
 | Props | props | props | `export let` | vínculos em `view.tree` |
 | Evento | `onClick` | `@click` | `on:click` | `click? <=> handler?` |
 | Entrada bidirecional | input controlado | `v-model` | `bind:value` | `value? <=> field?` |
@@ -40,3 +41,5 @@ Onde a tabela acima renomeia as coisas, é aqui que o $mol realmente as remove.
 ## Experimente a tradução
 
 A forma mais rápida de internalizar o mapeamento é escrever um pouco dos dois: abra o [Playground](#!section=playground), porte um pequeno componente que você conhece e veja como ele se sai. Ou comece pelo [Primeiros passos](#!section=docs/page=getting-started).
+
+Quando uma linha da tabela renomeia algo de que você depende, [Modelo mental](#!section=docs/page=mental-model) explica a ideia por trás do nome novo, e por que o hook que você procura não está ali.

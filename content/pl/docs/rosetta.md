@@ -10,6 +10,7 @@ Jeśli budowałeś interfejsy w React, Vue lub Svelte, rozumiesz już większoś
 | Stan lokalny | `useState` | `ref` / `reactive` | `let x` | `@ $mol_mem` |
 | Wartość pochodna | `useMemo` | `computed` | `$: y = …` | `@ $mol_mem` (czyta inne komórki) |
 | Efekt uboczny | `useEffect` | `watchEffect` | `$: { … }` | `@ $mol_action` (jawny, nigdy automatyczny) |
+| Ładowanie danych przy montowaniu | `useEffect(fetch)` | `onMounted(fetch)` | `onMount(fetch)` | bez haka: czytasz dane we właściwości, a widok zamawia je, gdy się renderuje |
 | Props | props | props | `export let` | powiązania w `view.tree` |
 | Zdarzenie | `onClick` | `@click` | `on:click` | `click? <=> handler?` |
 | Input dwukierunkowy | kontrolowany input | `v-model` | `bind:value` | `value? <=> field?` |
@@ -40,3 +41,5 @@ Tam, gdzie tabela powyżej zmienia nazwy, tutaj $mol faktycznie to usuwa.
 ## Wypróbuj tłumaczenie
 
 Najszybszy sposób na przyswojenie mapowania to napisanie po trochu obu: otwórz [Playground](#!section=playground), przenieś mały komponent, który znasz, i zobacz, jak wypadnie. Albo zacznij od [Pierwszych kroków](#!section=docs/page=getting-started).
+
+Gdy wiersz tabeli zmienia nazwę czemuś, na czym polegasz, [Model mentalny](#!section=docs/page=mental-model) tłumaczy ideę stojącą za nową nazwą i to, dlaczego haka, którego szukasz, tu nie ma.

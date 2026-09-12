@@ -1,17 +1,17 @@
 # Načítání dat
 
-Načítání vzdálených dat v $mol není zvláštní API — asynchronní hodnota je prostě reaktivní vlastnost, která náhodou vrací příslib. Pohled na ni čeká, zobrazí stav načítání a překreslí se, když se vyřeší.
+Načítání vzdálených dat v $mol není zvláštní API — asynchronní hodnota je prostě reaktivní vlastnost napsaná tak, jako by odpověď už byla na místě. Pohled na ni čeká, zobrazí stav načítání a překreslí se, když data dorazí.
 
 ## Asynchronní vlastnost
 
-Vraťte příslib z `@ $mol_mem` a čtěte jej jako jakoukoli jinou hodnotu:
+Zavolejte síť uvnitř `@ $mol_mem` a vraťte rozparsovaný výsledek. V kódu není žádný příslib, žádné `await` ani callback:
 
 ```typescript
 namespace $.$$ {
 	export class $my_users extends $.$my_users {
 		@ $mol_mem
 		users() {
-			return $mol_fetch.json( 'https://api.example.com/users' ) as {
+			return this.$.$mol_fetch.json( 'https://api.example.com/users' ) as {
 				id: number
 				name: string
 			}[]
@@ -20,7 +20,9 @@ namespace $.$$ {
 }
 ```
 
-`$mol_fetch` pozastaví vlákno, dokud nedorazí odpověď. Dokud čeká, každý pohled, který čte `users()`, automaticky zobrazí vestavěný stav načítání — nepíšete žádný příznak `isLoading`.
+`$mol_fetch` pozastaví vlákno, dokud nedorazí odpověď, načež se výpočet spustí znovu a `users()` vrátí pole. Dokud čeká, každý pohled, který čte `users()`, automaticky zobrazí vestavěný stav načítání — nepíšete žádný příznak `isLoading`. Nevracejte z `@ $mol_mem` příslib sami: příslib uložený jako hodnota nechá buňku ve stavu načítání navždy, viz [Řešení problémů](#!section=docs/page=troubleshooting).
+
+`this.$` je kontext komponenty. Každá služba jde přes něj: `$mol_fetch` pro síť, `$mol_state_arg` pro URL, `$mol_after_timeout` pro čas. V testu se kontext vymění, takže tentýž `users()` pošle svůj požadavek na mock místo do sítě, aniž by se v komponentě změnil jediný řádek. [Testování](#!section=docs/page=testing) takový mock ukazuje.
 
 ## Vykreslení výsledku
 
@@ -33,7 +35,7 @@ Navažte vyřešená data přímo do seznamu:
 		}
 ```
 
-Když se příslib vyřeší, `users()` se aktualizuje, `user_names()` se přepočítá a seznam se vykreslí. Žádné callbacky, žádný `useEffect`.
+Když dorazí odpověď, `users()` se aktualizuje, `user_names()` se přepočítá a seznam se vykreslí. Žádné callbacky, žádný `useEffect`.
 
 ## Znovunačtení
 
@@ -48,7 +50,7 @@ Protože je to jen reaktivní buňka, znovu načtete tím, že ji zneplatníte. 
 		@ $mol_mem
 		users() {
 			this.reload_token() // subscribe
-			return $mol_fetch.json( 'https://api.example.com/users' ) as unknown[]
+			return this.$.$mol_fetch.json( 'https://api.example.com/users' ) as unknown[]
 		}
 
 		@ $mol_action

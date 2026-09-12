@@ -84,17 +84,16 @@ task_done( id: string, next?: boolean ) {
 
 ## 异步只是一个值
 
-从 `@ $mol_mem` 返回一个 promise，视图便会显示加载状态，直到它解析——无需显式的加载标志：
+一个需要网络数据的 `@ $mol_mem` 会经由上下文去调用它，写起来就像响应已经摆在那里了。纤程会挂起直到响应到达，在此期间视图显示加载状态，而你的代码里没有加载标志，也没有 promise：
 
 ```typescript
 @ $mol_mem
-async data() {
-	const res = await fetch( '/api/data' )
-	return await res.json()
+data() {
+	return this.$.$mol_fetch.json( '/api/data' )
 }
 ```
 
-[数据获取](#!section=docs/page=data) 就建立在这个模式之上。
+不要把这个方法写成 `async`，也不要从它返回 promise：被当作值留在单元里的 promise 会让这个单元永远处于计算中。[数据获取](#!section=docs/page=data) 就建立在这个模式之上。
 
 ## 事件之间的瞬时状态
 

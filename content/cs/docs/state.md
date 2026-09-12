@@ -84,17 +84,16 @@ task_done( id: string, next?: boolean ) {
 
 ## Asynchronní hodnota je jen hodnota
 
-Vraťte z `@ $mol_mem` příslib a pohled zobrazí stav načítání, dokud se nevyřeší — bez explicitního příznaku načítání:
+`@ $mol_mem`, které potřebuje data ze sítě, si o ně řekne přes kontext, jako by odpověď už byla na místě. Vlákno se pozastaví, dokud odpověď nedorazí, pohled zatím zobrazuje stav načítání a ve vašem kódu není ani příznak načítání, ani příslib:
 
 ```typescript
 @ $mol_mem
-async data() {
-	const res = await fetch( '/api/data' )
-	return await res.json()
+data() {
+	return this.$.$mol_fetch.json( '/api/data' )
 }
 ```
 
-[Načítání dat](#!section=docs/page=data) na tomto vzoru staví.
+Nedělejte z té metody `async` a nevracejte z ní příslib: příslib držený jako hodnota nechá buňku počítat navždy. [Načítání dat](#!section=docs/page=data) na tomto vzoru staví.
 
 ## Přechodný stav mezi událostmi
 

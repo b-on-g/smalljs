@@ -84,17 +84,16 @@ task_done( id: string, next?: boolean ) {
 
 ## Asynchroniczność to tylko wartość
 
-Zwróć obietnicę z `@ $mol_mem`, a widok pokaże stan ładowania, dopóki się nie rozwiąże — bez jawnej flagi ładowania:
+`@ $mol_mem`, które potrzebuje danych z sieci, woła ją przez kontekst tak, jakby odpowiedź już tam była. Włókno zawiesza się do nadejścia odpowiedzi, widok pokazuje w tym czasie stan ładowania, a w twoim kodzie nie ma ani flagi ładowania, ani obietnicy:
 
 ```typescript
 @ $mol_mem
-async data() {
-	const res = await fetch( '/api/data' )
-	return await res.json()
+data() {
+	return this.$.$mol_fetch.json( '/api/data' )
 }
 ```
 
-[Pobieranie danych](#!section=docs/page=data) opiera się na tym wzorcu.
+Nie rób z tej metody `async` i nie zwracaj z niej obietnicy: obietnica trzymana jako wartość zostawia komórkę liczącą w nieskończoność. [Pobieranie danych](#!section=docs/page=data) opiera się na tym wzorcu.
 
 ## Stan przejściowy między zdarzeniami
 

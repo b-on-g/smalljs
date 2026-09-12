@@ -84,17 +84,16 @@ task_done( id: string, next?: boolean ) {
 
 ## 非同步只是一個值
 
-從 `@ $mol_mem` 回傳一個 promise，視圖便會顯示載入狀態，直到它解析——無需明確的載入旗標：
+一個需要網絡資料的 `@ $mol_mem` 會經由上下文去呼叫它，寫起來就像回應已經擺在那裏了。纖程會暫停直到回應到達，在此期間視圖顯示載入狀態，而你的程式碼裏沒有載入旗標，也沒有 promise：
 
 ```typescript
 @ $mol_mem
-async data() {
-	const res = await fetch( '/api/data' )
-	return await res.json()
+data() {
+	return this.$.$mol_fetch.json( '/api/data' )
 }
 ```
 
-[資料獲取](#!section=docs/page=data) 就建立在這個模式之上。
+不要把這個方法寫成 `async`，也不要從它回傳 promise：被當作值留在單元裏的 promise 會讓這個單元永遠處於計算中。[資料獲取](#!section=docs/page=data) 就建立在這個模式之上。
 
 ## 事件之間的瞬時狀態
 

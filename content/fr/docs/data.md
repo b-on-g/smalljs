@@ -1,17 +1,17 @@
 # Récupération de données
 
-Charger des données distantes dans $mol n'est pas une API spéciale — une valeur asynchrone n'est qu'une propriété réactive qui se trouve renvoyer une promesse. La vue l'attend, affiche un état de chargement et se re-rend quand elle se résout.
+Charger des données distantes dans $mol n'est pas une API spéciale — une valeur asynchrone n'est qu'une propriété réactive écrite comme si la réponse était déjà là. La vue l'attend, affiche un état de chargement et se re-rend quand les données arrivent.
 
 ## Une propriété asynchrone
 
-Renvoyez une promesse depuis un `@ $mol_mem` et lisez-la comme n'importe quelle autre valeur :
+Appelez le réseau à l'intérieur d'un `@ $mol_mem` et renvoyez le résultat analysé. Il n'y a dans le code ni promesse, ni `await`, ni callback :
 
 ```typescript
 namespace $.$$ {
 	export class $my_users extends $.$my_users {
 		@ $mol_mem
 		users() {
-			return $mol_fetch.json( 'https://api.example.com/users' ) as {
+			return this.$.$mol_fetch.json( 'https://api.example.com/users' ) as {
 				id: number
 				name: string
 			}[]
@@ -20,7 +20,9 @@ namespace $.$$ {
 }
 ```
 
-`$mol_fetch` suspend la fibre jusqu'à l'arrivée de la réponse. Pendant qu'elle est en attente, toute vue qui lit `users()` affiche automatiquement l'état de chargement intégré — vous n'écrivez aucun drapeau `isLoading`.
+`$mol_fetch` suspend la fibre jusqu'à l'arrivée de la réponse, puis le calcul repart et `users()` renvoie le tableau. Pendant qu'elle est en attente, toute vue qui lit `users()` affiche automatiquement l'état de chargement intégré — vous n'écrivez aucun drapeau `isLoading`. Ne renvoyez pas vous-même une promesse depuis un `@ $mol_mem` : une promesse stockée comme valeur garde la cellule en chargement pour toujours, voyez [Dépannage](#!section=docs/page=troubleshooting).
+
+`this.$` est le contexte du composant. Chaque service passe par lui : `$mol_fetch` pour le réseau, `$mol_state_arg` pour l'URL, `$mol_after_timeout` pour le temps. Dans un test, le contexte est remplacé, si bien que le même `users()` envoie sa requête à une simulation au lieu du réseau, sans qu'une seule ligne du composant change. [Tests](#!section=docs/page=testing) montre cette simulation.
 
 ## Rendre le résultat
 
@@ -33,7 +35,7 @@ Liez les données résolues directement dans une liste :
 		}
 ```
 
-Quand la promesse se résout, `users()` se met à jour, `user_names()` se recalcule et la liste s'affiche. Pas de callbacks, pas de `useEffect`.
+Quand la réponse arrive, `users()` se met à jour, `user_names()` se recalcule et la liste s'affiche. Pas de callbacks, pas de `useEffect`.
 
 ## Recharger
 
@@ -48,7 +50,7 @@ Comme ce n'est qu'une cellule réactive, vous rechargez en l'invalidant. Dépend
 		@ $mol_mem
 		users() {
 			this.reload_token() // subscribe
-			return $mol_fetch.json( 'https://api.example.com/users' ) as unknown[]
+			return this.$.$mol_fetch.json( 'https://api.example.com/users' ) as unknown[]
 		}
 
 		@ $mol_action

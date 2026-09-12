@@ -1,17 +1,17 @@
 # Datenabruf
 
-Entfernte Daten in $mol zu laden ist keine spezielle API — ein asynchroner Wert ist einfach eine reaktive Eigenschaft, die zufällig ein Promise zurückgibt. Die Ansicht wartet darauf, zeigt einen Ladezustand und rendert neu, wenn es sich auflöst.
+Entfernte Daten in $mol zu laden ist keine spezielle API — ein asynchroner Wert ist einfach eine reaktive Eigenschaft, die so geschrieben ist, als wäre die Antwort schon da. Die Ansicht wartet darauf, zeigt einen Ladezustand und rendert neu, wenn die Daten eintreffen.
 
 ## Eine asynchrone Eigenschaft
 
-Geben Sie ein Promise aus einem `@ $mol_mem` zurück und lesen Sie es wie jeden anderen Wert:
+Rufen Sie das Netz innerhalb eines `@ $mol_mem` auf und geben Sie das geparste Ergebnis zurück. Im Code steht kein Promise, kein `await` und kein Callback:
 
 ```typescript
 namespace $.$$ {
 	export class $my_users extends $.$my_users {
 		@ $mol_mem
 		users() {
-			return $mol_fetch.json( 'https://api.example.com/users' ) as {
+			return this.$.$mol_fetch.json( 'https://api.example.com/users' ) as {
 				id: number
 				name: string
 			}[]
@@ -20,7 +20,9 @@ namespace $.$$ {
 }
 ```
 
-`$mol_fetch` suspendiert die Fiber, bis die Antwort eintrifft. Während sie aussteht, zeigt jede Ansicht, die `users()` liest, automatisch den eingebauten Ladezustand — Sie schreiben kein `isLoading`-Flag.
+`$mol_fetch` suspendiert die Fiber, bis die Antwort eintrifft, dann startet die Berechnung neu und `users()` gibt das Array zurück. Während sie aussteht, zeigt jede Ansicht, die `users()` liest, automatisch den eingebauten Ladezustand — Sie schreiben kein `isLoading`-Flag. Geben Sie nicht selbst ein Promise aus einem `@ $mol_mem` zurück: Ein als Wert abgelegtes Promise hält die Zelle für immer im Ladezustand, siehe [Fehlerbehebung](#!section=docs/page=troubleshooting).
+
+`this.$` ist der Kontext der Komponente. Jeder Dienst kommt durch ihn: `$mol_fetch` für das Netz, `$mol_state_arg` für die URL, `$mol_after_timeout` für die Zeit. In einem Test wird der Kontext ersetzt, sodass dasselbe `users()` seine Anfrage an einen Mock statt ins Netz schickt, ohne dass sich eine Zeile der Komponente ändert. [Testen](#!section=docs/page=testing) zeigt diesen Mock.
 
 ## Das Ergebnis rendern
 
@@ -33,7 +35,7 @@ Binden Sie die aufgelösten Daten direkt in eine Liste:
 		}
 ```
 
-Wenn sich das Promise auflöst, aktualisiert sich `users()`, `user_names()` wird neu berechnet und die Liste rendert. Keine Callbacks, kein `useEffect`.
+Wenn die Antwort eintrifft, aktualisiert sich `users()`, `user_names()` wird neu berechnet und die Liste rendert. Keine Callbacks, kein `useEffect`.
 
 ## Neu laden
 
@@ -48,7 +50,7 @@ Weil es nur eine reaktive Zelle ist, laden Sie neu, indem Sie sie invalidieren. 
 		@ $mol_mem
 		users() {
 			this.reload_token() // subscribe
-			return $mol_fetch.json( 'https://api.example.com/users' ) as unknown[]
+			return this.$.$mol_fetch.json( 'https://api.example.com/users' ) as unknown[]
 		}
 
 		@ $mol_action

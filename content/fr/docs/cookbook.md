@@ -81,14 +81,14 @@ namespace $.$$ {
 
 ## Récupérer des données avec états de chargement et d'erreur
 
-Une valeur asynchrone n'est qu'une propriété réactive qui renvoie une promesse. `$mol_fetch` suspend la fibre pendant que la requête est en cours, si bien que toute vue qui la lit affiche l'état de chargement intégré — et une requête en échec remonte comme un état d'erreur. Vous n'écrivez ni indicateur `isLoading` ni `try`/`catch`.
+Une valeur asynchrone n'est qu'une propriété réactive écrite comme si la réponse était déjà là. `$mol_fetch` suspend la fibre pendant que la requête est en cours et la propriété renvoie les données analysées dès qu'elles arrivent, si bien que toute vue qui la lit affiche l'état de chargement intégré — et une requête en échec remonte comme un état d'erreur. Vous n'écrivez ni indicateur `isLoading` ni `try`/`catch`. L'appel passe par `this.$`, le contexte du composant, pour qu'un [test](#!section=docs/page=testing) puisse échanger le réseau contre une simulation.
 
 ```typescript
 namespace $.$$ {
 	export class $my_users extends $.$my_users {
 		@ $mol_mem
 		users() {
-			return $mol_fetch.json( 'https://api.example.com/users' ) as {
+			return this.$.$mol_fetch.json( 'https://api.example.com/users' ) as {
 				id: number
 				name: string
 			}[]

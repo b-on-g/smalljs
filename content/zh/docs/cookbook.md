@@ -81,14 +81,14 @@ namespace $.$$ {
 
 ## 带加载与错误状态的数据获取
 
-异步值只是一个返回 promise 的响应式属性。`$mol_fetch` 在请求进行期间挂起纤程，因此任何读取它的视图都会显示内置的加载状态——而失败的请求会浮现为错误状态。你不必写任何 `isLoading` 标志，也不必写 `try`/`catch`。
+异步值只是一个写起来就像响应已经摆在那里的响应式属性。`$mol_fetch` 在请求进行期间挂起纤程，数据一落地属性就返回解析后的结果，因此任何读取它的视图都会显示内置的加载状态——而失败的请求会浮现为错误状态。你不必写任何 `isLoading` 标志，也不必写 `try`/`catch`。这个调用走的是 `this.$`，也就是组件的上下文，于是[测试](#!section=docs/page=testing)可以把网络换成一个 mock。
 
 ```typescript
 namespace $.$$ {
 	export class $my_users extends $.$my_users {
 		@ $mol_mem
 		users() {
-			return $mol_fetch.json( 'https://api.example.com/users' ) as {
+			return this.$.$mol_fetch.json( 'https://api.example.com/users' ) as {
 				id: number
 				name: string
 			}[]

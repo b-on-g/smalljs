@@ -81,14 +81,14 @@ namespace $.$$ {
 
 ## Pobieranie danych ze stanami ładowania i błędu
 
-Wartość asynchroniczna to po prostu reaktywna właściwość zwracająca promise. `$mol_fetch` wstrzymuje włókno na czas trwania żądania, więc każdy widok, który je czyta, pokazuje wbudowany stan ładowania — a nieudane żądanie wypływa jako stan błędu. Nie piszesz żadnej flagi `isLoading` ani `try`/`catch`.
+Wartość asynchroniczna to po prostu reaktywna właściwość napisana tak, jakby odpowiedź już tam była. `$mol_fetch` wstrzymuje włókno na czas trwania żądania, a właściwość zwraca sparsowane dane, gdy tylko dotrą, więc każdy widok, który je czyta, pokazuje wbudowany stan ładowania — a nieudane żądanie wypływa jako stan błędu. Nie piszesz żadnej flagi `isLoading` ani `try`/`catch`. Wywołanie idzie przez `this.$`, kontekst komponentu, więc [test](#!section=docs/page=testing) może podmienić sieć na mocka.
 
 ```typescript
 namespace $.$$ {
 	export class $my_users extends $.$my_users {
 		@ $mol_mem
 		users() {
-			return $mol_fetch.json( 'https://api.example.com/users' ) as {
+			return this.$.$mol_fetch.json( 'https://api.example.com/users' ) as {
 				id: number
 				name: string
 			}[]

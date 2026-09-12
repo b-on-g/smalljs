@@ -10,6 +10,7 @@
 | 區域狀態 | `useState` | `ref` / `reactive` | `let x` | `@ $mol_mem` |
 | 衍生值 | `useMemo` | `computed` | `$: y = …` | `@ $mol_mem`（讀取其他單元） |
 | 副作用 | `useEffect` | `watchEffect` | `$: { … }` | `@ $mol_action`（顯式，永不自動） |
+| 掛載時載入資料 | `useEffect(fetch)` | `onMounted(fetch)` | `onMount(fetch)` | 沒有鉤子：在屬性裏讀取資料，視圖渲染時自會去請求 |
 | Props | props | props | `export let` | `view.tree` 中的綁定 |
 | 事件 | `onClick` | `@click` | `on:click` | `click? <=> handler?` |
 | 雙向輸入 | 受控輸入 | `v-model` | `bind:value` | `value? <=> field?` |
@@ -40,3 +41,5 @@
 ## 試試這種翻譯
 
 內化這套對應關係最快的方法是兩邊都寫一點：開啟[遊樂場](#!section=playground)，移植一個你熟悉的小元件，看看效果如何。或者從[快速上手](#!section=docs/page=getting-started)開始。
+
+當表格裏的某一行把你依賴的東西改了名字，[心智模型](#!section=docs/page=mental-model)會解釋新名字背後的想法，以及你要找的那個鉤子為甚麼不在這裏。

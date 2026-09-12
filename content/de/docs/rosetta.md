@@ -10,6 +10,7 @@ Wenn Sie Oberflächen mit React, Vue oder Svelte gebaut haben, verstehen Sie ber
 | Lokaler Zustand | `useState` | `ref` / `reactive` | `let x` | `@ $mol_mem` |
 | Abgeleiteter Wert | `useMemo` | `computed` | `$: y = …` | `@ $mol_mem` (liest andere Zellen) |
 | Seiteneffekt | `useEffect` | `watchEffect` | `$: { … }` | `@ $mol_action` (explizit, nie automatisch) |
+| Daten beim Mounten laden | `useEffect(fetch)` | `onMounted(fetch)` | `onMount(fetch)` | kein Hook: Die Daten werden in einer Eigenschaft gelesen, die View fordert sie beim Rendern an |
 | Props | props | props | `export let` | Bindungen in `view.tree` |
 | Ereignis | `onClick` | `@click` | `on:click` | `click? <=> handler?` |
 | Zwei-Wege-Eingabe | kontrollierte Eingabe | `v-model` | `bind:value` | `value? <=> field?` |
@@ -40,3 +41,5 @@ Wo die Tabelle oben Dinge umbenennt, entfernt $mol sie hier tatsächlich.
 ## Probieren Sie die Übersetzung
 
 Der schnellste Weg, die Zuordnung zu verinnerlichen, ist ein wenig von beidem zu schreiben: öffnen Sie den [Playground](#!section=playground), portieren Sie eine kleine Komponente, die Sie kennen, und sehen Sie, wie sie sich einfügt. Oder beginnen Sie mit [Erste Schritte](#!section=docs/page=getting-started).
+
+Wenn eine Zeile der Tabelle etwas umbenennt, worauf Sie sich verlassen, erklärt [Mentales Modell](#!section=docs/page=mental-model) die Idee hinter dem neuen Namen — und warum es den Hook, den Sie suchen, nicht gibt.

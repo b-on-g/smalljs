@@ -10,6 +10,7 @@ React, Vue, Svelte로 UI를 만들어 봤다면, $mol이 하는 일의 대부분
 | 로컬 상태 | `useState` | `ref` / `reactive` | `let x` | `@ $mol_mem` |
 | 파생 값 | `useMemo` | `computed` | `$: y = …` | `@ $mol_mem`(다른 셀을 읽음) |
 | 부수 효과 | `useEffect` | `watchEffect` | `$: { … }` | `@ $mol_action`(명시적, 결코 자동이 아님) |
+| 마운트 시 데이터 로딩 | `useEffect(fetch)` | `onMounted(fetch)` | `onMount(fetch)` | 훅 없음: 데이터를 속성 안에서 읽으면 뷰가 렌더링될 때 요청한다 |
 | Props | props | props | `export let` | `view.tree`의 바인딩 |
 | 이벤트 | `onClick` | `@click` | `on:click` | `click? <=> handler?` |
 | 양방향 입력 | 제어된 입력 | `v-model` | `bind:value` | `value? <=> field?` |
@@ -40,3 +41,5 @@ React, Vue, Svelte로 UI를 만들어 봤다면, $mol이 하는 일의 대부분
 ## 번역을 시도해 보세요
 
 대응을 체화하는 가장 빠른 방법은 둘 다 조금씩 써 보는 것입니다: [플레이그라운드](#!section=playground)를 열어, 여러분이 아는 작은 컴포넌트를 옮겨 보고 어떻게 되는지 보세요. 아니면 [시작하기](#!section=docs/page=getting-started)에서 시작하세요.
+
+표의 어떤 행이 여러분이 의지하던 것의 이름을 바꿔 놓았다면, [멘탈 모델](#!section=docs/page=mental-model)이 그 새 이름 뒤의 발상과, 찾고 있는 훅이 왜 거기에 없는지를 설명합니다.

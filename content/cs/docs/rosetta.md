@@ -10,6 +10,7 @@ Pokud jste stavěli rozhraní v Reactu, Vue nebo Svelte, většině toho, co $mo
 | Lokální stav | `useState` | `ref` / `reactive` | `let x` | `@ $mol_mem` |
 | Odvozená hodnota | `useMemo` | `computed` | `$: y = …` | `@ $mol_mem` (čte jiné buňky) |
 | Vedlejší efekt | `useEffect` | `watchEffect` | `$: { … }` | `@ $mol_action` (explicitní, nikdy automatický) |
+| Načtení dat při připojení | `useEffect(fetch)` | `onMounted(fetch)` | `onMount(fetch)` | žádný hook: data čtete ve vlastnosti a pohled si o ně řekne, když se vykresluje |
 | Props | props | props | `export let` | vazby ve `view.tree` |
 | Událost | `onClick` | `@click` | `on:click` | `click? <=> handler?` |
 | Obousměrný vstup | řízený vstup | `v-model` | `bind:value` | `value? <=> field?` |
@@ -40,3 +41,5 @@ Tam, kde tabulka výše věci přejmenovává, je $mol skutečně odstraňuje.
 ## Vyzkoušejte překlad
 
 Nejrychlejší způsob, jak si mapování osvojit, je napsat trochu obojího: otevřete [Hřiště](#!section=playground), přeneste malou komponentu, kterou znáte, a uvidíte, jak dopadne. Nebo začněte [Prvními kroky](#!section=docs/page=getting-started).
+
+Když nějaký řádek tabulky přejmenuje něco, na čem stavíte, [Myšlenkový model](#!section=docs/page=mental-model) vysvětluje myšlenku za tím novým názvem a proč tu hook, který hledáte, není.

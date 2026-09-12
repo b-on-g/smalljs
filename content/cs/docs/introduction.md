@@ -1,5 +1,7 @@
 # Úvod
 
+> Přicházíš z Reactu nebo Vue a nic nedává smysl? Přečti si nejdřív [Myšlenkový model](#!section=docs/page=mental-model): pět minut o tom, kam se poděly `computed`, `watch`, hooky životního cyklu a načítání dat.
+
 ## Co je $mol?
 
 $mol je reaktivní UI framework: popíšeš, **co** rozhraní je, a framework zjistí, **jak** a **kdy** ho aktualizovat. Žádné virtuální DOM, žádné ruční odběry, žádný `useEffect`. Komponenty píšeš jako strom; $mol vykresluje jen to, co je vidět, a přepočítává jen to, co se skutečně změnilo.

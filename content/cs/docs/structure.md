@@ -123,7 +123,7 @@ Každý soubor je volitelný. Modul jsou přesně ty soubory, které se v něm s
 | `hello.view.ts` | Chování: třída rozšiřující vygenerovaný základ |
 | `hello.view.css.ts` | Typované styly. Všimněte si koncového `.ts`: je to TypeScript volající `$mol_style_define`, ne stylopis |
 | `hello.ts` | Modul zcela bez pohledu — modely, utility, čistá logika |
-| `hello.test.ts` | Testy, spouštěné builderem |
+| `hello.test.ts` | Testy, spouštěné builderem; viz [Testování](#!section=docs/page=testing) |
 | `hello.locale=ru.json` | Překlady; posbírá se každý soubor končící na `.locale=<lang>.json` |
 | `hello.meta.tree` | Direktivy buildu a nasazení |
 | `index.html` | Vstupní bod — potřebuje ho jen modul aplikace |

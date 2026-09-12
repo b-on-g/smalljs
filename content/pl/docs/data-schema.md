@@ -79,7 +79,7 @@ namespace $.$$ {
 	export class $my_page extends $.$my_page {
 		@ $mol_mem
 		user() {
-			const json = $mol_fetch.json( 'https://api.example.com/me' )
+			const json = this.$.$mol_fetch.json( 'https://api.example.com/me' )
 			return $my_user.guard( json ) // typed $my_user, or throws on bad data
 		}
 	}

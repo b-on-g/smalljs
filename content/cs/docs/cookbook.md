@@ -81,14 +81,14 @@ namespace $.$$ {
 
 ## Načtení dat se stavy načítání a chyby
 
-Asynchronní hodnota je jen reaktivní vlastnost, která vrací promise. `$mol_fetch` pozastaví vlákno po dobu, kdy je požadavek na cestě, takže jakýkoli pohled, který ji čte, zobrazí vestavěný stav načítání — a neúspěšný požadavek vyplyne jako stav chyby. Nepíšeš žádný příznak `isLoading` ani `try`/`catch`.
+Asynchronní hodnota je jen reaktivní vlastnost napsaná tak, jako by odpověď už byla na místě. `$mol_fetch` pozastaví vlákno po dobu, kdy je požadavek na cestě, a vlastnost vrátí rozparsovaná data, jakmile dorazí, takže jakýkoli pohled, který ji čte, zobrazí vestavěný stav načítání — a neúspěšný požadavek vyplyne jako stav chyby. Nepíšeš žádný příznak `isLoading` ani `try`/`catch`. Volání jde přes `this.$`, kontext komponenty, takže [test](#!section=docs/page=testing) může síť vyměnit za mock.
 
 ```typescript
 namespace $.$$ {
 	export class $my_users extends $.$my_users {
 		@ $mol_mem
 		users() {
-			return $mol_fetch.json( 'https://api.example.com/users' ) as {
+			return this.$.$mol_fetch.json( 'https://api.example.com/users' ) as {
 				id: number
 				name: string
 			}[]

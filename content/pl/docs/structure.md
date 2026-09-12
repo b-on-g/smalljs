@@ -123,7 +123,7 @@ Każdy plik jest opcjonalny. Moduł to te pliki, które akurat w nim są.
 | `hello.view.ts` | Zachowanie: klasa rozszerzająca wygenerowaną bazę |
 | `hello.view.css.ts` | Typowane style. Zwróć uwagę na końcowe `.ts`: to TypeScript wołający `$mol_style_define`, a nie arkusz stylów |
 | `hello.ts` | Moduł zupełnie bez widoku — modele, narzędzia, czysta logika |
-| `hello.test.ts` | Testy, uruchamiane przez builder |
+| `hello.test.ts` | Testy, uruchamiane przez builder; zobacz [Testowanie](#!section=docs/page=testing) |
 | `hello.locale=ru.json` | Tłumaczenia; podchwytywany jest każdy plik kończący się na `.locale=<lang>.json` |
 | `hello.meta.tree` | Dyrektywy builda i deployu |
 | `index.html` | Punkt wejścia — potrzebuje go tylko moduł aplikacji |

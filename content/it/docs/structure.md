@@ -123,7 +123,7 @@ Ogni file è opzionale. Un modulo è l'insieme dei file che gli capita di conten
 | `hello.view.ts` | Comportamento: la classe che estende la base generata |
 | `hello.view.css.ts` | Stili tipizzati. Nota il `.ts` finale: è TypeScript che chiama `$mol_style_define`, non un foglio di stile |
 | `hello.ts` | Un modulo senza alcuna vista — modelli, utilità, logica pura |
-| `hello.test.ts` | Test, eseguiti dal builder |
+| `hello.test.ts` | Test, eseguiti dal builder; vedi [Testing](#!section=docs/page=testing) |
 | `hello.locale=ru.json` | Traduzioni; viene raccolto qualsiasi file che finisce in `.locale=<lang>.json` |
 | `hello.meta.tree` | Direttive di build e di deploy |
 | `index.html` | Punto d'ingresso — serve solo a un modulo applicativo |

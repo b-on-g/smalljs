@@ -1,17 +1,17 @@
 # 資料獲取
 
-在 $mol 中載入遠端資料並不是一個特殊的 API——非同步值只是一個恰好回傳 promise 的響應式屬性。視圖會等待它，顯示載入狀態，並在它解析時重新渲染。
+在 $mol 中載入遠端資料並不是一個特殊的 API——非同步值只是一個寫起來就像回應已經擺在那裏的響應式屬性。視圖會等待它，顯示載入狀態，並在資料到達時重新渲染。
 
 ## 非同步屬性
 
-從 `@ $mol_mem` 回傳一個 promise，然後像讀取任何其他值一樣讀取它：
+在 `@ $mol_mem` 內部發出網絡呼叫，並回傳解析後的結果。程式碼裏沒有 promise，沒有 `await`，也沒有回呼：
 
 ```typescript
 namespace $.$$ {
 	export class $my_users extends $.$my_users {
 		@ $mol_mem
 		users() {
-			return $mol_fetch.json( 'https://api.example.com/users' ) as {
+			return this.$.$mol_fetch.json( 'https://api.example.com/users' ) as {
 				id: number
 				name: string
 			}[]
@@ -20,7 +20,9 @@ namespace $.$$ {
 }
 ```
 
-`$mol_fetch` 會暫停纖程，直到回應到達。在它處於暫停狀態時，任何讀取 `users()` 的視圖都會自動顯示內建的載入狀態——你無需編寫 `isLoading` 旗標。
+`$mol_fetch` 會暫停纖程，直到回應到達，隨後這次計算重啟，`users()` 回傳那個陣列。在它處於暫停狀態時，任何讀取 `users()` 的視圖都會自動顯示內建的載入狀態——你無需編寫 `isLoading` 旗標。不要自己從 `@ $mol_mem` 回傳一個 promise：被當作值存進單元的 promise 會讓這個單元永遠停在載入狀態，參見[疑難排解](#!section=docs/page=troubleshooting)。
+
+`this.$` 是元件的上下文。每一個服務都經由它而來：管網絡的 `$mol_fetch`、管 URL 的 `$mol_state_arg`、管時間的 `$mol_after_timeout`。在測試裏上下文會被換掉，於是同一個 `users()` 會把請求發給一個 mock 而不是網絡，元件本身一行都不用改。[測試](#!section=docs/page=testing) 展示了那個 mock。
 
 ## 渲染結果
 
@@ -33,7 +35,7 @@ namespace $.$$ {
 		}
 ```
 
-當 promise 解析時，`users()` 更新，`user_names()` 重新計算，列表隨之渲染。沒有回呼，沒有 `useEffect`。
+當回應到達時，`users()` 更新，`user_names()` 重新計算，列表隨之渲染。沒有回呼，沒有 `useEffect`。
 
 ## 重新載入
 
@@ -48,7 +50,7 @@ namespace $.$$ {
 		@ $mol_mem
 		users() {
 			this.reload_token() // subscribe
-			return $mol_fetch.json( 'https://api.example.com/users' ) as unknown[]
+			return this.$.$mol_fetch.json( 'https://api.example.com/users' ) as unknown[]
 		}
 
 		@ $mol_action

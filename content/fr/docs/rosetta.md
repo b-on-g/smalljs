@@ -10,6 +10,7 @@ Si vous avez construit des interfaces avec React, Vue ou Svelte, vous comprenez 
 | État local | `useState` | `ref` / `reactive` | `let x` | `@ $mol_mem` |
 | Valeur dérivée | `useMemo` | `computed` | `$: y = …` | `@ $mol_mem` (lit d'autres cellules) |
 | Effet de bord | `useEffect` | `watchEffect` | `$: { … }` | `@ $mol_action` (explicite, jamais automatique) |
+| Charger des données au montage | `useEffect(fetch)` | `onMounted(fetch)` | `onMount(fetch)` | pas de hook : les données se lisent dans une propriété, la vue les demande quand elle se rend |
 | Props | props | props | `export let` | liaisons dans `view.tree` |
 | Événement | `onClick` | `@click` | `on:click` | `click? <=> handler?` |
 | Saisie bidirectionnelle | input contrôlé | `v-model` | `bind:value` | `value? <=> field?` |
@@ -40,3 +41,5 @@ Là où le tableau ci-dessus renomme les choses, c'est ici que $mol les supprime
 ## Essayez la traduction
 
 La façon la plus rapide d'intérioriser la correspondance est d'écrire un peu des deux : ouvrez le [Playground](#!section=playground), portez un petit composant que vous connaissez et voyez ce que ça donne. Ou commencez par [Bien démarrer](#!section=docs/page=getting-started).
+
+Quand une ligne du tableau renomme quelque chose sur quoi vous comptez, [Modèle mental](#!section=docs/page=mental-model) explique l'idée derrière le nouveau nom, et pourquoi le hook que vous cherchez n'est pas là.

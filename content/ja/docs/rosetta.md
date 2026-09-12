@@ -10,6 +10,7 @@ React、Vue、Svelte で UI を作ったことがあるなら、$mol がする�
 | ローカル状態 | `useState` | `ref` / `reactive` | `let x` | `@ $mol_mem` |
 | 派生値 | `useMemo` | `computed` | `$: y = …` | `@ $mol_mem`（他のセルを読む） |
 | 副作用 | `useEffect` | `watchEffect` | `$: { … }` | `@ $mol_action`（明示的、決して自動ではない） |
+| マウント時のデータ読み込み | `useEffect(fetch)` | `onMounted(fetch)` | `onMount(fetch)` | フックなし。データはプロパティの中で読み、ビューは描画されるときにそれを要求する |
 | Props | props | props | `export let` | `view.tree` 内の束縛 |
 | イベント | `onClick` | `@click` | `on:click` | `click? <=> handler?` |
 | 双方向入力 | 制御された入力 | `v-model` | `bind:value` | `value? <=> field?` |
@@ -40,3 +41,5 @@ React、Vue、Svelte で UI を作ったことがあるなら、$mol がする�
 ## 翻訳を試す
 
 対応を身につける一番速い方法は、両方を少し書いてみることです。[プレイグラウンド](#!section=playground)を開き、知っている小さなコンポーネントを移植して、どう収まるか見てみましょう。あるいは[はじめに](#!section=docs/page=getting-started)から始めてください。
+
+表のある行が、あなたの頼りにしてきたものを別の名前に置き換えているなら、[メンタルモデル](#!section=docs/page=mental-model)がその新しい名前の背後にある考えと、探しているフックがそこにない理由を説明します。

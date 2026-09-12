@@ -81,14 +81,14 @@ namespace $.$$ {
 
 ## Daten laden mit Lade- und Fehlerzuständen
 
-Ein asynchroner Wert ist einfach eine reaktive Eigenschaft, die ein Promise zurückgibt. `$mol_fetch` pausiert die Fiber, solange die Anfrage unterwegs ist, sodass jede View, die ihn liest, den eingebauten Ladezustand zeigt — und eine fehlgeschlagene Anfrage erscheint als Fehlerzustand. Du schreibst kein `isLoading`-Flag und kein `try`/`catch`.
+Ein asynchroner Wert ist einfach eine reaktive Eigenschaft, die so geschrieben ist, als wäre die Antwort schon da. `$mol_fetch` pausiert die Fiber, solange die Anfrage unterwegs ist, und die Eigenschaft gibt die geparsten Daten zurück, sobald sie da sind, sodass jede View, die ihn liest, den eingebauten Ladezustand zeigt — und eine fehlgeschlagene Anfrage erscheint als Fehlerzustand. Du schreibst kein `isLoading`-Flag und kein `try`/`catch`. Der Aufruf geht über `this.$`, den Kontext der Komponente, sodass ein [Test](#!section=docs/page=testing) das Netz gegen einen Mock tauschen kann.
 
 ```typescript
 namespace $.$$ {
 	export class $my_users extends $.$my_users {
 		@ $mol_mem
 		users() {
-			return $mol_fetch.json( 'https://api.example.com/users' ) as {
+			return this.$.$mol_fetch.json( 'https://api.example.com/users' ) as {
 				id: number
 				name: string
 			}[]

@@ -81,14 +81,14 @@ namespace $.$$ {
 
 ## ローディングとエラー状態を伴うデータ取得
 
-非同期の値は、Promise を返すだけのリアクティブなプロパティです。`$mol_fetch` はリクエスト中の間ファイバーを一時停止するので、それを読むビューは組み込みのローディング状態を表示します——そして失敗したリクエストはエラー状態として表面化します。`isLoading` フラグも `try`/`catch` も書きません。
+非同期の値は、あたかも応答がすでにそこにあるかのように書かれた、ただのリアクティブなプロパティです。`$mol_fetch` はリクエスト中の間ファイバーを一時停止し、応答が届くとプロパティがパースされたデータを返すので、それを読むビューは組み込みのローディング状態を表示します——そして失敗したリクエストはエラー状態として表面化します。`isLoading` フラグも `try`/`catch` も書きません。呼び出しはコンポーネントのコンテキストである `this.$` を通るので、[テスト](#!section=docs/page=testing)ではネットワークをモックに差し替えられます。
 
 ```typescript
 namespace $.$$ {
 	export class $my_users extends $.$my_users {
 		@ $mol_mem
 		users() {
-			return $mol_fetch.json( 'https://api.example.com/users' ) as {
+			return this.$.$mol_fetch.json( 'https://api.example.com/users' ) as {
 				id: number
 				name: string
 			}[]

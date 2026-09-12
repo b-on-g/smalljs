@@ -123,7 +123,7 @@ $mol_after_frame   →  mol/after/frame/
 | `hello.view.ts` | 동작: 생성된 베이스를 확장하는 클래스 |
 | `hello.view.css.ts` | 타입이 붙은 스타일. 끝의 `.ts`에 주목하세요. 스타일시트가 아니라 `$mol_style_define`을 호출하는 TypeScript입니다 |
 | `hello.ts` | 뷰가 전혀 없는 모듈 — 모델, 유틸리티, 순수 로직 |
-| `hello.test.ts` | 테스트. 빌더가 실행합니다 |
+| `hello.test.ts` | 테스트. 빌더가 실행합니다. [테스트](#!section=docs/page=testing) 참조 |
 | `hello.locale=ru.json` | 번역. `.locale=<lang>.json`으로 끝나는 파일은 모두 수집됩니다 |
 | `hello.meta.tree` | 빌드와 배포 지시자 |
 | `index.html` | 진입점 — 앱 모듈만 필요로 합니다 |

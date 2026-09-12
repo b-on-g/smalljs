@@ -123,7 +123,7 @@ $mol_after_frame   →  mol/after/frame/
 | `hello.view.ts` | আচরণ: জেনারেট করা বেস ক্লাসকে এক্সটেন্ড করা ক্লাস |
 | `hello.view.css.ts` | টাইপযুক্ত স্টাইল। শেষের `.ts`-টি খেয়াল করুন: এটি `$mol_style_define` ডাকা TypeScript, স্টাইলশিট নয় |
 | `hello.ts` | ভিউ ছাড়াই একটি মডিউল — মডেল, ইউটিলিটি, নিছক লজিক |
-| `hello.test.ts` | টেস্ট, বিল্ডার চালায় |
+| `hello.test.ts` | টেস্ট, বিল্ডার চালায়; দেখুন [টেস্টিং](#!section=docs/page=testing) |
 | `hello.locale=ru.json` | অনুবাদ; `.locale=<lang>.json`-এ শেষ হওয়া যেকোনো ফাইল তুলে নেওয়া হয় |
 | `hello.meta.tree` | বিল্ড ও ডিপ্লয় নির্দেশিকা |
 | `index.html` | এন্ট্রি পয়েন্ট — কেবল অ্যাপ মডিউলেরই দরকার |

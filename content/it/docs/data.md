@@ -1,17 +1,17 @@
 # Recupero dati
 
-Caricare dati remoti in $mol non è un'API speciale — un valore asincrono è solo una proprietà reattiva che per caso restituisce una promise. La vista l'attende, mostra uno stato di caricamento e si ri-renderizza quando si risolve.
+Caricare dati remoti in $mol non è un'API speciale — un valore asincrono è solo una proprietà reattiva scritta come se la risposta fosse già lì. La vista l'attende, mostra uno stato di caricamento e si ri-renderizza quando i dati arrivano.
 
 ## Una proprietà asincrona
 
-Restituisci una promise da un `@ $mol_mem` e leggila come qualsiasi altro valore:
+Chiama la rete dentro un `@ $mol_mem` e restituisci il risultato già parsato. Nel codice non c'è alcuna promise, alcun `await` né alcuna callback:
 
 ```typescript
 namespace $.$$ {
 	export class $my_users extends $.$my_users {
 		@ $mol_mem
 		users() {
-			return $mol_fetch.json( 'https://api.example.com/users' ) as {
+			return this.$.$mol_fetch.json( 'https://api.example.com/users' ) as {
 				id: number
 				name: string
 			}[]
@@ -20,7 +20,9 @@ namespace $.$$ {
 }
 ```
 
-`$mol_fetch` sospende la fibra finché non arriva la risposta. Mentre è in attesa, ogni vista che legge `users()` mostra automaticamente lo stato di caricamento integrato — non scrivi alcun flag `isLoading`.
+`$mol_fetch` sospende la fibra finché non arriva la risposta, poi il calcolo riparte e `users()` restituisce l'array. Mentre è in attesa, ogni vista che legge `users()` mostra automaticamente lo stato di caricamento integrato — non scrivi alcun flag `isLoading`. Non restituire tu stesso una promise da un `@ $mol_mem`: una promise conservata come valore tiene la cella nello stato di caricamento per sempre, vedi [Risoluzione dei problemi](#!section=docs/page=troubleshooting).
+
+`this.$` è il contesto del componente. Ogni servizio passa di lì: `$mol_fetch` per la rete, `$mol_state_arg` per l'URL, `$mol_after_timeout` per il tempo. In un test il contesto viene sostituito, così lo stesso `users()` manda la sua richiesta a un mock invece che alla rete, senza cambiare una riga del componente. [Testing](#!section=docs/page=testing) mostra quel mock.
 
 ## Renderizzare il risultato
 
@@ -33,7 +35,7 @@ Collega i dati risolti direttamente in una lista:
 		}
 ```
 
-Quando la promise si risolve, `users()` si aggiorna, `user_names()` si ricalcola e la lista si renderizza. Niente callback, niente `useEffect`.
+Quando arriva la risposta, `users()` si aggiorna, `user_names()` si ricalcola e la lista si renderizza. Niente callback, niente `useEffect`.
 
 ## Ricaricare
 
@@ -48,7 +50,7 @@ Poiché è solo una cella reattiva, ricarichi invalidandola. Dipendi da un token
 		@ $mol_mem
 		users() {
 			this.reload_token() // subscribe
-			return $mol_fetch.json( 'https://api.example.com/users' ) as unknown[]
+			return this.$.$mol_fetch.json( 'https://api.example.com/users' ) as unknown[]
 		}
 
 		@ $mol_action

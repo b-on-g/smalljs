@@ -84,17 +84,16 @@ task_done( id: string, next?: boolean ) {
 
 ## L'asincrono è solo un valore
 
-Restituisci una promise da un `@ $mol_mem` e la vista mostra uno stato di caricamento finché non si risolve — senza un flag di caricamento esplicito:
+Un `@ $mol_mem` che ha bisogno di dati dalla rete la chiama attraverso il contesto come se la risposta fosse già lì. La fibra si sospende finché la risposta non arriva, nel frattempo la vista mostra uno stato di caricamento, e nel tuo codice non c'è alcun flag di caricamento né alcuna promise:
 
 ```typescript
 @ $mol_mem
-async data() {
-	const res = await fetch( '/api/data' )
-	return await res.json()
+data() {
+	return this.$.$mol_fetch.json( '/api/data' )
 }
 ```
 
-[Recupero dati](#!section=docs/page=data) si basa su questo modello.
+Non rendere il metodo `async` e non restituirne una promise: una promise conservata come valore lascia la cella in calcolo per sempre. [Recupero dati](#!section=docs/page=data) si basa su questo modello.
 
 ## Stato transitorio tra eventi
 

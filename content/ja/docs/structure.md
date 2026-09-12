@@ -123,7 +123,7 @@ $mol_after_frame   →  mol/after/frame/
 | `hello.view.ts` | 振る舞い。生成された基底クラスを継承するクラス |
 | `hello.view.css.ts` | 型付きのスタイル。末尾の `.ts` に注意してください。スタイルシートではなく、`$mol_style_define` を呼ぶ TypeScript です |
 | `hello.ts` | ビューをまったく持たないモジュール — モデル、ユーティリティ、純粋なロジック |
-| `hello.test.ts` | テスト。ビルダーが実行します |
+| `hello.test.ts` | テスト。ビルダーが実行します。[テスト](#!section=docs/page=testing)を参照 |
 | `hello.locale=ru.json` | 翻訳。`.locale=<lang>.json` で終わるファイルはすべて拾われます |
 | `hello.meta.tree` | ビルドとデプロイのディレクティブ |
 | `index.html` | エントリポイント。必要なのはアプリモジュールだけです |

@@ -84,17 +84,16 @@ task_done( id: string, next?: boolean ) {
 
 ## 非同期は単なる値
 
-`@ $mol_mem` から promise を返すと、解決するまでビューは読み込み状態を表示します——明示的な読み込みフラグは不要です。
+ネットワークからデータが必要な `@ $mol_mem` は、あたかも応答がすでにそこにあるかのように、コンテキスト越しにネットワークを呼びます。応答が届くまでファイバーは中断し、その間ビューは読み込み状態を表示します。読み込みフラグも promise も、あなたのコードには現れません。
 
 ```typescript
 @ $mol_mem
-async data() {
-	const res = await fetch( '/api/data' )
-	return await res.json()
+data() {
+	return this.$.$mol_fetch.json( '/api/data' )
 }
 ```
 
-[データ取得](#!section=docs/page=data) はこのパターンの上に成り立っています。
+メソッドを `async` にしたり、そこから promise を返したりしないでください。値として残された promise は、セルを永久に計算中のままにします。[データ取得](#!section=docs/page=data) はこのパターンの上に成り立っています。
 
 ## イベント間の一時的な状態
 

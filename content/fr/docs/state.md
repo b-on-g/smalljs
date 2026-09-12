@@ -84,17 +84,16 @@ task_done( id: string, next?: boolean ) {
 
 ## L'asynchrone n'est qu'une valeur
 
-Renvoyez une promesse depuis un `@ $mol_mem` et la vue affiche un état de chargement jusqu'à sa résolution — sans drapeau de chargement explicite :
+Un `@ $mol_mem` qui a besoin de données venues du réseau les demande par le contexte, comme si la réponse était déjà là. La fibre se suspend jusqu'à l'arrivée de la réponse, la vue affiche un état de chargement pendant ce temps, et il n'y a dans votre code ni drapeau de chargement ni promesse :
 
 ```typescript
 @ $mol_mem
-async data() {
-	const res = await fetch( '/api/data' )
-	return await res.json()
+data() {
+	return this.$.$mol_fetch.json( '/api/data' )
 }
 ```
 
-[Récupération de données](#!section=docs/page=data) s'appuie sur ce modèle.
+Ne rendez pas la méthode `async` et n'en renvoyez pas de promesse : une promesse gardée comme valeur laisse la cellule en calcul pour toujours. [Récupération de données](#!section=docs/page=data) s'appuie sur ce modèle.
 
 ## État transitoire entre événements
 

@@ -81,14 +81,14 @@ namespace $.$$ {
 
 ## 로딩·에러 상태와 함께 데이터 가져오기
 
-비동기 값은 프로미스를 반환하는 반응형 속성일 뿐입니다. `$mol_fetch`는 요청이 진행되는 동안 파이버를 중단시키므로, 그것을 읽는 모든 뷰는 내장 로딩 상태를 보여줍니다——그리고 실패한 요청은 에러 상태로 드러납니다. `isLoading` 플래그도 `try`/`catch`도 쓰지 않습니다.
+비동기 값은 마치 응답이 이미 거기 있는 것처럼 작성된 반응형 속성일 뿐입니다. `$mol_fetch`는 요청이 진행되는 동안 파이버를 중단시키고 응답이 도착하면 속성이 파싱된 데이터를 반환하므로, 그것을 읽는 모든 뷰는 내장 로딩 상태를 보여줍니다——그리고 실패한 요청은 에러 상태로 드러납니다. `isLoading` 플래그도 `try`/`catch`도 쓰지 않습니다. 호출은 컴포넌트의 컨텍스트인 `this.$`를 거치므로, [테스트](#!section=docs/page=testing)에서 네트워크를 목(mock)으로 바꿔 끼울 수 있습니다.
 
 ```typescript
 namespace $.$$ {
 	export class $my_users extends $.$my_users {
 		@ $mol_mem
 		users() {
-			return $mol_fetch.json( 'https://api.example.com/users' ) as {
+			return this.$.$mol_fetch.json( 'https://api.example.com/users' ) as {
 				id: number
 				name: string
 			}[]

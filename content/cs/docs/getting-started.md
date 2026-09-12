@@ -1,5 +1,7 @@
 # Začínáme
 
+> Přicházíte z Reactu nebo Vue a nic nedává smysl? Přečtěte si nejdřív [Myšlenkový model](#!section=docs/page=mental-model): pět minut o tom, kam se poděly `computed`, `watch`, hooky životního cyklu a načítání dat.
+
 Tato stránka vás provede od prázdné složky až po běžící, reaktivní aplikaci $mol. Mělo by to zabrat asi patnáct minut. Každý úryvek níže je skutečný, funkční kód — zkopírujte ho tak, jak je.
 
 Komponentu napíšete v obyčejném TypeScriptu. $mol má i kratší formát pro popis komponent, `view.tree`, a potkáte ho na další stránce. Tady ho není potřeba: komponenta $mol je tak jako tak obyčejná třída.
