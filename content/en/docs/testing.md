@@ -130,7 +130,7 @@ In the Node bundle `$mol_dom_context` is a jsdom window, so a view renders into 
 
 `dom_node()` creates the element, `dom_tree()` renders the subtree, and `destructor()` releases the view so its cells do not outlive the test. The attribute a sub-view gets from its name, `[my_greeter_hello]` here, is the selector when you prefer `querySelector` over calling the sub-view.
 
-jsdom lacks two globals that input fields and gestures reach for, `ShadowRoot` and `PointerEvent`. A `$mol_string` rendered without them logs a `ReferenceError` and stays empty while the rest of the tree renders. Borrow them from the jsdom window in a mock, once per test file:
+jsdom lacks two globals that input fields and gestures reach for, `ShadowRoot` and `PointerEvent`. A `$mol_string` rendered without them logs a `ReferenceError` and stays empty while the rest of the tree renders. Borrow them from the jsdom window; this is a data-free rule for every test, so it goes into `$mol_test_mocks`:
 
 ```typescript
 $mol_test_mocks.push( $ => {

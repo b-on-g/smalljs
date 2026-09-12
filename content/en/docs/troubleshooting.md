@@ -20,11 +20,9 @@ These are properties of `$mol_string`: `hint` for the placeholder, `enabled` for
 	value? <=> password? \
 ```
 
-Any other property of any other component is found the same way: open its `.view.tree`, as [How to read the sources](#!section=docs/page=mental-model/Docs.Body=How%20to%20read%20the%20sources) shows. `attr *` is for real DOM attributes the component does not already model, and it has a trap of its own, described next.
+Any other property of any other component is found the same way: open its `.view.tree`, as [How to read the sources](#!section=docs/page=mental-model/Docs.Body=How%20to%20read%20the%20sources) shows.
 
-## A button or input lost attributes it used to have
-
-An `attr *` block without `^` as its first line replaces the whole attribute dictionary of the base component. A `$mol_button` written that way loses `disabled`, `role` and `tabindex`. Start the block with `^` to inherit, then add your keys:
+`attr *` is for real DOM attributes the component does not already model, and it has a trap of its own: a block without `^` as its first line replaces the whole attribute dictionary of the base, so a `$mol_button` written that way loses `disabled`, `role` and `tabindex`. Start the block with `^` to inherit, then add your keys:
 
 ```tree
 attr *
@@ -48,9 +46,9 @@ For every override the screen depends on, write a test that reads what the user 
 
 ## Data never loads, a component is stuck in loading state
 
-A `@ $mol_mem` method returned a promise as its value, usually from `$mol_wire_async` or an `async` helper. A promise in the cell reads as "still computing" to everyone, and when it resolves the cell recomputes and produces a fresh promise. The network works; the view never sees a result.
+A `@ $mol_mem` method returned a promise as its value: `fetch( uri ).then( ... )`, an `async` method, or the result of `$mol_wire_async( this ).load()`. A promise in the cell reads as "still computing" to everyone, and when it resolves the cell recomputes and produces a fresh promise. The network works; the view never sees a result.
 
-A cell may suspend by calling `this.$.$mol_fetch.json()` and friends directly, and it may return a plain value. It must not return the promise itself. Put the result of asynchronous work in a separate state cell and have the effect return a flag or a key.
+The right shape is synchronous: call `this.$.$mol_fetch.json( uri )` inside the cell and return the parsed value. The fiber suspends until the response is in and then reruns the cell, so the promise never appears in your code. Where asynchronous work has to happen elsewhere, put its result in a separate state cell and have the effect return a flag or a key, never the promise.
 
 A second cause is a swallowed error: a `try`/`catch` inside a cell that catches the suspension along with real failures. Rethrow anything that is a `Promise`, or use `$mol_fail_catch`, which does that check for you.
 
