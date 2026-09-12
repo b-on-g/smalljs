@@ -12,7 +12,7 @@ No selectors, no browser, no Playwright or Cypress, no waiting for anything. The
 
 - **Speed.** Tests run in Node in milliseconds; a thousand of them take about a minute. `node my/hello/-/node.test.js` runs the ones for a module.
 - **Zero setup.** A `hello.test.ts` next to the component is picked up by the builder and compiled into `-/node.test.js`. Continuous integration with `mam_build` runs it and fails the build when a test fails.
-- **Service substitution through the context.** Everything a component reaches through `this.$.X` is swapped for a test double by `$mol_test_mocks`. That is the reason to write `this.$.$mol_fetch` rather than `$mol_fetch`: the first one is replaceable, the second one is not.
+- **Service substitution through the context.** Every test gets its own `$`, and everything a component reaches through `this.$.X` is swapped by assigning a test double to that `$`. That is the reason to write `this.$.$mol_fetch` rather than `$mol_fetch`: the first one is replaceable, the second one is not.
 - **Mocked time.** Timers created through the context do not tick on their own; `$mol_after_mock_warp()` runs whatever is queued.
 - **A real DOM when you need one.** The Node bundle carries jsdom, so `dom_node()` and `querySelectorAll` work in the same test file.
 
@@ -59,23 +59,19 @@ A few things to notice:
 
 ## Mocking a service
 
-`$mol_test_mocks` is a list of functions that run against the fresh context before each test. A mock replaces a class on that context, and every `this.$.X` inside the component under test resolves to the replacement. Here is the fetch double for the `$my_users` component from [Data Fetching](#!section=docs/page=data):
+Each test receives a fresh context derived from the global one. Assign a subclass to a service on that `$` before creating the component, and every `this.$.X` inside the component resolves to the replacement. Here is the fetch double for the `$my_users` component from [Data Fetching](#!section=docs/page=data):
 
 ```typescript
 namespace $ {
-	$mol_test_mocks.push( $ => {
-		class $mol_fetch_mock extends $mol_fetch {
-			static override json( input: RequestInfo ) {
-				if( String( input ).endsWith( '/users' ) ) return [ { id: 1, name: 'Ada' } ]
-				return $mol_fail( new Error( 'Unexpected request: ' + input ) )
-			}
-		}
-		$.$mol_fetch = $mol_fetch_mock
-	} )
-
 	$mol_test({
 
 		'user names come from the response'( $ ) {
+			$.$mol_fetch = class extends $.$mol_fetch {
+				static override json( input: RequestInfo ) {
+					if( String( input ).endsWith( '/users' ) ) return [ { id: 1, name: 'Ada' } ]
+					return $mol_fail( new Error( 'Unexpected request: ' + input ) )
+				}
+			}
 			const app = $my_users.make({ $ })
 			$mol_assert_like( app.user_names(), [ 'Ada' ] )
 		},
@@ -87,6 +83,8 @@ namespace $ {
 `users()` in the component calls `this.$.$mol_fetch.json( ... )`, so the request goes to the mock and the value is available synchronously, no waiting involved. Had the component called `$mol_fetch.json( ... )` on the global, the mock would not have been consulted. The built-in mocks already replace global `fetch` and `XMLHttpRequest` on the context with proxies that throw, so a request that slips past the context fails loudly instead of touching the network.
 
 The same pattern covers `$mol_state_arg` for the URL, `$mol_state_local` for storage, and anything else your component takes from `this.$`.
+
+There is also `$mol_test_mocks`, a list of functions that run against the context before every test in the bundle, including tests of other modules. It is the place for rules that hold everywhere, the way the framework registers its own mocks: a storage double that keeps whatever it is given, a locale that returns an empty dictionary, the network ban above. Fixture data for one component does not belong there.
 
 ## Time
 
