@@ -72,26 +72,6 @@ jobs:
               if: github.ref == 'refs/heads/main'
               run: node bog/smalljs/deploy/inject.cjs
 
-            # Minify the JS bundle. MAM ships web.js unminified (~2.4 MB); esbuild's
-            # whitespace + identifier minify takes it to ~1.9 MB (~10% smaller gzipped,
-            # what GitHub Pages actually transfers).
-            # `--keep-names` is mandatory for $mol. $mol_view.view_classes() merges
-            # neighbouring classes with equal `constructor.name`; without the flag every
-            # anonymous class is named "", so $mol_icon, $mol_svg_root and the like drop
-            # out of the chain, their attributes never reach the DOM and all [mol_icon]
-            # CSS stops matching. Chrome still sizes a bare svg, Safari collapses it to
-            # 0x0: on iPhone the theme switch was an empty pill. Costs ~3 KB gzipped.
-            # `--charset=utf8` keeps the i18n content (CJK/Cyrillic) as literal bytes
-            # instead of \uXXXX escapes, which would otherwise bloat the file. Runs after
-            # prerender (which already snapshotted the HTML from the pre-minify bundle —
-            # identical runtime output) and before the endpoint copy.
-            - name: Minify JS bundle (esbuild)
-              if: github.ref == 'refs/heads/main'
-              run: |
-                  npx --yes esbuild bog/smalljs/app/-/web.js \
-                    --minify --keep-names --charset=utf8 --allow-overwrite --sourcemap \
-                    --outfile=bog/smalljs/app/-/web.js
-
             # Drop the render-blocking Google Fonts @import that the shared builderui
             # theme.css injects (it lives as a string inside the bundle, applied at
             # runtime). smalljs self-hosts every family it uses (Inter / EB Garamond /
