@@ -1,5 +1,7 @@
 # Getting Started
 
+> Coming from React or Vue and nothing makes sense? Read [Mental model](#!section=docs/page=mental-model) first: five minutes on where `computed`, `watch`, lifecycle hooks and data loading went.
+
 This page takes you from an empty folder to a running, reactive $mol app. It should take about fifteen minutes. Every snippet below is real, working code — copy it as-is.
 
 You will write the component in plain TypeScript. $mol also has a shorter format for describing components, `view.tree`, and you will meet it on the next page. Nothing here needs it: a $mol component is an ordinary class either way.

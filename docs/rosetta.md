@@ -10,6 +10,7 @@ If you have built UIs with React, Vue, or Svelte, you already understand most of
 | Local state | `useState` | `ref` / `reactive` | `let x` | `@ $mol_mem` |
 | Derived value | `useMemo` | `computed` | `$: y = …` | `@ $mol_mem` (reads other cells) |
 | Side effect | `useEffect` | `watchEffect` | `$: { … }` | `@ $mol_action` (explicit, never automatic) |
+| Load data on mount | `useEffect(fetch)` | `onMounted(fetch)` | `onMount(fetch)` | no hook: read the data in a property, the view requests it when it renders |
 | Props | props | props | `export let` | bindings in `view.tree` |
 | Event | `onClick` | `@click` | `on:click` | `click? <=> handler?` |
 | Two-way input | controlled input | `v-model` | `bind:value` | `value? <=> field?` |
@@ -40,3 +41,5 @@ Where the table above renames things, this is where $mol actually removes them.
 ## Try the translation
 
 The fastest way to internalize the mapping is to write a little of both: open the [Playground](#!section=playground), port a small component you know, and see how it lands. Or start from [Getting Started](#!section=docs/page=getting-started).
+
+When a row in the table renames something you rely on, [Mental model](#!section=docs/page=mental-model) explains the idea behind the new name, and why the hook you are looking for is not there.

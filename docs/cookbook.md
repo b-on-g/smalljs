@@ -81,14 +81,14 @@ namespace $.$$ {
 
 ## Fetch data with loading and error states
 
-An async value is just a reactive property that returns a promise. `$mol_fetch` suspends the fiber while the request is in flight, so any view reading it shows the built-in loading state — and a failed request surfaces as an error state. You write no `isLoading` flag and no `try`/`catch`.
+An async value is just a reactive property written as if the response were already there. `$mol_fetch` suspends the fiber while the request is in flight and the property returns the parsed data once it lands, so any view reading it shows the built-in loading state — and a failed request surfaces as an error state. You write no `isLoading` flag and no `try`/`catch`. The call goes through `this.$`, the component's context, so a [test](#!section=docs/page=testing) can swap the network for a mock.
 
 ```typescript
 namespace $.$$ {
 	export class $my_users extends $.$my_users {
 		@ $mol_mem
 		users() {
-			return $mol_fetch.json( 'https://api.example.com/users' ) as {
+			return this.$.$mol_fetch.json( 'https://api.example.com/users' ) as {
 				id: number
 				name: string
 			}[]

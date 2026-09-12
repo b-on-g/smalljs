@@ -84,17 +84,16 @@ task_done( id: string, next?: boolean ) {
 
 ## Async is just a value
 
-Return a promise from a `@ $mol_mem` and the view shows a loading state until it resolves — no explicit loading flag:
+A `@ $mol_mem` that needs data from the network calls it through the context as if the response were already there. The fiber suspends until the response arrives, the view shows a loading state meanwhile, and there is no loading flag and no promise in your code:
 
 ```typescript
 @ $mol_mem
-async data() {
-	const res = await fetch( '/api/data' )
-	return await res.json()
+data() {
+	return this.$.$mol_fetch.json( '/api/data' )
 }
 ```
 
-[Data Fetching](#!section=docs/page=data) builds on this pattern.
+Do not make the method `async` or return a promise from it: a promise kept as the value leaves the cell computing forever. [Data Fetching](#!section=docs/page=data) builds on this pattern.
 
 ## Transient state between events
 

@@ -128,7 +128,7 @@ Every file is optional. A module is whatever files it happens to contain.
 | `hello.view.ts` | Behaviour — the class extending the generated base |
 | `hello.view.css.ts` | Typed styles. Note the trailing `.ts`: it is TypeScript calling `$mol_style_define`, not a stylesheet |
 | `hello.ts` | A module with no view at all — models, utilities, pure logic |
-| `hello.test.ts` | Tests, run by the builder |
+| `hello.test.ts` | Tests, run by the builder; see [Testing](#!section=docs/page=testing) |
 | `hello.locale=ru.json` | Translations; any file ending in `.locale=<lang>.json` is picked up |
 | `hello.meta.tree` | Build and deploy directives |
 | `index.html` | Entry point — only an app module needs one |

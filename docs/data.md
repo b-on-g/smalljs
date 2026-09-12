@@ -1,17 +1,17 @@
 # Data Fetching
 
-Loading remote data in $mol is not a special API — an async value is just a reactive property that happens to return a promise. The view waits for it, shows a loading state, and re-renders when it resolves.
+Loading remote data in $mol is not a special API — an async value is just a reactive property written as if the response were already there. The view waits for it, shows a loading state, and re-renders when the data arrives.
 
 ## An async property
 
-Return a promise from a `@ $mol_mem` and read it like any other value:
+Call the network inside a `@ $mol_mem` and return the parsed result. There is no promise, no `await` and no callback in the code:
 
 ```typescript
 namespace $.$$ {
 	export class $my_users extends $.$my_users {
 		@ $mol_mem
 		users() {
-			return $mol_fetch.json( 'https://api.example.com/users' ) as {
+			return this.$.$mol_fetch.json( 'https://api.example.com/users' ) as {
 				id: number
 				name: string
 			}[]
@@ -20,7 +20,9 @@ namespace $.$$ {
 }
 ```
 
-`$mol_fetch` suspends the fiber until the response arrives. While it is pending, any view that reads `users()` automatically shows the built-in loading state — you write no `isLoading` flag.
+`$mol_fetch` suspends the fiber until the response arrives, then the computation restarts and `users()` returns the array. While it is pending, any view that reads `users()` automatically shows the built-in loading state — you write no `isLoading` flag. Do not return a promise from a `@ $mol_mem` yourself: a promise stored as a value keeps the cell in the loading state forever, see [Troubleshooting](#!section=docs/page=troubleshooting).
+
+`this.$` is the component's context. Every service comes through it: `$mol_fetch` for the network, `$mol_state_arg` for the URL, `$mol_after_timeout` for time. In a test the context is replaced, so the same `users()` sends its request to a mock instead of the network, without a line of the component changing. [Testing](#!section=docs/page=testing) shows that mock.
 
 ## Rendering the result
 
@@ -33,7 +35,7 @@ Bind the resolved data straight into a list:
 		}
 ```
 
-When the promise resolves, `users()` updates, `user_names()` recomputes, and the list renders. No callbacks, no `useEffect`.
+When the response arrives, `users()` updates, `user_names()` recomputes, and the list renders. No callbacks, no `useEffect`.
 
 ## Reloading
 
@@ -48,7 +50,7 @@ Because it is just a reactive cell, you refetch by invalidating it. Depend on a 
 		@ $mol_mem
 		users() {
 			this.reload_token() // subscribe
-			return $mol_fetch.json( 'https://api.example.com/users' ) as unknown[]
+			return this.$.$mol_fetch.json( 'https://api.example.com/users' ) as unknown[]
 		}
 
 		@ $mol_action
