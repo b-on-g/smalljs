@@ -10,16 +10,16 @@ This reference is generated from the component's typed `.view.tree` interface.
 |---|---|---|
 | `precision` | read | `number` |
 | `Hotkey` | read | `$mol_hotkey` |
-| `dec_enabled` | read | `as 'enabled'` |
-| `dec_icon` | read | `$mol_icon_chevron_left` |
-| `Dec` | read | `$mol_button_minor` |
 | `type` | read | `string` |
 | `value_string` | read / write | `string` |
 | `hint` | read | `string` |
 | `string_enabled` | read | `as 'enabled'` |
 | `String` | read | `$mol_string` |
+| `dec_enabled` | read | `as 'enabled'` |
+| `dec_icon` | read | `$mol_icon_menu_down_outline` |
+| `Dec` | read | `$mol_button_minor` |
 | `inc_enabled` | read | `as 'enabled'` |
-| `inc_icon` | read | `$mol_icon_chevron_right` |
+| `inc_icon` | read | `$mol_icon_menu_up_outline` |
 | `Inc` | read | `$mol_button_minor` |
 | `precision_view` | read | `as 'precision'` |
 | `precision_change` | read | `as 'precision'` |

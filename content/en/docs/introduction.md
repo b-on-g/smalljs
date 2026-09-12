@@ -1,5 +1,7 @@
 # Introduction
 
+> Coming from React or Vue and nothing makes sense? Read [Mental model](#!section=docs/page=mental-model) first: five minutes on where `computed`, `watch`, lifecycle hooks and data loading went.
+
 ## What is $mol?
 
 $mol is a reactive UI framework where you describe **what** the interface is, and the framework figures out **how** and **when** to update it. No virtual DOM, no manual subscriptions, no `useEffect`. You write components as a tree; $mol renders only what is visible and recomputes only what actually changed.

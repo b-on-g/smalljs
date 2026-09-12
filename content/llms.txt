@@ -5,6 +5,7 @@
 ## Getting Started
 
 - [Introduction](https://b-on-g.github.io/smalljs/docs/introduction.md): What $mol is, who it is for, and a taste of reactive views.
+- [Mental model](https://b-on-g.github.io/smalljs/docs/mental-model.md): Pull-based reactivity, no lifecycle hooks, a property as a cell, sync code that waits, everything is an override, and how to read a component's source to find any property.
 - [Getting Started](https://b-on-g.github.io/smalljs/docs/getting-started.md): From an empty folder to a running, reactive $mol app in under 15 minutes.
 - [From TypeScript to view.tree](https://b-on-g.github.io/smalljs/docs/from-ts-to-view-tree.md): The same component as a hand-written class and as a tree, line by line, plus the code the compiler generates from it.
 - [Project Structure](https://b-on-g.github.io/smalljs/docs/structure.md): Where a new project goes: workspace, your own package, the project repository, and the five steps from a clone to a registered project.
@@ -17,7 +18,9 @@
 - [State & Reactivity](https://b-on-g.github.io/smalljs/docs/state.md): Reactive properties, actions vs. computations, keyed and async state.
 - [Routing](https://b-on-g.github.io/smalljs/docs/routing.md): The URL as reactive state: screens, links, and multiple parameters.
 - [Rendering](https://b-on-g.github.io/smalljs/docs/rendering.md): No virtual DOM, lazy components, and virtualized rendering — plus reproducible benchmarks.
+- [Testing](https://b-on-g.github.io/smalljs/docs/testing.md): User scenarios as calls to view methods, run in Node in milliseconds: mocking services through the context, mocked time, and DOM checks with jsdom.
 - [Deployment](https://b-on-g.github.io/smalljs/docs/deployment.md): A built app is a folder of static files: the GitHub Pages workflow, branch previews, deep links on a static host, and any other host.
+- [Troubleshooting](https://b-on-g.github.io/smalljs/docs/troubleshooting.md): Symptoms the compiler and audit do not report: silent overrides, a word rendered as letters, empty screens with green tests, stuck loading, circular subscriptions, and other view.tree traps.
 
 ## Data
 

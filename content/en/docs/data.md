@@ -11,7 +11,7 @@ namespace $.$$ {
 	export class $my_users extends $.$my_users {
 		@ $mol_mem
 		users() {
-			return $mol_fetch.json( 'https://api.example.com/users' ) as {
+			return this.$.$mol_fetch.json( 'https://api.example.com/users' ) as {
 				id: number
 				name: string
 			}[]
@@ -21,6 +21,8 @@ namespace $.$$ {
 ```
 
 `$mol_fetch` suspends the fiber until the response arrives. While it is pending, any view that reads `users()` automatically shows the built-in loading state — you write no `isLoading` flag.
+
+`this.$` is the component's context. Every service comes through it: `$mol_fetch` for the network, `$mol_state_arg` for the URL, `$mol_after_timeout` for time. In a test the context is replaced, so the same `users()` sends its request to a mock instead of the network, without a line of the component changing. [Testing](#!section=docs/page=testing) shows that mock.
 
 ## Rendering the result
 
@@ -48,7 +50,7 @@ Because it is just a reactive cell, you refetch by invalidating it. Depend on a 
 		@ $mol_mem
 		users() {
 			this.reload_token() // subscribe
-			return $mol_fetch.json( 'https://api.example.com/users' ) as unknown[]
+			return this.$.$mol_fetch.json( 'https://api.example.com/users' ) as unknown[]
 		}
 
 		@ $mol_action
