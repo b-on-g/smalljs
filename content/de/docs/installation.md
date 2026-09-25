@@ -62,11 +62,44 @@ Die Ausgabe landet in `my/app/-/` — einschließlich `web.js`, `web.css` und `w
 
 ## npm-Pakete hinzufügen
 
-Referenziere ein Paket mit `require`, und MAM installiert es beim nächsten Build:
+Referenziere ein Paket mit `require`, und MAM installiert es beim nächsten Build und packt es ins Bundle:
 
 ```typescript
 const dayjs = require( 'dayjs' ) as typeof import( 'dayjs' )
 ```
+
+### Ein Paket zur Laufzeit laden
+
+Eine schwere Bibliothek, die nur ein Screen braucht, muss nicht in `web.js` liegen. Liefere ihre fertige Browser-Datei neben dem Bundle aus und lade sie bei der ersten Nutzung.
+
+Trage die Datei in die `meta.tree` des Moduls ein:
+
+```tree
+deploy \/node_modules/@turf/turf/turf.min.js
+```
+
+`deploy` installiert das Paket, falls es fehlt, und kopiert die Datei nach `-/node_modules/@turf/turf/turf.min.js`, auf dem Dev-Server wie im Produktions-Build. Lade sie mit `$mol_import.script`:
+
+```typescript
+namespace $ {
+	export class $my_app_turf extends $mol_object {
+
+		@ $mol_mem
+		static api() {
+			$mol_import.script( './node_modules/@turf/turf/turf.min.js' )
+			return ( globalThis as any ).turf as typeof import(
+				'@turf/turf'
+			)
+		}
+
+	}
+}
+```
+
+- Der Pfad ist relativ und wird gegen die Seite in `-/` aufgelöst, daher läuft derselbe Code auf dem Dev-Server, in `test.html` und bei einem Deploy unter einem Unterpfad. Ein führender `/` funktioniert nur, solange die App im Wurzelverzeichnis der Domain liegt.
+- `$mol_import.script` hält die Fiber an, bis das Skript geladen ist, und cacht nach URL: Die Datei wird einmal geholt, und alles, was `$my_app_turf.api()` innerhalb von `$mol_mem` liest, wartet einfach darauf.
+- Der globale Name, hier `turf`, ist der, den der Browser-Build der Bibliothek vergibt. Welcher es ist, steht in ihrer README.
+- `typeof import( … )` liefert volle Typisierung. Lass den Paketnamen auf einer eigenen Zeile: Der Builder wertet `require( '…' )` und `import( '…' )` in einer Zeile als Abhängigkeit und würde das ganze Paket doch in `web.js` packen.
 
 ## Weiter
 

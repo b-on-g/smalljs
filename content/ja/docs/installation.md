@@ -62,11 +62,44 @@ npm run start my/app
 
 ## npm パッケージの追加
 
-`require` でパッケージを参照すると、MAM が次回のビルド時にインストールします。
+`require` でパッケージを参照すると、MAM が次回のビルド時にインストールし、バンドルに含めます。
 
 ```typescript
 const dayjs = require( 'dayjs' ) as typeof import( 'dayjs' )
 ```
+
+### 実行時にパッケージを読み込む
+
+ひとつの画面でしか使わない重いライブラリを `web.js` に入れておく必要はありません。ビルド済みのブラウザ用ファイルをバンドルの隣に配置し、最初に使うときに読み込みます。
+
+モジュールの `meta.tree` にファイルを記載します。
+
+```tree
+deploy \/node_modules/@turf/turf/turf.min.js
+```
+
+`deploy` はパッケージがなければインストールし、ファイルを `-/node_modules/@turf/turf/turf.min.js` にコピーします。開発サーバーでも本番ビルドでも同じです。`$mol_import.script` で読み込みます。
+
+```typescript
+namespace $ {
+	export class $my_app_turf extends $mol_object {
+
+		@ $mol_mem
+		static api() {
+			$mol_import.script( './node_modules/@turf/turf/turf.min.js' )
+			return ( globalThis as any ).turf as typeof import(
+				'@turf/turf'
+			)
+		}
+
+	}
+}
+```
+
+- パスは相対パスで、`-/` にあるページを基準に解決されます。そのため同じコードが開発サーバーでも、`test.html` でも、サブパス配下へのデプロイでも動きます。先頭の `/` はアプリがドメインのルートにある間しか機能しません。
+- `$mol_import.script` はスクリプトが読み込まれるまでファイバーを中断し、URL ごとにキャッシュします。ファイルの取得は一度だけで、`$mol_mem` の中で `$my_app_turf.api()` を読むものはすべて単にその完了を待ちます。
+- グローバル名 (ここでは `turf`) は、ライブラリのブラウザ用ビルドが割り当てる名前です。どの名前かは README に書かれています。
+- `typeof import( … )` で完全な型が得られます。パッケージ名は独立した行に置いてください。ビルダーは 1 行に書かれた `require( '…' )` や `import( '…' )` を依存関係とみなし、結局パッケージ全体を `web.js` に入れてしまいます。
 
 ## 次へ
 

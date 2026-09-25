@@ -62,11 +62,44 @@ npm run start my/app
 
 ## npm 패키지 추가
 
-`require` 로 패키지를 참조하면 MAM 이 다음 빌드에서 설치합니다.
+`require` 로 패키지를 참조하면 MAM 이 다음 빌드에서 설치하고 번들에 넣습니다.
 
 ```typescript
 const dayjs = require( 'dayjs' ) as typeof import( 'dayjs' )
 ```
+
+### 런타임에 패키지 불러오기
+
+한 화면에서만 쓰는 무거운 라이브러리를 `web.js` 에 넣어 둘 필요는 없습니다. 미리 빌드된 브라우저용 파일을 번들 옆에 두고 처음 쓸 때 불러옵니다.
+
+모듈의 `meta.tree` 에 파일을 적습니다.
+
+```tree
+deploy \/node_modules/@turf/turf/turf.min.js
+```
+
+`deploy` 는 패키지가 없으면 설치하고 파일을 `-/node_modules/@turf/turf/turf.min.js` 로 복사합니다. 개발 서버에서도 프로덕션 빌드에서도 마찬가지입니다. `$mol_import.script` 로 불러옵니다.
+
+```typescript
+namespace $ {
+	export class $my_app_turf extends $mol_object {
+
+		@ $mol_mem
+		static api() {
+			$mol_import.script( './node_modules/@turf/turf/turf.min.js' )
+			return ( globalThis as any ).turf as typeof import(
+				'@turf/turf'
+			)
+		}
+
+	}
+}
+```
+
+- 경로는 상대 경로이고 `-/` 에 있는 페이지를 기준으로 해석되므로, 같은 코드가 개발 서버에서도, `test.html` 에서도, 하위 경로 배포에서도 동작합니다. 앞에 붙은 `/` 는 앱이 도메인 루트에 있을 때만 동작합니다.
+- `$mol_import.script` 는 스크립트가 로드될 때까지 파이버를 멈추고 URL 별로 캐시합니다. 파일은 한 번만 받아 오고, `$mol_mem` 안에서 `$my_app_turf.api()` 를 읽는 쪽은 그저 기다립니다.
+- 전역 이름(여기서는 `turf`)은 라이브러리의 브라우저용 빌드가 정하는 이름입니다. 어떤 이름인지는 README 에 나와 있습니다.
+- `typeof import( … )` 로 완전한 타입을 얻습니다. 패키지 이름은 별도 줄에 두세요. 빌더는 한 줄에 쓴 `require( '…' )` 와 `import( '…' )` 를 의존성으로 보고, 결국 패키지 전체를 `web.js` 에 넣게 됩니다.
 
 ## 다음
 

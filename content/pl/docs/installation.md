@@ -62,11 +62,44 @@ Wynik trafia do `my/app/-/` — w tym `web.js`, `web.css` i `web.audit.js`. **Za
 
 ## Dodawanie pakietów npm
 
-Odwołaj się do pakietu przez `require`, a MAM zainstaluje go przy następnym budowaniu:
+Odwołaj się do pakietu przez `require`, a MAM zainstaluje go przy następnym budowaniu i umieści w bundlu:
 
 ```typescript
 const dayjs = require( 'dayjs' ) as typeof import( 'dayjs' )
 ```
+
+### Ładowanie pakietu w czasie działania
+
+Ciężka biblioteka potrzebna jednemu ekranowi nie musi leżeć w `web.js`. Dostarcz jej gotowy plik przeglądarkowy obok bundla i ładuj go przy pierwszym użyciu.
+
+Wpisz plik do `meta.tree` modułu:
+
+```tree
+deploy \/node_modules/@turf/turf/turf.min.js
+```
+
+`deploy` instaluje pakiet, jeśli go brakuje, i kopiuje plik do `-/node_modules/@turf/turf/turf.min.js`, zarówno na serwerze deweloperskim, jak i w buildzie produkcyjnym. Załaduj go przez `$mol_import.script`:
+
+```typescript
+namespace $ {
+	export class $my_app_turf extends $mol_object {
+
+		@ $mol_mem
+		static api() {
+			$mol_import.script( './node_modules/@turf/turf/turf.min.js' )
+			return ( globalThis as any ).turf as typeof import(
+				'@turf/turf'
+			)
+		}
+
+	}
+}
+```
+
+- Ścieżka jest względna i rozwiązywana względem strony w `-/`, więc ten sam kod działa na serwerze deweloperskim, w `test.html` i przy wdrożeniu pod podścieżką. Wiodący `/` działa tylko, dopóki aplikacja leży w korzeniu domeny.
+- `$mol_import.script` wstrzymuje fiber do załadowania skryptu i cache'uje po URL: plik jest pobierany raz, a wszystko, co czyta `$my_app_turf.api()` wewnątrz `$mol_mem`, po prostu na niego czeka.
+- Nazwa globalna, tu `turf`, to ta, którą nadaje przeglądarkowy build biblioteki. Jaka to nazwa, mówi jej README.
+- `typeof import( … )` daje pełne typowanie. Trzymaj nazwę pakietu w osobnej linii: builder traktuje `require( '…' )` i `import( '…' )` zapisane w jednej linii jako zależność i mimo wszystko umieściłby cały pakiet w `web.js`.
 
 ## Dalej
 

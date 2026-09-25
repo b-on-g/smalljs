@@ -62,11 +62,44 @@ L'output finisce in `my/app/-/` — inclusi `web.js`, `web.css` e `web.audit.js`
 
 ## Aggiungere pacchetti npm
 
-Referenzia un pacchetto con `require` e MAM lo installa alla build successiva:
+Referenzia un pacchetto con `require` e MAM lo installa alla build successiva e lo inserisce nel bundle:
 
 ```typescript
 const dayjs = require( 'dayjs' ) as typeof import( 'dayjs' )
 ```
+
+### Caricare un pacchetto a runtime
+
+Una libreria pesante che serve a una sola schermata non deve per forza stare in `web.js`. Distribuisci il suo file per browser già compilato accanto al bundle e caricalo al primo utilizzo.
+
+Elenca il file nel `meta.tree` del modulo:
+
+```tree
+deploy \/node_modules/@turf/turf/turf.min.js
+```
+
+`deploy` installa il pacchetto se manca e copia il file in `-/node_modules/@turf/turf/turf.min.js`, sia sul dev server sia nella build di produzione. Caricalo con `$mol_import.script`:
+
+```typescript
+namespace $ {
+	export class $my_app_turf extends $mol_object {
+
+		@ $mol_mem
+		static api() {
+			$mol_import.script( './node_modules/@turf/turf/turf.min.js' )
+			return ( globalThis as any ).turf as typeof import(
+				'@turf/turf'
+			)
+		}
+
+	}
+}
+```
+
+- Il percorso è relativo e si risolve rispetto alla pagina in `-/`, quindi lo stesso codice funziona sul dev server, in `test.html` e in un deploy sotto un sottopercorso. Un `/` iniziale funziona solo finché l'app sta nella radice del dominio.
+- `$mol_import.script` sospende la fibra finché lo script non è caricato e mette in cache per URL: il file viene scaricato una volta, e tutto ciò che legge `$my_app_turf.api()` dentro `$mol_mem` semplicemente lo attende.
+- Il nome globale, qui `turf`, è quello assegnato dalla build per browser della libreria. Il suo README dice quale.
+- `typeof import( … )` fornisce la tipizzazione completa. Tieni il nome del pacchetto su una riga a sé: il builder considera una dipendenza `require( '…' )` e `import( '…' )` scritti su una riga e finirebbe comunque per mettere l'intero pacchetto in `web.js`.
 
 ## Avanti
 

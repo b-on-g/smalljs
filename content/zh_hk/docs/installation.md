@@ -62,11 +62,44 @@ npm run start my/app
 
 ## 加入 npm 套件
 
-用 `require` 引用一個套件，MAM 會在下次建置時安裝它：
+用 `require` 引用一個套件，MAM 會在下次建置時安裝它並放進 bundle：
 
 ```typescript
 const dayjs = require( 'dayjs' ) as typeof import( 'dayjs' )
 ```
+
+### 在執行時載入套件
+
+只有一個畫面用到的重型函式庫不必放在 `web.js` 裡。把它預先建置好的瀏覽器檔案放在 bundle 旁邊，首次使用時再載入。
+
+在模組的 `meta.tree` 中列出該檔案：
+
+```tree
+deploy \/node_modules/@turf/turf/turf.min.js
+```
+
+`deploy` 會在套件缺失時安裝它，並把檔案複製到 `-/node_modules/@turf/turf/turf.min.js`，開發伺服器和正式建置都一樣。用 `$mol_import.script` 載入它：
+
+```typescript
+namespace $ {
+	export class $my_app_turf extends $mol_object {
+
+		@ $mol_mem
+		static api() {
+			$mol_import.script( './node_modules/@turf/turf/turf.min.js' )
+			return ( globalThis as any ).turf as typeof import(
+				'@turf/turf'
+			)
+		}
+
+	}
+}
+```
+
+- 路徑是相對的，相對於 `-/` 中的頁面解析，因此同一份程式碼在開發伺服器、`test.html` 以及部署到子路徑時都能運作。開頭的 `/` 只在應用程式位於網域根目錄時有效。
+- `$mol_import.script` 會暫停 fiber 直到腳本載入完成，並按 URL 快取：檔案只取得一次，在 `$mol_mem` 中讀取 `$my_app_turf.api()` 的一切只需等待它。
+- 全域名稱（這裡是 `turf`）由函式庫的瀏覽器建置指定，具體是哪個見它的 README。
+- `typeof import( … )` 提供完整的型別。把套件名單獨放一行：建置器會把寫在同一行的 `require( '…' )` 和 `import( '…' )` 當作依賴，最終還是會把整個套件放進 `web.js`。
 
 ## 下一步
 

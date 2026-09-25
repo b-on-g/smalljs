@@ -62,11 +62,44 @@ npm run start my/app
 
 ## 添加 npm 包
 
-用 `require` 引用一个包，MAM 会在下次构建时安装它：
+用 `require` 引用一个包，MAM 会在下次构建时安装它并放进 bundle：
 
 ```typescript
 const dayjs = require( 'dayjs' ) as typeof import( 'dayjs' )
 ```
+
+### 在运行时加载包
+
+只有一个页面用到的重型库不必放在 `web.js` 里。把它预构建好的浏览器文件放在 bundle 旁边，首次使用时再加载。
+
+在模块的 `meta.tree` 中列出该文件：
+
+```tree
+deploy \/node_modules/@turf/turf/turf.min.js
+```
+
+`deploy` 会在包缺失时安装它，并把文件复制到 `-/node_modules/@turf/turf/turf.min.js`，开发服务器和生产构建都一样。用 `$mol_import.script` 加载它：
+
+```typescript
+namespace $ {
+	export class $my_app_turf extends $mol_object {
+
+		@ $mol_mem
+		static api() {
+			$mol_import.script( './node_modules/@turf/turf/turf.min.js' )
+			return ( globalThis as any ).turf as typeof import(
+				'@turf/turf'
+			)
+		}
+
+	}
+}
+```
+
+- 路径是相对的，相对于 `-/` 中的页面解析，因此同一份代码在开发服务器、`test.html` 以及部署到子路径时都能工作。开头的 `/` 只在应用位于域名根目录时有效。
+- `$mol_import.script` 会挂起 fiber 直到脚本加载完成，并按 URL 缓存：文件只获取一次，在 `$mol_mem` 中读取 `$my_app_turf.api()` 的一切只需等待它。
+- 全局名称（这里是 `turf`）由库的浏览器构建指定，具体是哪个见它的 README。
+- `typeof import( … )` 提供完整的类型。把包名单独放一行：构建器会把写在同一行的 `require( '…' )` 和 `import( '…' )` 当作依赖，最终还是会把整个包放进 `web.js`。
 
 ## 下一步
 

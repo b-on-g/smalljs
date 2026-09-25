@@ -62,11 +62,44 @@ Le résultat est produit dans `my/app/-/` — y compris `web.js`, `web.css` et `
 
 ## Ajouter des paquets npm
 
-Référencez un paquet avec `require` et MAM l'installe à la prochaine compilation :
+Référencez un paquet avec `require` et MAM l'installe à la prochaine compilation et le met dans le bundle :
 
 ```typescript
 const dayjs = require( 'dayjs' ) as typeof import( 'dayjs' )
 ```
+
+### Charger un paquet à l'exécution
+
+Une bibliothèque lourde dont un seul écran a besoin n'a pas à se trouver dans `web.js`. Livrez son fichier navigateur précompilé à côté du bundle et chargez-le à la première utilisation.
+
+Déclarez le fichier dans le `meta.tree` du module :
+
+```tree
+deploy \/node_modules/@turf/turf/turf.min.js
+```
+
+`deploy` installe le paquet s'il manque et copie le fichier dans `-/node_modules/@turf/turf/turf.min.js`, aussi bien sur le serveur de dev que dans la compilation de production. Chargez-le avec `$mol_import.script` :
+
+```typescript
+namespace $ {
+	export class $my_app_turf extends $mol_object {
+
+		@ $mol_mem
+		static api() {
+			$mol_import.script( './node_modules/@turf/turf/turf.min.js' )
+			return ( globalThis as any ).turf as typeof import(
+				'@turf/turf'
+			)
+		}
+
+	}
+}
+```
+
+- Le chemin est relatif et se résout par rapport à la page dans `-/`, donc le même code fonctionne sur le serveur de dev, dans `test.html` et lors d'un déploiement sous un sous-chemin. Un `/` initial ne marche que tant que l'application est à la racine du domaine.
+- `$mol_import.script` suspend la fibre jusqu'au chargement du script et met en cache par URL : le fichier est récupéré une seule fois, et tout ce qui lit `$my_app_turf.api()` dans un `$mol_mem` l'attend simplement.
+- Le nom global, ici `turf`, est celui qu'assigne le build navigateur de la bibliothèque. Son README indique lequel.
+- `typeof import( … )` donne un typage complet. Gardez le nom du paquet sur sa propre ligne : le builder considère `require( '…' )` et `import( '…' )` écrits sur une seule ligne comme une dépendance et mettrait finalement tout le paquet dans `web.js`.
 
 ## Suite
 
