@@ -851,7 +851,7 @@ body, :where([mol_theme]) {
 </style><style id="$mol_style_attach:$mol_link">[mol_link] {
 	text-decoration: none;
 	color: var(--mol_theme_control);
-	stroke: currentcolor;
+	stroke: currentColor;
 	cursor: pointer;
 	padding: var(--mol_gap_text);
 	box-sizing: border-box;
@@ -2179,7 +2179,6 @@ h6[mol_text_header] {
 	display: flex;
 	flex-basis: auto;
 	flex-direction: column;
-	position: relative;
 	align-self: stretch;
 	max-width: 100%;
 	max-height: 100%;
@@ -2194,14 +2193,12 @@ h6[mol_text_header] {
 	flex-wrap: wrap;
 	justify-content: flex-end;
 	flex: none;
-	position: relative;
 	margin: 0;
 	min-height: 4rem;
 	padding: var(--mol_gap_block);
 	background-color: var(--mol_theme_card);
 	border-radius: var(--mol_gap_round);
 	box-shadow: 0 -0.5rem 0.5rem -0.5rem hsla(0,0%,0%,0.25),0 0.5rem 0.5rem -0.5rem hsla(0,0%,0%,0.25);
-	z-index: 2;
 }
 @media print {
 [mol_page_head] {
@@ -2257,7 +2254,6 @@ h6[mol_text_header] {
 	background-color: var(--mol_theme_card);
 	border-radius: var(--mol_gap_round);
 	box-shadow: 0 -0.5rem 0.5rem -0.5rem hsla(0,0%,0%,0.25),0 0.5rem 0.5rem -0.5rem hsla(0,0%,0%,0.25);
-	z-index: 1;
 	padding: var(--mol_gap_block);
 }
 [mol_page_foot]:empty {
@@ -2547,24 +2543,22 @@ h6[mol_text_header] {
 }
 
 [mol_textarea_view] {
-	pointer-events: none;
+    interactivity: inert;
 	white-space: inherit;
 	font-family: inherit;
 	tab-size: inherit;
-	user-select: none;
 }
 
 [mol_textarea_view_copy] {
-	pointer-events: all;
+    interactivity: initial;
 }
 
 [mol_textarea_clickable] > [mol_textarea_view] {
-	pointer-events: all;
-	user-select: auto;
+    interactivity: initial;
 }
 
 [mol_textarea_clickable] > [mol_textarea_edit] {
-	user-select: none;
+    interactivity: inert;
 }
 
 [mol_textarea_edit] {
@@ -4213,6 +4207,12 @@ h6[mol_text_header] {
 	min-width: 0;
 }
 
+
+[bog_builderui_lights] input,
+[bog_builderui_lights] textarea,
+[bog_builderui_lights] select {
+	font-size: max( 16px, 1rem );
+}
 </style><style id="$mol_style_attach:$bog_smalljs_demo">[bog_smalljs_demo] {
 	flex-direction: column;
 	justify-content: center;
