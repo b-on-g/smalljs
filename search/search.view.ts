@@ -4,7 +4,7 @@ namespace $.$$ {
 
 	// In-browser embedder, same model as the build-time index. Loaded lazily
 	// via $mol_import.module so the ~30MB model is only fetched on first use.
-	const SEMANTIC_CDN = 'https://esm.sh/@xenova/transformers@2.17.2'
+	const SEMANTIC_CDN = 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2/dist/transformers.min.js'
 
 	// One searchable section of a page: everything between two headings, plus
 	// the same section of the English original. A result deep-links to `anchor`,
