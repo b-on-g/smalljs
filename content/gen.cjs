@@ -12,6 +12,7 @@
 
 const fs = require( 'fs' )
 const path = require( 'path' )
+const { execSync } = require( 'child_process' )
 
 const root = __dirname
 const docs_dir = path.join( root, 'en', 'docs' )
@@ -89,8 +90,12 @@ const api_components = [
 function parse_api_dts( src, klass ) {
 	const base = src.split( '/' ).pop()
 	const dts = path.join( repo, 'mol', src, '-view.tree', `${ base }.view.tree.d.ts` )
-	let text
-	try { text = fs.readFileSync( dts, 'utf8' ) } catch ( e ) { return null }
+	if ( !fs.existsSync( path.join( repo, 'mol', src, `${ base }.view.tree` ) ) ) return null
+	if ( !fs.existsSync( dts ) ) {
+		console.log( `gen: no ${ path.relative( repo, dts ) }, building mol/${ src }` )
+		try { execSync( `npx mam mol/${ src }`, { cwd: repo, stdio: 'ignore' } ) } catch ( e ) {}
+	}
+	const text = fs.readFileSync( dts, 'utf8' )
 	const esc = klass.replace( /\$/g, '\\$' )
 	const head = text.match( new RegExp( 'export class ' + esc + '\\s+extends\\s+(\\$[\\w$]+)\\s*\\{' ) )
 	if ( !head ) return null
