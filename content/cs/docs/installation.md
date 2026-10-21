@@ -4,7 +4,7 @@
 
 ## Požadavky
 
-- **Node.js 18+** a **git**. Nic dalšího se globálně neinstaluje.
+- **Node.js 24+** a **git**. Nic dalšího se globálně neinstaluje.
 
 ## Pracovní prostor MAM
 
@@ -19,6 +19,15 @@ npm start
 
 `npm start` spustí sledovací vývojový server na `http://localhost:9080/`. Při uložení znovu sestaví a automaticky vyřeší závislosti — nikdy neudržujete konfiguraci bundleru.
 
+Existuje i oficiální rychlý start z [README MAM](https://github.com/hyoo-ru/mam#quick-start), bez klonování:
+
+```bash
+mkdir mam && cd mam
+npm exec mam@latest
+```
+
+Spustí stejný vývojový server v prázdné složce. Přesto doporučujeme klon: veškerá práce stejně probíhá uvnitř MAM a klon rovnou obsahuje nastavení editoru (`.vscode`) a `.npmrc`.
+
 ## Jak se moduly pojmenovávají
 
 Každý název komponenty odpovídá cestě ke složce a **každé podtržítko je oddělovač složek**:
@@ -32,14 +41,17 @@ Názvy složek modulů nikdy neobsahují podtržítko — pro víceslovné názv
 
 ## Anatomie modulu
 
-Komponenta je složka až se čtyřmi soubory:
+Komponenta je složka se soubory. Hlavní z nich:
 
 | Soubor | Účel |
 |------|------|
 | `name.view.tree` | Deklarativní rozvržení |
 | `name.view.ts` | Chování (TypeScript) |
 | `name.view.css.ts` | Typované styly |
-| `name.view.tree`, `index.html` | Vstupní bod modulu aplikace |
+| `index.html` | Vstupní bod modulu aplikace |
+| `name.view.css` | Čisté CSS: `@keyframes`, `content`, hodnoty CSS proměnných |
+| `name.test.ts` | Testy |
+| `name.meta.tree` | Meta modulu: soubory pro `deploy`, další packy |
 
 `index.html` aplikace připojí kořenovou komponentu:
 
@@ -55,7 +67,7 @@ Komponenta je složka až se čtyřmi soubory:
 Vývojový server sestavuje za běhu, ale libovolný modul můžete sestavit i výslovně z kořene pracovního prostoru:
 
 ```bash
-npm run start my/app
+npm start my/app
 ```
 
 Výstup se objeví v `my/app/-/` — včetně `web.js`, `web.css` a `web.audit.js`. **Vždy zkontrolujte audit:** čistý `web.audit.js` znamená žádné nepoužité závislosti a žádné typové chyby.

@@ -98,7 +98,7 @@ git push
 Збірка та сама локально і в CI, тож зелений аудит на машині означає зелений деплой:
 
 ```bash
-npx mam my/hello/app
+npm start my/hello/app
 cat my/hello/app/-/web.audit.js
 ```
 
@@ -110,6 +110,6 @@ npx serve my/hello/app/-
 
 ## Не лише GitHub Pages
 
-Нічого з написаного вище не привʼязане до GitHub. На виході тека, деплой — це копіювання. Netlify, Cloudflare Pages, S3 за CDN, nginx на VPS, docker-образ із цією текою всередині: крок збірки той самий `npx mam my/hello/app`, а заливаєте ви `my/hello/app/-`.
+Нічого з написаного вище не привʼязане до GitHub. На виході тека, деплой — це копіювання. Netlify, Cloudflare Pages, S3 за CDN, nginx на VPS, docker-образ із цією текою всередині: крок збірки той самий `npm start my/hello/app`, а заливаєте ви `my/hello/app/-`.
 
 Якщо потрібна робота без мережі, [Офлайн](#!section=docs/page=offline) додає service worker, який кешує бандл, — і та сама тека перетворюється на застосунок, який можна встановити.

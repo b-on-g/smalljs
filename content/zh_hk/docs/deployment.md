@@ -98,7 +98,7 @@ GitHub Pages 沒有重寫規則，所以路要繞它的 `404.html`：任何未�
 本機和 CI 的建置是同一套，所以本機稽核是綠的，部署就是綠的：
 
 ```bash
-npx mam my/hello/app
+npm start my/hello/app
 cat my/hello/app/-/web.audit.js
 ```
 
@@ -110,6 +110,6 @@ npx serve my/hello/app/-
 
 ## 不只 GitHub Pages
 
-上面這些都不是 GitHub 專屬。產出是一個目錄，部署就是一次複製。Netlify、Cloudflare Pages、CDN 後面的 S3、VPS 上的 nginx、把目錄裝進去的 Docker 映像——建置這一步還是 `npx mam my/hello/app`，你上傳的還是 `my/hello/app/-`。
+上面這些都不是 GitHub 專屬。產出是一個目錄，部署就是一次複製。Netlify、Cloudflare Pages、CDN 後面的 S3、VPS 上的 nginx、把目錄裝進去的 Docker 映像——建置這一步還是 `npm start my/hello/app`，你上傳的還是 `my/hello/app/-`。
 
 想要能離線的安裝版，[離線](#!section=docs/page=offline)會加上快取 bundle 的 service worker，同一個目錄就變成可安裝的應用。

@@ -98,7 +98,7 @@ Aplikacji na routerze hashowym (domyślnym) nic z tego nie trzeba: to, co po `#`
 Build jest ten sam lokalnie i w CI, więc zielony audyt na maszynie oznacza zielone wdrożenie:
 
 ```bash
-npx mam my/hello/app
+npm start my/hello/app
 cat my/hello/app/-/web.audit.js
 ```
 
@@ -110,6 +110,6 @@ npx serve my/hello/app/-
 
 ## Nie tylko GitHub Pages
 
-Nic z powyższego nie jest związane z GitHubem. Na wyjściu jest katalog, wdrożenie to kopiowanie. Netlify, Cloudflare Pages, S3 za CDN-em, nginx na VPS-ie, obraz Dockera z tym katalogiem w środku — krok builda to wciąż `npx mam my/hello/app`, a wgrywasz `my/hello/app/-`.
+Nic z powyższego nie jest związane z GitHubem. Na wyjściu jest katalog, wdrożenie to kopiowanie. Netlify, Cloudflare Pages, S3 za CDN-em, nginx na VPS-ie, obraz Dockera z tym katalogiem w środku — krok builda to wciąż `npm start my/hello/app`, a wgrywasz `my/hello/app/-`.
 
 Dla instalacji działającej bez sieci [Offline](#!section=docs/page=offline) dokłada service workera, który cachuje bundle, i ten sam katalog staje się aplikacją do zainstalowania.

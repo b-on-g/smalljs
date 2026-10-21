@@ -98,7 +98,7 @@ GitHub Pages に書き換えルールはないので、通り道はその `404.h
 ビルドはローカルでも CI でも同じなので、手元で監査が緑ならデプロイも緑です。
 
 ```bash
-npx mam my/hello/app
+npm start my/hello/app
 cat my/hello/app/-/web.audit.js
 ```
 
@@ -110,6 +110,6 @@ npx serve my/hello/app/-
 
 ## GitHub Pages の外でも
 
-ここまでの話に GitHub 固有のものはありません。出力はフォルダ、デプロイはコピーです。Netlify、Cloudflare Pages、CDN の後ろの S3、VPS 上の nginx、そのフォルダを収めた Docker イメージ。ビルド手順は同じ `npx mam my/hello/app` で、アップロードするのは `my/hello/app/-` です。
+ここまでの話に GitHub 固有のものはありません。出力はフォルダ、デプロイはコピーです。Netlify、Cloudflare Pages、CDN の後ろの S3、VPS 上の nginx、そのフォルダを収めた Docker イメージ。ビルド手順は同じ `npm start my/hello/app` で、アップロードするのは `my/hello/app/-` です。
 
 オフラインでも使えるインストールにするなら、[オフライン](#!section=docs/page=offline)がバンドルをキャッシュする service worker を足し、同じフォルダがインストール可能なアプリになります。

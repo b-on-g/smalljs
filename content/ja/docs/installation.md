@@ -4,7 +4,7 @@
 
 ## 必要環境
 
-- **Node.js 18+** と **git**。それ以外にグローバルへインストールするものはありません。
+- **Node.js 24+** と **git**。それ以外にグローバルへインストールするものはありません。
 
 ## MAM ワークスペース
 
@@ -19,6 +19,15 @@ npm start
 
 `npm start` は `http://localhost:9080/` で監視付きの開発サーバーを起動します。保存するたびに再ビルドし、依存関係を自動で解決します。バンドラーの設定を保守する必要は一切ありません。
 
+クローンせずに使う、[MAM の README](https://github.com/hyoo-ru/mam#quick-start) の公式クイックスタートもあります。
+
+```bash
+mkdir mam && cd mam
+npm exec mam@latest
+```
+
+空のフォルダで同じ開発サーバーが起動します。それでもクローンをおすすめします。作業はどのみち MAM の中で行いますし、クローンにはエディタ設定（`.vscode`）と `.npmrc` が最初から入っています。
+
 ## モジュールの命名規則
 
 すべてのコンポーネント名はフォルダのパスに対応し、**アンダースコアはそれぞれフォルダの区切り**です。
@@ -32,14 +41,17 @@ $my_app_header   →  my/app/header/
 
 ## モジュールの構造
 
-コンポーネントは、最大 4 つのファイルを持つフォルダです。
+コンポーネントはファイルの入ったフォルダです。主なファイル：
 
 | ファイル | 役割 |
 |------|------|
 | `name.view.tree` | 宣言的なレイアウト |
 | `name.view.ts` | 振る舞い（TypeScript） |
 | `name.view.css.ts` | 型付きスタイル |
-| `name.view.tree`、`index.html` | アプリモジュールのエントリポイント |
+| `index.html` | アプリモジュールのエントリポイント |
+| `name.view.css` | 生の CSS：`@keyframes`、`content`、CSS 変数の値 |
+| `name.test.ts` | テスト |
+| `name.meta.tree` | モジュールのメタ：`deploy` するファイル、追加のパック |
 
 アプリの `index.html` はルートコンポーネントをマウントします。
 
@@ -55,7 +67,7 @@ $my_app_header   →  my/app/header/
 開発サーバーは都度ビルドしますが、ワークスペースのルートから任意のモジュールを明示的にビルドすることもできます。
 
 ```bash
-npm run start my/app
+npm start my/app
 ```
 
 出力は `my/app/-/` に生成され、`web.js`、`web.css`、`web.audit.js` が含まれます。**必ず監査ファイルを確認してください。** クリーンな `web.audit.js` は、未使用の依存も型エラーもないことを意味します。

@@ -8,7 +8,7 @@ Il componente lo scriverai in TypeScript normale. $mol ha anche un formato più 
 
 ## Cosa ti serve
 
-- **Node.js 18+** e **git**. La lista è tutta qui.
+- **Node.js 24+** e **git**. La lista è tutta qui.
 
 Non installi una CLI globale né generi codice boilerplate che dovrai capire in seguito. Le app $mol vivono all'interno del workspace MAM, che sa già come costruirle e servirle.
 

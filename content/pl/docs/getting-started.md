@@ -8,7 +8,7 @@ Komponent napiszesz w zwykłym TypeScripcie. $mol ma też krótszy format opisu 
 
 ## Czego potrzebujesz
 
-- **Node.js 18+** i **git**. To cała lista.
+- **Node.js 24+** i **git**. To cała lista.
 
 Nie instalujesz globalnego CLI ani nie generujesz szablonowego kodu, który później musisz zrozumieć. Aplikacje $mol żyją wewnątrz przestrzeni roboczej MAM, która już wie, jak je budować i serwować.
 

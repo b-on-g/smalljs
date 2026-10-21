@@ -98,7 +98,7 @@ GitHub Pages-এ রিরাইট নিয়ম নেই, তাই পথ�
 বিল্ড স্থানীয়ভাবে আর CI-তে একই, তাই নিজের মেশিনে সবুজ অডিট মানে সবুজ ডিপ্লয়:
 
 ```bash
-npx mam my/hello/app
+npm start my/hello/app
 cat my/hello/app/-/web.audit.js
 ```
 
@@ -110,6 +110,6 @@ npx serve my/hello/app/-
 
 ## GitHub Pages ছাড়াও
 
-উপরের কিছুই GitHub-নির্দিষ্ট নয়। আউটপুট একটি ফোল্ডার, ডিপ্লয় মানে একটি কপি। Netlify, Cloudflare Pages, CDN-এর পিছনে S3, VPS-এ nginx, ভিতরে ওই ফোল্ডার রাখা একটি ডকার ইমেজ — বিল্ড ধাপ সেই একই `npx mam my/hello/app`, আর আপনি আপলোড করেন `my/hello/app/-`।
+উপরের কিছুই GitHub-নির্দিষ্ট নয়। আউটপুট একটি ফোল্ডার, ডিপ্লয় মানে একটি কপি। Netlify, Cloudflare Pages, CDN-এর পিছনে S3, VPS-এ nginx, ভিতরে ওই ফোল্ডার রাখা একটি ডকার ইমেজ — বিল্ড ধাপ সেই একই `npm start my/hello/app`, আর আপনি আপলোড করেন `my/hello/app/-`।
 
 অফলাইনে চলার মতো ইনস্টলের জন্য [অফলাইন](#!section=docs/page=offline) বান্ডল ক্যাশ করা সার্ভিস ওয়ার্কার যোগ করে, আর সেই একই ফোল্ডার ইনস্টলযোগ্য অ্যাপে পরিণত হয়।

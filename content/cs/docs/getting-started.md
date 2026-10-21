@@ -8,7 +8,7 @@ Komponentu napíšete v obyčejném TypeScriptu. $mol má i kratší formát pro
 
 ## Co budete potřebovat
 
-- **Node.js 18+** a **git**. To je celý seznam.
+- **Node.js 24+** a **git**. To je celý seznam.
 
 Neinstalujete globální CLI ani negenerujete šablonový kód, kterému budete muset později porozumět. Aplikace $mol žijí uvnitř pracovního prostoru MAM, který už umí, jak je sestavit a servírovat.
 

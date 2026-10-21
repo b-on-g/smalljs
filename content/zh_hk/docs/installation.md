@@ -4,7 +4,7 @@
 
 ## 環境需求
 
-- **Node.js 18+** 和 **git**。不需要全域安裝其他任何東西。
+- **Node.js 24+** 和 **git**。不需要全域安裝其他任何東西。
 
 ## MAM 工作區
 
@@ -19,6 +19,15 @@ npm start
 
 `npm start` 會在 `http://localhost:9080/` 啟動一個帶監聽的開發伺服器。它在儲存時重新建置，並自動解析相依性——你永遠不用維護打包器設定。
 
+也可以不複製，使用 [MAM README](https://github.com/hyoo-ru/mam#quick-start) 裡的官方快速開始：
+
+```bash
+mkdir mam && cd mam
+npm exec mam@latest
+```
+
+它會在空資料夾裡啟動同一個開發伺服器。我們仍然推薦複製：所有工作反正都在 MAM 裡進行，而複製自帶編輯器設定（`.vscode`）和 `.npmrc`。
+
 ## 模組如何命名
 
 每個元件名都對應到一個資料夾路徑，且**每個底線都是資料夾分隔符**：
@@ -32,14 +41,17 @@ $my_app_header   →  my/app/header/
 
 ## 模組剖析
 
-一個元件就是一個資料夾，最多包含四個檔案：
+一個元件就是一個裝著檔案的資料夾。主要檔案：
 
 | 檔案 | 用途 |
 |------|------|
 | `name.view.tree` | 宣告式版面 |
 | `name.view.ts` | 行為（TypeScript） |
 | `name.view.css.ts` | 帶型別的樣式 |
-| `name.view.tree`、`index.html` | 應用模組的進入點 |
+| `index.html` | 應用模組的進入點 |
+| `name.view.css` | 原生 CSS：`@keyframes`、`content`、CSS 變數的值 |
+| `name.test.ts` | 測試 |
+| `name.meta.tree` | 模組中繼資料：要 `deploy` 的檔案、額外的套件 |
 
 應用程式的 `index.html` 會掛載根元件：
 
@@ -55,7 +67,7 @@ $my_app_header   →  my/app/header/
 開發伺服器會即時建置，但你也可以從工作區根目錄明確建置任意模組：
 
 ```bash
-npm run start my/app
+npm start my/app
 ```
 
 產物會輸出到 `my/app/-/`——包括 `web.js`、`web.css` 和 `web.audit.js`。**務必檢查稽核檔案：** 乾淨的 `web.audit.js` 表示沒有未使用的相依性，也沒有型別錯誤。

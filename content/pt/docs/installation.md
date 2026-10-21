@@ -4,7 +4,7 @@
 
 ## Requisitos
 
-- **Node.js 18+** e **git**. Nada mais é instalado globalmente.
+- **Node.js 24+** e **git**. Nada mais é instalado globalmente.
 
 ## O espaço de trabalho MAM
 
@@ -19,6 +19,15 @@ npm start
 
 `npm start` executa um servidor de desenvolvimento com observação em `http://localhost:9080/`. Ele recompila ao salvar e resolve as dependências automaticamente — você nunca mantém uma configuração de bundler.
 
+Há também o quick start oficial do [README do MAM](https://github.com/hyoo-ru/mam#quick-start), sem clonar:
+
+```bash
+mkdir mam && cd mam
+npm exec mam@latest
+```
+
+Ele sobe o mesmo servidor de dev numa pasta vazia. Ainda assim recomendamos o clone: todo o trabalho acontece dentro do MAM de qualquer forma, e o clone já traz as configurações do editor (`.vscode`) e o `.npmrc`.
+
 ## Como os módulos são nomeados
 
 Cada nome de componente corresponde a um caminho de pasta, e **cada sublinhado é um separador de pastas**:
@@ -32,14 +41,17 @@ Nomes de pastas de módulos nunca contêm sublinhado — use pastas aninhadas pa
 
 ## Anatomia de um módulo
 
-Um componente é uma pasta com até quatro arquivos:
+Um componente é uma pasta de arquivos. Os principais:
 
 | Arquivo | Finalidade |
 |------|------|
 | `name.view.tree` | Layout declarativo |
 | `name.view.ts` | Comportamento (TypeScript) |
 | `name.view.css.ts` | Estilos tipados |
-| `name.view.tree`, `index.html` | Ponto de entrada de um módulo de aplicativo |
+| `index.html` | Ponto de entrada de um módulo de aplicativo |
+| `name.view.css` | CSS bruto: `@keyframes`, `content`, valores de variáveis CSS |
+| `name.test.ts` | Testes |
+| `name.meta.tree` | Meta do módulo: arquivos para `deploy`, packs extras |
 
 O `index.html` de um aplicativo monta o componente raiz:
 
@@ -55,7 +67,7 @@ O `index.html` de um aplicativo monta o componente raiz:
 O servidor de desenvolvimento compila em tempo real, mas você pode compilar qualquer módulo explicitamente a partir da raiz do espaço de trabalho:
 
 ```bash
-npm run start my/app
+npm start my/app
 ```
 
 A saída fica em `my/app/-/` — incluindo `web.js`, `web.css` e `web.audit.js`. **Sempre verifique a auditoria:** um `web.audit.js` limpo significa nenhuma dependência não utilizada e nenhum erro de tipo.

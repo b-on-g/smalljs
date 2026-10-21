@@ -98,7 +98,7 @@ Aplikace na hash routeru (výchozím) nic z toho nepotřebuje: co je za `#`, na 
 Build je stejný lokálně i v CI, takže zelený audit na počítači znamená zelené nasazení:
 
 ```bash
-npx mam my/hello/app
+npm start my/hello/app
 cat my/hello/app/-/web.audit.js
 ```
 
@@ -110,6 +110,6 @@ npx serve my/hello/app/-
 
 ## Nejen GitHub Pages
 
-Nic z výše uvedeného není vázané na GitHub. Výstupem je složka, nasazení je kopírování. Netlify, Cloudflare Pages, S3 za CDN, nginx na VPS, docker image s touto složkou uvnitř — krok buildu je pořád `npx mam my/hello/app` a nahráváte `my/hello/app/-`.
+Nic z výše uvedeného není vázané na GitHub. Výstupem je složka, nasazení je kopírování. Netlify, Cloudflare Pages, S3 za CDN, nginx na VPS, docker image s touto složkou uvnitř — krok buildu je pořád `npm start my/hello/app` a nahráváte `my/hello/app/-`.
 
 Pro instalaci fungující offline přidá [Offline](#!section=docs/page=offline) service worker, který nacachuje bundle, a tatáž složka se stane instalovatelnou aplikací.

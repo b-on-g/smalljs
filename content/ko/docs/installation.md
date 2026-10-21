@@ -4,7 +4,7 @@
 
 ## 요구 사항
 
-- **Node.js 18+** 와 **git**. 그 외에 전역으로 설치할 것은 없습니다.
+- **Node.js 24+** 와 **git**. 그 외에 전역으로 설치할 것은 없습니다.
 
 ## MAM 워크스페이스
 
@@ -19,6 +19,15 @@ npm start
 
 `npm start` 는 `http://localhost:9080/` 에서 감시(watch) 개발 서버를 실행합니다. 저장할 때마다 다시 빌드하고 의존성을 자동으로 해석합니다. 번들러 설정을 유지 관리할 필요가 전혀 없습니다.
 
+클론 없이 쓰는 [MAM README](https://github.com/hyoo-ru/mam#quick-start)의 공식 빠른 시작도 있습니다.
+
+```bash
+mkdir mam && cd mam
+npm exec mam@latest
+```
+
+빈 폴더에서 같은 개발 서버를 띄웁니다. 그래도 클론을 권합니다. 어차피 모든 작업은 MAM 안에서 이루어지고, 클론에는 에디터 설정(`.vscode`)과 `.npmrc`가 처음부터 들어 있습니다.
+
 ## 모듈 이름 규칙
 
 모든 컴포넌트 이름은 폴더 경로에 대응하며, **각 밑줄은 폴더 구분자**입니다.
@@ -32,14 +41,17 @@ $my_app_header   →  my/app/header/
 
 ## 모듈의 구조
 
-컴포넌트는 최대 네 개의 파일을 가진 폴더입니다.
+컴포넌트는 파일이 든 폴더입니다. 주요 파일:
 
 | 파일 | 용도 |
 |------|------|
 | `name.view.tree` | 선언적 레이아웃 |
 | `name.view.ts` | 동작 (TypeScript) |
 | `name.view.css.ts` | 타입이 붙은 스타일 |
-| `name.view.tree`, `index.html` | 앱 모듈의 진입점 |
+| `index.html` | 앱 모듈의 진입점 |
+| `name.view.css` | 순수 CSS: `@keyframes`, `content`, CSS 변수 값 |
+| `name.test.ts` | 테스트 |
+| `name.meta.tree` | 모듈 메타: `deploy`할 파일, 추가 팩 |
 
 앱의 `index.html` 은 루트 컴포넌트를 마운트합니다.
 
@@ -55,7 +67,7 @@ $my_app_header   →  my/app/header/
 개발 서버는 즉석에서 빌드하지만, 워크스페이스 루트에서 임의의 모듈을 명시적으로 빌드할 수도 있습니다.
 
 ```bash
-npm run start my/app
+npm start my/app
 ```
 
 결과물은 `my/app/-/` 에 생성되며 `web.js`, `web.css`, `web.audit.js` 를 포함합니다. **항상 감사(audit) 파일을 확인하세요.** 깨끗한 `web.audit.js` 는 사용되지 않는 의존성이 없고 타입 오류도 없다는 뜻입니다.

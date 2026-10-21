@@ -4,7 +4,7 @@
 
 ## 环境要求
 
-- **Node.js 18+** 和 **git**。不需要全局安装其他任何东西。
+- **Node.js 24+** 和 **git**。不需要全局安装其他任何东西。
 
 ## MAM 工作区
 
@@ -19,6 +19,15 @@ npm start
 
 `npm start` 会在 `http://localhost:9080/` 启动一个带监听的开发服务器。它在保存时重新构建，并自动解析依赖——你永远不用维护打包器配置。
 
+也可以不克隆，使用 [MAM README](https://github.com/hyoo-ru/mam#quick-start) 里的官方快速开始：
+
+```bash
+mkdir mam && cd mam
+npm exec mam@latest
+```
+
+它会在空文件夹里启动同一个开发服务器。我们仍然推荐克隆：所有工作反正都在 MAM 里进行，而克隆自带编辑器设置（`.vscode`）和 `.npmrc`。
+
 ## 模块如何命名
 
 每个组件名都映射到一个文件夹路径，且**每个下划线都是文件夹分隔符**：
@@ -32,14 +41,17 @@ $my_app_header   →  my/app/header/
 
 ## 模块剖析
 
-一个组件就是一个文件夹，最多包含四个文件：
+一个组件就是一个装着文件的文件夹。主要文件：
 
 | 文件 | 用途 |
 |------|------|
 | `name.view.tree` | 声明式布局 |
 | `name.view.ts` | 行为（TypeScript） |
 | `name.view.css.ts` | 带类型的样式 |
-| `name.view.tree`、`index.html` | 应用模块的入口 |
+| `index.html` | 应用模块的入口 |
+| `name.view.css` | 原生 CSS：`@keyframes`、`content`、CSS 变量的值 |
+| `name.test.ts` | 测试 |
+| `name.meta.tree` | 模块元信息：要 `deploy` 的文件、额外的包 |
 
 应用的 `index.html` 会挂载根组件：
 
@@ -55,7 +67,7 @@ $my_app_header   →  my/app/header/
 开发服务器会即时构建，但你也可以从工作区根目录显式构建任意模块：
 
 ```bash
-npm run start my/app
+npm start my/app
 ```
 
 产物会输出到 `my/app/-/`——包括 `web.js`、`web.css` 和 `web.audit.js`。**务必检查审计文件：** 干净的 `web.audit.js` 意味着没有未使用的依赖，也没有类型错误。

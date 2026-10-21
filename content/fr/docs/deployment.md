@@ -98,7 +98,7 @@ Une application sur le routeur à hash (celui par défaut) n'a besoin de rien de
 La compilation est la même en local et en CI, donc un audit vert en local veut dire un déploiement vert :
 
 ```bash
-npx mam my/hello/app
+npm start my/hello/app
 cat my/hello/app/-/web.audit.js
 ```
 
@@ -110,6 +110,6 @@ npx serve my/hello/app/-
 
 ## Au-delà de GitHub Pages
 
-Rien de ce qui précède n'est propre à GitHub. La sortie est un dossier, le déploiement une copie. Netlify, Cloudflare Pages, S3 derrière un CDN, nginx sur un VPS, une image Docker contenant le dossier — l'étape de compilation reste `npx mam my/hello/app`, et ce que vous envoyez est `my/hello/app/-`.
+Rien de ce qui précède n'est propre à GitHub. La sortie est un dossier, le déploiement une copie. Netlify, Cloudflare Pages, S3 derrière un CDN, nginx sur un VPS, une image Docker contenant le dossier — l'étape de compilation reste `npm start my/hello/app`, et ce que vous envoyez est `my/hello/app/-`.
 
 Pour une installation utilisable hors ligne, [Hors ligne](#!section=docs/page=offline) ajoute le service worker qui met le bundle en cache, et le même dossier devient une application installable.

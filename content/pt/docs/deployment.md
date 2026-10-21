@@ -98,7 +98,7 @@ Um app no roteador de hash (o padrão) não precisa de nada disso: o que vem dep
 O build é o mesmo localmente e no CI, então um audit verde na sua máquina significa um deploy verde:
 
 ```bash
-npx mam my/hello/app
+npm start my/hello/app
 cat my/hello/app/-/web.audit.js
 ```
 
@@ -110,6 +110,6 @@ npx serve my/hello/app/-
 
 ## Além do GitHub Pages
 
-Nada acima é específico do GitHub. A saída é uma pasta, o deploy é uma cópia. Netlify, Cloudflare Pages, S3 atrás de uma CDN, nginx num VPS, uma imagem Docker com a pasta dentro — o passo de build é o mesmo `npx mam my/hello/app`, e o que você envia é `my/hello/app/-`.
+Nada acima é específico do GitHub. A saída é uma pasta, o deploy é uma cópia. Netlify, Cloudflare Pages, S3 atrás de uma CDN, nginx num VPS, uma imagem Docker com a pasta dentro — o passo de build é o mesmo `npm start my/hello/app`, e o que você envia é `my/hello/app/-`.
 
 Para uma instalação que funcione offline, [Offline](#!section=docs/page=offline) acrescenta o service worker que faz cache do bundle, e a mesma pasta vira um app instalável.

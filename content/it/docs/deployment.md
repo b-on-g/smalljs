@@ -98,7 +98,7 @@ A un'app sul router a hash (quello predefinito) non serve niente di tutto questo
 La build è la stessa in locale e in CI, quindi un audit verde in locale significa un deploy verde:
 
 ```bash
-npx mam my/hello/app
+npm start my/hello/app
 cat my/hello/app/-/web.audit.js
 ```
 
@@ -110,6 +110,6 @@ npx serve my/hello/app/-
 
 ## Oltre GitHub Pages
 
-Niente di quanto sopra è specifico di GitHub. L'output è una cartella, il deploy è una copia. Netlify, Cloudflare Pages, S3 dietro una CDN, nginx su un VPS, un'immagine Docker con dentro la cartella: il passo di build è sempre `npx mam my/hello/app`, e quello che carichi è `my/hello/app/-`.
+Niente di quanto sopra è specifico di GitHub. L'output è una cartella, il deploy è una copia. Netlify, Cloudflare Pages, S3 dietro una CDN, nginx su un VPS, un'immagine Docker con dentro la cartella: il passo di build è sempre `npm start my/hello/app`, e quello che carichi è `my/hello/app/-`.
 
 Per un'installazione che funzioni offline, [Offline](#!section=docs/page=offline) aggiunge il service worker che mette in cache il bundle, e la stessa cartella diventa un'app installabile.

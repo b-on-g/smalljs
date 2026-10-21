@@ -98,7 +98,7 @@ git push
 ساخت در ماشینِ خودتان و در CI یکی است، پس ممیزیِ سبز روی سیستم یعنی استقرارِ سبز:
 
 ```bash
-npx mam my/hello/app
+npm start my/hello/app
 cat my/hello/app/-/web.audit.js
 ```
 
@@ -110,6 +110,6 @@ npx serve my/hello/app/-
 
 ## فراتر از GitHub Pages
 
-هیچ‌کدام از این‌ها مخصوصِ گیت‌هاب نیست. خروجی یک پوشه است و استقرار یک کپی. Netlify، Cloudflare Pages، S3 پشتِ CDN، nginx روی VPS، ایمیجِ داکری با همین پوشه داخلش — گامِ ساخت همان `npx mam my/hello/app` است و آنچه بالا می‌فرستید `my/hello/app/-`.
+هیچ‌کدام از این‌ها مخصوصِ گیت‌هاب نیست. خروجی یک پوشه است و استقرار یک کپی. Netlify، Cloudflare Pages، S3 پشتِ CDN، nginx روی VPS، ایمیجِ داکری با همین پوشه داخلش — گامِ ساخت همان `npm start my/hello/app` است و آنچه بالا می‌فرستید `my/hello/app/-`.
 
 برای نصبی که آفلاین هم کار کند، [آفلاین](#!section=docs/page=offline) سرویس‌ورکری می‌افزاید که باندل را کش می‌کند، و همان پوشه به اپلیکیشنی نصب‌شدنی بدل می‌شود.

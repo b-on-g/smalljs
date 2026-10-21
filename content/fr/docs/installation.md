@@ -4,7 +4,7 @@
 
 ## Prérequis
 
-- **Node.js 18+** et **git**. Rien d'autre n'est installé globalement.
+- **Node.js 24+** et **git**. Rien d'autre n'est installé globalement.
 
 ## L'espace de travail MAM
 
@@ -19,6 +19,15 @@ npm start
 
 `npm start` lance un serveur de développement en mode surveillance sur `http://localhost:9080/`. Il recompile à chaque enregistrement et résout les dépendances automatiquement — vous ne maintenez jamais de configuration de bundler.
 
+Il existe aussi le démarrage rapide officiel du [README de MAM](https://github.com/hyoo-ru/mam#quick-start), sans clonage :
+
+```bash
+mkdir mam && cd mam
+npm exec mam@latest
+```
+
+Il lance le même serveur de dev dans un dossier vide. Nous recommandons quand même le clone : tout le travail se fait de toute façon dans MAM, et le clone apporte d'emblée les réglages de l'éditeur (`.vscode`) et `.npmrc`.
+
 ## Comment les modules sont nommés
 
 Chaque nom de composant correspond à un chemin de dossier, et **chaque tiret bas est un séparateur de dossier** :
@@ -32,14 +41,17 @@ Les noms de dossiers de modules ne contiennent jamais de tiret bas — utilisez 
 
 ## Anatomie d'un module
 
-Un composant est un dossier comportant jusqu'à quatre fichiers :
+Un composant est un dossier de fichiers. Les principaux :
 
 | Fichier | Rôle |
 |------|------|
 | `name.view.tree` | Mise en page déclarative |
 | `name.view.ts` | Comportement (TypeScript) |
 | `name.view.css.ts` | Styles typés |
-| `name.view.tree`, `index.html` | Point d'entrée d'un module d'application |
+| `index.html` | Point d'entrée d'un module d'application |
+| `name.view.css` | CSS brut : `@keyframes`, `content`, valeurs de variables CSS |
+| `name.test.ts` | Tests |
+| `name.meta.tree` | Méta du module : fichiers à `deploy`, packs supplémentaires |
 
 L'`index.html` d'une application monte le composant racine :
 
@@ -55,7 +67,7 @@ L'`index.html` d'une application monte le composant racine :
 Le serveur de développement compile à la volée, mais vous pouvez compiler n'importe quel module explicitement depuis la racine de l'espace de travail :
 
 ```bash
-npm run start my/app
+npm start my/app
 ```
 
 Le résultat est produit dans `my/app/-/` — y compris `web.js`, `web.css` et `web.audit.js`. **Vérifiez toujours l'audit :** un `web.audit.js` propre signifie aucune dépendance inutilisée et aucune erreur de type.

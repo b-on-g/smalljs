@@ -4,7 +4,7 @@
 
 ## Wymagania
 
-- **Node.js 18+** i **git**. Nic więcej nie jest instalowane globalnie.
+- **Node.js 24+** i **git**. Nic więcej nie jest instalowane globalnie.
 
 ## Przestrzeń robocza MAM
 
@@ -19,6 +19,15 @@ npm start
 
 `npm start` uruchamia obserwujący serwer deweloperski pod adresem `http://localhost:9080/`. Przebudowuje przy zapisie i automatycznie rozwiązuje zależności — nigdy nie utrzymujesz konfiguracji bundlera.
 
+Jest też oficjalny szybki start z [README MAM](https://github.com/hyoo-ru/mam#quick-start), bez klonowania:
+
+```bash
+mkdir mam && cd mam
+npm exec mam@latest
+```
+
+Uruchamia ten sam serwer deweloperski w pustym folderze. Mimo to polecamy klon: cała praca i tak odbywa się wewnątrz MAM, a klon od razu zawiera ustawienia edytora (`.vscode`) i `.npmrc`.
+
 ## Jak nazywane są moduły
 
 Każda nazwa komponentu odpowiada ścieżce folderu, a **każdy podkreślnik jest separatorem folderów**:
@@ -32,14 +41,17 @@ Nazwy folderów modułów nigdy nie zawierają podkreślnika — dla nazw wielow
 
 ## Anatomia modułu
 
-Komponent to folder zawierający maksymalnie cztery pliki:
+Komponent to folder z plikami. Najważniejsze:
 
 | Plik | Przeznaczenie |
 |------|------|
 | `name.view.tree` | Deklaratywny układ |
 | `name.view.ts` | Zachowanie (TypeScript) |
 | `name.view.css.ts` | Typowane style |
-| `name.view.tree`, `index.html` | Punkt wejścia modułu aplikacji |
+| `index.html` | Punkt wejścia modułu aplikacji |
+| `name.view.css` | Surowy CSS: `@keyframes`, `content`, wartości zmiennych CSS |
+| `name.test.ts` | Testy |
+| `name.meta.tree` | Meta modułu: pliki do `deploy`, dodatkowe paczki |
 
 `index.html` aplikacji montuje komponent główny:
 
@@ -55,7 +67,7 @@ Komponent to folder zawierający maksymalnie cztery pliki:
 Serwer deweloperski buduje w locie, ale możesz zbudować dowolny moduł jawnie z katalogu głównego przestrzeni roboczej:
 
 ```bash
-npm run start my/app
+npm start my/app
 ```
 
 Wynik trafia do `my/app/-/` — w tym `web.js`, `web.css` i `web.audit.js`. **Zawsze sprawdzaj audyt:** czysty `web.audit.js` oznacza brak nieużywanych zależności i brak błędów typów.

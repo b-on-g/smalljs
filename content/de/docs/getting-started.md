@@ -8,7 +8,7 @@ Du schreibst die Komponente in reinem TypeScript. $mol hat auch ein kürzeres Fo
 
 ## Was du brauchst
 
-- **Node.js 18+** und **git**. Das ist die ganze Liste.
+- **Node.js 24+** und **git**. Das ist die ganze Liste.
 
 Du installierst keine globale CLI und generierst keinen Boilerplate-Code, den du später verstehen musst. $mol-Apps leben innerhalb des MAM-Workspace, der bereits weiß, wie man sie baut und ausliefert.
 

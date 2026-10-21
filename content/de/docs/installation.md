@@ -4,7 +4,7 @@
 
 ## Voraussetzungen
 
-- **Node.js 18+** und **git**. Sonst wird nichts global installiert.
+- **Node.js 24+** und **git**. Sonst wird nichts global installiert.
 
 ## Der MAM-Arbeitsbereich
 
@@ -19,6 +19,15 @@ npm start
 
 `npm start` startet einen überwachenden Entwicklungsserver unter `http://localhost:9080/`. Er baut beim Speichern neu und löst Abhängigkeiten automatisch auf — du pflegst nie eine Bundler-Konfiguration.
 
+Es gibt auch den offiziellen Schnellstart aus dem [MAM-README](https://github.com/hyoo-ru/mam#quick-start), ohne Klonen:
+
+```bash
+mkdir mam && cd mam
+npm exec mam@latest
+```
+
+Er startet denselben Dev-Server in einem leeren Ordner. Wir empfehlen trotzdem den Klon: Die ganze Arbeit findet ohnehin innerhalb von MAM statt, und der Klon bringt Editor-Einstellungen (`.vscode`) und `.npmrc` gleich mit.
+
 ## Wie Module benannt werden
 
 Jeder Komponentenname entspricht einem Ordnerpfad, und **jeder Unterstrich ist ein Ordnertrenner**:
@@ -32,14 +41,17 @@ Ordnernamen von Modulen enthalten nie einen Unterstrich — verwende verschachte
 
 ## Aufbau eines Moduls
 
-Eine Komponente ist ein Ordner mit bis zu vier Dateien:
+Eine Komponente ist ein Ordner mit Dateien. Die wichtigsten:
 
 | Datei | Zweck |
 |------|------|
 | `name.view.tree` | Deklaratives Layout |
 | `name.view.ts` | Verhalten (TypeScript) |
 | `name.view.css.ts` | Typisierte Styles |
-| `name.view.tree`, `index.html` | Einstiegspunkt für ein App-Modul |
+| `index.html` | Einstiegspunkt für ein App-Modul |
+| `name.view.css` | Rohes CSS: `@keyframes`, `content`, Werte von CSS-Variablen |
+| `name.test.ts` | Tests |
+| `name.meta.tree` | Modul-Meta: Dateien für `deploy`, zusätzliche Packs |
 
 Die `index.html` einer App bindet die Wurzelkomponente ein:
 
@@ -55,7 +67,7 @@ Die `index.html` einer App bindet die Wurzelkomponente ein:
 Der Entwicklungsserver baut zur Laufzeit, aber du kannst jedes Modul explizit aus dem Wurzelverzeichnis des Arbeitsbereichs bauen:
 
 ```bash
-npm run start my/app
+npm start my/app
 ```
 
 Die Ausgabe landet in `my/app/-/` — einschließlich `web.js`, `web.css` und `web.audit.js`. **Prüfe immer das Audit:** Ein sauberes `web.audit.js` bedeutet keine ungenutzten Abhängigkeiten und keine Typfehler.

@@ -4,7 +4,7 @@
 
 ## Requirements
 
-- **Node.js 18+** and **git**. Nothing else is installed globally.
+- **Node.js 24+** and **git**. Nothing else is installed globally.
 
 ## The MAM workspace
 
@@ -19,6 +19,15 @@ npm start
 
 `npm start` runs a watching dev server on `http://localhost:9080/`. It rebuilds on save and resolves dependencies automatically — you never maintain a bundler config.
 
+There is also the official quick start from the [MAM README](https://github.com/hyoo-ru/mam#quick-start), without cloning:
+
+```bash
+mkdir mam && cd mam
+npm exec mam@latest
+```
+
+It starts the same dev server in an empty folder. We still recommend the clone: all the work happens inside MAM anyway, and the clone comes with editor settings (`.vscode`) and `.npmrc`.
+
 ## How modules are named
 
 Every component name maps to a folder path, and **each underscore is a folder separator**:
@@ -32,14 +41,17 @@ Module folder names never contain an underscore — use nested folders for multi
 
 ## Anatomy of a module
 
-A component is a folder with up to four files:
+A component is a folder of files. The main ones:
 
 | File | Purpose |
 |------|---------|
 | `name.view.tree` | Declarative layout |
 | `name.view.ts` | Behaviour (TypeScript) |
 | `name.view.css.ts` | Typed styles |
-| `name.view.tree`, `index.html` | Entry point for an app module |
+| `index.html` | Entry point for an app module |
+| `name.view.css` | Raw CSS: `@keyframes`, `content`, CSS variable values |
+| `name.test.ts` | Tests |
+| `name.meta.tree` | Module meta: files to `deploy`, extra packs |
 
 The `index.html` of an app mounts the root component:
 
@@ -55,7 +67,7 @@ The `index.html` of an app mounts the root component:
 The dev server builds on the fly, but you can build any module explicitly from the workspace root:
 
 ```bash
-npm run start my/app
+npm start my/app
 ```
 
 The output lands in `my/app/-/` — including `web.js`, `web.css`, and `web.audit.js`. **Always check the audit:** a clean `web.audit.js` means no unused dependencies and no type errors.

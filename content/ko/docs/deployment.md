@@ -98,7 +98,7 @@ GitHub Pages에는 리라이트 규칙이 없으니 길은 그 `404.html`을 지
 빌드는 로컬과 CI가 같으므로, 로컬에서 초록인 감사는 초록인 배포를 뜻합니다:
 
 ```bash
-npx mam my/hello/app
+npm start my/hello/app
 cat my/hello/app/-/web.audit.js
 ```
 
@@ -110,6 +110,6 @@ npx serve my/hello/app/-
 
 ## GitHub Pages 너머
 
-위의 어떤 것도 GitHub 전용이 아닙니다. 산출물은 폴더이고 배포는 복사입니다. Netlify, Cloudflare Pages, CDN 뒤의 S3, VPS의 nginx, 그 폴더를 담은 도커 이미지까지 — 빌드 단계는 똑같이 `npx mam my/hello/app`이고, 올리는 것은 `my/hello/app/-`입니다.
+위의 어떤 것도 GitHub 전용이 아닙니다. 산출물은 폴더이고 배포는 복사입니다. Netlify, Cloudflare Pages, CDN 뒤의 S3, VPS의 nginx, 그 폴더를 담은 도커 이미지까지 — 빌드 단계는 똑같이 `npm start my/hello/app`이고, 올리는 것은 `my/hello/app/-`입니다.
 
 오프라인에서도 쓰이는 설치본이 필요하다면 [오프라인](#!section=docs/page=offline)이 번들을 캐시하는 서비스 워커를 더해 주고, 같은 폴더가 설치 가능한 앱이 됩니다.
