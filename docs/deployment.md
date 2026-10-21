@@ -98,7 +98,7 @@ An app on the hash router (the default) needs none of this: everything after `#`
 The build is the same locally and in CI, so a green audit locally means a green deploy:
 
 ```bash
-npx mam my/hello/app
+npm start my/hello/app
 cat my/hello/app/-/web.audit.js
 ```
 
@@ -110,6 +110,6 @@ npx serve my/hello/app/-
 
 ## Beyond GitHub Pages
 
-Nothing above is specific to GitHub. The output is a folder; the deploy is a copy. Netlify, Cloudflare Pages, S3 with a CDN, nginx on a VPS, a Docker image with the folder inside — the build step is the same `npx mam my/hello/app`, and what you upload is `my/hello/app/-`.
+Nothing above is specific to GitHub. The output is a folder; the deploy is a copy. Netlify, Cloudflare Pages, S3 with a CDN, nginx on a VPS, a Docker image with the folder inside — the build step is the same `npm start my/hello/app`, and what you upload is `my/hello/app/-`.
 
 For an offline-capable install, [Offline](#!section=docs/page=offline) adds the service worker that caches the bundle, which turns the same folder into an installable app.
