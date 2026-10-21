@@ -109,6 +109,7 @@ namespace $ {
 								"api-mol-button-minor",
 								"api-mol-string",
 								"api-mol-number",
+								"api-mol-text",
 								"api-mol-paragraph",
 								"api-mol-list",
 								"api-mol-row",
@@ -2574,6 +2575,85 @@ namespace $ {
 							title: "$mol_number",
 							summary: "$mol_view কে এক্সটেন্ড করে। GitHub-এ সোর্স দেখুন",
 							md: "# \u0024mol_number\n\n`\u0024mol_view` কে এক্সটেন্ড করে। [GitHub-এ সোর্স দেখুন](https://github.com/hyoo-ru/mam_mol/tree/master/number)\n\nএই রেফারেন্স কম্পোনেন্টের টাইপড `.view.tree` ইন্টারফেস থেকে জেনারেট করা হয়।\n\n## প্রপার্টি\n\n| প্রপার্টি | অ্যাক্সেস | টাইপ |\n|---|---|---|\n| `precision` | পড়া | `number` |\n| `Hotkey` | পড়া | `\u0024mol_hotkey` |\n| `type` | পড়া | `string` |\n| `value_string` | পড়া / লেখা | `string` |\n| `hint` | পড়া | `string` |\n| `string_enabled` | পড়া | `as 'enabled'` |\n| `String` | পড়া | `\u0024mol_string` |\n| `dec_enabled` | পড়া | `as 'enabled'` |\n| `dec_icon` | পড়া | `\u0024mol_icon_menu_down_outline` |\n| `Dec` | পড়া | `\u0024mol_button_minor` |\n| `inc_enabled` | পড়া | `as 'enabled'` |\n| `inc_icon` | পড়া | `\u0024mol_icon_menu_up_outline` |\n| `Inc` | পড়া | `\u0024mol_button_minor` |\n| `precision_view` | পড়া | `as 'precision'` |\n| `precision_change` | পড়া | `as 'precision'` |\n| `boost` | পড়া | `number` |\n| `value_min` | পড়া | `number` |\n| `value_max` | পড়া | `number` |\n| `value` | পড়া / লেখা | `number` |\n| `enabled` | পড়া | `boolean` |\n| `plugins` | পড়া | `readonly(any)[]` |\n| `sub` | পড়া | `readonly(any)[]` |\n",
+						},
+					},
+				},
+				'api-mol-text': {
+					slug: 'api-mol-text',
+					title: "$mol_text",
+					summary: "API reference for $mol_text.",
+					file: 'content/en/docs/api-mol-text.md',
+					md: "# \u0024mol_text\n\nExtends `\u0024mol_list`. [View source on GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/text/text)\n\nThis reference is generated from the component's typed `.view.tree` interface.\n\n## Properties\n\n| Property | Access | Type |\n|---|---|---|\n| `highlight` | read | `string` |\n| `code_sidebar_showed` | read | `boolean` |\n| `uri_base` | read | `string` |\n| `text` | read | `string` |\n| `param` | read | `string` |\n| `flow_tokens` | read | `readonly(any)[]` |\n| `auto` | read | `readonly(any)[]` |\n",
+					tr: {
+						zh: {
+							title: "$mol_text",
+							summary: "继承自 $mol_list。在 GitHub 上查看源码",
+							md: "# \u0024mol_text\n\n继承自 `\u0024mol_list`。[在 GitHub 上查看源码](https://github.com/hyoo-ru/mam_mol/tree/master/text/text)\n\n本参考由组件的带类型 `.view.tree` 接口生成。\n\n## 属性\n\n| 属性 | 访问 | 类型 |\n|---|---|---|\n| `highlight` | 读 | `string` |\n| `code_sidebar_showed` | 读 | `boolean` |\n| `uri_base` | 读 | `string` |\n| `text` | 读 | `string` |\n| `param` | 读 | `string` |\n| `flow_tokens` | 读 | `readonly(any)[]` |\n| `auto` | 读 | `readonly(any)[]` |\n",
+						},
+						zh_hk: {
+							title: "$mol_text",
+							summary: "繼承自 $mol_list。在 GitHub 上查看原始碼",
+							md: "# \u0024mol_text\n\n繼承自 `\u0024mol_list`。[在 GitHub 上查看原始碼](https://github.com/hyoo-ru/mam_mol/tree/master/text/text)\n\n本參考由元件的帶型別 `.view.tree` 介面生成。\n\n## 屬性\n\n| 屬性 | 存取 | 型別 |\n|---|---|---|\n| `highlight` | 讀 | `string` |\n| `code_sidebar_showed` | 讀 | `boolean` |\n| `uri_base` | 讀 | `string` |\n| `text` | 讀 | `string` |\n| `param` | 讀 | `string` |\n| `flow_tokens` | 讀 | `readonly(any)[]` |\n| `auto` | 讀 | `readonly(any)[]` |\n",
+						},
+						ja: {
+							title: "$mol_text",
+							summary: "$mol_list を継承。GitHub でソースを見る",
+							md: "# \u0024mol_text\n\n`\u0024mol_list` を継承。[GitHub でソースを見る](https://github.com/hyoo-ru/mam_mol/tree/master/text/text)\n\nこのリファレンスはコンポーネントの型付き `.view.tree` インターフェイスから生成されています。\n\n## プロパティ\n\n| プロパティ | アクセス | 型 |\n|---|---|---|\n| `highlight` | 読み取り | `string` |\n| `code_sidebar_showed` | 読み取り | `boolean` |\n| `uri_base` | 読み取り | `string` |\n| `text` | 読み取り | `string` |\n| `param` | 読み取り | `string` |\n| `flow_tokens` | 読み取り | `readonly(any)[]` |\n| `auto` | 読み取り | `readonly(any)[]` |\n",
+						},
+						ko: {
+							title: "$mol_text",
+							summary: "$mol_list을(를) 확장합니다. GitHub에서 소스 보기",
+							md: "# \u0024mol_text\n\n`\u0024mol_list`을(를) 확장합니다. [GitHub에서 소스 보기](https://github.com/hyoo-ru/mam_mol/tree/master/text/text)\n\n이 레퍼런스는 컴포넌트의 타입이 있는 `.view.tree` 인터페이스에서 생성됩니다.\n\n## 속성\n\n| 속성 | 접근 | 타입 |\n|---|---|---|\n| `highlight` | 읽기 | `string` |\n| `code_sidebar_showed` | 읽기 | `boolean` |\n| `uri_base` | 읽기 | `string` |\n| `text` | 읽기 | `string` |\n| `param` | 읽기 | `string` |\n| `flow_tokens` | 읽기 | `readonly(any)[]` |\n| `auto` | 읽기 | `readonly(any)[]` |\n",
+						},
+						fr: {
+							title: "$mol_text",
+							summary: "Étend $mol_list. Voir la source sur GitHub",
+							md: "# \u0024mol_text\n\nÉtend `\u0024mol_list`. [Voir la source sur GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/text/text)\n\nCette référence est générée à partir de l'interface typée `.view.tree` du composant.\n\n## Propriétés\n\n| Propriété | Accès | Type |\n|---|---|---|\n| `highlight` | lecture | `string` |\n| `code_sidebar_showed` | lecture | `boolean` |\n| `uri_base` | lecture | `string` |\n| `text` | lecture | `string` |\n| `param` | lecture | `string` |\n| `flow_tokens` | lecture | `readonly(any)[]` |\n| `auto` | lecture | `readonly(any)[]` |\n",
+						},
+						de: {
+							title: "$mol_text",
+							summary: "Erweitert $mol_list. Quellcode auf GitHub ansehen",
+							md: "# \u0024mol_text\n\nErweitert `\u0024mol_list`. [Quellcode auf GitHub ansehen](https://github.com/hyoo-ru/mam_mol/tree/master/text/text)\n\nDiese Referenz wird aus der typisierten `.view.tree`-Schnittstelle der Komponente generiert.\n\n## Eigenschaften\n\n| Eigenschaft | Zugriff | Typ |\n|---|---|---|\n| `highlight` | Lesen | `string` |\n| `code_sidebar_showed` | Lesen | `boolean` |\n| `uri_base` | Lesen | `string` |\n| `text` | Lesen | `string` |\n| `param` | Lesen | `string` |\n| `flow_tokens` | Lesen | `readonly(any)[]` |\n| `auto` | Lesen | `readonly(any)[]` |\n",
+						},
+						pt: {
+							title: "$mol_text",
+							summary: "Estende $mol_list. Ver o código-fonte no GitHub",
+							md: "# \u0024mol_text\n\nEstende `\u0024mol_list`. [Ver o código-fonte no GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/text/text)\n\nEsta referência é gerada a partir da interface tipada `.view.tree` do componente.\n\n## Propriedades\n\n| Propriedade | Acesso | Tipo |\n|---|---|---|\n| `highlight` | leitura | `string` |\n| `code_sidebar_showed` | leitura | `boolean` |\n| `uri_base` | leitura | `string` |\n| `text` | leitura | `string` |\n| `param` | leitura | `string` |\n| `flow_tokens` | leitura | `readonly(any)[]` |\n| `auto` | leitura | `readonly(any)[]` |\n",
+						},
+						it: {
+							title: "$mol_text",
+							summary: "Estende $mol_list. Vedi il sorgente su GitHub",
+							md: "# \u0024mol_text\n\nEstende `\u0024mol_list`. [Vedi il sorgente su GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/text/text)\n\nQuesto riferimento è generato dall'interfaccia tipizzata `.view.tree` del componente.\n\n## Proprietà\n\n| Proprietà | Accesso | Tipo |\n|---|---|---|\n| `highlight` | lettura | `string` |\n| `code_sidebar_showed` | lettura | `boolean` |\n| `uri_base` | lettura | `string` |\n| `text` | lettura | `string` |\n| `param` | lettura | `string` |\n| `flow_tokens` | lettura | `readonly(any)[]` |\n| `auto` | lettura | `readonly(any)[]` |\n",
+						},
+						ru: {
+							title: "$mol_text",
+							summary: "Расширяет $mol_list. Посмотреть исходник на GitHub",
+							md: "# \u0024mol_text\n\nРасширяет `\u0024mol_list`. [Посмотреть исходник на GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/text/text)\n\nЭтот справочник сгенерирован из типизированного интерфейса `.view.tree` компонента.\n\n## Свойства\n\n| Свойство | Доступ | Тип |\n|---|---|---|\n| `highlight` | чтение | `string` |\n| `code_sidebar_showed` | чтение | `boolean` |\n| `uri_base` | чтение | `string` |\n| `text` | чтение | `string` |\n| `param` | чтение | `string` |\n| `flow_tokens` | чтение | `readonly(any)[]` |\n| `auto` | чтение | `readonly(any)[]` |\n",
+						},
+						uk: {
+							title: "$mol_text",
+							summary: "Розширює $mol_list. Переглянути код на GitHub",
+							md: "# \u0024mol_text\n\nРозширює `\u0024mol_list`. [Переглянути код на GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/text/text)\n\nЦей довідник згенеровано з типізованого інтерфейсу `.view.tree` компонента.\n\n## Властивості\n\n| Властивість | Доступ | Тип |\n|---|---|---|\n| `highlight` | читання | `string` |\n| `code_sidebar_showed` | читання | `boolean` |\n| `uri_base` | читання | `string` |\n| `text` | читання | `string` |\n| `param` | читання | `string` |\n| `flow_tokens` | читання | `readonly(any)[]` |\n| `auto` | читання | `readonly(any)[]` |\n",
+						},
+						pl: {
+							title: "$mol_text",
+							summary: "Rozszerza $mol_list. Zobacz źródło na GitHubie",
+							md: "# \u0024mol_text\n\nRozszerza `\u0024mol_list`. [Zobacz źródło na GitHubie](https://github.com/hyoo-ru/mam_mol/tree/master/text/text)\n\nTa referencja jest generowana z typowanego interfejsu `.view.tree` komponentu.\n\n## Właściwości\n\n| Właściwość | Dostęp | Typ |\n|---|---|---|\n| `highlight` | odczyt | `string` |\n| `code_sidebar_showed` | odczyt | `boolean` |\n| `uri_base` | odczyt | `string` |\n| `text` | odczyt | `string` |\n| `param` | odczyt | `string` |\n| `flow_tokens` | odczyt | `readonly(any)[]` |\n| `auto` | odczyt | `readonly(any)[]` |\n",
+						},
+						cs: {
+							title: "$mol_text",
+							summary: "Rozšiřuje $mol_list. Zobrazit zdroj na GitHubu",
+							md: "# \u0024mol_text\n\nRozšiřuje `\u0024mol_list`. [Zobrazit zdroj na GitHubu](https://github.com/hyoo-ru/mam_mol/tree/master/text/text)\n\nTato reference je generována z typovaného rozhraní `.view.tree` komponenty.\n\n## Vlastnosti\n\n| Vlastnost | Přístup | Typ |\n|---|---|---|\n| `highlight` | čtení | `string` |\n| `code_sidebar_showed` | čtení | `boolean` |\n| `uri_base` | čtení | `string` |\n| `text` | čtení | `string` |\n| `param` | čtení | `string` |\n| `flow_tokens` | čtení | `readonly(any)[]` |\n| `auto` | čtení | `readonly(any)[]` |\n",
+						},
+						fa: {
+							title: "$mol_text",
+							summary: "$mol_list را گسترش می‌دهد. دیدنِ سورس در GitHub",
+							md: "# \u0024mol_text\n\n`\u0024mol_list` را گسترش می‌دهد. [دیدنِ سورس در GitHub](https://github.com/hyoo-ru/mam_mol/tree/master/text/text)\n\nاین مرجع از واسطِ نوع‌دارِ `.view.tree`ِ کامپوننت تولید شده است.\n\n## ویژگی‌ها\n\n| ویژگی | دسترسی | نوع |\n|---|---|---|\n| `highlight` | خواندن | `string` |\n| `code_sidebar_showed` | خواندن | `boolean` |\n| `uri_base` | خواندن | `string` |\n| `text` | خواندن | `string` |\n| `param` | خواندن | `string` |\n| `flow_tokens` | خواندن | `readonly(any)[]` |\n| `auto` | خواندن | `readonly(any)[]` |\n",
+						},
+						bn: {
+							title: "$mol_text",
+							summary: "$mol_list কে এক্সটেন্ড করে। GitHub-এ সোর্স দেখুন",
+							md: "# \u0024mol_text\n\n`\u0024mol_list` কে এক্সটেন্ড করে। [GitHub-এ সোর্স দেখুন](https://github.com/hyoo-ru/mam_mol/tree/master/text/text)\n\nএই রেফারেন্স কম্পোনেন্টের টাইপড `.view.tree` ইন্টারফেস থেকে জেনারেট করা হয়।\n\n## প্রপার্টি\n\n| প্রপার্টি | অ্যাক্সেস | টাইপ |\n|---|---|---|\n| `highlight` | পড়া | `string` |\n| `code_sidebar_showed` | পড়া | `boolean` |\n| `uri_base` | পড়া | `string` |\n| `text` | পড়া | `string` |\n| `param` | পড়া | `string` |\n| `flow_tokens` | পড়া | `readonly(any)[]` |\n| `auto` | পড়া | `readonly(any)[]` |\n",
 						},
 					},
 				},

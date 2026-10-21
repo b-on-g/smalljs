@@ -10,7 +10,6 @@ This reference is generated from the component's typed `.view.tree` interface.
 |---|---|---|
 | `highlight` | read | `string` |
 | `code_sidebar_showed` | read | `boolean` |
-| `pre_sidebar_showed` | read | `as 'code_sidebar_showed'` |
 | `uri_base` | read | `string` |
 | `text` | read | `string` |
 | `param` | read | `string` |

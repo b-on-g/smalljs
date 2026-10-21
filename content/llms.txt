@@ -53,6 +53,7 @@
 - [$mol_button_minor](https://b-on-g.github.io/smalljs/docs/api-mol-button-minor.md): API reference for $mol_button_minor.
 - [$mol_string](https://b-on-g.github.io/smalljs/docs/api-mol-string.md): API reference for $mol_string.
 - [$mol_number](https://b-on-g.github.io/smalljs/docs/api-mol-number.md): API reference for $mol_number.
+- [$mol_text](https://b-on-g.github.io/smalljs/docs/api-mol-text.md): API reference for $mol_text.
 - [$mol_paragraph](https://b-on-g.github.io/smalljs/docs/api-mol-paragraph.md): API reference for $mol_paragraph.
 - [$mol_list](https://b-on-g.github.io/smalljs/docs/api-mol-list.md): API reference for $mol_list.
 - [$mol_row](https://b-on-g.github.io/smalljs/docs/api-mol-row.md): API reference for $mol_row.
