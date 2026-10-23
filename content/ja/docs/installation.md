@@ -28,6 +28,10 @@ npm exec mam@latest
 
 空のフォルダで同じ開発サーバーが起動します。それでもクローンをおすすめします。作業はどのみち MAM の中で行いますし、クローンにはエディタ設定（`.vscode`）と `.npmrc` が最初から入っています。
 
+### ブラウザで
+
+マシンに何も入れていませんか？ GitHub Codespaces でワークスペースを開いてください: [codespaces.new/hyoo-ru/mam](https://codespaces.new/hyoo-ru/mam)。GitHub のマシン上で動くブラウザ版 VS Code で、Node.js は最初から入っています。ターミナルで `npm install` と `npm start` を実行し、転送されたポート 9080 を開きます。
+
 ## モジュールの命名規則
 
 すべてのコンポーネント名はフォルダのパスに対応し、**アンダースコアはそれぞれフォルダの区切り**です。

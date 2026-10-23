@@ -28,6 +28,10 @@ npm exec mam@latest
 
 它会在空文件夹里启动同一个开发服务器。我们仍然推荐克隆：所有工作反正都在 MAM 里进行，而克隆自带编辑器设置（`.vscode`）和 `.npmrc`。
 
+### 在浏览器中
+
+电脑上什么都没装？在 GitHub Codespaces 中打开工作区：[codespaces.new/hyoo-ru/mam](https://codespaces.new/hyoo-ru/mam)。这是运行在 GitHub 机器上的浏览器版 VS Code，Node.js 已经装好。在它的终端里执行 `npm install` 和 `npm start`，然后打开转发的 9080 端口。
+
 ## 模块如何命名
 
 每个组件名都映射到一个文件夹路径，且**每个下划线都是文件夹分隔符**：

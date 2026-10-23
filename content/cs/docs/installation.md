@@ -28,6 +28,10 @@ npm exec mam@latest
 
 Spustí stejný vývojový server v prázdné složce. Přesto doporučujeme klon: veškerá práce stejně probíhá uvnitř MAM a klon rovnou obsahuje nastavení editoru (`.vscode`) a `.npmrc`.
 
+### V prohlížeči
+
+Nemáte nic nainstalováno? Otevřete workspace v GitHub Codespaces: [codespaces.new/hyoo-ru/mam](https://codespaces.new/hyoo-ru/mam). Je to VS Code v prohlížeči na stroji GitHubu, kde už Node.js je. V jeho terminálu spusťte `npm install` a `npm start` a otevřete přesměrovaný port 9080.
+
 ## Jak se moduly pojmenovávají
 
 Každý název komponenty odpovídá cestě ke složce a **každé podtržítko je oddělovač složek**:

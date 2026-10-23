@@ -28,6 +28,10 @@ npm exec mam@latest
 
 它會在空資料夾裡啟動同一個開發伺服器。我們仍然推薦複製：所有工作反正都在 MAM 裡進行，而複製自帶編輯器設定（`.vscode`）和 `.npmrc`。
 
+### 在瀏覽器中
+
+電腦上甚麼都沒裝？在 GitHub Codespaces 中開啟工作區：[codespaces.new/hyoo-ru/mam](https://codespaces.new/hyoo-ru/mam)。這是執行在 GitHub 機器上的瀏覽器版 VS Code，Node.js 已經裝好。在它的終端機裡執行 `npm install` 和 `npm start`，然後開啟轉發的 9080 連接埠。
+
 ## 模組如何命名
 
 每個元件名都對應到一個資料夾路徑，且**每個底線都是資料夾分隔符**：

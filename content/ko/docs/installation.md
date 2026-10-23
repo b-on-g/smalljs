@@ -28,6 +28,10 @@ npm exec mam@latest
 
 빈 폴더에서 같은 개발 서버를 띄웁니다. 그래도 클론을 권합니다. 어차피 모든 작업은 MAM 안에서 이루어지고, 클론에는 에디터 설정(`.vscode`)과 `.npmrc`가 처음부터 들어 있습니다.
 
+### 브라우저에서
+
+컴퓨터에 아무것도 설치하지 않았나요? GitHub Codespaces에서 워크스페이스를 여세요: [codespaces.new/hyoo-ru/mam](https://codespaces.new/hyoo-ru/mam). GitHub 머신에서 도는 브라우저 속 VS Code이고, Node.js가 이미 설치되어 있습니다. 터미널에서 `npm install`과 `npm start`를 실행하고 포워딩된 9080 포트를 여세요.
+
 ## 모듈 이름 규칙
 
 모든 컴포넌트 이름은 폴더 경로에 대응하며, **각 밑줄은 폴더 구분자**입니다.

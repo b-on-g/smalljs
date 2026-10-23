@@ -28,6 +28,10 @@ npm exec mam@latest
 
 Er startet denselben Dev-Server in einem leeren Ordner. Wir empfehlen trotzdem den Klon: Die ganze Arbeit findet ohnehin innerhalb von MAM statt, und der Klon bringt Editor-Einstellungen (`.vscode`) und `.npmrc` gleich mit.
 
+### Im Browser
+
+Nichts auf dem Rechner installiert? Öffne den Workspace in GitHub Codespaces: [codespaces.new/hyoo-ru/mam](https://codespaces.new/hyoo-ru/mam). Das ist VS Code im Browser auf einer GitHub-Maschine, Node.js ist schon da. Führe im Terminal `npm install` und `npm start` aus und öffne den weitergeleiteten Port 9080.
+
 ## Wie Module benannt werden
 
 Jeder Komponentenname entspricht einem Ordnerpfad, und **jeder Unterstrich ist ein Ordnertrenner**:
